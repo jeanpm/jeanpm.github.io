@@ -6,13 +6,107 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 16 Aug 2017 13:58:12 -0300</pubDate>
-    <lastBuildDate>Wed, 16 Aug 2017 13:58:12 -0300</lastBuildDate>
+    <pubDate>Thu, 17 Aug 2017 15:07:28 -0300</pubDate>
+    <lastBuildDate>Thu, 17 Aug 2017 15:07:28 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
-        <title>Lógica Proposicional formal II</title>
-        <description>&lt;h2 id=&quot;contato&quot;&gt;Contato&lt;/h2&gt;
+        <title>Exercícios II - Dedução natural</title>
+        <description>&lt;h1 id=&quot;contato&quot;&gt;Contato&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Jean Paulo Martins&lt;/li&gt;
+  &lt;li&gt;Sala 105&lt;/li&gt;
+  &lt;li&gt;e-mail jeanmartins@utfpr.edu.br&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;demonstre-os-argumentos-a-seguir&quot;&gt;Demonstre os argumentos a seguir:&lt;/h1&gt;
+
+&lt;p&gt;Utilize as regras de derivação:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Eliminação da conjunção 1: &lt;script type=&quot;math/tex&quot;&gt;\land\mbox{e}_1&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;Eliminação da conjunção 2: &lt;script type=&quot;math/tex&quot;&gt;\land\mbox{e}_2&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;Introdução da conjunção: &lt;script type=&quot;math/tex&quot;&gt;\land\mbox{i}&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;Introdução da disjunção: &lt;script type=&quot;math/tex&quot;&gt;\lor\mbox{i}&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;Eliminação da dupla negação: &lt;script type=&quot;math/tex&quot;&gt;\neg\neg\mbox{e}&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;Introdução da dupla negação: &lt;script type=&quot;math/tex&quot;&gt;\neg\neg\mbox{i}&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;Eliminação do condicional: &lt;script type=&quot;math/tex&quot;&gt;\to\mbox{e}\quad(\mbox{Modus Ponens})&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q), r \vdash q \land r&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \land r, s \land t \vdash q \land s&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(q \land r) \vdash \neg\neg p \land r&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land q \vdash q \land p&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q) \land r \vdash p\land (q\land r)&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to (p\to q), p \vdash q&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;q\to(p\to r), \neg r, q \vdash \neg p&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\lor (q\to p)) \land q \vdash p&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p\lor (p\land q)\vdash p&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q) \lor (p\land r) \vdash p\land(q\lor r)&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p\land q, \neg p \land q\to r\lor \neg p \vdash r \lor \neg p&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to(q\land r), p \vdash p \land q&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land q \vdash q \land p&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \to (r \land s), \neg\neg p, q \vdash s&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (q \land r), p \vdash q \land r&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p \vdash (p\lor q) \land (p\lor r)&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(p\to q) \vdash q\lor \neg q&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(p\to q) \vdash (r \land s) \lor q&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q)\land r, s \land t \vdash q \land s&lt;/script&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+        <pubDate>Thu, 17 Aug 2017 12:00:00 -0300</pubDate>
+        <link>http://localhost:4000/lc21cp-172/2017/08/17/Exercicios-2.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/2017/08/17/Exercicios-2.html</guid>
+        
+        <category>dedução-natural</category>
+        
+        
+        <category>LC21CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>Cálculo Proposicional</title>
+        <description>&lt;h1 id=&quot;contato&quot;&gt;Contato&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;Jean Paulo Martins&lt;/li&gt;
   &lt;li&gt;Sala 105&lt;/li&gt;
@@ -23,14 +117,217 @@
 &lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#contato&quot; id=&quot;markdown-toc-contato&quot;&gt;Contato&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#conteúdo&quot; id=&quot;markdown-toc-conteúdo&quot;&gt;Conteúdo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#cálculo-proposicional&quot; id=&quot;markdown-toc-cálculo-proposicional&quot;&gt;Cálculo proposicional&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#regras-de-inferência-dedução-natural&quot; id=&quot;markdown-toc-regras-de-inferência-dedução-natural&quot;&gt;Regras de inferência (dedução natural)&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#regras-para-a-conjunção&quot; id=&quot;markdown-toc-regras-para-a-conjunção&quot;&gt;Regras para a conjunção&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#regras-para-a-dupla-negação&quot; id=&quot;markdown-toc-regras-para-a-dupla-negação&quot;&gt;Regras para a dupla negação&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exemplos-derivação-da-conjunção-e-dupla-negação&quot; id=&quot;markdown-toc-exemplos-derivação-da-conjunção-e-dupla-negação&quot;&gt;Exemplos: derivação da conjunção e dupla negação&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#regra-para-eliminar-o-condicional&quot; id=&quot;markdown-toc-regra-para-eliminar-o-condicional&quot;&gt;Regra para eliminar o condicional&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exemplos-derivação-por-exclusão-do-condicional&quot; id=&quot;markdown-toc-exemplos-derivação-por-exclusão-do-condicional&quot;&gt;Exemplos: derivação por exclusão do condicional&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#regras-para-introdução-da-disjunção&quot; id=&quot;markdown-toc-regras-para-introdução-da-disjunção&quot;&gt;Regras para introdução da disjunção&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exemplos-derivação-por-introdução-do-conjuntivo&quot; id=&quot;markdown-toc-exemplos-derivação-por-introdução-do-conjuntivo&quot;&gt;Exemplos: derivação por introdução do conjuntivo&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#validade-de-uma-forma-de-argumento&quot; id=&quot;markdown-toc-validade-de-uma-forma-de-argumento&quot;&gt;Validade de uma forma de argumento&lt;/a&gt;    &lt;ul&gt;
       &lt;li&gt;&lt;a href=&quot;#exemplo-de-forma-de-argumento-válida&quot; id=&quot;markdown-toc-exemplo-de-forma-de-argumento-válida&quot;&gt;Exemplo de forma de argumento válida&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#exemplo-de-forma-de-argumento-inválida&quot; id=&quot;markdown-toc-exemplo-de-forma-de-argumento-inválida&quot;&gt;Exemplo de forma de argumento inválida&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#automatização-por-manipulação-simbólica&quot; id=&quot;markdown-toc-automatização-por-manipulação-simbólica&quot;&gt;Automatização por manipulação simbólica&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#cálculo-proposicional&quot; id=&quot;markdown-toc-cálculo-proposicional&quot;&gt;Cálculo proposicional&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h1 id=&quot;cálculo-proposicional&quot;&gt;Cálculo proposicional&lt;/h1&gt;
+
+&lt;p&gt;O cálculo proposicional consiste de um sistema de &lt;em&gt;regras de inferência&lt;/em&gt; que são capazes de gerar todas (e somente) as formas de argumentos válidas expressáveis na linguagem.&lt;/p&gt;
+
+&lt;p&gt;Como cada forma de argumento tem um infinito número de instâncias, cada vez que produzimos uma forma válida, nós estabelecemos a validade de um número imenso de argumentos específicos.&lt;/p&gt;
+
+&lt;p&gt;Os cálculos que executaremos com esses sistemas são sequências de inferências com o objetivo de demonstrar a validade de certas &lt;em&gt;formas de argumento&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;regras-de-inferência-dedução-natural&quot;&gt;Regras de inferência (dedução natural)&lt;/h2&gt;
+
+&lt;p&gt;As regras de inferência geram as formas de argumento numa série de etapas simples e precisas de raciocínio, chamadas&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;derivação ou prova&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A idéia geral é que a definição de um conjunto apropriado de regras nos permita criar um “cálculo de proposições”, por meio do qual seja possível derivar novas conclusões a partir de verdades já verificadas (premissas). Ou derivar novas fórmulas a partir de outras fórmulas.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi_1,\phi_2,\phi_3,\dots,\phi_n \vdash \psi \mbox{ (Argumento)}&lt;/script&gt;
+
+&lt;p&gt;Do ponto de vista prático, uma &lt;em&gt;derivação&lt;/em&gt; é uma etapa que transforma uma fórmula em outra, menor ou maior.&lt;/p&gt;
+
+&lt;p&gt;A quantidade de &lt;em&gt;regras de derivação&lt;/em&gt;, no nosso caso, será definida a partir dos conectivos lógicos. Ou seja, para cada &lt;em&gt;conectivo lógico&lt;/em&gt; definiremos duas regras básicas de inferência.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;inclusão&lt;/em&gt;: inclui o operador numa expressão&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;eliminação&lt;/em&gt;: dadas premissas elimina o operador e uma expressão, substituindo-o por uma conclusão&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Portanto, temos dez &lt;em&gt;regras de inferência&lt;/em&gt; no total.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Assuma, deste ponto em diante, que &lt;script type=&quot;math/tex&quot;&gt;\phi&lt;/script&gt; e &lt;script type=&quot;math/tex&quot;&gt;\psi&lt;/script&gt; representam duas fórmulas na linguagem da lógica proposicional.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;As regras definidas para cada conectivo apenas formalizam o funcionamento intuitivo desses operadores.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;regras-para-a-conjunção&quot;&gt;Regras para a conjunção&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Introdução/Inclusão do conectivo:&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Dadas duas premissas &lt;script type=&quot;math/tex&quot;&gt;\phi&lt;/script&gt; e &lt;script type=&quot;math/tex&quot;&gt;\psi&lt;/script&gt;, podemos concluir que a sua conjunção também é verdadeira.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi,\psi \vdash \phi \land \psi&lt;/script&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Essa regra de derivação é chamada &lt;script type=&quot;math/tex&quot;&gt;\land&lt;/script&gt;-introdução (abreviada por &lt;script type=&quot;math/tex&quot;&gt;\land_i&lt;/script&gt;) e, em geral, é denotada por:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\phi\quad\psi}{\phi \land \psi} \land\mbox{i}\qquad(\land\mbox{-introdução})&lt;/script&gt;
+
+&lt;p&gt;&lt;em&gt;Eliminação/Exclusão do conectivo:&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Dada uma conjunção &lt;script type=&quot;math/tex&quot;&gt;\phi \land \psi&lt;/script&gt;, podemos concluir que ambos conjuctos são verdadeiros.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi \land \psi \vdash \phi \mbox{ (Opção 1)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi \land \psi \vdash \psi \mbox{ (Opção 2)}&lt;/script&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Essa regra de derivação é chamada &lt;script type=&quot;math/tex&quot;&gt;\land&lt;/script&gt;-eliminação (abreviada por &lt;script type=&quot;math/tex&quot;&gt;\land_{e1}&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;\land_{e2}&lt;/script&gt;). Como existem duas possibilidades adicionaremos um subscrito para indicar a &lt;em&gt;opção1&lt;/em&gt; ou &lt;em&gt;opção2&lt;/em&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\phi \land \psi}{\phi} \land\mbox{e}_1 \mbox{ (Opção 1)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\phi \land \psi}{\psi} \land\mbox{e}_2 \mbox{ (Opção 2)}&lt;/script&gt;
+
+&lt;h2 id=&quot;regras-para-a-dupla-negação&quot;&gt;Regras para a dupla negação&lt;/h2&gt;
+
+&lt;p&gt;Uma fórmula é equivalente a sua &lt;em&gt;dupla negação&lt;/em&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;~\phi&lt;/script&gt; : “Está chovendo”&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;~\neg\phi&lt;/script&gt;: “Não está chovendo”&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\neg\neg\phi&lt;/script&gt;: “Não é verdade que não está chovendo”&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Portanto, a dupla negação pode ser eliminada ou introduzida&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\neg\neg\phi}{\phi} \neg\neg\mbox{e}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\phi}{\neg\neg\phi} \neg\neg\mbox{i}&lt;/script&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;exemplos-derivação-da-conjunção-e-dupla-negação&quot;&gt;Exemplos: derivação da conjunção e dupla negação&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q), r \vdash q \land r&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \land r, s \land t \vdash q \land s&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(q \land r) \vdash \neg\neg p \land r&lt;/script&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;regra-para-eliminar-o-condicional&quot;&gt;Regra para eliminar o condicional&lt;/h2&gt;
+
+&lt;p&gt;As regras de introdução e eliminação do condicional são bem diferentes, portanto, iremos separá-las em duas seções.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;O condicional (implicação) é análogo à sentenças da forma se… então&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Deste modo, dadas fórmulas &lt;script type=&quot;math/tex&quot;&gt;\phi&lt;/script&gt; e &lt;script type=&quot;math/tex&quot;&gt;\psi&lt;/script&gt;, temos em &lt;script type=&quot;math/tex&quot;&gt;\phi\to\psi&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;\psi&lt;/script&gt; é verdadeira quando &lt;script type=&quot;math/tex&quot;&gt;\phi&lt;/script&gt; é verdadeira.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Em casos em que &lt;script type=&quot;math/tex&quot;&gt;\phi\to\psi&lt;/script&gt; e &lt;script type=&quot;math/tex&quot;&gt;\phi&lt;/script&gt; são premissas, podemos então concluir &lt;script type=&quot;math/tex&quot;&gt;\psi&lt;/script&gt;. Essa é a regra de derivação de eliminação do condicional (&lt;script type=&quot;math/tex&quot;&gt;\to&lt;/script&gt;-eliminação)&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\phi\to\psi, \phi}{\psi}\to\mbox{e}\qquad(\mbox{Modus Ponens})&lt;/script&gt;
+
+&lt;p&gt;&lt;em&gt;em latim significa “a maneira que afirma afirmando”&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;“Se estiver chovendo, te encontrarei no cinema” (&lt;script type=&quot;math/tex&quot;&gt;p\to q&lt;/script&gt;)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; : “Está chovendo” (&lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; : “Te encontrarei no cinema” (então &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt;)&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;exemplos-derivação-por-exclusão-do-condicional&quot;&gt;Exemplos: derivação por exclusão do condicional&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p\land q, \neg p \land q\to r\lor \neg p \vdash r \lor \neg p&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to(q\land r), p \vdash p \land q&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land q \vdash q \land p&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \to (r \land s), \neg\neg p, q \vdash s&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (q \land r), p \vdash q \land r&lt;/script&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;regras-para-introdução-da-disjunção&quot;&gt;Regras para introdução da disjunção&lt;/h2&gt;
+
+&lt;p&gt;Dadas duas fórmulas &lt;script type=&quot;math/tex&quot;&gt;\phi&lt;/script&gt; e &lt;script type=&quot;math/tex&quot;&gt;\psi&lt;/script&gt;, se uma delas é verdadeira, a conjunção das duas também será. Ou seja:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi \vdash \phi \lor \psi\quad(\forall \psi)&lt;/script&gt;
+
+&lt;p&gt;A introdução da disjunção será referenciada por &lt;script type=&quot;math/tex&quot;&gt;\lor\mbox{i}&lt;/script&gt;.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\phi}{\phi \lor \psi}\lor\mbox{i}\qquad(\mbox{introdução do }\lor)&lt;/script&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;exemplos-derivação-por-introdução-do-conjuntivo&quot;&gt;Exemplos: derivação por introdução do conjuntivo&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p \vdash (p\lor q) \land (p\lor r)&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(p\to q) \vdash q\lor \neg q&lt;/script&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(p\to q) \vdash (r \land s) \lor q&lt;/script&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;h1 id=&quot;validade-de-uma-forma-de-argumento&quot;&gt;Validade de uma forma de argumento&lt;/h1&gt;
 
@@ -46,7 +343,7 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;exemplo-de-forma-de-argumento-válida&quot;&gt;Exemplo de forma de argumento válida&lt;/h3&gt;
+&lt;h2 id=&quot;exemplo-de-forma-de-argumento-válida&quot;&gt;Exemplo de forma de argumento válida&lt;/h2&gt;
 
 &lt;p&gt;&lt;em&gt;disjunção&lt;/em&gt; (&lt;script type=&quot;math/tex&quot;&gt;p\lor q, \neg p \vdash q&lt;/script&gt;)&lt;/p&gt;
 
@@ -54,21 +351,22 @@
   &lt;li&gt;Sempre que &lt;script type=&quot;math/tex&quot;&gt;p\lor q&lt;/script&gt; e &lt;script type=&quot;math/tex&quot;&gt;\neg p&lt;/script&gt; forem verdadeiras, &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; será verdadeira, independentemente do significado representado por &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; e &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;exemplo-de-forma-de-argumento-inválida&quot;&gt;Exemplo de forma de argumento inválida&lt;/h3&gt;
+&lt;h2 id=&quot;exemplo-de-forma-de-argumento-inválida&quot;&gt;Exemplo de forma de argumento inválida&lt;/h2&gt;
 
 &lt;p&gt;&lt;em&gt;afirmação do consequente&lt;/em&gt; (&lt;script type=&quot;math/tex&quot;&gt;p\to q, q \vdash p&lt;/script&gt;)&lt;/p&gt;
 
 &lt;p&gt;Embora algumas instâncias desta forma sejam válidas, algumas não são. Portanto ela é uma forma inválida, veja os exemplos:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;p:&lt;/script&gt; Se abril precede maio, então abril precede maio e maio segue abril,&lt;/li&gt;
-  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;q:&lt;/script&gt; Abril precede maio e maio segue abril,&lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Abril precede maio.&lt;/p&gt;
+    &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;p:&lt;/script&gt; Se você está dançando na lua, então você está vivo,&lt;/p&gt;
   &lt;/li&gt;
-  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;p:&lt;/script&gt; Se você está dançando na lua, então você está vivo,&lt;/li&gt;
-  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;q:&lt;/script&gt; Você está vivo,&lt;/li&gt;
-  &lt;li&gt;Você está dançando na lua.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;q:&lt;/script&gt; Você está vivo,&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Você está dançando na lua.&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Portanto, para demonstrar que uma forma é inválida, basta encontrar uma instância para a qual ela seja inválida.&lt;/p&gt;
@@ -77,13 +375,10 @@
 
 &lt;p&gt;Assumindo-se formas de argumento válidas, é possível tirar conclusões sobre argumentos definidos abstratamente. Essa possibilidade nos permite também implementar métodos automáticos de inferência.&lt;/p&gt;
 
-&lt;h1 id=&quot;cálculo-proposicional&quot;&gt;Cálculo proposicional&lt;/h1&gt;
-
-&lt;p&gt;Os cálculos que executaremos com esses sistemas são sequências de inferências com o objetivo de demonstrar a validade de certas &lt;em&gt;formas de argumento&lt;/em&gt;.&lt;/p&gt;
 </description>
-        <pubDate>Wed, 16 Aug 2017 10:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/2017/08/16/Logica-formal-2.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/2017/08/16/Logica-formal-2.html</guid>
+        <pubDate>Thu, 17 Aug 2017 10:20:00 -0300</pubDate>
+        <link>http://localhost:4000/lc21cp-172/2017/08/17/Calculo-proposicional.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/2017/08/17/Calculo-proposicional.html</guid>
         
         <category>dedução-natural</category>
         
@@ -93,7 +388,116 @@
       </item>
     
       <item>
-        <title>Lógica Proposicional formal I</title>
+        <title>Exercícios I - Formalização de argumentos</title>
+        <description>&lt;h2 id=&quot;contato&quot;&gt;Contato&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Jean Paulo Martins&lt;/li&gt;
+  &lt;li&gt;Sala 105&lt;/li&gt;
+  &lt;li&gt;e-mail jeanmartins@utfpr.edu.br&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;exercícios-john-nolt-pg-93319933&quot;&gt;Exercícios (John Nolt, pg. 93[3.1],99[3.3])&lt;/h1&gt;
+
+&lt;p&gt;Considere as seguintes premissas:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; : “Está chovendo.”&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; : “Está nevando.”&lt;/li&gt;
+  &lt;li&gt;Expresse cada uma das seguintes sentenças na notação do cálculo proposicional.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Está chovendo.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Não está chovendo.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Está chovendo ou nevando.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Está chovendo e nevando.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Está chovendo mas não está nevando.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Não é caso que está chovendo e nevando.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Se não está chovendo, então está nevando.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Não é o caso que se está chovendo então está nevando.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Não é o caso que se está nevando então está chovendo.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Está chovendo se e somente se não está nevando.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Não é o caso que está chovendo ou nevando.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Se está nevando e chovendo, então está nevando.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Se não está chovendo, então não é o caso que está nevando e chovendo.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ou está chovendo e nevando, ou está nevando mas não está chovendo.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;formalize-os-seguintes-argumentos&quot;&gt;Formalize os seguintes argumentos:&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Se Deus existe, então a vida tem significado. Deus existe. Portanto, a vida tem significado.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Deus não existe. Pois, se Deus existisse, a vida teria significado. Mas a vida não tem significado.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Se o avião não tivesse caído, nós teríamos feito contato pelo rádio. Não fizemos contato pelo rádio. Portanto, o avião caiu.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Como hoje não é quinta-feira, deve ser sexta-feira. Hoje é quarta-feira ou sexta-feira.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Se hoje é quinta-feira, então amanhã será sexta-feira. Se amanhã for sexta-feira, então depois de amanhã será sábado. Consequentemente, se hoje for quinta-feira, então depois de amanhá será sábado.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Hoje é um fim de semana se e somente se hoje é sábado ou domingo. Portanto, hoje é um fim de semana, desde que hoje é sábado.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Hoje é um fim de semana se hoje é sábado ou domingo. Mas, hoje não é um fim de semana. Portanto, hoje não é sábado e hoje não é domingo.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Hoje é um fim de semana somente se hoje é sábado ou domingo. Hoje não é sábado. Hoje não é domingo. Portanto, hoje não é fim de semana.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;A proposta de auxílio está no correio. Se os árbitros a receberem até sexta-feira, eles a analisarão. Portanto eles a analisarão porque se a proposta estiver no correio, eles a receberão até sexta-feira.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ela não está em casa ou não está atendendo ao telefone. Mas, se ela não está em casa, então ela foi sequestrada. E se ela não está atendendo ao telefone, ela está correndo algum outro perigo. Portanto, ou ela foi sequestrada ou ela está correndo um outro perigo.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Wed, 16 Aug 2017 12:00:00 -0300</pubDate>
+        <link>http://localhost:4000/lc21cp-172/2017/08/16/Exercicios-1.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/2017/08/16/Exercicios-1.html</guid>
+        
+        <category>argumentos-formais</category>
+        
+        
+        <category>LC21CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>Da forma de argumentos lógicos</title>
         <description>&lt;h2 id=&quot;contato&quot;&gt;Contato&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;Jean Paulo Martins&lt;/li&gt;
@@ -112,7 +516,6 @@
       &lt;li&gt;&lt;a href=&quot;#bicondicionais&quot; id=&quot;markdown-toc-bicondicionais&quot;&gt;Bicondicionais&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#operadores-ou-conectivos-lógicos&quot; id=&quot;markdown-toc-operadores-ou-conectivos-lógicos&quot;&gt;Operadores ou conectivos lógicos&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#sintaxe-compacta&quot; id=&quot;markdown-toc-sintaxe-compacta&quot;&gt;Sintaxe compacta&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#exercícios-john-nolt-pg-93319933&quot; id=&quot;markdown-toc-exercícios-john-nolt-pg-93319933&quot;&gt;Exercícios (John Nolt, pg. 93[3.1],99[3.3])&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -322,14 +725,12 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;exercícios-john-nolt-pg-93319933&quot;&gt;Exercícios (John Nolt, pg. 93[3.1],99[3.3])&lt;/h2&gt;
-
 </description>
         <pubDate>Wed, 16 Aug 2017 10:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/2017/08/16/Logica-formal-1.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/2017/08/16/Logica-formal-1.html</guid>
+        <link>http://localhost:4000/lc21cp-172/2017/08/16/Forma-de-argumentos-logicos.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/2017/08/16/Forma-de-argumentos-logicos.html</guid>
         
-        <category>conectivos-lógicos</category>
+        <category>argumentos-formais</category>
         
         
         <category>LC21CP-172</category>
@@ -2052,242 +2453,6 @@ sizeof double* = 8bytes
         
         
         <category>LC21CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Exercícios I (Structs)</title>
-        <description>&lt;h2 id=&quot;contato&quot;&gt;Contato&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Jean Paulo Martins&lt;/li&gt;
-  &lt;li&gt;Sala 105&lt;/li&gt;
-  &lt;li&gt;e-mail jeanmartins@utfpr.edu.br&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;exercícios&quot;&gt;Exercícios&lt;/h1&gt;
-
-&lt;h2 id=&quot;preparação&quot;&gt;Preparação&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Definir as constantes: MAX_NOME_SIZE, NUM_PESSOAS
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#define MAX_NOME_SIZE 20
-#define NUM_PESSOAS 5163
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Definir o tipo de dado Pessoa
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cpf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nome&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MAX_NOME_SIZE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Declarar um vetor de Pessoas na função main
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lista&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NUM_PESSOAS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;  		
-    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// completar durante a resolução dos exercícios.
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Implementar a leitura dos dados do arquivo (cada linha uma posição do vetor)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Implementar uma função que compute a média de idade das pessoas&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Implementar uma função que compute o desvio padrão das idades&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Implementar uma função que imprima todos as pessoas do vetor&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Implementar uma função que imprima o nome de todas as pessoas de uma certa idade  &lt;br /&gt;
-    - A idade deve ser recebida como parâmetro da
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;print_por_idade&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pessoas&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[],&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Implementar uma função que retorne a Pessoa de maior idade.
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mais_velho&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pessoas&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Implementar uma função que imprima todas as pessoas de idade par.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Implementar uma função que verifique se existe pessoas com CPF repetido
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// retorna 1 caso exista,
-// retorna 0 caso não exista 
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;existe_cpf_repetido&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pessoas&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Implementar uma função que receba um vetor de inteiros, de tamanho 100 (freq) e o vetor de pessoas.
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contar_por_idade&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[],&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-    &lt;p&gt;Esta função deve armazenar no vetor de inteiros o número de pessoas que possuem a mesma idade.&lt;/p&gt;
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// número de pessoas de idade 0
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;60&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// número de pessoas de idade 60
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-    &lt;p&gt;Imprimir o vetor freq e redirecionar saída para um arquivo freq.txt&lt;/p&gt;
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;contar&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;txt&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Utilizar os dados do arquivo freq.txt para gerar um gráfico de barras: utilizer o excel, libreoffice-calc, R, python, etc.. ou qualquer programa de sua escolha&lt;/li&gt;
-&lt;/ol&gt;
-
-</description>
-        <pubDate>Tue, 08 Aug 2017 13:50:00 -0300</pubDate>
-        <link>http://localhost:4000/ae22cp-172/2017/08/08/Struct-exercicios.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/2017/08/08/Struct-exercicios.html</guid>
-        
-        <category>estruturas-c</category>
-        
-        
-        <category>AE22CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Structs, unions, vetores, strings II</title>
-        <description>&lt;h2 id=&quot;contato&quot;&gt;Contato&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Jean Paulo Martins&lt;/li&gt;
-  &lt;li&gt;Sala 105&lt;/li&gt;
-  &lt;li&gt;e-mail jeanmartins@utfpr.edu.br&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;conteúdo&quot;&gt;Conteúdo&lt;/h1&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#contato&quot; id=&quot;markdown-toc-contato&quot;&gt;Contato&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#conteúdo&quot; id=&quot;markdown-toc-conteúdo&quot;&gt;Conteúdo&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#revisão-da-aula-anterior&quot; id=&quot;markdown-toc-revisão-da-aula-anterior&quot;&gt;Revisão da aula anterior&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#structs&quot; id=&quot;markdown-toc-structs&quot;&gt;Structs&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#definindo-tipos-com-typedef&quot; id=&quot;markdown-toc-definindo-tipos-com-typedef&quot;&gt;Definindo tipos com &lt;code class=&quot;highlighter-rouge&quot;&gt;typedef&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#exercícios-durante-a-aula&quot; id=&quot;markdown-toc-exercícios-durante-a-aula&quot;&gt;Exercícios durante a aula&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#1-manipulação-de-structs-e-funções&quot; id=&quot;markdown-toc-1-manipulação-de-structs-e-funções&quot;&gt;1. Manipulação de structs e funções&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#plano-de-aulas&quot; id=&quot;markdown-toc-plano-de-aulas&quot;&gt;Plano de aulas&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;revisão-da-aula-anterior&quot;&gt;Revisão da aula anterior&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Material sobre linguagem C (&lt;a href=&quot;https://www.ime.usp.br/~slago/slago-C.pdf&quot;&gt;IME-USP&lt;/a&gt;)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;LEIA LIVROS SOBRE PROGRAMAÇÃO!&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Argumentos de entrada: &lt;code class=&quot;highlighter-rouge&quot;&gt;argc&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;argv[]&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Redirecionamento de entrada à &lt;code class=&quot;highlighter-rouge&quot;&gt;scanf&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Transformando strings: &lt;code class=&quot;highlighter-rouge&quot;&gt;atoi&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;atol&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;atof&lt;/code&gt;:&lt;/li&gt;
-  &lt;li&gt;Revisar a idéia de organização de memória: &lt;code class=&quot;highlighter-rouge&quot;&gt;struct&lt;/code&gt; vs &lt;code class=&quot;highlighter-rouge&quot;&gt;vetor&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;structs&quot;&gt;Structs&lt;/h1&gt;
-
-&lt;p&gt;Uma &lt;code class=&quot;highlighter-rouge&quot;&gt;struct&lt;/code&gt; pode ser heterogênea e conter diversos tipos de dados ao mesmo tempo:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Usar o fato do char nome não estar no fim, para ilustrar a estrutura de memória da structs&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#define MAX_STR 100
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;c1&quot;&gt;// Tamanho variável deve ficar no fim da struct.
-&lt;/span&gt;	&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nome&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MAX_STR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; 
-	&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cpf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;definindo-tipos-com-typedef&quot;&gt;Definindo tipos com &lt;code class=&quot;highlighter-rouge&quot;&gt;typedef&lt;/code&gt;&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Implementar exemplos simples&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Inteiro&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Retornar ao exemplo de pessoas&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#define MAX_STR 100
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nome&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MAX_STR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Tamanho variável deve ficar no fim da struct.
-&lt;/span&gt;	&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cpf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;exercícios-durante-a-aula&quot;&gt;Exercícios durante a aula&lt;/h2&gt;
-&lt;h3 id=&quot;1-manipulação-de-structs-e-funções&quot;&gt;1. Manipulação de structs e funções&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Criar um vetor de structs Pessoa: &lt;code class=&quot;highlighter-rouge&quot;&gt;struct Pessoa p[100]&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Ler informações das pessoas de um arquivo, por meio de &lt;code class=&quot;highlighter-rouge&quot;&gt;scanf&lt;/code&gt; e redirecionamento&lt;/li&gt;
-  &lt;li&gt;Implementar uma função que imprima todos os nomes das pessoas em &lt;code class=&quot;highlighter-rouge&quot;&gt;p&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Implementar uma função que imprima todas as idades das pessoas em &lt;code class=&quot;highlighter-rouge&quot;&gt;p&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Implementar uma função que retorne a média de idade das pessoas em &lt;code class=&quot;highlighter-rouge&quot;&gt;p&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Implementar uma função que retorne o &lt;em&gt;desvio padrão&lt;/em&gt; da idades das pessoas em &lt;code class=&quot;highlighter-rouge&quot;&gt;p&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Ler as informações iterativamente por scanf e armazenar em cada struct.&lt;/p&gt;
-
-&lt;p&gt;Implementar uma função que receba o vetor de structs e retorne a média de idade.&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;media_idade&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;desvio_padrao_idade&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;print_idades&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;print_nomes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;plano-de-aulas&quot;&gt;Plano de aulas&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Resumo do conteúdo &lt;a href=&quot;http://localhost:4000/assets/AE22CP-172-plano.pdf&quot;&gt;PDF&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;Relacionar às estruturas de dados em &lt;a href=&quot;http://www.cplusplus.com/reference/stl/&quot;&gt;C++ STL&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;Utilizar os mesmos nomes de estruturas que em STL
-        &lt;ul&gt;
-          &lt;li&gt;Facilitará o aprendizado introdutório das estruturas C++&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;APS e provas (datas)
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;https://www.hackerrank.com/ae22cp-17-2&quot;&gt;Hackerrannk: AE22CP-17/2&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Mon, 07 Aug 2017 18:40:00 -0300</pubDate>
-        <link>http://localhost:4000/ae22cp-172/2017/08/07/Structs-unions-vetores.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/2017/08/07/Structs-unions-vetores.html</guid>
-        
-        <category>estruturas-c</category>
-        
-        
-        <category>AE22CP-172</category>
         
       </item>
     
