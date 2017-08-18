@@ -6,12 +6,107 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 17 Aug 2017 17:06:22 -0300</pubDate>
-    <lastBuildDate>Thu, 17 Aug 2017 17:06:22 -0300</lastBuildDate>
+    <pubDate>Fri, 18 Aug 2017 16:32:05 -0300</pubDate>
+    <lastBuildDate>Fri, 18 Aug 2017 16:32:05 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
-        <title>Exercícios II - Dedução natural</title>
+        <title>Cálculo Proposicional - Regras de dedução II</title>
+        <description>&lt;h1 id=&quot;contato&quot;&gt;Contato&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Jean Paulo Martins&lt;/li&gt;
+  &lt;li&gt;Sala 105&lt;/li&gt;
+  &lt;li&gt;e-mail jeanmartins@utfpr.edu.br&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;conteúdo&quot;&gt;Conteúdo&lt;/h1&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#contato&quot; id=&quot;markdown-toc-contato&quot;&gt;Contato&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#conteúdo&quot; id=&quot;markdown-toc-conteúdo&quot;&gt;Conteúdo&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#regra-para-eliminação-do-condicional---modus-tollens&quot; id=&quot;markdown-toc-regra-para-eliminação-do-condicional---modus-tollens&quot;&gt;Regra para eliminação do condicional - Modus Tollens&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exercícios-modus-tollens&quot; id=&quot;markdown-toc-exercícios-modus-tollens&quot;&gt;Exercícios: Modus Tollens&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#regras-para-introdução-da-disjunção&quot; id=&quot;markdown-toc-regras-para-introdução-da-disjunção&quot;&gt;Regras para introdução da disjunção&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;regra-para-eliminação-do-condicional---modus-tollens&quot;&gt;Regra para eliminação do condicional - Modus Tollens&lt;/h2&gt;
+
+&lt;p&gt;Existe uma segunda regra para eliminação do condicional, chamada &lt;em&gt;Modus Tollens&lt;/em&gt; (MT). Em &lt;em&gt;Modus Ponens&lt;/em&gt; (MP) concluimos que, dada fórmula &lt;script type=&quot;math/tex&quot;&gt;\phi\to\psi&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;\psi&lt;/script&gt; só é verdadeira quando (\phi) é verdadeira.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Modus Ponens&lt;/em&gt; trata do caso oposto, em que $\neg q$ é tido como premissa, portanto:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to q, \neg q \vdash \neg p&lt;/script&gt;
+
+&lt;p&gt;Esta regra é provada por contradição. Assuma que $p$ seja verdadeiro. Logo&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p, p\to q \vdash q\quad (MP)&lt;/script&gt;
+
+&lt;p&gt;No entanto, temos como premissa $\neg q$, portanto, $p$ não pode ser verdadeiro.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\phi\to\psi\quad \neg\psi}{\neg\phi}MT\qquad(\mbox{Modus Tollens})&lt;/script&gt;
+
+&lt;p&gt;&lt;strong&gt;Modus Ponens&lt;/strong&gt;: exemplo&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;“Se Jean é paranaense, então Jean é brasileiro.” (&lt;script type=&quot;math/tex&quot;&gt;p\to q&lt;/script&gt;)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; : “Jean é paranaense.” (&lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; : “Jean é brasileiro” (então &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt;)&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Modus Tollens&lt;/strong&gt;: exemplo&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;“Se Jean é paranaense, então Jean é brasileiro.” $(p\to q)$&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\neg q&lt;/script&gt; : “Jean não é brasileiro”&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\neg p&lt;/script&gt; : “Jean não é paranaense.”&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;exercícios-modus-tollens&quot;&gt;Exercícios: Modus Tollens&lt;/h2&gt;
+
+&lt;p&gt;Demonstre que&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to(q\to r), p, \neg r \vdash \neg q&lt;/script&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;regras-para-introdução-da-disjunção&quot;&gt;Regras para introdução da disjunção&lt;/h2&gt;
+
+&lt;p&gt;Dadas duas fórmulas &lt;script type=&quot;math/tex&quot;&gt;\phi&lt;/script&gt; e &lt;script type=&quot;math/tex&quot;&gt;\psi&lt;/script&gt;, se uma delas é verdadeira, a conjunção das duas também será. Ou seja:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi \vdash \phi \lor \psi\quad(\forall \psi)&lt;/script&gt;
+
+&lt;p&gt;A introdução da disjunção será referenciada por &lt;script type=&quot;math/tex&quot;&gt;\lor\mbox{i}&lt;/script&gt;.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\phi}{\phi \lor \psi}\lor\mbox{i}\qquad(\mbox{introdução do }\lor)&lt;/script&gt;
+
+</description>
+        <pubDate>Wed, 23 Aug 2017 10:20:00 -0300</pubDate>
+        <link>http://localhost:4000/lc21cp-172/2017/08/23/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-2.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/2017/08/23/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-2.html</guid>
+        
+        <category>dedução-natural</category>
+        
+        
+        <category>LC21CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>Exercícios - Regras de dedução I</title>
         <description>&lt;h1 id=&quot;contato&quot;&gt;Contato&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;Jean Paulo Martins&lt;/li&gt;
@@ -94,8 +189,8 @@
 
 </description>
         <pubDate>Thu, 17 Aug 2017 12:00:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/2017/08/17/Exercicios-2.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/2017/08/17/Exercicios-2.html</guid>
+        <link>http://localhost:4000/lc21cp-172/2017/08/17/Exercicios-regras-de-dedu%C3%A7%C3%A3o-1.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/2017/08/17/Exercicios-regras-de-dedu%C3%A7%C3%A3o-1.html</guid>
         
         <category>dedução-natural</category>
         
@@ -105,7 +200,7 @@
       </item>
     
       <item>
-        <title>Cálculo Proposicional</title>
+        <title>Cálculo Proposicional - Regras de dedução I</title>
         <description>&lt;h1 id=&quot;contato&quot;&gt;Contato&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;Jean Paulo Martins&lt;/li&gt;
@@ -122,7 +217,7 @@
       &lt;li&gt;&lt;a href=&quot;#regras-para-a-conjunção&quot; id=&quot;markdown-toc-regras-para-a-conjunção&quot;&gt;Regras para a conjunção&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#regras-para-a-dupla-negação&quot; id=&quot;markdown-toc-regras-para-a-dupla-negação&quot;&gt;Regras para a dupla negação&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#exemplos-derivação-da-conjunção-e-dupla-negação&quot; id=&quot;markdown-toc-exemplos-derivação-da-conjunção-e-dupla-negação&quot;&gt;Exemplos: derivação da conjunção e dupla negação&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#regra-para-eliminar-o-condicional&quot; id=&quot;markdown-toc-regra-para-eliminar-o-condicional&quot;&gt;Regra para eliminar o condicional&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#regra-para-eliminar-o-condicional-modus-ponens&quot; id=&quot;markdown-toc-regra-para-eliminar-o-condicional-modus-ponens&quot;&gt;Regra para eliminar o condicional (Modus Ponens)&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#exemplos-derivação-por-exclusão-do-condicional&quot; id=&quot;markdown-toc-exemplos-derivação-por-exclusão-do-condicional&quot;&gt;Exemplos: derivação por exclusão do condicional&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#regras-para-introdução-da-disjunção&quot; id=&quot;markdown-toc-regras-para-introdução-da-disjunção&quot;&gt;Regras para introdução da disjunção&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#exemplos-derivação-por-introdução-do-conjuntivo&quot; id=&quot;markdown-toc-exemplos-derivação-por-introdução-do-conjuntivo&quot;&gt;Exemplos: derivação por introdução do conjuntivo&lt;/a&gt;&lt;/li&gt;
@@ -183,33 +278,25 @@
 
 &lt;h2 id=&quot;regras-para-a-conjunção&quot;&gt;Regras para a conjunção&lt;/h2&gt;
 
-&lt;p&gt;&lt;em&gt;Introdução/Inclusão do conectivo:&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Introdução/Inclusão do conectivo:&lt;/strong&gt;&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;Dadas duas premissas &lt;script type=&quot;math/tex&quot;&gt;\phi&lt;/script&gt; e &lt;script type=&quot;math/tex&quot;&gt;\psi&lt;/script&gt;, podemos concluir que a sua conjunção também é verdadeira.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Dadas duas premissas &lt;script type=&quot;math/tex&quot;&gt;\phi&lt;/script&gt; e &lt;script type=&quot;math/tex&quot;&gt;\psi&lt;/script&gt;, podemos concluir que a sua conjunção também é verdadeira.&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi,\psi \vdash \phi \land \psi&lt;/script&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;Essa regra de derivação é chamada &lt;script type=&quot;math/tex&quot;&gt;\land&lt;/script&gt;-introdução (abreviada por &lt;script type=&quot;math/tex&quot;&gt;\land_i&lt;/script&gt;) e, em geral, é denotada por:&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Essa regra de derivação é chamada &lt;script type=&quot;math/tex&quot;&gt;\land&lt;/script&gt;-introdução (abreviada por &lt;script type=&quot;math/tex&quot;&gt;\land_i&lt;/script&gt;) e, em geral, é denotada por:&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\phi\quad\psi}{\phi \land \psi} \land\mbox{i}\qquad(\land\mbox{-introdução})&lt;/script&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\phi\quad\psi}{\phi \land \psi} \land\mbox{i}\quad(\land\mbox{-introdução})&lt;/script&gt;
 
-&lt;p&gt;&lt;em&gt;Eliminação/Exclusão do conectivo:&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Eliminação/Exclusão do conectivo:&lt;/strong&gt;&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;Dada uma conjunção &lt;script type=&quot;math/tex&quot;&gt;\phi \land \psi&lt;/script&gt;, podemos concluir que ambos conjuctos são verdadeiros.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Dada uma conjunção &lt;script type=&quot;math/tex&quot;&gt;\phi \land \psi&lt;/script&gt;, podemos concluir que ambos conjuctos são verdadeiros.&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi \land \psi \vdash \phi \mbox{ (Opção 1)}&lt;/script&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi \land \psi \vdash \psi \mbox{ (Opção 2)}&lt;/script&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;Essa regra de derivação é chamada &lt;script type=&quot;math/tex&quot;&gt;\land&lt;/script&gt;-eliminação (abreviada por &lt;script type=&quot;math/tex&quot;&gt;\land_{e1}&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;\land_{e2}&lt;/script&gt;). Como existem duas possibilidades adicionaremos um subscrito para indicar a &lt;em&gt;opção1&lt;/em&gt; ou &lt;em&gt;opção2&lt;/em&gt;:&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Essa regra de derivação é chamada &lt;script type=&quot;math/tex&quot;&gt;\land&lt;/script&gt;-eliminação (abreviada por &lt;script type=&quot;math/tex&quot;&gt;\land_{e1}&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;\land_{e2}&lt;/script&gt;). Como existem duas possibilidades adicionaremos um subscrito para indicar a &lt;em&gt;opção1&lt;/em&gt; ou &lt;em&gt;opção2&lt;/em&gt;:&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\phi \land \psi}{\phi} \land\mbox{e}_1 \mbox{ (Opção 1)}&lt;/script&gt;
 
@@ -252,7 +339,7 @@
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&quot;regra-para-eliminar-o-condicional&quot;&gt;Regra para eliminar o condicional&lt;/h2&gt;
+&lt;h2 id=&quot;regra-para-eliminar-o-condicional-modus-ponens&quot;&gt;Regra para eliminar o condicional (Modus Ponens)&lt;/h2&gt;
 
 &lt;p&gt;As regras de introdução e eliminação do condicional são bem diferentes, portanto, iremos separá-las em duas seções.&lt;/p&gt;
 
@@ -377,8 +464,8 @@
 
 </description>
         <pubDate>Thu, 17 Aug 2017 10:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/2017/08/17/Calculo-proposicional.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/2017/08/17/Calculo-proposicional.html</guid>
+        <link>http://localhost:4000/lc21cp-172/2017/08/17/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-1.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/2017/08/17/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-1.html</guid>
         
         <category>dedução-natural</category>
         
@@ -388,7 +475,7 @@
       </item>
     
       <item>
-        <title>Exercícios I - Formalização de argumentos</title>
+        <title>Exercícios - Formalização de argumentos lógicos</title>
         <description>&lt;h2 id=&quot;contato&quot;&gt;Contato&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;Jean Paulo Martins&lt;/li&gt;
@@ -486,8 +573,8 @@
 &lt;/ol&gt;
 </description>
         <pubDate>Wed, 16 Aug 2017 12:00:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/2017/08/16/Exercicios-1.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/2017/08/16/Exercicios-1.html</guid>
+        <link>http://localhost:4000/lc21cp-172/2017/08/16/Exercicios-Formaliza%C3%A7%C3%A3o-de-argumentos.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/2017/08/16/Exercicios-Formaliza%C3%A7%C3%A3o-de-argumentos.html</guid>
         
         <category>argumentos-formais</category>
         
@@ -497,7 +584,7 @@
       </item>
     
       <item>
-        <title>Da forma de argumentos lógicos</title>
+        <title>Formalização de argumentos lógicos</title>
         <description>&lt;h2 id=&quot;contato&quot;&gt;Contato&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;Jean Paulo Martins&lt;/li&gt;
@@ -727,8 +814,8 @@
 
 </description>
         <pubDate>Wed, 16 Aug 2017 10:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/2017/08/16/Forma-de-argumentos-logicos.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/2017/08/16/Forma-de-argumentos-logicos.html</guid>
+        <link>http://localhost:4000/lc21cp-172/2017/08/16/Formaliza%C3%A7%C3%A3o-de-argumentos-logicos.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/2017/08/16/Formaliza%C3%A7%C3%A3o-de-argumentos-logicos.html</guid>
         
         <category>argumentos-formais</category>
         
@@ -2282,174 +2369,6 @@ sizeof double* = 8bytes
         <guid isPermaLink="true">http://localhost:4000/lc21cp-172/2017/08/10/Logica-informal.html</guid>
         
         <category>logica-informal</category>
-        
-        
-        <category>LC21CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Lógica para Computação</title>
-        <description>&lt;h2 id=&quot;contato&quot;&gt;Contato&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Jean Paulo Martins&lt;/li&gt;
-  &lt;li&gt;Sala 105&lt;/li&gt;
-  &lt;li&gt;e-mail jeanmartins@utfpr.edu.br&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;conteúdo&quot;&gt;Conteúdo&lt;/h1&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#contato&quot; id=&quot;markdown-toc-contato&quot;&gt;Contato&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#conteúdo&quot; id=&quot;markdown-toc-conteúdo&quot;&gt;Conteúdo&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#motivação&quot; id=&quot;markdown-toc-motivação&quot;&gt;Motivação&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#inferência-sobre-o-mundo&quot; id=&quot;markdown-toc-inferência-sobre-o-mundo&quot;&gt;Inferência sobre o mundo&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#exemplo-de-formalização-lógica-aritmética&quot; id=&quot;markdown-toc-exemplo-de-formalização-lógica-aritmética&quot;&gt;Exemplo de formalização lógica: Aritmética&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#analogia-da-aritmética-e-modelos-de-software&quot; id=&quot;markdown-toc-analogia-da-aritmética-e-modelos-de-software&quot;&gt;Analogia da Aritmética e modelos de software&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#plano-de-aulas&quot; id=&quot;markdown-toc-plano-de-aulas&quot;&gt;Plano de aulas&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;motivação&quot;&gt;Motivação&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/ozMbmBp3onE&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/_huhIGhD5YM&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;O objetivo da lógica em computação é desenvolver linguagens para modelar situações, de modo que possamos analisá-las formalmente.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Analisar situações significa construir argumentos sobre tais situações&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Analisá-las formalmente, significa que tais argumentos devem ser não-ambíguos e possíveis de implementação no computador.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;E geral, &lt;em&gt;Lógica&lt;/em&gt; trata da formalização de linguagens e raciocínio&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;Na &lt;em&gt;computação&lt;/em&gt; a formalização é seguida da automatização por meio software.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;LC21CP é o primeiro contato que o alunos tem com &lt;em&gt;linguagens formais&lt;/em&gt;&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Linguagens de programação são linguagens formais&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;A teoria da computação está fundamentada matematicamente sobre &lt;em&gt;linguagens formais&lt;/em&gt;&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;inferência-sobre-o-mundo&quot;&gt;Inferência sobre o mundo&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;A existência de um sistema formal que define as leis que regem determinado conceito, nos permite inferir/concluir sobre o sistema&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Formalização das leis da mecânica de Newton =&amp;gt; Conclusões sobre o sistema solar&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Formalização de leis sobre comportamento humano (amigos) =&amp;gt; Prever o comportamento em certas situações&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Formalização sobre o comportamento dos filhos =&amp;gt; Pais conseguem inferir problemas&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Forma geral:&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Argumentos&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Relações (premissas  e conclusão)&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Conclusões&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;exemplo-de-formalização-lógica-aritmética&quot;&gt;Exemplo de formalização lógica: Aritmética&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;A aritmética consiste da formalização dos mecanismos de contagem&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;A partir da formalização a contagem pode ser feita de forma simbólica, sem exigir “contagem”&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Formalização da soma:&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;5 + 5 = IIIII IIIII&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;3 x 5 = IIIII IIIII IIIII&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;13 x 13 = ?&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Com números grandes fica mais evidente que a multiplicação é feita sem pensarmos em contagem&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;A formalização da aritmética, permitiu o desenvolvimento de algoritmos para&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;&lt;em&gt;multiplicação&lt;/em&gt;,&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;&lt;em&gt;divisão&lt;/em&gt;, etc.&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Esses algoritmos porém não nos lembram imediatamente do processo de contagem que originou a aritmética.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;analogia-da-aritmética-e-modelos-de-software&quot;&gt;Analogia da Aritmética e modelos de software&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Se aritmética (formalização) permitiu a abstração e desenvolvimento de ferramentas simbólicas para conclusão&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;A mesma ideia é observada em programação de computadores&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;plano-de-aulas&quot;&gt;Plano de aulas&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Resumo do conteúdo &lt;a href=&quot;http://localhost:4000/assets/LC21CP-172-plano.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Wed, 09 Aug 2017 10:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/2017/08/09/Logica-para-computa%C3%A7%C3%A3o.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/2017/08/09/Logica-para-computa%C3%A7%C3%A3o.html</guid>
-        
-        <category>introdução</category>
         
         
         <category>LC21CP-172</category>
