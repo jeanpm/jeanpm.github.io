@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 18 Aug 2017 16:38:48 -0300</pubDate>
-    <lastBuildDate>Fri, 18 Aug 2017 16:38:48 -0300</lastBuildDate>
+    <pubDate>Fri, 18 Aug 2017 19:50:30 -0300</pubDate>
+    <lastBuildDate>Fri, 18 Aug 2017 19:50:30 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -25,7 +25,8 @@
   &lt;li&gt;&lt;a href=&quot;#conteúdo&quot; id=&quot;markdown-toc-conteúdo&quot;&gt;Conteúdo&lt;/a&gt;    &lt;ul&gt;
       &lt;li&gt;&lt;a href=&quot;#regra-para-eliminação-do-condicional---modus-tollens&quot; id=&quot;markdown-toc-regra-para-eliminação-do-condicional---modus-tollens&quot;&gt;Regra para eliminação do condicional - Modus Tollens&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#exercícios-modus-tollens&quot; id=&quot;markdown-toc-exercícios-modus-tollens&quot;&gt;Exercícios: Modus Tollens&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#regras-para-introdução-da-disjunção&quot; id=&quot;markdown-toc-regras-para-introdução-da-disjunção&quot;&gt;Regras para introdução da disjunção&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#regra-para-a-inclusão-do-condicional&quot; id=&quot;markdown-toc-regra-para-a-inclusão-do-condicional&quot;&gt;Regra para a inclusão do condicional&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#regras-para-eliminação-da-disjunção&quot; id=&quot;markdown-toc-regras-para-eliminação-da-disjunção&quot;&gt;Regras para eliminação da disjunção&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -48,44 +49,32 @@
 
 &lt;p&gt;&lt;strong&gt;Modus Ponens&lt;/strong&gt;: exemplo&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;“Se Jean é paranaense, então Jean é brasileiro.” (&lt;script type=&quot;math/tex&quot;&gt;p\to q&lt;/script&gt;)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; : “Jean é paranaense.” (&lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; : “Jean é brasileiro” (então &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt;)&lt;/p&gt;
-  &lt;/li&gt;
+  &lt;li&gt;“Se Jean é paranaense, então Jean é brasileiro.” (&lt;script type=&quot;math/tex&quot;&gt;p\to q&lt;/script&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; : “Jean é paranaense.” (&lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; : “Jean é brasileiro” (então &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;strong&gt;Modus Tollens&lt;/strong&gt;: exemplo&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;“Se Jean é paranaense, então Jean é brasileiro.” $(p\to q)$&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\neg q&lt;/script&gt; : “Jean não é brasileiro”&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\neg p&lt;/script&gt; : “Jean não é paranaense.”&lt;/p&gt;
-  &lt;/li&gt;
+  &lt;li&gt;“Se Jean é paranaense, então Jean é brasileiro.” $(p\to q)$&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;\neg q&lt;/script&gt; : “Jean não é brasileiro”&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;\neg p&lt;/script&gt; : “Jean não é paranaense.”&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;exercícios-modus-tollens&quot;&gt;Exercícios: Modus Tollens&lt;/h2&gt;
 
-&lt;p&gt;Demonstre que&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to(q\to r), p, \neg r \vdash \neg q&lt;/script&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to(q\to r), p, \neg r \vdash \neg q&lt;/script&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
+&lt;h2 id=&quot;regra-para-a-inclusão-do-condicional&quot;&gt;Regra para a inclusão do condicional&lt;/h2&gt;
 
-&lt;h2 id=&quot;regras-para-introdução-da-disjunção&quot;&gt;Regras para introdução da disjunção&lt;/h2&gt;
+&lt;p&gt;Dadas duas fórmulas $\phi$ e $\psi$, o condicional pode ser incluído entre elas se, quando assumindo a &lt;strong&gt;hipótese&lt;/strong&gt; de $\phi$ verdadeiro, então $\psi$ pode ser concluído por derivação. Deste modo, se existe uma derivação da hipótese à conclusão $(\phi\dots\psi)$, a implicação pode ser concluída.&lt;/p&gt;
 
-&lt;p&gt;Dadas duas fórmulas &lt;script type=&quot;math/tex&quot;&gt;\phi&lt;/script&gt; e &lt;script type=&quot;math/tex&quot;&gt;\psi&lt;/script&gt;, se uma delas é verdadeira, a conjunção das duas também será. Ou seja:&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{(\phi\dots\psi)}{\phi\to\psi}\to\mbox{i}&lt;/script&gt;
+
+&lt;h2 id=&quot;regras-para-eliminação-da-disjunção&quot;&gt;Regras para eliminação da disjunção&lt;/h2&gt;
+
+&lt;p&gt;Dada uma fórmula $\phi \lor \psi$, a disjunção pode ser eliminada, se em ambos os casos, $\phi$ ou $\psi$ verdadeiras a mesma conclusão é obtida.&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi \vdash \phi \lor \psi\quad(\forall \psi)&lt;/script&gt;
 
@@ -95,8 +84,8 @@
 
 </description>
         <pubDate>Wed, 23 Aug 2017 10:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/2017/08/23/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-2.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/2017/08/23/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-2.html</guid>
+        <link>http://localhost:4000/lc21cp-172/08-23/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-2.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/08-23/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-2.html</guid>
         
         <category>dedução-natural</category>
         
@@ -127,70 +116,48 @@
   &lt;li&gt;Eliminação do condicional: &lt;script type=&quot;math/tex&quot;&gt;\to\mbox{e}\quad(\mbox{Modus Ponens})&lt;/script&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q), r \vdash q \land r&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \land r, s \land t \vdash q \land s&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(q \land r) \vdash \neg\neg p \land r&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land q \vdash q \land p&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q) \land r \vdash p\land (q\land r)&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to (p\to q), p \vdash q&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;q\to(p\to r), \neg r, q \vdash \neg p&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\lor (q\to p)) \land q \vdash p&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p\lor (p\land q)\vdash p&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q) \lor (p\land r) \vdash p\land(q\lor r)&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p\land q, \neg p \land q\to r\lor \neg p \vdash r \lor \neg p&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to(q\land r), p \vdash p \land q&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land q \vdash q \land p&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \to (r \land s), \neg\neg p, q \vdash s&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (q \land r), p \vdash q \land r&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p \vdash (p\lor q) \land (p\lor r)&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(p\to q) \vdash q\lor \neg q&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(p\to q) \vdash (r \land s) \lor q&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q)\land r, s \land t \vdash q \land s&lt;/script&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q), r \vdash q \land r&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \land r, s \land t \vdash q \land s&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(q \land r) \vdash \neg\neg p \land r&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land q \vdash q \land p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q) \land r \vdash p\land (q\land r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to (p\to q), p \vdash q&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;q\to(p\to r), \neg r, q \vdash \neg p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\lor (q\to p)) \land q \vdash p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\lor (p\land q)\vdash p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q) \lor (p\land r) \vdash p\land(q\lor r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p\land q, \neg p \land q\to r\lor \neg p \vdash r \lor \neg p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to(q\land r), p \vdash p \land q&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land q \vdash q \land p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \to (r \land s), \neg\neg p, q \vdash s&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (q \land r), p \vdash q \land r&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \vdash (p\lor q) \land (p\lor r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(p\to q) \vdash q\lor \neg q&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(p\to q) \vdash (r \land s) \lor q&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q)\land r, s \land t \vdash q \land s&lt;/script&gt;
 
 </description>
         <pubDate>Thu, 17 Aug 2017 12:00:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/2017/08/17/Exercicios-regras-de-dedu%C3%A7%C3%A3o-1.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/2017/08/17/Exercicios-regras-de-dedu%C3%A7%C3%A3o-1.html</guid>
+        <link>http://localhost:4000/lc21cp-172/08-17/Exercicios-regras-de-dedu%C3%A7%C3%A3o-1.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/08-17/Exercicios-regras-de-dedu%C3%A7%C3%A3o-1.html</guid>
         
         <category>dedução-natural</category>
         
@@ -324,20 +291,13 @@
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\phi}{\neg\neg\phi} \neg\neg\mbox{i}&lt;/script&gt;
 
-&lt;hr /&gt;
 &lt;h2 id=&quot;exemplos-derivação-da-conjunção-e-dupla-negação&quot;&gt;Exemplos: derivação da conjunção e dupla negação&lt;/h2&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q), r \vdash q \land r&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \land r, s \land t \vdash q \land s&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(q \land r) \vdash \neg\neg p \land r&lt;/script&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q), r \vdash q \land r&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \land r, s \land t \vdash q \land s&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(q \land r) \vdash \neg\neg p \land r&lt;/script&gt;
 
 &lt;h2 id=&quot;regra-para-eliminar-o-condicional-modus-ponens&quot;&gt;Regra para eliminar o condicional (Modus Ponens)&lt;/h2&gt;
 
@@ -371,26 +331,17 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;hr /&gt;
 &lt;h2 id=&quot;exemplos-derivação-por-exclusão-do-condicional&quot;&gt;Exemplos: derivação por exclusão do condicional&lt;/h2&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p\land q, \neg p \land q\to r\lor \neg p \vdash r \lor \neg p&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to(q\land r), p \vdash p \land q&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land q \vdash q \land p&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \to (r \land s), \neg\neg p, q \vdash s&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (q \land r), p \vdash q \land r&lt;/script&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p\land q, \neg p \land q\to r\lor \neg p \vdash r \lor \neg p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to(q\land r), p \vdash p \land q&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land q \vdash q \land p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \to (r \land s), \neg\neg p, q \vdash s&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (q \land r), p \vdash q \land r&lt;/script&gt;
 
 &lt;h2 id=&quot;regras-para-introdução-da-disjunção&quot;&gt;Regras para introdução da disjunção&lt;/h2&gt;
 
@@ -402,19 +353,13 @@
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\phi}{\phi \lor \psi}\lor\mbox{i}\qquad(\mbox{introdução do }\lor)&lt;/script&gt;
 
-&lt;hr /&gt;
 &lt;h2 id=&quot;exemplos-derivação-por-introdução-do-conjuntivo&quot;&gt;Exemplos: derivação por introdução do conjuntivo&lt;/h2&gt;
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p \vdash (p\lor q) \land (p\lor r)&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(p\to q) \vdash q\lor \neg q&lt;/script&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(p\to q) \vdash (r \land s) \lor q&lt;/script&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \vdash (p\lor q) \land (p\lor r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(p\to q) \vdash q\lor \neg q&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(p\to q) \vdash (r \land s) \lor q&lt;/script&gt;
 
 &lt;h1 id=&quot;validade-de-uma-forma-de-argumento&quot;&gt;Validade de uma forma de argumento&lt;/h1&gt;
 
@@ -464,8 +409,8 @@
 
 </description>
         <pubDate>Thu, 17 Aug 2017 10:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/2017/08/17/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-1.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/2017/08/17/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-1.html</guid>
+        <link>http://localhost:4000/lc21cp-172/08-17/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-1.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/08-17/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-1.html</guid>
         
         <category>dedução-natural</category>
         
@@ -573,8 +518,8 @@
 &lt;/ol&gt;
 </description>
         <pubDate>Wed, 16 Aug 2017 12:00:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/2017/08/16/Exercicios-Formaliza%C3%A7%C3%A3o-de-argumentos.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/2017/08/16/Exercicios-Formaliza%C3%A7%C3%A3o-de-argumentos.html</guid>
+        <link>http://localhost:4000/lc21cp-172/08-16/Exercicios-Formaliza%C3%A7%C3%A3o-de-argumentos.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/08-16/Exercicios-Formaliza%C3%A7%C3%A3o-de-argumentos.html</guid>
         
         <category>argumentos-formais</category>
         
@@ -814,8 +759,8 @@
 
 </description>
         <pubDate>Wed, 16 Aug 2017 10:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/2017/08/16/Formaliza%C3%A7%C3%A3o-de-argumentos-logicos.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/2017/08/16/Formaliza%C3%A7%C3%A3o-de-argumentos-logicos.html</guid>
+        <link>http://localhost:4000/lc21cp-172/08-16/Formaliza%C3%A7%C3%A3o-de-argumentos-logicos.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/08-16/Formaliza%C3%A7%C3%A3o-de-argumentos-logicos.html</guid>
         
         <category>argumentos-formais</category>
         
@@ -977,8 +922,8 @@
 
 </description>
         <pubDate>Tue, 15 Aug 2017 13:50:00 -0300</pubDate>
-        <link>http://localhost:4000/ae22cp-172/2017/08/15/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-exercicios.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/2017/08/15/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-exercicios.html</guid>
+        <link>http://localhost:4000/ae22cp-172/08-15/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-exercicios.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/08-15/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-exercicios.html</guid>
         
         <category>estruturas-c</category>
         
@@ -1385,8 +1330,8 @@
 
 </description>
         <pubDate>Tue, 15 Aug 2017 13:50:00 -0300</pubDate>
-        <link>http://localhost:4000/ae22cp-172/2017/08/15/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-3.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/2017/08/15/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-3.html</guid>
+        <link>http://localhost:4000/ae22cp-172/08-15/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-3.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/08-15/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-3.html</guid>
         
         <category>estruturas-c</category>
         
@@ -1596,8 +1541,8 @@
 
 </description>
         <pubDate>Mon, 14 Aug 2017 18:40:00 -0300</pubDate>
-        <link>http://localhost:4000/ae22cp-172/2017/08/14/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-2.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/2017/08/14/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-2.html</guid>
+        <link>http://localhost:4000/ae22cp-172/08-14/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-2.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/08-14/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-2.html</guid>
         
         <category>estruturas-c</category>
         
@@ -2035,8 +1980,8 @@ sizeof double* = 8bytes
 
 </description>
         <pubDate>Mon, 14 Aug 2017 13:50:00 -0300</pubDate>
-        <link>http://localhost:4000/ae22cp-172/2017/08/14/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/2017/08/14/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria.html</guid>
+        <link>http://localhost:4000/ae22cp-172/08-14/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/08-14/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria.html</guid>
         
         <category>estruturas-c</category>
         
@@ -2365,8 +2310,8 @@ sizeof double* = 8bytes
 
 </description>
         <pubDate>Thu, 10 Aug 2017 10:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/2017/08/10/Logica-informal.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/2017/08/10/Logica-informal.html</guid>
+        <link>http://localhost:4000/lc21cp-172/08-10/Logica-informal.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/08-10/Logica-informal.html</guid>
         
         <category>logica-informal</category>
         
