@@ -1,4 +1,4 @@
-rsync -r ~/UTFPR-web/_site/* .
+cp -r ~/UTFPR-web/_site/* .
 
 git add .
 git commit -m "Atualização `date`"
