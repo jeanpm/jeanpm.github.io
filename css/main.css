@@ -14,7 +14,7 @@ body {
   line-height: 1.8;
   font-weight: 300;
   color: #000000;
-  background-color: #ffffff !important;
+  background-color: #eeeeee !important;
   -webkit-text-size-adjust: 100%; }
 
 /* Set Margin Bottom for Vertical Rhythm
@@ -40,7 +40,7 @@ figure > img {
   display: block; }
 
 figcaption {
-  font-size: 16px; }
+  font-size: 12.8px; }
 
 /* Lists
  * ============================================== */
@@ -102,7 +102,7 @@ blockquote {
 pre,
 code {
   font-size: 14px;
-  border: 1px solid #757575;
+  border: 1px solid #a5a5a5;
   font-family: Inconsolata, Courier, Monaco, "Andale Mono", serif; }
 
 code {
@@ -196,8 +196,8 @@ table {
       position: absolute;
       top: 3px;
       right: 3px;
-      background-color: #ffffff;
-      border: 1px solid #757575;
+      background-color: #eeeeee;
+      border: 1px solid #a5a5a5;
       border-radius: 5px;
       text-align: center; }
       .site-nav .menu-icon {
@@ -254,7 +254,8 @@ table {
  * ============================================== */
 .page-content {
   padding: 20px 0;
-  text-align: justify; }
+  text-align: justify;
+  letter-spaceing: -0.3px; }
 
 .page-heading {
   font-size: 20px;
@@ -272,8 +273,7 @@ table {
 .post-link {
   font-family: "Latin Modern Roman", Baskerville, Georgia, serif, Inconsolata, Arial, sans-serif;
   font-weight: 100;
-  font-size: 1em;
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
   color: #000000;
   width: 100%; }
   @media screen and (max-width: 800px) {
@@ -281,11 +281,11 @@ table {
       font-size: 1.0em; } }
 
 .post-date {
-  font-family: "Latin Modern Roman", Baskerville, Georgia, serif, Inconsolata, Arial, sans-serif;
+  font-family: 'Latin Modern Mono';
   font-weight: 300;
   font-size: 1em;
   letter-spacing: -1px;
-  color: #424242;
+  color: #727272;
   float: right;
   padding-top: 6px; }
   @media screen and (max-width: 800px) {
@@ -293,8 +293,9 @@ table {
       font-size: 0.8em; } }
 
 .post-meta {
-  font-size: 16px;
-  color: #757575;
+  font-family: 'Latin Modern Mono';
+  font-size: 12.8px;
+  color: #727272;
   text-transform: uppercase;
   display: inline-block; }
 
@@ -305,7 +306,7 @@ table {
   padding-bottom: 3em;
   margin: auto;
   font-size: 1em;
-  color: #424242;
+  color: #727272;
   font-family: 'Latin Modern Mono'; }
   @media screen and (max-width: 800px) {
     .post-tag {
