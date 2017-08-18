@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 18 Aug 2017 20:05:32 -0300</pubDate>
-    <lastBuildDate>Fri, 18 Aug 2017 20:05:32 -0300</lastBuildDate>
+    <pubDate>Fri, 18 Aug 2017 20:13:37 -0300</pubDate>
+    <lastBuildDate>Fri, 18 Aug 2017 20:13:37 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -84,8 +84,8 @@
 
 </description>
         <pubDate>Wed, 23 Aug 2017 10:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/08-23/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-2.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/08-23/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-2.html</guid>
+        <link>http://localhost:4000/lc21cp-172/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-2.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-2.html</guid>
         
         <category>dedução-natural</category>
         
@@ -156,8 +156,8 @@
 
 </description>
         <pubDate>Thu, 17 Aug 2017 12:00:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/08-17/Exercicios-regras-de-dedu%C3%A7%C3%A3o-1.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/08-17/Exercicios-regras-de-dedu%C3%A7%C3%A3o-1.html</guid>
+        <link>http://localhost:4000/lc21cp-172/Exercicios-regras-de-dedu%C3%A7%C3%A3o-1.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Exercicios-regras-de-dedu%C3%A7%C3%A3o-1.html</guid>
         
         <category>dedução-natural</category>
         
@@ -409,8 +409,8 @@
 
 </description>
         <pubDate>Thu, 17 Aug 2017 10:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/08-17/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-1.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/08-17/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-1.html</guid>
+        <link>http://localhost:4000/lc21cp-172/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-1.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-1.html</guid>
         
         <category>dedução-natural</category>
         
@@ -518,8 +518,8 @@
 &lt;/ol&gt;
 </description>
         <pubDate>Wed, 16 Aug 2017 12:00:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/08-16/Exercicios-Formaliza%C3%A7%C3%A3o-de-argumentos.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/08-16/Exercicios-Formaliza%C3%A7%C3%A3o-de-argumentos.html</guid>
+        <link>http://localhost:4000/lc21cp-172/Exercicios-Formaliza%C3%A7%C3%A3o-de-argumentos.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Exercicios-Formaliza%C3%A7%C3%A3o-de-argumentos.html</guid>
         
         <category>argumentos-formais</category>
         
@@ -759,8 +759,8 @@
 
 </description>
         <pubDate>Wed, 16 Aug 2017 10:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/08-16/Formaliza%C3%A7%C3%A3o-de-argumentos-logicos.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/08-16/Formaliza%C3%A7%C3%A3o-de-argumentos-logicos.html</guid>
+        <link>http://localhost:4000/lc21cp-172/Formaliza%C3%A7%C3%A3o-de-argumentos-logicos.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Formaliza%C3%A7%C3%A3o-de-argumentos-logicos.html</guid>
         
         <category>argumentos-formais</category>
         
@@ -922,8 +922,8 @@
 
 </description>
         <pubDate>Tue, 15 Aug 2017 13:50:00 -0300</pubDate>
-        <link>http://localhost:4000/ae22cp-172/08-15/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-exercicios.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/08-15/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-exercicios.html</guid>
+        <link>http://localhost:4000/ae22cp-172/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-exercicios.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-exercicios.html</guid>
         
         <category>estruturas-c</category>
         
@@ -1330,8 +1330,8 @@
 
 </description>
         <pubDate>Tue, 15 Aug 2017 13:50:00 -0300</pubDate>
-        <link>http://localhost:4000/ae22cp-172/08-15/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-3.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/08-15/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-3.html</guid>
+        <link>http://localhost:4000/ae22cp-172/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-3.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-3.html</guid>
         
         <category>estruturas-c</category>
         
@@ -1541,8 +1541,8 @@
 
 </description>
         <pubDate>Mon, 14 Aug 2017 18:40:00 -0300</pubDate>
-        <link>http://localhost:4000/ae22cp-172/08-14/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-2.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/08-14/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-2.html</guid>
+        <link>http://localhost:4000/ae22cp-172/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-2.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-2.html</guid>
         
         <category>estruturas-c</category>
         
@@ -1980,8 +1980,8 @@ sizeof double* = 8bytes
 
 </description>
         <pubDate>Mon, 14 Aug 2017 13:50:00 -0300</pubDate>
-        <link>http://localhost:4000/ae22cp-172/08-14/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/08-14/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria.html</guid>
+        <link>http://localhost:4000/ae22cp-172/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria.html</guid>
         
         <category>estruturas-c</category>
         
@@ -2310,8 +2310,8 @@ sizeof double* = 8bytes
 
 </description>
         <pubDate>Thu, 10 Aug 2017 10:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/08-10/Logica-informal.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/08-10/Logica-informal.html</guid>
+        <link>http://localhost:4000/lc21cp-172/Logica-informal.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Logica-informal.html</guid>
         
         <category>logica-informal</category>
         
