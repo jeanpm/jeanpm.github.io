@@ -143,11 +143,11 @@
 <h2 id="atualizando-o-tamanho-do-vetor-resize">Atualizando o tamanho do vetor: resize</h2>
 
 <p>Sempre que um elemento for inserido no vetor, uma alteração no tamanho atual (<code class="highlighter-rouge">size</code>) é necessária.</p>
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">resize</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">new_size</span><span class="p">);</span>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">resize</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
 </code></pre>
 </div>
 
-<p>Se o novo tamanho (<code class="highlighter-rouge">new_size</code>) for maior que o atual (<code class="highlighter-rouge">size</code>), mas ainda menor que a capacidade (<code class="highlighter-rouge">capacity</code>), então basta alterar o tamanho atual. Caso contrário é preciso realocar o vetor <code class="highlighter-rouge">realloc</code>. Ou seja, se <code class="highlighter-rouge">new_size &gt; capacity</code>, <code class="highlighter-rouge">realloc</code> deve ser utilizada, assumindo que a nova capacidade será o dobro da atual <code class="highlighter-rouge">capacity += capacity</code>.</p>
+<p>Caso contrário é preciso realocar o vetor <code class="highlighter-rouge">realloc</code>. Ou seja, se <code class="highlighter-rouge">new_capacity &gt; capacity</code>, <code class="highlighter-rouge">realloc</code> deve ser utilizada, assumindo que a nova capacidade será o dobro da atual <code class="highlighter-rouge">capacity += capacity</code>.</p>
 
 
   </article>
