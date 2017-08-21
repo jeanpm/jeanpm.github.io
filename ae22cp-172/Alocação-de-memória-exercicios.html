@@ -30,7 +30,7 @@
       }
     },
     tex2jax: {
-      inlineMath: [ ['$','$'], ['\(', '\)'] ],
+      inlineMath: [ ['$','$']],
       displayMath: [ ['$$','$$'] ],
       processEscapes: true,
     }
@@ -132,98 +132,163 @@
 
 <ol>
   <li>Qual o conteúdo das variáveis?
-    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
- <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
- <span class="kt">int</span><span class="o">*</span> <span class="n">d</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">;</span>	
- <span class="o">*</span><span class="n">d</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>		
- <span class="n">printf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
-<span class="p">}</span>
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code> <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+     <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+     <span class="kt">int</span><span class="o">*</span> <span class="n">d</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">;</span>	
+     <span class="o">*</span><span class="n">d</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>		
+     <span class="n">printf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
+ <span class="p">}</span>
 </code></pre>
     </div>
   </li>
   <li>Qual o conteúdo das variáveis?
-    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">soma</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">,</span> <span class="kt">int</span><span class="o">*</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
- <span class="o">*</span><span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
-<span class="p">}</span>		
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
- <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>	
- <span class="n">soma</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">);</span>
- <span class="n">printf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
-<span class="p">}</span>
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code> <span class="kt">void</span> <span class="nf">soma</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">,</span> <span class="kt">int</span><span class="o">*</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+     <span class="o">*</span><span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+ <span class="p">}</span>		
+ <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+     <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>	
+     <span class="n">soma</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">);</span>
+     <span class="n">printf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
+ <span class="p">}</span>
 </code></pre>
     </div>
   </li>
   <li>Qual o conteúdo das variáveis?
-    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
- <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
- <span class="kt">int</span><span class="o">*</span> <span class="n">d</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">;</span>	
- <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="n">d</span><span class="p">);</span>
-<span class="p">}</span>
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code> <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+     <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+     <span class="kt">int</span><span class="o">*</span> <span class="n">d</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">;</span>	
+     <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="n">d</span><span class="p">);</span>
+ <span class="p">}</span>
 </code></pre>
     </div>
   </li>
   <li>Qual o conteúdo das variáveis?
-    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
- <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
- <span class="kt">int</span><span class="o">*</span> <span class="n">d</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">;</span>	
- <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>		
- <span class="n">printf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
-<span class="p">}</span>
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code> <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+     <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+     <span class="kt">int</span><span class="o">*</span> <span class="n">d</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">;</span>	
+     <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>		
+     <span class="n">printf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
+ <span class="p">}</span>
 </code></pre>
     </div>
   </li>
   <li>Aloque memória no Heap (dinâmica) para um vetor de double de tamanho n
-    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
-<span class="kt">double</span> <span class="n">vetor_na_pilha</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
-<span class="kt">double</span><span class="o">*</span> <span class="n">vetor_no_heap</span> <span class="o">=</span> <span class="c1">//complete;
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code> <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+ <span class="kt">double</span> <span class="n">vetor_na_pilha</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+ <span class="kt">double</span><span class="o">*</span> <span class="n">vetor_no_heap</span> <span class="o">=</span> <span class="c1">//complete;
 </span></code></pre>
     </div>
   </li>
   <li>Qual das formas abaixo nos permite acessar o primeiro elemento do vetor?
-    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="n">a</span><span class="p">)</span> <span class="n">vetor_no_heap</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">b</span><span class="p">)</span> <span class="o">*</span><span class="n">vetor_no_heap</span>
-<span class="n">c</span><span class="p">)</span> <span class="n">vetor_no_heap</span>
-<span class="n">d</span><span class="p">)</span> <span class="n">vetor_no_heap</span><span class="o">-&gt;</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code> <span class="n">a</span><span class="p">)</span> <span class="n">vetor_no_heap</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+ <span class="n">b</span><span class="p">)</span> <span class="o">*</span><span class="n">vetor_no_heap</span>
+ <span class="n">c</span><span class="p">)</span> <span class="n">vetor_no_heap</span>
+ <span class="n">d</span><span class="p">)</span> <span class="n">vetor_no_heap</span><span class="o">-&gt;</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </code></pre>
     </div>
   </li>
   <li>Qual o tamanho das variáveis a e b abaixo?
-    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
-<span class="kt">int</span><span class="o">*</span> <span class="n">b</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span> <span class="p">);</span>
-<span class="kt">char</span><span class="o">*</span> <span class="n">c</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span> <span class="p">);</span>
-<span class="c1">// sizeof(a);
-// sizeof(b);
-// sizeof(c);
-// sizeof(*a);
-// sizeof(*b);
-// sizeof(*c);
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code> <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+ <span class="kt">int</span><span class="o">*</span> <span class="n">b</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span> <span class="p">);</span>
+ <span class="kt">char</span><span class="o">*</span> <span class="n">c</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span> <span class="p">);</span>
+ <span class="c1">// sizeof(a);
+</span> <span class="c1">// sizeof(b);
+</span> <span class="c1">// sizeof(c);
+</span> <span class="c1">// sizeof(*a);
+</span> <span class="c1">// sizeof(*b);
+</span> <span class="c1">// sizeof(*c);
 </span></code></pre>
     </div>
   </li>
   <li>Altere o código abaixo para que a memória da estrutura <code class="highlighter-rouge">Pessoa</code> seja alocada no heap.
-    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#define MAX_SIZE_NOME 20
-</span><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
- <span class="kt">int</span> <span class="n">idade</span><span class="p">;</span>
- <span class="kt">long</span> <span class="n">cpf</span><span class="p">;</span>
- <span class="kt">char</span> <span class="n">nome</span><span class="p">[</span><span class="n">MAX_SIZE_NOME</span><span class="p">];</span>
-<span class="p">}</span> <span class="n">Pessoa</span><span class="p">;</span>
-<span class="kt">void</span> <span class="nf">ler_pessoa</span><span class="p">(</span><span class="n">Pessoa</span><span class="o">*</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
- <span class="n">scanf</span><span class="p">(</span><span class="s">"%s%d%ld"</span><span class="p">,</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">nome</span><span class="p">,</span> <span class="o">&amp;</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">idade</span><span class="p">),</span> <span class="o">&amp;</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">cpf</span><span class="p">));</span>
-<span class="p">}</span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
- <span class="n">Pessoa</span> <span class="n">w</span><span class="p">;</span>	
- <span class="n">ler_pessoa</span><span class="p">(</span><span class="o">&amp;</span><span class="n">w</span><span class="p">);</span>
-<span class="p">}</span>
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code> <span class="cp">#include &lt;stdio.h&gt;
+</span> <span class="cp">#include &lt;stdlib.h&gt;
+</span> <span class="cp">#define MAX_SIZE_NOME 20
+</span> <span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+     <span class="kt">int</span> <span class="n">idade</span><span class="p">;</span>
+     <span class="kt">long</span> <span class="n">cpf</span><span class="p">;</span>
+     <span class="kt">char</span> <span class="n">nome</span><span class="p">[</span><span class="n">MAX_SIZE_NOME</span><span class="p">];</span>
+ <span class="p">}</span> <span class="n">Pessoa</span><span class="p">;</span>
+</code></pre>
+    </div>
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code> <span class="kt">void</span> <span class="nf">ler_pessoa</span><span class="p">(</span><span class="n">Pessoa</span><span class="o">*</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+     <span class="n">scanf</span><span class="p">(</span><span class="s">"%s%d%ld"</span><span class="p">,</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">nome</span><span class="p">,</span> <span class="o">&amp;</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">idade</span><span class="p">),</span> <span class="o">&amp;</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">cpf</span><span class="p">));</span>
+ <span class="p">}</span>
+</code></pre>
+    </div>
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code> <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+     <span class="n">Pessoa</span> <span class="n">w</span><span class="p">;</span>
+     <span class="n">ler_pessoa</span><span class="p">(</span><span class="o">&amp;</span><span class="n">w</span><span class="p">);</span>
+ <span class="p">}</span>
 </code></pre>
     </div>
   </li>
   <li>Implemente uma função chamada <code class="highlighter-rouge">swap</code>, a qual recebe a referência para dois inteiros e troca seus conteúdos.
-    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// Se *a == 4 e *b == 3
-</span><span class="kt">void</span> <span class="n">swap</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span><span class="o">*</span> <span class="n">b</span><span class="p">);</span>
-<span class="c1">// Agora *a == 3 e *b == 4
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code> <span class="c1">// Se *a == 4 e *b == 3
+</span> <span class="kt">void</span> <span class="n">swap</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span><span class="o">*</span> <span class="n">b</span><span class="p">);</span>
+ <span class="c1">// Agora *a == 3 e *b == 4
 </span></code></pre>
+    </div>
+  </li>
+  <li>Implemente uma função que aloque espaço inicial para uma matriz de dimensões $n\times n$. Essa função deve implementar o seguinte cabeçalho:
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// Aloca espaço para uma matrix n x n.
+// retorna um ponteiro para a memória alocada.
+</span><span class="kt">int</span><span class="o">**</span> <span class="n">new_matrix</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">);</span>
+</code></pre>
+    </div>
+  </li>
+  <li>Implemente uma função que inicialize a matriz com determinado valor e outra que a imprima.
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">init_matrix</span><span class="p">(</span><span class="kt">int</span><span class="o">**</span> <span class="n">matrix</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">print_matrix</span><span class="p">(</span><span class="kt">int</span><span class="o">**</span> <span class="n">matrix</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">);</span>
+</code></pre>
+    </div>
+  </li>
+  <li>A cada chamada à <code class="highlighter-rouge">malloc</code> deve existir uma chamada <code class="highlighter-rouge">free</code> associada. Implemente uma função que libere o espaço de memória alocado pela função anterior. Essa função deve implementar o seguinte cabeçalho:
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">free_matrix</span><span class="p">(</span><span class="kt">int</span><span class="o">**</span> <span class="n">matrix</span><span class="p">);</span>
+</code></pre>
+    </div>
+  </li>
+  <li>Em qual quesito este código falha em gerenciar sua própria memória?
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="n">Pessoa</span><span class="o">*</span> <span class="nf">nova_pessoa</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Pessoa</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">Pessoa</span><span class="p">));</span>
+    <span class="k">return</span> <span class="n">p</span><span class="p">;</span>
+<span class="p">}</span>    
+<span class="c1">// Assuma que exista implementação das funções utilizadas
+</span><span class="kt">float</span> <span class="nf">media_idade</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">float</span> <span class="n">media</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">NUM_PESSOAS</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Pessoa</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="n">nova_pessoa</span><span class="p">();</span>
+        <span class="n">ler_pessoa</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+        <span class="n">media</span> <span class="o">+=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">idade</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">media</span><span class="o">/</span><span class="n">NUM_PESSOAS</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>Implemente uma função que identifique o máximo de memória (Mbytes ou Gbytes) que <code class="highlighter-rouge">malloc</code> consegue alocar em seu computador. Observe que <code class="highlighter-rouge">malloc</code> retorna <code class="highlighter-rouge">NULL</code> caso não consiga alocar a quantidade requisitada.</p>
+  </li>
+  <li>Implementar as funcionalidades da classe <code class="highlighter-rouge">vector</code>. Para tal utilizar uma estrutura similar a:
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">int</span><span class="o">*</span> <span class="n">data</span><span class="p">;</span>     <span class="c1">// vetor que armazenará os inteiro;
+</span>    <span class="kt">int</span>  <span class="n">size</span><span class="p">;</span>     <span class="c1">// tamanho atual do vetor
+</span>    <span class="kt">int</span>  <span class="n">capacity</span><span class="p">;</span> <span class="c1">// tamanho reservado em memória 
+</span><span class="p">}</span> <span class="n">vector</span><span class="p">;</span>
+</code></pre>
+    </div>
+    <p>Todas as funcionalidades e acesso aos dados será feita por funções, as quais precisaremos definir. Para acessar um item do vetor e alterar o valor de um item, por exemplo:</p>
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// Retorna um ponteiro para o item na posição i
+</span><span class="kt">int</span><span class="o">*</span> <span class="n">vector_at</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+<span class="c1">// Retorna o valor na posição i
+</span><span class="kt">int</span>  <span class="n">vector_get</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+<span class="c1">// Altera o valor na posição i
+</span><span class="kt">int</span>  <span class="n">vector_set</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+</code></pre>
+    </div>
+    <p>As funções acima não alteram o tamanho do vetor, portanto $i$ deve ser um índice válido. Já a função a seguir, tenta inserir um item no final do vetor, caso ainda haja espaço, basta inserí-lo e atualizar <code class="highlighter-rouge">size</code>. Caso contrário, é preciso realocar o vetor.</p>
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">vector_push_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">);</span>
+</code></pre>
     </div>
   </li>
 </ol>
@@ -242,15 +307,11 @@
   </div>
 
 </div>
+
       </div>
     </div>
 
   <div class="footer center">
-
-  Built with Jekyll using
-  <a href="https://github.com/kuoa/julia" target="_blank">Julia</a>
-  theme
-  <img src='/assets/logo.png'>
 
 </div>
 

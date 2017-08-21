@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>APS I (implementando vector)</title>
+  <meta name="description" content="Contato  Jean Paulo Martins  Sala 105  e-mail jeanmartins@utfpr.edu.br">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/ae22cp-172/APS-vector.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">APS I (implementando vector)</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Aug 21, 2017
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/lc21cp-172/Exercicios-regras-de-dedu%C3%A7%C3%A3o-1.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/lc21cp-172/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-2.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <p><strong>Contato</strong></p>
+<ul>
+  <li>Jean Paulo Martins</li>
+  <li>Sala 105</li>
+  <li>e-mail jeanmartins@utfpr.edu.br</li>
+</ul>
+
+<h2 id="aps">APS</h2>
+<ol>
+  <li>Implementar as funcionalidades da classe <code class="highlighter-rouge">vector</code>. Para tal utilizar uma estrutura similar a:
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code> <span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+     <span class="kt">int</span><span class="o">*</span> <span class="n">data</span><span class="p">;</span>     <span class="c1">// vetor que armazenará os inteiro;
+</span>     <span class="kt">int</span>  <span class="n">size</span><span class="p">;</span>     <span class="c1">// tamanho atual do vetor
+</span>     <span class="kt">int</span>  <span class="n">capacity</span><span class="p">;</span> <span class="c1">// tamanho reservado em memória 
+</span> <span class="p">}</span> <span class="n">vector</span><span class="p">;</span>
+</code></pre>
+    </div>
+    <p>Todas as funcionalidades e acesso aos dados será feita por funções, as quais precisaremos definir. A primeira delas, é a função de alocação da memória inicial de um vetor.</p>
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code> <span class="c1">// Aloca memória inicial para o vetor
+</span> <span class="n">vector</span><span class="o">*</span> <span class="n">new_vector</span><span class="p">(</span><span class="kt">int</span> <span class="n">intial_capacity</span><span class="p">);</span>
+</code></pre>
+    </div>
+    <p>De forma análoga há a função para desalocar a memória do vetor e do ponteiro.</p>
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code> <span class="c1">// Desaloca a memória de v-&gt;data e do próprio v.
+</span> <span class="kt">void</span> <span class="n">free_vector</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+</code></pre>
+    </div>
+
+    <p>Para acessar um item do vetor e alterar o valor de um item, por exemplo:</p>
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code> <span class="c1">// Retorna um ponteiro para o item na posição i
+</span> <span class="kt">int</span><span class="o">*</span> <span class="n">vector_at</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+ <span class="c1">// Retorna o valor na posição i
+</span> <span class="kt">int</span>  <span class="n">vector_get</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+ <span class="c1">// Altera o valor na posição i
+</span> <span class="kt">int</span>  <span class="n">vector_set</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+</code></pre>
+    </div>
+    <p>As funções acima não alteram o tamanho do vetor, portanto $i$ deve ser um índice válido. Já a função a seguir, tenta inserir um item no final do vetor, caso ainda haja espaço, basta inserí-lo e atualizar <code class="highlighter-rouge">size</code>. Caso contrário, é preciso realocar o vetor.</p>
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code> <span class="kt">void</span> <span class="n">vector_push_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">);</span>
+</code></pre>
+    </div>
+  </li>
+</ol>
+
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

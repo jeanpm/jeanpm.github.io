@@ -101,9 +101,9 @@ blockquote {
  * ============================================== */
 pre,
 code {
-  font-size: 14px;
+  font-size: 15px;
   border: 1px solid #a5a5a5;
-  font-family: Inconsolata, Courier, Monaco, "Andale Mono", serif; }
+  font-family: 'Latin Modern Mono', Inconsolata, Courier, Monaco, "Andale Mono", serif; }
 
 code {
   padding: 1px 3px;
@@ -254,8 +254,7 @@ table {
  * ============================================== */
 .page-content {
   padding: 20px 0;
-  text-align: justify;
-  letter-spaceing: -0.3px; }
+  text-align: justify; }
 
 .page-heading {
   font-size: 20px;
@@ -273,7 +272,7 @@ table {
 .post-link {
   font-family: "Latin Modern Roman", Baskerville, Georgia, serif, Inconsolata, Arial, sans-serif;
   font-weight: 100;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.3px;
   color: #000000;
   width: 100%; }
   @media screen and (max-width: 800px) {
@@ -321,11 +320,11 @@ table {
 
 .post-title {
   font-size: 42px;
-  letter-spacing: -1px;
   line-height: 1; }
 
 .post-content {
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  letter-spacing: -0.3px; }
 
 .post-paging a {
   opacity: 0.4; }
