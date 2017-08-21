@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>APS I (implementando vector)</title>
-  <meta name="description" content="Contato  Jean Paulo Martins  Sala 105  e-mail jeanmartins@utfpr.edu.br">
+  <meta name="description" content="Contato  Jean Paulo Martins  Sala 105  jeanmartins at utfpr edu br  Notas de aula: jeanpm.github.io          AE22CP-172 (17 vem de 2017, 2 de segundo semestr...">
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="canonical" href="http://localhost:4000/ae22cp-172/APS-vector.html">
@@ -83,45 +83,71 @@
 <ul>
   <li>Jean Paulo Martins</li>
   <li>Sala 105</li>
-  <li>e-mail jeanmartins@utfpr.edu.br</li>
+  <li>jeanmartins at utfpr edu br</li>
+  <li>Notas de aula: <a href="http://jeanpm.github.io">jeanpm.github.io</a>
+    <ul>
+      <li><code class="highlighter-rouge">AE22CP-172</code> (17 vem de 2017, 2 de segundo semestre)</li>
+      <li>Qualquer dúvida sobre essas notas de aula, ou erros encontrados, me avisem por email.</li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="aps">APS</h2>
-<ol>
-  <li>Implementar as funcionalidades da classe <code class="highlighter-rouge">vector</code>. Para tal utilizar uma estrutura similar a:
-    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code> <span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
-     <span class="kt">int</span><span class="o">*</span> <span class="n">data</span><span class="p">;</span>     <span class="c1">// vetor que armazenará os inteiro;
-</span>     <span class="kt">int</span>  <span class="n">size</span><span class="p">;</span>     <span class="c1">// tamanho atual do vetor
-</span>     <span class="kt">int</span>  <span class="n">capacity</span><span class="p">;</span> <span class="c1">// tamanho reservado em memória 
-</span> <span class="p">}</span> <span class="n">vector</span><span class="p">;</span>
-</code></pre>
-    </div>
-    <p>Todas as funcionalidades e acesso aos dados será feita por funções, as quais precisaremos definir. A primeira delas, é a função de alocação da memória inicial de um vetor.</p>
-    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code> <span class="c1">// Aloca memória inicial para o vetor
-</span> <span class="n">vector</span><span class="o">*</span> <span class="n">new_vector</span><span class="p">(</span><span class="kt">int</span> <span class="n">intial_capacity</span><span class="p">);</span>
-</code></pre>
-    </div>
-    <p>De forma análoga há a função para desalocar a memória do vetor e do ponteiro.</p>
-    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code> <span class="c1">// Desaloca a memória de v-&gt;data e do próprio v.
-</span> <span class="kt">void</span> <span class="n">free_vector</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
-</code></pre>
-    </div>
 
-    <p>Para acessar um item do vetor e alterar o valor de um item, por exemplo:</p>
-    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code> <span class="c1">// Retorna um ponteiro para o item na posição i
-</span> <span class="kt">int</span><span class="o">*</span> <span class="n">vector_at</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
- <span class="c1">// Retorna o valor na posição i
-</span> <span class="kt">int</span>  <span class="n">vector_get</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
- <span class="c1">// Altera o valor na posição i
-</span> <span class="kt">int</span>  <span class="n">vector_set</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+<h2 id="estrutura">Estrutura</h2>
+<p>Implementar as funcionalidades da classe <code class="highlighter-rouge">vector</code>. Para tal utilizar uma estrutura similar a:</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">int</span><span class="o">*</span> <span class="n">data</span><span class="p">;</span>     <span class="c1">// vetor que armazenará os inteiro;
+</span>    <span class="kt">int</span>  <span class="n">size</span><span class="p">;</span>     <span class="c1">// tamanho atual do vetor
+</span>    <span class="kt">int</span>  <span class="n">capacity</span><span class="p">;</span> <span class="c1">// tamanho reservado em memória 
+</span><span class="p">}</span> <span class="n">vector</span><span class="p">;</span>
 </code></pre>
-    </div>
-    <p>As funções acima não alteram o tamanho do vetor, portanto $i$ deve ser um índice válido. Já a função a seguir, tenta inserir um item no final do vetor, caso ainda haja espaço, basta inserí-lo e atualizar <code class="highlighter-rouge">size</code>. Caso contrário, é preciso realocar o vetor.</p>
-    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code> <span class="kt">void</span> <span class="n">vector_push_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">);</span>
+</div>
+
+<h2 id="inicializaçãofinalização">Inicialização/Finalização</h2>
+<p>Todas as funcionalidades e acesso aos dados será feita por funções, as quais precisaremos definir. A primeira delas, é a função de alocação da memória inicial de um vetor.</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// Aloca memória inicial para o vetor
+</span><span class="n">vector</span><span class="o">*</span> <span class="n">new_vector</span><span class="p">(</span><span class="kt">int</span> <span class="n">intial_capacity</span><span class="p">);</span>
 </code></pre>
-    </div>
-  </li>
-</ol>
+</div>
+<p>De forma análoga há a função para desalocar a memória do vetor e do ponteiro.</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// Desaloca a memória de v-&gt;data e do próprio v.
+</span><span class="kt">void</span> <span class="n">free_vector</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<h2 id="acesso-e-manipulação-sem-crescimento">Acesso e manipulação: sem crescimento</h2>
+<p>Para acessar um item do vetor e alterar o valor de um item, por exemplo:</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// Retorna um ponteiro para o item na posição i
+</span><span class="kt">int</span><span class="o">*</span> <span class="n">vector_at</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+<span class="c1">// Retorna o valor na posição i
+</span><span class="kt">int</span>  <span class="n">vector_get</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+<span class="c1">// Altera o valor na posição i
+</span><span class="kt">int</span>  <span class="n">vector_set</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<h2 id="acesso-e-manipulação-com-crescimento">Acesso e manipulação: com crescimento</h2>
+<p>As funções acima não alteram o tamanho do vetor, portanto $i$ deve ser um índice válido. Já a função a seguir, tenta inserir um item no final do vetor, caso ainda haja espaço, basta inserí-lo e atualizar <code class="highlighter-rouge">size</code>. Caso contrário, é preciso realocar o vetor.</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">vector_push_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>Suponha agora que queiramos inserir um elemento no vetor em uma dada posição que não seja o fim. Chamaremos essa função:</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">vector_insert</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>Se <code class="highlighter-rouge">vector_insert</code> é chamada para inserir um valor em uma posição $i$ do vetor, todos os elementos em posições posteriores a $i$ precisam ser movidos adiante.</p>
+
+<h2 id="atualizando-o-tamanho-do-vetor-resize">Atualizando o tamanho do vetor: resize</h2>
+
+<p>Sempre que um elemento for inserido no vetor, uma alteração no tamanho atual (<code class="highlighter-rouge">size</code>) é necessária.</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">resize</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">new_size</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>Se o novo tamanho (<code class="highlighter-rouge">new_size</code>) for maior que o atual (<code class="highlighter-rouge">size</code>), mas ainda menor que a capacidade (<code class="highlighter-rouge">capacity</code>), então basta alterar o tamanho atual. Caso contrário é preciso realocar o vetor <code class="highlighter-rouge">realloc</code>. Ou seja, se <code class="highlighter-rouge">new_size &gt; capacity</code>, <code class="highlighter-rouge">realloc</code> deve ser utilizada, assumindo que a nova capacidade será o dobro da atual <code class="highlighter-rouge">capacity += capacity</code>.</p>
 
 
   </article>

@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Organização de memória, stack, heap IV</title>
-  <meta name="description" content="Contato  Jean Paulo Martins  Sala 105  e-mail jeanmartins@utfpr.edu.br  Notas de aula: jeanpm.github.io          Qualquer dúvida sobre essas notas de aula, o...">
+  <meta name="description" content="Contato  Jean Paulo Martins  Sala 105  jeanmartins at utfpr edu br  Notas de aula: jeanpm.github.io          AE22CP-172 (17 vem de 2017, 2 de segundo semestr...">
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="canonical" href="http://localhost:4000/ae22cp-172/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-4.html">
@@ -83,9 +83,10 @@
 <ul>
   <li>Jean Paulo Martins</li>
   <li>Sala 105</li>
-  <li>e-mail jeanmartins@utfpr.edu.br</li>
+  <li>jeanmartins at utfpr edu br</li>
   <li>Notas de aula: <a href="http://jeanpm.github.io">jeanpm.github.io</a>
     <ul>
+      <li><code class="highlighter-rouge">AE22CP-172</code> (17 vem de 2017, 2 de segundo semestre)</li>
       <li>Qualquer dúvida sobre essas notas de aula, ou erros encontrados, me avisem por email.</li>
     </ul>
   </li>
@@ -105,6 +106,7 @@
       <li><a href="#exemplo-malloc" id="markdown-toc-exemplo-malloc">Exemplo: malloc</a></li>
       <li><a href="#exemplo-realloc" id="markdown-toc-exemplo-realloc">Exemplo: realloc</a></li>
       <li><a href="#exemplo-mantendo-referências" id="markdown-toc-exemplo-mantendo-referências">Exemplo: mantendo referências</a></li>
+      <li><a href="#exercício-liberando-memória" id="markdown-toc-exercício-liberando-memória">Exercício: liberando memória</a></li>
     </ul>
   </li>
 </ul>
@@ -260,16 +262,31 @@
 </div>
 
 <h2 id="exemplo-mantendo-referências">Exemplo: mantendo referências</h2>
+
+<p>Para que seja possível desalocar as memórias alocadas, é preciso manter um  ponteiro para cada uma delas.</p>
 <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// Utilizando malloc
 </span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>    
     <span class="kt">char</span><span class="o">*</span> <span class="n">ptr</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
     <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-        <span class="n">ptr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">);</span>  
+        <span class="n">ptr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>  
     <span class="n">free</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span>    
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre>
 </div>
+
+<p><strong>Erro de compilação</strong></p>
+
+<p>A ideia deste código está correta porém a implementação está errada e nos leva a um erro de compilação, pois <code class="highlighter-rouge">ptr</code> não está alocada no heap.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>In function ‘main’:
+:11:5: warning: attempt to free a non-heap object ‘ptr’ [-Wfree-nonheap-object] free(ptr);    
+</code></pre>
+</div>
+
+<h2 id="exercício-liberando-memória">Exercício: liberando memória</h2>
+
+<p>Como alterar o código acima para que toda memória seja desalocada?</p>
+
 
   </article>
 
