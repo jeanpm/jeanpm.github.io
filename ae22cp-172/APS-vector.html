@@ -92,6 +92,25 @@
   </li>
 </ul>
 
+<p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#estrutura-e-implementação" id="markdown-toc-estrutura-e-implementação">Estrutura e Implementação</a>    <ul>
+      <li><a href="#inicializaçãofinalização" id="markdown-toc-inicializaçãofinalização">Inicialização/Finalização</a></li>
+      <li><a href="#acesso-e-manipulação-sem-crescimento" id="markdown-toc-acesso-e-manipulação-sem-crescimento">Acesso e manipulação: sem crescimento</a></li>
+      <li><a href="#acesso-e-manipulação" id="markdown-toc-acesso-e-manipulação">Acesso e manipulação</a>        <ul>
+          <li><a href="#inserção-com-crescimento" id="markdown-toc-inserção-com-crescimento">Inserção: com crescimento</a></li>
+          <li><a href="#remoção-sem-decrescimento" id="markdown-toc-remoção-sem-decrescimento">Remoção: sem decrescimento</a></li>
+        </ul>
+      </li>
+      <li><a href="#atualizando-o-tamanho-do-vetor-resize" id="markdown-toc-atualizando-o-tamanho-do-vetor-resize">Atualizando o tamanho do vetor: resize</a></li>
+      <li><a href="#imprimindo-o-conteúdo-do-vetor" id="markdown-toc-imprimindo-o-conteúdo-do-vetor">Imprimindo o conteúdo do vetor</a></li>
+      <li><a href="#verificando-a-validade-de-argumentos" id="markdown-toc-verificando-a-validade-de-argumentos">Verificando a validade de argumentos</a></li>
+    </ul>
+  </li>
+  <li><a href="#generalizando-o-tipo-vector" id="markdown-toc-generalizando-o-tipo-vector">Generalizando o tipo vector</a></li>
+  <li><a href="#casos-de-teste" id="markdown-toc-casos-de-teste">Casos de teste</a></li>
+</ul>
+
 <h1 id="estrutura-e-implementação">Estrutura e Implementação</h1>
 <p>Implementar as funcionalidades da classe <code class="highlighter-rouge">vector</code>. Para tal utilizar uma estrutura similar a:</p>
 <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
@@ -183,13 +202,14 @@
 </code></pre>
 </div>
 
-<h1 id="verificando-argumentos-com-asserth">Verificando argumentos com assert.h</h1>
+<h2 id="verificando-a-validade-de-argumentos">Verificando a validade de argumentos</h2>
 
-<p>Em grande parte das funções de acesso e manipulação dos dados no vetor recebem como argumento um inteiro como índice. Para o contexto de <code class="highlighter-rouge">vector</code>, todo acesso que não esteja no intervalo $0 \leq i &lt; \mbox{size}$ é inválido, pois extrapola os índices do vetor.</p>
+<p>Grande parte das funções de acesso e manipulação dos dados no vetor recebem como argumento um inteiro como índice. Para o contexto de <code class="highlighter-rouge">vector</code>, todo acesso que não esteja no intervalo $0 \leq i &lt; \mbox{size}$ é inválido, pois extrapola os índices do vetor.</p>
 
 <p>Há diversas formas de se verificar esse tipo de situação. Podemos, por exemplo, definir um condicional que verifique os limites de $i$</p>
 <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">)</span> <span class="p">{</span>
-<span class="p">}</span>
+    <span class="c1">// Faz algo
+</span><span class="p">}</span>
 </code></pre>
 </div>
 
@@ -197,6 +217,45 @@
 
 <p>Uma forma de se fazer isso, é utilizando a função <code class="highlighter-rouge">assert(bool v)</code> (requer <code class="highlighter-rouge">#include &lt;assert.h&gt;</code>). Esta é uma função bem simples, a qual termina a execução do programa, caso o argumento que ela receba não seja verdadeiro. O condicional definido anteriormente poderia ser substituído por:</p>
 <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="n">assert</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">);</span>
+<span class="c1">// Faz algo
+</span></code></pre>
+</div>
+
+<p>Neste caso, a linha após <code class="highlighter-rouge">assert</code> somente será alcançada caso a expressão <code class="highlighter-rouge">i &gt;=0 &amp;&amp; i &lt; v-&gt;size</code> seja verdadeira. Caso contrário o programa será interrompido imediatamente, e uma mensagem de erro impressa em tela.</p>
+
+<h1 id="generalizando-o-tipo-vector">Generalizando o tipo vector</h1>
+
+<p>Até então tratamos de uma implementação <code class="highlighter-rouge">vector</code> cuja estrutura interna é baseada em um vetor de inteiros.</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">int</span><span class="o">*</span> <span class="n">data</span><span class="p">;</span>     <span class="c1">// vetor que armazenará os inteiro;
+</span>    <span class="kt">int</span>  <span class="n">size</span><span class="p">;</span>     <span class="c1">// tamanho atual do vetor
+</span>    <span class="kt">int</span>  <span class="n">capacity</span><span class="p">;</span> <span class="c1">// tamanho reservado em memória 
+</span><span class="p">}</span> <span class="n">vector</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>Porém, em grande parte dos casos, as mesmas funcionalidades implementadas poderiam ser úteis para outros tipos de dados. Como poderíamos alterar essa estrutura para que fosse mais fácil utilizá-la em outras situações? Ex.: para armazenar <code class="highlighter-rouge">float</code> ou <code class="highlighter-rouge">char</code>, etc.</p>
+
+<p>Podemos definir um tipo de dados, com <code class="highlighter-rouge">typedef</code> e utilizá-lo em lugar de <code class="highlighter-rouge">int</code>. Ou seja</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">typedef</span> <span class="kt">int</span> <span class="n">Type</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">Type</span><span class="o">*</span> <span class="n">data</span><span class="p">;</span>     <span class="c1">// vetor que armazenará os inteiro;
+</span>    <span class="kt">int</span>  <span class="n">size</span><span class="p">;</span>     <span class="c1">// tamanho atual do vetor
+</span>    <span class="kt">int</span>  <span class="n">capacity</span><span class="p">;</span> <span class="c1">// tamanho reservado em memória 
+</span><span class="p">}</span> <span class="n">vector</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>Toda a referência ao tipo inteiro em elementos do vetor, são agora substituídos por <code class="highlighter-rouge">Type</code>. Deste modo para que se utilize toda a estrutura com um tipo de dados diferente, basta alterar a definição de <code class="highlighter-rouge">Type</code>.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">typedef</span> <span class="kt">float</span> <span class="n">Type</span><span class="p">;</span>
+<span class="n">Type</span> <span class="n">vector_pop_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="n">Type</span> <span class="n">vector_erase</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+<span class="n">Type</span> <span class="n">vector_pop_front</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">vector_push_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">vector_insert</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">vector_push_front</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
 </code></pre>
 </div>
 
