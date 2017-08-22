@@ -250,18 +250,20 @@
 <p>Toda a referência ao tipo inteiro em elementos do vetor, são agora substituídos por <code class="highlighter-rouge">Type</code>. Deste modo para que se utilize toda a estrutura com um tipo de dados diferente, basta alterar a definição de <code class="highlighter-rouge">Type</code>.</p>
 
 <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">typedef</span> <span class="kt">float</span> <span class="n">Type</span><span class="p">;</span>
-<span class="n">Type</span> <span class="n">vector_pop_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
-<span class="n">Type</span> <span class="n">vector_erase</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+<span class="c1">// Funções de remoção de elementos
+</span><span class="n">Type</span> <span class="n">vector_pop_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
 <span class="n">Type</span> <span class="n">vector_pop_front</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
-<span class="kt">void</span> <span class="n">vector_push_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
-<span class="kt">void</span> <span class="n">vector_insert</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+<span class="n">Type</span> <span class="n">vector_erase</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+<span class="c1">// Funções de inserção de elementos
+</span><span class="kt">void</span> <span class="n">vector_push_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
 <span class="kt">void</span> <span class="n">vector_push_front</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">vector_insert</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
 </code></pre>
 </div>
 
 <h1 id="casos-de-teste">Casos de teste</h1>
 
-<p>Um caso de teste é um conjunto de dados de entrada com a respectiva saída esperada. Há diversos meios de se implementar casos de testes, no entanto, para o nosso propósito isso será feito por meio de um arquivo de entrada, e um arquivo de saída. Considera-se que o programa passou em um determinado caso de teste, se, dado um arquivo de entrada, ele produz um arquivo de saída idêntico ao esperado.</p>
+<p>Um caso de teste é um conjunto de dados de entrada com a respectiva saída esperada. Há diversos meios de se implementar casos de testes (<a href="https://pt.wikipedia.org/wiki/Teste_de_unidade">wiki/Teste_de_unidade</a>), no entanto, para o nosso propósito isso será feito por meio de um arquivo de entrada, e um arquivo de saída. Considera-se que o programa passou em um determinado caso de teste, se, dado um arquivo de entrada, ele produz um arquivo de saída idêntico ao esperado.</p>
 
 <p>Suponhamos o seguinte arquivo de entrada, o qual especifica um caso de teste.</p>
 
