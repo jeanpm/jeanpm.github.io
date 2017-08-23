@@ -1,0 +1,420 @@
+22
+418
+push_back 24
+insert 62 0
+push_back 99
+insert 50 2
+pop_front
+push_front 95
+push_front 74
+erase 4
+push_front 84
+pop_back
+pop_back
+push_back 11
+push_front 79
+erase 3
+push_front 81
+pop_back
+pop_front
+insert 89 3
+push_front 63
+insert 67 2
+push_front 5
+push_back 8
+pop_front
+push_back 70
+push_back 59
+erase 8
+insert 72 4
+pop_back
+pop_back
+pop_back
+insert 70 3
+pop_front
+erase 1
+push_back 83
+push_front 54
+pop_front
+push_front 38
+push_back 54
+push_back 13
+push_front 45
+push_front 67
+pop_back
+pop_back
+pop_back
+pop_front
+pop_front
+erase 2
+pop_front
+pop_back
+pop_front
+push_front 6
+insert 71 2
+push_back 97
+pop_back
+push_front 0
+push_back 74
+insert 61 4
+push_back 39
+pop_back
+pop_back
+insert 60 0
+erase 1
+pop_back
+push_front 14
+pop_front
+pop_back
+push_front 19
+pop_back
+erase 1
+erase 2
+push_back 97
+insert 2 3
+push_front 62
+push_back 79
+push_front 93
+pop_front
+erase 5
+insert 39 0
+push_back 9
+push_back 54
+insert 51 4
+pop_back
+push_back 22
+push_front 20
+pop_front
+erase 0
+pop_back
+push_front 43
+push_back 47
+push_front 57
+push_back 11
+erase 6
+push_front 72
+pop_front
+insert 48 7
+push_back 88
+push_front 47
+pop_back
+push_back 98
+push_back 45
+insert 62 1
+erase 14
+push_front 68
+push_front 12
+pop_back
+pop_back
+pop_back
+push_back 32
+push_front 78
+pop_front
+insert 82 8
+push_back 35
+pop_front
+push_back 47
+erase 4
+push_back 6
+push_back 75
+push_back 33
+insert 90 7
+push_back 14
+erase 8
+pop_back
+push_back 62
+pop_front
+erase 15
+insert 14 12
+push_back 78
+pop_front
+insert 21 11
+pop_front
+insert 69 6
+pop_front
+push_back 58
+push_back 10
+push_front 61
+push_back 17
+pop_front
+pop_front
+push_front 57
+erase 17
+pop_back
+pop_back
+erase 6
+push_front 15
+erase 7
+push_back 42
+push_back 74
+pop_front
+insert 4 14
+pop_front
+push_back 76
+push_back 39
+pop_back
+push_front 78
+push_back 45
+pop_back
+insert 78 3
+insert 91 3
+insert 20 11
+insert 37 6
+erase 10
+pop_front
+insert 59 22
+pop_back
+insert 68 16
+push_back 97
+pop_front
+push_front 27
+push_front 47
+push_front 27
+push_front 67
+push_back 61
+push_front 14
+push_front 45
+insert 73 12
+erase 9
+push_front 37
+pop_back
+pop_front
+insert 4 19
+pop_back
+push_front 94
+pop_front
+pop_front
+pop_front
+push_front 53
+pop_front
+push_front 33
+erase 7
+pop_front
+push_front 66
+push_front 22
+erase 25
+insert 59 11
+push_front 25
+push_back 65
+push_front 25
+insert 75 7
+insert 18 29
+erase 30
+erase 4
+insert 70 0
+push_front 91
+erase 1
+push_back 56
+pop_back
+insert 77 18
+erase 15
+pop_front
+erase 2
+push_back 44
+push_back 98
+push_front 69
+push_front 11
+pop_front
+pop_front
+push_front 14
+insert 91 8
+push_front 55
+pop_front
+pop_front
+erase 6
+insert 65 31
+pop_front
+push_front 55
+erase 7
+push_back 64
+pop_back
+push_back 9
+erase 2
+push_back 60
+insert 4 16
+erase 20
+push_front 16
+pop_back
+push_back 13
+erase 30
+push_front 33
+erase 28
+insert 87 20
+pop_back
+erase 9
+insert 57 26
+insert 21 9
+push_front 17
+push_front 94
+push_front 23
+pop_back
+erase 8
+erase 16
+insert 65 8
+erase 5
+push_front 18
+insert 39 9
+insert 74 19
+pop_back
+push_back 43
+push_front 64
+erase 28
+push_back 92
+insert 32 34
+pop_front
+push_front 31
+push_back 22
+push_front 77
+push_front 9
+push_front 89
+pop_front
+push_back 66
+insert 32 20
+pop_front
+pop_front
+push_back 83
+insert 66 8
+pop_front
+push_front 17
+insert 78 20
+erase 21
+pop_front
+push_back 33
+pop_front
+push_back 77
+insert 54 31
+pop_back
+push_back 22
+erase 14
+pop_front
+insert 92 2
+insert 17 15
+insert 7 31
+insert 24 45
+push_front 59
+insert 50 5
+push_front 11
+push_front 35
+push_front 34
+erase 32
+pop_front
+insert 9 25
+insert 59 32
+insert 82 51
+insert 61 1
+push_front 30
+push_front 86
+insert 56 47
+pop_back
+erase 9
+insert 11 19
+push_back 46
+insert 8 24
+push_front 92
+insert 82 8
+push_back 97
+erase 54
+push_front 48
+erase 29
+pop_front
+pop_front
+push_back 99
+push_back 89
+pop_back
+insert 25 11
+push_front 51
+push_back 49
+push_back 16
+insert 64 49
+insert 49 2
+erase 3
+push_front 65
+pop_front
+push_front 29
+pop_back
+push_front 34
+push_front 30
+pop_back
+pop_front
+push_back 37
+insert 87 25
+erase 38
+insert 94 30
+pop_back
+pop_back
+pop_back
+push_back 33
+push_front 32
+push_back 49
+insert 11 9
+pop_front
+erase 28
+push_front 18
+insert 64 5
+pop_back
+pop_back
+push_front 92
+push_front 83
+push_front 56
+insert 83 1
+pop_back
+pop_back
+insert 77 11
+push_back 89
+insert 1 17
+push_front 35
+push_front 79
+erase 26
+push_back 70
+push_back 5
+insert 52 72
+pop_front
+erase 55
+erase 38
+insert 16 45
+push_front 88
+erase 54
+push_front 81
+insert 3 15
+push_back 90
+insert 60 45
+push_back 99
+push_back 72
+push_back 58
+pop_back
+push_front 67
+pop_front
+pop_back
+pop_back
+insert 74 23
+erase 50
+pop_front
+push_front 62
+insert 99 36
+pop_back
+push_back 21
+push_back 62
+pop_back
+pop_back
+push_back 6
+erase 7
+push_back 67
+push_front 67
+push_front 81
+pop_back
+push_front 55
+erase 64
+push_front 7
+push_back 53
+push_front 48
+pop_back
+push_back 32
+pop_front
+push_back 0
+insert 68 28
+push_back 33
+push_front 67
+pop_back
+insert 8 48
+insert 21 15
+push_front 29

@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 22 Aug 2017 13:14:52 -0300</pubDate>
-    <lastBuildDate>Tue, 22 Aug 2017 13:14:52 -0300</lastBuildDate>
+    <pubDate>Wed, 23 Aug 2017 09:47:20 -0300</pubDate>
+    <lastBuildDate>Wed, 23 Aug 2017 09:47:20 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -16,21 +16,36 @@
 &lt;ul&gt;
   &lt;li&gt;Jean Paulo Martins&lt;/li&gt;
   &lt;li&gt;Sala 105&lt;/li&gt;
-  &lt;li&gt;e-mail jeanmartins@utfpr.edu.br&lt;/li&gt;
+  &lt;li&gt;email jeanmartins utfpr edu br&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://jeanpm.github.io&quot;&gt;jeanpm.github.io&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&quot;conteúdo&quot;&gt;Conteúdo&lt;/h1&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#conteúdo&quot; id=&quot;markdown-toc-conteúdo&quot;&gt;Conteúdo&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#regra-para-eliminação-do-condicional---modus-tollens&quot; id=&quot;markdown-toc-regra-para-eliminação-do-condicional---modus-tollens&quot;&gt;Regra para eliminação do condicional - Modus Tollens&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#exercícios-modus-tollens&quot; id=&quot;markdown-toc-exercícios-modus-tollens&quot;&gt;Exercícios: Modus Tollens&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#regra-para-a-inclusão-do-condicional&quot; id=&quot;markdown-toc-regra-para-a-inclusão-do-condicional&quot;&gt;Regra para a inclusão do condicional&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#exercícios-inclusão-do-condicional&quot; id=&quot;markdown-toc-exercícios-inclusão-do-condicional&quot;&gt;Exercícios: inclusão do condicional&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#regras-para-eliminação-da-disjunção&quot; id=&quot;markdown-toc-regras-para-eliminação-da-disjunção&quot;&gt;Regras para eliminação da disjunção&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#exercícios-eliminação-da-disjunção-e-inclusão-do-condicional&quot; id=&quot;markdown-toc-exercícios-eliminação-da-disjunção-e-inclusão-do-condicional&quot;&gt;Exercícios: eliminação da disjunção e inclusão do condicional&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#conteúdo&quot; id=&quot;markdown-toc-conteúdo&quot;&gt;Conteúdo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#regras-de-inferências---parte-2&quot; id=&quot;markdown-toc-regras-de-inferências---parte-2&quot;&gt;Regras de inferências - parte 2&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#regra-para-eliminação-do-condicional---modus-tollens&quot; id=&quot;markdown-toc-regra-para-eliminação-do-condicional---modus-tollens&quot;&gt;Regra para eliminação do condicional - Modus Tollens&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#exercícios-modus-tollens&quot; id=&quot;markdown-toc-exercícios-modus-tollens&quot;&gt;Exercícios: Modus Tollens&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#regras-hipotéticas&quot; id=&quot;markdown-toc-regras-hipotéticas&quot;&gt;Regras hipotéticas&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#regra-para-a-inclusão-do-condicional-prova-do-condicional&quot; id=&quot;markdown-toc-regra-para-a-inclusão-do-condicional-prova-do-condicional&quot;&gt;Regra para a inclusão do condicional (prova do condicional)&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#exercícios-inclusão-do-condicional&quot; id=&quot;markdown-toc-exercícios-inclusão-do-condicional&quot;&gt;Exercícios: inclusão do condicional&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#regras-para-eliminação-da-disjunção&quot; id=&quot;markdown-toc-regras-para-eliminação-da-disjunção&quot;&gt;Regras para eliminação da disjunção&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#exercícios-eliminação-da-disjunção-e-inclusão-do-condicional&quot; id=&quot;markdown-toc-exercícios-eliminação-da-disjunção-e-inclusão-do-condicional&quot;&gt;Exercícios: eliminação da disjunção e inclusão do condicional&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#regra-para-introdução-da-negação&quot; id=&quot;markdown-toc-regra-para-introdução-da-negação&quot;&gt;Regra para introdução da negação&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exercícios-introdução-da-negação-noltpg122&quot; id=&quot;markdown-toc-exercícios-introdução-da-negação-noltpg122&quot;&gt;Exercícios: introdução da negação (Nolt,pg.122)&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h1 id=&quot;regras-de-inferências---parte-2&quot;&gt;Regras de inferências - parte 2&lt;/h1&gt;
 
 &lt;h2 id=&quot;regra-para-eliminação-do-condicional---modus-tollens&quot;&gt;Regra para eliminação do condicional - Modus Tollens&lt;/h2&gt;
 
@@ -63,17 +78,19 @@
   &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;\neg p&lt;/script&gt; : “Jean não é paranaense.”&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;exercícios-modus-tollens&quot;&gt;Exercícios: Modus Tollens&lt;/h2&gt;
+&lt;h3 id=&quot;exercícios-modus-tollens&quot;&gt;Exercícios: Modus Tollens&lt;/h3&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to(q\to r), p, \neg r \vdash \neg q&lt;/script&gt;
 
-&lt;h2 id=&quot;regra-para-a-inclusão-do-condicional&quot;&gt;Regra para a inclusão do condicional&lt;/h2&gt;
+&lt;h1 id=&quot;regras-hipotéticas&quot;&gt;Regras hipotéticas&lt;/h1&gt;
+
+&lt;h2 id=&quot;regra-para-a-inclusão-do-condicional-prova-do-condicional&quot;&gt;Regra para a inclusão do condicional (prova do condicional)&lt;/h2&gt;
 
 &lt;p&gt;Dadas duas fórmulas $\phi$ e $\psi$, o condicional pode ser incluído entre elas se, quando assumindo a &lt;strong&gt;hipótese&lt;/strong&gt; de $\phi$ verdadeiro, então $\psi$ puder ser concluído por derivação. Deste modo, se existe uma derivação da hipótese à conclusão $(\phi\dots\psi)$, a implicação pode ser concluída.&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{(\phi\dots\psi)}{\phi\to\psi}\to\mbox{i}&lt;/script&gt;
 
-&lt;h2 id=&quot;exercícios-inclusão-do-condicional&quot;&gt;Exercícios: inclusão do condicional&lt;/h2&gt;
+&lt;h3 id=&quot;exercícios-inclusão-do-condicional&quot;&gt;Exercícios: inclusão do condicional&lt;/h3&gt;
 
 &lt;p&gt;Exemplo de resolução:&lt;/p&gt;
 
@@ -89,7 +106,7 @@
 
 &lt;p&gt;Se ao assumirmos $\neg q$ como hipótese, $\neg p$ pode ser concluído por dedução/derivação, então como conclusão $\neg q \to \neg p$.&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land q \to r \vdash p \to (q \to r)&lt;/script&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \to r \vdash p \to (q \to r)&lt;/script&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (q \to r) \vdash (p \land q) \to r&lt;/script&gt;
 
@@ -97,15 +114,25 @@
 
 &lt;h2 id=&quot;regras-para-eliminação-da-disjunção&quot;&gt;Regras para eliminação da disjunção&lt;/h2&gt;
 
-&lt;p&gt;Dada uma fórmula $\phi \lor \psi$, a disjunção pode ser eliminada, se em assumindo-se cada uma delas como hipótese, a mesma conclusão $\chi$ possa ser derivada.&lt;/p&gt;
+&lt;p&gt;Dada uma fórmula $\phi \lor \psi$, a disjunção pode ser eliminada, se em assumindo-se cada uma delas como hipótese, a mesma conclusão $\chi$ possa ser derivada. Isso pode ser descrito de duas formas.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Não-hipotética&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Na primeira (não hipotética), as implicações $\phi\to\chi$ e $\psi\to\chi$ aparecem como premissas, e portanto&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi \lor \psi, \phi\to \chi, \psi\to\chi \vdash \chi&lt;/script&gt;
+
+&lt;p&gt;&lt;strong&gt;Hipotética&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Já a segunda regra é hipotética. Visto que uma, ou ambas, as implicações não aparecem como premissas, elas precisam ser demonstradas por dedução, assumindo cada parte ($\phi$ e $\psi$) como hipótese. Neste caso, só é possível derivar $\chi$ se e somente se ambas hipóteses levarem a $\chi$, o que é representado como ($\phi\dots\chi$ e $\psi\dots\chi$). Esta regra é representada da seguinte forma:&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi \lor \psi, (\phi\dots\chi), (\psi\dots\chi) \vdash \chi&lt;/script&gt;
 
-&lt;p&gt;Note, porém, que $(\phi\dots\chi)$ e $(\psi\dots \chi)$ são demonstradas por inclusão do condicional.&lt;/p&gt;
+&lt;p&gt;Note que $(\phi\dots\chi)$ e $(\psi\dots \chi)$ são demonstradas por inclusão do condicional.&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\phi\lor\psi\quad(\phi\dots\chi)\quad(\psi\dots\chi)}{\chi}\lor\mbox{e}\qquad(\mbox{eliminação do }\lor)&lt;/script&gt;
 
-&lt;h2 id=&quot;exercícios-eliminação-da-disjunção-e-inclusão-do-condicional&quot;&gt;Exercícios: eliminação da disjunção e inclusão do condicional&lt;/h2&gt;
+&lt;h3 id=&quot;exercícios-eliminação-da-disjunção-e-inclusão-do-condicional&quot;&gt;Exercícios: eliminação da disjunção e inclusão do condicional&lt;/h3&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor q, p \to r, q \to r \vdash r&lt;/script&gt;
 
@@ -120,6 +147,22 @@
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land (q \lor r) \vdash (p \land q) \lor (p \land r)&lt;/script&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \lor (p \land r) \vdash p \land (q \lor r)&lt;/script&gt;
+
+&lt;h2 id=&quot;regra-para-introdução-da-negação&quot;&gt;Regra para introdução da negação&lt;/h2&gt;
+
+&lt;p&gt;A regra para introdução da negação é utilizada para provar uma conclusão negada, assumimos como hipótese a conclusão sem o sinal de negação e daí derivamos uma contradição. Isso nos mostra que a hipótese é falsa, e portanto a conclusão original é verdadeira. Uma contradição tem a formalizam&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi \land \neg\phi&lt;/script&gt;
+
+&lt;p&gt;A regra de introduçao da negação pode ser definida como:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{(\phi\dots \perp)}{\neg\phi}\neg\mbox{i}&lt;/script&gt;
+
+&lt;h2 id=&quot;exercícios-introdução-da-negação-noltpg122&quot;&gt;Exercícios: introdução da negação (Nolt,pg.122)&lt;/h2&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to q, p \to \neg q \vdash \neg p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to (q\to r), p, \neg r \vdash \neg q&lt;/script&gt;
 </description>
         <pubDate>Wed, 23 Aug 2017 10:20:00 -0300</pubDate>
         <link>http://localhost:4000/lc21cp-172/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-2.html</link>
@@ -701,8 +744,8 @@ push_back -1
 &lt;h1 id=&quot;conteúdo&quot;&gt;Conteúdo&lt;/h1&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#conteúdo&quot; id=&quot;markdown-toc-conteúdo&quot;&gt;Conteúdo&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#cálculo-proposicional&quot; id=&quot;markdown-toc-cálculo-proposicional&quot;&gt;Cálculo proposicional&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#regras-de-inferência-dedução-natural&quot; id=&quot;markdown-toc-regras-de-inferência-dedução-natural&quot;&gt;Regras de inferência (dedução natural)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#cálculo-proposicional&quot; id=&quot;markdown-toc-cálculo-proposicional&quot;&gt;Cálculo proposicional&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#regras-de-inferência-dedução-natural&quot; id=&quot;markdown-toc-regras-de-inferência-dedução-natural&quot;&gt;Regras de inferência (dedução natural)&lt;/a&gt;    &lt;ul&gt;
       &lt;li&gt;&lt;a href=&quot;#regras-para-a-conjunção&quot; id=&quot;markdown-toc-regras-para-a-conjunção&quot;&gt;Regras para a conjunção&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#regras-para-a-dupla-negação&quot; id=&quot;markdown-toc-regras-para-a-dupla-negação&quot;&gt;Regras para a dupla negação&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#exemplos-derivação-da-conjunção-e-dupla-negação&quot; id=&quot;markdown-toc-exemplos-derivação-da-conjunção-e-dupla-negação&quot;&gt;Exemplos: derivação da conjunção e dupla negação&lt;/a&gt;&lt;/li&gt;
@@ -728,7 +771,7 @@ push_back -1
 
 &lt;p&gt;Os cálculos que executaremos com esses sistemas são sequências de inferências com o objetivo de demonstrar a validade de certas &lt;em&gt;formas de argumento&lt;/em&gt;.&lt;/p&gt;
 
-&lt;h2 id=&quot;regras-de-inferência-dedução-natural&quot;&gt;Regras de inferência (dedução natural)&lt;/h2&gt;
+&lt;h1 id=&quot;regras-de-inferência-dedução-natural&quot;&gt;Regras de inferência (dedução natural)&lt;/h1&gt;
 
 &lt;p&gt;As regras de inferência geram as formas de argumento numa série de etapas simples e precisas de raciocínio, chamadas&lt;/p&gt;
 
