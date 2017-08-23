@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Cálculo Proposicional - Regras de dedução III</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/lc21cp-172/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-3.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Cálculo Proposicional - Regras de dedução III</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Aug 24, 2017
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/lc21cp-172/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-2.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/lc21cp-172/Exercicios3-regras-de-dedu%C3%A7%C3%A3o.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#revisão" id="markdown-toc-revisão">Revisão</a></li>
+  <li><a href="#regras-de-inferência" id="markdown-toc-regras-de-inferência">Regras de inferência</a>    <ul>
+      <li><a href="#regra-para-introdução-da-negação" id="markdown-toc-regra-para-introdução-da-negação">Regra para introdução da negação</a></li>
+      <li><a href="#exercícios-introdução-da-negação-noltpg122" id="markdown-toc-exercícios-introdução-da-negação-noltpg122">Exercícios: introdução da negação (Nolt,pg.122)</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="revisão">Revisão</h1>
+
+<table>
+  <tbody>
+    <tr>
+      <td><em>Introdução da conjunção:</em></td>
+      <td>$\dfrac{\phi\quad\psi}{\phi \land \psi} \land\mbox{i}$</td>
+    </tr>
+    <tr>
+      <td><em>Eliminação da conjunção:</em></td>
+      <td>$\dfrac{\phi \land \psi}{\phi} \land\mbox{e}_1,\quad \dfrac{\phi \land \psi}{\psi} \land\mbox{e}_2$</td>
+    </tr>
+    <tr>
+      <td><em>Introdução da dupla negação:</em></td>
+      <td>$\dfrac{\phi}{\neg\neg\phi} \neg\neg\mbox{i}$</td>
+    </tr>
+    <tr>
+      <td><em>Eliminação da dupla negação:</em></td>
+      <td>$\dfrac{\neg\neg\phi}{\phi} \neg\neg\mbox{e}$</td>
+    </tr>
+    <tr>
+      <td><em>Modus Ponens:</em></td>
+      <td>$\dfrac{\phi\to\psi\qquad \phi}{\psi}{MP}$</td>
+    </tr>
+    <tr>
+      <td><em>Introdução da disjunção:</em></td>
+      <td>$\dfrac{\phi}{\phi \lor \psi}\lor\mbox{i}$</td>
+    </tr>
+    <tr>
+      <td><em>Modus Tollens:</em></td>
+      <td>$\dfrac{\phi\to\psi\qquad \neg\phi}{\neg\psi}{MT}$</td>
+    </tr>
+    <tr>
+      <td><em>Eliminação da disjunção:</em></td>
+      <td>$\dfrac{\phi \lor \psi\quad (\phi\dots\chi)\quad (\psi\dots\chi)}{\chi} \lor\mbox{e}$</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="regras-de-inferência">Regras de inferência</h1>
+
+<h2 id="regra-para-introdução-da-negação">Regra para introdução da negação</h2>
+
+<p>A regra para introdução da negação é utilizada para provar uma conclusão negada, assumimos como hipótese a conclusão sem o sinal de negação e daí derivamos uma contradição. Isso nos mostra que a hipótese é falsa, e portanto a conclusão original é verdadeira. Uma contradição tem a formalizam</p>
+
+<script type="math/tex; mode=display">\phi \land \neg\phi</script>
+
+<p>A regra de introduçao da negação pode ser definida como:</p>
+
+<script type="math/tex; mode=display">\dfrac{(\phi\dots \perp)}{\neg\phi}\neg\mbox{i}</script>
+
+<h2 id="exercícios-introdução-da-negação-noltpg122">Exercícios: introdução da negação (Nolt,pg.122)</h2>
+
+<script type="math/tex; mode=display">p \to q, p \to \neg q \vdash \neg p</script>
+
+<script type="math/tex; mode=display">p\to (q\to r), p, \neg r \vdash \neg q</script>
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

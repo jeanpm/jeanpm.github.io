@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Cálculo Proposicional - Regras de dedução II</title>
-  <meta name="description" content="Contato  Jean Paulo Martins  Sala 105  email jeanmartins utfpr edu br  jeanpm.github.io">
+  <meta name="description" content="Conteúdo">
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="canonical" href="http://localhost:4000/lc21cp-172/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-2.html">
@@ -69,19 +69,22 @@
     </div>
   
   
+    <div class="right">
+      <a href="/lc21cp-172/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-3.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
 </div>
 
 
   <article class="post-content">
-    <p><strong>Contato</strong></p>
-<ul>
-  <li>Jean Paulo Martins</li>
-  <li>Sala 105</li>
-  <li>email jeanmartins utfpr edu br</li>
-  <li><a href="http://jeanpm.github.io">jeanpm.github.io</a></li>
-</ul>
-
-<p><strong>Conteúdo</strong></p>
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
 <ul id="markdown-toc">
   <li><a href="#revisão" id="markdown-toc-revisão">Revisão</a></li>
   <li><a href="#regras-de-inferência" id="markdown-toc-regras-de-inferência">Regras de inferência</a>    <ul>
@@ -100,8 +103,6 @@
           <li><a href="#exercícios-eliminação-da-disjunção-e-inclusão-do-condicional" id="markdown-toc-exercícios-eliminação-da-disjunção-e-inclusão-do-condicional">Exercícios: eliminação da disjunção e inclusão do condicional</a></li>
         </ul>
       </li>
-      <li><a href="#regra-para-introdução-da-negação" id="markdown-toc-regra-para-introdução-da-negação">Regra para introdução da negação</a></li>
-      <li><a href="#exercícios-introdução-da-negação-noltpg122" id="markdown-toc-exercícios-introdução-da-negação-noltpg122">Exercícios: introdução da negação (Nolt,pg.122)</a></li>
     </ul>
   </li>
 </ul>
@@ -127,8 +128,8 @@
       <td>$\dfrac{\neg\neg\phi}{\phi} \neg\neg\mbox{e}$</td>
     </tr>
     <tr>
-      <td><em>Eliminação do condicional:</em></td>
-      <td>$\dfrac{\phi\to\psi, \phi}{\psi}\to\mbox{e}$</td>
+      <td><em>Modus Ponens:</em></td>
+      <td>$\dfrac{\phi\to\psi\qquad \phi}{\psi}MP$</td>
     </tr>
     <tr>
       <td><em>Introdução da disjunção:</em></td>
@@ -240,21 +241,6 @@
 
 <script type="math/tex; mode=display">(p \land q) \lor (p \land r) \vdash p \land (q \lor r)</script>
 
-<h2 id="regra-para-introdução-da-negação">Regra para introdução da negação</h2>
-
-<p>A regra para introdução da negação é utilizada para provar uma conclusão negada, assumimos como hipótese a conclusão sem o sinal de negação e daí derivamos uma contradição. Isso nos mostra que a hipótese é falsa, e portanto a conclusão original é verdadeira. Uma contradição tem a formalizam</p>
-
-<script type="math/tex; mode=display">\phi \land \neg\phi</script>
-
-<p>A regra de introduçao da negação pode ser definida como:</p>
-
-<script type="math/tex; mode=display">\dfrac{(\phi\dots \perp)}{\neg\phi}\neg\mbox{i}</script>
-
-<h2 id="exercícios-introdução-da-negação-noltpg122">Exercícios: introdução da negação (Nolt,pg.122)</h2>
-
-<script type="math/tex; mode=display">p \to q, p \to \neg q \vdash \neg p</script>
-
-<script type="math/tex; mode=display">p\to (q\to r), p, \neg r \vdash \neg q</script>
 
   </article>
 

@@ -6,39 +6,100 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 23 Aug 2017 12:02:25 -0300</pubDate>
-    <lastBuildDate>Wed, 23 Aug 2017 12:02:25 -0300</lastBuildDate>
+    <pubDate>Wed, 23 Aug 2017 16:16:00 -0300</pubDate>
+    <lastBuildDate>Wed, 23 Aug 2017 16:16:00 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
-        <title>Cálculo Proposicional - Regras de dedução II</title>
-        <description>&lt;p&gt;&lt;strong&gt;Contato&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Jean Paulo Martins&lt;/li&gt;
-  &lt;li&gt;Sala 105&lt;/li&gt;
-  &lt;li&gt;email jeanmartins utfpr edu br&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://jeanpm.github.io&quot;&gt;jeanpm.github.io&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+        <title>Exercícios III - Regras de dedução</title>
+        <description>&lt;h1 id=&quot;demonstre-os-argumentos-a-seguir&quot;&gt;Demonstre os argumentos a seguir:&lt;/h1&gt;
 
-&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Utilize as regras de derivação:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da conjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi\quad\psi}{\phi \land \psi} \land\mbox{i}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Eliminação da conjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi \land \psi}{\phi} \land\mbox{e}_1,\quad \dfrac{\phi \land \psi}{\psi} \land\mbox{e}_2$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da dupla negação:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi}{\neg\neg\phi} \neg\neg\mbox{i}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Eliminação da dupla negação:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\neg\neg\phi}{\phi} \neg\neg\mbox{e}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Modus Ponens:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi\to\psi\qquad \phi}{\psi}{MP}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da disjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi}{\phi \lor \psi}\lor\mbox{i}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Modus Tollens:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi\to\psi\qquad \neg\phi}{\neg\psi}{MT}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Eliminação da disjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi \lor \psi\quad (\phi\dots\chi)\quad (\psi\dots\chi)}{\chi} \lor\mbox{e}$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\lor (q\to p)) \land q \vdash p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\lor (p\land q)\vdash p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q) \lor (p\land r) \vdash p\land(q\lor r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \vdash q \to (p \land q)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \vdash (p\to q) \to q&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\to r) \land (q \to r) \vdash (p\land q )\to r&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;q \to r \vdash (p\to q) \to (p\to r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (q \to r), p\to q \vdash p\to r&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to q, r \to s \vdash (p\lor r) \to (q \lor s)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor q \vdash r \to ((p\lor q)\land r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to q, r \to s \vdash (p \land r) \to (q \land s)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (q\land r) \vdash (p\to q) \land (p\to r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor (p\land q) \vdash p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;r, p \to (r\to q) \vdash p \to (q \land r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (q \lor r), q \to s, r \to s \vdash p \to s&lt;/script&gt;
+</description>
+        <pubDate>Thu, 24 Aug 2017 10:20:00 -0300</pubDate>
+        <link>http://localhost:4000/lc21cp-172/Exercicios3-regras-de-dedu%C3%A7%C3%A3o.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Exercicios3-regras-de-dedu%C3%A7%C3%A3o.html</guid>
+        
+        <category>dedução-natural</category>
+        
+        
+        <category>LC21CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>Cálculo Proposicional - Regras de dedução III</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#revisão&quot; id=&quot;markdown-toc-revisão&quot;&gt;Revisão&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#regras-de-inferência&quot; id=&quot;markdown-toc-regras-de-inferência&quot;&gt;Regras de inferência&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#regra-para-eliminação-do-condicional---modus-tollens&quot; id=&quot;markdown-toc-regra-para-eliminação-do-condicional---modus-tollens&quot;&gt;Regra para eliminação do condicional - Modus Tollens&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#exercícios-modus-tollens&quot; id=&quot;markdown-toc-exercícios-modus-tollens&quot;&gt;Exercícios: Modus Tollens&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#regras-hipotéticas&quot; id=&quot;markdown-toc-regras-hipotéticas&quot;&gt;Regras hipotéticas&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#regra-para-a-inclusão-do-condicional-prova-do-condicional&quot; id=&quot;markdown-toc-regra-para-a-inclusão-do-condicional-prova-do-condicional&quot;&gt;Regra para a inclusão do condicional (prova do condicional)&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#exercícios-inclusão-do-condicional&quot; id=&quot;markdown-toc-exercícios-inclusão-do-condicional&quot;&gt;Exercícios: inclusão do condicional&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#regras-para-eliminação-da-disjunção&quot; id=&quot;markdown-toc-regras-para-eliminação-da-disjunção&quot;&gt;Regras para eliminação da disjunção&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#exercícios-eliminação-da-disjunção-e-inclusão-do-condicional&quot; id=&quot;markdown-toc-exercícios-eliminação-da-disjunção-e-inclusão-do-condicional&quot;&gt;Exercícios: eliminação da disjunção e inclusão do condicional&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#regra-para-introdução-da-negação&quot; id=&quot;markdown-toc-regra-para-introdução-da-negação&quot;&gt;Regra para introdução da negação&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#exercícios-introdução-da-negação-noltpg122&quot; id=&quot;markdown-toc-exercícios-introdução-da-negação-noltpg122&quot;&gt;Exercícios: introdução da negação (Nolt,pg.122)&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
@@ -66,8 +127,101 @@
       &lt;td&gt;$\dfrac{\neg\neg\phi}{\phi} \neg\neg\mbox{e}$&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Eliminação do condicional:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;$\dfrac{\phi\to\psi, \phi}{\psi}\to\mbox{e}$&lt;/td&gt;
+      &lt;td&gt;&lt;em&gt;Modus Ponens:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi\to\psi\qquad \phi}{\psi}{MP}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da disjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi}{\phi \lor \psi}\lor\mbox{i}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Modus Tollens:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi\to\psi\qquad \neg\phi}{\neg\psi}{MT}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Eliminação da disjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi \lor \psi\quad (\phi\dots\chi)\quad (\psi\dots\chi)}{\chi} \lor\mbox{e}$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&quot;regras-de-inferência&quot;&gt;Regras de inferência&lt;/h1&gt;
+
+&lt;h2 id=&quot;regra-para-introdução-da-negação&quot;&gt;Regra para introdução da negação&lt;/h2&gt;
+
+&lt;p&gt;A regra para introdução da negação é utilizada para provar uma conclusão negada, assumimos como hipótese a conclusão sem o sinal de negação e daí derivamos uma contradição. Isso nos mostra que a hipótese é falsa, e portanto a conclusão original é verdadeira. Uma contradição tem a formalizam&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi \land \neg\phi&lt;/script&gt;
+
+&lt;p&gt;A regra de introduçao da negação pode ser definida como:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{(\phi\dots \perp)}{\neg\phi}\neg\mbox{i}&lt;/script&gt;
+
+&lt;h2 id=&quot;exercícios-introdução-da-negação-noltpg122&quot;&gt;Exercícios: introdução da negação (Nolt,pg.122)&lt;/h2&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to q, p \to \neg q \vdash \neg p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to (q\to r), p, \neg r \vdash \neg q&lt;/script&gt;
+</description>
+        <pubDate>Thu, 24 Aug 2017 10:20:00 -0300</pubDate>
+        <link>http://localhost:4000/lc21cp-172/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-3.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-3.html</guid>
+        
+        <category>dedução-natural</category>
+        
+        
+        <category>LC21CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>Cálculo Proposicional - Regras de dedução II</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#revisão&quot; id=&quot;markdown-toc-revisão&quot;&gt;Revisão&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#regras-de-inferência&quot; id=&quot;markdown-toc-regras-de-inferência&quot;&gt;Regras de inferência&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#regra-para-eliminação-do-condicional---modus-tollens&quot; id=&quot;markdown-toc-regra-para-eliminação-do-condicional---modus-tollens&quot;&gt;Regra para eliminação do condicional - Modus Tollens&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#exercícios-modus-tollens&quot; id=&quot;markdown-toc-exercícios-modus-tollens&quot;&gt;Exercícios: Modus Tollens&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#regras-hipotéticas&quot; id=&quot;markdown-toc-regras-hipotéticas&quot;&gt;Regras hipotéticas&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#regra-para-a-inclusão-do-condicional-prova-do-condicional&quot; id=&quot;markdown-toc-regra-para-a-inclusão-do-condicional-prova-do-condicional&quot;&gt;Regra para a inclusão do condicional (prova do condicional)&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#exercícios-inclusão-do-condicional&quot; id=&quot;markdown-toc-exercícios-inclusão-do-condicional&quot;&gt;Exercícios: inclusão do condicional&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#regras-para-eliminação-da-disjunção&quot; id=&quot;markdown-toc-regras-para-eliminação-da-disjunção&quot;&gt;Regras para eliminação da disjunção&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#exercícios-eliminação-da-disjunção-e-inclusão-do-condicional&quot; id=&quot;markdown-toc-exercícios-eliminação-da-disjunção-e-inclusão-do-condicional&quot;&gt;Exercícios: eliminação da disjunção e inclusão do condicional&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;revisão&quot;&gt;Revisão&lt;/h1&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da conjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi\quad\psi}{\phi \land \psi} \land\mbox{i}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Eliminação da conjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi \land \psi}{\phi} \land\mbox{e}_1,\quad \dfrac{\phi \land \psi}{\psi} \land\mbox{e}_2$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da dupla negação:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi}{\neg\neg\phi} \neg\neg\mbox{i}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Eliminação da dupla negação:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\neg\neg\phi}{\phi} \neg\neg\mbox{e}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Modus Ponens:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi\to\psi\qquad \phi}{\psi}MP$&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td&gt;&lt;em&gt;Introdução da disjunção:&lt;/em&gt;&lt;/td&gt;
@@ -179,21 +333,6 @@
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \lor (p \land r) \vdash p \land (q \lor r)&lt;/script&gt;
 
-&lt;h2 id=&quot;regra-para-introdução-da-negação&quot;&gt;Regra para introdução da negação&lt;/h2&gt;
-
-&lt;p&gt;A regra para introdução da negação é utilizada para provar uma conclusão negada, assumimos como hipótese a conclusão sem o sinal de negação e daí derivamos uma contradição. Isso nos mostra que a hipótese é falsa, e portanto a conclusão original é verdadeira. Uma contradição tem a formalizam&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi \land \neg\phi&lt;/script&gt;
-
-&lt;p&gt;A regra de introduçao da negação pode ser definida como:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{(\phi\dots \perp)}{\neg\phi}\neg\mbox{i}&lt;/script&gt;
-
-&lt;h2 id=&quot;exercícios-introdução-da-negação-noltpg122&quot;&gt;Exercícios: introdução da negação (Nolt,pg.122)&lt;/h2&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to q, p \to \neg q \vdash \neg p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to (q\to r), p, \neg r \vdash \neg q&lt;/script&gt;
 </description>
         <pubDate>Wed, 23 Aug 2017 10:20:00 -0300</pubDate>
         <link>http://localhost:4000/lc21cp-172/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-2.html</link>
@@ -208,20 +347,7 @@
     
       <item>
         <title>APS I (implementando vector)</title>
-        <description>&lt;p&gt;&lt;strong&gt;Contato&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Jean Paulo Martins&lt;/li&gt;
-  &lt;li&gt;Sala 105&lt;/li&gt;
-  &lt;li&gt;jeanmartins at utfpr edu br&lt;/li&gt;
-  &lt;li&gt;Notas de aula: &lt;a href=&quot;http://jeanpm.github.io&quot;&gt;jeanpm.github.io&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;AE22CP-172&lt;/code&gt; (17 vem de 2017, 2 de segundo semestre)&lt;/li&gt;
-      &lt;li&gt;Qualquer dúvida sobre essas notas de aula, ou erros encontrados, me avisem por email.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#estrutura-e-implementação&quot; id=&quot;markdown-toc-estrutura-e-implementação&quot;&gt;Estrutura e Implementação&lt;/a&gt;    &lt;ul&gt;
       &lt;li&gt;&lt;a href=&quot;#inicializaçãofinalização&quot; id=&quot;markdown-toc-inicializaçãofinalização&quot;&gt;Inicialização/Finalização&lt;/a&gt;&lt;/li&gt;
@@ -471,20 +597,7 @@ push_back -1
     
       <item>
         <title>Organização de memória, stack, heap IV</title>
-        <description>&lt;p&gt;&lt;strong&gt;Contato&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Jean Paulo Martins&lt;/li&gt;
-  &lt;li&gt;Sala 105&lt;/li&gt;
-  &lt;li&gt;jeanmartins at utfpr edu br&lt;/li&gt;
-  &lt;li&gt;Notas de aula: &lt;a href=&quot;http://jeanpm.github.io&quot;&gt;jeanpm.github.io&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;AE22CP-172&lt;/code&gt; (17 vem de 2017, 2 de segundo semestre)&lt;/li&gt;
-      &lt;li&gt;Qualquer dúvida sobre essas notas de aula, ou erros encontrados, me avisem por email.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#revisão&quot; id=&quot;markdown-toc-revisão&quot;&gt;Revisão&lt;/a&gt;    &lt;ul&gt;
       &lt;li&gt;&lt;a href=&quot;#organização-de-memória&quot; id=&quot;markdown-toc-organização-de-memória&quot;&gt;Organização de memória&lt;/a&gt;&lt;/li&gt;
@@ -692,26 +805,39 @@ push_back -1
       </item>
     
       <item>
-        <title>Exercícios - Regras de dedução I</title>
-        <description>&lt;h1 id=&quot;contato&quot;&gt;Contato&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;Jean Paulo Martins&lt;/li&gt;
-  &lt;li&gt;Sala 105&lt;/li&gt;
-  &lt;li&gt;e-mail jeanmartins@utfpr.edu.br&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;demonstre-os-argumentos-a-seguir&quot;&gt;Demonstre os argumentos a seguir:&lt;/h1&gt;
+        <title>Exercícios II - Regras de dedução</title>
+        <description>&lt;h1 id=&quot;demonstre-os-argumentos-a-seguir&quot;&gt;Demonstre os argumentos a seguir:&lt;/h1&gt;
 
 &lt;p&gt;Utilize as regras de derivação:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Eliminação da conjunção 1: &lt;script type=&quot;math/tex&quot;&gt;\land\mbox{e}_1&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;Eliminação da conjunção 2: &lt;script type=&quot;math/tex&quot;&gt;\land\mbox{e}_2&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;Introdução da conjunção: &lt;script type=&quot;math/tex&quot;&gt;\land\mbox{i}&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;Introdução da disjunção: &lt;script type=&quot;math/tex&quot;&gt;\lor\mbox{i}&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;Eliminação da dupla negação: &lt;script type=&quot;math/tex&quot;&gt;\neg\neg\mbox{e}&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;Introdução da dupla negação: &lt;script type=&quot;math/tex&quot;&gt;\neg\neg\mbox{i}&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;Eliminação do condicional: &lt;script type=&quot;math/tex&quot;&gt;\to\mbox{e}\quad(\mbox{Modus Ponens})&lt;/script&gt;&lt;/li&gt;
-&lt;/ul&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da conjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi\quad\psi}{\phi \land \psi} \land\mbox{i}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Eliminação da conjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi \land \psi}{\phi} \land\mbox{e}_1,\quad \dfrac{\phi \land \psi}{\psi} \land\mbox{e}_2$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da dupla negação:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi}{\neg\neg\phi} \neg\neg\mbox{i}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Eliminação da dupla negação:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\neg\neg\phi}{\phi} \neg\neg\mbox{e}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Modus Ponens:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi\to\psi\qquad \phi}{\psi}{MP}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da disjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi}{\phi \lor \psi}\lor\mbox{i}$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q), r \vdash q \land r&lt;/script&gt;
 
@@ -727,13 +853,7 @@ push_back -1
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;q\to(p\to r), \neg r, q \vdash \neg p&lt;/script&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\lor (q\to p)) \land q \vdash p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\lor (p\land q)\vdash p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q) \lor (p\land r) \vdash p\land(q\lor r)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p\land q, \neg p \land q\to r\lor \neg p \vdash r \lor \neg p&lt;/script&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p\land q, (\neg p \land q)\to (r\lor \neg p) \vdash r \lor \neg p&lt;/script&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to(q\land r), p \vdash p \land q&lt;/script&gt;
 
@@ -753,8 +873,8 @@ push_back -1
 
 </description>
         <pubDate>Thu, 17 Aug 2017 12:00:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/Exercicios-regras-de-dedu%C3%A7%C3%A3o-1.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Exercicios-regras-de-dedu%C3%A7%C3%A3o-1.html</guid>
+        <link>http://localhost:4000/lc21cp-172/Exercicios2-regras-de-dedu%C3%A7%C3%A3o.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Exercicios2-regras-de-dedu%C3%A7%C3%A3o.html</guid>
         
         <category>dedução-natural</category>
         
@@ -1016,15 +1136,8 @@ push_back -1
       </item>
     
       <item>
-        <title>Exercícios - Formalização de argumentos lógicos</title>
-        <description>&lt;h2 id=&quot;contato&quot;&gt;Contato&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Jean Paulo Martins&lt;/li&gt;
-  &lt;li&gt;Sala 105&lt;/li&gt;
-  &lt;li&gt;e-mail jeanmartins@utfpr.edu.br&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;exercícios-john-nolt-pg-93319933&quot;&gt;Exercícios (John Nolt, pg. 93[3.1],99[3.3])&lt;/h1&gt;
+        <title>Exercícios I - Formalização de argumentos lógicos</title>
+        <description>&lt;h1 id=&quot;exercícios-john-nolt-pg-93319933&quot;&gt;Exercícios (John Nolt, pg. 93[3.1],99[3.3])&lt;/h1&gt;
 
 &lt;p&gt;Considere as seguintes premissas:&lt;/p&gt;
 &lt;ul&gt;
@@ -1114,8 +1227,8 @@ push_back -1
 &lt;/ol&gt;
 </description>
         <pubDate>Wed, 16 Aug 2017 12:00:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/Exercicios-Formaliza%C3%A7%C3%A3o-de-argumentos.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Exercicios-Formaliza%C3%A7%C3%A3o-de-argumentos.html</guid>
+        <link>http://localhost:4000/lc21cp-172/Exercicios1-Formaliza%C3%A7%C3%A3o-de-argumentos.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Exercicios1-Formaliza%C3%A7%C3%A3o-de-argumentos.html</guid>
         
         <category>argumentos-formais</category>
         
@@ -1126,16 +1239,8 @@ push_back -1
     
       <item>
         <title>Formalização de argumentos lógicos</title>
-        <description>&lt;h2 id=&quot;contato&quot;&gt;Contato&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Jean Paulo Martins&lt;/li&gt;
-  &lt;li&gt;Sala 105&lt;/li&gt;
-  &lt;li&gt;e-mail jeanmartins@utfpr.edu.br&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;conteúdo&quot;&gt;Conteúdo&lt;/h1&gt;
+        <description>&lt;h1 id=&quot;conteúdo&quot;&gt;Conteúdo&lt;/h1&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#contato&quot; id=&quot;markdown-toc-contato&quot;&gt;Contato&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#conteúdo&quot; id=&quot;markdown-toc-conteúdo&quot;&gt;Conteúdo&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#lógica-simbólica&quot; id=&quot;markdown-toc-lógica-simbólica&quot;&gt;Lógica Simbólica&lt;/a&gt;    &lt;ul&gt;
       &lt;li&gt;&lt;a href=&quot;#disjunção&quot; id=&quot;markdown-toc-disjunção&quot;&gt;Disjunção&lt;/a&gt;&lt;/li&gt;
@@ -1367,14 +1472,7 @@ push_back -1
     
       <item>
         <title>Exercícios II (Memória, ponteiros)</title>
-        <description>&lt;h2 id=&quot;contato&quot;&gt;Contato&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Jean Paulo Martins&lt;/li&gt;
-  &lt;li&gt;Sala 105&lt;/li&gt;
-  &lt;li&gt;e-mail jeanmartins@utfpr.edu.br&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;referências&quot;&gt;Referências&lt;/h2&gt;
+        <description>&lt;h2 id=&quot;referências&quot;&gt;Referências&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;
     &lt;p&gt;Material sobre linguagem C (&lt;a href=&quot;https://www.ime.usp.br/~slago/slago-C.pdf&quot;&gt;IME-USP&lt;/a&gt;)&lt;/p&gt;
@@ -1554,625 +1652,6 @@ push_back -1
         <pubDate>Tue, 15 Aug 2017 13:50:00 -0300</pubDate>
         <link>http://localhost:4000/ae22cp-172/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-exercicios.html</link>
         <guid isPermaLink="true">http://localhost:4000/ae22cp-172/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-exercicios.html</guid>
-        
-        <category>estruturas-c</category>
-        
-        
-        <category>AE22CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Organização de memória, stack, heap III</title>
-        <description>&lt;h2 id=&quot;contato&quot;&gt;Contato&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Jean Paulo Martins&lt;/li&gt;
-  &lt;li&gt;Sala 105&lt;/li&gt;
-  &lt;li&gt;e-mail jeanmartins@utfpr.edu.br&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;conteúdo&quot;&gt;Conteúdo&lt;/h1&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#contato&quot; id=&quot;markdown-toc-contato&quot;&gt;Contato&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#conteúdo&quot; id=&quot;markdown-toc-conteúdo&quot;&gt;Conteúdo&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#referências&quot; id=&quot;markdown-toc-referências&quot;&gt;Referências&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#revisão&quot; id=&quot;markdown-toc-revisão&quot;&gt;Revisão&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#memória-dinâmica-heap-memory&quot; id=&quot;markdown-toc-memória-dinâmica-heap-memory&quot;&gt;Memória dinâmica (Heap memory)&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#memória-local-e-dinâmica&quot; id=&quot;markdown-toc-memória-local-e-dinâmica&quot;&gt;Memória local e dinâmica&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#estrutura-do-heap&quot; id=&quot;markdown-toc-estrutura-do-heap&quot;&gt;Estrutura do heap&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#gerenciador-de-memória-em-c&quot; id=&quot;markdown-toc-gerenciador-de-memória-em-c&quot;&gt;Gerenciador de memória em C&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#exemplos-de-uso-malloc-e-free&quot; id=&quot;markdown-toc-exemplos-de-uso-malloc-e-free&quot;&gt;Exemplos de uso: malloc e free&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#ponteiros-para-vetores&quot; id=&quot;markdown-toc-ponteiros-para-vetores&quot;&gt;Ponteiros para vetores&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#eficiência-de-alocação-stack-vs-heap&quot; id=&quot;markdown-toc-eficiência-de-alocação-stack-vs-heap&quot;&gt;Eficiência de alocação: stack vs heap&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#exercício&quot; id=&quot;markdown-toc-exercício&quot;&gt;Exercício&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;referências&quot;&gt;Referências&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Material sobre linguagem C (&lt;a href=&quot;https://www.ime.usp.br/~slago/slago-C.pdf&quot;&gt;IME-USP&lt;/a&gt;)&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;em&gt;https://www.ime.usp.br/~slago/slago-C.pdf&lt;/em&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Material sobre memória e ponteiros (&lt;a href=&quot;http://cslibrary.stanford.edu/102/PointersAndMemory.pdf&quot;&gt;cap2::stanford&lt;/a&gt;)&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;em&gt;http://cslibrary.stanford.edu/102/PointersAndMemory.pdf&lt;/em&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Notas sobre estruturas de dados e programação (&lt;a href=&quot;http://cs-www.cs.yale.edu/homes/aspnes/classes/223/notes.pdf&quot;&gt;cap4:yale&lt;/a&gt;)&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;em&gt;http://cs-www.cs.yale.edu/homes/aspnes/classes/223/notes.pdf&lt;/em&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Livro (&lt;a href=&quot;http://pdf.th7.cn/down/files/1312/write_great_code_volume_1.pdf&quot;&gt;cap11.9:Write greate code&lt;/a&gt;)&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;em&gt;http://pdf.th7.cn/down/files/1312/write_great_code_volume_1.pdf&lt;/em&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://pt.stackoverflow.com/questions/3797/o-que-s%C3%A3o-e-onde-est%C3%A3o-o-stack-e-heap&quot;&gt;stackoverflow:O que são e onde estão o stack e heap?&lt;/a&gt;&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;em&gt;https://pt.stackoverflow.com/questions/3797/o-que-s%C3%A3o-e-onde-est%C3%A3o-o-stack-e-heap&lt;/em&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;LEIA LIVROS SOBRE PROGRAMAÇÃO!&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;revisão&quot;&gt;Revisão&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Compreensão de termos: &lt;em&gt;Declaração vs. Definição&lt;/em&gt;&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Declare uma variável de nome &lt;code class=&quot;highlighter-rouge&quot;&gt;aluno&lt;/code&gt; do tipo &lt;code class=&quot;highlighter-rouge&quot;&gt;Pessoa&lt;/code&gt;&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Declare uma variável de nome &lt;code class=&quot;highlighter-rouge&quot;&gt;ra&lt;/code&gt; do tipo &lt;code class=&quot;highlighter-rouge&quot;&gt;long&lt;/code&gt;&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Defina uma &lt;code class=&quot;highlighter-rouge&quot;&gt;struct&lt;/code&gt; de nome &lt;code class=&quot;highlighter-rouge&quot;&gt;Fracao&lt;/code&gt;, contendo campos &lt;code class=&quot;highlighter-rouge&quot;&gt;numerador&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;denominador&lt;/code&gt;.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Defina uma função de nome &lt;code class=&quot;highlighter-rouge&quot;&gt;multiplicar&lt;/code&gt; que receba duas &lt;code class=&quot;highlighter-rouge&quot;&gt;struct&lt;/code&gt; do tipo &lt;code class=&quot;highlighter-rouge&quot;&gt;Fracao&lt;/code&gt;.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Chame a função &lt;code class=&quot;highlighter-rouge&quot;&gt;multiplicar&lt;/code&gt; passando duas &lt;code class=&quot;highlighter-rouge&quot;&gt;struct Fracao&lt;/code&gt; como parâmetro.&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Referências vs ponteiros&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Referência é o termo genérico, independente de linguagem&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Ponteiro é usualmente utilizado no contexto de C/C++&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Pilha de chamadas&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Recebe por valor&lt;/p&gt;
-
-        &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;c1&quot;&gt;// Não altera o conteúdo da variável passada como argumento
-&lt;/span&gt;  &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;inicializa_pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cpf&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;		
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-        &lt;/div&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Recebe por referência&lt;/p&gt;
-
-        &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;c1&quot;&gt;// Altera o conteúdo da variável externa
-&lt;/span&gt;  &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;inicializa_pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cpf&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;		
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-        &lt;/div&gt;
-      &lt;/li&gt;
-      &lt;li&gt;Passagem por valor
-        &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;inicializa_pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-        &lt;/div&gt;
-      &lt;/li&gt;
-      &lt;li&gt;Passagem por referência
-        &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;inicializa_pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-        &lt;/div&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Ponteiros&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Qual o conteúdo da variável?&lt;/p&gt;
-
-        &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-      &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;	
-      &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;		
-      &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-        &lt;/div&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Qual o conteúdo da variável?&lt;/p&gt;
-
-        &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;soma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;		
-  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;	
-      &lt;span class=&quot;n&quot;&gt;soma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-        &lt;/div&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Qual o conteúdo da variável?&lt;/p&gt;
-
-        &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-      &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;	
-      &lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-        &lt;/div&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Qual o conteúdo da variável?&lt;/p&gt;
-
-        &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-      &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;	
-      &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;		
-      &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-        &lt;/div&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;memória-dinâmica-heap-memory&quot;&gt;Memória dinâmica (Heap memory)&lt;/h1&gt;
-
-&lt;p&gt;Memória alocada na pilha de chamadas é automática,&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;O compilador reserva memória quando necessário&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;A memória é liberada ao sairmos do escopo.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Memória dinâmica é diferente&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;O programador requisita alocação&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;O programador precisa liberar a memória quando não mais útil.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Benefícios da memória dinâmica&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;a memória pode ser alocada por qualquer função e retornada para uso posterior&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;O programador tem controle de quando àquela memória deixará ser sua responsabilidade&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Pontos negativos&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Memória dinâmica é manipulada através de ponteiros&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;o ponteiro em si é armazenado na pilha de chamadas, já a memória alocada está no heap&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Aumenta-se a responsabilidade do programador quanto à memória alocada/desalocada&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;memória-local-e-dinâmica&quot;&gt;Memória local e dinâmica&lt;/h2&gt;
-
-&lt;p&gt;Como a memória no heap é sempre acessada por meio de ponteiros e esses ponteiros são armazenados na pilha de chamadas, estas duas formas de memória trabalham juntas. (Figura extraída de &lt;a href=&quot;http://cslibrary.stanford.edu/102/PointersAndMemory.pdf&quot;&gt;cslibrary-stanford-pg.25&lt;/a&gt;)&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/local-heap.png&quot; alt=&quot;Ponteiros para o heap são armazenados na call stack&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;estrutura-do-heap&quot;&gt;Estrutura do heap&lt;/h2&gt;
-
-&lt;p&gt;O Heap é um grande bloco de memória gerenciado por algum mecanismo. Esse mecanismo é responsável por armazenar informações sobre quais partes desse bloco estão em uso e quais estão disponíveis.&lt;/p&gt;
-
-&lt;p&gt;Assuma o exemplo da figura anterior,&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Existe um ponteiro &lt;code class=&quot;highlighter-rouge&quot;&gt;int* Gif2&lt;/code&gt; por meio do qual a memória &lt;code class=&quot;highlighter-rouge&quot;&gt;GIF2&lt;/code&gt; é manipulada.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Caso a memória &lt;code class=&quot;highlighter-rouge&quot;&gt;GIF2&lt;/code&gt; não seja mais necessária, ela pode ser desalocada, deixando espaço útil no Heap&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/local-heap-frag.png&quot; alt=&quot;Fragmentação memória&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;A partir desse momento, uma nova requisição de memória pode utilizar a região desalocada novamente&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;É responsabilidade do gerenciador de memória manter os espaços disponíveis e tentar evitar que a memória fique fragmentada demais.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;É responsabilidade do programador avisar ao gerenciador de memória quando um espaço de memória previamente alocado se torna disponível.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;O gerenciador só é capaz (em C) de manter organizada a memória disponível se o programador se compromete a avisá-lo.&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Algumas linguagens possuem mecanismos para monitorar memórias não utilizadas e liberá-las automaticamente, estes mecanismos se chamam &lt;em&gt;garbage collector&lt;/em&gt; (coletor de lixo).&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Monitorar, no entanto, é dispendioso e linguagens de mais baixo nível não implementam tais mecanismos&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;gerenciador-de-memória-em-c&quot;&gt;Gerenciador de memória em C&lt;/h2&gt;
-
-&lt;p&gt;Em C, memória no Heap é gerenciada pelas funções (&lt;a href=&quot;http://man7.org/linux/man-pages/man3/malloc.3.html&quot;&gt;manpage:malloc&lt;/a&gt;)&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdlib.h&amp;gt;
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;free&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;calloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nmemb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;realloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reallocarray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nmemb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;exemplos-de-uso-malloc-e-free&quot;&gt;Exemplos de uso: malloc e free&lt;/h2&gt;
-
-&lt;p&gt;Qualquer tipo de variável pode ser alocada no heap. Embora nem sempre seja uma boa opção, veja os exemplos:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Alocação de memória para um inteiro
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Observe que um inteiro armazenado no heap utiliza a mesma notação que o um vetor.
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;c1&quot;&gt;// int c[10];
-&lt;/span&gt;  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;ponteiros-para-vetores&quot;&gt;Ponteiros para vetores&lt;/h2&gt;
-
-&lt;p&gt;Desta forma, apesar da sintaxe, um vetor é sempre um ponteiro para sua posição inicial. Isto é verdade para vetores de qualquer tipo, strings inclusas &lt;code class=&quot;highlighter-rouge&quot;&gt;char*&lt;/code&gt;;&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;cp&quot;&gt;#define STR_SIZE 10
-&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// alocação na pilha de chamadas
-&lt;/span&gt;  &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nome&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;STR_SIZE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; 
-  &lt;span class=&quot;c1&quot;&gt;// alocação no heap
-&lt;/span&gt;  &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nome&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;STR_SIZE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Em ambos os casos, a dereferenciação do ponteiro permite acesso ao primeiro elemento do vetor:&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;*nome&lt;/code&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;eficiência-de-alocação-stack-vs-heap&quot;&gt;Eficiência de alocação: stack vs heap&lt;/h2&gt;
-
-&lt;p&gt;A pilha de chamadas é uma estrutura mais simples, memória é sempre alocada em uma direção e desalocada em outra, na mesma ordem. Portanto,&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Alocação de memória na call stack é rápida.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;O heap, é uma estrutura mais complexa, e memória pode ser alocada não sequencialmente, o que torna a procurar por memória disponível mais honerosa, mais demorada.&lt;/p&gt;
-
-&lt;h2 id=&quot;exercício&quot;&gt;Exercício&lt;/h2&gt;
-
-&lt;p&gt;Alterar o código da aula anterior para que a memória da estrutura &lt;code class=&quot;highlighter-rouge&quot;&gt;Pessoa&lt;/code&gt; seja alocada no heap.&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
-#include &amp;lt;stdlib.h&amp;gt;
-#define MAX_SIZE_NOME 20
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cpf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nome&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MAX_SIZE_NOME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Passagem de referência usando ponteiros `Pessoa* p`
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ler_pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%s%d%ld&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nome&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cpf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;	
-	&lt;span class=&quot;n&quot;&gt;ler_pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-</description>
-        <pubDate>Tue, 15 Aug 2017 13:50:00 -0300</pubDate>
-        <link>http://localhost:4000/ae22cp-172/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-3.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-3.html</guid>
-        
-        <category>estruturas-c</category>
-        
-        
-        <category>AE22CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Organização de memória, stack, heap II</title>
-        <description>&lt;h2 id=&quot;contato&quot;&gt;Contato&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Jean Paulo Martins&lt;/li&gt;
-  &lt;li&gt;Sala 105&lt;/li&gt;
-  &lt;li&gt;e-mail jeanmartins@utfpr.edu.br&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;conteúdo&quot;&gt;Conteúdo&lt;/h1&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#contato&quot; id=&quot;markdown-toc-contato&quot;&gt;Contato&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#conteúdo&quot; id=&quot;markdown-toc-conteúdo&quot;&gt;Conteúdo&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#referências&quot; id=&quot;markdown-toc-referências&quot;&gt;Referências&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#revisão-prática&quot; id=&quot;markdown-toc-revisão-prática&quot;&gt;Revisão prática&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#ponteiros&quot; id=&quot;markdown-toc-ponteiros&quot;&gt;Ponteiros&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#dereferenciando-um-ponteiros&quot; id=&quot;markdown-toc-dereferenciando-um-ponteiros&quot;&gt;Dereferenciando um ponteiros&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#o-ponteiro-null&quot; id=&quot;markdown-toc-o-ponteiro-null&quot;&gt;O ponteiro NULL&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#curiosidade-o-que-é-stack-overflow&quot; id=&quot;markdown-toc-curiosidade-o-que-é-stack-overflow&quot;&gt;Curiosidade: o que é &lt;em&gt;stack overflow&lt;/em&gt;?&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#plano-de-aulas&quot; id=&quot;markdown-toc-plano-de-aulas&quot;&gt;Plano de aulas&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;referências&quot;&gt;Referências&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Material sobre linguagem C (&lt;a href=&quot;https://www.ime.usp.br/~slago/slago-C.pdf&quot;&gt;IME-USP&lt;/a&gt;)&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;em&gt;https://www.ime.usp.br/~slago/slago-C.pdf&lt;/em&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Material sobre memória e ponteiros (&lt;a href=&quot;http://cslibrary.stanford.edu/102/PointersAndMemory.pdf&quot;&gt;cap2::stanford&lt;/a&gt;)&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;em&gt;http://cslibrary.stanford.edu/102/PointersAndMemory.pdf&lt;/em&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Notas sobre estruturas de dados e programação (&lt;a href=&quot;http://cs-www.cs.yale.edu/homes/aspnes/classes/223/notes.pdf&quot;&gt;cap4:yale&lt;/a&gt;)&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;em&gt;http://cs-www.cs.yale.edu/homes/aspnes/classes/223/notes.pdf&lt;/em&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Livro (&lt;a href=&quot;http://pdf.th7.cn/down/files/1312/write_great_code_volume_1.pdf&quot;&gt;cap11.9:Write greate code&lt;/a&gt;)&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;em&gt;http://pdf.th7.cn/down/files/1312/write_great_code_volume_1.pdf&lt;/em&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://pt.stackoverflow.com/questions/3797/o-que-s%C3%A3o-e-onde-est%C3%A3o-o-stack-e-heap&quot;&gt;stackoverflow:O que são e onde estão o stack e heap?&lt;/a&gt;&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;em&gt;https://pt.stackoverflow.com/questions/3797/o-que-s%C3%A3o-e-onde-est%C3%A3o-o-stack-e-heap&lt;/em&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;LEIA LIVROS SOBRE PROGRAMAÇÃO!&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;revisão-prática&quot;&gt;Revisão prática&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Alterar o código da aula anterior para dinamicamente alocar o tamanho do vetor pessoas&lt;/p&gt;
-
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Versão atual
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lista&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NUM_PESSOAS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-    
-&lt;span class=&quot;c1&quot;&gt;// Versão nova
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_pessoas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num_pessoas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    
-&lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lista&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num_pessoas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Ex: Criar dois ponteiros para inteiro apontando para a mesma memória&lt;/p&gt;
-
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ptr1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ptr2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Ex: Criar uma função que receba uma &lt;code class=&quot;highlighter-rouge&quot;&gt;Pessoa&lt;/code&gt; e atribua valores de uma linha do arquivo&lt;/p&gt;
-
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;read_pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%st%d%ld&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nome&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cpf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Acessando ponteiros de &lt;code class=&quot;highlighter-rouge&quot;&gt;struct&lt;/code&gt; com &lt;code class=&quot;highlighter-rouge&quot;&gt;-&amp;gt;&lt;/code&gt; vs &lt;code class=&quot;highlighter-rouge&quot;&gt;.&lt;/code&gt;&lt;/p&gt;
-
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cpf&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8388383&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    
-&lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ptr_p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cpf&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8383838&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;ponteiros&quot;&gt;Ponteiros&lt;/h1&gt;
-
-&lt;h2 id=&quot;dereferenciando-um-ponteiros&quot;&gt;Dereferenciando um ponteiros&lt;/h2&gt;
-
-&lt;p&gt;Um ponteiro é uma referência a um valor armazenado em outra posição de memória.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Como seguir o ponteiro e acessar o valor armazenado?&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Essa operação se chama dereferenciação:&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;int* p = &amp;amp;c;&lt;/code&gt;&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;*p = 10;&lt;/code&gt; Operação válida, atribui 10 em &lt;code class=&quot;highlighter-rouge&quot;&gt;c&lt;/code&gt; (dereferenciação de p)&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;p = 10;&lt;/code&gt; faz &lt;code class=&quot;highlighter-rouge&quot;&gt;p&lt;/code&gt; armazenar o endereço de memória &lt;code class=&quot;highlighter-rouge&quot;&gt;10&lt;/code&gt; (faz p armazenar o endereço 10)&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;p[0] == c&lt;/code&gt; mesmo se &lt;code class=&quot;highlighter-rouge&quot;&gt;p&lt;/code&gt; não for um vetor (dereferenciação sintaxe de vetores)&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include&amp;lt;stdlib.h&amp;gt;
-#include &amp;lt;stdio.h&amp;gt;
-&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//    ptr = 1999;
-&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;18765&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9876&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;o-ponteiro-null&quot;&gt;O ponteiro NULL&lt;/h2&gt;
-
-&lt;p&gt;A constante NULL é um ponteiro especial que codifica a ideia de que um ponteiro está apontando para o nada.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Em C, NULL é igual a zero, portanto pode ser utilizado como Boolean false.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Como zero é um endereço não acessível, dereferenciar NULL gera um erro&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;curiosidade-o-que-é-stack-overflow&quot;&gt;Curiosidade: o que é &lt;em&gt;stack overflow&lt;/em&gt;?&lt;/h3&gt;
-
-&lt;h2 id=&quot;plano-de-aulas&quot;&gt;Plano de aulas&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Resumo do conteúdo &lt;a href=&quot;http://localhost:4000/assets/AE22CP-172-plano.pdf&quot;&gt;PDF&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;Relacionar às estruturas de dados em &lt;a href=&quot;http://www.cplusplus.com/reference/stl/&quot;&gt;C++ STL&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;Utilizar os mesmos nomes de estruturas que em STL
-        &lt;ul&gt;
-          &lt;li&gt;Facilitará o aprendizado introdutório das estruturas C++&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;APS e provas (datas)
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;https://www.hackerrank.com/ae22cp-17-2&quot;&gt;Hackerrannk: AE22CP-17/2&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Mon, 14 Aug 2017 18:40:00 -0300</pubDate>
-        <link>http://localhost:4000/ae22cp-172/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-2.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-2.html</guid>
         
         <category>estruturas-c</category>
         
