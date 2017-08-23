@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 23 Aug 2017 09:47:20 -0300</pubDate>
-    <lastBuildDate>Wed, 23 Aug 2017 09:47:20 -0300</lastBuildDate>
+    <pubDate>Wed, 23 Aug 2017 12:02:25 -0300</pubDate>
+    <lastBuildDate>Wed, 23 Aug 2017 12:02:25 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -20,10 +20,10 @@
   &lt;li&gt;&lt;a href=&quot;http://jeanpm.github.io&quot;&gt;jeanpm.github.io&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&quot;conteúdo&quot;&gt;Conteúdo&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#conteúdo&quot; id=&quot;markdown-toc-conteúdo&quot;&gt;Conteúdo&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#regras-de-inferências---parte-2&quot; id=&quot;markdown-toc-regras-de-inferências---parte-2&quot;&gt;Regras de inferências - parte 2&lt;/a&gt;    &lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#revisão&quot; id=&quot;markdown-toc-revisão&quot;&gt;Revisão&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#regras-de-inferência&quot; id=&quot;markdown-toc-regras-de-inferência&quot;&gt;Regras de inferência&lt;/a&gt;    &lt;ul&gt;
       &lt;li&gt;&lt;a href=&quot;#regra-para-eliminação-do-condicional---modus-tollens&quot; id=&quot;markdown-toc-regra-para-eliminação-do-condicional---modus-tollens&quot;&gt;Regra para eliminação do condicional - Modus Tollens&lt;/a&gt;        &lt;ul&gt;
           &lt;li&gt;&lt;a href=&quot;#exercícios-modus-tollens&quot; id=&quot;markdown-toc-exercícios-modus-tollens&quot;&gt;Exercícios: Modus Tollens&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
@@ -45,7 +45,38 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&quot;regras-de-inferências---parte-2&quot;&gt;Regras de inferências - parte 2&lt;/h1&gt;
+&lt;h1 id=&quot;revisão&quot;&gt;Revisão&lt;/h1&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da conjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi\quad\psi}{\phi \land \psi} \land\mbox{i}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Eliminação da conjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi \land \psi}{\phi} \land\mbox{e}_1,\quad \dfrac{\phi \land \psi}{\psi} \land\mbox{e}_2$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da dupla negação:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi}{\neg\neg\phi} \neg\neg\mbox{i}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Eliminação da dupla negação:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\neg\neg\phi}{\phi} \neg\neg\mbox{e}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Eliminação do condicional:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi\to\psi, \phi}{\psi}\to\mbox{e}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da disjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi}{\phi \lor \psi}\lor\mbox{i}$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&quot;regras-de-inferência&quot;&gt;Regras de inferência&lt;/h1&gt;
 
 &lt;h2 id=&quot;regra-para-eliminação-do-condicional---modus-tollens&quot;&gt;Regra para eliminação do condicional - Modus Tollens&lt;/h2&gt;
 
