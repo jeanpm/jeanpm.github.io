@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Semântica da lógica proposicional I</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/lc21cp-172/Semantica-da-logica-proposicional.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Semântica da lógica proposicional I</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Aug 30, 2017
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/lc21cp-172/Exercicios3-regras-de-dedu%C3%A7%C3%A3o.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#semântica-da-lógica-proposicional" id="markdown-toc-semântica-da-lógica-proposicional">Semântica da Lógica proposicional</a>    <ul>
+      <li><a href="#princípio-da-bivalência" id="markdown-toc-princípio-da-bivalência">Princípio da bivalência</a></li>
+      <li><a href="#tabelas-verdade" id="markdown-toc-tabelas-verdade">Tabelas verdade</a>        <ul>
+          <li><a href="#negação-neg" id="markdown-toc-negação-neg">Negação ($\neg$)</a></li>
+          <li><a href="#conjunção-land" id="markdown-toc-conjunção-land">Conjunção ($\land$)</a></li>
+          <li><a href="#disjunção-lor" id="markdown-toc-disjunção-lor">Disjunção ($\lor$)</a></li>
+          <li><a href="#condicional-to" id="markdown-toc-condicional-to">Condicional ($\to$)</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="semântica-da-lógica-proposicional">Semântica da Lógica proposicional</h1>
+
+<p>Até então tratamos da lógica proposicional do ponto de vista sintático. Ou seja, as regras de inferência utilizadas são baseadas principalmente na forma dos argumentos. Já a <em>semântica</em> de uma expressão é o seu significado. Por meio da caracterização do significado dos operadores lógicos, desenvolvemos uma visão menos restrita e mais formal sobre os argumentos.</p>
+
+<h2 id="princípio-da-bivalência">Princípio da bivalência</h2>
+
+<p>O princípio da bivalência ou lei do terceiro excluído (LTE), simplesmente formaliza a noção intuitiva que existem apenas duas opções de valores para uma fórmula qualquer</p>
+
+<script type="math/tex; mode=display">\vdash \phi \lor \neg \phi \tag{LTE}</script>
+
+<h2 id="tabelas-verdade">Tabelas verdade</h2>
+
+<p>Dada a LTE, a semântica de um conectivo lógico consiste na definição de todos seus possíveis valores lógicos, sendo que cada símbolo atômico e cada fórmula e subfórmulas podem ter, em um dado momento, apenas um valor dentre: verdadeiro (T) e falso (F).</p>
+
+<p>A seguir, descreveremos as tabelas verdade para cada um dos conectivos lógicos vistos até então.</p>
+
+<h3 id="negação-neg">Negação ($\neg$)</h3>
+
+<p>A negação é o único conectivo lógico unário visto até então. Dada uma fórmula qualquer $\phi$, esta pode assumir valor-verdade <em>verdadeiro</em> (V) ou <em>falso</em> (F), o que está descrito na primeira coluna da tabela abaixo. Já a negação $\neg\phi$, por sua vez assume valor-verdade que depende do valor de $\phi$, fato descrito na segunda coluna da tabela.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">$\phi$</th>
+      <th style="text-align: center">$\neg\phi$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="conjunção-land">Conjunção ($\land$)</h3>
+
+<p>A conjunção é um operador binário, em que dadas duas fórmulas $\phi$ e $\psi$, assume valor-verdade <em>verdadeiro</em> apenas quando ambas conjuctos forem também verdadeiros.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">$\phi$</th>
+      <th style="text-align: center">$\psi$</th>
+      <th style="text-align: center">$\phi\land\psi$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="disjunção-lor">Disjunção ($\lor$)</h3>
+
+<p>A disjunção é um operador binário. Dadas duas fórmulas $\phi$ e $\psi$, sua disjunção assume valor-verdade <em>verdadeiro</em> sempre que uma delas, ou ambas, forem verdadeiras.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">$\phi$</th>
+      <th style="text-align: center">$\psi$</th>
+      <th style="text-align: center">$\phi\lor\psi$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="condicional-to">Condicional ($\to$)</h3>
+
+<p>O condicional é um operador binário que representa proposições do tipo “Se.. então…”. Por exemplo</p>
+
+<ul>
+  <li>“Se Paula for, então Quincas irá.” $(\phi\to\psi)$</li>
+</ul>
+
+<p>Este argumento tem o mesmo significado a seguir</p>
+
+<ul>
+  <li>“Não é o caso de Paula ir e Quincas não ir.” $\neg(\phi \land \neg \psi)$</li>
+</ul>
+
+<p>Deste modo, dizemos que as fórmulas acima são equivalentes</p>
+
+<script type="math/tex; mode=display">(\phi\to\psi)\dashv\vdash\neg(\phi\land\neg\psi)</script>
+
+<p>Dada esta equivalência, a tabela-verdade de ambas fórmulas são iguais, assim como demonstrado nas duas últimas colunas da tabela abaixo.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">$\phi$</th>
+      <th style="text-align: center">$\psi$</th>
+      <th style="text-align: center">$\phi\to\psi$</th>
+      <th style="text-align: center">$\neg(\phi\land\neg\psi)$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+  </tbody>
+</table>
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

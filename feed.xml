@@ -6,9 +6,205 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 24 Aug 2017 15:54:54 -0300</pubDate>
-    <lastBuildDate>Thu, 24 Aug 2017 15:54:54 -0300</lastBuildDate>
+    <pubDate>Thu, 24 Aug 2017 19:46:00 -0300</pubDate>
+    <lastBuildDate>Thu, 24 Aug 2017 19:46:00 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Semântica da lógica proposicional I</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#semântica-da-lógica-proposicional&quot; id=&quot;markdown-toc-semântica-da-lógica-proposicional&quot;&gt;Semântica da Lógica proposicional&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#princípio-da-bivalência&quot; id=&quot;markdown-toc-princípio-da-bivalência&quot;&gt;Princípio da bivalência&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#tabelas-verdade&quot; id=&quot;markdown-toc-tabelas-verdade&quot;&gt;Tabelas verdade&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#negação-neg&quot; id=&quot;markdown-toc-negação-neg&quot;&gt;Negação ($\neg$)&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#conjunção-land&quot; id=&quot;markdown-toc-conjunção-land&quot;&gt;Conjunção ($\land$)&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#disjunção-lor&quot; id=&quot;markdown-toc-disjunção-lor&quot;&gt;Disjunção ($\lor$)&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#condicional-to&quot; id=&quot;markdown-toc-condicional-to&quot;&gt;Condicional ($\to$)&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;semântica-da-lógica-proposicional&quot;&gt;Semântica da Lógica proposicional&lt;/h1&gt;
+
+&lt;p&gt;Até então tratamos da lógica proposicional do ponto de vista sintático. Ou seja, as regras de inferência utilizadas são baseadas principalmente na forma dos argumentos. Já a &lt;em&gt;semântica&lt;/em&gt; de uma expressão é o seu significado. Por meio da caracterização do significado dos operadores lógicos, desenvolvemos uma visão menos restrita e mais formal sobre os argumentos.&lt;/p&gt;
+
+&lt;h2 id=&quot;princípio-da-bivalência&quot;&gt;Princípio da bivalência&lt;/h2&gt;
+
+&lt;p&gt;O princípio da bivalência ou lei do terceiro excluído (LTE), simplesmente formaliza a noção intuitiva que existem apenas duas opções de valores para uma fórmula qualquer&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \phi \lor \neg \phi \tag{LTE}&lt;/script&gt;
+
+&lt;h2 id=&quot;tabelas-verdade&quot;&gt;Tabelas verdade&lt;/h2&gt;
+
+&lt;p&gt;Dada a LTE, a semântica de um conectivo lógico consiste na definição de todos seus possíveis valores lógicos, sendo que cada símbolo atômico e cada fórmula e subfórmulas podem ter, em um dado momento, apenas um valor dentre: verdadeiro (T) e falso (F).&lt;/p&gt;
+
+&lt;p&gt;A seguir, descreveremos as tabelas verdade para cada um dos conectivos lógicos vistos até então.&lt;/p&gt;
+
+&lt;h3 id=&quot;negação-neg&quot;&gt;Negação ($\neg$)&lt;/h3&gt;
+
+&lt;p&gt;A negação é o único conectivo lógico unário visto até então. Dada uma fórmula qualquer $\phi$, esta pode assumir valor-verdade &lt;em&gt;verdadeiro&lt;/em&gt; (V) ou &lt;em&gt;falso&lt;/em&gt; (F), o que está descrito na primeira coluna da tabela abaixo. Já a negação $\neg\phi$, por sua vez assume valor-verdade que depende do valor de $\phi$, fato descrito na segunda coluna da tabela.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg\phi$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;conjunção-land&quot;&gt;Conjunção ($\land$)&lt;/h3&gt;
+
+&lt;p&gt;A conjunção é um operador binário, em que dadas duas fórmulas $\phi$ e $\psi$, assume valor-verdade &lt;em&gt;verdadeiro&lt;/em&gt; apenas quando ambas conjuctos forem também verdadeiros.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi\land\psi$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;disjunção-lor&quot;&gt;Disjunção ($\lor$)&lt;/h3&gt;
+
+&lt;p&gt;A disjunção é um operador binário. Dadas duas fórmulas $\phi$ e $\psi$, sua disjunção assume valor-verdade &lt;em&gt;verdadeiro&lt;/em&gt; sempre que uma delas, ou ambas, forem verdadeiras.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi\lor\psi$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;condicional-to&quot;&gt;Condicional ($\to$)&lt;/h3&gt;
+
+&lt;p&gt;O condicional é um operador binário que representa proposições do tipo “Se.. então…”. Por exemplo&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“Se Paula for, então Quincas irá.” $(\phi\to\psi)$&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Este argumento tem o mesmo significado a seguir&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“Não é o caso de Paula ir e Quincas não ir.” $\neg(\phi \land \neg \psi)$&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Deste modo, dizemos que as fórmulas acima são equivalentes&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(\phi\to\psi)\dashv\vdash\neg(\phi\land\neg\psi)&lt;/script&gt;
+
+&lt;p&gt;Dada esta equivalência, a tabela-verdade de ambas fórmulas são iguais, assim como demonstrado nas duas últimas colunas da tabela abaixo.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi\to\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg(\phi\land\neg\psi)$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+        <pubDate>Wed, 30 Aug 2017 10:20:00 -0300</pubDate>
+        <link>http://localhost:4000/lc21cp-172/Semantica-da-logica-proposicional.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Semantica-da-logica-proposicional.html</guid>
+        
+        <category>dedução-natural</category>
+        
+        
+        <category>LC21CP-172</category>
+        
+      </item>
     
       <item>
         <title>Exercícios III - Regras de dedução</title>
@@ -1621,196 +1817,6 @@ push_back -1
         
         
         <category>LC21CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Exercícios II (Memória, ponteiros)</title>
-        <description>&lt;h2 id=&quot;referências&quot;&gt;Referências&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Material sobre linguagem C (&lt;a href=&quot;https://www.ime.usp.br/~slago/slago-C.pdf&quot;&gt;IME-USP&lt;/a&gt;)&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;em&gt;https://www.ime.usp.br/~slago/slago-C.pdf&lt;/em&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Material sobre memória e ponteiros (&lt;a href=&quot;http://cslibrary.stanford.edu/102/PointersAndMemory.pdf&quot;&gt;cap2::stanford&lt;/a&gt;)&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;em&gt;http://cslibrary.stanford.edu/102/PointersAndMemory.pdf&lt;/em&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Notas sobre estruturas de dados e programação (&lt;a href=&quot;http://cs-www.cs.yale.edu/homes/aspnes/classes/223/notes.pdf&quot;&gt;cap4:yale&lt;/a&gt;)&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;em&gt;http://cs-www.cs.yale.edu/homes/aspnes/classes/223/notes.pdf&lt;/em&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Livro (&lt;a href=&quot;http://pdf.th7.cn/down/files/1312/write_great_code_volume_1.pdf&quot;&gt;cap11.9:Write greate code&lt;/a&gt;)&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;em&gt;http://pdf.th7.cn/down/files/1312/write_great_code_volume_1.pdf&lt;/em&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://pt.stackoverflow.com/questions/3797/o-que-s%C3%A3o-e-onde-est%C3%A3o-o-stack-e-heap&quot;&gt;stackoverflow:O que são e onde estão o stack e heap?&lt;/a&gt;&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;em&gt;https://pt.stackoverflow.com/questions/3797/o-que-s%C3%A3o-e-onde-est%C3%A3o-o-stack-e-heap&lt;/em&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;LEIA LIVROS SOBRE PROGRAMAÇÃO!&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;exercícios&quot;&gt;Exercícios&lt;/h1&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Qual o conteúdo das variáveis?
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-     &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-     &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;	
-     &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;		
-     &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
- &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Qual o conteúdo das variáveis?
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;soma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-     &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
- &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;		
- &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-     &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;	
-     &lt;span class=&quot;n&quot;&gt;soma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-     &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
- &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Qual o conteúdo das variáveis?
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-     &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-     &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;	
-     &lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
- &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Qual o conteúdo das variáveis?
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-     &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-     &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;	
-     &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;		
-     &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
- &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Aloque memória no Heap (dinâmica) para um vetor de double de tamanho n
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
- &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vetor_na_pilha&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
- &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vetor_no_heap&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//complete;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Qual das formas abaixo nos permite acessar o primeiro elemento do vetor?
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vetor_no_heap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
- &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vetor_no_heap&lt;/span&gt;
- &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vetor_no_heap&lt;/span&gt;
- &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vetor_no_heap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Qual o tamanho das variáveis a e b abaixo?
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
- &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
- &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
- &lt;span class=&quot;c1&quot;&gt;// sizeof(a);
-&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// sizeof(b);
-&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// sizeof(c);
-&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// sizeof(*a);
-&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// sizeof(*b);
-&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// sizeof(*c);
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Altere o código abaixo para que a memória da estrutura &lt;code class=&quot;highlighter-rouge&quot;&gt;Pessoa&lt;/code&gt; seja alocada no heap.
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
-&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdlib.h&amp;gt;
-&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;#define MAX_SIZE_NOME 20
-&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-     &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-     &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cpf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-     &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nome&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MAX_SIZE_NOME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
- &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ler_pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-     &lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%s%d%ld&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nome&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cpf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
- &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-     &lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-     &lt;span class=&quot;n&quot;&gt;ler_pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
- &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Implemente uma função chamada &lt;code class=&quot;highlighter-rouge&quot;&gt;swap&lt;/code&gt;, a qual recebe a referência para dois inteiros e troca seus conteúdos.
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;c1&quot;&gt;// Se *a == 4 e *b == 3
-&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
- &lt;span class=&quot;c1&quot;&gt;// Agora *a == 3 e *b == 4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Implemente uma função que aloque espaço inicial para uma matriz de dimensões $n\times n$. Essa função deve implementar o seguinte cabeçalho:
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Aloca espaço para uma matrix n x n.
-// retorna um ponteiro para a memória alocada.
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_matrix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Implemente uma função que inicialize a matriz com determinado valor e outra que a imprima.
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;init_matrix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;matrix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;print_matrix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;matrix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;A cada chamada à &lt;code class=&quot;highlighter-rouge&quot;&gt;malloc&lt;/code&gt; deve existir uma chamada &lt;code class=&quot;highlighter-rouge&quot;&gt;free&lt;/code&gt; associada. Implemente uma função que libere o espaço de memória alocado pela função anterior. Essa função deve implementar o seguinte cabeçalho:
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;free_matrix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;matrix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;O que faz o seguinte código?
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;    
-    &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
-    &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;'j'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-</description>
-        <pubDate>Tue, 15 Aug 2017 13:50:00 -0300</pubDate>
-        <link>http://localhost:4000/ae22cp-172/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-exercicios.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-exercicios.html</guid>
-        
-        <category>estruturas-c</category>
-        
-        
-        <category>AE22CP-172</category>
         
       </item>
     
