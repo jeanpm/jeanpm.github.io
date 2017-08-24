@@ -110,11 +110,23 @@
     </tr>
     <tr>
       <td><em>Modus Tollens:</em></td>
-      <td>$\dfrac{\phi\to\psi\qquad \neg\phi}{\neg\psi}{MT}$</td>
+      <td>$\dfrac{\phi\to\psi\qquad \neg\psi}{\neg\phi}{MT}$</td>
     </tr>
     <tr>
       <td><em>Eliminação da disjunção:</em></td>
       <td>$\dfrac{\phi \lor \psi\quad (\phi\dots\chi)\quad (\psi\dots\chi)}{\chi} \lor\mbox{e}$</td>
+    </tr>
+    <tr>
+      <td><em>Introdução da contradição:</em></td>
+      <td><script type="math/tex">\dfrac{\phi\quad \neg\phi}{\perp}\perp\mbox{i}</script></td>
+    </tr>
+    <tr>
+      <td><em>Introdução da negação:</em></td>
+      <td><script type="math/tex">\dfrac{(\phi\dots\perp)}{\neg \phi}\neg\mbox{i}</script></td>
+    </tr>
+    <tr>
+      <td><em>Eliminação da contradição:</em></td>
+      <td><script type="math/tex">\dfrac{\perp}{\phi}\perp\mbox{e}</script></td>
     </tr>
   </tbody>
 </table>
@@ -148,6 +160,37 @@
 <script type="math/tex; mode=display">r, p \to (r\to q) \vdash p \to (q \land r)</script>
 
 <script type="math/tex; mode=display">p \to (q \lor r), q \to s, r \to s \vdash p \to s</script>
+
+<script type="math/tex; mode=display">\neg(p \land q) \vdash (\neg p \lor \neg q) \tag{Lei de De Morgan (DM)}</script>
+
+<script type="math/tex; mode=display">\neg(p \lor q) \vdash (\neg p \land \neg q) \tag{Lei de De Morgan (DM)}</script>
+
+<script type="math/tex; mode=display">(p \land (q \lor r )) \vdash ((p \land q) \lor (p \land r)) \tag{Distribuição (DIST)}</script>
+
+<script type="math/tex; mode=display">\neg p \to \neg q \vdash q \to p</script>
+
+<script type="math/tex; mode=display">\neg p \lor \neg q \vdash \neg(p \land q)</script>
+
+<script type="math/tex; mode=display">p \lor q, \neg q \lor r \vdash p \lor r</script>
+
+<script type="math/tex; mode=display">\neg p \land \neg q \vdash \neg (p\lor q)</script>
+
+<script type="math/tex; mode=display">p \to q, s \to t \vdash (p\lor s) \to (q \land t)</script>
+
+<script type="math/tex; mode=display">\neg p \vdash p \to q</script>
+
+<script type="math/tex; mode=display">\neg(p\to q) \vdash q \to p</script>
+
+<script type="math/tex; mode=display">(p\to q)\to r, s \to \neg p, t, \neg s \land t\to q \vdash r</script>
+
+<script type="math/tex; mode=display">(s\to p)\lor(t\to q) \vdash (s\to q) \lor (t\to p)</script>
+
+<script type="math/tex; mode=display">(p\land q) \to r, r \to s, q \land \neg s \vdash \neg p</script>
+
+<script type="math/tex; mode=display">p \to q \vdash \neg p \lor q</script>
+
+<script type="math/tex; mode=display">(c \land n) \to t, h \land \neg s, h \land \neg(s \lor c) \to p \vdash (n \land \neg t) \to p</script>
+
 
   </article>
 
