@@ -7,3 +7,4 @@ gem 'jekyll-watch'
 gem 'rouge'
 gem 'jemoji'
 gem "minima"
+gem 'jekyll-scholar'
