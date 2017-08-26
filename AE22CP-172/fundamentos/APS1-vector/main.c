@@ -48,6 +48,11 @@ int main()
         {
             scanf("%d", &indice);
             vector_erase(v, indice);
+        } else if (strcmp(cmd, "set") == 0)
+        {
+            scanf("%d", &indice);
+            scanf("%d", &valor);
+            vector_set(v, indice, valor);
         }
         vector_print(v, FORMAT);
     }

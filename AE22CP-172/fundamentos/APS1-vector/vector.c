@@ -38,7 +38,9 @@ Type vector_erase(vector* v, int i)
     
     Type value = v->data[i];
     
-    for (int j = i; i < v->size - 1; i++)
+    // Move todos elementos após i uma posição para trás
+    // v->data[i] passa a ser o que antes havia em v->data[i+1]
+    for (int j = i; i < v->size; i++)
         v->data[j] = v->data[j+1];
 
     v->size--;
@@ -49,14 +51,14 @@ Type vector_erase(vector* v, int i)
 // Funções de remoção de elementos
 Type vector_pop_back(vector* v)
 {
-    // Somente posso remover o último elemento se há ao menos um elemento
+    // Somente remove o último se há ao menos um elemento
     assert(v->size > 0);
     return vector_erase(v, v->size-1);
 }
 
 Type vector_pop_front(vector* v)
 {
-    // Somente posso remover o último elemento se há ao menos um elemento
+    // Somente remove o último se há ao menos um elemento
     assert(v->size > 0);    
     return vector_erase(v, 0);
 }
@@ -67,6 +69,7 @@ void vector_insert(vector* v, Type value, int i)
 {
     assert(i >= 0 && i <= v->size);
     
+    // Se o vetor não está cheio, está função não fará nada.
     vector_resize(v);
     
     for (int j = v->size - 1; j >= i; j--)
@@ -84,6 +87,16 @@ void vector_push_back(vector* v, Type value)
 void vector_push_front(vector* v, Type value)
 {
     vector_insert(v, value, 0);
+}
+
+void vector_set(vector* v, int pos, Type value)
+{
+    // Como esta função não altera o tamanho do vetor, 
+    // ela somente pode ser aplicada a índices 
+    // 0 ... (v->size-1)
+    assert(pos >= 0 && pos < v->size);
+    
+    v->data[pos] = value;
 }
 
 void vector_print(vector* v, const char* format)

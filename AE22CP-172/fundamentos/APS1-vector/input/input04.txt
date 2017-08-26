@@ -1,0 +1,57 @@
+2
+55
+push_back 64
+push_front 28
+pop_front
+push_front 96
+push_front 9
+push_back 75
+push_back 87
+set 2 51
+insert 14 4
+pop_front
+pop_front
+erase 0
+insert 99 1
+pop_back
+push_front 96
+pop_front
+push_front 84
+pop_front
+set 2 58
+push_front 24
+erase 2
+set 0 64
+push_front 63
+push_back 69
+erase 1
+insert 30 3
+erase 1
+push_front 51
+push_back 55
+push_back 98
+pop_front
+push_back 26
+insert 2 3
+push_back 44
+push_front 45
+insert 27 7
+push_front 43
+insert 46 5
+push_front 30
+pop_back
+push_front 0
+push_back 12
+erase 4
+push_front 35
+push_front 33
+push_back 60
+pop_front
+erase 5
+insert 34 14
+push_front 71
+push_back 77
+pop_front
+erase 14
+pop_front
+push_back 89

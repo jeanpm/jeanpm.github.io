@@ -33,6 +33,8 @@ void vector_push_back(vector* v, Type value);
 void vector_push_front(vector* v, Type value);
 
 
+void vector_set(vector* v, int pos, Type value);
+
 void vector_resize(vector* v);
 
 

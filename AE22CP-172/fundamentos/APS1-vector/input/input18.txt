@@ -1,0 +1,10 @@
+8
+8
+push_back 88
+pop_back
+push_front 46
+pop_front
+push_back 75
+insert 66 0
+pop_front
+erase 0

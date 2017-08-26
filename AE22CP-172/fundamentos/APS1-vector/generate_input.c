@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+#include <assert.h>
 
 #define FORMAT "%d "
 
@@ -10,7 +11,7 @@
 
 vector* rand_new_vector()
 {
-    vector* v = new_vector(rand() % 30);
+    vector* v = new_vector(rand() % 10);
     
     fprintf(stderr, "%d\n", v->capacity);
     
@@ -69,12 +70,25 @@ void rand_erase(vector* v)
 }
 
 
-
-int main() 
+void rand_vector_set(vector* v)
 {
+    int pos = rand() % v->size;
+    Type value = rand() % MAX_VALUE;
+    vector_set(v, pos, value);
+    
+    fprintf(stderr, "set %d %d\n", pos, value);
+    vector_print(v, FORMAT);
+}
+
+
+int main(int argc, char** argv) 
+{
+    assert(argc > 1);
     srand(time(NULL));
     
-    int noperations = rand() % 1000;
+    int max_op = atoi(argv[1]);
+    
+    int noperations = rand() % max_op;
     
     vector* v = rand_new_vector();
     
@@ -83,26 +97,29 @@ int main()
     int ninsertions = 0;
     for (int i = 0; i < noperations; i++)
     {
-        int op = rand() % 3;
-        
         // 70% das vezes, insere, outra metade remove
         int insert = rand() % 10000;
         
+        int op = 0;
+        
         if (ninsertions == 0 || insert < 6000) 
         {
+            op = rand() % 3;
             switch (op) 
             {
-                case 0: rand_push_back(v); break;
+                case 0: rand_push_back(v);  break;
                 case 1: rand_push_front(v); break;
-                case 2: rand_insert(v); break;
+                case 2: rand_insert(v);     break;
             }
             ninsertions++;
         } else {
+            op = rand() % 4;
             switch (op)
             {
-                case 0: rand_pop_back(v); break;
-                case 1: rand_pop_front(v); break;
-                case 2: rand_erase(v); break;
+                case 0: rand_pop_back(v);   break;
+                case 1: rand_pop_front(v);  break;
+                case 2: rand_erase(v);      break;
+                case 3: rand_vector_set(v); break;
             }
             ninsertions--;
         }
