@@ -1,9 +1,0 @@
-8
-7
-insert 99 0
-push_back 9
-push_front 59
-push_back 54
-pop_front
-set 1 74
-insert 16 0

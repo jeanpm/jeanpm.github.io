@@ -1,5 +1,0 @@
-2
-3
-insert 19 0
-set 0 99
-insert 34 1

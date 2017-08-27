@@ -1,8 +1,0 @@
-6
-6
-push_front 13
-push_back 49
-push_back 29
-push_back 5
-push_front 26
-pop_back
