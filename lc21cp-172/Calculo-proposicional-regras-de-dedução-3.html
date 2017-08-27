@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Cálculo Proposicional - Regras de dedução III</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/lc21cp-172/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-3.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Cálculo Proposicional - Regras de dedução III</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Aug 24, 2017
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/lc21cp-172/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-2.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/lc21cp-172/Exercicios3-regras-de-dedu%C3%A7%C3%A3o.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#revisão" id="markdown-toc-revisão">Revisão</a></li>
+  <li><a href="#regras-de-inferência" id="markdown-toc-regras-de-inferência">Regras de inferência</a>    <ul>
+      <li><a href="#regras-para-a-negação" id="markdown-toc-regras-para-a-negação">Regras para a negação</a></li>
+      <li><a href="#prova-por-contradição" id="markdown-toc-prova-por-contradição">Prova por contradição</a></li>
+      <li><a href="#exercícios-prova-por-contradição-noltpg122" id="markdown-toc-exercícios-prova-por-contradição-noltpg122">Exercícios: prova por contradição (Nolt,pg.122)</a></li>
+    </ul>
+  </li>
+  <li><a href="#teoremas" id="markdown-toc-teoremas">Teoremas</a></li>
+  <li><a href="#equivalências" id="markdown-toc-equivalências">Equivalências</a></li>
+  <li><a href="#material-adicional" id="markdown-toc-material-adicional">Material adicional</a></li>
+</ul>
+
+<h1 id="revisão">Revisão</h1>
+
+<table>
+  <tbody>
+    <tr>
+      <td><em>Introdução da conjunção:</em></td>
+      <td>$\dfrac{\phi\quad\psi}{\phi \land \psi} \land\mbox{i}$</td>
+    </tr>
+    <tr>
+      <td><em>Eliminação da conjunção:</em></td>
+      <td>$\dfrac{\phi \land \psi}{\phi} \land\mbox{e}_1,\quad \dfrac{\phi \land \psi}{\psi} \land\mbox{e}_2$</td>
+    </tr>
+    <tr>
+      <td><em>Introdução da dupla negação:</em></td>
+      <td>$\dfrac{\phi}{\neg\neg\phi} \neg\neg\mbox{i}$</td>
+    </tr>
+    <tr>
+      <td><em>Eliminação da dupla negação:</em></td>
+      <td>$\dfrac{\neg\neg\phi}{\phi} \neg\neg\mbox{e}$</td>
+    </tr>
+    <tr>
+      <td><em>Modus Ponens:</em></td>
+      <td>$\dfrac{\phi\to\psi\qquad \phi}{\psi}{MP}$</td>
+    </tr>
+    <tr>
+      <td><em>Introdução da disjunção:</em></td>
+      <td>$\dfrac{\phi}{\phi \lor \psi}\lor\mbox{i}$</td>
+    </tr>
+    <tr>
+      <td><em>Modus Tollens:</em></td>
+      <td>$\dfrac{\phi\to\psi\qquad \neg\psi}{\neg\psi}{MT}$</td>
+    </tr>
+    <tr>
+      <td><em>Introdução do condicional:</em></td>
+      <td>$\dfrac{(\phi\dots\psi)}{\phi\to\psi} \to\mbox{i}$</td>
+    </tr>
+    <tr>
+      <td><em>Eliminação da disjunção:</em></td>
+      <td>$\dfrac{\phi \lor \psi\quad (\phi\dots\chi)\quad (\psi\dots\chi)}{\chi} \lor\mbox{e}$</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="regras-de-inferência">Regras de inferência</h1>
+
+<h2 id="regras-para-a-negação">Regras para a negação</h2>
+
+<p>As regras para a negação são utilizadas em provas por <em>contradição</em> (reductio ad absurdum). Uma contradição tem sempre a forma</p>
+
+<script type="math/tex; mode=display">\phi \land \neg\phi</script>
+
+<p><strong>Eliminação da negação</strong></p>
+
+<p>Desse tipo de proposição é possível eliminar a negação, substituindo a por um símbolo apropriado que indique que uma contradição existe.</p>
+
+<script type="math/tex; mode=display">\dfrac{\phi\quad \neg\phi}{\perp}\neg\mbox{e}</script>
+
+<p><strong>Introdução da negação</strong></p>
+
+<p>A introdução da negação também é uma regra hipotética. Dada uma fórmula $\phi$, o primeiro passo da regra consiste em assumir $\phi$ como hipótese. Se em qualquer momento da derivação, essa hipótese nos levar a uma contradição ($\phi\dots\perp$) podemos concluir que a hipótese é falsa. Como só há duas opções, se a hipótese é falsa, sua negação será verdadeira.</p>
+
+<script type="math/tex; mode=display">\dfrac{(\phi\dots\perp)}{\neg \phi}\neg\mbox{i}</script>
+
+<p>Note que a contradição, não necessariamente, precisa ocorrer entre $\phi \land \neg \phi$, pode ocorrer para outra fórmula qualquer e sua respectiva negação.</p>
+
+<p><strong>Eliminação da contradição</strong>
+Uma característica contraintuitiva de qualquer contradição, é que elas nos permite concluir qualquer fórmula. Essa regra pode ser descrita da seguinte forma</p>
+
+<script type="math/tex; mode=display">\dfrac{\perp}{\phi}\perp\mbox{e}</script>
+
+<h2 id="prova-por-contradição">Prova por contradição</h2>
+
+<p>Utilizando as regras da negação e contradição um tipo de regra pode ser derivada e utilizada para demonstrar a validade de argumentos. Esta regra é chamada <em>prova por contradição</em> ou <em>redução ao absurdo</em> (RAA) e consiste em assumir como hipótese a negação da conclusão de um argumento, caso uma contradição seja derivada a partir daí, podemos então concluir que a hipótese é falsa, e portanto, a conclusão é verdadeira.</p>
+
+<script type="math/tex; mode=display">\dfrac{(\neg\phi\dots\perp)}{\phi}RAA</script>
+
+<p>Como exemplo, vamos demonstrar a validade da regra de eliminação da contradição: $p, \neg p\vdash q$:</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{llr}
+1.  & p           & \mbox{(premissa)}\\
+2.  & \neg p      & \mbox{(premissa)}\\\hline
+3.0. & \neg q     & \mbox{hipótese (RAA)}\\
+3.2. & \perp      & \land\mbox{i em 1 e 2}\\\hline
+4.  & \neg\neg q  & \mbox{por RAA 3.0-3.1}\\
+5.  & q           & \neg\neg\mbox{e}
+\end{array} %]]></script>
+
+<h2 id="exercícios-prova-por-contradição-noltpg122">Exercícios: prova por contradição (Nolt,pg.122)</h2>
+
+<p>Como exemplo dessa regra, vamos demonstrar a regra Modus Tollens por introdução da negação.</p>
+
+<script type="math/tex; mode=display">p \to q, \neg q \vdash \neg p</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{llr}
+1.   & p\to q & \mbox{(premissa)}\\
+2.   & \neg q & \mbox{(premissa)}\\\hline
+3.0.  & p      & \mbox{hipótese (RAA)}\\
+3.1.  & q      & MP\mbox{ em 1 e 3}\\
+3.2.  & \perp & \neg\mbox{e em 2 e 3.1.}\\\hline
+4.   & \neg p  & \neg\mbox{i em 3.0-3.2}
+\end{array} %]]></script>
+
+<p>Observe que a hipótese $p$ (a qual é a negação da conclusão) nos permitiu concluir $q$. No entanto, temos $\neg q$ como premissa o que nos leva a uma contradição ($q \land \neg q$). Essa contradição nos informa que a hipótese ($p$) só pode ser falsa, e portanto sua negação deve ser verdadeira ($\neg p$).</p>
+
+<script type="math/tex; mode=display">p \to q, p \to \neg q \vdash \neg p</script>
+
+<script type="math/tex; mode=display">p\to (q\to r), p, \neg r \vdash \neg q</script>
+
+<script type="math/tex; mode=display">\neg(\neg p \land \neg q), \neg p \vdash q</script>
+
+<script type="math/tex; mode=display">p \lor q, \neg p \vdash q</script>
+
+<h1 id="teoremas">Teoremas</h1>
+
+<p>Algumas fórmulas são prováveis sem quaisquer suposições não hipotéticas, essas são chamadas <strong>teoremas</strong>. Um teorema é representado da seguinte forma:</p>
+
+<script type="math/tex; mode=display">\vdash \neg(p \land \neg p)</script>
+
+<script type="math/tex; mode=display">\vdash p \to (p \lor q)</script>
+
+<script type="math/tex; mode=display">\vdash p \to ((p\to q)\to q)</script>
+
+<h1 id="equivalências">Equivalências</h1>
+
+<p>Dadas duas fórmulas $\phi$ e $\psi$, elas são ditas <strong>equivalentes</strong> se elas são interderiváveis, ou seja:</p>
+
+<script type="math/tex; mode=display">\phi \vdash \psi</script>
+
+<script type="math/tex; mode=display">\psi \vdash \phi</script>
+
+<p>Este fato é definido como $\phi \dashv\vdash \psi$</p>
+
+<p><strong>Demonstre as equivalências a seguir</strong></p>
+
+<script type="math/tex; mode=display">(p \to q) \dashv\vdash \neg(p \land \neg q)</script>
+
+<script type="math/tex; mode=display">\neg(p \land q) \dashv\vdash (\neg p \lor \neg q) \tag{Lei de De Morgan (DM)}</script>
+
+<script type="math/tex; mode=display">\neg(p \lor q) \dashv\vdash (\neg p \land \neg q) \tag{Lei de De Morgan (DM)}</script>
+
+<script type="math/tex; mode=display">(p\lor q) \dashv\vdash (q\lor p) \tag{Comutação (COM)}</script>
+
+<script type="math/tex; mode=display">(p \land q) \dashv\vdash (q\land p) \tag{Comutação (COM)}</script>
+
+<script type="math/tex; mode=display">(p \lor (q \lor r)) \dashv\vdash ((p\lor q)\lor r) \tag{Associação (ASSOC)}</script>
+
+<script type="math/tex; mode=display">(p \land (q \land r))\dashv\vdash((p\land q)\land r) \tag{Associação (ASSOC)}</script>
+
+<script type="math/tex; mode=display">(p \land (q \lor r )) \dashv\vdash ((p \land q) \lor (p \land r)) \tag{Distribuição (DIST)}</script>
+
+<h1 id="material-adicional">Material adicional</h1>
+
+<p><a href="https://racionalistasusp.files.wordpress.com/2010/01/nolt-john-rohatyn-dennis-lc3b3gica.pdf">Logica - John Nolt (PDF). Pg. 122</a></p>
+
+<p><a href="ftp://ftp.cs.bham.ac.uk/pub/authors/M.D.Ryan/tmp/Anongporn/Ch1+3.pdf">Logic in Computer Science - Huth &amp; Ryan (PDF). Pg. 20</a></p>
+<iframe width="360" height="205" src="https://www.youtube.com/embed/sVUMAqMmy7o" frameborder="0" allowfullscreen="">
+</iframe>
+
+<iframe width="360" height="205" src="https://www.youtube.com/embed/ec8oLHZFhpo" frameborder="0" allowfullscreen="">
+</iframe>
+
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

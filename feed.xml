@@ -1,0 +1,2840 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jean P. Martins</title>
+    <description>Combinatorial optimization, evolutionary optimization, estimation of distribution algorithms, linkage learning, learning and optimization.
+</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 27 Aug 2017 13:09:35 -0300</pubDate>
+    <lastBuildDate>Sun, 27 Aug 2017 13:09:35 -0300</lastBuildDate>
+    <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Semântica da lógica proposicional II - Árvores de refutação</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#semântica-da-lógica-proposicional&quot; id=&quot;markdown-toc-semântica-da-lógica-proposicional&quot;&gt;Semântica da Lógica proposicional&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#princípio-da-bivalência&quot; id=&quot;markdown-toc-princípio-da-bivalência&quot;&gt;Princípio da bivalência&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#tabelas-verdade-dos-conectivos&quot; id=&quot;markdown-toc-tabelas-verdade-dos-conectivos&quot;&gt;Tabelas verdade dos conectivos&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#negação-neg&quot; id=&quot;markdown-toc-negação-neg&quot;&gt;Negação ($\neg$)&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#conjunção-land&quot; id=&quot;markdown-toc-conjunção-land&quot;&gt;Conjunção ($\land$)&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#disjunção-lor&quot; id=&quot;markdown-toc-disjunção-lor&quot;&gt;Disjunção ($\lor$)&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#condicional-to&quot; id=&quot;markdown-toc-condicional-to&quot;&gt;Condicional ($\to$)&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#bicondicional-leftrightarrow&quot; id=&quot;markdown-toc-bicondicional-leftrightarrow&quot;&gt;Bicondicional ($\leftrightarrow$)&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#tabelas-verdade-de-fórmulas&quot; id=&quot;markdown-toc-tabelas-verdade-de-fórmulas&quot;&gt;Tabelas verdade de fórmulas&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#tamanho-da-tabela-verdade&quot; id=&quot;markdown-toc-tamanho-da-tabela-verdade&quot;&gt;Tamanho da tabela verdade&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#exemplos-xor&quot; id=&quot;markdown-toc-exemplos-xor&quot;&gt;Exemplos ($XOR$)&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#exemplos-lte&quot; id=&quot;markdown-toc-exemplos-lte&quot;&gt;Exemplos (LTE)&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#exemplos-contradição&quot; id=&quot;markdown-toc-exemplos-contradição&quot;&gt;Exemplos (Contradição)&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#tabelas-verdade-de-formas-de-argumento&quot; id=&quot;markdown-toc-tabelas-verdade-de-formas-de-argumento&quot;&gt;Tabelas verdade de formas de argumento&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#exemplos-afirmação-do-consequente&quot; id=&quot;markdown-toc-exemplos-afirmação-do-consequente&quot;&gt;Exemplos (Afirmação do consequente)&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exercícios&quot; id=&quot;markdown-toc-exercícios&quot;&gt;Exercícios&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#referências&quot; id=&quot;markdown-toc-referências&quot;&gt;Referências&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;semântica-da-lógica-proposicional&quot;&gt;Semântica da Lógica proposicional&lt;/h1&gt;
+
+&lt;p&gt;Até então tratamos da lógica proposicional do ponto de vista sintático. Ou seja, as regras de inferência utilizadas são baseadas principalmente na forma dos argumentos. Já a &lt;em&gt;semântica&lt;/em&gt; de uma expressão é o seu significado. Por meio da caracterização do significado dos operadores lógicos, desenvolvemos uma visão menos restrita e mais formal sobre os argumentos.&lt;/p&gt;
+
+&lt;h2 id=&quot;princípio-da-bivalência&quot;&gt;Princípio da bivalência&lt;/h2&gt;
+
+&lt;p&gt;O princípio da bivalência ou lei do terceiro excluído (LTE), simplesmente formaliza a noção intuitiva que existem apenas duas opções de valores para uma fórmula qualquer&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \phi \lor \neg \phi \tag{LTE}&lt;/script&gt;
+
+&lt;h2 id=&quot;tabelas-verdade-dos-conectivos&quot;&gt;Tabelas verdade dos conectivos&lt;/h2&gt;
+
+&lt;p&gt;Dada a LTE, a semântica de um conectivo lógico consiste na definição de todos seus possíveis valores lógicos, sendo que cada símbolo atômico e cada fórmula e subfórmulas podem ter, em um dado momento, apenas um valor dentre: verdadeiro (T) e falso (F).&lt;/p&gt;
+
+&lt;p&gt;A seguir, descreveremos as tabelas verdade para cada um dos conectivos lógicos vistos até então.&lt;/p&gt;
+
+&lt;h3 id=&quot;negação-neg&quot;&gt;Negação ($\neg$)&lt;/h3&gt;
+
+&lt;p&gt;A negação é o único conectivo lógico unário visto até então. Dada uma fórmula qualquer $\phi$, esta pode assumir valor-verdade &lt;em&gt;verdadeiro&lt;/em&gt; (V) ou &lt;em&gt;falso&lt;/em&gt; (F), o que está descrito na primeira coluna da tabela abaixo. Já a negação $\neg\phi$, por sua vez assume valor-verdade que depende do valor de $\phi$, fato descrito na segunda coluna da tabela.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg\phi$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;conjunção-land&quot;&gt;Conjunção ($\land$)&lt;/h3&gt;
+
+&lt;p&gt;A conjunção é um operador binário, em que dadas duas fórmulas $\phi$ e $\psi$, assume valor-verdade &lt;em&gt;verdadeiro&lt;/em&gt; apenas quando ambas conjuctos forem também verdadeiros.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi\land\psi$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;disjunção-lor&quot;&gt;Disjunção ($\lor$)&lt;/h3&gt;
+
+&lt;p&gt;A disjunção é um operador binário. Dadas duas fórmulas $\phi$ e $\psi$, sua disjunção assume valor-verdade &lt;em&gt;verdadeiro&lt;/em&gt; sempre que uma delas, ou ambas, forem verdadeiras.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi\lor\psi$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;condicional-to&quot;&gt;Condicional ($\to$)&lt;/h3&gt;
+
+&lt;p&gt;O condicional é um operador binário que representa proposições do tipo “Se.. então…”. Por exemplo&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“Se Paula for, então Quincas irá.” $(\phi\to\psi)$&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Este argumento tem o mesmo significado a seguir&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“Não é o caso de Paula ir e Quincas não ir.” $\neg(\phi \land \neg \psi)$&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Deste modo, dizemos que as fórmulas acima são equivalentes&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(\phi\to\psi)\dashv\vdash\neg(\phi\land\neg\psi)&lt;/script&gt;
+
+&lt;p&gt;Dada esta equivalência, a tabela-verdade de ambas fórmulas são iguais, assim como demonstrado nas duas últimas colunas da tabela abaixo.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi\to\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg(\phi\land\neg\psi)$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Como podemos ver pela tabela verdade, o condicional somente é falso quando seu antecedente é falso e seu consequente verdadeiro.&lt;/p&gt;
+
+&lt;h3 id=&quot;bicondicional-leftrightarrow&quot;&gt;Bicondicional ($\leftrightarrow$)&lt;/h3&gt;
+
+&lt;p&gt;O bicondicional é um operador binário derivado do condicional simples e pode ser escrito como $\phi\leftrightarrow\psi$, fórmula a qual é equivalente a $(\phi\to\psi)\land(\psi\to\phi)$. Portanto, temos que&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi\leftrightarrow\psi \dashv\vdash (\phi\to\psi)\land(\psi\to\phi)&lt;/script&gt;
+
+&lt;p&gt;Esse tipo de equivalência é útil para que possamos esclarecer dúvidas no preenchimento da tabela verdade, pois assim é possível comparar nossa interpretação em ambas fórmulas.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi\leftrightarrow\psi$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Pela tabela verdade acima, percebemos que o bicondicional $\phi\leftrightarrow\psi$ é verdadeiro sempre que ambas partes constituintes forem iguais (V,V) ou (F,F).&lt;/p&gt;
+
+&lt;h2 id=&quot;tabelas-verdade-de-fórmulas&quot;&gt;Tabelas verdade de fórmulas&lt;/h2&gt;
+
+&lt;p&gt;Para construirmos a tabela verdade de uma fórmula complexa, devemos inicialmente decompô-la em subfórmulas. Para exemplificar esse procedimento, utilizaremos a fórmula já vista anteriormente: $\neg(\phi\land\neg\psi)$.&lt;/p&gt;
+
+&lt;p&gt;Observe, inicialmente, que essa é uma fórmula da forma $\neg(\chi)$, sendo $\chi: \phi\land\neg\psi$. Isto significa que $\chi$ é uma subfórmula. Por sua vez, para sabermos os valores-verdade da subfórmula $\chi$, é preciso conhecermos primeiro os valores-verdade dos conjuctos $\phi$ e $\neg\psi$, os quais são subfórmulas de $\chi$.&lt;/p&gt;
+
+&lt;p&gt;Para organizarmos essa ideia em forma de tabela, procederemos das menores subfórmulas às maiores, da esquerda para a direita, sendo uma coluna para cada. Inserimos primeiro as duas menores subfórmulas, que de fato são os símbolos atômicos, neste caso $\phi$ e $\psi$&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi \land \neg\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg(\phi\land\neg\psi)$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;A próxima subfórmula a ser inserida seria então a negação $\neg\psi$.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi \land \neg\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg(\phi\land\neg\psi)$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Considerando os valores-verdade da primeira ($\phi$) e terceira ($\neg\psi$) colunas, podemos então deduzir a quarta coluna como sendo a sua conjunção.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi \land \neg\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg(\phi\land\neg\psi)$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Como a última (mais externa) subfórmula é apenas a negação da conjunção anterior, basta invertermos os valores-verdade da coluna ($\phi\land\neg\psi$).&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi \land \neg\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg(\phi\land\neg\psi)$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;tamanho-da-tabela-verdade&quot;&gt;Tamanho da tabela verdade&lt;/h3&gt;
+
+&lt;p&gt;Observe que nos exemplos acima, grande parte das tabelas verdade possuem o mesmo número de linhas. Esse valor é completamente definido pelo número de simbolos atômicos utilizados pelas fórmulas. Visto que para cada símbolo dois valores-verdade são possíveis, o número de linhas da tabela-verdade será $2^n$, onde $n$ é o número de símbolos utilizados. Como exemplo, considere a fórmula&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\land q \to w\land s&lt;/script&gt;
+
+&lt;p&gt;A qual utiliza 4 símbolos: $p, q, w$ e $s$. Para cada um desses há 2 possibilidades, portanto, o número de linhas na tabela será.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{cccccccc}
+p &amp; \land &amp; q &amp; \to   &amp; w &amp; \land &amp; s &amp;\\
+2 &amp;\times &amp; 2 &amp;\times &amp; 2 &amp;\times &amp; 2 &amp; = 2^4 = 16
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;h3 id=&quot;exemplos-xor&quot;&gt;Exemplos ($XOR$)&lt;/h3&gt;
+
+&lt;p&gt;Construa a tabela verdade para a seguinte fórmulas&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\lor q) \land \neg(p \land q) \tag{XOR}&lt;/script&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$p\lor q$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$p\land q$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg(p\land q)$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$(p\lor q) \land \neg(p \land q)$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;exemplos-lte&quot;&gt;Exemplos (LTE)&lt;/h3&gt;
+
+&lt;p&gt;Construindo a tabela-verdade para a LTE, observamos um fato curioso. Todas as linhas da última coluna da tabela possuem valor-verdade &lt;em&gt;verdadeiro&lt;/em&gt;.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor \neg p&lt;/script&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg p$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$p\lor \neg p$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Fórmulas desse tipo recebem o nome de &lt;em&gt;tautologias&lt;/em&gt; e são verdadeiras para qualquer atribuição de valores para os símbolos atômicos. Uma fórmula é uma tautologia se, e somente se, ela é um teorema, ou seja, provável sem suposições.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Toda &lt;em&gt;tautologia&lt;/em&gt; é &lt;strong&gt;satisfazível&lt;/strong&gt;, ou seja, existe ao menos uma atribuição de valores-verdade que torna a fórmula verdadeira.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;exemplos-contradição&quot;&gt;Exemplos (Contradição)&lt;/h3&gt;
+
+&lt;p&gt;Já a tabela-verdade para a contradição nos dá um resultado oposto ao das &lt;em&gt;tautologias&lt;/em&gt;. Neste caso, todas as linhas da última coluna da tabela-verdade possuem valor-verdade falso. Isso significa que não há atribuição de valores-verdade para as variáveis que torne a fórmula verdadeira.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Toda &lt;em&gt;contradição&lt;/em&gt; é &lt;strong&gt;insatisfatível&lt;/strong&gt;, ou seja, não existe atribuição de valores-verdade que torne a fórmula verdadeira.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land \neg p&lt;/script&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg p$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$p\land \neg p$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;tabelas-verdade-de-formas-de-argumento&quot;&gt;Tabelas verdade de formas de argumento&lt;/h2&gt;
+
+&lt;p&gt;Tabelas verdade também podem ser utilizadas para demonstrar se uma forma de argumento é &lt;strong&gt;válida&lt;/strong&gt; ou &lt;strong&gt;inválida&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Uma forma de argumento é &lt;strong&gt;válida&lt;/strong&gt; se não há atribuição de valores-verdade tal que as premissas sejam verdadeiras e a conclusão seja falsa.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Uma forma de argumento é &lt;strong&gt;inválida&lt;/strong&gt; se existe ao menos uma atribuição de valores-verdade que torne as premissas verdadeiras e a conclusão falsa.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Como as tabelas verdade listam exaustivamente todas as possíveis atribuições de valores-verdade, elas podem ser utilizadas para verificar a validade de qualquer forma de argumento.&lt;/p&gt;
+
+&lt;p&gt;Como exemplo, vamos construir a tabela verdade para a forma de argumento:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor q, \neg p \vdash q&lt;/script&gt;
+
+&lt;p&gt;A tabela verdade neste caso ignorará os símbolos: $, \vdash$. Tais símbolos são utilizados apenas para identificar possíveis colunas na tabela.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$p\lor q$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg p$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;V&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;V&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;V&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Observe que a única linha da tabela em que as premissas são ambas verdadeiras é a linha 3. Nessa situação a conclusão também é verdadeira, portanto a fórmula é &lt;strong&gt;válida&lt;/strong&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Como há dois casos em que a conclusão é verdadeira (linhas 1 e 3) então a fórmula é &lt;strong&gt;satisfazível&lt;/strong&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;exemplos-afirmação-do-consequente&quot;&gt;Exemplos (Afirmação do consequente)&lt;/h3&gt;
+
+&lt;p&gt;Construa a tabela verdade para a forma de argumento a seguir:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to q, q \vdash p&lt;/script&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$p\to q$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;V&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;V&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;F&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Como a terceira linha nos provê um &lt;strong&gt;contra-exemplo&lt;/strong&gt; do argumento, ou seja, uma atribuição de valores-verdade que torna as premissas verdadeiras e a conclusão falsa, então essa forma de argumento é &lt;strong&gt;inválida&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;exercícios&quot;&gt;Exercícios&lt;/h2&gt;
+
+&lt;p&gt;Construa as tabelas verdade e verifique se as formas de argumento a seguir são &lt;strong&gt;válidas&lt;/strong&gt; ou &lt;strong&gt;inválidas&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to q, p\to \neg q \vdash \neg p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to q \vdash \neg(q\to p)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor q, q \lor r \vdash p \lor r&lt;/script&gt;
+
+&lt;h1 id=&quot;referências&quot;&gt;Referências&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://racionalistasusp.files.wordpress.com/2010/01/nolt-john-rohatyn-dennis-lc3b3gica.pdf&quot;&gt;Logica - John Nolt (PDF). Capítulo 4: Pgs. 160 a 184&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Thu, 31 Aug 2017 10:20:00 -0300</pubDate>
+        <link>http://localhost:4000/lc21cp-172/Semantica-da-logica-proposicional-arvores-de-refutacao.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Semantica-da-logica-proposicional-arvores-de-refutacao.html</guid>
+        
+        <category>semântica</category>
+        
+        
+        <category>LC21CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>Semântica da lógica proposicional I - Tabelas Verdade</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#semântica-da-lógica-proposicional&quot; id=&quot;markdown-toc-semântica-da-lógica-proposicional&quot;&gt;Semântica da Lógica proposicional&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#princípio-da-bivalência&quot; id=&quot;markdown-toc-princípio-da-bivalência&quot;&gt;Princípio da bivalência&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#tabelas-verdade-dos-conectivos&quot; id=&quot;markdown-toc-tabelas-verdade-dos-conectivos&quot;&gt;Tabelas verdade dos conectivos&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#negação-neg&quot; id=&quot;markdown-toc-negação-neg&quot;&gt;Negação ($\neg$)&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#conjunção-land&quot; id=&quot;markdown-toc-conjunção-land&quot;&gt;Conjunção ($\land$)&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#disjunção-lor&quot; id=&quot;markdown-toc-disjunção-lor&quot;&gt;Disjunção ($\lor$)&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#condicional-to&quot; id=&quot;markdown-toc-condicional-to&quot;&gt;Condicional ($\to$)&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#bicondicional-leftrightarrow&quot; id=&quot;markdown-toc-bicondicional-leftrightarrow&quot;&gt;Bicondicional ($\leftrightarrow$)&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#tabelas-verdade-de-fórmulas&quot; id=&quot;markdown-toc-tabelas-verdade-de-fórmulas&quot;&gt;Tabelas verdade de fórmulas&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#tamanho-da-tabela-verdade&quot; id=&quot;markdown-toc-tamanho-da-tabela-verdade&quot;&gt;Tamanho da tabela verdade&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#exemplos-xor&quot; id=&quot;markdown-toc-exemplos-xor&quot;&gt;Exemplos ($XOR$)&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#exemplos-lte&quot; id=&quot;markdown-toc-exemplos-lte&quot;&gt;Exemplos (LTE)&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#exemplos-contradição&quot; id=&quot;markdown-toc-exemplos-contradição&quot;&gt;Exemplos (Contradição)&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#tabelas-verdade-de-formas-de-argumento&quot; id=&quot;markdown-toc-tabelas-verdade-de-formas-de-argumento&quot;&gt;Tabelas verdade de formas de argumento&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#exemplos-afirmação-do-consequente&quot; id=&quot;markdown-toc-exemplos-afirmação-do-consequente&quot;&gt;Exemplos (Afirmação do consequente)&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exercícios&quot; id=&quot;markdown-toc-exercícios&quot;&gt;Exercícios&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#referências&quot; id=&quot;markdown-toc-referências&quot;&gt;Referências&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;semântica-da-lógica-proposicional&quot;&gt;Semântica da Lógica proposicional&lt;/h1&gt;
+
+&lt;p&gt;Até então tratamos da lógica proposicional do ponto de vista sintático. Ou seja, as regras de inferência utilizadas são baseadas principalmente na forma dos argumentos. Já a &lt;em&gt;semântica&lt;/em&gt; de uma expressão é o seu significado. Por meio da caracterização do significado dos operadores lógicos, desenvolvemos uma visão menos restrita e mais formal sobre os argumentos.&lt;/p&gt;
+
+&lt;h2 id=&quot;princípio-da-bivalência&quot;&gt;Princípio da bivalência&lt;/h2&gt;
+
+&lt;p&gt;O princípio da bivalência ou lei do terceiro excluído (LTE), simplesmente formaliza a noção intuitiva que existem apenas duas opções de valores para uma fórmula qualquer&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \phi \lor \neg \phi \tag{LTE}&lt;/script&gt;
+
+&lt;h2 id=&quot;tabelas-verdade-dos-conectivos&quot;&gt;Tabelas verdade dos conectivos&lt;/h2&gt;
+
+&lt;p&gt;Dada a LTE, a semântica de um conectivo lógico consiste na definição de todos seus possíveis valores lógicos, sendo que cada símbolo atômico e cada fórmula e subfórmulas podem ter, em um dado momento, apenas um valor dentre: verdadeiro (T) e falso (F).&lt;/p&gt;
+
+&lt;p&gt;A seguir, descreveremos as tabelas verdade para cada um dos conectivos lógicos vistos até então.&lt;/p&gt;
+
+&lt;h3 id=&quot;negação-neg&quot;&gt;Negação ($\neg$)&lt;/h3&gt;
+
+&lt;p&gt;A negação é o único conectivo lógico unário visto até então. Dada uma fórmula qualquer $\phi$, esta pode assumir valor-verdade &lt;em&gt;verdadeiro&lt;/em&gt; (V) ou &lt;em&gt;falso&lt;/em&gt; (F), o que está descrito na primeira coluna da tabela abaixo. Já a negação $\neg\phi$, por sua vez assume valor-verdade que depende do valor de $\phi$, fato descrito na segunda coluna da tabela.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg\phi$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;conjunção-land&quot;&gt;Conjunção ($\land$)&lt;/h3&gt;
+
+&lt;p&gt;A conjunção é um operador binário, em que dadas duas fórmulas $\phi$ e $\psi$, assume valor-verdade &lt;em&gt;verdadeiro&lt;/em&gt; apenas quando ambas conjuctos forem também verdadeiros.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi\land\psi$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;disjunção-lor&quot;&gt;Disjunção ($\lor$)&lt;/h3&gt;
+
+&lt;p&gt;A disjunção é um operador binário. Dadas duas fórmulas $\phi$ e $\psi$, sua disjunção assume valor-verdade &lt;em&gt;verdadeiro&lt;/em&gt; sempre que uma delas, ou ambas, forem verdadeiras.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi\lor\psi$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;condicional-to&quot;&gt;Condicional ($\to$)&lt;/h3&gt;
+
+&lt;p&gt;O condicional é um operador binário que representa proposições do tipo “Se.. então…”. Por exemplo&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“Se Paula for, então Quincas irá.” $(\phi\to\psi)$&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Este argumento tem o mesmo significado a seguir&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“Não é o caso de Paula ir e Quincas não ir.” $\neg(\phi \land \neg \psi)$&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Deste modo, dizemos que as fórmulas acima são equivalentes&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(\phi\to\psi)\dashv\vdash\neg(\phi\land\neg\psi)&lt;/script&gt;
+
+&lt;p&gt;Dada esta equivalência, a tabela-verdade de ambas fórmulas são iguais, assim como demonstrado nas duas últimas colunas da tabela abaixo.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi\to\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg(\phi\land\neg\psi)$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Como podemos ver pela tabela verdade, o condicional somente é falso quando seu antecedente é falso e seu consequente verdadeiro.&lt;/p&gt;
+
+&lt;h3 id=&quot;bicondicional-leftrightarrow&quot;&gt;Bicondicional ($\leftrightarrow$)&lt;/h3&gt;
+
+&lt;p&gt;O bicondicional é um operador binário derivado do condicional simples e pode ser escrito como $\phi\leftrightarrow\psi$, fórmula a qual é equivalente a $(\phi\to\psi)\land(\psi\to\phi)$. Portanto, temos que&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi\leftrightarrow\psi \dashv\vdash (\phi\to\psi)\land(\psi\to\phi)&lt;/script&gt;
+
+&lt;p&gt;Esse tipo de equivalência é útil para que possamos esclarecer dúvidas no preenchimento da tabela verdade, pois assim é possível comparar nossa interpretação em ambas fórmulas.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi\leftrightarrow\psi$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Pela tabela verdade acima, percebemos que o bicondicional $\phi\leftrightarrow\psi$ é verdadeiro sempre que ambas partes constituintes forem iguais (V,V) ou (F,F).&lt;/p&gt;
+
+&lt;h2 id=&quot;tabelas-verdade-de-fórmulas&quot;&gt;Tabelas verdade de fórmulas&lt;/h2&gt;
+
+&lt;p&gt;Para construirmos a tabela verdade de uma fórmula complexa, devemos inicialmente decompô-la em subfórmulas. Para exemplificar esse procedimento, utilizaremos a fórmula já vista anteriormente: $\neg(\phi\land\neg\psi)$.&lt;/p&gt;
+
+&lt;p&gt;Observe, inicialmente, que essa é uma fórmula da forma $\neg(\chi)$, sendo $\chi: \phi\land\neg\psi$. Isto significa que $\chi$ é uma subfórmula. Por sua vez, para sabermos os valores-verdade da subfórmula $\chi$, é preciso conhecermos primeiro os valores-verdade dos conjuctos $\phi$ e $\neg\psi$, os quais são subfórmulas de $\chi$.&lt;/p&gt;
+
+&lt;p&gt;Para organizarmos essa ideia em forma de tabela, procederemos das menores subfórmulas às maiores, da esquerda para a direita, sendo uma coluna para cada. Inserimos primeiro as duas menores subfórmulas, que de fato são os símbolos atômicos, neste caso $\phi$ e $\psi$&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi \land \neg\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg(\phi\land\neg\psi)$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;A próxima subfórmula a ser inserida seria então a negação $\neg\psi$.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi \land \neg\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg(\phi\land\neg\psi)$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Considerando os valores-verdade da primeira ($\phi$) e terceira ($\neg\psi$) colunas, podemos então deduzir a quarta coluna como sendo a sua conjunção.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi \land \neg\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg(\phi\land\neg\psi)$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Como a última (mais externa) subfórmula é apenas a negação da conjunção anterior, basta invertermos os valores-verdade da coluna ($\phi\land\neg\psi$).&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\phi \land \neg\psi$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg(\phi\land\neg\psi)$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;tamanho-da-tabela-verdade&quot;&gt;Tamanho da tabela verdade&lt;/h3&gt;
+
+&lt;p&gt;Observe que nos exemplos acima, grande parte das tabelas verdade possuem o mesmo número de linhas. Esse valor é completamente definido pelo número de simbolos atômicos utilizados pelas fórmulas. Visto que para cada símbolo dois valores-verdade são possíveis, o número de linhas da tabela-verdade será $2^n$, onde $n$ é o número de símbolos utilizados. Como exemplo, considere a fórmula&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\land q \to w\land s&lt;/script&gt;
+
+&lt;p&gt;A qual utiliza 4 símbolos: $p, q, w$ e $s$. Para cada um desses há 2 possibilidades, portanto, o número de linhas na tabela será.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{cccccccc}
+p &amp; \land &amp; q &amp; \to   &amp; w &amp; \land &amp; s &amp;\\
+2 &amp;\times &amp; 2 &amp;\times &amp; 2 &amp;\times &amp; 2 &amp; = 2^4 = 16
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;h3 id=&quot;exemplos-xor&quot;&gt;Exemplos ($XOR$)&lt;/h3&gt;
+
+&lt;p&gt;Construa a tabela verdade para a seguinte fórmulas&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\lor q) \land \neg(p \land q) \tag{XOR}&lt;/script&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$p\lor q$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$p\land q$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg(p\land q)$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$(p\lor q) \land \neg(p \land q)$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;exemplos-lte&quot;&gt;Exemplos (LTE)&lt;/h3&gt;
+
+&lt;p&gt;Construindo a tabela-verdade para a LTE, observamos um fato curioso. Todas as linhas da última coluna da tabela possuem valor-verdade &lt;em&gt;verdadeiro&lt;/em&gt;.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor \neg p&lt;/script&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg p$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$p\lor \neg p$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Fórmulas desse tipo recebem o nome de &lt;em&gt;tautologias&lt;/em&gt; e são verdadeiras para qualquer atribuição de valores para os símbolos atômicos. Uma fórmula é uma tautologia se, e somente se, ela é um teorema, ou seja, provável sem suposições.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Toda &lt;em&gt;tautologia&lt;/em&gt; é &lt;strong&gt;satisfazível&lt;/strong&gt;, ou seja, existe ao menos uma atribuição de valores-verdade que torna a fórmula verdadeira.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;exemplos-contradição&quot;&gt;Exemplos (Contradição)&lt;/h3&gt;
+
+&lt;p&gt;Já a tabela-verdade para a contradição nos dá um resultado oposto ao das &lt;em&gt;tautologias&lt;/em&gt;. Neste caso, todas as linhas da última coluna da tabela-verdade possuem valor-verdade falso. Isso significa que não há atribuição de valores-verdade para as variáveis que torne a fórmula verdadeira.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Toda &lt;em&gt;contradição&lt;/em&gt; é &lt;strong&gt;insatisfatível&lt;/strong&gt;, ou seja, não existe atribuição de valores-verdade que torne a fórmula verdadeira.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land \neg p&lt;/script&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg p$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$p\land \neg p$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;tabelas-verdade-de-formas-de-argumento&quot;&gt;Tabelas verdade de formas de argumento&lt;/h2&gt;
+
+&lt;p&gt;Tabelas verdade também podem ser utilizadas para demonstrar se uma forma de argumento é &lt;strong&gt;válida&lt;/strong&gt; ou &lt;strong&gt;inválida&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Uma forma de argumento é &lt;strong&gt;válida&lt;/strong&gt; se não há atribuição de valores-verdade tal que as premissas sejam verdadeiras e a conclusão seja falsa.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Uma forma de argumento é &lt;strong&gt;inválida&lt;/strong&gt; se existe ao menos uma atribuição de valores-verdade que torne as premissas verdadeiras e a conclusão falsa.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Como as tabelas verdade listam exaustivamente todas as possíveis atribuições de valores-verdade, elas podem ser utilizadas para verificar a validade de qualquer forma de argumento.&lt;/p&gt;
+
+&lt;p&gt;Como exemplo, vamos construir a tabela verdade para a forma de argumento:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor q, \neg p \vdash q&lt;/script&gt;
+
+&lt;p&gt;A tabela verdade neste caso ignorará os símbolos: $, \vdash$. Tais símbolos são utilizados apenas para identificar possíveis colunas na tabela.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$p\lor q$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\neg p$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;V&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;V&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;V&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Observe que a única linha da tabela em que as premissas são ambas verdadeiras é a linha 3. Nessa situação a conclusão também é verdadeira, portanto a fórmula é &lt;strong&gt;válida&lt;/strong&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Como há dois casos em que a conclusão é verdadeira (linhas 1 e 3) então a fórmula é &lt;strong&gt;satisfazível&lt;/strong&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;exemplos-afirmação-do-consequente&quot;&gt;Exemplos (Afirmação do consequente)&lt;/h3&gt;
+
+&lt;p&gt;Construa a tabela verdade para a forma de argumento a seguir:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to q, q \vdash p&lt;/script&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$p\to q$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;V&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;V&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;F&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Como a terceira linha nos provê um &lt;strong&gt;contra-exemplo&lt;/strong&gt; do argumento, ou seja, uma atribuição de valores-verdade que torna as premissas verdadeiras e a conclusão falsa, então essa forma de argumento é &lt;strong&gt;inválida&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;exercícios&quot;&gt;Exercícios&lt;/h2&gt;
+
+&lt;p&gt;Construa as tabelas verdade e verifique se as formas de argumento a seguir são &lt;strong&gt;válidas&lt;/strong&gt; ou &lt;strong&gt;inválidas&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to q, p\to \neg q \vdash \neg p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to q \vdash \neg(q\to p)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor q, q \lor r \vdash p \lor r&lt;/script&gt;
+
+&lt;h1 id=&quot;referências&quot;&gt;Referências&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://racionalistasusp.files.wordpress.com/2010/01/nolt-john-rohatyn-dennis-lc3b3gica.pdf&quot;&gt;Logica - John Nolt (PDF). Capítulo 4: Pgs. 160 a 184&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Wed, 30 Aug 2017 10:20:00 -0300</pubDate>
+        <link>http://localhost:4000/lc21cp-172/Semantica-da-logica-proposicional.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Semantica-da-logica-proposicional.html</guid>
+        
+        <category>semântica</category>
+        
+        
+        <category>LC21CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>Exercícios III - Regras de dedução</title>
+        <description>&lt;h1 id=&quot;demonstre-os-argumentos-a-seguir&quot;&gt;Demonstre os argumentos a seguir:&lt;/h1&gt;
+
+&lt;p&gt;Utilize as regras de derivação:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da conjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi\quad\psi}{\phi \land \psi} \land\mbox{i}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Eliminação da conjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi \land \psi}{\phi} \land\mbox{e}_1,\quad \dfrac{\phi \land \psi}{\psi} \land\mbox{e}_2$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da dupla negação:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi}{\neg\neg\phi} \neg\neg\mbox{i}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Eliminação da dupla negação:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\neg\neg\phi}{\phi} \neg\neg\mbox{e}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Modus Ponens:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi\to\psi\qquad \phi}{\psi}{MP}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da disjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi}{\phi \lor \psi}\lor\mbox{i}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Modus Tollens:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi\to\psi\qquad \neg\psi}{\neg\phi}{MT}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Eliminação da disjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi \lor \psi\quad (\phi\dots\chi)\quad (\psi\dots\chi)}{\chi} \lor\mbox{e}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da contradição:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;script type=&quot;math/tex&quot;&gt;\dfrac{\phi\quad \neg\phi}{\perp}\perp\mbox{i}&lt;/script&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da negação:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;script type=&quot;math/tex&quot;&gt;\dfrac{(\phi\dots\perp)}{\neg \phi}\neg\mbox{i}&lt;/script&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Eliminação da contradição:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;script type=&quot;math/tex&quot;&gt;\dfrac{\perp}{\phi}\perp\mbox{e}&lt;/script&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\lor (q\to p)) \land q \vdash p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\lor (p\land q)\vdash p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q) \lor (p\land r) \vdash p\land(q\lor r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \vdash q \to (p \land q)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \vdash (p\to q) \to q&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\to r) \land (q \to r) \vdash (p\land q )\to r&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;q \to r \vdash (p\to q) \to (p\to r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (q \to r), p\to q \vdash p\to r&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to q, r \to s \vdash (p\lor r) \to (q \lor s)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor q \vdash r \to ((p\lor q)\land r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to q, r \to s \vdash (p \land r) \to (q \land s)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (q\land r) \vdash (p\to q) \land (p\to r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor (p\land q) \vdash p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;r, p \to (r\to q) \vdash p \to (q \land r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (q \lor r), q \to s, r \to s \vdash p \to s&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(p \land q) \vdash (\neg p \lor \neg q) \tag{Lei de De Morgan (DM)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(p \lor q) \vdash (\neg p \land \neg q) \tag{Lei de De Morgan (DM)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land (q \lor r )) \vdash ((p \land q) \lor (p \land r)) \tag{Distribuição (DIST)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p \to \neg q \vdash q \to p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p \lor \neg q \vdash \neg(p \land q)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor q, \neg q \lor r \vdash p \lor r&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p \land \neg q \vdash \neg (p\lor q)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to q, s \to t \vdash (p\lor s) \to (q \land t)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p \vdash p \to q&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(p\to q) \vdash q \to p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\to q)\to r, s \to \neg p, t, \neg s \land t\to q \vdash r&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(s\to p)\lor(t\to q) \vdash (s\to q) \lor (t\to p)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q) \to r, r \to s, q \land \neg s \vdash \neg p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to q \vdash \neg p \lor q&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(c \land n) \to t, h \land \neg s, h \land \neg(s \lor c) \to p \vdash (n \land \neg t) \to p&lt;/script&gt;
+
+</description>
+        <pubDate>Thu, 24 Aug 2017 10:20:00 -0300</pubDate>
+        <link>http://localhost:4000/lc21cp-172/Exercicios3-regras-de-dedu%C3%A7%C3%A3o.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Exercicios3-regras-de-dedu%C3%A7%C3%A3o.html</guid>
+        
+        <category>dedução-natural</category>
+        
+        
+        <category>LC21CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>Cálculo Proposicional - Regras de dedução III</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#revisão&quot; id=&quot;markdown-toc-revisão&quot;&gt;Revisão&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#regras-de-inferência&quot; id=&quot;markdown-toc-regras-de-inferência&quot;&gt;Regras de inferência&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#regras-para-a-negação&quot; id=&quot;markdown-toc-regras-para-a-negação&quot;&gt;Regras para a negação&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#prova-por-contradição&quot; id=&quot;markdown-toc-prova-por-contradição&quot;&gt;Prova por contradição&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exercícios-prova-por-contradição-noltpg122&quot; id=&quot;markdown-toc-exercícios-prova-por-contradição-noltpg122&quot;&gt;Exercícios: prova por contradição (Nolt,pg.122)&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#teoremas&quot; id=&quot;markdown-toc-teoremas&quot;&gt;Teoremas&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#equivalências&quot; id=&quot;markdown-toc-equivalências&quot;&gt;Equivalências&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#material-adicional&quot; id=&quot;markdown-toc-material-adicional&quot;&gt;Material adicional&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;revisão&quot;&gt;Revisão&lt;/h1&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da conjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi\quad\psi}{\phi \land \psi} \land\mbox{i}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Eliminação da conjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi \land \psi}{\phi} \land\mbox{e}_1,\quad \dfrac{\phi \land \psi}{\psi} \land\mbox{e}_2$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da dupla negação:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi}{\neg\neg\phi} \neg\neg\mbox{i}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Eliminação da dupla negação:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\neg\neg\phi}{\phi} \neg\neg\mbox{e}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Modus Ponens:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi\to\psi\qquad \phi}{\psi}{MP}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da disjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi}{\phi \lor \psi}\lor\mbox{i}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Modus Tollens:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi\to\psi\qquad \neg\psi}{\neg\psi}{MT}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução do condicional:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{(\phi\dots\psi)}{\phi\to\psi} \to\mbox{i}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Eliminação da disjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi \lor \psi\quad (\phi\dots\chi)\quad (\psi\dots\chi)}{\chi} \lor\mbox{e}$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&quot;regras-de-inferência&quot;&gt;Regras de inferência&lt;/h1&gt;
+
+&lt;h2 id=&quot;regras-para-a-negação&quot;&gt;Regras para a negação&lt;/h2&gt;
+
+&lt;p&gt;As regras para a negação são utilizadas em provas por &lt;em&gt;contradição&lt;/em&gt; (reductio ad absurdum). Uma contradição tem sempre a forma&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi \land \neg\phi&lt;/script&gt;
+
+&lt;p&gt;&lt;strong&gt;Eliminação da negação&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Desse tipo de proposição é possível eliminar a negação, substituindo a por um símbolo apropriado que indique que uma contradição existe.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\phi\quad \neg\phi}{\perp}\neg\mbox{e}&lt;/script&gt;
+
+&lt;p&gt;&lt;strong&gt;Introdução da negação&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;A introdução da negação também é uma regra hipotética. Dada uma fórmula $\phi$, o primeiro passo da regra consiste em assumir $\phi$ como hipótese. Se em qualquer momento da derivação, essa hipótese nos levar a uma contradição ($\phi\dots\perp$) podemos concluir que a hipótese é falsa. Como só há duas opções, se a hipótese é falsa, sua negação será verdadeira.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{(\phi\dots\perp)}{\neg \phi}\neg\mbox{i}&lt;/script&gt;
+
+&lt;p&gt;Note que a contradição, não necessariamente, precisa ocorrer entre $\phi \land \neg \phi$, pode ocorrer para outra fórmula qualquer e sua respectiva negação.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Eliminação da contradição&lt;/strong&gt;
+Uma característica contraintuitiva de qualquer contradição, é que elas nos permite concluir qualquer fórmula. Essa regra pode ser descrita da seguinte forma&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\perp}{\phi}\perp\mbox{e}&lt;/script&gt;
+
+&lt;h2 id=&quot;prova-por-contradição&quot;&gt;Prova por contradição&lt;/h2&gt;
+
+&lt;p&gt;Utilizando as regras da negação e contradição um tipo de regra pode ser derivada e utilizada para demonstrar a validade de argumentos. Esta regra é chamada &lt;em&gt;prova por contradição&lt;/em&gt; ou &lt;em&gt;redução ao absurdo&lt;/em&gt; (RAA) e consiste em assumir como hipótese a negação da conclusão de um argumento, caso uma contradição seja derivada a partir daí, podemos então concluir que a hipótese é falsa, e portanto, a conclusão é verdadeira.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{(\neg\phi\dots\perp)}{\phi}RAA&lt;/script&gt;
+
+&lt;p&gt;Como exemplo, vamos demonstrar a validade da regra de eliminação da contradição: $p, \neg p\vdash q$:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{llr}
+1.  &amp; p           &amp; \mbox{(premissa)}\\
+2.  &amp; \neg p      &amp; \mbox{(premissa)}\\\hline
+3.0. &amp; \neg q     &amp; \mbox{hipótese (RAA)}\\
+3.2. &amp; \perp      &amp; \land\mbox{i em 1 e 2}\\\hline
+4.  &amp; \neg\neg q  &amp; \mbox{por RAA 3.0-3.1}\\
+5.  &amp; q           &amp; \neg\neg\mbox{e}
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;exercícios-prova-por-contradição-noltpg122&quot;&gt;Exercícios: prova por contradição (Nolt,pg.122)&lt;/h2&gt;
+
+&lt;p&gt;Como exemplo dessa regra, vamos demonstrar a regra Modus Tollens por introdução da negação.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to q, \neg q \vdash \neg p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{llr}
+1.   &amp; p\to q &amp; \mbox{(premissa)}\\
+2.   &amp; \neg q &amp; \mbox{(premissa)}\\\hline
+3.0.  &amp; p      &amp; \mbox{hipótese (RAA)}\\
+3.1.  &amp; q      &amp; MP\mbox{ em 1 e 3}\\
+3.2.  &amp; \perp &amp; \neg\mbox{e em 2 e 3.1.}\\\hline
+4.   &amp; \neg p  &amp; \neg\mbox{i em 3.0-3.2}
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Observe que a hipótese $p$ (a qual é a negação da conclusão) nos permitiu concluir $q$. No entanto, temos $\neg q$ como premissa o que nos leva a uma contradição ($q \land \neg q$). Essa contradição nos informa que a hipótese ($p$) só pode ser falsa, e portanto sua negação deve ser verdadeira ($\neg p$).&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to q, p \to \neg q \vdash \neg p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to (q\to r), p, \neg r \vdash \neg q&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(\neg p \land \neg q), \neg p \vdash q&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor q, \neg p \vdash q&lt;/script&gt;
+
+&lt;h1 id=&quot;teoremas&quot;&gt;Teoremas&lt;/h1&gt;
+
+&lt;p&gt;Algumas fórmulas são prováveis sem quaisquer suposições não hipotéticas, essas são chamadas &lt;strong&gt;teoremas&lt;/strong&gt;. Um teorema é representado da seguinte forma:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \neg(p \land \neg p)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash p \to (p \lor q)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash p \to ((p\to q)\to q)&lt;/script&gt;
+
+&lt;h1 id=&quot;equivalências&quot;&gt;Equivalências&lt;/h1&gt;
+
+&lt;p&gt;Dadas duas fórmulas $\phi$ e $\psi$, elas são ditas &lt;strong&gt;equivalentes&lt;/strong&gt; se elas são interderiváveis, ou seja:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi \vdash \psi&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\psi \vdash \phi&lt;/script&gt;
+
+&lt;p&gt;Este fato é definido como $\phi \dashv\vdash \psi$&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Demonstre as equivalências a seguir&lt;/strong&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \to q) \dashv\vdash \neg(p \land \neg q)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(p \land q) \dashv\vdash (\neg p \lor \neg q) \tag{Lei de De Morgan (DM)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(p \lor q) \dashv\vdash (\neg p \land \neg q) \tag{Lei de De Morgan (DM)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\lor q) \dashv\vdash (q\lor p) \tag{Comutação (COM)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \dashv\vdash (q\land p) \tag{Comutação (COM)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \lor (q \lor r)) \dashv\vdash ((p\lor q)\lor r) \tag{Associação (ASSOC)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land (q \land r))\dashv\vdash((p\land q)\land r) \tag{Associação (ASSOC)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land (q \lor r )) \dashv\vdash ((p \land q) \lor (p \land r)) \tag{Distribuição (DIST)}&lt;/script&gt;
+
+&lt;h1 id=&quot;material-adicional&quot;&gt;Material adicional&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://racionalistasusp.files.wordpress.com/2010/01/nolt-john-rohatyn-dennis-lc3b3gica.pdf&quot;&gt;Logica - John Nolt (PDF). Pg. 122&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;ftp://ftp.cs.bham.ac.uk/pub/authors/M.D.Ryan/tmp/Anongporn/Ch1+3.pdf&quot;&gt;Logic in Computer Science - Huth &amp;amp; Ryan (PDF). Pg. 20&lt;/a&gt;&lt;/p&gt;
+&lt;iframe width=&quot;360&quot; height=&quot;205&quot; src=&quot;https://www.youtube.com/embed/sVUMAqMmy7o&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;
+&lt;/iframe&gt;
+
+&lt;iframe width=&quot;360&quot; height=&quot;205&quot; src=&quot;https://www.youtube.com/embed/ec8oLHZFhpo&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;
+&lt;/iframe&gt;
+
+</description>
+        <pubDate>Thu, 24 Aug 2017 10:20:00 -0300</pubDate>
+        <link>http://localhost:4000/lc21cp-172/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-3.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-3.html</guid>
+        
+        <category>dedução-natural</category>
+        
+        
+        <category>LC21CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>Cálculo Proposicional - Regras de dedução II</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#revisão&quot; id=&quot;markdown-toc-revisão&quot;&gt;Revisão&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#regras-de-inferência&quot; id=&quot;markdown-toc-regras-de-inferência&quot;&gt;Regras de inferência&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#regra-para-eliminação-do-condicional---modus-tollens&quot; id=&quot;markdown-toc-regra-para-eliminação-do-condicional---modus-tollens&quot;&gt;Regra para eliminação do condicional - Modus Tollens&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#exercícios-modus-tollens&quot; id=&quot;markdown-toc-exercícios-modus-tollens&quot;&gt;Exercícios: Modus Tollens&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#regras-hipotéticas&quot; id=&quot;markdown-toc-regras-hipotéticas&quot;&gt;Regras hipotéticas&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#regra-para-a-inclusão-do-condicional-prova-do-condicional&quot; id=&quot;markdown-toc-regra-para-a-inclusão-do-condicional-prova-do-condicional&quot;&gt;Regra para a inclusão do condicional (prova do condicional)&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#exercícios-inclusão-do-condicional&quot; id=&quot;markdown-toc-exercícios-inclusão-do-condicional&quot;&gt;Exercícios: inclusão do condicional&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#regras-para-eliminação-da-disjunção&quot; id=&quot;markdown-toc-regras-para-eliminação-da-disjunção&quot;&gt;Regras para eliminação da disjunção&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#exercícios-eliminação-da-disjunção-e-inclusão-do-condicional&quot; id=&quot;markdown-toc-exercícios-eliminação-da-disjunção-e-inclusão-do-condicional&quot;&gt;Exercícios: eliminação da disjunção e inclusão do condicional&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;revisão&quot;&gt;Revisão&lt;/h1&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da conjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi\quad\psi}{\phi \land \psi} \land\mbox{i}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Eliminação da conjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi \land \psi}{\phi} \land\mbox{e}_1,\quad \dfrac{\phi \land \psi}{\psi} \land\mbox{e}_2$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da dupla negação:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi}{\neg\neg\phi} \neg\neg\mbox{i}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Eliminação da dupla negação:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\neg\neg\phi}{\phi} \neg\neg\mbox{e}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Modus Ponens:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi\to\psi\qquad \phi}{\psi}MP$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da disjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi}{\phi \lor \psi}\lor\mbox{i}$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&quot;regras-de-inferência&quot;&gt;Regras de inferência&lt;/h1&gt;
+
+&lt;h2 id=&quot;regra-para-eliminação-do-condicional---modus-tollens&quot;&gt;Regra para eliminação do condicional - Modus Tollens&lt;/h2&gt;
+
+&lt;p&gt;Existe uma segunda regra para eliminação do condicional, chamada &lt;em&gt;Modus Tollens&lt;/em&gt; (MT). Em &lt;em&gt;Modus Ponens&lt;/em&gt; (MP) concluimos que, dada fórmula &lt;script type=&quot;math/tex&quot;&gt;\phi\to\psi&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;\psi&lt;/script&gt; só é verdadeira quando (\phi) é verdadeira.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Modus Ponens&lt;/em&gt; trata do caso oposto, em que $\neg q$ é tido como premissa, portanto:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to q, \neg q \vdash \neg p&lt;/script&gt;
+
+&lt;p&gt;Esta regra é provada por contradição. Assuma que $p$ seja verdadeiro. Logo&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p, p\to q \vdash q\quad (MP)&lt;/script&gt;
+
+&lt;p&gt;No entanto, temos como premissa $\neg q$, portanto, $p$ não pode ser verdadeiro.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\phi\to\psi\quad \neg\psi}{\neg\phi}MT\qquad(\mbox{Modus Tollens})&lt;/script&gt;
+
+&lt;p&gt;&lt;strong&gt;Modus Ponens&lt;/strong&gt;: exemplo&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;“Se Jean é paranaense, então Jean é brasileiro.” (&lt;script type=&quot;math/tex&quot;&gt;p\to q&lt;/script&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; : “Jean é paranaense.” (&lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; : “Jean é brasileiro” (então &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Modus Tollens&lt;/strong&gt;: exemplo&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“Se Jean é paranaense, então Jean é brasileiro.” $(p\to q)$&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;\neg q&lt;/script&gt; : “Jean não é brasileiro”&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;\neg p&lt;/script&gt; : “Jean não é paranaense.”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;exercícios-modus-tollens&quot;&gt;Exercícios: Modus Tollens&lt;/h3&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to(q\to r), p, \neg r \vdash \neg q&lt;/script&gt;
+
+&lt;h1 id=&quot;regras-hipotéticas&quot;&gt;Regras hipotéticas&lt;/h1&gt;
+
+&lt;h2 id=&quot;regra-para-a-inclusão-do-condicional-prova-do-condicional&quot;&gt;Regra para a inclusão do condicional (prova do condicional)&lt;/h2&gt;
+
+&lt;p&gt;Dadas duas fórmulas $\phi$ e $\psi$, o condicional pode ser incluído entre elas se, quando assumindo a &lt;strong&gt;hipótese&lt;/strong&gt; de $\phi$ verdadeiro, então $\psi$ puder ser concluído por derivação. Deste modo, se existe uma derivação da hipótese à conclusão $(\phi\dots\psi)$, a implicação pode ser concluída.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{(\phi\dots\psi)}{\phi\to\psi}\to\mbox{i}&lt;/script&gt;
+
+&lt;h3 id=&quot;exercícios-inclusão-do-condicional&quot;&gt;Exercícios: inclusão do condicional&lt;/h3&gt;
+
+&lt;p&gt;Exemplo de resolução:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to q \vdash \neg q \to \neg p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{align}
+1.\quad &amp; p\to q &amp; \mbox{(premissa)}\\
+2.\quad &amp; \neg q &amp; \mbox{(hipótese)}\\
+2.1\quad &amp; \neg p &amp; \mbox{por MT em 1. e 2.}\\
+3.\quad &amp; \neg q \to \neg p &amp; \mbox{por } \to\mbox{i}\mbox{ em 2. e 2.1}
+\end{align} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Se ao assumirmos $\neg q$ como hipótese, $\neg p$ pode ser concluído por dedução/derivação, então como conclusão $\neg q \to \neg p$.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \to r \vdash p \to (q \to r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (q \to r) \vdash (p \land q) \to r&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to q \vdash (p \land r) \to (q \land r)&lt;/script&gt;
+
+&lt;h2 id=&quot;regras-para-eliminação-da-disjunção&quot;&gt;Regras para eliminação da disjunção&lt;/h2&gt;
+
+&lt;p&gt;Dada uma fórmula $\phi \lor \psi$, a disjunção pode ser eliminada, se em assumindo-se cada uma delas como hipótese, a mesma conclusão $\chi$ possa ser derivada. Isso pode ser descrito de duas formas.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Não-hipotética&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Na primeira (não hipotética), as implicações $\phi\to\chi$ e $\psi\to\chi$ aparecem como premissas, e portanto&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi \lor \psi, \phi\to \chi, \psi\to\chi \vdash \chi&lt;/script&gt;
+
+&lt;p&gt;&lt;strong&gt;Hipotética&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Já a segunda regra é hipotética. Visto que uma, ou ambas, as implicações não aparecem como premissas, elas precisam ser demonstradas por dedução, assumindo cada parte ($\phi$ e $\psi$) como hipótese. Neste caso, só é possível derivar $\chi$ se e somente se ambas hipóteses levarem a $\chi$, o que é representado como ($\phi\dots\chi$ e $\psi\dots\chi$). Esta regra é representada da seguinte forma:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi \lor \psi, (\phi\dots\chi), (\psi\dots\chi) \vdash \chi&lt;/script&gt;
+
+&lt;p&gt;Note que $(\phi\dots\chi)$ e $(\psi\dots \chi)$ são demonstradas por inclusão do condicional.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\phi\lor\psi\quad(\phi\dots\chi)\quad(\psi\dots\chi)}{\chi}\lor\mbox{e}\qquad(\mbox{eliminação do }\lor)&lt;/script&gt;
+
+&lt;h3 id=&quot;exercícios-eliminação-da-disjunção-e-inclusão-do-condicional&quot;&gt;Exercícios: eliminação da disjunção e inclusão do condicional&lt;/h3&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor q, p \to r, q \to r \vdash r&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \lor q) \land (p \lor r), p \to s, q \to s, p \to t, r \to t \vdash s \land t&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor p, p \to (q \land r) \vdash r&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;q \to r \vdash (p \lor q) \to (p \lor r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \lor q) \lor r \vdash p \lor (q \lor r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land (q \lor r) \vdash (p \land q) \lor (p \land r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \lor (p \land r) \vdash p \land (q \lor r)&lt;/script&gt;
+
+</description>
+        <pubDate>Wed, 23 Aug 2017 10:20:00 -0300</pubDate>
+        <link>http://localhost:4000/lc21cp-172/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-2.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-2.html</guid>
+        
+        <category>dedução-natural</category>
+        
+        
+        <category>LC21CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>APS I (implementando vector)</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#estrutura-e-implementação&quot; id=&quot;markdown-toc-estrutura-e-implementação&quot;&gt;Estrutura e Implementação&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#inicializaçãofinalização&quot; id=&quot;markdown-toc-inicializaçãofinalização&quot;&gt;Inicialização/Finalização&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#acesso-e-manipulação-sem-crescimento&quot; id=&quot;markdown-toc-acesso-e-manipulação-sem-crescimento&quot;&gt;Acesso e manipulação: sem crescimento&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#acesso-e-manipulação&quot; id=&quot;markdown-toc-acesso-e-manipulação&quot;&gt;Acesso e manipulação&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#inserção-com-crescimento&quot; id=&quot;markdown-toc-inserção-com-crescimento&quot;&gt;Inserção: com crescimento&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#remoção-sem-decrescimento&quot; id=&quot;markdown-toc-remoção-sem-decrescimento&quot;&gt;Remoção: sem decrescimento&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#atualizando-o-tamanho-do-vetor-resize&quot; id=&quot;markdown-toc-atualizando-o-tamanho-do-vetor-resize&quot;&gt;Atualizando o tamanho do vetor: resize&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#imprimindo-o-conteúdo-do-vetor&quot; id=&quot;markdown-toc-imprimindo-o-conteúdo-do-vetor&quot;&gt;Imprimindo o conteúdo do vetor&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#verificando-a-validade-de-argumentos&quot; id=&quot;markdown-toc-verificando-a-validade-de-argumentos&quot;&gt;Verificando a validade de argumentos&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#generalizando-o-tipo-vector&quot; id=&quot;markdown-toc-generalizando-o-tipo-vector&quot;&gt;Generalizando o tipo vector&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#casos-de-teste&quot; id=&quot;markdown-toc-casos-de-teste&quot;&gt;Casos de teste&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;estrutura-e-implementação&quot;&gt;Estrutura e Implementação&lt;/h1&gt;
+&lt;p&gt;Implementar as funcionalidades da classe &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;. Para tal utilizar uma estrutura similar a:&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// vetor que armazenará os inteiros;
+&lt;/span&gt;    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// tamanho atual do vetor
+&lt;/span&gt;    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;capacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// tamanho reservado em memória 
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;inicializaçãofinalização&quot;&gt;Inicialização/Finalização&lt;/h2&gt;
+&lt;p&gt;Todas as funcionalidades e acesso aos dados será feita por funções, as quais precisaremos definir. A primeira delas, é a função de alocação da memória inicial de um vetor.&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Aloca memória inicial para o vetor
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_vector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;initial_capacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;De forma análoga há a função para desalocar a memória do vetor e do ponteiro.&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Desaloca a memória de v-&amp;gt;data e do próprio v.
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;free_vector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;acesso-e-manipulação-sem-crescimento&quot;&gt;Acesso e manipulação: sem crescimento&lt;/h2&gt;
+&lt;p&gt;Para acessar um item do vetor e alterar o valor de um item, por exemplo:&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Retorna um ponteiro para o item na posição i
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Retorna o valor na posição i
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;vector_get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Altera o valor na posição i
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;vector_set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;acesso-e-manipulação&quot;&gt;Acesso e manipulação&lt;/h2&gt;
+
+&lt;h3 id=&quot;inserção-com-crescimento&quot;&gt;Inserção: com crescimento&lt;/h3&gt;
+&lt;p&gt;As funções acima não alteram o tamanho do vetor, portanto $i$ deve ser um índice válido. Já a função a seguir, tenta inserir um item no final do vetor, caso ainda haja espaço, basta inserí-lo e atualizar &lt;code class=&quot;highlighter-rouge&quot;&gt;size&lt;/code&gt;. Caso contrário, é preciso realocar o vetor.&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Suponha agora que queiramos inserir um elemento no vetor em uma dada posição que não seja o fim. Chamaremos essa função:&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Se &lt;code class=&quot;highlighter-rouge&quot;&gt;vector_insert&lt;/code&gt; é chamada para inserir um valor em uma posição $i$ do vetor, todos os elementos em posições posteriores a $i$ precisam ser movidos adiante.&lt;/p&gt;
+
+&lt;p&gt;Implementada a inserção, temos condições de facilmente implementar uma função para inserir no início do vetor. Esta função precisa apenas chamar &lt;code class=&quot;highlighter-rouge&quot;&gt;vector_insert(v, value, 0)&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_push_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;remoção-sem-decrescimento&quot;&gt;Remoção: sem decrescimento&lt;/h3&gt;
+
+&lt;p&gt;De forma análoga às funções de inserção, temos as funções para remoção de elementos do vetor. Essas, no entanto, não alteram a capacidade do vetor, apenas seu tamanho. O funcionamento dessas funções é semelhante às anteriores.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Remove o elemento do fim do vetor, decrementando size.
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Remove o elemento na posição i, e move os posteriores para trás
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_erase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Remove o elemento na posição zero do vetor e move os posteriores para trás
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_pop_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;atualizando-o-tamanho-do-vetor-resize&quot;&gt;Atualizando o tamanho do vetor: resize&lt;/h2&gt;
+
+&lt;p&gt;Sempre que um elemento for inserido no vetor, uma alteração no tamanho atual (&lt;code class=&quot;highlighter-rouge&quot;&gt;size&lt;/code&gt;) é necessária.&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Se não há espaço adicional (entre &lt;code class=&quot;highlighter-rouge&quot;&gt;size&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;capacity&lt;/code&gt;) é preciso realocar o vetor &lt;code class=&quot;highlighter-rouge&quot;&gt;realloc&lt;/code&gt;. Assumiremos que a nova capacidade será o dobro da atual &lt;code class=&quot;highlighter-rouge&quot;&gt;capacity *= 2&lt;/code&gt;. Observe que se a capacidade for inicializada com zero, esta atualização não funcionará.&lt;/p&gt;
+
+&lt;h2 id=&quot;imprimindo-o-conteúdo-do-vetor&quot;&gt;Imprimindo o conteúdo do vetor&lt;/h2&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Esta função auxiliar deverá imprimir o conteúdo do vetor obedecendo o seguinte formato:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[size/capacity] data[0] data[1] data[2] ... data[size] \n
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Exemplo:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[6/10] 0 1 8 2 3 9
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;verificando-a-validade-de-argumentos&quot;&gt;Verificando a validade de argumentos&lt;/h2&gt;
+
+&lt;p&gt;Grande parte das funções de acesso e manipulação dos dados no vetor recebem como argumento um inteiro como índice. Para o contexto de &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;, todo acesso que não esteja no intervalo $0 \leq i &amp;lt; \mbox{size}$ é inválido, pois extrapola os índices do vetor.&lt;/p&gt;
+
+&lt;p&gt;Há diversas formas de se verificar esse tipo de situação. Podemos, por exemplo, definir um condicional que verifique os limites de $i$&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Faz algo
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;No caso de vector, um acesso fora dos limites do vetor levaria a uma falha de segmentação durante a execução do programa. Um acesso desse tipo, em geral, é resultado de erro de programação, visto que não é razoável que alguém tente, deliberadamente, acessar uma região de memória que não lhe pertence. Portanto, acessos desse tipo são anômalos, e devem ser noticiados imediatamente.&lt;/p&gt;
+
+&lt;p&gt;Uma forma de se fazer isso, é utilizando a função &lt;code class=&quot;highlighter-rouge&quot;&gt;assert(bool v)&lt;/code&gt; (requer &lt;code class=&quot;highlighter-rouge&quot;&gt;#include &amp;lt;assert.h&amp;gt;&lt;/code&gt;). Esta é uma função bem simples, a qual termina a execução do programa, caso o argumento que ela receba não seja verdadeiro. O condicional definido anteriormente poderia ser substituído por:&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;assert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Faz algo
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Neste caso, a linha após &lt;code class=&quot;highlighter-rouge&quot;&gt;assert&lt;/code&gt; somente será alcançada caso a expressão &lt;code class=&quot;highlighter-rouge&quot;&gt;i &amp;gt;=0 &amp;amp;&amp;amp; i &amp;lt; v-&amp;gt;size&lt;/code&gt; seja verdadeira. Caso contrário o programa será interrompido imediatamente, e uma mensagem de erro impressa em tela.&lt;/p&gt;
+
+&lt;h1 id=&quot;generalizando-o-tipo-vector&quot;&gt;Generalizando o tipo vector&lt;/h1&gt;
+
+&lt;p&gt;Até então tratamos de uma implementação &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; cuja estrutura interna é baseada em um vetor de inteiros.&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// vetor que armazenará os inteiro;
+&lt;/span&gt;    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// tamanho atual do vetor
+&lt;/span&gt;    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;capacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// tamanho reservado em memória 
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Porém, em grande parte dos casos, as mesmas funcionalidades implementadas poderiam ser úteis para outros tipos de dados. Como poderíamos alterar essa estrutura para que fosse mais fácil utilizá-la em outras situações? Ex.: para armazenar &lt;code class=&quot;highlighter-rouge&quot;&gt;float&lt;/code&gt; ou &lt;code class=&quot;highlighter-rouge&quot;&gt;char&lt;/code&gt;, etc.&lt;/p&gt;
+
+&lt;p&gt;Podemos definir um tipo de dados, com &lt;code class=&quot;highlighter-rouge&quot;&gt;typedef&lt;/code&gt; e utilizá-lo em lugar de &lt;code class=&quot;highlighter-rouge&quot;&gt;int&lt;/code&gt;. Ou seja&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// vetor que armazenará os inteiro;
+&lt;/span&gt;    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// tamanho atual do vetor
+&lt;/span&gt;    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;capacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// tamanho reservado em memória 
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Toda a referência ao tipo inteiro em elementos do vetor, são agora substituídos por &lt;code class=&quot;highlighter-rouge&quot;&gt;Type&lt;/code&gt;. Deste modo para que se utilize toda a estrutura com um tipo de dados diferente, basta alterar a definição de &lt;code class=&quot;highlighter-rouge&quot;&gt;Type&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Funções de remoção de elementos
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_pop_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_erase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Funções de inserção de elementos
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_push_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;casos-de-teste&quot;&gt;Casos de teste&lt;/h1&gt;
+
+&lt;p&gt;Um caso de teste é um conjunto de dados de entrada com a respectiva saída esperada. Há diversos meios de se implementar casos de testes (&lt;a href=&quot;https://pt.wikipedia.org/wiki/Teste_de_unidade&quot;&gt;wiki/Teste_de_unidade&lt;/a&gt;), no entanto, para o nosso propósito isso será feito por meio de um arquivo de entrada, e um arquivo de saída. Considera-se que o programa passou em um determinado caso de teste, se, dado um arquivo de entrada, ele produz um arquivo de saída idêntico ao esperado.&lt;/p&gt;
+
+&lt;p&gt;Suponhamos o seguinte arquivo de entrada, o qual especifica um caso de teste.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;6
+6
+push_front 13
+push_back 49
+push_back 29
+push_back 5
+push_front 26
+pop_back
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Após cada um desses comandos o vetor é impresso, seguindo um formato especificado descrito a seguir:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[1/6] 13 
+[2/6] 13 49 
+[3/6] 13 49 29 
+[4/6] 13 49 29 5 
+[5/6] 26 13 49 29 5 
+[4/6] 26 13 49 29 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;A primeira linha do arquivo de entrada sempre inicializará o vetor, neste exemplo, ela requisita a inicialização com capacidade 6&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;6
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;A pŕoxima linha indica quantos comandos virão a seguir, neste exemplo temos 6 comandos, portanto a segunda linha contém o número 6.&lt;/p&gt;
+
+&lt;p&gt;A seguir desta linha, virão então 9 comandos, que serão lidos um a um. A cada comando lido, a função de mesmo nome deverá ser chamada no seu código com os parâmetros vindos do arquivo. Exemplo, a linha de entrada&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;push_front 13
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Deverá disparar em seu código uma chamada à função&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;vector_push_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;13&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Note que cada linha nessa saída é resultado de um dos comandos de entrada. Por exemplo, após o primeiro &lt;code class=&quot;highlighter-rouge&quot;&gt;push_front 13&lt;/code&gt;, o vetor passa a ter tamanho 1 e capacidade 6, portanto foi impresso em tela a linha&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[1/6] 13
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Após o segundo &lt;code class=&quot;highlighter-rouge&quot;&gt;push_back 49&lt;/code&gt;, o vetor passa a ter tamanho 2 e capacidade ainda é 6, portanto foi impresso em tela a linha&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[2/6] 13 49
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Mon, 21 Aug 2017 18:40:00 -0300</pubDate>
+        <link>http://localhost:4000/ae22cp-172/APS-vector.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/APS-vector.html</guid>
+        
+        <category>aps1-vector</category>
+        
+        
+        <category>AE22CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>Organização de memória, stack, heap IV</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#revisão&quot; id=&quot;markdown-toc-revisão&quot;&gt;Revisão&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#organização-de-memória&quot; id=&quot;markdown-toc-organização-de-memória&quot;&gt;Organização de memória&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#pilha-de-chamadas&quot; id=&quot;markdown-toc-pilha-de-chamadas&quot;&gt;Pilha de chamadas&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#memória-dinâmica&quot; id=&quot;markdown-toc-memória-dinâmica&quot;&gt;Memória dinâmica:&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#questão-de-revisão&quot; id=&quot;markdown-toc-questão-de-revisão&quot;&gt;Questão de revisão&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#gerenciamento-de-memória-em-c&quot; id=&quot;markdown-toc-gerenciamento-de-memória-em-c&quot;&gt;Gerenciamento de memória em C&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#vazamentos-de-memória&quot; id=&quot;markdown-toc-vazamentos-de-memória&quot;&gt;Vazamentos de memória&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exemplo-malloc&quot; id=&quot;markdown-toc-exemplo-malloc&quot;&gt;Exemplo: malloc&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exemplo-realloc&quot; id=&quot;markdown-toc-exemplo-realloc&quot;&gt;Exemplo: realloc&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exemplo-mantendo-referências&quot; id=&quot;markdown-toc-exemplo-mantendo-referências&quot;&gt;Exemplo: mantendo referências&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exercício-liberando-memória&quot; id=&quot;markdown-toc-exercício-liberando-memória&quot;&gt;Exercício: liberando memória&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;revisão&quot;&gt;Revisão&lt;/h1&gt;
+
+&lt;h2 id=&quot;organização-de-memória&quot;&gt;Organização de memória&lt;/h2&gt;
+
+&lt;p&gt;(imagem:&lt;a href=&quot;http://www.geeksforgeeks.org/memory-layout-of-c-program/&quot;&gt;geeksforgeeks.org&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/memory-layout.gif&quot; alt=&quot;memory-layout&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;pilha-de-chamadas&quot;&gt;Pilha de chamadas&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Região de memória utilizada para alocação de variáveis locais e passagem de parâmetros para funções&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Alocação e desalocação de memória é feita automaticamente quando entrando/saindo do escopo de declaração das variáveis.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Alocar implica em inserir elementos no topo da pilha (reservar espaço no topo da pilha)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Desalocar implica em remover elementos do topo da pilha&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;memória-dinâmica&quot;&gt;Memória dinâmica:&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Região de memória utilizada para alocação de variáveis não presas a um escopo.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Alocação e desalocação precisam ser requisitadas explicitamente pelo programador&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Alocar implica em procurar na memória uma região livre do tamanho requisitado.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Desalocar implica em liberar região de memória previamente requisitada&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;questão-de-revisão&quot;&gt;Questão de revisão&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Àqueles que já fizeram esta disciplina:&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;A pilha de chamadas é implementada como uma estrutura de dados pilha&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Como o Heap é implementado?&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Obs: existe uma estrutura de dados chamada Heap, porém isso é uma coincidência.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;gerenciamento-de-memória-em-c&quot;&gt;Gerenciamento de memória em C&lt;/h1&gt;
+
+&lt;p&gt;Em C, memória no Heap é gerenciada pelas funções (&lt;a href=&quot;http://man7.org/linux/man-pages/man3/malloc.3.html&quot;&gt;manpage:malloc&lt;/a&gt;)&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdlib.h&amp;gt;
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;free&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;calloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nmemb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;realloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;vazamentos-de-memória&quot;&gt;Vazamentos de memória&lt;/h2&gt;
+
+&lt;p&gt;Memória alocada dinâmicamente precisa ser liberada pelo programador. Analise o seguinte código:&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;media_idade&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soma&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NUM_PESSOAS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nova_pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;ler_pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;soma&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soma&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NUM_PESSOAS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%f&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;media_idade&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Como a memória alocada pela função &lt;code class=&quot;highlighter-rouge&quot;&gt;nova_pessoa&lt;/code&gt; não foi liberada, nem ponteiros para essas memórias mantidos, após o fim da função, não haverá como liberar essa memória.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://pt.wikipedia.org/wiki/Vazamento_de_mem%C3%B3ria&quot;&gt;Vazamento de memória (wikipedia)&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Memory_leak&quot;&gt;&lt;em&gt;Memory leak&lt;/em&gt; (wikipedia)&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;exemplo-malloc&quot;&gt;Exemplo: malloc&lt;/h2&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Utilizando malloc
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;    
+    &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+    &lt;span class=&quot;n&quot;&gt;free&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;    
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Valgrind nos responde&lt;/strong&gt; - &lt;a href=&quot;https://pt.wikipedia.org/wiki/Valgrind&quot;&gt;Valgrind (wikipedia)&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;==14406== HEAP SUMMARY:
+==14406==     in use at exit: 9,000 bytes in 9 blocks
+==14406==   total heap usage: 10 allocs, 1 frees, 10,000 bytes allocated
+==14406== 
+==14406== LEAK SUMMARY:
+==14406==    definitely lost: 9,000 bytes in 9 blocks
+==14406==    indirectly lost: 0 bytes in 0 blocks
+==14406==      possibly lost: 0 bytes in 0 blocks
+==14406==    still reachable: 0 bytes in 0 blocks
+==14406==         suppressed: 0 bytes in 0 blocks
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;exemplo-realloc&quot;&gt;Exemplo: realloc&lt;/h2&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Utilizando realloc
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;    
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;realloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;free&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;    
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Valgrind nos responde&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;==14322== HEAP SUMMARY:
+==14322==     in use at exit: 0 bytes in 0 blocks
+==14322==   total heap usage: 10 allocs, 10 frees, 10,000 bytes allocated
+==14322== 
+==14322== All heap blocks were freed -- no leaks are possible
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;exemplo-mantendo-referências&quot;&gt;Exemplo: mantendo referências&lt;/h2&gt;
+
+&lt;p&gt;Para que seja possível desalocar as memórias alocadas, é preciso manter um  ponteiro para cada uma delas.&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Utilizando malloc
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;    
+    &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;  
+    &lt;span class=&quot;n&quot;&gt;free&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;    
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Erro de compilação&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;A ideia deste código está correta porém a implementação está errada e nos leva a um erro de compilação, pois &lt;code class=&quot;highlighter-rouge&quot;&gt;ptr&lt;/code&gt; não está alocada no heap.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;In function ‘main’:
+:11:5: warning: attempt to free a non-heap object ‘ptr’ [-Wfree-nonheap-object] free(ptr);    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;exercício-liberando-memória&quot;&gt;Exercício: liberando memória&lt;/h2&gt;
+
+&lt;p&gt;Como alterar o código acima para que toda memória seja desalocada?&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 21 Aug 2017 13:50:00 -0300</pubDate>
+        <link>http://localhost:4000/ae22cp-172/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-4.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-4.html</guid>
+        
+        <category>estruturas-c</category>
+        
+        
+        <category>AE22CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>Exercícios II - Regras de dedução</title>
+        <description>&lt;h1 id=&quot;demonstre-os-argumentos-a-seguir&quot;&gt;Demonstre os argumentos a seguir:&lt;/h1&gt;
+
+&lt;p&gt;Utilize as regras de derivação:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da conjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi\quad\psi}{\phi \land \psi} \land\mbox{i}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Eliminação da conjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi \land \psi}{\phi} \land\mbox{e}_1,\quad \dfrac{\phi \land \psi}{\psi} \land\mbox{e}_2$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da dupla negação:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi}{\neg\neg\phi} \neg\neg\mbox{i}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Eliminação da dupla negação:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\neg\neg\phi}{\phi} \neg\neg\mbox{e}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Modus Ponens:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi\to\psi\qquad \phi}{\psi}{MP}$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;Introdução da disjunção:&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;$\dfrac{\phi}{\phi \lor \psi}\lor\mbox{i}$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q), r \vdash q \land r&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \land r, s \land t \vdash q \land s&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(q \land r) \vdash \neg\neg p \land r&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land q \vdash q \land p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q) \land r \vdash p\land (q\land r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to (p\to q), p \vdash q&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;q\to(p\to r), \neg r, q \vdash \neg p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p\land q, (\neg p \land q)\to (r\lor \neg p) \vdash r \lor \neg p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to(q\land r), p \vdash p \land q&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land q \vdash q \land p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \to (r \land s), \neg\neg p, q \vdash s&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (q \land r), p \vdash q \land r&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \vdash (p\lor q) \land (p\lor r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(p\to q) \vdash q\lor \neg q&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(p\to q) \vdash (r \land s) \lor q&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q)\land r, s \land t \vdash q \land s&lt;/script&gt;
+
+</description>
+        <pubDate>Thu, 17 Aug 2017 12:00:00 -0300</pubDate>
+        <link>http://localhost:4000/lc21cp-172/Exercicios2-regras-de-dedu%C3%A7%C3%A3o.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Exercicios2-regras-de-dedu%C3%A7%C3%A3o.html</guid>
+        
+        <category>dedução-natural</category>
+        
+        
+        <category>LC21CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>Cálculo Proposicional - Regras de dedução I</title>
+        <description>&lt;p&gt;&lt;strong&gt;Contato&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Jean Paulo Martins&lt;/li&gt;
+  &lt;li&gt;Sala 105&lt;/li&gt;
+  &lt;li&gt;e-mail jeanmartins@utfpr.edu.br&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;conteúdo&quot;&gt;Conteúdo&lt;/h1&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#conteúdo&quot; id=&quot;markdown-toc-conteúdo&quot;&gt;Conteúdo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#cálculo-proposicional&quot; id=&quot;markdown-toc-cálculo-proposicional&quot;&gt;Cálculo proposicional&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#regras-de-inferência-dedução-natural&quot; id=&quot;markdown-toc-regras-de-inferência-dedução-natural&quot;&gt;Regras de inferência (dedução natural)&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#regras-para-a-conjunção&quot; id=&quot;markdown-toc-regras-para-a-conjunção&quot;&gt;Regras para a conjunção&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#regras-para-a-dupla-negação&quot; id=&quot;markdown-toc-regras-para-a-dupla-negação&quot;&gt;Regras para a dupla negação&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exemplos-derivação-da-conjunção-e-dupla-negação&quot; id=&quot;markdown-toc-exemplos-derivação-da-conjunção-e-dupla-negação&quot;&gt;Exemplos: derivação da conjunção e dupla negação&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#regra-para-eliminar-o-condicional-modus-ponens&quot; id=&quot;markdown-toc-regra-para-eliminar-o-condicional-modus-ponens&quot;&gt;Regra para eliminar o condicional (Modus Ponens)&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exemplos-derivação-por-exclusão-do-condicional&quot; id=&quot;markdown-toc-exemplos-derivação-por-exclusão-do-condicional&quot;&gt;Exemplos: derivação por exclusão do condicional&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#regras-para-introdução-da-disjunção&quot; id=&quot;markdown-toc-regras-para-introdução-da-disjunção&quot;&gt;Regras para introdução da disjunção&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exemplos-derivação-por-introdução-do-conjuntivo&quot; id=&quot;markdown-toc-exemplos-derivação-por-introdução-do-conjuntivo&quot;&gt;Exemplos: derivação por introdução do conjuntivo&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#validade-de-uma-forma-de-argumento&quot; id=&quot;markdown-toc-validade-de-uma-forma-de-argumento&quot;&gt;Validade de uma forma de argumento&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#exemplo-de-forma-de-argumento-válida&quot; id=&quot;markdown-toc-exemplo-de-forma-de-argumento-válida&quot;&gt;Exemplo de forma de argumento válida&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exemplo-de-forma-de-argumento-inválida&quot; id=&quot;markdown-toc-exemplo-de-forma-de-argumento-inválida&quot;&gt;Exemplo de forma de argumento inválida&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#automatização-por-manipulação-simbólica&quot; id=&quot;markdown-toc-automatização-por-manipulação-simbólica&quot;&gt;Automatização por manipulação simbólica&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;cálculo-proposicional&quot;&gt;Cálculo proposicional&lt;/h1&gt;
+
+&lt;p&gt;O cálculo proposicional consiste de um sistema de &lt;em&gt;regras de inferência&lt;/em&gt; que são capazes de gerar todas (e somente) as formas de argumentos válidas expressáveis na linguagem.&lt;/p&gt;
+
+&lt;p&gt;Como cada forma de argumento tem um infinito número de instâncias, cada vez que produzimos uma forma válida, nós estabelecemos a validade de um número imenso de argumentos específicos.&lt;/p&gt;
+
+&lt;p&gt;Os cálculos que executaremos com esses sistemas são sequências de inferências com o objetivo de demonstrar a validade de certas &lt;em&gt;formas de argumento&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;regras-de-inferência-dedução-natural&quot;&gt;Regras de inferência (dedução natural)&lt;/h1&gt;
+
+&lt;p&gt;As regras de inferência geram as formas de argumento numa série de etapas simples e precisas de raciocínio, chamadas&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;derivação ou prova&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A idéia geral é que a definição de um conjunto apropriado de regras nos permita criar um “cálculo de proposições”, por meio do qual seja possível derivar novas conclusões a partir de verdades já verificadas (premissas). Ou derivar novas fórmulas a partir de outras fórmulas.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi_1,\phi_2,\phi_3,\dots,\phi_n \vdash \psi \mbox{ (Argumento)}&lt;/script&gt;
+
+&lt;p&gt;Do ponto de vista prático, uma &lt;em&gt;derivação&lt;/em&gt; é uma etapa que transforma uma fórmula em outra, menor ou maior.&lt;/p&gt;
+
+&lt;p&gt;A quantidade de &lt;em&gt;regras de derivação&lt;/em&gt;, no nosso caso, será definida a partir dos conectivos lógicos. Ou seja, para cada &lt;em&gt;conectivo lógico&lt;/em&gt; definiremos duas regras básicas de inferência.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;inclusão&lt;/em&gt;: inclui o operador numa expressão&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;eliminação&lt;/em&gt;: dadas premissas elimina o operador e uma expressão, substituindo-o por uma conclusão&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Portanto, temos dez &lt;em&gt;regras de inferência&lt;/em&gt; no total.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Assuma, deste ponto em diante, que &lt;script type=&quot;math/tex&quot;&gt;\phi&lt;/script&gt; e &lt;script type=&quot;math/tex&quot;&gt;\psi&lt;/script&gt; representam duas fórmulas na linguagem da lógica proposicional.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;As regras definidas para cada conectivo apenas formalizam o funcionamento intuitivo desses operadores.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;regras-para-a-conjunção&quot;&gt;Regras para a conjunção&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Introdução/Inclusão do conectivo:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Dadas duas premissas &lt;script type=&quot;math/tex&quot;&gt;\phi&lt;/script&gt; e &lt;script type=&quot;math/tex&quot;&gt;\psi&lt;/script&gt;, podemos concluir que a sua conjunção também é verdadeira.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi,\psi \vdash \phi \land \psi&lt;/script&gt;
+
+&lt;p&gt;Essa regra de derivação é chamada &lt;script type=&quot;math/tex&quot;&gt;\land&lt;/script&gt;-introdução (abreviada por &lt;script type=&quot;math/tex&quot;&gt;\land_i&lt;/script&gt;) e, em geral, é denotada por:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\phi\quad\psi}{\phi \land \psi} \land\mbox{i}\quad(\land\mbox{-introdução})&lt;/script&gt;
+
+&lt;p&gt;&lt;strong&gt;Eliminação/Exclusão do conectivo:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Dada uma conjunção &lt;script type=&quot;math/tex&quot;&gt;\phi \land \psi&lt;/script&gt;, podemos concluir que ambos conjuctos são verdadeiros.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi \land \psi \vdash \phi \mbox{ (Opção 1)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi \land \psi \vdash \psi \mbox{ (Opção 2)}&lt;/script&gt;
+
+&lt;p&gt;Essa regra de derivação é chamada &lt;script type=&quot;math/tex&quot;&gt;\land&lt;/script&gt;-eliminação (abreviada por &lt;script type=&quot;math/tex&quot;&gt;\land_{e1}&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;\land_{e2}&lt;/script&gt;). Como existem duas possibilidades adicionaremos um subscrito para indicar a &lt;em&gt;opção1&lt;/em&gt; ou &lt;em&gt;opção2&lt;/em&gt;:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\phi \land \psi}{\phi} \land\mbox{e}_1 \mbox{ (Opção 1)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\phi \land \psi}{\psi} \land\mbox{e}_2 \mbox{ (Opção 2)}&lt;/script&gt;
+
+&lt;h2 id=&quot;regras-para-a-dupla-negação&quot;&gt;Regras para a dupla negação&lt;/h2&gt;
+
+&lt;p&gt;Uma fórmula é equivalente a sua &lt;em&gt;dupla negação&lt;/em&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;~\phi&lt;/script&gt; : “Está chovendo”&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;~\neg\phi&lt;/script&gt;: “Não está chovendo”&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\neg\neg\phi&lt;/script&gt;: “Não é verdade que não está chovendo”&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Portanto, a dupla negação pode ser eliminada ou introduzida&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\neg\neg\phi}{\phi} \neg\neg\mbox{e}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\phi}{\neg\neg\phi} \neg\neg\mbox{i}&lt;/script&gt;
+
+&lt;h2 id=&quot;exemplos-derivação-da-conjunção-e-dupla-negação&quot;&gt;Exemplos: derivação da conjunção e dupla negação&lt;/h2&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q), r \vdash q \land r&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \land r, s \land t \vdash q \land s&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(q \land r) \vdash \neg\neg p \land r&lt;/script&gt;
+
+&lt;h2 id=&quot;regra-para-eliminar-o-condicional-modus-ponens&quot;&gt;Regra para eliminar o condicional (Modus Ponens)&lt;/h2&gt;
+
+&lt;p&gt;As regras de introdução e eliminação do condicional são bem diferentes, portanto, iremos separá-las em duas seções.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;O condicional (implicação) é análogo à sentenças da forma se… então&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Deste modo, dadas fórmulas &lt;script type=&quot;math/tex&quot;&gt;\phi&lt;/script&gt; e &lt;script type=&quot;math/tex&quot;&gt;\psi&lt;/script&gt;, temos em &lt;script type=&quot;math/tex&quot;&gt;\phi\to\psi&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;\psi&lt;/script&gt; é verdadeira quando &lt;script type=&quot;math/tex&quot;&gt;\phi&lt;/script&gt; é verdadeira.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Em casos em que &lt;script type=&quot;math/tex&quot;&gt;\phi\to\psi&lt;/script&gt; e &lt;script type=&quot;math/tex&quot;&gt;\phi&lt;/script&gt; são premissas, podemos então concluir &lt;script type=&quot;math/tex&quot;&gt;\psi&lt;/script&gt;. Essa é a regra de derivação de eliminação do condicional (&lt;script type=&quot;math/tex&quot;&gt;\to&lt;/script&gt;-eliminação)&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\phi\to\psi, \phi}{\psi}\to\mbox{e}\qquad(\mbox{Modus Ponens})&lt;/script&gt;
+
+&lt;p&gt;&lt;em&gt;em latim significa “a maneira que afirma afirmando”&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;“Se estiver chovendo, te encontrarei no cinema” (&lt;script type=&quot;math/tex&quot;&gt;p\to q&lt;/script&gt;)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; : “Está chovendo” (&lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; : “Te encontrarei no cinema” (então &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt;)&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;exemplos-derivação-por-exclusão-do-condicional&quot;&gt;Exemplos: derivação por exclusão do condicional&lt;/h2&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p\land q, \neg p \land q\to r\lor \neg p \vdash r \lor \neg p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to(q\land r), p \vdash p \land q&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land q \vdash q \land p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \to (r \land s), \neg\neg p, q \vdash s&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (q \land r), p \vdash q \land r&lt;/script&gt;
+
+&lt;h2 id=&quot;regras-para-introdução-da-disjunção&quot;&gt;Regras para introdução da disjunção&lt;/h2&gt;
+
+&lt;p&gt;Dadas duas fórmulas &lt;script type=&quot;math/tex&quot;&gt;\phi&lt;/script&gt; e &lt;script type=&quot;math/tex&quot;&gt;\psi&lt;/script&gt;, se uma delas é verdadeira, a conjunção das duas também será. Ou seja:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi \vdash \phi \lor \psi\quad(\forall \psi)&lt;/script&gt;
+
+&lt;p&gt;A introdução da disjunção será referenciada por &lt;script type=&quot;math/tex&quot;&gt;\lor\mbox{i}&lt;/script&gt;.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\phi}{\phi \lor \psi}\lor\mbox{i}\qquad(\mbox{introdução do }\lor)&lt;/script&gt;
+
+&lt;h2 id=&quot;exemplos-derivação-por-introdução-do-conjuntivo&quot;&gt;Exemplos: derivação por introdução do conjuntivo&lt;/h2&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \vdash (p\lor q) \land (p\lor r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(p\to q) \vdash q\lor \neg q&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(p\to q) \vdash (r \land s) \lor q&lt;/script&gt;
+
+&lt;h1 id=&quot;validade-de-uma-forma-de-argumento&quot;&gt;Validade de uma forma de argumento&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Uma forma de argumento é &lt;em&gt;válida&lt;/em&gt; se todas as suas &lt;em&gt;instâncias&lt;/em&gt; são válidas.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Uma forma de argumento é &lt;em&gt;inválida&lt;/em&gt; se alguma de suas instâncias é inválida.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Uma instância é válida se é impossível que sua conclusão seja falsa, dado que suas premissas são verdadeiras.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;exemplo-de-forma-de-argumento-válida&quot;&gt;Exemplo de forma de argumento válida&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;disjunção&lt;/em&gt; (&lt;script type=&quot;math/tex&quot;&gt;p\lor q, \neg p \vdash q&lt;/script&gt;)&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Sempre que &lt;script type=&quot;math/tex&quot;&gt;p\lor q&lt;/script&gt; e &lt;script type=&quot;math/tex&quot;&gt;\neg p&lt;/script&gt; forem verdadeiras, &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; será verdadeira, independentemente do significado representado por &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; e &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;exemplo-de-forma-de-argumento-inválida&quot;&gt;Exemplo de forma de argumento inválida&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;afirmação do consequente&lt;/em&gt; (&lt;script type=&quot;math/tex&quot;&gt;p\to q, q \vdash p&lt;/script&gt;)&lt;/p&gt;
+
+&lt;p&gt;Embora algumas instâncias desta forma sejam válidas, algumas não são. Portanto ela é uma forma inválida, veja os exemplos:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;p:&lt;/script&gt; Se você está dançando na lua, então você está vivo,&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;q:&lt;/script&gt; Você está vivo,&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Você está dançando na lua.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Portanto, para demonstrar que uma forma é inválida, basta encontrar uma instância para a qual ela seja inválida.&lt;/p&gt;
+
+&lt;h2 id=&quot;automatização-por-manipulação-simbólica&quot;&gt;Automatização por manipulação simbólica&lt;/h2&gt;
+
+&lt;p&gt;Assumindo-se formas de argumento válidas, é possível tirar conclusões sobre argumentos definidos abstratamente. Essa possibilidade nos permite também implementar métodos automáticos de inferência.&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 17 Aug 2017 10:20:00 -0300</pubDate>
+        <link>http://localhost:4000/lc21cp-172/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-1.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-1.html</guid>
+        
+        <category>dedução-natural</category>
+        
+        
+        <category>LC21CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>Exercícios I - Formalização de argumentos lógicos</title>
+        <description>&lt;h1 id=&quot;exercícios-john-nolt-pg-93319933&quot;&gt;Exercícios (John Nolt, pg. 93[3.1],99[3.3])&lt;/h1&gt;
+
+&lt;p&gt;Considere as seguintes premissas:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; : “Está chovendo.”&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; : “Está nevando.”&lt;/li&gt;
+  &lt;li&gt;Expresse cada uma das seguintes sentenças na notação do cálculo proposicional.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Está chovendo.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Não está chovendo.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Está chovendo ou nevando.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Está chovendo e nevando.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Está chovendo mas não está nevando.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Não é caso que está chovendo e nevando.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Se não está chovendo, então está nevando.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Não é o caso que se está chovendo então está nevando.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Não é o caso que se está nevando então está chovendo.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Está chovendo se e somente se não está nevando.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Não é o caso que está chovendo ou nevando.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Se está nevando e chovendo, então está nevando.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Se não está chovendo, então não é o caso que está nevando e chovendo.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ou está chovendo e nevando, ou está nevando mas não está chovendo.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;formalize-os-seguintes-argumentos&quot;&gt;Formalize os seguintes argumentos:&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Se Deus existe, então a vida tem significado. Deus existe. Portanto, a vida tem significado.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Deus não existe. Pois, se Deus existisse, a vida teria significado. Mas a vida não tem significado.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Se o avião não tivesse caído, nós teríamos feito contato pelo rádio. Não fizemos contato pelo rádio. Portanto, o avião caiu.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Como hoje não é quinta-feira, deve ser sexta-feira. Hoje é quarta-feira ou sexta-feira.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Se hoje é quinta-feira, então amanhã será sexta-feira. Se amanhã for sexta-feira, então depois de amanhã será sábado. Consequentemente, se hoje for quinta-feira, então depois de amanhá será sábado.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Hoje é um fim de semana se e somente se hoje é sábado ou domingo. Portanto, hoje é um fim de semana, desde que hoje é sábado.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Hoje é um fim de semana se hoje é sábado ou domingo. Mas, hoje não é um fim de semana. Portanto, hoje não é sábado e hoje não é domingo.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Hoje é um fim de semana somente se hoje é sábado ou domingo. Hoje não é sábado. Hoje não é domingo. Portanto, hoje não é fim de semana.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;A proposta de auxílio está no correio. Se os árbitros a receberem até sexta-feira, eles a analisarão. Portanto eles a analisarão porque se a proposta estiver no correio, eles a receberão até sexta-feira.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ela não está em casa ou não está atendendo ao telefone. Mas, se ela não está em casa, então ela foi sequestrada. E se ela não está atendendo ao telefone, ela está correndo algum outro perigo. Portanto, ou ela foi sequestrada ou ela está correndo um outro perigo.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Wed, 16 Aug 2017 12:00:00 -0300</pubDate>
+        <link>http://localhost:4000/lc21cp-172/Exercicios1-Formaliza%C3%A7%C3%A3o-de-argumentos.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Exercicios1-Formaliza%C3%A7%C3%A3o-de-argumentos.html</guid>
+        
+        <category>argumentos-formais</category>
+        
+        
+        <category>LC21CP-172</category>
+        
+      </item>
+    
+  </channel>
+</rss>
