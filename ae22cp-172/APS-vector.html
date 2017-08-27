@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>APS I (implementando vector)</title>
+  <title>Políticas de acesso e manipulação I - Pilhas</title>
   <meta name="description" content="Conteúdo">
 
   <link rel="stylesheet" href="/css/main.css">
@@ -53,9 +53,9 @@
         <div class="post">
 
   <header class="post-header">
-     <h1 class="post-title">APS I (implementando vector)</h1>
+     <h1 class="post-title">Políticas de acesso e manipulação I - Pilhas</h1>
      <p class="post-meta">
-         <i class="fa fa-calendar-o"></i> Aug 21, 2017
+         <i class="fa fa-calendar-o"></i> Aug 28, 2017
           • <i class="fa fa-user"></i> jean
          </p>
   </header>
@@ -63,14 +63,14 @@
     <div class="post-paging">
   
     <div class="left">
-      <a href="/ae22cp-172/Aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-4.html">
+      <a href="/lc21cp-172/Exercicios3-regras-de-dedu%C3%A7%C3%A3o.html">
         <i class="fa fa-angle-left fa-2x"></i>
       </a>
     </div>
   
   
     <div class="right">
-      <a href="/lc21cp-172/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-2.html">
+      <a href="/lc21cp-172/Semantica-da-logica-proposicional.html">
         <i class="fa fa-angle-right fa-2x"></i>
       </a>
     </div>
@@ -86,231 +86,150 @@
     </ul>
     <p><strong>Conteúdo</strong></p>
 <ul id="markdown-toc">
-  <li><a href="#estrutura-e-implementação" id="markdown-toc-estrutura-e-implementação">Estrutura e Implementação</a>    <ul>
-      <li><a href="#inicializaçãofinalização" id="markdown-toc-inicializaçãofinalização">Inicialização/Finalização</a></li>
-      <li><a href="#acesso-e-manipulação-sem-crescimento" id="markdown-toc-acesso-e-manipulação-sem-crescimento">Acesso e manipulação: sem crescimento</a></li>
-      <li><a href="#acesso-e-manipulação" id="markdown-toc-acesso-e-manipulação">Acesso e manipulação</a>        <ul>
-          <li><a href="#inserção-com-crescimento" id="markdown-toc-inserção-com-crescimento">Inserção: com crescimento</a></li>
-          <li><a href="#remoção-sem-decrescimento" id="markdown-toc-remoção-sem-decrescimento">Remoção: sem decrescimento</a></li>
-        </ul>
-      </li>
-      <li><a href="#atualizando-o-tamanho-do-vetor-resize" id="markdown-toc-atualizando-o-tamanho-do-vetor-resize">Atualizando o tamanho do vetor: resize</a></li>
-      <li><a href="#imprimindo-o-conteúdo-do-vetor" id="markdown-toc-imprimindo-o-conteúdo-do-vetor">Imprimindo o conteúdo do vetor</a></li>
-      <li><a href="#verificando-a-validade-de-argumentos" id="markdown-toc-verificando-a-validade-de-argumentos">Verificando a validade de argumentos</a></li>
+  <li><a href="#políticas-de-acesso-e-manipulação" id="markdown-toc-políticas-de-acesso-e-manipulação">Políticas de acesso e manipulação</a>    <ul>
+      <li><a href="#pilhas-usando-vector" id="markdown-toc-pilhas-usando-vector">Pilhas usando <em>vector</em></a></li>
+      <li><a href="#pilhas-usando-um-container-abstrato" id="markdown-toc-pilhas-usando-um-container-abstrato">Pilhas usando um <em>container</em> abstrato</a></li>
+      <li><a href="#do-abstrato-ao-concreto" id="markdown-toc-do-abstrato-ao-concreto">Do abstrato ao concreto</a></li>
     </ul>
   </li>
-  <li><a href="#generalizando-o-tipo-vector" id="markdown-toc-generalizando-o-tipo-vector">Generalizando o tipo vector</a></li>
-  <li><a href="#casos-de-teste" id="markdown-toc-casos-de-teste">Casos de teste</a></li>
 </ul>
 
-<h1 id="estrutura-e-implementação">Estrutura e Implementação</h1>
-<p>Implementar as funcionalidades da classe <code class="highlighter-rouge">vector</code>. Para tal utilizar uma estrutura similar a:</p>
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
-    <span class="kt">int</span><span class="o">*</span> <span class="n">data</span><span class="p">;</span>     <span class="c1">// vetor que armazenará os inteiros;
-</span>    <span class="kt">int</span>  <span class="n">size</span><span class="p">;</span>     <span class="c1">// tamanho atual do vetor
-</span>    <span class="kt">int</span>  <span class="n">capacity</span><span class="p">;</span> <span class="c1">// tamanho reservado em memória 
-</span><span class="p">}</span> <span class="n">vector</span><span class="p">;</span>
-</code></pre>
-</div>
+<h1 id="políticas-de-acesso-e-manipulação">Políticas de acesso e manipulação</h1>
 
-<h2 id="inicializaçãofinalização">Inicialização/Finalização</h2>
-<p>Todas as funcionalidades e acesso aos dados será feita por funções, as quais precisaremos definir. A primeira delas, é a função de alocação da memória inicial de um vetor.</p>
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// Aloca memória inicial para o vetor
+<p>Algumas estruturas de dados não requerem novas formas de armazenamento dos dados em memória. Nesses casos, tais estruturas são definidas apenas pela forma com a qual elas permitem o acesso e manipulação dos dados armazenados, o que chamei de <strong>política de acesso e manipulação</strong>.</p>
+
+<p>Para melhor compreendermos essa ideia, iniciaremos o estudo de duas estruturas de dados (ou políticas de acesso e manipulação) de grande relevância: pilhas (stack) e filas (queue). Por serem apenas políticas de acesso, pilhas e filas podem ser implementadas utilizando como base diferentes tipos de estruturas de dados (contêiners). Neste primeiro momento, no entanto, assumiremos apenas a implementação de pilhas e filas utilizando o contêiner <code class="highlighter-rouge">vector</code> como base.</p>
+
+<h2 id="pilhas-usando-vector">Pilhas usando <em>vector</em></h2>
+
+<p>Pilhas (Stacks) são estruturas de dados com políticas de acesso e manipulação de grande restrição. Há somente uma forma de acessar os elementos de uma pilha.</p>
+
+<ul>
+  <li>Novos elementos são inseridos em apenas uma direção.
+    <ul>
+      <li>O último elemento inserido é chamado o topo da pilha</li>
+    </ul>
+  </li>
+  <li>Elementos são removidos em direção oposta à inserção
+    <ul>
+      <li>Somente o elemento no topo pode ser removido diretamente.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="../assets/pilhas-geral.png" alt="pilhas" /></p>
+
+<p>É fácil notar que todas as funcionalidades necessárias para manipular uma pilha já estão implementadas para <code class="highlighter-rouge">vector</code>. De fato, precisamos apenas de um subconjunto das funcionalidades disponíveis em <code class="highlighter-rouge">vector</code>, ou seja, pilhas são mais restritivas.</p>
+
+<p>Vejamos quais funcionalidades de <code class="highlighter-rouge">vector</code> serão úteis para implementarmos uma estrutura pilha (<code class="highlighter-rouge">stack</code>).</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// Alocação desalocação
 </span><span class="n">vector</span><span class="o">*</span> <span class="n">new_vector</span><span class="p">(</span><span class="kt">int</span> <span class="n">initial_capacity</span><span class="p">);</span>
-</code></pre>
-</div>
-<p>De forma análoga há a função para desalocar a memória do vetor e do ponteiro.</p>
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// Desaloca a memória de v-&gt;data e do próprio v.
-</span><span class="kt">void</span> <span class="n">free_vector</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
-</code></pre>
-</div>
-
-<h2 id="acesso-e-manipulação-sem-crescimento">Acesso e manipulação: sem crescimento</h2>
-<p>Para acessar um item do vetor e alterar o valor de um item, por exemplo:</p>
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// Retorna um ponteiro para o item na posição i
-</span><span class="kt">int</span><span class="o">*</span> <span class="n">vector_at</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
-<span class="c1">// Retorna o valor na posição i
-</span><span class="kt">int</span>  <span class="n">vector_get</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
-<span class="c1">// Altera o valor na posição i
-</span><span class="kt">int</span>  <span class="n">vector_set</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">);</span>
-</code></pre>
-</div>
-
-<h2 id="acesso-e-manipulação">Acesso e manipulação</h2>
-
-<h3 id="inserção-com-crescimento">Inserção: com crescimento</h3>
-<p>As funções acima não alteram o tamanho do vetor, portanto $i$ deve ser um índice válido. Já a função a seguir, tenta inserir um item no final do vetor, caso ainda haja espaço, basta inserí-lo e atualizar <code class="highlighter-rouge">size</code>. Caso contrário, é preciso realocar o vetor.</p>
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">vector_push_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">);</span>
-</code></pre>
-</div>
-
-<p>Suponha agora que queiramos inserir um elemento no vetor em uma dada posição que não seja o fim. Chamaremos essa função:</p>
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">vector_insert</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
-</code></pre>
-</div>
-
-<p>Se <code class="highlighter-rouge">vector_insert</code> é chamada para inserir um valor em uma posição $i$ do vetor, todos os elementos em posições posteriores a $i$ precisam ser movidos adiante.</p>
-
-<p>Implementada a inserção, temos condições de facilmente implementar uma função para inserir no início do vetor. Esta função precisa apenas chamar <code class="highlighter-rouge">vector_insert(v, value, 0)</code>.</p>
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">vector_push_front</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">);</span>
-</code></pre>
-</div>
-
-<h3 id="remoção-sem-decrescimento">Remoção: sem decrescimento</h3>
-
-<p>De forma análoga às funções de inserção, temos as funções para remoção de elementos do vetor. Essas, no entanto, não alteram a capacidade do vetor, apenas seu tamanho. O funcionamento dessas funções é semelhante às anteriores.</p>
-
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// Remove o elemento do fim do vetor, decrementando size.
-</span><span class="kt">int</span> <span class="n">vector_pop_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
-<span class="c1">// Remove o elemento na posição i, e move os posteriores para trás
-</span><span class="kt">int</span> <span class="n">vector_erase</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
-<span class="c1">// Remove o elemento na posição zero do vetor e move os posteriores para trás
-</span><span class="kt">int</span> <span class="n">vector_pop_front</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
-</code></pre>
-</div>
-
-<h2 id="atualizando-o-tamanho-do-vetor-resize">Atualizando o tamanho do vetor: resize</h2>
-
-<p>Sempre que um elemento for inserido no vetor, uma alteração no tamanho atual (<code class="highlighter-rouge">size</code>) é necessária.</p>
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">resize</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
-</code></pre>
-</div>
-
-<p>Se não há espaço adicional (entre <code class="highlighter-rouge">size</code> e <code class="highlighter-rouge">capacity</code>) é preciso realocar o vetor <code class="highlighter-rouge">realloc</code>. Assumiremos que a nova capacidade será o dobro da atual <code class="highlighter-rouge">capacity *= 2</code>. Observe que se a capacidade for inicializada com zero, esta atualização não funcionará.</p>
-
-<h2 id="imprimindo-o-conteúdo-do-vetor">Imprimindo o conteúdo do vetor</h2>
-
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">vector_print</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
-</code></pre>
-</div>
-<p>Esta função auxiliar deverá imprimir o conteúdo do vetor obedecendo o seguinte formato:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>[size/capacity] data[0] data[1] data[2] ... data[size] \n
-</code></pre>
-</div>
-
-<p>Exemplo:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>[6/10] 0 1 8 2 3 9
-</code></pre>
-</div>
-
-<h2 id="verificando-a-validade-de-argumentos">Verificando a validade de argumentos</h2>
-
-<p>Grande parte das funções de acesso e manipulação dos dados no vetor recebem como argumento um inteiro como índice. Para o contexto de <code class="highlighter-rouge">vector</code>, todo acesso que não esteja no intervalo $0 \leq i &lt; \mbox{size}$ é inválido, pois extrapola os índices do vetor.</p>
-
-<p>Há diversas formas de se verificar esse tipo de situação. Podemos, por exemplo, definir um condicional que verifique os limites de $i$</p>
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Faz algo
-</span><span class="p">}</span>
-</code></pre>
-</div>
-
-<p>No caso de vector, um acesso fora dos limites do vetor levaria a uma falha de segmentação durante a execução do programa. Um acesso desse tipo, em geral, é resultado de erro de programação, visto que não é razoável que alguém tente, deliberadamente, acessar uma região de memória que não lhe pertence. Portanto, acessos desse tipo são anômalos, e devem ser noticiados imediatamente.</p>
-
-<p>Uma forma de se fazer isso, é utilizando a função <code class="highlighter-rouge">assert(bool v)</code> (requer <code class="highlighter-rouge">#include &lt;assert.h&gt;</code>). Esta é uma função bem simples, a qual termina a execução do programa, caso o argumento que ela receba não seja verdadeiro. O condicional definido anteriormente poderia ser substituído por:</p>
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="n">assert</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">);</span>
-<span class="c1">// Faz algo
-</span></code></pre>
-</div>
-
-<p>Neste caso, a linha após <code class="highlighter-rouge">assert</code> somente será alcançada caso a expressão <code class="highlighter-rouge">i &gt;=0 &amp;&amp; i &lt; v-&gt;size</code> seja verdadeira. Caso contrário o programa será interrompido imediatamente, e uma mensagem de erro impressa em tela.</p>
-
-<h1 id="generalizando-o-tipo-vector">Generalizando o tipo vector</h1>
-
-<p>Até então tratamos de uma implementação <code class="highlighter-rouge">vector</code> cuja estrutura interna é baseada em um vetor de inteiros.</p>
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
-    <span class="kt">int</span><span class="o">*</span> <span class="n">data</span><span class="p">;</span>     <span class="c1">// vetor que armazenará os inteiro;
-</span>    <span class="kt">int</span>  <span class="n">size</span><span class="p">;</span>     <span class="c1">// tamanho atual do vetor
-</span>    <span class="kt">int</span>  <span class="n">capacity</span><span class="p">;</span> <span class="c1">// tamanho reservado em memória 
-</span><span class="p">}</span> <span class="n">vector</span><span class="p">;</span>
-</code></pre>
-</div>
-
-<p>Porém, em grande parte dos casos, as mesmas funcionalidades implementadas poderiam ser úteis para outros tipos de dados. Como poderíamos alterar essa estrutura para que fosse mais fácil utilizá-la em outras situações? Ex.: para armazenar <code class="highlighter-rouge">float</code> ou <code class="highlighter-rouge">char</code>, etc.</p>
-
-<p>Podemos definir um tipo de dados, com <code class="highlighter-rouge">typedef</code> e utilizá-lo em lugar de <code class="highlighter-rouge">int</code>. Ou seja</p>
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">typedef</span> <span class="kt">int</span> <span class="n">Type</span><span class="p">;</span>
-
-<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
-    <span class="n">Type</span><span class="o">*</span> <span class="n">data</span><span class="p">;</span>     <span class="c1">// vetor que armazenará os inteiro;
-</span>    <span class="kt">int</span>  <span class="n">size</span><span class="p">;</span>     <span class="c1">// tamanho atual do vetor
-</span>    <span class="kt">int</span>  <span class="n">capacity</span><span class="p">;</span> <span class="c1">// tamanho reservado em memória 
-</span><span class="p">}</span> <span class="n">vector</span><span class="p">;</span>
-</code></pre>
-</div>
-
-<p>Toda a referência ao tipo inteiro em elementos do vetor, são agora substituídos por <code class="highlighter-rouge">Type</code>. Deste modo para que se utilize toda a estrutura com um tipo de dados diferente, basta alterar a definição de <code class="highlighter-rouge">Type</code>.</p>
-
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">typedef</span> <span class="kt">float</span> <span class="n">Type</span><span class="p">;</span>
-<span class="c1">// Funções de remoção de elementos
+<span class="kt">void</span> <span class="n">free_vector</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="c1">// Inserção e remoção de elementos
 </span><span class="n">Type</span> <span class="n">vector_pop_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
-<span class="n">Type</span> <span class="n">vector_pop_front</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
-<span class="n">Type</span> <span class="n">vector_erase</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">vector_push_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+<span class="c1">// Observer o topo da pilha, sem remoção
+</span><span class="n">Type</span><span class="o">*</span> <span class="n">vector_at</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pos</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>A partir dessa referência podemos definir funções análogas para manipulação de nossa estrutura <code class="highlighter-rouge">stack</code>.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// Redefinir o nome vector
+</span><span class="k">typedef</span> <span class="n">vector</span> <span class="n">stack</span><span class="p">;</span>
+<span class="c1">// Alocação desalocação
+</span><span class="n">stack</span><span class="o">*</span> <span class="nf">new_stack</span><span class="p">(</span><span class="kt">int</span> <span class="n">initial_capacity</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">stack</span><span class="o">*</span> <span class="n">s</span> <span class="o">=</span> <span class="n">new_vector</span><span class="p">(</span><span class="n">initial_capacity</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="n">free_stack</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">){</span>
+    <span class="n">free_vector</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// Inserção e remoção de elementos
+</span><span class="n">Type</span> <span class="n">stack_pop</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">vector_pop_back</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="n">stack_push</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">vector_push_back</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// Retorna um ponteiro para o topo da pilha
+</span><span class="n">Type</span><span class="o">*</span> <span class="n">stack_top</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">vector_at</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="pilhas-usando-um-container-abstrato">Pilhas usando um <em>container</em> abstrato</h2>
+
+<p>Em princípio, não há problemas em utilizar as funções de <code class="highlighter-rouge">vector</code> para implementar as funcionalidades de <code class="highlighter-rouge">stack</code>. Muito pelo contrário, reuso de funções é um dos objetivos da programação estruturada.</p>
+
+<p>No entanto, como mencionado anteriormente, pilhas podem ser implementadas sobre diferentes <em>contêiners</em>. A nossa versão atual, porém, está totalmente acoplada ao <em>contêiner</em> <code class="highlighter-rouge">vector</code>.</p>
+
+<p><img src="../assets/stack-vector.png" alt="stack-vector" /></p>
+
+<p>Como podemos eliminar essa limitação e tornar nossa implementação mais geral ainda? De modo que outros contêiners sequenciais (<code class="highlighter-rouge">list</code>, por exemplo) também pudessem ser facilmente utilizados quando necessário. A ideia é introduzir uma interface entre a implementação de um contêiner e sua definição.</p>
+
+<p><img src="../assets/stack-container.png" alt="stack-container" /></p>
+
+<p>Essa interface nada mais é do que um arquivo que define todas as funcionalidades que as implementações devem ter para serem um <strong>contêiner</strong>. Tais arquivos, em geral, contém apenas cabeçalhos de funções e possivelmente definições de tipos de dados.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// **** container.h ****
+</span><span class="cp">#define Type int
+</span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_container</span> <span class="n">container</span><span class="p">;</span>
+<span class="c1">// Funções de remoção de elementos
+</span><span class="n">Type</span> <span class="n">pop_back</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="n">Type</span> <span class="n">pop_front</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="n">Type</span> <span class="n">erase</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
 <span class="c1">// Funções de inserção de elementos
-</span><span class="kt">void</span> <span class="n">vector_push_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
-<span class="kt">void</span> <span class="n">vector_push_front</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
-<span class="kt">void</span> <span class="n">vector_insert</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
-<span class="p">...</span>
+</span><span class="kt">void</span> <span class="n">insert</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">push_back</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">push_front</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+<span class="n">Type</span><span class="o">*</span> <span class="n">at</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pos</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">set</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pos</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">resize</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">print</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">format</span><span class="p">);</span>
 </code></pre>
 </div>
 
-<h1 id="casos-de-teste">Casos de teste</h1>
+<p>Dada uma interface que define um contêiner genérico (abstrato), podemos redefinir nossa estrutura <code class="highlighter-rouge">stack</code> para que ela utilize essas funções, ao invés daquelas específicas de <code class="highlighter-rouge">vector</code>.</p>
 
-<p>Um caso de teste é um conjunto de dados de entrada com a respectiva saída esperada. Há diversos meios de se implementar casos de testes (<a href="https://pt.wikipedia.org/wiki/Teste_de_unidade">wiki/Teste_de_unidade</a>), no entanto, para o nosso propósito isso será feito por meio de um arquivo de entrada, e um arquivo de saída. Considera-se que o programa passou em um determinado caso de teste, se, dado um arquivo de entrada, ele produz um arquivo de saída idêntico ao esperado.</p>
-
-<p>Suponhamos o seguinte arquivo de entrada, o qual especifica um caso de teste.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>6
-6
-push_front 13
-push_back 49
-push_back 29
-push_back 5
-push_front 26
-pop_back
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// **** stack.c ****
+</span><span class="cp">#include "container.h"
+</span><span class="c1">// Redefinir o nome vector
+</span><span class="k">typedef</span> <span class="n">container</span> <span class="n">stack</span><span class="p">;</span>
+<span class="c1">// Alocação desalocação
+</span><span class="n">stack</span><span class="o">*</span> <span class="nf">new_stack</span><span class="p">(</span><span class="kt">int</span> <span class="n">initial_capacity</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">container</span><span class="o">*</span> <span class="n">s</span> <span class="o">=</span> <span class="n">new_container</span><span class="p">(</span><span class="n">initial_capacity</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="n">free_stack</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">){</span>
+    <span class="n">free_container</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// Inserção e remoção de elementos
+</span><span class="n">Type</span> <span class="n">stack_pop</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">pop_back</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="n">stack_push</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">push_back</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// Retorna um ponteiro para o topo da pilha
+</span><span class="n">Type</span><span class="o">*</span> <span class="n">stack_top</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">at</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre>
 </div>
 
-<p>Após cada um desses comandos o vetor é impresso, seguindo um formato especificado descrito a seguir:</p>
+<h2 id="do-abstrato-ao-concreto">Do abstrato ao concreto</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>[1/6] 13 
-[2/6] 13 49 
-[3/6] 13 49 29 
-[4/6] 13 49 29 5 
-[5/6] 26 13 49 29 5 
-[4/6] 26 13 49 29 
+<p>Nesta etapa a implementação de <code class="highlighter-rouge">stack</code> não existe de forma concreta, pois ela depende da implementação de funções que não foram implementadas em <code class="highlighter-rouge">container.h</code>. Cada contêiner deve então prover uma implementação da interface, a qual será então utilizada durante compilação para definir qual contêiner será usado.</p>
+
+<p>Suponhamos a existência de duas implementações de <code class="highlighter-rouge">container.h</code>, a primeira em <code class="highlighter-rouge">vector.c</code> e a segunda em <code class="highlighter-rouge">list.c</code>. Ao passarmos uma das duas ao compilador, elas fornecerão a implementação das funções abstratas utilizadas em <code class="highlighter-rouge">stack.c</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gcc main.c stack.c vector.c -o main-vector
+
+gcc main.c stack.c list.c -o main-list
 </code></pre>
 </div>
-
-<p>A primeira linha do arquivo de entrada sempre inicializará o vetor, neste exemplo, ela requisita a inicialização com capacidade 6</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>6
-</code></pre>
-</div>
-
-<p>A pŕoxima linha indica quantos comandos virão a seguir, neste exemplo temos 6 comandos, portanto a segunda linha contém o número 6.</p>
-
-<p>A seguir desta linha, virão então 9 comandos, que serão lidos um a um. A cada comando lido, a função de mesmo nome deverá ser chamada no seu código com os parâmetros vindos do arquivo. Exemplo, a linha de entrada</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>push_front 13
-</code></pre>
-</div>
-
-<p>Deverá disparar em seu código uma chamada à função</p>
-
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="n">vector_push_front</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">13</span><span class="p">);</span>
-</code></pre>
-</div>
-
-<p>Note que cada linha nessa saída é resultado de um dos comandos de entrada. Por exemplo, após o primeiro <code class="highlighter-rouge">push_front 13</code>, o vetor passa a ter tamanho 1 e capacidade 6, portanto foi impresso em tela a linha</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>[1/6] 13
-</code></pre>
-</div>
-
-<p>Após o segundo <code class="highlighter-rouge">push_back 49</code>, o vetor passa a ter tamanho 2 e capacidade ainda é 6, portanto foi impresso em tela a linha</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>[2/6] 13 49
-</code></pre>
-</div>
-
 
   </article>
 

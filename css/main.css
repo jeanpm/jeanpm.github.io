@@ -34,7 +34,9 @@ ul, ol {
  * ============================================== */
 img {
   max-width: 100%;
-  vertical-align: middle; }
+  vertical-align: middle;
+  display: block;
+  margin: auto; }
 
 figure > img {
   display: block; }
