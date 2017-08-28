@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 27 Aug 2017 17:31:05 -0300</pubDate>
-    <lastBuildDate>Sun, 27 Aug 2017 17:31:05 -0300</lastBuildDate>
+    <pubDate>Mon, 28 Aug 2017 10:16:34 -0300</pubDate>
+    <lastBuildDate>Mon, 28 Aug 2017 10:16:34 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -1469,9 +1469,13 @@ p &amp; \land &amp; q &amp; \to   &amp; w &amp; \land &amp; s &amp;\\
         <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#políticas-de-acesso-e-manipulação&quot; id=&quot;markdown-toc-políticas-de-acesso-e-manipulação&quot;&gt;Políticas de acesso e manipulação&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#pilhas-stack&quot; id=&quot;markdown-toc-pilhas-stack&quot;&gt;Pilhas (stack)&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#implementação&quot; id=&quot;markdown-toc-implementação&quot;&gt;Implementação&lt;/a&gt;    &lt;ul&gt;
       &lt;li&gt;&lt;a href=&quot;#pilhas-usando-vector&quot; id=&quot;markdown-toc-pilhas-usando-vector&quot;&gt;Pilhas usando &lt;em&gt;vector&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#pilhas-usando-um-container-abstrato&quot; id=&quot;markdown-toc-pilhas-usando-um-container-abstrato&quot;&gt;Pilhas usando um &lt;em&gt;container&lt;/em&gt; abstrato&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#do-abstrato-ao-concreto&quot; id=&quot;markdown-toc-do-abstrato-ao-concreto&quot;&gt;Do abstrato ao concreto&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#implementação-da-interface-containerh&quot; id=&quot;markdown-toc-implementação-da-interface-containerh&quot;&gt;Implementação da interface &lt;em&gt;container.h&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -1482,7 +1486,7 @@ p &amp; \land &amp; q &amp; \to   &amp; w &amp; \land &amp; s &amp;\\
 
 &lt;p&gt;Para melhor compreendermos essa ideia, iniciaremos o estudo de duas estruturas de dados (ou políticas de acesso e manipulação) de grande relevância: pilhas (stack) e filas (queue). Por serem apenas políticas de acesso, pilhas e filas podem ser implementadas utilizando como base diferentes tipos de estruturas de dados (contêiners). Neste primeiro momento, no entanto, assumiremos apenas a implementação de pilhas e filas utilizando o contêiner &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; como base.&lt;/p&gt;
 
-&lt;h2 id=&quot;pilhas-usando-vector&quot;&gt;Pilhas usando &lt;em&gt;vector&lt;/em&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;pilhas-stack&quot;&gt;Pilhas (stack)&lt;/h2&gt;
 
 &lt;p&gt;Pilhas (Stacks) são estruturas de dados com políticas de acesso e manipulação de grande restrição. Há somente uma forma de acessar os elementos de uma pilha.&lt;/p&gt;
 
@@ -1490,16 +1494,49 @@ p &amp; \land &amp; q &amp; \to   &amp; w &amp; \land &amp; s &amp;\\
   &lt;li&gt;Novos elementos são inseridos em apenas uma direção.
     &lt;ul&gt;
       &lt;li&gt;O último elemento inserido é chamado o topo da pilha&lt;/li&gt;
+      &lt;li&gt;Essa operação é chamada &lt;code class=&quot;highlighter-rouge&quot;&gt;push&lt;/code&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;Elementos são removidos em direção oposta à inserção
     &lt;ul&gt;
       &lt;li&gt;Somente o elemento no topo pode ser removido diretamente.&lt;/li&gt;
+      &lt;li&gt;Essa operação é chamada &lt;code class=&quot;highlighter-rouge&quot;&gt;pop&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Este tipo de política de acesso ficou conhecido pela sigla:
+    &lt;ul&gt;
+      &lt;li&gt;LIFO, do inglês &lt;em&gt;last in, first out&lt;/em&gt;. O último elemento inserido é necessáriamente o primeiro a ser removido.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;img src=&quot;../assets/pilhas-geral.png&quot; alt=&quot;pilhas&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Estruturas do tipo &lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt; são de grande utilidade em aspectos fundamentais da ciência da computação. Seja na construção de compiladores e linguagens de programação, por uma perspectiv teórica, ou no gerenciamento de memória da pilha de chamadas (&lt;a href=&quot;https://pt.stackoverflow.com/questions/3797/o-que-s%C3%A3o-e-onde-est%C3%A3o-o-stack-e-heap&quot;&gt;stack call&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;Implementações de pilhas em linguagens de programação:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;C++/STL, &lt;a href=&quot;http://www.cplusplus.com/reference/stack/stack/&quot;&gt;stack&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;http://www.cplusplus.com/reference/stack/stack/&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Python, &lt;a href=&quot;https://docs.python.org/2/tutorial/datastructures.html#using-lists-as-stacks&quot;&gt;Using lists as stacks&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;https://docs.python.org/2/tutorial/datastructures.html#using-lists-as-stacks&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;C#, &lt;a href=&quot;https://msdn.microsoft.com/pt-br/library/system.collections.stack(v=vs.110).aspx&quot;&gt;Stack&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;https://msdn.microsoft.com/pt-br/library/system.collections.stack(v=vs.110).aspxs&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;implementação&quot;&gt;Implementação&lt;/h1&gt;
+
+&lt;h2 id=&quot;pilhas-usando-vector&quot;&gt;Pilhas usando &lt;em&gt;vector&lt;/em&gt;&lt;/h2&gt;
 
 &lt;p&gt;É fácil notar que todas as funcionalidades necessárias para manipular uma pilha já estão implementadas para &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;. De fato, precisamos apenas de um subconjunto das funcionalidades disponíveis em &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;, ou seja, pilhas são mais restritivas.&lt;/p&gt;
 
@@ -1601,9 +1638,11 @@ p &amp; \land &amp; q &amp; \to   &amp; w &amp; \land &amp; s &amp;\\
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h2 id=&quot;do-abstrato-ao-concreto&quot;&gt;Do abstrato ao concreto&lt;/h2&gt;
+&lt;h2 id=&quot;implementação-da-interface-containerh&quot;&gt;Implementação da interface &lt;em&gt;container.h&lt;/em&gt;&lt;/h2&gt;
 
-&lt;p&gt;Nesta etapa a implementação de &lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt; não existe de forma concreta, pois ela depende da implementação de funções que não foram implementadas em &lt;code class=&quot;highlighter-rouge&quot;&gt;container.h&lt;/code&gt;. Cada contêiner deve então prover uma implementação da interface, a qual será então utilizada durante compilação para definir qual contêiner será usado.&lt;/p&gt;
+&lt;p&gt;Até este momento a implementação de &lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt; não existe de forma concreta, pois ela depende da implementação de funções que não foram implementadas em &lt;code class=&quot;highlighter-rouge&quot;&gt;container.h&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Como já mencionado anteriormente, podem existir diferentes implementações da mesma interface. Qual delas será utilizada por &lt;code class=&quot;highlighter-rouge&quot;&gt;stack.c&lt;/code&gt; é uma decisão feita durante a compilação.&lt;/p&gt;
 
 &lt;p&gt;Suponhamos a existência de duas implementações de &lt;code class=&quot;highlighter-rouge&quot;&gt;container.h&lt;/code&gt;, a primeira em &lt;code class=&quot;highlighter-rouge&quot;&gt;vector.c&lt;/code&gt; e a segunda em &lt;code class=&quot;highlighter-rouge&quot;&gt;list.c&lt;/code&gt;. Ao passarmos uma das duas ao compilador, elas fornecerão a implementação das funções abstratas utilizadas em &lt;code class=&quot;highlighter-rouge&quot;&gt;stack.c&lt;/code&gt;.&lt;/p&gt;
 

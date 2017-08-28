@@ -1,5 +1,5 @@
 ## Diretório onde os arquivos do jekyll estão
-web="~/UTFPR-web"
+web="../UTFPR-web"
 
 
 ## Copia arquivos gerados pelo jekyll para este diretório
