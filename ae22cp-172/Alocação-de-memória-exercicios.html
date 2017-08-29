@@ -259,7 +259,154 @@
 </code></pre>
     </div>
   </li>
+  <li>Imprima toda a string abaixo, caracter por caracter (putchar) sem que nenhuma variável adicional seja alocada.
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">char</span><span class="o">*</span> <span class="n">frase</span> <span class="o">=</span> <span class="s">"Frase de exemplo para teste"</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+    </div>
+  </li>
+  <li>No trecho de código a seguir, identifique onde cada uma das variáveis está alocada: pilha de chamadas ou heap. E identifique possíveis erros.
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">nome</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+    <span class="kt">char</span><span class="o">*</span> <span class="n">nomeptr</span><span class="p">;</span>    
+    <span class="n">nomeptr</span> <span class="o">=</span> <span class="s">"Jean"</span><span class="p">;</span>    
+    <span class="kt">int</span><span class="o">*</span> <span class="n">v</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="p">);</span>    
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">free</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="p">}</span>
+</code></pre>
+    </div>
+  </li>
+  <li>O que faz o seguinte código?
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span><span class="o">*</span> <span class="n">x</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="n">x</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span> 
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>Como definiríamos e alocaríamos um vetor de struct <code class="highlighter-rouge">vector*</code> de tamanho 100? Como variável local e como variável no Heap.</p>
+  </li>
+  <li>
+    <p>Como definiríamos um vetor de strings <code class="highlighter-rouge">char*</code> de tamanho 100? Como variável local e como variável no Heap.</p>
+  </li>
+  <li>Data a struct Fração definida abaixo, declare uma varíavel do tipo Fração.
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">struct</span> <span class="n">Fracao</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">numerador</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">denominador</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre>
+    </div>
+  </li>
+  <li>Data a struct Fração definida abaixo, declare uma varíavel do tipo Fração.
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">numerador</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">denominador</span><span class="p">;</span>
+<span class="p">}</span>  <span class="n">Fracao</span><span class="p">;</span>
+</code></pre>
+    </div>
+  </li>
+  <li>Data a struct Fração definida abaixo, declare uma varíavel do tipo Fração.
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// **** interface.h ****
+</span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_fracao</span> <span class="n">Fracao</span><span class="p">;</span>  
+</code></pre>
+    </div>
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// **** implementação.c ****
+</span><span class="cp">#include "interface.h"
+</span><span class="k">struct</span> <span class="n">_fracao</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">numerador</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">denominador</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre>
+    </div>
+  </li>
+  <li>Há algo de errado com este código?
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">int</span><span class="o">*</span> <span class="n">vetor</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">tamanho</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">array</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">array</span><span class="o">*</span> <span class="n">a</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">array</span><span class="p">));</span>
+    <span class="n">a</span><span class="o">-&gt;</span><span class="n">tamanho</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>    
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">a</span><span class="o">-&gt;</span><span class="n">tamanho</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">a</span><span class="o">-&gt;</span><span class="n">vetor</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="o">-&gt;</span><span class="n">vetor</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre>
+    </div>
+  </li>
+  <li>Há algo de errado com este código?
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">int</span><span class="o">*</span> <span class="n">vetor</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">tamanho</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">array</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">array</span> <span class="n">a</span><span class="p">;</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">tamanho</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>    
+    <span class="n">a</span><span class="p">.</span><span class="n">vetor</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span> <span class="n">a</span><span class="p">.</span><span class="n">tamanho</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">a</span><span class="o">-&gt;</span><span class="n">tamanho</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre>
+    </div>
+  </li>
+  <li>Para dobrar o tamanho de um vetor previamente alocado. O código a seguir faz isso corretamente?
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="cp">#include &lt;stdlib.h&gt;
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span><span class="o">*</span> <span class="n">a</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span> <span class="mi">20</span><span class="p">);</span>        
+    <span class="n">realloc</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span> <span class="mi">40</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>Qual a diferença entre <code class="highlighter-rouge">malloc</code> e <code class="highlighter-rouge">calloc</code>?</p>
+  </li>
+  <li>O que está sendo definido na linha de códgigo a seguir?
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span> <span class="n">v</span><span class="p">[</span><span class="mi">10</span><span class="p">][</span><span class="mi">3</span><span class="p">][</span><span class="mi">4</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span>
+</code></pre>
+    </div>
+  </li>
+  <li>Aloque memória para um vetor de tamanho 100 tipo array, definido a seguir.
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">typedef</span> <span class="kt">int</span><span class="o">*</span> <span class="n">array</span><span class="p">;</span>
+<span class="n">array</span><span class="o">*</span> <span class="n">v</span><span class="p">;</span> <span class="c1">// alocar 100 posições do tipo array.
+</span></code></pre>
+    </div>
+    <p>Que tipo de estrutura pode ser armazenada em v?</p>
+  </li>
+  <li>Implemente uma função que aloque memória no Heap para uma matriz bidimensional triangular inferior.
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span><span class="o">**</span> <span class="nf">new_ti_matrix</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//ti = triangular inferior.
+</span><span class="p">}</span>
+</code></pre>
+    </div>
+    <p><script type="math/tex">% <![CDATA[
+\begin{bmatrix}
+\ell_{1,1} &         &        &           &   \\
+\ell_{2,1} & \ell_{2,2} &        &           &    \\
+\ell_{3,1} & \ell_{3,2} & \ddots &           &    \\
+\vdots  & \vdots  & \ddots & \ddots    &    \\
+\ell_{n,1} & \ell_{n,2} & \ldots & \ell_{n,n-1} & \ell_{n,n}
+\end{bmatrix} %]]></script></p>
+  </li>
+  <li>Inicialize a matriz triangular com um determinado valor.
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">fill_ti_matrix</span><span class="p">(</span><span class="kt">int</span><span class="o">**</span> <span class="n">matrix</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">valor</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</code></pre>
+    </div>
+  </li>
+  <li>Desaloque a memória de uma matriz triangular inferior.
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">free_ti_matrix</span><span class="p">(</span><span class="kt">int</span><span class="o">**</span> <span class="n">matrix</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</code></pre>
+    </div>
+  </li>
 </ol>
+
 
   </article>
 
