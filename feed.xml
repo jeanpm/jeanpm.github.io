@@ -6,12 +6,107 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 29 Aug 2017 16:26:26 -0300</pubDate>
-    <lastBuildDate>Tue, 29 Aug 2017 16:26:26 -0300</lastBuildDate>
+    <pubDate>Thu, 31 Aug 2017 18:47:08 -0300</pubDate>
+    <lastBuildDate>Thu, 31 Aug 2017 18:47:08 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
-        <title>Semântica da lógica proposicional II - Árvores de refutação</title>
+        <title>Exercícios IV - Equivalências e Tabelas verdade</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#equivalências&quot; id=&quot;markdown-toc-equivalências&quot;&gt;Equivalências&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#tabelas-verdade&quot; id=&quot;markdown-toc-tabelas-verdade&quot;&gt;Tabelas verdade&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#referências&quot; id=&quot;markdown-toc-referências&quot;&gt;Referências&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;equivalências&quot;&gt;Equivalências&lt;/h1&gt;
+&lt;p&gt;Demonstre as equivalências a seguir:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \to q) \dashv\vdash \neg(p \land \neg q)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(p \land q) \dashv\vdash (\neg p \lor \neg q) \tag{Lei de De Morgan (DM)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(p \lor q) \dashv\vdash (\neg p \land \neg q) \tag{Lei de De Morgan (DM)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\lor q) \dashv\vdash (q\lor p) \tag{Comutação (COM)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \dashv\vdash (q\land p) \tag{Comutação (COM)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \lor (q \lor r)) \dashv\vdash ((p\lor q)\lor r) \tag{Associação (ASSOC)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land (q \land r))\dashv\vdash((p\land q)\land r) \tag{Associação (ASSOC)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land (q \lor r )) \dashv\vdash ((p \land q) \lor (p \land r)) \tag{Distribuição (DIST)}&lt;/script&gt;
+
+&lt;h1 id=&quot;tabelas-verdade&quot;&gt;Tabelas verdade&lt;/h1&gt;
+
+&lt;p&gt;Verifique se as formas de argumento a seguir são &lt;strong&gt;válidas&lt;/strong&gt; ou &lt;strong&gt;inválidas&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to q, p\to \neg q \vdash \neg p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to q \vdash \neg(q\to p)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor q, q \lor r \vdash p \lor r&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p \vdash p \to \neg p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor q \vdash p \land q&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to \neg q \vdash \neg(p \land q)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\vdash (p\to (q \land p))\to (p \land q)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\lor q, \neg p, \neg q \vdash r&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(q\land r) \to p, \neg q, \neg r \vdash \neg p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (r \lor s), (r \land s)\to q \vdash p\to q&lt;/script&gt;
+
+&lt;p&gt;Verifique se as fórmulas a seguir são &lt;strong&gt;satisfazíveis&lt;/strong&gt; (tautologia?) ou &lt;strong&gt;insatisfatíveis&lt;/strong&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor (\neg(q\land(r\to q)))&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q) \to (p \lor q)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;( (p\to\neg q) \to \neg p) \to q&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\to q) \lor (p\to \neg q)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to \neg p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(p \to p)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\lor q )\to p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q) \to p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \leftrightarrow \neg(p\lor q)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg((p\land q)\leftrightarrow(p\lor q))&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q) \land \neg(p\lor r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\to(q\land r))\to(p\to r)&lt;/script&gt;
+
+&lt;h1 id=&quot;referências&quot;&gt;Referências&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://racionalistasusp.files.wordpress.com/2010/01/nolt-john-rohatyn-dennis-lc3b3gica.pdf&quot;&gt;Logica - John Nolt (PDF). Capítulo 4: Pgs. 160 a 184&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Thu, 31 Aug 2017 16:20:00 -0300</pubDate>
+        <link>http://localhost:4000/lc21cp-172/Exercicios1-Tabelas-verdade.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Exercicios1-Tabelas-verdade.html</guid>
+        
+        <category>semântica</category>
+        
+        
+        <category>LC21CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>Semântica da lógica proposicional - Tabelas Verdade</title>
         <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#semântica-da-lógica-proposicional&quot; id=&quot;markdown-toc-semântica-da-lógica-proposicional&quot;&gt;Semântica da Lógica proposicional&lt;/a&gt;    &lt;ul&gt;
@@ -727,733 +822,6 @@ p &amp; \land &amp; q &amp; \to   &amp; w &amp; \land &amp; s &amp;\\
 &lt;/ul&gt;
 </description>
         <pubDate>Thu, 31 Aug 2017 10:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/Semantica-da-logica-proposicional-arvores-de-refutacao.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Semantica-da-logica-proposicional-arvores-de-refutacao.html</guid>
-        
-        <category>semântica</category>
-        
-        
-        <category>LC21CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Semântica da lógica proposicional I - Tabelas Verdade</title>
-        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#semântica-da-lógica-proposicional&quot; id=&quot;markdown-toc-semântica-da-lógica-proposicional&quot;&gt;Semântica da Lógica proposicional&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#princípio-da-bivalência&quot; id=&quot;markdown-toc-princípio-da-bivalência&quot;&gt;Princípio da bivalência&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#tabelas-verdade-dos-conectivos&quot; id=&quot;markdown-toc-tabelas-verdade-dos-conectivos&quot;&gt;Tabelas verdade dos conectivos&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#negação-neg&quot; id=&quot;markdown-toc-negação-neg&quot;&gt;Negação ($\neg$)&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#conjunção-land&quot; id=&quot;markdown-toc-conjunção-land&quot;&gt;Conjunção ($\land$)&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#disjunção-lor&quot; id=&quot;markdown-toc-disjunção-lor&quot;&gt;Disjunção ($\lor$)&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#condicional-to&quot; id=&quot;markdown-toc-condicional-to&quot;&gt;Condicional ($\to$)&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#bicondicional-leftrightarrow&quot; id=&quot;markdown-toc-bicondicional-leftrightarrow&quot;&gt;Bicondicional ($\leftrightarrow$)&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#tabelas-verdade-de-fórmulas&quot; id=&quot;markdown-toc-tabelas-verdade-de-fórmulas&quot;&gt;Tabelas verdade de fórmulas&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#tamanho-da-tabela-verdade&quot; id=&quot;markdown-toc-tamanho-da-tabela-verdade&quot;&gt;Tamanho da tabela verdade&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplos-xor&quot; id=&quot;markdown-toc-exemplos-xor&quot;&gt;Exemplos ($XOR$)&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplos-lte&quot; id=&quot;markdown-toc-exemplos-lte&quot;&gt;Exemplos (LTE)&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplos-contradição&quot; id=&quot;markdown-toc-exemplos-contradição&quot;&gt;Exemplos (Contradição)&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#tabelas-verdade-de-formas-de-argumento&quot; id=&quot;markdown-toc-tabelas-verdade-de-formas-de-argumento&quot;&gt;Tabelas verdade de formas de argumento&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplos-afirmação-do-consequente&quot; id=&quot;markdown-toc-exemplos-afirmação-do-consequente&quot;&gt;Exemplos (Afirmação do consequente)&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#exercícios&quot; id=&quot;markdown-toc-exercícios&quot;&gt;Exercícios&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#referências&quot; id=&quot;markdown-toc-referências&quot;&gt;Referências&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;semântica-da-lógica-proposicional&quot;&gt;Semântica da Lógica proposicional&lt;/h1&gt;
-
-&lt;p&gt;Até então tratamos da lógica proposicional do ponto de vista sintático. Ou seja, as regras de inferência utilizadas são baseadas principalmente na forma dos argumentos. Já a &lt;em&gt;semântica&lt;/em&gt; de uma expressão é o seu significado. Por meio da caracterização do significado dos operadores lógicos, desenvolvemos uma visão menos restrita e mais formal sobre os argumentos.&lt;/p&gt;
-
-&lt;h2 id=&quot;princípio-da-bivalência&quot;&gt;Princípio da bivalência&lt;/h2&gt;
-
-&lt;p&gt;O princípio da bivalência ou lei do terceiro excluído (LTE), simplesmente formaliza a noção intuitiva que existem apenas duas opções de valores para uma fórmula qualquer&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \phi \lor \neg \phi \tag{LTE}&lt;/script&gt;
-
-&lt;h2 id=&quot;tabelas-verdade-dos-conectivos&quot;&gt;Tabelas verdade dos conectivos&lt;/h2&gt;
-
-&lt;p&gt;Dada a LTE, a semântica de um conectivo lógico consiste na definição de todos seus possíveis valores lógicos, sendo que cada símbolo atômico e cada fórmula e subfórmulas podem ter, em um dado momento, apenas um valor dentre: verdadeiro (T) e falso (F).&lt;/p&gt;
-
-&lt;p&gt;A seguir, descreveremos as tabelas verdade para cada um dos conectivos lógicos vistos até então.&lt;/p&gt;
-
-&lt;h3 id=&quot;negação-neg&quot;&gt;Negação ($\neg$)&lt;/h3&gt;
-
-&lt;p&gt;A negação é o único conectivo lógico unário visto até então. Dada uma fórmula qualquer $\phi$, esta pode assumir valor-verdade &lt;em&gt;verdadeiro&lt;/em&gt; (V) ou &lt;em&gt;falso&lt;/em&gt; (F), o que está descrito na primeira coluna da tabela abaixo. Já a negação $\neg\phi$, por sua vez assume valor-verdade que depende do valor de $\phi$, fato descrito na segunda coluna da tabela.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg\phi$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;conjunção-land&quot;&gt;Conjunção ($\land$)&lt;/h3&gt;
-
-&lt;p&gt;A conjunção é um operador binário, em que dadas duas fórmulas $\phi$ e $\psi$, assume valor-verdade &lt;em&gt;verdadeiro&lt;/em&gt; apenas quando ambas conjuctos forem também verdadeiros.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi\land\psi$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;disjunção-lor&quot;&gt;Disjunção ($\lor$)&lt;/h3&gt;
-
-&lt;p&gt;A disjunção é um operador binário. Dadas duas fórmulas $\phi$ e $\psi$, sua disjunção assume valor-verdade &lt;em&gt;verdadeiro&lt;/em&gt; sempre que uma delas, ou ambas, forem verdadeiras.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi\lor\psi$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;condicional-to&quot;&gt;Condicional ($\to$)&lt;/h3&gt;
-
-&lt;p&gt;O condicional é um operador binário que representa proposições do tipo “Se.. então…”. Por exemplo&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;“Se Paula for, então Quincas irá.” $(\phi\to\psi)$&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Este argumento tem o mesmo significado a seguir&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;“Não é o caso de Paula ir e Quincas não ir.” $\neg(\phi \land \neg \psi)$&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Deste modo, dizemos que as fórmulas acima são equivalentes&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(\phi\to\psi)\dashv\vdash\neg(\phi\land\neg\psi)&lt;/script&gt;
-
-&lt;p&gt;Dada esta equivalência, a tabela-verdade de ambas fórmulas são iguais, assim como demonstrado nas duas últimas colunas da tabela abaixo.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi\to\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg(\phi\land\neg\psi)$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Como podemos ver pela tabela verdade, o condicional somente é falso quando seu antecedente é falso e seu consequente verdadeiro.&lt;/p&gt;
-
-&lt;h3 id=&quot;bicondicional-leftrightarrow&quot;&gt;Bicondicional ($\leftrightarrow$)&lt;/h3&gt;
-
-&lt;p&gt;O bicondicional é um operador binário derivado do condicional simples e pode ser escrito como $\phi\leftrightarrow\psi$, fórmula a qual é equivalente a $(\phi\to\psi)\land(\psi\to\phi)$. Portanto, temos que&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi\leftrightarrow\psi \dashv\vdash (\phi\to\psi)\land(\psi\to\phi)&lt;/script&gt;
-
-&lt;p&gt;Esse tipo de equivalência é útil para que possamos esclarecer dúvidas no preenchimento da tabela verdade, pois assim é possível comparar nossa interpretação em ambas fórmulas.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi\leftrightarrow\psi$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Pela tabela verdade acima, percebemos que o bicondicional $\phi\leftrightarrow\psi$ é verdadeiro sempre que ambas partes constituintes forem iguais (V,V) ou (F,F).&lt;/p&gt;
-
-&lt;h2 id=&quot;tabelas-verdade-de-fórmulas&quot;&gt;Tabelas verdade de fórmulas&lt;/h2&gt;
-
-&lt;p&gt;Para construirmos a tabela verdade de uma fórmula complexa, devemos inicialmente decompô-la em subfórmulas. Para exemplificar esse procedimento, utilizaremos a fórmula já vista anteriormente: $\neg(\phi\land\neg\psi)$.&lt;/p&gt;
-
-&lt;p&gt;Observe, inicialmente, que essa é uma fórmula da forma $\neg(\chi)$, sendo $\chi: \phi\land\neg\psi$. Isto significa que $\chi$ é uma subfórmula. Por sua vez, para sabermos os valores-verdade da subfórmula $\chi$, é preciso conhecermos primeiro os valores-verdade dos conjuctos $\phi$ e $\neg\psi$, os quais são subfórmulas de $\chi$.&lt;/p&gt;
-
-&lt;p&gt;Para organizarmos essa ideia em forma de tabela, procederemos das menores subfórmulas às maiores, da esquerda para a direita, sendo uma coluna para cada. Inserimos primeiro as duas menores subfórmulas, que de fato são os símbolos atômicos, neste caso $\phi$ e $\psi$&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi \land \neg\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg(\phi\land\neg\psi)$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;A próxima subfórmula a ser inserida seria então a negação $\neg\psi$.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi \land \neg\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg(\phi\land\neg\psi)$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Considerando os valores-verdade da primeira ($\phi$) e terceira ($\neg\psi$) colunas, podemos então deduzir a quarta coluna como sendo a sua conjunção.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi \land \neg\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg(\phi\land\neg\psi)$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Como a última (mais externa) subfórmula é apenas a negação da conjunção anterior, basta invertermos os valores-verdade da coluna ($\phi\land\neg\psi$).&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi \land \neg\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg(\phi\land\neg\psi)$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;tamanho-da-tabela-verdade&quot;&gt;Tamanho da tabela verdade&lt;/h3&gt;
-
-&lt;p&gt;Observe que nos exemplos acima, grande parte das tabelas verdade possuem o mesmo número de linhas. Esse valor é completamente definido pelo número de simbolos atômicos utilizados pelas fórmulas. Visto que para cada símbolo dois valores-verdade são possíveis, o número de linhas da tabela-verdade será $2^n$, onde $n$ é o número de símbolos utilizados. Como exemplo, considere a fórmula&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\land q \to w\land s&lt;/script&gt;
-
-&lt;p&gt;A qual utiliza 4 símbolos: $p, q, w$ e $s$. Para cada um desses há 2 possibilidades, portanto, o número de linhas na tabela será.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{array}{cccccccc}
-p &amp; \land &amp; q &amp; \to   &amp; w &amp; \land &amp; s &amp;\\
-2 &amp;\times &amp; 2 &amp;\times &amp; 2 &amp;\times &amp; 2 &amp; = 2^4 = 16
-\end{array} %]]&gt;&lt;/script&gt;
-
-&lt;h3 id=&quot;exemplos-xor&quot;&gt;Exemplos ($XOR$)&lt;/h3&gt;
-
-&lt;p&gt;Construa a tabela verdade para a seguinte fórmulas&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\lor q) \land \neg(p \land q) \tag{XOR}&lt;/script&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p\lor q$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p\land q$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg(p\land q)$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$(p\lor q) \land \neg(p \land q)$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;exemplos-lte&quot;&gt;Exemplos (LTE)&lt;/h3&gt;
-
-&lt;p&gt;Construindo a tabela-verdade para a LTE, observamos um fato curioso. Todas as linhas da última coluna da tabela possuem valor-verdade &lt;em&gt;verdadeiro&lt;/em&gt;.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor \neg p&lt;/script&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg p$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p\lor \neg p$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Fórmulas desse tipo recebem o nome de &lt;em&gt;tautologias&lt;/em&gt; e são verdadeiras para qualquer atribuição de valores para os símbolos atômicos. Uma fórmula é uma tautologia se, e somente se, ela é um teorema, ou seja, provável sem suposições.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Toda &lt;em&gt;tautologia&lt;/em&gt; é &lt;strong&gt;satisfazível&lt;/strong&gt;, ou seja, existe ao menos uma atribuição de valores-verdade que torna a fórmula verdadeira.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;exemplos-contradição&quot;&gt;Exemplos (Contradição)&lt;/h3&gt;
-
-&lt;p&gt;Já a tabela-verdade para a contradição nos dá um resultado oposto ao das &lt;em&gt;tautologias&lt;/em&gt;. Neste caso, todas as linhas da última coluna da tabela-verdade possuem valor-verdade falso. Isso significa que não há atribuição de valores-verdade para as variáveis que torne a fórmula verdadeira.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Toda &lt;em&gt;contradição&lt;/em&gt; é &lt;strong&gt;insatisfatível&lt;/strong&gt;, ou seja, não existe atribuição de valores-verdade que torne a fórmula verdadeira.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land \neg p&lt;/script&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg p$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p\land \neg p$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&quot;tabelas-verdade-de-formas-de-argumento&quot;&gt;Tabelas verdade de formas de argumento&lt;/h2&gt;
-
-&lt;p&gt;Tabelas verdade também podem ser utilizadas para demonstrar se uma forma de argumento é &lt;strong&gt;válida&lt;/strong&gt; ou &lt;strong&gt;inválida&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Uma forma de argumento é &lt;strong&gt;válida&lt;/strong&gt; se não há atribuição de valores-verdade tal que as premissas sejam verdadeiras e a conclusão seja falsa.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Uma forma de argumento é &lt;strong&gt;inválida&lt;/strong&gt; se existe ao menos uma atribuição de valores-verdade que torne as premissas verdadeiras e a conclusão falsa.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Como as tabelas verdade listam exaustivamente todas as possíveis atribuições de valores-verdade, elas podem ser utilizadas para verificar a validade de qualquer forma de argumento.&lt;/p&gt;
-
-&lt;p&gt;Como exemplo, vamos construir a tabela verdade para a forma de argumento:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor q, \neg p \vdash q&lt;/script&gt;
-
-&lt;p&gt;A tabela verdade neste caso ignorará os símbolos: $, \vdash$. Tais símbolos são utilizados apenas para identificar possíveis colunas na tabela.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p\lor q$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg p$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;V&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;V&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;V&lt;/strong&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Observe que a única linha da tabela em que as premissas são ambas verdadeiras é a linha 3. Nessa situação a conclusão também é verdadeira, portanto a fórmula é &lt;strong&gt;válida&lt;/strong&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Como há dois casos em que a conclusão é verdadeira (linhas 1 e 3) então a fórmula é &lt;strong&gt;satisfazível&lt;/strong&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;exemplos-afirmação-do-consequente&quot;&gt;Exemplos (Afirmação do consequente)&lt;/h3&gt;
-
-&lt;p&gt;Construa a tabela verdade para a forma de argumento a seguir:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to q, q \vdash p&lt;/script&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p\to q$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;V&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;V&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;F&lt;/strong&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Como a terceira linha nos provê um &lt;strong&gt;contra-exemplo&lt;/strong&gt; do argumento, ou seja, uma atribuição de valores-verdade que torna as premissas verdadeiras e a conclusão falsa, então essa forma de argumento é &lt;strong&gt;inválida&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;exercícios&quot;&gt;Exercícios&lt;/h2&gt;
-
-&lt;p&gt;Construa as tabelas verdade e verifique se as formas de argumento a seguir são &lt;strong&gt;válidas&lt;/strong&gt; ou &lt;strong&gt;inválidas&lt;/strong&gt;:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to q, p\to \neg q \vdash \neg p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to q \vdash \neg(q\to p)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor q, q \lor r \vdash p \lor r&lt;/script&gt;
-
-&lt;h1 id=&quot;referências&quot;&gt;Referências&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://racionalistasusp.files.wordpress.com/2010/01/nolt-john-rohatyn-dennis-lc3b3gica.pdf&quot;&gt;Logica - John Nolt (PDF). Capítulo 4: Pgs. 160 a 184&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Wed, 30 Aug 2017 10:20:00 -0300</pubDate>
         <link>http://localhost:4000/lc21cp-172/Semantica-da-logica-proposicional.html</link>
         <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Semantica-da-logica-proposicional.html</guid>
         
