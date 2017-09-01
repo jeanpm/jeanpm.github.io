@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>APS - Implementando vector</title>
+  <title>APS1 - Implementando vector</title>
   <meta name="description" content="Conteúdo">
 
   <link rel="stylesheet" href="/css/main.css">
@@ -53,7 +53,7 @@
         <div class="post">
 
   <header class="post-header">
-     <h1 class="post-title">APS - Implementando vector</h1>
+     <h1 class="post-title">APS1 - Implementando vector</h1>
      <p class="post-meta">
          <i class="fa fa-calendar-o"></i> Aug 28, 2017
           • <i class="fa fa-user"></i> jean
@@ -89,8 +89,18 @@
   <li><a href="#estrutura-e-implementação" id="markdown-toc-estrutura-e-implementação">Estrutura e implementação</a>    <ul>
       <li><a href="#inicialização-e-finalização" id="markdown-toc-inicialização-e-finalização">Inicialização e Finalização</a></li>
       <li><a href="#acesso-e-manipulação-sem-crescimento" id="markdown-toc-acesso-e-manipulação-sem-crescimento">Acesso e manipulação: sem crescimento</a></li>
+      <li><a href="#acesso-e-manipulação" id="markdown-toc-acesso-e-manipulação">Acesso e manipulação</a>        <ul>
+          <li><a href="#inserção-com-crescimento" id="markdown-toc-inserção-com-crescimento">Inserção: com crescimento</a></li>
+          <li><a href="#remoção-sem-decrescimento" id="markdown-toc-remoção-sem-decrescimento">Remoção: sem decrescimento</a></li>
+        </ul>
+      </li>
+      <li><a href="#atualizando-o-tamanho-do-vetor-resize" id="markdown-toc-atualizando-o-tamanho-do-vetor-resize">Atualizando o tamanho do vetor: resize</a></li>
+      <li><a href="#imprimindo-o-conteúdo-do-vetor" id="markdown-toc-imprimindo-o-conteúdo-do-vetor">Imprimindo o conteúdo do vetor</a></li>
+      <li><a href="#verificando-a-validade-de-argumentos" id="markdown-toc-verificando-a-validade-de-argumentos">Verificando a validade de argumentos</a></li>
     </ul>
   </li>
+  <li><a href="#generalizando-o-tipo-vector" id="markdown-toc-generalizando-o-tipo-vector">Generalizando o tipo vector</a></li>
+  <li><a href="#casos-de-teste" id="markdown-toc-casos-de-teste">Casos de teste</a></li>
 </ul>
 
 <h1 id="estrutura-e-implementação">Estrutura e implementação</h1>
@@ -135,20 +145,32 @@
 <h2 id="acesso-e-manipulação">Acesso e manipulação</h2>
 
 <h3 id="inserção-com-crescimento">Inserção: com crescimento</h3>
-<p>As funções acima não alteram o tamanho do vetor, portanto $i$ deve ser um índice válido. Já a função a seguir, tenta inserir um item no final do vetor, caso ainda haja espaço, basta inserí-lo e atualizar <code class="highlighter-rouge">size</code>. Caso contrário, é preciso realocar o vetor.</p>
+<p>As funções acima não alteram o tamanho do vetor, portanto $i$ deve ser um <strong>índice válido</strong>. Já a função a seguir, tenta inserir um item no final do vetor, caso ainda haja espaço, basta inserí-lo e atualizar <code class="highlighter-rouge">size</code>. Caso contrário, é preciso realocar o vetor.</p>
+
 <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">vector_push_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">);</span>
+<span class="cm">/* Exemplo:
+ v = 4 5 7 19 2 1
+ push_back 5
+ v = 4 5 7 19 2 1 5
+ */</span>
 </code></pre>
 </div>
 
 <p>Suponha agora que queiramos inserir um elemento no vetor em uma dada posição que não seja o fim. Chamaremos essa função:</p>
 <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">vector_insert</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+<span class="cm">/* Exemplo:
+ v = 4 5 7 19 2 1
+ vector_insert 5 3
+ v = 4 5 7 5 19 2 1
+ */</span>
 </code></pre>
 </div>
 
-<p>Se <code class="highlighter-rouge">vector_insert</code> é chamada para inserir um valor em uma posição $i$ do vetor, todos os elementos em posições posteriores a $i$ precisam ser movidos adiante.</p>
+<p>Se <code class="highlighter-rouge">vector_insert</code> é chamada para inserir um valor em uma posição $i$ do vetor, todos os elementos em posições posteriores a $i$ precisam ser deslocados uma posição adiante.</p>
 
 <p>Implementada a inserção, temos condições de facilmente implementar uma função para inserir no início do vetor. Esta função precisa apenas chamar <code class="highlighter-rouge">vector_insert(v, value, 0)</code>.</p>
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">vector_push_front</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">);</span>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">vector_push_front</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">valor</span><span class="p">);</span>
 </code></pre>
 </div>
 
@@ -168,17 +190,18 @@
 <h2 id="atualizando-o-tamanho-do-vetor-resize">Atualizando o tamanho do vetor: resize</h2>
 
 <p>Sempre que um elemento for inserido no vetor, uma alteração no tamanho atual (<code class="highlighter-rouge">size</code>) é necessária.</p>
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">resize</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">vector_resize</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
 </code></pre>
 </div>
 
-<p>Se não há espaço adicional (entre <code class="highlighter-rouge">size</code> e <code class="highlighter-rouge">capacity</code>) é preciso realocar o vetor <code class="highlighter-rouge">realloc</code>. Assumiremos que a nova capacidade será o dobro da atual <code class="highlighter-rouge">capacity *= 2</code>. Observe que se a capacidade for inicializada com zero, esta atualização não funcionará.</p>
+<p>Se não há espaço adicional (entre <code class="highlighter-rouge">size</code> e <code class="highlighter-rouge">capacity</code>) é preciso realocar o vetor utilizando a função <code class="highlighter-rouge">realloc</code> de “stdlib.h”. Assumiremos que a nova capacidade será o dobro da atual, portanto, capacity *= 2. Observe que se a capacidade for inicializada com zero, esta atualização não funcionará, visto que a multiplicação por 2 manterá a capacidade em zero, nesses casos, assumiremos que a capacidade será inicializada por padrão em 4.</p>
 
 <h2 id="imprimindo-o-conteúdo-do-vetor">Imprimindo o conteúdo do vetor</h2>
 
 <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">vector_print</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
 </code></pre>
 </div>
+
 <p>Esta função auxiliar deverá imprimir o conteúdo do vetor obedecendo o seguinte formato:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>[size/capacity] data[0] data[1] data[2] ... data[size] \n
@@ -195,6 +218,7 @@
 <p>Grande parte das funções de acesso e manipulação dos dados no vetor recebem como argumento um inteiro como índice. Para o contexto de <code class="highlighter-rouge">vector</code>, todo acesso que não esteja no intervalo $0 \leq i &lt; \mbox{size}$ é inválido, pois extrapola os índices do vetor.</p>
 
 <p>Há diversas formas de se verificar esse tipo de situação. Podemos, por exemplo, definir um condicional que verifique os limites de $i$</p>
+
 <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// Faz algo
 </span><span class="p">}</span>
@@ -203,17 +227,18 @@
 
 <p>No caso de vector, um acesso fora dos limites do vetor levaria a uma falha de segmentação durante a execução do programa. Um acesso desse tipo, em geral, é resultado de erro de programação, visto que não é razoável que alguém tente, deliberadamente, acessar uma região de memória que não lhe pertence. Portanto, acessos desse tipo são anômalos, e devem ser noticiados imediatamente.</p>
 
-<p>Uma forma de se fazer isso, é utilizando a função <code class="highlighter-rouge">assert(bool v)</code> (requer <code class="highlighter-rouge">#include &lt;assert.h&gt;</code>). Esta é uma função bem simples, a qual termina a execução do programa, caso o argumento que ela receba não seja verdadeiro. O condicional definido anteriormente poderia ser substituído por:</p>
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="n">assert</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">);</span>
-<span class="c1">// Faz algo
-</span></code></pre>
+<p>Uma forma de se fazer isso, é utilizando a função <code class="highlighter-rouge">assert(bool v)</code> (requer “#include <assert.h>"). Esta é uma função bem simples, a qual aborta a execução do programa caso o argumento que ela receba não seja verdadeiro. O condicional definido anteriormente poderia ser substituído por:</assert.h></p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="n">assert</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">);</span>
+</code></pre>
 </div>
 
-<p>Neste caso, a linha após <code class="highlighter-rouge">assert</code> somente será alcançada caso a expressão <code class="highlighter-rouge">i &gt;=0 &amp;&amp; i &lt; v-&gt;size</code> seja verdadeira. Caso contrário o programa será interrompido imediatamente, e uma mensagem de erro impressa em tela.</p>
+<p>Neste caso, a linha após <code class="highlighter-rouge">assert</code> somente será alcançada caso a expressão <code class="highlighter-rouge">i &gt;=0 &amp;&amp; i &lt; v-&gt;size</code> seja verdadeira. Caso contrário o programa será interrompido imediatamente (abort), e uma mensagem de erro exibida em tela, indicando a linha em que a condição do <code class="highlighter-rouge">assert</code> não foi atendida.</p>
 
 <h1 id="generalizando-o-tipo-vector">Generalizando o tipo vector</h1>
 
 <p>Até então tratamos de uma implementação <code class="highlighter-rouge">vector</code> cuja estrutura interna é baseada em um vetor de inteiros.</p>
+
 <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
     <span class="kt">int</span><span class="o">*</span> <span class="n">data</span><span class="p">;</span>     <span class="c1">// vetor que armazenará os inteiro;
 </span>    <span class="kt">int</span>  <span class="n">size</span><span class="p">;</span>     <span class="c1">// tamanho atual do vetor
@@ -225,6 +250,7 @@
 <p>Porém, em grande parte dos casos, as mesmas funcionalidades implementadas poderiam ser úteis para outros tipos de dados. Como poderíamos alterar essa estrutura para que fosse mais fácil utilizá-la em outras situações? Ex.: para armazenar <code class="highlighter-rouge">float</code> ou <code class="highlighter-rouge">char</code>, etc.</p>
 
 <p>Podemos definir um tipo de dados, com <code class="highlighter-rouge">typedef</code> e utilizá-lo em lugar de <code class="highlighter-rouge">int</code>. Ou seja</p>
+
 <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">typedef</span> <span class="kt">int</span> <span class="n">Type</span><span class="p">;</span>
 
 <span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
@@ -235,7 +261,7 @@
 </code></pre>
 </div>
 
-<p>Toda a referência ao tipo inteiro em elementos do vetor, são agora substituídos por <code class="highlighter-rouge">Type</code>. Deste modo para que se utilize toda a estrutura com um tipo de dados diferente, basta alterar a definição de <code class="highlighter-rouge">Type</code>.</p>
+<p>Toda a referência ao tipo inteiro em elementos do vetor, são agora substituídos por <code class="highlighter-rouge">Type</code>. Deste modo para que se utilize a estrutura com um tipo de dados diferente, basta alterar a definição de <code class="highlighter-rouge">Type</code>, não sendo necessário alterar todo o código cada vez que se deseje utilizar <code class="highlighter-rouge">vector</code> com um tipo de dados diferente.</p>
 
 <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">typedef</span> <span class="kt">float</span> <span class="n">Type</span><span class="p">;</span>
 <span class="c1">// Funções de remoção de elementos
@@ -268,7 +294,6 @@ pop_back
 </div>
 
 <p>Após cada um desses comandos o vetor é impresso, seguindo um formato especificado descrito a seguir:</p>
-
 <div class="highlighter-rouge"><pre class="highlight"><code>[1/6] 13 
 [2/6] 13 49 
 [3/6] 13 49 29 
@@ -278,20 +303,14 @@ pop_back
 </code></pre>
 </div>
 
-<p>A primeira linha do arquivo de entrada sempre inicializará o vetor, neste exemplo, ela requisita a inicialização com capacidade 6</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>6
-</code></pre>
-</div>
+<p>A primeira linha do arquivo de entrada sempre inicializará o vetor, neste exemplo, ela requisita a inicialização com capacidade 6. A pŕoxima linha indica quantos comandos virão a seguir, neste exemplo temos 6 comandos, portanto a segunda linha contém o número 6.</p>
 
-<p>A pŕoxima linha indica quantos comandos virão a seguir, neste exemplo temos 6 comandos, portanto a segunda linha contém o número 6.</p>
-
-<p>A seguir desta linha, virão então 9 comandos, que serão lidos um a um. A cada comando lido, a função de mesmo nome deverá ser chamada no seu código com os parâmetros vindos do arquivo. Exemplo, a linha de entrada</p>
+<p>A seguir desta linha, virão então 6 comandos, que serão lidos um a um. A cada comando lido, a função de mesmo nome deverá ser chamada no seu código com os parâmetros vindos do arquivo. Exemplo, a linha de entrada</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>push_front 13
 </code></pre>
 </div>
 <p>Deverá disparar em seu código uma chamada à função</p>
-
 <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="n">vector_push_front</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">13</span><span class="p">);</span>
 </code></pre>
 </div>
@@ -304,10 +323,8 @@ pop_back
 <p>Após o segundo <code class="highlighter-rouge">push_back 49</code>, o vetor passa a ter tamanho 2 e capacidade ainda é 6, portanto foi impresso em tela a linha</p>
 <div class="highlighter-rouge"><pre class="highlight"><code>[2/6] 13 49
 </code></pre>
-
-
-
 </div>
+
 
   </article>
 
