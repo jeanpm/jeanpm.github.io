@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 04 Sep 2017 18:17:58 -0300</pubDate>
-    <lastBuildDate>Mon, 04 Sep 2017 18:17:58 -0300</lastBuildDate>
+    <pubDate>Mon, 04 Sep 2017 18:22:27 -0300</pubDate>
+    <lastBuildDate>Mon, 04 Sep 2017 18:22:27 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -226,6 +226,8 @@ gcc main.c stack.c list.c -o main-list
 &lt;/ul&gt;
 
 &lt;h1 id=&quot;cvector&quot;&gt;C++/vector&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/cpp.jpg&quot; alt=&quot;c++&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;A estrutura de vetores dinâmicos é de grande utilidade pois abstrai do programador a necessidade de gerenciar o crescimento da região de memória necessária.&lt;/p&gt;
 
