@@ -6,9 +6,316 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 01 Sep 2017 14:00:36 -0300</pubDate>
-    <lastBuildDate>Fri, 01 Sep 2017 14:00:36 -0300</lastBuildDate>
+    <pubDate>Mon, 04 Sep 2017 18:17:58 -0300</pubDate>
+    <lastBuildDate>Mon, 04 Sep 2017 18:17:58 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Políticas de acesso e manipulação I - Pilhas</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#políticas-de-acesso-e-manipulação&quot; id=&quot;markdown-toc-políticas-de-acesso-e-manipulação&quot;&gt;Políticas de acesso e manipulação&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#pilhas-stack&quot; id=&quot;markdown-toc-pilhas-stack&quot;&gt;Pilhas (stack)&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#implementação&quot; id=&quot;markdown-toc-implementação&quot;&gt;Implementação&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#pilhas-usando-vector&quot; id=&quot;markdown-toc-pilhas-usando-vector&quot;&gt;Pilhas usando &lt;em&gt;vector&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#pilhas-usando-um-container-abstrato&quot; id=&quot;markdown-toc-pilhas-usando-um-container-abstrato&quot;&gt;Pilhas usando um &lt;em&gt;container&lt;/em&gt; abstrato&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#implementação-da-interface-containerh&quot; id=&quot;markdown-toc-implementação-da-interface-containerh&quot;&gt;Implementação da interface &lt;em&gt;container.h&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;políticas-de-acesso-e-manipulação&quot;&gt;Políticas de acesso e manipulação&lt;/h1&gt;
+
+&lt;p&gt;Algumas estruturas de dados não requerem novas formas de armazenamento dos dados em memória. Nesses casos, tais estruturas são definidas apenas pela forma com a qual elas permitem o acesso e manipulação dos dados armazenados, o que chamei de &lt;strong&gt;política de acesso e manipulação&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Para melhor compreendermos essa ideia, iniciaremos o estudo de duas estruturas de dados (ou políticas de acesso e manipulação) de grande relevância: pilhas (stack) e filas (queue). Por serem apenas políticas de acesso, pilhas e filas podem ser implementadas utilizando como base diferentes tipos de estruturas de dados (contêiners). Neste primeiro momento, no entanto, assumiremos apenas a implementação de pilhas e filas utilizando o contêiner &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; como base.&lt;/p&gt;
+
+&lt;h2 id=&quot;pilhas-stack&quot;&gt;Pilhas (stack)&lt;/h2&gt;
+
+&lt;p&gt;Pilhas (Stacks) são estruturas de dados com políticas de acesso e manipulação de grande restrição. Há somente uma forma de acessar os elementos de uma pilha.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Novos elementos são inseridos em apenas uma direção.
+    &lt;ul&gt;
+      &lt;li&gt;O último elemento inserido é chamado o topo da pilha&lt;/li&gt;
+      &lt;li&gt;Essa operação é chamada &lt;code class=&quot;highlighter-rouge&quot;&gt;push&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Elementos são removidos em direção oposta à inserção
+    &lt;ul&gt;
+      &lt;li&gt;Somente o elemento no topo pode ser removido diretamente.&lt;/li&gt;
+      &lt;li&gt;Essa operação é chamada &lt;code class=&quot;highlighter-rouge&quot;&gt;pop&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Este tipo de política de acesso ficou conhecido pela sigla:
+    &lt;ul&gt;
+      &lt;li&gt;LIFO, do inglês &lt;em&gt;last in, first out&lt;/em&gt;. O último elemento inserido é necessáriamente o primeiro a ser removido.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/pilhas-geral.png&quot; alt=&quot;pilhas&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Estruturas do tipo &lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt; são de grande utilidade em aspectos fundamentais da ciência da computação. Seja na construção de compiladores e linguagens de programação, por uma perspectiv teórica, ou no gerenciamento de memória da pilha de chamadas (&lt;a href=&quot;https://pt.stackoverflow.com/questions/3797/o-que-s%C3%A3o-e-onde-est%C3%A3o-o-stack-e-heap&quot;&gt;stack call&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;Implementações de pilhas em linguagens de programação:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;C++/STL, &lt;a href=&quot;http://www.cplusplus.com/reference/stack/stack/&quot;&gt;stack&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;http://www.cplusplus.com/reference/stack/stack/&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Python, &lt;a href=&quot;https://docs.python.org/2/tutorial/datastructures.html#using-lists-as-stacks&quot;&gt;Using lists as stacks&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;https://docs.python.org/2/tutorial/datastructures.html#using-lists-as-stacks&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;C#, &lt;a href=&quot;https://msdn.microsoft.com/pt-br/library/system.collections.stack(v=vs.110).aspx&quot;&gt;Stack&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;https://msdn.microsoft.com/pt-br/library/system.collections.stack(v=vs.110).aspxs&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;implementação&quot;&gt;Implementação&lt;/h1&gt;
+
+&lt;h2 id=&quot;pilhas-usando-vector&quot;&gt;Pilhas usando &lt;em&gt;vector&lt;/em&gt;&lt;/h2&gt;
+
+&lt;p&gt;É fácil notar que todas as funcionalidades necessárias para manipular uma pilha já estão implementadas para &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;. De fato, precisamos apenas de um subconjunto das funcionalidades disponíveis em &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;, ou seja, pilhas são mais restritivas.&lt;/p&gt;
+
+&lt;p&gt;Vejamos quais funcionalidades de &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; serão úteis para implementarmos uma estrutura pilha (&lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt;).&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Alocação desalocação
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_vector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;initial_capacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;free_vector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Inserção e remoção de elementos
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Observer o topo da pilha, sem remoção
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;A partir dessa referência podemos definir funções análogas para manipulação de nossa estrutura &lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Redefinir o nome vector
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Alocação desalocação
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;new_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;initial_capacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_vector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;initial_capacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;free_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;free_vector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Inserção e remoção de elementos
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;vector_push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Retorna um ponteiro para o topo da pilha
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;pilhas-usando-um-container-abstrato&quot;&gt;Pilhas usando um &lt;em&gt;container&lt;/em&gt; abstrato&lt;/h2&gt;
+
+&lt;p&gt;Em princípio, não há problemas em utilizar as funções de &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; para implementar as funcionalidades de &lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt;. Muito pelo contrário, reuso de funções é um dos objetivos da programação estruturada.&lt;/p&gt;
+
+&lt;p&gt;No entanto, como mencionado anteriormente, pilhas podem ser implementadas sobre diferentes &lt;em&gt;contêiners&lt;/em&gt;. A nossa versão atual, porém, está totalmente acoplada ao &lt;em&gt;contêiner&lt;/em&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/stack-vector.png&quot; alt=&quot;stack-vector&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Como podemos eliminar essa limitação e tornar nossa implementação mais geral ainda? De modo que outros contêiners sequenciais (&lt;code class=&quot;highlighter-rouge&quot;&gt;list&lt;/code&gt;, por exemplo) também pudessem ser facilmente utilizados quando necessário. A ideia é introduzir uma interface entre a implementação de um contêiner e sua definição.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/stack-container.png&quot; alt=&quot;stack-container&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Essa interface nada mais é do que um arquivo que define todas as funcionalidades que as implementações devem ter para serem um &lt;strong&gt;contêiner&lt;/strong&gt;. Tais arquivos, em geral, contém apenas cabeçalhos de funções e possivelmente definições de tipos de dados.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// **** container.h ****
+&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;#define Type int
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_container&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Funções de remoção de elementos
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pop_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;erase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Funções de inserção de elementos
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;push_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Dada uma interface que define um contêiner genérico (abstrato), podemos redefinir nossa estrutura &lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt; para que ela utilize essas funções, ao invés daquelas específicas de &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// **** stack.c ****
+&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;container.h&quot;
+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// Redefinir o nome vector
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;container&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Alocação desalocação
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;new_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;initial_capacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;initial_capacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;free_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;free_container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Inserção e remoção de elementos
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Retorna um ponteiro para o topo da pilha
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;implementação-da-interface-containerh&quot;&gt;Implementação da interface &lt;em&gt;container.h&lt;/em&gt;&lt;/h2&gt;
+
+&lt;p&gt;Até este momento a implementação de &lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt; não existe de forma concreta, pois ela depende da implementação de funções que não foram implementadas em &lt;code class=&quot;highlighter-rouge&quot;&gt;container.h&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Como já mencionado anteriormente, podem existir diferentes implementações da mesma interface. Qual delas será utilizada por &lt;code class=&quot;highlighter-rouge&quot;&gt;stack.c&lt;/code&gt; é uma decisão feita durante a compilação.&lt;/p&gt;
+
+&lt;p&gt;Suponhamos a existência de duas implementações de &lt;code class=&quot;highlighter-rouge&quot;&gt;container.h&lt;/code&gt;, a primeira em &lt;code class=&quot;highlighter-rouge&quot;&gt;vector.c&lt;/code&gt; e a segunda em &lt;code class=&quot;highlighter-rouge&quot;&gt;list.c&lt;/code&gt;. Ao passarmos uma das duas ao compilador, elas fornecerão a implementação das funções abstratas utilizadas em &lt;code class=&quot;highlighter-rouge&quot;&gt;stack.c&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gcc main.c stack.c vector.c -o main-vector
+
+gcc main.c stack.c list.c -o main-list
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Mon, 04 Sep 2017 18:40:00 -0300</pubDate>
+        <link>http://localhost:4000/ae22cp-172/Politicas-de-acesso-pilhas-filas.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/Politicas-de-acesso-pilhas-filas.html</guid>
+        
+        <category>aps1-vector</category>
+        
+        
+        <category>AE22CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>APS1 - Utilizando C++/STL vector</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#cvector&quot; id=&quot;markdown-toc-cvector&quot;&gt;C++/vector&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#inicialização-e-finalização&quot; id=&quot;markdown-toc-inicialização-e-finalização&quot;&gt;Inicialização e Finalização&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#acesso-e-manipulação&quot; id=&quot;markdown-toc-acesso-e-manipulação&quot;&gt;Acesso e manipulação&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#inserção&quot; id=&quot;markdown-toc-inserção&quot;&gt;Inserção&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#remoção&quot; id=&quot;markdown-toc-remoção&quot;&gt;Remoção&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#exercício&quot; id=&quot;markdown-toc-exercício&quot;&gt;Exercício&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;cvector&quot;&gt;C++/vector&lt;/h1&gt;
+
+&lt;p&gt;A estrutura de vetores dinâmicos é de grande utilidade pois abstrai do programador a necessidade de gerenciar o crescimento da região de memória necessária.&lt;/p&gt;
+
+&lt;p&gt;Um ponto negativo quanto a utilização de &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; é a maior complexidade das estruturas que precisam ser mantidas. Ou seja, um vetor simples (&lt;code class=&quot;highlighter-rouge&quot;&gt;int* v&lt;/code&gt;) de capacidade $n$ ocupará menos espaço na memória que um &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; de mesma capacidade.&lt;/p&gt;
+
+&lt;p&gt;Atualmente, no entanto, devido à grande disponibilidade de memória, essa diferença nem sempre é suficiente para que se opte pela utilização da estrutura simples. Por outro lado, os benefícios de se utilizar &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; nem sempre são necessários, e nesses casos um &lt;code class=&quot;highlighter-rouge&quot;&gt;int*&lt;/code&gt; seria preferível.&lt;/p&gt;
+
+&lt;p&gt;Aqui descreveremos brevemente como a &lt;strong&gt;APS1 - Implementando vector&lt;/strong&gt; poderia ser implementada utilizando a classe &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; de C++/STL.&lt;/p&gt;
+
+&lt;h2 id=&quot;inicialização-e-finalização&quot;&gt;Inicialização e Finalização&lt;/h2&gt;
+
+&lt;p&gt;Para testar os códigos a seguir é necessário utilizarmos o compilador de C++ (g++).&lt;/p&gt;
+
+&lt;p&gt;Para utilizarmos as funcionalidades de &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; é necessário incluirmos o arquivo de cabeçalho&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;vector&amp;gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Para definirmos uma estrutura do tipo &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; capaz de armazenar inteiros, declaramos uma variável da seguinte forma:&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// um vetor dinâmico de inteiros
+&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;A memória internamente alocada por &lt;code class=&quot;highlighter-rouge&quot;&gt;v&lt;/code&gt; será desalocada automaticamente ao fim da função main, portanto, não precisamos explicitamente chamar liberar a memória.&lt;/p&gt;
+
+&lt;h2 id=&quot;acesso-e-manipulação&quot;&gt;Acesso e manipulação&lt;/h2&gt;
+
+&lt;h3 id=&quot;inserção&quot;&gt;Inserção&lt;/h3&gt;
+&lt;p&gt;A função a seguir, insere um item no final do vetor&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//vector_push_back(v, value);
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/* Exemplo:
+ v = 4 5 7 19 2 1
+ push_back 5
+ v = 4 5 7 19 2 1 5
+ */&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Suponha agora que queiramos inserir um elemento no vetor em uma dada posição que não seja o fim. Chamaremos essa função:&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//vector_insert(v, value, i);
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/* Exemplo:
+ v = 4 5 7 19 2 1
+ vector_insert 5 3
+ v = 4 5 7 5 19 2 1
+ */&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;A qual recebe um ponteiro para a posição na qual queremos inserir &lt;code class=&quot;highlighter-rouge&quot;&gt;value&lt;/code&gt;. Neste caso &lt;code class=&quot;highlighter-rouge&quot;&gt;v.begin()&lt;/code&gt; nos dá um ponteiro para o primeiro elemento de &lt;code class=&quot;highlighter-rouge&quot;&gt;v&lt;/code&gt;, portanto &lt;code class=&quot;highlighter-rouge&quot;&gt;v.begin() + i&lt;/code&gt; refere a $i$-ésima posição.&lt;/p&gt;
+
+&lt;p&gt;Diferentemente de nossa implementação de &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;, a versão de C++ não possui uma função &lt;code class=&quot;highlighter-rouge&quot;&gt;push_front&lt;/code&gt;. No entanto é óbvio que podemos utilizar a função inser para essa funcionalidade.&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//vector_insert(v, value, 0);
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;remoção&quot;&gt;Remoção&lt;/h3&gt;
+
+&lt;p&gt;De forma análoga às funções de inserção, temos as funções para remoção de elementos do vetor.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//vector_pop_back(vector* v);
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//vector_erase(v, int i);
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;erase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//vector_pop_front(vector* v);
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;erase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;exercício&quot;&gt;Exercício&lt;/h1&gt;
+&lt;p&gt;Utilize &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; para solucionar a APS1 no hackerrank.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 04 Sep 2017 18:40:00 -0300</pubDate>
+        <link>http://localhost:4000/ae22cp-172/APS-vector-stl.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/APS-vector-stl.html</guid>
+        
+        <category>aps1-vector</category>
+        
+        
+        <category>AE22CP-172</category>
+        
+      </item>
     
       <item>
         <title>APS1 - Implementando vector (Resultados)</title>
@@ -981,205 +1288,6 @@ p &amp; \land &amp; q &amp; \to   &amp; w &amp; \land &amp; s &amp;\\
       </item>
     
       <item>
-        <title>Políticas de acesso e manipulação I - Pilhas</title>
-        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#políticas-de-acesso-e-manipulação&quot; id=&quot;markdown-toc-políticas-de-acesso-e-manipulação&quot;&gt;Políticas de acesso e manipulação&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#pilhas-stack&quot; id=&quot;markdown-toc-pilhas-stack&quot;&gt;Pilhas (stack)&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#implementação&quot; id=&quot;markdown-toc-implementação&quot;&gt;Implementação&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#pilhas-usando-vector&quot; id=&quot;markdown-toc-pilhas-usando-vector&quot;&gt;Pilhas usando &lt;em&gt;vector&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#pilhas-usando-um-container-abstrato&quot; id=&quot;markdown-toc-pilhas-usando-um-container-abstrato&quot;&gt;Pilhas usando um &lt;em&gt;container&lt;/em&gt; abstrato&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#implementação-da-interface-containerh&quot; id=&quot;markdown-toc-implementação-da-interface-containerh&quot;&gt;Implementação da interface &lt;em&gt;container.h&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;políticas-de-acesso-e-manipulação&quot;&gt;Políticas de acesso e manipulação&lt;/h1&gt;
-
-&lt;p&gt;Algumas estruturas de dados não requerem novas formas de armazenamento dos dados em memória. Nesses casos, tais estruturas são definidas apenas pela forma com a qual elas permitem o acesso e manipulação dos dados armazenados, o que chamei de &lt;strong&gt;política de acesso e manipulação&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Para melhor compreendermos essa ideia, iniciaremos o estudo de duas estruturas de dados (ou políticas de acesso e manipulação) de grande relevância: pilhas (stack) e filas (queue). Por serem apenas políticas de acesso, pilhas e filas podem ser implementadas utilizando como base diferentes tipos de estruturas de dados (contêiners). Neste primeiro momento, no entanto, assumiremos apenas a implementação de pilhas e filas utilizando o contêiner &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; como base.&lt;/p&gt;
-
-&lt;h2 id=&quot;pilhas-stack&quot;&gt;Pilhas (stack)&lt;/h2&gt;
-
-&lt;p&gt;Pilhas (Stacks) são estruturas de dados com políticas de acesso e manipulação de grande restrição. Há somente uma forma de acessar os elementos de uma pilha.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Novos elementos são inseridos em apenas uma direção.
-    &lt;ul&gt;
-      &lt;li&gt;O último elemento inserido é chamado o topo da pilha&lt;/li&gt;
-      &lt;li&gt;Essa operação é chamada &lt;code class=&quot;highlighter-rouge&quot;&gt;push&lt;/code&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Elementos são removidos em direção oposta à inserção
-    &lt;ul&gt;
-      &lt;li&gt;Somente o elemento no topo pode ser removido diretamente.&lt;/li&gt;
-      &lt;li&gt;Essa operação é chamada &lt;code class=&quot;highlighter-rouge&quot;&gt;pop&lt;/code&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Este tipo de política de acesso ficou conhecido pela sigla:
-    &lt;ul&gt;
-      &lt;li&gt;LIFO, do inglês &lt;em&gt;last in, first out&lt;/em&gt;. O último elemento inserido é necessáriamente o primeiro a ser removido.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../assets/pilhas-geral.png&quot; alt=&quot;pilhas&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Estruturas do tipo &lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt; são de grande utilidade em aspectos fundamentais da ciência da computação. Seja na construção de compiladores e linguagens de programação, por uma perspectiv teórica, ou no gerenciamento de memória da pilha de chamadas (&lt;a href=&quot;https://pt.stackoverflow.com/questions/3797/o-que-s%C3%A3o-e-onde-est%C3%A3o-o-stack-e-heap&quot;&gt;stack call&lt;/a&gt;)&lt;/p&gt;
-
-&lt;p&gt;Implementações de pilhas em linguagens de programação:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;C++/STL, &lt;a href=&quot;http://www.cplusplus.com/reference/stack/stack/&quot;&gt;stack&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;http://www.cplusplus.com/reference/stack/stack/&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Python, &lt;a href=&quot;https://docs.python.org/2/tutorial/datastructures.html#using-lists-as-stacks&quot;&gt;Using lists as stacks&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;https://docs.python.org/2/tutorial/datastructures.html#using-lists-as-stacks&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;C#, &lt;a href=&quot;https://msdn.microsoft.com/pt-br/library/system.collections.stack(v=vs.110).aspx&quot;&gt;Stack&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;https://msdn.microsoft.com/pt-br/library/system.collections.stack(v=vs.110).aspxs&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;implementação&quot;&gt;Implementação&lt;/h1&gt;
-
-&lt;h2 id=&quot;pilhas-usando-vector&quot;&gt;Pilhas usando &lt;em&gt;vector&lt;/em&gt;&lt;/h2&gt;
-
-&lt;p&gt;É fácil notar que todas as funcionalidades necessárias para manipular uma pilha já estão implementadas para &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;. De fato, precisamos apenas de um subconjunto das funcionalidades disponíveis em &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;, ou seja, pilhas são mais restritivas.&lt;/p&gt;
-
-&lt;p&gt;Vejamos quais funcionalidades de &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; serão úteis para implementarmos uma estrutura pilha (&lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt;).&lt;/p&gt;
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Alocação desalocação
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_vector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;initial_capacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;free_vector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Inserção e remoção de elementos
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Observer o topo da pilha, sem remoção
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;A partir dessa referência podemos definir funções análogas para manipulação de nossa estrutura &lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Redefinir o nome vector
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Alocação desalocação
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;new_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;initial_capacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_vector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;initial_capacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;free_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;free_vector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Inserção e remoção de elementos
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;vector_push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Retorna um ponteiro para o topo da pilha
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;pilhas-usando-um-container-abstrato&quot;&gt;Pilhas usando um &lt;em&gt;container&lt;/em&gt; abstrato&lt;/h2&gt;
-
-&lt;p&gt;Em princípio, não há problemas em utilizar as funções de &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; para implementar as funcionalidades de &lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt;. Muito pelo contrário, reuso de funções é um dos objetivos da programação estruturada.&lt;/p&gt;
-
-&lt;p&gt;No entanto, como mencionado anteriormente, pilhas podem ser implementadas sobre diferentes &lt;em&gt;contêiners&lt;/em&gt;. A nossa versão atual, porém, está totalmente acoplada ao &lt;em&gt;contêiner&lt;/em&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../assets/stack-vector.png&quot; alt=&quot;stack-vector&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Como podemos eliminar essa limitação e tornar nossa implementação mais geral ainda? De modo que outros contêiners sequenciais (&lt;code class=&quot;highlighter-rouge&quot;&gt;list&lt;/code&gt;, por exemplo) também pudessem ser facilmente utilizados quando necessário. A ideia é introduzir uma interface entre a implementação de um contêiner e sua definição.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../assets/stack-container.png&quot; alt=&quot;stack-container&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Essa interface nada mais é do que um arquivo que define todas as funcionalidades que as implementações devem ter para serem um &lt;strong&gt;contêiner&lt;/strong&gt;. Tais arquivos, em geral, contém apenas cabeçalhos de funções e possivelmente definições de tipos de dados.&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// **** container.h ****
-&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;#define Type int
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_container&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Funções de remoção de elementos
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pop_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;erase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Funções de inserção de elementos
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;push_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Dada uma interface que define um contêiner genérico (abstrato), podemos redefinir nossa estrutura &lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt; para que ela utilize essas funções, ao invés daquelas específicas de &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// **** stack.c ****
-&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;container.h&quot;
-&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// Redefinir o nome vector
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;container&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Alocação desalocação
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;new_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;initial_capacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;initial_capacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;free_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;free_container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Inserção e remoção de elementos
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Retorna um ponteiro para o topo da pilha
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;implementação-da-interface-containerh&quot;&gt;Implementação da interface &lt;em&gt;container.h&lt;/em&gt;&lt;/h2&gt;
-
-&lt;p&gt;Até este momento a implementação de &lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt; não existe de forma concreta, pois ela depende da implementação de funções que não foram implementadas em &lt;code class=&quot;highlighter-rouge&quot;&gt;container.h&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Como já mencionado anteriormente, podem existir diferentes implementações da mesma interface. Qual delas será utilizada por &lt;code class=&quot;highlighter-rouge&quot;&gt;stack.c&lt;/code&gt; é uma decisão feita durante a compilação.&lt;/p&gt;
-
-&lt;p&gt;Suponhamos a existência de duas implementações de &lt;code class=&quot;highlighter-rouge&quot;&gt;container.h&lt;/code&gt;, a primeira em &lt;code class=&quot;highlighter-rouge&quot;&gt;vector.c&lt;/code&gt; e a segunda em &lt;code class=&quot;highlighter-rouge&quot;&gt;list.c&lt;/code&gt;. Ao passarmos uma das duas ao compilador, elas fornecerão a implementação das funções abstratas utilizadas em &lt;code class=&quot;highlighter-rouge&quot;&gt;stack.c&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gcc main.c stack.c vector.c -o main-vector
-
-gcc main.c stack.c list.c -o main-list
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Mon, 28 Aug 2017 13:50:00 -0300</pubDate>
-        <link>http://localhost:4000/ae22cp-172/Politicas-de-acesso-pilhas-filas.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/Politicas-de-acesso-pilhas-filas.html</guid>
-        
-        <category>aps1-vector</category>
-        
-        
-        <category>AE22CP-172</category>
-        
-      </item>
-    
-      <item>
         <title>APS1 - Implementando vector</title>
         <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
@@ -2129,85 +2237,6 @@ Uma característica contraintuitiva de qualquer contradição, é que elas nos p
         
         
         <category>AE22CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Exercícios II - Regras de dedução</title>
-        <description>&lt;h1 id=&quot;demonstre-os-argumentos-a-seguir&quot;&gt;Demonstre os argumentos a seguir:&lt;/h1&gt;
-
-&lt;p&gt;Utilize as regras de derivação:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Introdução da conjunção:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;$\dfrac{\phi\quad\psi}{\phi \land \psi} \land\mbox{i}$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Eliminação da conjunção:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;$\dfrac{\phi \land \psi}{\phi} \land\mbox{e}_1,\quad \dfrac{\phi \land \psi}{\psi} \land\mbox{e}_2$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Introdução da dupla negação:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;$\dfrac{\phi}{\neg\neg\phi} \neg\neg\mbox{i}$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Eliminação da dupla negação:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;$\dfrac{\neg\neg\phi}{\phi} \neg\neg\mbox{e}$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Modus Ponens:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;$\dfrac{\phi\to\psi\qquad \phi}{\psi}{MP}$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Introdução da disjunção:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;$\dfrac{\phi}{\phi \lor \psi}\lor\mbox{i}$&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q), r \vdash q \land r&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \land r, s \land t \vdash q \land s&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(q \land r) \vdash \neg\neg p \land r&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land q \vdash q \land p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q) \land r \vdash p\land (q\land r)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to (p\to q), p \vdash q&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;q\to(p\to r), \neg r, q \vdash \neg p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p\land q, (\neg p \land q)\to (r\lor \neg p) \vdash r \lor \neg p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to(q\land r), p \vdash p \land q&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land q \vdash q \land p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \to (r \land s), \neg\neg p, q \vdash s&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (q \land r), p \vdash q \land r&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \vdash (p\lor q) \land (p\lor r)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(p\to q) \vdash q\lor \neg q&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(p\to q) \vdash (r \land s) \lor q&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q)\land r, s \land t \vdash q \land s&lt;/script&gt;
-
-</description>
-        <pubDate>Thu, 17 Aug 2017 12:00:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/Exercicios2-regras-de-dedu%C3%A7%C3%A3o.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Exercicios2-regras-de-dedu%C3%A7%C3%A3o.html</guid>
-        
-        <category>dedução-natural</category>
-        
-        
-        <category>LC21CP-172</category>
         
       </item>
     
