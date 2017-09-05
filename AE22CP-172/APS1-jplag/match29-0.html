@@ -1,0 +1,264 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+ <TITLE>1917374</TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <script type="text/javascript">
+  <!--
+   function ZweiFrames(URL1,F1,URL2,F2)
+   {
+    parent.frames[F1].location.href=URL1;
+    parent.frames[F2].location.href=URL2;
+   }
+  //-->
+  </script>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<HR>
+<H3><CENTER>1917374_Felipe.c</CENTER></H3><HR>
+<PRE>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+typedef struct
+{
+    int* data;  // vetor com os inteiros
+    int size;   // tamanho atual do vetor
+    int capacity;   // tamanho reservado em memoria(max)
+} vector;
+
+vector* new_vector(int inicial_capacity)
+{
+    vector* v= malloc(sizeof(vector*));
+    v-&gt;size=0;
+    v-&gt;capacity= inicial_capacity;
+    v-&gt;data= malloc(sizeof(int)*inicial_capacity);
+    return v;
+}
+
+void resize(vector* v)
+{
+    if(v-&gt;capacity==0)
+    {
+        v-&gt;capacity=4;
+    }
+    else
+    {
+    v-&gt;capacity=2*(v-&gt;capacity);
+    v-&gt;data=realloc(v-&gt;data, sizeof(int)*v-&gt;capacity);
+    }
+}
+
+
+void free_vector(vector* v)
+{
+    free(v-&gt;data);
+    free(v);
+}
+
+/*int* vector_at(vector* v, int i)
+{
+    if (i&gt;v-&gt;size){
+        printf(&quot;error: not aloccated &quot;);
+    }
+    else
+    {
+        return &amp;v-&gt;data[i];
+    }
+}*/
+
+/*int vector_get(vector* v, int i)
+{
+    if (i&gt;v-&gt;size)
+        printf(&quot;error: not aloccated &quot;);
+    else 
+        return v-&gt;data[i];
+}*/
+
+void vector_push_back(vector* v, int value)
+{
+    if(v-&gt;capacity==v-&gt;size)
+    {
+        v-&gt;capacity*=2;
+        v-&gt;data=realloc(v-&gt;data, sizeof(int)* v-&gt;capacity);//
+    }
+    v-&gt;data[v-&gt;size]= value;
+    v-&gt;size+=1;
+}
+
+
+
+void vector_insert(vector* v, int value, int i)
+{
+    if(v-&gt;size==v-&gt;capacity)
+        resize(v);
+    if(i&gt;v-&gt;size)
+        printf(&quot;error: not aloccated &quot;);
+
+    else
+    {
+        for(int j= v-&gt;size;;j--)
+        {
+            if(j==i)
+                break;
+            v-&gt;data[j]=v-&gt;data[j-1];
+            
+        }
+        v-&gt;size++;
+        v-&gt;data[i]= value;
+    }
+}
+
+void vector_set(vector* v, int value, int i)
+{
+    if(i&gt;v-&gt;size)
+        printf(&quot;error: not aloccated &quot;);
+    else
+    {
+<A NAME="0"></A>        v-&gt;data[i]= value;
+    }
+    
+<FONT color="#0000ff"><A HREF="javascript:ZweiFrames('match29-1.html#0',3,'match29-top.html#0',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>}
+
+/*void resize(vector* v)
+{
+    if(v-&gt;capacity==0)
+    {
+        v-&gt;capacity=4;
+    }
+    else
+    {
+    v-&gt;capacity=2*(v-&gt;capacity);
+    v-&gt;data=realloc(v-&gt;data, sizeof(int)*v-&gt;capacity);
+    }
+}*/
+
+void vector_push_front(vector* v, int i)
+{
+    if(v-&gt;capacity==v-&gt;size)
+    {
+        resize(v);
+    }
+    for(int j=v-&gt;size-1;j&gt;=0;j--)
+    {
+        v-&gt;data[j+1]=v-&gt;data[j];
+    }
+    v-&gt;size++;
+    v-&gt;data[0]=i;
+}
+
+void vector_pop_back(vector* v)
+{</B></FONT>
+    v-&gt;size--;
+    v-&gt;data[v-&gt;size]=0;
+}
+
+void vector_erase(vector* v, int i)
+{
+    if(i&gt;=v-&gt;size)
+        printf(&quot;error&quot;);
+    else
+    {
+        v-&gt;data[i]=0;
+        for(int j=i;;j++)
+        {
+            if(j==v-&gt;size-1)
+                break;
+            v-&gt;data[j]=v-&gt;data[j+1];
+        }
+    }
+    v-&gt;data[v-&gt;size]=0;
+    v-&gt;size--;
+}
+
+void vector_pop_front(vector* v)
+{
+    v-&gt;data[0]=0;
+    v-&gt;size--;
+    for(int i=0;i&lt;v-&gt;size;i++)
+<A NAME="1"></A>    {
+        v-&gt;data[i]=v-&gt;data[i+1];
+    }
+<FONT color="#f63526"><A HREF="javascript:ZweiFrames('match29-1.html#1',3,'match29-top.html#1',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>}
+
+void vector_print(vector* v)
+{
+    printf(&quot;[%d/%d] &quot;,v-&gt;size, v-&gt;capacity );
+    for(int i=0;i&lt;v-&gt;size;i++)
+    {
+        printf(&quot;%d &quot;,v-&gt;data[i]);
+    }
+    printf(&quot;\n&quot;);
+}
+
+int main()
+{</B></FONT>
+    //vector* v = new_vector(100);
+        
+    //teste das funçoes;;
+   /* vector_push_back(v,12);
+    int* a=vector_at(v,0);
+    int b= vector_get(v,0);
+    int c= vector_get(v,5);
+    vector_push_back(v,23);
+    vector_insert(v,3,1);
+    resize(v);
+    vector_pop_back(v);
+    vector_push_back(v,5);
+    vector_push_back(v,2);
+    vector_push_back(v,1);
+    vector_erase(v, 3);
+    vector_pop_front(v);*/
+   
+   char cmd[50];
+   int x,y,z;
+    scanf(&quot;%d&quot;, &amp;x);
+<A NAME="2"></A>    vector* v = new_vector(x);
+    scanf(&quot;%d&quot;, &amp;x);
+    while(x!=0)
+<FONT color="#77bfc7"><A HREF="javascript:ZweiFrames('match29-1.html#2',3,'match29-top.html#2',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>    {
+        scanf(&quot;%s&quot;, cmd);
+        
+        if(strcmp(cmd,&quot;push_back&quot;)==0){
+            scanf(&quot;%d&quot;,&amp;y);
+            vector_push_back(v,y);
+            vector_print(v);
+            
+        }
+        else if(strcmp(cmd,&quot;push_front&quot;)==0){
+            scanf(&quot;%d&quot;,&amp;y);
+            vector_push_front(v,y);
+            vector_print(v);
+        }
+        else if(strcmp(cmd,&quot;insert&quot;)==0){
+            scanf(&quot;%d %d&quot;,&amp;y,&amp;z);
+            vector_insert(v,y,z);
+            vector_print(v);
+        }
+        else if(strcmp(cmd,&quot;pop_back&quot;)==0){
+            vector_pop_back(v);
+            vector_print(v);
+        }
+        else if(strcmp(cmd,&quot;pop_front&quot;)==0){
+            vector_pop_front(v);
+            vector_print(v);
+        }
+        else if(strcmp(cmd,&quot;erase&quot;)==0){
+            scanf(&quot;%d&quot;,&amp;y);
+            vector_erase(v,y);
+            vector_print(v);
+            
+        }
+        else if(strcmp(cmd,&quot;set&quot;)==0){
+            scanf(&quot;%d %d&quot;,&amp;z,&amp;y);
+            vector_set(v,y,z);
+            vector_print(v);
+        }</B></FONT>
+        x--;
+    }
+    free_vector(v);
+}
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+ <TITLE>1917420</TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <script type="text/javascript">
+  <!--
+   function ZweiFrames(URL1,F1,URL2,F2)
+   {
+    parent.frames[F1].location.href=URL1;
+    parent.frames[F2].location.href=URL2;
+   }
+  //-->
+  </script>
+</HEAD>
+<BODY BGCOLOR="#ffffff" style="margin-left:25">
+<HR>
+<H3><CENTER>1917420_main.c</CENTER></H3><HR>
+<PRE>
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;assert.h&gt;
+#include &lt;string.h&gt;
+
+typedef int Type;
+
+typedef struct 
+{
+	Type *data;
+	unsigned int size;
+	unsigned int capacity;
+} vector;
+
+vector* new_vector(unsigned int initial_capacity)
+{
+	vector *vPtr = malloc(sizeof(vector));
+	vPtr-&gt;capacity = (initial_capacity &gt; 0 ? initial_capacity : 4);
+	vPtr-&gt;data = malloc(sizeof(Type)*vPtr-&gt;capacity);
+	vPtr-&gt;size = 0;
+	
+	return vPtr;
+}
+
+Type* vector_at(vector *vPtr, unsigned int index)
+{
+	if(index &gt;= 0 &amp;&amp; index &lt; vPtr-&gt;size &amp;&amp; vPtr != NULL)
+		return &amp;(vPtr-&gt;data[index]);
+	else
+		return NULL;
+}
+
+Type vector_get(vector *vPtr, unsigned int index)
+{
+	assert(index &gt;=0 &amp;&amp; index &lt; vPtr-&gt;size &amp;&amp; vPtr != NULL);
+	return vPtr-&gt;data[index];
+}
+
+void vector_set(vector *vPtr, unsigned int index, Type value)
+{
+	if(index &gt;=0 &amp;&amp; index &lt; vPtr-&gt;size &amp;&amp; vPtr != NULL)
+		vPtr-&gt;data[index] = value;
+}
+
+void vector_resize(vector *vPtr, unsigned int new_capacity)
+{
+	assert(new_capacity &gt; 0 &amp;&amp; vPtr != NULL);
+	
+	vPtr-&gt;capacity = new_capacity;
+	vPtr-&gt;data = realloc(vPtr-&gt;data, sizeof(Type)*new_capacity);
+	
+	if(vPtr-&gt;size &gt; vPtr-&gt;capacity)
+		vPtr-&gt;size = vPtr-&gt;capacity;
+}
+
+void vector_insert(vector *vPtr, Type value, unsigned int index)
+<A NAME="0"></A>{
+	assert(index &gt;=0 &amp;&amp; index &lt;= vPtr-&gt;size &amp;&amp; vPtr != NULL);
+	
+<FONT color="#0000ff"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match20-0.html#0',2,'match20-top.html#0',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>	if(vPtr-&gt;size == vPtr-&gt;capacity)
+		vector_resize(vPtr, vPtr-&gt;capacity*2);
+		
+	for(int i=vPtr-&gt;size; i&gt;index; i--)
+		vPtr-&gt;data[i] = vPtr-&gt;data[i-1];
+		
+	vPtr-&gt;data[index] = value;
+	vPtr-&gt;size++;
+}
+
+void vector_push_front(vector *vPtr, Type value)
+{
+	vector_insert(vPtr, value, 0);
+}
+
+void vector_push_back(vector *vPtr, Type value)
+{
+	vector_insert(vPtr, value, vPtr-&gt;size);
+}</B></FONT>
+
+Type vector_erase(vector* vPtr, unsigned int index)
+{
+	assert(index &gt;=0 &amp;&amp; index &lt; vPtr-&gt;size &amp;&amp; vPtr != NULL);
+	
+<A NAME="1"></A>	Type num = vPtr-&gt;data[index];
+	
+	if(index &lt; (vPtr-&gt;size)-1)
+<FONT color="#f63526"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match20-0.html#1',2,'match20-top.html#1',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>		for(int i=index; i&lt;(vPtr-&gt;size-1); i++)
+			vPtr-&gt;data[i] = vPtr-&gt;data[i+1];
+	
+	vPtr-&gt;size--;
+	return num;
+}
+
+Type vector_pop_back(vector* vPtr)
+{
+	return vector_erase(vPtr, vPtr-&gt;size-1);
+}
+
+Type vector_pop_front(vector* vPtr)
+{
+	return vector_erase(vPtr, 0);
+}
+
+void vector_free(vector **vPtrAddr)</B></FONT>
+{
+	free((*vPtrAddr)-&gt;data);
+	free(*vPtrAddr);
+	(*vPtrAddr) = NULL;
+}
+
+void vector_printf(vector *vPtr)
+{
+	//garantia para evitar erros
+	if(vPtr == NULL)
+		return;
+	
+	printf(&quot;[%i/%i]&quot;, vPtr-&gt;size, vPtr-&gt;capacity);
+	for(int i=0; i&lt;(vPtr-&gt;size); i++)
+		printf(&quot; %i&quot;, vPtr-&gt;data[i]);
+	printf(&quot;\n&quot;);
+}
+
+void vector_about(vector *vPtr)
+{
+	//garantia para evitar erros
+	if(vPtr == NULL)
+		return;
+	
+	printf(&quot;# about vector:\n&quot;);
+	printf(&quot;   &gt; address = %p \n&quot;, vPtr);
+	printf(&quot;   &gt; size/cap. = [%i/%i] \n&quot;, vPtr-&gt;size, vPtr-&gt;capacity);
+	printf(&quot;   &gt; data = {&quot;);
+	for(int i=0; i&lt;(vPtr-&gt;size); i++)
+		printf(&quot; %i&quot;, vPtr-&gt;data[i]);
+	printf(&quot; }\n&quot;);
+}
+
+void vector_call_function(vector *v)
+{
+	Type p1, p2;
+<A NAME="2"></A>	char func[20];
+	scanf(&quot;%s&quot;, func);
+	
+<FONT color="#77bfc7"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match20-0.html#2',2,'match20-top.html#2',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>	if(strcmp(func,&quot;set&quot;) == 0)
+	{
+		scanf(&quot;%i %i&quot;,&amp;p1, &amp;p2);
+		vector_set(v,p1,p2);
+	}
+	else if(strcmp(func,&quot;insert&quot;) == 0)
+	{
+		scanf(&quot;%i %i&quot;,&amp;p1, &amp;p2);
+		vector_insert(v,p1,p2);
+	}
+	else if(strcmp(func,&quot;push_front&quot;) == 0)
+	{
+		scanf(&quot;%i&quot;,&amp;p1);
+		vector_push_front(v,p1);
+	}
+	else if(strcmp(func,&quot;push_back&quot;) == 0)
+	{
+		scanf(&quot;%i&quot;,&amp;p1);
+		vector_push_back(v,p1);
+	}
+	else if(strcmp(func,&quot;erase&quot;) == 0)
+	{
+		scanf(&quot;%i&quot;,&amp;p1);
+		vector_erase(v,p1);
+	}
+	else if(strcmp(func,&quot;pop_front&quot;) == 0)
+	{
+		vector_pop_front(v);
+	}
+	else if(strcmp(func,&quot;pop_back&quot;) == 0)
+	{
+		vector_pop_back(v);
+	}	
+}
+
+
+
+int main()
+{</B></FONT>
+	int n;
+	scanf(&quot;%i&quot;, &amp;n);
+	
+	vector *v = new_vector(n);
+	//vector_about(v);
+	
+	scanf(&quot;%i&quot;, &amp;n);
+	
+	for(int i=0; i&lt;n; i++)
+	{
+		vector_call_function(v);
+		vector_printf(v);
+	}
+	
+	vector_free(&amp;v);
+	return 0;
+}
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+ <TITLE>1917455</TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <script type="text/javascript">
+  <!--
+   function ZweiFrames(URL1,F1,URL2,F2)
+   {
+    parent.frames[F1].location.href=URL1;
+    parent.frames[F2].location.href=URL2;
+   }
+  //-->
+  </script>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<HR>
+<H3><CENTER>1917455_aps1.c</CENTER></H3><HR>
+<PRE>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;assert.h&gt;
+#include &lt;string.h&gt;
+
+char string[20];
+int initial_capacity;
+int loop_value;
+int vector_position;
+
+typedef int Type; 
+typedef struct {
+	Type* data;
+	int size;
+	int capacity;
+} vector;
+
+Type value;
+vector* vetor;
+
+//Imprime o vetor
+void vector_print(vector* v) {
+      printf(&quot;[%d/%d]&quot;, v-&gt;size, v-&gt;capacity);
+      for(int i = 0; i &lt; v-&gt;size; i++)
+            printf(&quot; %d&quot;, v-&gt;data[i]);
+            
+      printf(&quot;\n&quot;);
+}
+//Redimensiona o tamanho do vetor
+void resize(vector * v) {
+      v-&gt;capacity *= 2;
+      v-&gt;data = realloc(v-&gt;data, sizeof(Type) * v-&gt;capacity);
+}
+//Cria um novo vetor
+vector* new_vector(Type initial_capacity) {
+      vector* v = malloc(sizeof(vector));
+      if(initial_capacity == 0)  
+            initial_capacity = 4;
+      v-&gt;data = malloc(sizeof(Type) * initial_capacity);
+      v-&gt;size = 0;
+      v-&gt;capacity = initial_capacity;
+      return (v);
+}
+//Desaloca a memória no vetor
+void free_vector(vector* v) {
+      free (v-&gt;data);
+      free(v);
+}
+//Retorna o ponteiro na posição i
+Type* vector_at(vector* v, int i) {
+      assert(i &gt;= 0 &amp;&amp; i &lt;= v-&gt;size);
+      return &amp;(v-&gt;data[i]);
+}
+//Retorna o valor na posição i
+Type vector_get(vector* v, int i) {
+      assert(i &gt;= 0 &amp;&amp; i &lt;= v-&gt;size);
+      return (v-&gt;data[i]);
+}
+//Altera o valor na posiçao i
+Type vector_set(vector* v, int i, Type value) {
+      assert(i &gt;= 0 &amp;&amp; i &lt;= v-&gt;size);
+      return (v-&gt;data[i] = value);
+}
+ //Insere o valor na posição i 
+void vector_insert(vector* v, Type value, int i) {
+<A NAME="0"></A>      assert(i &gt;= 0 &amp;&amp; i &lt;= v-&gt;size);
+      if(v-&gt;size == v-&gt;capacity)
+            resize(v);   
+<FONT color="#0000ff"><A HREF="javascript:ZweiFrames('match19-1.html#0',3,'match19-top.html#0',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>      for(int j = v-&gt;size; j  &gt; i ; j--)
+            v-&gt;data[j] = v-&gt;data[j-1];        
+      v-&gt;data[i]  = value;
+      v-&gt;size++;
+      vector_print(vetor);
+}
+//Coloca o valor na posição onde se encontra o size
+void push_back(vector* v, Type value) { 
+      vector_insert(v, value, v-&gt;size);
+ }
+//Insere o valor na primeira posição do vetor
+void vector_push_front(vector* v, Type value) {
+      vector_insert(v, value, 0);
+}
+//Remove o elemento na posição i, e move os posteriores para trás
+Type vector_erase(vector* v, int i) {
+      assert(i &gt;= 0 &amp;&amp; i &lt;= v-&gt;size);    
+      
+      Type value = v-&gt;data[i];
+      
+      for(int j = i; j &lt; v-&gt;size-1; j++)
+            v-&gt;data[j] = v-&gt;data[j+1];      
+      v-&gt;size --;
+      vector_print(vetor);
+      return value;
+}
+//Remove o elemento do fim do vetor, decrementando size
+Type vector_pop_back(vector* v) { 
+      return vector_erase(v, v-&gt;size);
+}
+//Remove o elemento na posição zero do vetor e move os posteriores para trás
+Type vector_pop_front(vector* v) {
+      return vector_erase(v, 0);
+}
+//Identifica e chama a função necessária
+void case_switch(char* string_informada) {</B></FONT>
+      if(strcmp(string_informada, &quot;push_back&quot;) == 0) 
+      {
+            scanf(&quot;%d&quot;, &amp;value);
+            push_back(vetor, value);
+      }
+      else if(strcmp(string_informada, &quot;insert&quot;) == 0)
+      {
+            scanf(&quot;%d %d&quot;, &amp;value, &amp;vector_position);
+            vector_insert(vetor, value, vector_position);
+      }
+      else if(strcmp(string_informada, &quot;set&quot;) == 0)
+      {
+            scanf(&quot;%d %d&quot;, &amp;vector_position, &amp;value);
+<A NAME="1"></A>            vector_set(vetor, vector_position, value);
+            vector_print(vetor);
+      }   
+<FONT color="#f63526"><A HREF="javascript:ZweiFrames('match19-1.html#1',3,'match19-top.html#1',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>      else if(strcmp(string_informada, &quot;push_front&quot;) == 0)
+      {
+            scanf(&quot;%d&quot;, &amp;value);
+            vector_push_front(vetor, value);
+      }
+      else if(strcmp(string_informada, &quot;free&quot;) == 0)
+      {
+            free_vector(vetor);
+      }
+      else if(strcmp(string_informada, &quot;pop_back&quot;) == 0)
+      {
+            vector_pop_back(vetor);
+      }
+      else if(strcmp(string_informada, &quot;erase&quot;) == 0)
+      {
+            scanf(&quot;%d&quot;, &amp;value);
+            vector_erase(vetor, value);
+      }
+      else if(strcmp(string_informada, &quot;pop_front&quot;) == 0)
+      {     
+            vector_pop_front(vetor);
+      }
+      else if(strcmp(string_informada, &quot;get&quot;) == 0)
+      {
+            scanf(&quot;%d&quot;, &amp;value);
+            printf(&quot;\n Valor referente à posição requerida: %d&quot;, vector_get(vetor, value));
+      }
+      else if(strcmp(string_informada, &quot;at&quot;) == 0)
+      {      
+            scanf(&quot;%d&quot;, &amp;value);
+            printf(&quot;\n Ponteiro referente à posição requerida: %p&quot;, vector_at(vetor, value));      
+      }
+}</B></FONT>
+int main() {     
+       scanf(&quot;%d&quot;, &amp;initial_capacity);
+       vetor = new_vector(initial_capacity);
+       
+       scanf(&quot;%d&quot;, &amp;loop_value);
+       for(int i = 0; i &lt; loop_value; i++)
+       {
+            scanf(&quot;%s&quot;, string);
+            case_switch(string);           
+       }
+       free_vector(vetor);
+}
+</PRE>
+</BODY>
+</HTML>

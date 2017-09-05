@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+ <TITLE>1809733</TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <script type="text/javascript">
+  <!--
+   function ZweiFrames(URL1,F1,URL2,F2)
+   {
+    parent.frames[F1].location.href=URL1;
+    parent.frames[F2].location.href=URL2;
+   }
+  //-->
+  </script>
+</HEAD>
+<BODY BGCOLOR="#ffffff" style="margin-left:25">
+<HR>
+<H3><CENTER>1809733_vector.c</CENTER></H3><HR>
+<PRE>
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;assert.h&gt;
+#include &lt;string.h&gt;
+
+typedef int Type;
+typedef struct {
+	Type *data;
+	int size;
+	int capacity;
+} vector;
+
+vector *new_vector(int initial_capacity) {
+	vector *v = (vector *) malloc(sizeof(vector));
+
+	if(initial_capacity &gt; 0)
+		v-&gt;capacity = initial_capacity;
+	else
+		v-&gt;capacity = 4;
+
+	v-&gt;size = 0;
+	v-&gt;data = (Type *) malloc(sizeof(Type)*v-&gt;capacity);
+	
+	return v;
+}
+
+void free_vector(vector *v) {
+	free(v-&gt;data);
+	free(v);
+}
+
+void set(vector *v, int index, Type value) {
+	assert(index &gt;= 0 &amp;&amp; index &lt; v-&gt;size);
+	v-&gt;data[index] = value;
+}
+
+void resize(vector *v) {
+	v-&gt;capacity *= 2;
+<A NAME="0"></A>	v-&gt;data = (Type *) realloc(v-&gt;data, sizeof(Type)*v-&gt;capacity);
+}
+
+<FONT color="#0000ff"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match21-0.html#0',2,'match21-top.html#0',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>void insert(vector *v, int value, int index) {
+	assert(index &gt;= 0 &amp;&amp; index &lt;= v-&gt;size);
+	if(v-&gt;size == v-&gt;capacity)
+		resize(v);
+
+	for(int i = v-&gt;size; i &gt; index; i--)
+		v-&gt;data[i]= v-&gt;data[i-1];
+
+	v-&gt;data[index] = value;
+	v-&gt;size++;
+}
+
+void pushfront(vector *v, Type value) {
+	insert(v, value, 0);
+}
+
+void pushback(vector *v, Type value) {
+	insert(v, value, v-&gt;size);
+}</B></FONT>
+
+void erase(vector *v, int index) {
+	assert(index &gt;= 0 &amp;&amp; index &lt; v-&gt;size);
+	v-&gt;size--;
+	for(int i = index+1; i &lt;= v-&gt;size; i++)
+		v-&gt;data[i-1] = v-&gt;data[i];
+}
+
+void popfront(vector *v) {
+	erase(v, 0);
+}
+
+void popback(vector *v) {
+	erase(v, v-&gt;size-1);
+}
+
+void print_vector(vector *v) {
+	printf(&quot;[%d/%d]&quot;, v-&gt;size, v-&gt;capacity);
+	for(int i = 0; i &lt; v-&gt;size; i++)
+		printf(&quot; %d&quot;, v-&gt;data[i]);
+	printf(&quot;\n&quot;);
+}
+
+int main() {
+	int start, lines;
+	scanf(&quot;%d&quot;, &amp;start);
+	scanf(&quot;%d&quot;, &amp;lines);
+	
+	vector *thing = new_vector(start);
+<A NAME="1"></A>	char command[20];
+	int value, index;
+
+<FONT color="#f63526"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match21-0.html#1',2,'match21-top.html#1',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>	for(int i = 0; i &lt; lines; i++) {
+		scanf(&quot; %s&quot;, command);
+		
+		if(strcmp(command, &quot;push_back&quot;) == 0) {
+			scanf(&quot;%d&quot;, &amp;value);
+			pushback(thing, value);
+
+		} else if(strcmp(command, &quot;push_front&quot;) == 0) {
+			scanf(&quot;%d&quot;, &amp;value);
+			pushfront(thing, value);
+
+		} else if(strcmp(command, &quot;insert&quot;) == 0) {
+			scanf(&quot;%d%d&quot;, &amp;value, &amp;index);
+			insert(thing, value, index);
+
+		} else if(strcmp(command, &quot;pop_back&quot;) == 0) {
+			popback(thing);
+
+		} else if(strcmp(command, &quot;pop_front&quot;) == 0) {
+			popfront(thing);
+
+		} else if(strcmp(command, &quot;erase&quot;) == 0) {
+			scanf(&quot;%d&quot;, &amp;index);
+			erase(thing, index);
+
+		} else if(strcmp(command, &quot;set&quot;) == 0) {
+			scanf(&quot;%d %d&quot;, &amp;index, &amp;value);
+			set(thing, index, value);
+		}</B></FONT>
+		print_vector(thing);
+	}
+	free_vector(thing);
+	return 0;
+}
+</PRE>
+</BODY>
+</HTML>

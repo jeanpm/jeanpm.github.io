@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 04 Sep 2017 18:22:27 -0300</pubDate>
-    <lastBuildDate>Mon, 04 Sep 2017 18:22:27 -0300</lastBuildDate>
+    <pubDate>Tue, 05 Sep 2017 12:41:14 -0300</pubDate>
+    <lastBuildDate>Tue, 05 Sep 2017 12:41:14 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -323,135 +323,680 @@ gcc main.c stack.c list.c -o main-list
         <title>APS1 - Implementando vector (Resultados)</title>
         <description>&lt;p&gt;&lt;strong&gt;Resultados por RA&lt;/strong&gt;&lt;/p&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#1368206&quot; id=&quot;markdown-toc-1368206&quot;&gt;1368206&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1435558&quot; id=&quot;markdown-toc-1435558&quot;&gt;1435558&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1436236&quot; id=&quot;markdown-toc-1436236&quot;&gt;1436236&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1436287&quot; id=&quot;markdown-toc-1436287&quot;&gt;1436287&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1454536&quot; id=&quot;markdown-toc-1454536&quot;&gt;1454536&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#1544292&quot; id=&quot;markdown-toc-1544292&quot;&gt;1544292&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1636847&quot; id=&quot;markdown-toc-1636847&quot;&gt;1636847&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1649868&quot; id=&quot;markdown-toc-1649868&quot;&gt;1649868&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1809733&quot; id=&quot;markdown-toc-1809733&quot;&gt;1809733&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1809857&quot; id=&quot;markdown-toc-1809857&quot;&gt;1809857&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1811754&quot; id=&quot;markdown-toc-1811754&quot;&gt;1811754&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1826697&quot; id=&quot;markdown-toc-1826697&quot;&gt;1826697&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#1881906&quot; id=&quot;markdown-toc-1881906&quot;&gt;1881906&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1890867&quot; id=&quot;markdown-toc-1890867&quot;&gt;1890867&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1917323&quot; id=&quot;markdown-toc-1917323&quot;&gt;1917323&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1917358&quot; id=&quot;markdown-toc-1917358&quot;&gt;1917358&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#1917366&quot; id=&quot;markdown-toc-1917366&quot;&gt;1917366&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1917374&quot; id=&quot;markdown-toc-1917374&quot;&gt;1917374&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1917420&quot; id=&quot;markdown-toc-1917420&quot;&gt;1917420&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1917439&quot; id=&quot;markdown-toc-1917439&quot;&gt;1917439&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1917455&quot; id=&quot;markdown-toc-1917455&quot;&gt;1917455&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#1917463&quot; id=&quot;markdown-toc-1917463&quot;&gt;1917463&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1917471&quot; id=&quot;markdown-toc-1917471&quot;&gt;1917471&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1920359&quot; id=&quot;markdown-toc-1920359&quot;&gt;1920359&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1946145&quot; id=&quot;markdown-toc-1946145&quot;&gt;1946145&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#23931913&quot; id=&quot;markdown-toc-23931913&quot;&gt;23931913&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2 id=&quot;1368206&quot;&gt;1368206&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
+input00.txt            694             10              0           .651
+input01.txt            653             10              0           .604
+input02.txt            224             10              0           .459
+input03.txt             84             10              0           .454
+input04.txt            850             10              0           .742
+input05.txt             34             10              0           .425
+input06.txt            427             10              0           .497
+input07.txt            751             10              0           .701
+input08.txt            599             10              0           .600
+input09.txt            402             10              0           .505
+input10.txt              9             10              0           .424
+input11.txt             10             10              0           .451
+input12.txt              2             10              0           .406
+input13.txt             10             10              0           .439
+input14.txt              2             10              0           .428
+input15.txt              9             10              0           .422
+input16.txt             11             10              0           .423
+input17.txt              7             10              0           .441
+input18.txt              3             10              0           .419
+input19.txt              7             10              0           .445
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;1435558&quot;&gt;1435558&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
+input00.txt            694             10          1,040           .680
+input01.txt            653             10          1,040           .612
+input02.txt            224             10            592           .461
+input03.txt             84             10            240           .432
+input04.txt            850             10          1,552           .736
+input05.txt             34             10             80           .457
+input06.txt            427             10            784           .514
+input07.txt            751             10          1,168           .735
+input08.txt            599             10          1,040           .580
+input09.txt            402             10            528           .519
+input10.txt              9             10             36           .423
+input11.txt             10             10             40           .421
+input12.txt              2             10             20           .409
+input13.txt             10             10             52           .424
+input14.txt              2             10             32           .406
+input15.txt              9             10             36           .417
+input16.txt             11             10             32           .422
+input17.txt              7             10             52           .422
+input18.txt              3              0             16          3.395
+input19.txt              7             10             40           .541
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;1436236&quot;&gt;1436236&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
+input00.txt            694             10              0           .654
+input01.txt            653             10              0           .608
+input02.txt            224             10              0           .484
+input03.txt             84             10              0           .439
+input04.txt            850             10              0           .743
+input05.txt             34             10              0           .419
+input06.txt            427             10              0           .523
+input07.txt            751             10              0           .711
+input08.txt            599             10              0           .589
+input09.txt            402             10              0           .514
+input10.txt              9             10              0           .422
+input11.txt             10             10              0           .426
+input12.txt              2             10              0           .438
+input13.txt             10             10              0           .451
+input14.txt              2             10              0           .409
+input15.txt              9             10              0           .436
+input16.txt             11             10              0           .432
+input17.txt              7             10              0           .430
+input18.txt              3             10              0           .422
+input19.txt              7             10              0           .424
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;1436287&quot;&gt;1436287&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
+input00.txt            694             10          1,040           .660
+input01.txt            653             10          1,040           .606
+input02.txt            224             10            592           .461
+input03.txt             84             10            240           .427
+input04.txt            850             10          1,552           .748
+input05.txt             34             10             80           .446
+input06.txt            427             10            784           .506
+input07.txt            751             10          1,168           .712
+input08.txt            599             10          1,040           .631
+input09.txt            402             10            528           .506
+input10.txt              9             10             36           .434
+input11.txt             10             10             40           .432
+input12.txt              2             10             20           .416
+input13.txt             10             10             52           .427
+input14.txt              2             10             32           .409
+input15.txt              9             10             36           .426
+input16.txt             11             10             32           .427
+input17.txt              7             10             52           .422
+input18.txt              3             10             32           .423
+input19.txt              7             10             40           .426
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;1454536&quot;&gt;1454536&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
+input00.txt            694             10              0           .712
+input01.txt            653             10              0           .618
+input02.txt            224             10              0           .465
+input03.txt             84             10              0           .445
+input04.txt            850             10              0           .761
+input05.txt             34             10              0           .440
+input06.txt            427             10              0           .500
+input07.txt            751             10              0           .710
+input08.txt            599             10              0           .598
+input09.txt            402             10              0           .505
+input10.txt              9             10              0           .423
+input11.txt             10             10              0           .432
+input12.txt              2             10              0           .413
+input13.txt             10             10              0           .425
+input14.txt              2             10              0           .440
+input15.txt              9             10              0           .433
+input16.txt             11             10              0           .427
+input17.txt              7             10              0           .427
+input18.txt              3             10              0           .421
+input19.txt              7             10              0           .428
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;h2 id=&quot;1544292&quot;&gt;1544292&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10          1,040           .660
-input01.txt            653             10          1,040           .620
-input02.txt            224             10            592           .463
-input03.txt             84             10            240           .440
-input04.txt            850             10          1,552           .782
-input05.txt             34             10             80           .459
-input06.txt            427             10            784           .518
-input07.txt            751             10          1,168           .731
-input08.txt            599             10          1,040           .643
-input09.txt            402             10            528           .560
-input10.txt              9             10             36           .436
-input11.txt             10             10             40           .522
-input12.txt              2             10             20           .440
-input13.txt             10             10             52           .443
-input14.txt              2             10             32           .421
-input15.txt              9             10             36           .440
-input16.txt             11             10             32           .453
-input17.txt              7             10             52           .433
-input18.txt              3             10             32           .452
-input19.txt              7             10             40           .440
+input00.txt            694             10              0           .679
+input01.txt            653             10              0           .612
+input02.txt            224             10              0           .469
+input03.txt             84             10              0           .433
+input04.txt            850             10              0           .746
+input05.txt             34             10              0           .425
+input06.txt            427             10              0           .502
+input07.txt            751             10              0           .695
+input08.txt            599             10              0           .588
+input09.txt            402             10              0           .508
+input10.txt              9             10              0           .427
+input11.txt             10             10              0           .444
+input12.txt              2             10              0           .412
+input13.txt             10             10              0           .455
+input14.txt              2             10              0           .412
+input15.txt              9             10              0           .428
+input16.txt             11             10              0           .419
+input17.txt              7             10              0           .427
+input18.txt              3             10              0           .439
+input19.txt              7             10              0           .470
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;1636847&quot;&gt;1636847&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
+input00.txt            694              0          1,040           .674
+input01.txt            653              0          1,040           .655
+input02.txt            224              0            592           .484
+input03.txt             84              0            240           .430
+input04.txt            850              0          1,552           .808
+input05.txt             34              0             80           .476
+input06.txt            427              0            784           .510
+input07.txt            751              0          1,168           .751
+input08.txt            599              0          1,040           .630
+input09.txt            402              0            528           .512
+input10.txt              9              0             36           .439
+input11.txt             10              0             40           .441
+input12.txt              2             10             20           .449
+input13.txt             10              0             52           .428
+input14.txt              2             10             32           .447
+input15.txt              9             10             36           .444
+input16.txt             11              0             32           .450
+input17.txt              7              0             52           .428
+input18.txt              3             10             32           .444
+input19.txt              7             10             40           .442
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;1649868&quot;&gt;1649868&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
+input00.txt            694             10              0           .664
+input01.txt            653             10              0           .633
+input02.txt            224             10              0           .478
+input03.txt             84             10              0           .446
+input04.txt            850             10              0           .753
+input05.txt             34             10              0           .440
+input06.txt            427             10              0           .519
+input07.txt            751             10              0           .708
+input08.txt            599             10              0           .623
+input09.txt            402             10              0           .527
+input10.txt              9             10              0           .428
+input11.txt             10             10              0           .436
+input12.txt              2             10              0           .421
+input13.txt             10             10              0           .439
+input14.txt              2             10              0           .415
+input15.txt              9             10              0           .456
+input16.txt             11             10              0           .444
+input17.txt              7             10              0           .442
+input18.txt              3             10              0           .425
+input19.txt              7             10              0           .443
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;1809733&quot;&gt;1809733&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
+input00.txt            694             10              0           .678
+input01.txt            653             10              0           .625
+input02.txt            224             10              0           .471
+input03.txt             84             10              0           .451
+input04.txt            850             10              0           .769
+input05.txt             34             10              0           .451
+input06.txt            427             10              0           .523
+input07.txt            751             10              0           .721
+input08.txt            599             10              0           .604
+input09.txt            402             10              0           .524
+input10.txt              9             10              0           .442
+input11.txt             10             10              0           .434
+input12.txt              2             10              0           .414
+input13.txt             10             10              0           .476
+input14.txt              2             10              0           .425
+input15.txt              9             10              0           .434
+input16.txt             11             10              0           .434
+input17.txt              7             10              0           .441
+input18.txt              3             10              0           .444
+input19.txt              7             10              0           .434
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;1809857&quot;&gt;1809857&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
+input00.txt            694             10              0           .664
+input01.txt            653             10              0           .634
+input02.txt            224             10              0           .472
+input03.txt             84             10              0           .456
+input04.txt            850             10              0           .777
+input05.txt             34             10              0           .448
+input06.txt            427             10              0           .502
+input07.txt            751             10              0           .735
+input08.txt            599             10              0           .611
+input09.txt            402             10              0           .508
+input10.txt              9             10              0           .442
+input11.txt             10             10              0           .519
+input12.txt              2             10              0           .412
+input13.txt             10             10              0           .425
+input14.txt              2             10              0           .421
+input15.txt              9             10              0           .446
+input16.txt             11             10              0           .440
+input17.txt              7             10              0           .420
+input18.txt              3             10              0           .445
+input19.txt              7             10              0           .458
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;1811754&quot;&gt;1811754&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
+input00.txt            694             10              0           .685
+input01.txt            653             10              0           .634
+input02.txt            224             10              0           .516
+input03.txt             84             10              0           .447
+input04.txt            850             10              0           .763
+input05.txt             34             10              0           .442
+input06.txt            427             10              0           .545
+input07.txt            751             10              0           .712
+input08.txt            599             10              0           .607
+input09.txt            402             10              0           .526
+input10.txt              9             10              0           .420
+input11.txt             10             10              0           .440
+input12.txt              2             10              0           .424
+input13.txt             10             10              0           .439
+input14.txt              2             10              0           .407
+input15.txt              9             10              0           .442
+input16.txt             11             10              0           .441
+input17.txt              7             10              0           .440
+input18.txt              3             10              0           .439
+input19.txt              7             10              0           .444
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;1826697&quot;&gt;1826697&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
+input00.txt            694             10              0           .687
+input01.txt            653             10              0           .653
+input02.txt            224             10              0           .464
+input03.txt             84             10              0           .449
+input04.txt            850             10              0           .815
+input05.txt             34             10              0           .427
+input06.txt            427             10              0           .515
+input07.txt            751             10              0           .742
+input08.txt            599             10              0           .587
+input09.txt            402             10              0           .537
+input10.txt              9             10              0           .438
+input11.txt             10             10              0           .434
+input12.txt              2             10              0           .412
+input13.txt             10             10              0           .444
+input14.txt              2             10              0           .437
+input15.txt              9             10              0           .443
+input16.txt             11             10              0           .433
+input17.txt              7             10              0           .469
+input18.txt              3             10              0           .466
+input19.txt              7             10              0           .459
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1881906&quot;&gt;1881906&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .677
-input01.txt            653             10              0           .688
-input02.txt            224             10              0           .545
-input03.txt             84             10              0           .459
-input04.txt            850             10              0           .752
-input05.txt             34             10              0           .469
-input06.txt            427             10              0           .526
+input00.txt            694             10              0           .664
+input01.txt            653             10              0           .635
+input02.txt            224             10              0           .481
+input03.txt             84             10              0           .432
+input04.txt            850             10              0           .767
+input05.txt             34             10              0           .445
+input06.txt            427             10              0           .510
 input07.txt            751             10              0           .729
-input08.txt            599             10              0           .614
-input09.txt            402             10              0           .516
+input08.txt            599             10              0           .620
+input09.txt            402             10              0           .525
 input10.txt              9             10              0           .439
-input11.txt             10             10              0           .446
-input12.txt              2             10              0           .465
-input13.txt             10             10              0           .475
-input14.txt              2             10              0           .421
-input15.txt              9             10              0           .447
-input16.txt             11             10              0           .517
-input17.txt              7             10              0           .459
-input18.txt              3             10              0           .476
-input19.txt              7             10              0           .434
+input11.txt             10             10              0           .440
+input12.txt              2             10              0           .427
+input13.txt             10             10              0           .427
+input14.txt              2             10              0           .446
+input15.txt              9             10              0           .457
+input16.txt             11             10              0           .451
+input17.txt              7             10              0           .427
+input18.txt              3             10              0           .436
+input19.txt              7             10              0           .440
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;1890867&quot;&gt;1890867&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
+input00.txt            694             10              0           .695
+input01.txt            653             10              0           .621
+input02.txt            224             10              0           .494
+input03.txt             84             10              0           .451
+input04.txt            850             10              0           .768
+input05.txt             34             10              0           .440
+input06.txt            427             10              0           .521
+input07.txt            751             10              0           .712
+input08.txt            599             10              0           .615
+input09.txt            402             10              0           .524
+input10.txt              9             10              0           .426
+input11.txt             10             10              0           .435
+input12.txt              2             10              0           .422
+input13.txt             10             10              0           .444
+input14.txt              2             10              0           .416
+input15.txt              9             10              0           .428
+input16.txt             11             10              0           .470
+input17.txt              7             10              0           .444
+input18.txt              3             10              0           .441
+input19.txt              7             10              0           .427
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;1917323&quot;&gt;1917323&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
+input00.txt            694             10          1,040           .680
+input01.txt            653             10          1,040           .635
+input02.txt            224             10            592           .459
+input03.txt             84             10            240           .450
+input04.txt            850             10          1,552           .776
+input05.txt             34             10             80           .430
+input06.txt            427             10            784           .513
+input07.txt            751             10          1,168           .727
+input08.txt            599             10          1,040           .623
+input09.txt            402             10            528           .540
+input10.txt              9             10             36           .441
+input11.txt             10             10             40           .440
+input12.txt              2             10             20           .410
+input13.txt             10             10             52           .441
+input14.txt              2             10             32           .427
+input15.txt              9             10             36           .442
+input16.txt             11             10             32           .424
+input17.txt              7             10             52           .440
+input18.txt              3             10             32           .445
+input19.txt              7             10             40           .445
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;1917358&quot;&gt;1917358&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
+input00.txt            694             10          1,040           .755
+input01.txt            653             10          1,040           .685
+input02.txt            224             10            592           .509
+input03.txt             84             10            240           .438
+input04.txt            850             10          1,552           .851
+input05.txt             34             10             80           .447
+input06.txt            427             10            784           .523
+input07.txt            751             10          1,168           .827
+input08.txt            599             10          1,040           .649
+input09.txt            402             10            528           .538
+input10.txt              9             10             36           .444
+input11.txt             10             10             40           .450
+input12.txt              2             10             20           .432
+input13.txt             10             10             52           .434
+input14.txt              2             10             32           .425
+input15.txt              9             10             36           .445
+input16.txt             11             10             32           .444
+input17.txt              7             10             52           .431
+input18.txt              3             10             32           .444
+input19.txt              7             10             40           .441
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1917366&quot;&gt;1917366&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10          1,040           .660
-input01.txt            653             10          1,040           .645
-input02.txt            224              0            592           .614
-input03.txt             84              0            240           .630
-input04.txt            850              0          1,552           .905
-input05.txt             34             10             80           .478
-input06.txt            427             10            784           .549
-input07.txt            751              0          1,168           .949
-input08.txt            599             10          1,040           .661
-input09.txt            402             10            528           .516
-input10.txt              9             10             36           .443
-input11.txt             10             10             40           .467
-input12.txt              2             10             20           .482
-input13.txt             10             10             52           .458
-input14.txt              2             10             32           .446
-input15.txt              9             10             36           .496
-input16.txt             11             10             32           .455
-input17.txt              7             10             52           .442
-input18.txt              3             10             32           .449
-input19.txt              7             10             40           .483
+input00.txt            694             10          1,040           .672
+input01.txt            653             10          1,040           .635
+input02.txt            224             10            592           .481
+input03.txt             84             10            240           .454
+input04.txt            850             10          1,552           .755
+input05.txt             34             10             80           .447
+input06.txt            427             10            784           .520
+input07.txt            751             10          1,168           .708
+input08.txt            599             10          1,040           .616
+input09.txt            402             10            528           .525
+input10.txt              9             10             36           .433
+input11.txt             10             10             40           .440
+input12.txt              2             10             20           .449
+input13.txt             10             10             52           .479
+input14.txt              2             10             32           .440
+input15.txt              9             10             36           .438
+input16.txt             11             10             32           .441
+input17.txt              7             10             52           .450
+input18.txt              3             10             32           .439
+input19.txt              7             10             40           .437
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;1917374&quot;&gt;1917374&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
+input00.txt            694             10              0           .747
+input01.txt            653             10              0           .664
+input02.txt            224             10              0           .496
+input03.txt             84             10              0           .458
+input04.txt            850             10              0           .851
+input05.txt             34             10              0           .455
+input06.txt            427             10              0           .537
+input07.txt            751             10              0           .760
+input08.txt            599             10              0           .637
+input09.txt            402             10              0           .549
+input10.txt              9             10              0           .444
+input11.txt             10             10              0           .428
+input12.txt              2             10              0           .425
+input13.txt             10             10              0           .444
+input14.txt              2             10              0           .428
+input15.txt              9             10              0           .432
+input16.txt             11             10              0           .444
+input17.txt              7             10              0           .443
+input18.txt              3             10              0           .442
+input19.txt              7             10              0           .434
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;1917420&quot;&gt;1917420&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
+input00.txt            694             10              0           .684
+input01.txt            653             10              0           .632
+input02.txt            224             10              0           .473
+input03.txt             84             10              0           .439
+input04.txt            850             10              0           .778
+input05.txt             34             10              0           .454
+input06.txt            427             10              0           .508
+input07.txt            751             10              0           .751
+input08.txt            599             10              0           .607
+input09.txt            402             10              0           .517
+input10.txt              9             10              0           .444
+input11.txt             10             10              0           .457
+input12.txt              2             10              0           .431
+input13.txt             10             10              0           .434
+input14.txt              2             10              0           .441
+input15.txt              9             10              0           .436
+input16.txt             11             10              0           .439
+input17.txt              7             10              0           .428
+input18.txt              3             10              0           .434
+input19.txt              7             10              0           .441
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;1917439&quot;&gt;1917439&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
+input00.txt            694             10              0           .693
+input01.txt            653             10              0           .641
+input02.txt            224             10              0           .487
+input03.txt             84             10              0           .451
+input04.txt            850             10              0           .753
+input05.txt             34             10              0           .437
+input06.txt            427             10              0           .513
+input07.txt            751             10              0           .708
+input08.txt            599             10              0           .613
+input09.txt            402             10              0           .519
+input10.txt              9             10              0           .423
+input11.txt             10             10              0           .424
+input12.txt              2             10              0           .416
+input13.txt             10             10              0           .436
+input14.txt              2             10              0           .404
+input15.txt              9             10              0           .429
+input16.txt             11             10              0           .476
+input17.txt              7             10              0           .466
+input18.txt              3             10              0           .420
+input19.txt              7             10              0           .431
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;1917455&quot;&gt;1917455&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
+input00.txt            694             10              0           .704
+input01.txt            653             10              0           .665
+input02.txt            224             10              0           .484
+input03.txt             84             10              0           .438
+input04.txt            850             10              0           .809
+input05.txt             34             10              0           .428
+input06.txt            427             10              0           .508
+input07.txt            751             10              0           .716
+input08.txt            599             10              0           .584
+input09.txt            402             10              0           .524
+input10.txt              9             10              0           .431
+input11.txt             10             10              0           .433
+input12.txt              2             10              0           .405
+input13.txt             10             10              0           .432
+input14.txt              2             10              0           .417
+input15.txt              9             10              0           .438
+input16.txt             11             10              0           .421
+input17.txt              7             10              0           .435
+input18.txt              3             10              0           .430
+input19.txt              7             10              0           .430
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1917463&quot;&gt;1917463&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .740
-input01.txt            653             10              0           .674
-input02.txt            224             10              0           .518
-input03.txt             84             10              0           .580
-input04.txt            850             10              0           .860
-input05.txt             34             10              0           .459
-input06.txt            427             10              0           .525
-input07.txt            751             10              0           .808
-input08.txt            599             10              0           .679
-input09.txt            402             10              0           .588
-input10.txt              9             10              0           .480
-input11.txt             10             10              0           .438
-input12.txt              2             10              0           .427
-input13.txt             10             10              0           .474
-input14.txt              2             10              0           .456
-input15.txt              9             10              0           .444
-input16.txt             11             10              0           .465
-input17.txt              7             10              0           .466
-input18.txt              3             10              0           .478
-input19.txt              7             10              0           .454
+input00.txt            694             10              0           .671
+input01.txt            653             10              0           .658
+input02.txt            224             10              0           .473
+input03.txt             84             10              0           .428
+input04.txt            850             10              0           .778
+input05.txt             34             10              0           .437
+input06.txt            427             10              0           .520
+input07.txt            751             10              0           .733
+input08.txt            599             10              0           .612
+input09.txt            402             10              0           .513
+input10.txt              9             10              0           .430
+input11.txt             10             10              0           .439
+input12.txt              2             10              0           .434
+input13.txt             10             10              0           .430
+input14.txt              2             10              0           .410
+input15.txt              9             10              0           .436
+input16.txt             11             10              0           .434
+input17.txt              7             10              0           .480
+input18.txt              3             10              0           .418
+input19.txt              7             10              0           .447
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;1917471&quot;&gt;1917471&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
+input00.txt            694             10          1,040           .710
+input01.txt            653             10          1,040           .692
+input02.txt            224             10            592           .468
+input03.txt             84             10            240           .452
+input04.txt            850             10          1,552           .775
+input05.txt             34             10             80           .533
+input06.txt            427             10            784           .568
+input07.txt            751             10          1,168           .797
+input08.txt            599             10          1,040           .636
+input09.txt            402             10            528           .611
+input10.txt              9             10             36           .462
+input11.txt             10             10             40           .445
+input12.txt              2             10             20           .432
+input13.txt             10             10             52           .449
+input14.txt              2             10             32           .417
+input15.txt              9             10             36           .422
+input16.txt             11             10             32           .485
+input17.txt              7             10             52           .448
+input18.txt              3             10             32           .450
+input19.txt              7             10             40           .433
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;1920359&quot;&gt;1920359&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
+input00.txt            694             10          1,040           .703
+input01.txt            653             10          1,040           .644
+input02.txt            224             10            592           .468
+input03.txt             84             10            240           .441
+input04.txt            850             10          1,552           .862
+input05.txt             34             10             80           .526
+input06.txt            427             10            784           .670
+input07.txt            751             10          1,168           .864
+input08.txt            599             10          1,040           .646
+input09.txt            402             10            528           .521
+input10.txt              9             10             36           .473
+input11.txt             10             10             40           .441
+input12.txt              2             10             20           .421
+input13.txt             10             10             52           .429
+input14.txt              2             10             32           .418
+input15.txt              9             10             36           .469
+input16.txt             11             10             32           .434
+input17.txt              7             10             52           .425
+input18.txt              3             10             32           .432
+input19.txt              7             10             40           .435
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;1946145&quot;&gt;1946145&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
+input00.txt            694             10              0           .673
+input01.txt            653             10              0           .626
+input02.txt            224             10              0           .467
+input03.txt             84             10              0           .440
+input04.txt            850             10              0           .766
+input05.txt             34             10              0           .447
+input06.txt            427             10              0           .514
+input07.txt            751             10              0           .710
+input08.txt            599             10              0           .624
+input09.txt            402             10              0           .529
+input10.txt              9             10              0           .471
+input11.txt             10             10              0           .422
+input12.txt              2             10              0           .408
+input13.txt             10             10              0           .432
+input14.txt              2             10              0           .417
+input15.txt              9             10              0           .420
+input16.txt             11             10              0           .431
+input17.txt              7             10              0           .439
+input18.txt              3             10              0           .444
+input19.txt              7             10              0           .580
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;23931913&quot;&gt;23931913&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .688
-input01.txt            653             10              0           .697
-input02.txt            224             10              0           .496
-input03.txt             84             10              0           .459
-input04.txt            850             10              0           .831
-input05.txt             34             10              0           .460
-input06.txt            427             10              0           .512
-input07.txt            751             10              0           .708
-input08.txt            599             10              0           .624
-input09.txt            402             10              0           .591
-input10.txt              9             10              0           .458
-input11.txt             10             10              0           .457
-input12.txt              2             10              0           .432
-input13.txt             10             10              0           .436
-input14.txt              2             10              0           .434
+input00.txt            694             10              0           .903
+input01.txt            653             10              0           .676
+input02.txt            224             10              0           .546
+input03.txt             84             10              0           .710
+input04.txt            850             10              0           .832
+input05.txt             34             10              0           .464
+input06.txt            427             10              0           .501
+input07.txt            751             10              0           .721
+input08.txt            599             10              0           .623
+input09.txt            402             10              0           .503
+input10.txt              9             10              0           .467
+input11.txt             10             10              0           .449
+input12.txt              2             10              0           .435
+input13.txt             10             10              0           .437
+input14.txt              2             10              0           .425
 input15.txt              9             10              0           .450
-input16.txt             11             10              0           .436
-input17.txt              7             10              0           .442
-input18.txt              3             10              0           .442
-input19.txt              7             10              0           .460
+input16.txt             11             10              0           .491
+input17.txt              7             10              0           .441
+input18.txt              3             10              0           .438
+input19.txt              7             10              0           .446
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
