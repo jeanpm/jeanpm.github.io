@@ -19,19 +19,19 @@
 <PRE>
 #include &lt;stdlib.h&gt;
 #include &lt;assert.h&gt;
-<A NAME="0"></A>#include &lt;stdio.h&gt;
+#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 
-<FONT color="#0000ff"><A HREF="javascript:ZweiFrames('match17-1.html#0',3,'match17-top.html#0',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>typedef int Type;
-
+typedef int Type;
+<A NAME="0"></A>
 typedef struct{
 	Type* data;
-	int size;
+<FONT color="#0000ff"><A HREF="javascript:ZweiFrames('match17-1.html#0',3,'match17-top.html#0',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>	int size;
 	int capacity;
 }Vector;
 
 Vector* New_Vector(int initial_capacity){
-    Vector *v =(Vector*) malloc(sizeof(Vector));</B></FONT>
+    Vector *v =(Vector*) malloc(sizeof(Vector));
     v-&gt;data =(Type*) malloc(sizeof(int)*initial_capacity);
 	v-&gt;size = 0;
 	v-&gt;capacity = initial_capacity;
@@ -45,7 +45,7 @@ void Free_Vector(Vector* v){
 
 void Resize(Vector* v){
     if(v-&gt;capacity==0){
-        v-&gt;capacity=4;
+        v-&gt;capacity=4;</B></FONT>
         v-&gt;data = (Type *) realloc(v-&gt;data,sizeof(Type)*v-&gt;capacity);
     }
     else if(v-&gt;size==v-&gt;capacity){

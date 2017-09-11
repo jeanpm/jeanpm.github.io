@@ -20,10 +20,10 @@
 #include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 #include &lt;string.h&gt;
-#include &lt;time.h&gt;
+<A NAME="0"></A>#include &lt;time.h&gt;
 
 
-typedef int Type;
+<FONT color="#0000ff"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match4-0.html#0',2,'match4-top.html#0',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>typedef int Type;
 
 typedef struct
 {
@@ -36,22 +36,22 @@ typedef struct
 
 void insert(vector *v, Type value, int i);
 Type apagar(vector *v, int i);
-<A NAME="0"></A>
+
 vector *new_vector(int intial_capacity)
 {
-<FONT color="#0000ff"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match4-0.html#0',2,'match4-top.html#0',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>	vector *v = malloc(sizeof(vector));
+	vector *v = malloc(sizeof(vector));
 	v-&gt;data = malloc(sizeof(int) * intial_capacity);
 	v-&gt;size = 0;
 	v-&gt;capacity = intial_capacity;
 
 	return v;
-}
+}</B></FONT>
 
 void free_vector(vector *v)
 {
 	free(v-&gt;data);
 	free(v);
-}</B></FONT>
+}
 
 
 Type vector_pop_back(vector *v)
@@ -61,10 +61,10 @@ Type vector_pop_back(vector *v)
 }
 
 Type vector_pop_front(vector *v)
-{
+<A NAME="1"></A>{
 	apagar(v, 0);
 	return 1;
-}
+<FONT color="#f63526"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match4-0.html#1',2,'match4-top.html#1',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>}
 
 Type apagar(vector *v, int i)
 {
@@ -80,10 +80,10 @@ Type apagar(vector *v, int i)
 int *vector_at(vector *v, int i)
 {
 	return &amp;(v-&gt;data[i]);
-<A NAME="1"></A>}
+}
 
 
-<FONT color="#f63526"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match4-0.html#1',2,'match4-top.html#1',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>int vector_get(vector *v, int i)
+int vector_get(vector *v, int i)
 {
 	return v-&gt;data[i];
 }
@@ -98,7 +98,7 @@ void vector_set(vector *v, Type value, int i)
 void resize(vector *v)
 {
 	if (v-&gt;capacity == 0)
-		v-&gt;capacity = 4;</B></FONT>
+		v-&gt;capacity = 4;
 
 	else
 		v-&gt;capacity *= 2;
@@ -111,12 +111,12 @@ void vector_push_back(vector *v, Type value)
 	insert(v, value, v-&gt;size);
 }
 
-<A NAME="2"></A>void vector_push_front(vector *v, Type value)
+void vector_push_front(vector *v, Type value)</B></FONT>
 {
-	insert(v, value, 0);
-<FONT color="#77bfc7"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match4-0.html#2',2,'match4-top.html#2',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>}
+<A NAME="2"></A>	insert(v, value, 0);
+}
 
-void insert(vector *v, Type value, int i)
+<FONT color="#77bfc7"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match4-0.html#2',2,'match4-top.html#2',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>void insert(vector *v, Type value, int i)
 {
 	if (i &gt;= v-&gt;capacity || v-&gt;size + 1 &gt; v-&gt;capacity)
 		resize(v);
@@ -143,10 +143,10 @@ void print(vector *v)
 int main(int argc, char *argv[])
 {
 	char funcao[20];
-	int cap_inicial, operacoes, i, valor, intial_capacity = 5;
+<A NAME="3"></A>	int cap_inicial, operacoes, i, valor, intial_capacity = 5;
 
 	scanf(&quot;%d&quot;, &amp;intial_capacity);
-	vector *v = intial_capacity != 0 ? new_vector(intial_capacity) : new_vector(4);
+<FONT color="#6cc417"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match4-0.html#3',2,'match4-top.html#3',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>	vector *v = intial_capacity != 0 ? new_vector(intial_capacity) : new_vector(4);
 
 	scanf(&quot;%d&quot;, &amp;operacoes);
 
@@ -159,10 +159,10 @@ int main(int argc, char *argv[])
 		if (strcmp(funcao, &quot;push_back&quot;) == 0)
 		{
 			scanf(&quot;%d&quot;, &amp;cap_inicial);
-<A NAME="3"></A>			vector_push_back(v, cap_inicial);
+			vector_push_back(v, cap_inicial);
 		}
 
-<FONT color="#6cc417"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match4-0.html#3',2,'match4-top.html#3',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>		if (strcmp(funcao, &quot;push_front&quot;) == 0)
+		if (strcmp(funcao, &quot;push_front&quot;) == 0)
 		{
 			scanf(&quot;%d&quot;, &amp;cap_inicial);
 			vector_push_front(v, cap_inicial);
@@ -186,7 +186,7 @@ int main(int argc, char *argv[])
 			apagar(v, cap_inicial);
 		}
 
-		else if (strcmp(funcao, &quot;pop_back&quot;) == 0)
+		else if (strcmp(funcao, &quot;pop_back&quot;) == 0)</B></FONT>
 		{
 			vector_pop_back(v);
 		}
@@ -202,7 +202,7 @@ int main(int argc, char *argv[])
 	free_vector(v);
 
 	return 0;
-}</B></FONT>
+}
 </PRE>
 </BODY>
 </HTML>

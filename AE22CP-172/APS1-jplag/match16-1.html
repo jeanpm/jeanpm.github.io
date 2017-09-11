@@ -19,21 +19,21 @@
 <PRE>
 #include &lt;stdlib.h&gt;
 #include &lt;assert.h&gt;
-#include &lt;stdio.h&gt;
+<A NAME="0"></A>#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 
-typedef int Type;
+<FONT color="#0000ff"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match16-0.html#0',2,'match16-top.html#0',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>typedef int Type;
 
 typedef struct{
 	Type* data;
 	int size;
 	int capacity;
-<A NAME="0"></A>}Vector;
+}Vector;
 
-Vector* New_Vector(int initial_capacity){
-<FONT color="#0000ff"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match16-0.html#0',2,'match16-top.html#0',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>    Vector *v =(Vector*) malloc(sizeof(Vector));
-    v-&gt;data =(Type*) malloc(sizeof(int)*initial_capacity);
-	v-&gt;size = 0;
+<A NAME="1"></A>Vector* New_Vector(int initial_capacity){
+    Vector *v =(Vector*) malloc(sizeof(Vector));
+    v-&gt;data =(Type*) malloc(sizeof(int)*initial_capacity);</B></FONT>
+<FONT color="#f63526"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match16-0.html#1',2,'match16-top.html#1',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>	v-&gt;size = 0;
 	v-&gt;capacity = initial_capacity;
 	return(v);
 }
@@ -43,7 +43,7 @@ void Free_Vector(Vector* v){
 	free(v);
 }
 
-void Resize(Vector* v){</B></FONT>
+void Resize(Vector* v){
     if(v-&gt;capacity==0){
         v-&gt;capacity=4;
         v-&gt;data = (Type *) realloc(v-&gt;data,sizeof(Type)*v-&gt;capacity);
@@ -54,7 +54,7 @@ void Resize(Vector* v){</B></FONT>
 	}
 }
 
-void Vector_Insert(Vector* v, Type value, int i){
+void Vector_Insert(Vector* v, Type value, int i){</B></FONT>
 
     if(i &gt;= 0 &amp;&amp; i &lt;= v-&gt;size)
     {
@@ -66,10 +66,10 @@ void Vector_Insert(Vector* v, Type value, int i){
         v-&gt;size++;
     }
 }
-
+<A NAME="2"></A>
 void Vector_Push_Back(Vector* v, Type value){
     Resize(v);
-    v-&gt;data[v-&gt;size]=value;
+<FONT color="#77bfc7"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match16-0.html#2',2,'match16-top.html#2',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>    v-&gt;data[v-&gt;size]=value;
     v-&gt;size++;
 
 }
@@ -85,7 +85,7 @@ void Vector_Pop_Back(Vector* v){
 }
 
 void Vector_Pop_Front(Vector* v){
-    int i;
+    int i;</B></FONT>
     for(i=0;i&lt;v-&gt;size;i++)
         v-&gt;data[i] = v-&gt;data[i+1];
     if(v-&gt;size!=0)
@@ -120,13 +120,13 @@ int main()
 	int capacity;
 	scanf(&quot;%d&quot;,&amp;capacity);
 	Vector* v = New_Vector(capacity);
-	int C;
+<A NAME="3"></A>	int C;
 	scanf(&quot;%d&quot;,&amp;C);
 
-<A NAME="1"></A>	char function[20];
+<FONT color="#6cc417"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match16-0.html#3',2,'match16-top.html#3',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>	char function[20];
 	int posicao;
 	Type valor;
-<FONT color="#f63526"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match16-0.html#1',2,'match16-top.html#1',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>	for(;C&gt;0;C--)
+	for(;C&gt;0;C--)
     {
         scanf(&quot;%s&quot;,function);
         if(strcmp(&quot;push_back&quot;,function)==0)

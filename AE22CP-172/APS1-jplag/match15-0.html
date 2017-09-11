@@ -19,14 +19,14 @@
 <PRE>
 #include &lt;stdlib.h&gt;
 #include &lt;assert.h&gt;
-#include &lt;stdio.h&gt;
+<A NAME="0"></A>#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 
-typedef int Type;
-<A NAME="0"></A>
+<FONT color="#0000ff"><A HREF="javascript:ZweiFrames('match15-1.html#0',3,'match15-top.html#0',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>typedef int Type;
+
 typedef struct{
 	Type* data;
-<FONT color="#0000ff"><A HREF="javascript:ZweiFrames('match15-1.html#0',3,'match15-top.html#0',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>	int size;
+	int size;
 	int capacity;
 }Vector;
 
@@ -36,7 +36,7 @@ Vector* New_Vector(int initial_capacity){
 	v-&gt;size = 0;
 	v-&gt;capacity = initial_capacity;
 	return(v);
-}
+}</B></FONT>
 
 void Free_Vector(Vector* v){
 	free(v-&gt;data);
@@ -45,7 +45,7 @@ void Free_Vector(Vector* v){
 
 void Resize(Vector* v){
     if(v-&gt;capacity==0){
-        v-&gt;capacity=4;</B></FONT>
+        v-&gt;capacity=4;
         v-&gt;data = (Type *) realloc(v-&gt;data,sizeof(Type)*v-&gt;capacity);
     }
     else if(v-&gt;size==v-&gt;capacity){
@@ -101,10 +101,10 @@ void Vector_Erase(Vector* v, int i){
         v-&gt;size--;
     }
 }
-
+<A NAME="1"></A>
 void Vector_Set(Vector* v, int pos, Type value){
 	if(pos&gt;=0 &amp;&amp; pos &lt; v-&gt;size)
-        v-&gt;data[pos] = value;
+<FONT color="#f63526"><A HREF="javascript:ZweiFrames('match15-1.html#1',3,'match15-top.html#1',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>        v-&gt;data[pos] = value;
 }
 
 void Vector_Print(Vector* v){
@@ -119,17 +119,17 @@ int main()
 {
 	int capacity;
 	scanf(&quot;%d&quot;,&amp;capacity);
-	Vector* v = New_Vector(capacity);
+	Vector* v = New_Vector(capacity);</B></FONT>
 	int C;
 	scanf(&quot;%d&quot;,&amp;C);
 
-<A NAME="1"></A>	char function[20];
+	char function[20];
 	int posicao;
 	Type valor;
-<FONT color="#f63526"><A HREF="javascript:ZweiFrames('match15-1.html#1',3,'match15-top.html#1',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>	for(;C&gt;0;C--)
+<A NAME="2"></A>	for(;C&gt;0;C--)
     {
         scanf(&quot;%s&quot;,function);
-        if(strcmp(&quot;push_back&quot;,function)==0)
+<FONT color="#77bfc7"><A HREF="javascript:ZweiFrames('match15-1.html#2',3,'match15-top.html#2',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>        if(strcmp(&quot;push_back&quot;,function)==0)
         {
             scanf(&quot;%d&quot;,&amp;valor);
             Vector_Push_Back(v, valor);
@@ -163,12 +163,12 @@ int main()
             scanf(&quot;%d&quot;,&amp;posicao);
             scanf(&quot;%d&quot;,&amp;valor);
             Vector_Set(v, posicao, valor);
-        }
+        }</B></FONT>
         Vector_Print(v);
     }
     Free_Vector(v);
     return 0;
-}</B></FONT>
+}
 </PRE>
 </BODY>
 </HTML>

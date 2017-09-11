@@ -48,9 +48,9 @@ void free_vector(vector *v)
 {
     free(v-&gt;data);
     free(v);
-}
+}</B></FONT>
 
-void resize(vector* v)</B></FONT>
+void resize(vector* v)
 {
     v-&gt;capacity+=v-&gt;capacity;
     v-&gt;data=realloc(v-&gt;data, sizeof(int)*v-&gt;capacity);
@@ -78,10 +78,10 @@ void vector_push_back(vector *v, Type value)
         resize(v);
 
     (v-&gt;data)[v-&gt;size]=value;
-    v-&gt;size++;
+<A NAME="1"></A>    v-&gt;size++;
 }
 
-void vector_insert(vector* v, Type value, int i)
+<FONT color="#f63526"><A HREF="javascript:ZweiFrames('match24-1.html#1',3,'match24-top.html#1',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>void vector_insert(vector* v, Type value, int i)
 {
     if(v-&gt;size == v-&gt;capacity)
         resize(v);
@@ -93,7 +93,7 @@ void vector_insert(vector* v, Type value, int i)
     (v-&gt;data)[i]=value;
 }
 
-void vector_push_front(vector* v, Type value)
+void vector_push_front(vector* v, Type value)</B></FONT>
 {
     vector_insert(v, value, 0);
 }
@@ -104,10 +104,10 @@ void vector_pop_back(vector *v)
 }
 
 void vector_erase(vector *v, int i)
-<A NAME="1"></A>{
+{
     int j;
 
-<FONT color="#f63526"><A HREF="javascript:ZweiFrames('match24-1.html#1',3,'match24-top.html#1',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>    for(j=i; j&lt;(v-&gt;size-1); j++)
+    for(j=i; j&lt;(v-&gt;size-1); j++)
         v-&gt;data[j] = v-&gt;data[j+1];
     vector_pop_back(v);
 }
@@ -125,27 +125,27 @@ void vector_print(vector *v)
     for(i=0; i&lt;v-&gt;size; i++)
         printf(&quot;%d &quot;, v-&gt;data[i]);
     printf(&quot;\n&quot;);
-}</B></FONT>
+}
 
 
 
 int main()
 {
     int cap, quant, i, par1, par2;
-<A NAME="2"></A>    char teste[20];
+    char teste[20];
 
     scanf(&quot;%i%i&quot;, &amp;cap, &amp;quant);
-<FONT color="#77bfc7"><A HREF="javascript:ZweiFrames('match24-1.html#2',3,'match24-top.html#2',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>    vector *v=new_vector(cap);
+    vector *v=new_vector(cap);
 
     for(i=0; i&lt;quant; i++)
     {
         scanf(&quot;%s&quot;, teste);
         if(strcmp(teste, &quot;push_back&quot;)==0)
         {
-            scanf(&quot;%i&quot;, &amp;par1);
+<A NAME="2"></A>            scanf(&quot;%i&quot;, &amp;par1);
             vector_push_back(v, par1);
         }
-        else if(strcmp(teste, &quot;push_front&quot;)==0)
+<FONT color="#77bfc7"><A HREF="javascript:ZweiFrames('match24-1.html#2',3,'match24-top.html#2',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>        else if(strcmp(teste, &quot;push_front&quot;)==0)
         {
             scanf(&quot;%i&quot;, &amp;par1);
             vector_push_front(v, par1);
@@ -159,7 +159,7 @@ int main()
         {
             vector_pop_back(v);
         }
-        else if(strcmp(teste, &quot;pop_front&quot;)==0)</B></FONT>
+        else if(strcmp(teste, &quot;pop_front&quot;)==0)
         {
             vector_pop_front(v);
         }
@@ -176,7 +176,7 @@ int main()
         vector_print(v);
     }
     return 0;
-}
+}</B></FONT>
 </PRE>
 </BODY>
 </HTML>

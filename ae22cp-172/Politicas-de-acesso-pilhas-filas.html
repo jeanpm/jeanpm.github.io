@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Políticas de acesso e manipulação I - Pilhas</title>
+  <title>Políticas de acesso - Pilhas & Filas</title>
   <meta name="description" content="Conteúdo">
 
   <link rel="stylesheet" href="/css/main.css">
@@ -53,7 +53,7 @@
         <div class="post">
 
   <header class="post-header">
-     <h1 class="post-title">Políticas de acesso e manipulação I - Pilhas</h1>
+     <h1 class="post-title">Políticas de acesso - Pilhas & Filas</h1>
      <p class="post-meta">
          <i class="fa fa-calendar-o"></i> Sep 4, 2017
           • <i class="fa fa-user"></i> jean
@@ -69,6 +69,12 @@
     </div>
   
   
+    <div class="right">
+      <a href="/lc21cp-172/Prova1.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
 </div>
 
 
@@ -82,14 +88,15 @@
 <ul id="markdown-toc">
   <li><a href="#políticas-de-acesso-e-manipulação" id="markdown-toc-políticas-de-acesso-e-manipulação">Políticas de acesso e manipulação</a>    <ul>
       <li><a href="#pilhas-stack" id="markdown-toc-pilhas-stack">Pilhas (stack)</a></li>
+      <li><a href="#filas-queue" id="markdown-toc-filas-queue">Filas (queue)</a></li>
     </ul>
   </li>
-  <li><a href="#implementação" id="markdown-toc-implementação">Implementação</a>    <ul>
-      <li><a href="#pilhas-usando-vector" id="markdown-toc-pilhas-usando-vector">Pilhas usando <em>vector</em></a></li>
-      <li><a href="#pilhas-usando-um-container-abstrato" id="markdown-toc-pilhas-usando-um-container-abstrato">Pilhas usando um <em>container</em> abstrato</a></li>
-      <li><a href="#implementação-da-interface-containerh" id="markdown-toc-implementação-da-interface-containerh">Implementação da interface <em>container.h</em></a></li>
+  <li><a href="#implementação-sobre-vector" id="markdown-toc-implementação-sobre-vector">Implementação sobre <em>vector</em></a>    <ul>
+      <li><a href="#pilhas" id="markdown-toc-pilhas">Pilhas</a></li>
+      <li><a href="#filas" id="markdown-toc-filas">Filas</a></li>
     </ul>
   </li>
+  <li><a href="#eficiência-das-implementações" id="markdown-toc-eficiência-das-implementações">Eficiência das implementações</a></li>
 </ul>
 
 <h1 id="políticas-de-acesso-e-manipulação">Políticas de acesso e manipulação</h1>
@@ -100,7 +107,24 @@
 
 <h2 id="pilhas-stack">Pilhas (stack)</h2>
 
-<p>Pilhas (Stacks) são estruturas de dados com políticas de acesso e manipulação de grande restrição. Há somente uma forma de acessar os elementos de uma pilha.</p>
+<p>A estrutura de dados Pilha recebe este nome em analogia ao processo de empilhamento. De acordo com o dicionário web <a href="http://michaelis.uol.com.br/busca?r=0&amp;f=0&amp;t=0&amp;palavra=empilhar">Michaelis</a>, empilhar tem o seguinte significado:</p>
+
+<ul>
+  <li>
+    <p><strong>em·pi·lhar</strong>
+Dispor em pilha ou ficar amontoado em pilha; amontoar(-se):</p>
+
+    <ul>
+      <li>Empilhou os pratos que havia acabado de enxugar.</li>
+      <li>“[…] erguia o que estava pelo chão e empilhava as cadeiras sobre as mesinhas de mármore” (AA2).</li>
+      <li>“Entrou no seu escritório e foi sentar-se à secretária. Defronte dele, com uma gravidade oficial, empilhavam-se grandes livros de escrituração mercantil” (AA2).</li>
+    </ul>
+  </li>
+</ul>
+
+<p>De acordo com esta definição, empilhar significa inserir um objeto em cima de outro. Desempilhar, portanto, se refere a remoção do objeto no topo da pilha.</p>
+
+<p>Dada a analogia, define-se que uma estrutura de dados pilha é caracterizada pelo fato de que novos elementos somente podem ser inseridos em seu topo. A remoção de elementos da pilha, similarmente, somente pode acontecer para elementos no topo. O acesso ao elemento no topo da pilha, sem a remoção do mesmo, é muitas vezes necessário, desta forma um operador se faz necessário. Em resumo:</p>
 
 <ul>
   <li>Novos elementos são inseridos em apenas uma direção.
@@ -146,31 +170,90 @@
   </li>
 </ul>
 
-<h1 id="implementação">Implementação</h1>
+<h2 id="filas-queue">Filas (queue)</h2>
 
-<h2 id="pilhas-usando-vector">Pilhas usando <em>vector</em></h2>
+<p>A estrutura de dados <em>fila</em> (ou política de acesso) também recebe este nome por analogia ao processo de enfileiramento</p>
 
-<p>É fácil notar que todas as funcionalidades necessárias para manipular uma pilha já estão implementadas para <code class="highlighter-rouge">vector</code>. De fato, precisamos apenas de um subconjunto das funcionalidades disponíveis em <code class="highlighter-rouge">vector</code>, ou seja, pilhas são mais restritivas.</p>
+<ul>
+  <li><strong>fi·la</strong> (<a href="http://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/enfileirar/">Michaelis</a>)
+Sequência de pessoas ou coisas alinhadas uma atrás da outra, organizada geralmente por ordem cronológica de chegada ou por diferentes critérios…
+    <ul>
+      <li>“Havia agora Betinha, Aureluce, Tanara e outras amigas barulhentas em volta, uma fila inteira delas no Cine Cruzeiro do Sul” (CFA).</li>
+      <li>“Conjunto de soldados em fileira”</li>
+    </ul>
+  </li>
+</ul>
 
-<p>Vejamos quais funcionalidades de <code class="highlighter-rouge">vector</code> serão úteis para implementarmos uma estrutura pilha (<code class="highlighter-rouge">stack</code>).</p>
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// Alocação desalocação
-</span><span class="n">vector</span><span class="o">*</span> <span class="n">new_vector</span><span class="p">(</span><span class="kt">int</span> <span class="n">initial_capacity</span><span class="p">);</span>
-<span class="kt">void</span> <span class="n">free_vector</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<p>Por essa analogia é fácil notarmos que a estrutura de dados <em>fila</em> deve suportar operações análogas ao <em>enfileiramento</em> e o <em>desenfileiramento</em>. Em termos mais diretos, isso significa que a inserção de novos elementos em uma fila deve ser feita sempre em uma das pontas da estrutua (<code class="highlighter-rouge">push_back</code> ou <code class="highlighter-rouge">push_front</code>) enquanto a remoção poderia apenas ser feita na ponta oposta da estrutura (<code class="highlighter-rouge">pop_front</code> ou <code class="highlighter-rouge">pop_back</code>). Em resumo:</p>
+
+<ul>
+  <li>Novos elementos são inseridos em apenas uma das pontas.
+    <ul>
+      <li>Essa operação é chamada <code class="highlighter-rouge">push</code></li>
+    </ul>
+  </li>
+  <li>Elementos são removidos da ponta oposta à inserção.
+    <ul>
+      <li>Somente o elemento inicial pode ser removido diretamente.</li>
+      <li>Essa operação é chamada <code class="highlighter-rouge">pop</code></li>
+    </ul>
+  </li>
+  <li>Este tipo de política de acesso ficou conhecido pela sigla:
+    <ul>
+      <li>FIFO, do inglês <em>first in, first out</em>. O primeiro elemento inserido é necessáriamente o primeiro a ser removido.</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="implementação-sobre-vector">Implementação sobre <em>vector</em></h1>
+
+<p>Pilhas e filas, sendo apenas políticas de acesso, podem ser implementadas utilizando diferentes estruturas de dados como base (contêiner). Neste primeiro momento, utilizaremos como contêiner a estrutura <code class="highlighter-rouge">vector</code> implementada anteriormente.</p>
+
+<h2 id="pilhas">Pilhas</h2>
+
+<p>É fácil notar que todas as funcionalidades necessárias para manipular uma pilha estão implementadas para <code class="highlighter-rouge">vector</code>. De fato, precisamos apenas de um subconjunto das funcionalidades disponíveis em <code class="highlighter-rouge">vector</code>, ou seja, pilhas são mais restritivas.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// **** stack.h ****
+</span><span class="cp">#include "vector.h"
+#include &lt;stdbool.h&gt;
+</span><span class="k">typedef</span> <span class="n">vector</span> <span class="n">stack</span><span class="p">;</span>
+<span class="cp">#define STACK_INIT_SIZE 10
+</span><span class="c1">// Alocação desalocação
+</span><span class="n">stack</span><span class="o">*</span> <span class="n">new_stack</span><span class="p">();</span>
+<span class="kt">void</span> <span class="n">free_stack</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
 <span class="c1">// Inserção e remoção de elementos
-</span><span class="n">Type</span> <span class="n">vector_pop_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
-<span class="kt">void</span> <span class="n">vector_push_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+</span><span class="n">Type</span> <span class="n">stack_pop</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">stack_push</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
 <span class="c1">// Observer o topo da pilha, sem remoção
-</span><span class="n">Type</span><span class="o">*</span> <span class="n">vector_at</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pos</span><span class="p">);</span>
+</span><span class="n">Type</span><span class="o">*</span> <span class="n">stack_top</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="kt">bool</span> <span class="n">stack_empty</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
 </code></pre>
 </div>
 
-<p>A partir dessa referência podemos definir funções análogas para manipulação de nossa estrutura <code class="highlighter-rouge">stack</code>.</p>
+<p>Vejamos quais funcionalidades de <code class="highlighter-rouge">vector</code> serão úteis para implementarmos uma estrutura pilha (<code class="highlighter-rouge">stack</code>).</p>
 
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// Redefinir o nome vector
-</span><span class="k">typedef</span> <span class="n">vector</span> <span class="n">stack</span><span class="p">;</span>
-<span class="c1">// Alocação desalocação
-</span><span class="n">stack</span><span class="o">*</span> <span class="nf">new_stack</span><span class="p">(</span><span class="kt">int</span> <span class="n">initial_capacity</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">stack</span><span class="o">*</span> <span class="n">s</span> <span class="o">=</span> <span class="n">new_vector</span><span class="p">(</span><span class="n">initial_capacity</span><span class="p">);</span>
+<p><strong>Opção 1</strong></p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">vector_push_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+<span class="n">Type</span> <span class="n">vector_pop_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p><strong>Opção 2</strong></p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">vector_push_front</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+<span class="n">Type</span> <span class="n">vector_pop_front</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>Cada uma dessas opções insere e remove elementos de uma das pontas de <code class="highlighter-rouge">vector</code>. Por razões de eficiência, utilizaremos a opção 1 a seguir.</p>
+
+<ul>
+  <li><em>Questão:</em> Porque devemos preferir a opção 1 para implementação de <code class="highlighter-rouge">stack</code> se o contêiner base for <code class="highlighter-rouge">vector</code>?</li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "stack.h"
+</span><span class="c1">// Alocação desalocação
+</span><span class="n">stack</span><span class="o">*</span> <span class="nf">new_stack</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">stack</span><span class="o">*</span> <span class="n">s</span> <span class="o">=</span> <span class="n">new_vector</span><span class="p">(</span><span class="n">STACK_INIT_SIZE</span><span class="p">);</span>
     <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="kt">void</span> <span class="n">free_stack</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">){</span>
@@ -187,82 +270,67 @@
 </span><span class="n">Type</span><span class="o">*</span> <span class="n">stack_top</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="n">vector_at</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
 <span class="p">}</span>
+<span class="kt">bool</span> <span class="n">stack_empty</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre>
 </div>
 
-<h2 id="pilhas-usando-um-container-abstrato">Pilhas usando um <em>container</em> abstrato</h2>
+<h2 id="filas">Filas</h2>
 
-<p>Em princípio, não há problemas em utilizar as funções de <code class="highlighter-rouge">vector</code> para implementar as funcionalidades de <code class="highlighter-rouge">stack</code>. Muito pelo contrário, reuso de funções é um dos objetivos da programação estruturada.</p>
+<p>É fácil notar que todas as funcionalidades necessárias para manipular uma estão implementadas para <code class="highlighter-rouge">vector</code>. De fato, precisamos apenas de um subconjunto das funcionalidades disponíveis em <code class="highlighter-rouge">vector</code>, ou seja, filas são mais restritivas.</p>
 
-<p>No entanto, como mencionado anteriormente, pilhas podem ser implementadas sobre diferentes <em>contêiners</em>. A nossa versão atual, porém, está totalmente acoplada ao <em>contêiner</em> <code class="highlighter-rouge">vector</code>.</p>
+<p>Vejamos quais funcionalidades de <code class="highlighter-rouge">vector</code> serão úteis para implementarmos uma estrutura pilha (<code class="highlighter-rouge">queue</code>).</p>
 
-<p><img src="../assets/stack-vector.png" alt="stack-vector" /></p>
-
-<p>Como podemos eliminar essa limitação e tornar nossa implementação mais geral ainda? De modo que outros contêiners sequenciais (<code class="highlighter-rouge">list</code>, por exemplo) também pudessem ser facilmente utilizados quando necessário. A ideia é introduzir uma interface entre a implementação de um contêiner e sua definição.</p>
-
-<p><img src="../assets/stack-container.png" alt="stack-container" /></p>
-
-<p>Essa interface nada mais é do que um arquivo que define todas as funcionalidades que as implementações devem ter para serem um <strong>contêiner</strong>. Tais arquivos, em geral, contém apenas cabeçalhos de funções e possivelmente definições de tipos de dados.</p>
-
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// **** container.h ****
-</span><span class="cp">#define Type int
-</span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_container</span> <span class="n">container</span><span class="p">;</span>
-<span class="c1">// Funções de remoção de elementos
-</span><span class="n">Type</span> <span class="n">pop_back</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
-<span class="n">Type</span> <span class="n">pop_front</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
-<span class="n">Type</span> <span class="n">erase</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
-<span class="c1">// Funções de inserção de elementos
-</span><span class="kt">void</span> <span class="n">insert</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
-<span class="kt">void</span> <span class="n">push_back</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
-<span class="kt">void</span> <span class="n">push_front</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
-<span class="n">Type</span><span class="o">*</span> <span class="n">at</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pos</span><span class="p">);</span>
-<span class="kt">void</span> <span class="n">set</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pos</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
-<span class="kt">void</span> <span class="n">resize</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
-<span class="kt">void</span> <span class="n">print</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">format</span><span class="p">);</span>
+<p><strong>Opção 1</strong></p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">vector_push_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+<span class="n">Type</span> <span class="n">vector_pop_front</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
 </code></pre>
 </div>
 
-<p>Dada uma interface que define um contêiner genérico (abstrato), podemos redefinir nossa estrutura <code class="highlighter-rouge">stack</code> para que ela utilize essas funções, ao invés daquelas específicas de <code class="highlighter-rouge">vector</code>.</p>
+<p><strong>Opção 2</strong></p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">vector_push_front</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+<span class="n">Type</span> <span class="n">vector_pop_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+</code></pre>
+</div>
 
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// **** stack.c ****
-</span><span class="cp">#include "container.h"
+<p>Cada uma dessas opções insere elementos em uma das pontas de <code class="highlighter-rouge">vector</code> e remove da outra.</p>
+
+<ul>
+  <li><em>Questão:</em> Quais as deficiências em termos da eficiência de cada uma das opções?</li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "vector.h"
+#define QUEUE_INIT_SIZE 10
 </span><span class="c1">// Redefinir o nome vector
-</span><span class="k">typedef</span> <span class="n">container</span> <span class="n">stack</span><span class="p">;</span>
+</span><span class="k">typedef</span> <span class="n">vector</span> <span class="n">queue</span><span class="p">;</span>
 <span class="c1">// Alocação desalocação
-</span><span class="n">stack</span><span class="o">*</span> <span class="nf">new_stack</span><span class="p">(</span><span class="kt">int</span> <span class="n">initial_capacity</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">container</span><span class="o">*</span> <span class="n">s</span> <span class="o">=</span> <span class="n">new_container</span><span class="p">(</span><span class="n">initial_capacity</span><span class="p">);</span>
+</span><span class="n">queue</span><span class="o">*</span> <span class="nf">new_queue</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">queue</span><span class="o">*</span> <span class="n">s</span> <span class="o">=</span> <span class="n">new_vector</span><span class="p">(</span><span class="n">QUEUE_INIT_SIZE</span><span class="p">);</span>
     <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="kt">void</span> <span class="n">free_stack</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">){</span>
-    <span class="n">free_container</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">free_queue</span><span class="p">(</span><span class="n">queue</span><span class="o">*</span> <span class="n">v</span><span class="p">){</span>
+    <span class="n">free_vector</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="c1">// Inserção e remoção de elementos
-</span><span class="n">Type</span> <span class="n">stack_pop</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">pop_back</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</span><span class="n">Type</span> <span class="n">queue_pop</span><span class="p">(</span><span class="n">queue</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">vector_pop_back</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="kt">void</span> <span class="n">stack_push</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">push_back</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">queue_push</span><span class="p">(</span><span class="n">queue</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">vector_push_back</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="c1">// Retorna um ponteiro para o topo da pilha
-</span><span class="n">Type</span><span class="o">*</span> <span class="n">stack_top</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">at</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span><span class="n">Type</span><span class="o">*</span> <span class="n">queue_begin</span><span class="p">(</span><span class="n">queue</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">vector_at</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre>
 </div>
 
-<h2 id="implementação-da-interface-containerh">Implementação da interface <em>container.h</em></h2>
-
-<p>Até este momento a implementação de <code class="highlighter-rouge">stack</code> não existe de forma concreta, pois ela depende da implementação de funções que não foram implementadas em <code class="highlighter-rouge">container.h</code>.</p>
-
-<p>Como já mencionado anteriormente, podem existir diferentes implementações da mesma interface. Qual delas será utilizada por <code class="highlighter-rouge">stack.c</code> é uma decisão feita durante a compilação.</p>
-
-<p>Suponhamos a existência de duas implementações de <code class="highlighter-rouge">container.h</code>, a primeira em <code class="highlighter-rouge">vector.c</code> e a segunda em <code class="highlighter-rouge">list.c</code>. Ao passarmos uma das duas ao compilador, elas fornecerão a implementação das funções abstratas utilizadas em <code class="highlighter-rouge">stack.c</code>.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>gcc main.c stack.c vector.c -o main-vector
-
-gcc main.c stack.c list.c -o main-list
-</code></pre>
-</div>
+<h1 id="eficiência-das-implementações">Eficiência das implementações</h1>
+<ul>
+  <li>Qual a ineficiência da implementação de <code class="highlighter-rouge">queue</code> utilizando <code class="highlighter-rouge">vector</code> diretamente.</li>
+  <li>Implementação circular (pg. 207 Tenenbaum)</li>
+</ul>
 
   </article>
 

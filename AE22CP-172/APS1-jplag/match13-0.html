@@ -30,13 +30,13 @@ typedef struct{
 	int capacity;
 }Vector;
 
-Vector* New_Vector(int initial_capacity){
+<A NAME="1"></A>Vector* New_Vector(int initial_capacity){
     Vector *v =(Vector*) malloc(sizeof(Vector));
-    v-&gt;data =(Type*) malloc(sizeof(int)*initial_capacity);
-	v-&gt;size = 0;
+    v-&gt;data =(Type*) malloc(sizeof(int)*initial_capacity);</B></FONT>
+<FONT color="#f63526"><A HREF="javascript:ZweiFrames('match13-1.html#1',3,'match13-top.html#1',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>	v-&gt;size = 0;
 	v-&gt;capacity = initial_capacity;
 	return(v);
-}</B></FONT>
+}
 
 void Free_Vector(Vector* v){
 	free(v-&gt;data);
@@ -54,7 +54,7 @@ void Resize(Vector* v){
 	}
 }
 
-void Vector_Insert(Vector* v, Type value, int i){
+void Vector_Insert(Vector* v, Type value, int i){</B></FONT>
 
     if(i &gt;= 0 &amp;&amp; i &lt;= v-&gt;size)
     {
@@ -101,10 +101,10 @@ void Vector_Erase(Vector* v, int i){
         v-&gt;size--;
     }
 }
-<A NAME="1"></A>
+
 void Vector_Set(Vector* v, int pos, Type value){
 	if(pos&gt;=0 &amp;&amp; pos &lt; v-&gt;size)
-<FONT color="#f63526"><A HREF="javascript:ZweiFrames('match13-1.html#1',3,'match13-top.html#1',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>        v-&gt;data[pos] = value;
+        v-&gt;data[pos] = value;
 }
 
 void Vector_Print(Vector* v){
@@ -119,17 +119,17 @@ int main()
 {
 	int capacity;
 	scanf(&quot;%d&quot;,&amp;capacity);
-	Vector* v = New_Vector(capacity);</B></FONT>
+	Vector* v = New_Vector(capacity);
 	int C;
-	scanf(&quot;%d&quot;,&amp;C);
+<A NAME="2"></A>	scanf(&quot;%d&quot;,&amp;C);
 
 	char function[20];
-	int posicao;
+<FONT color="#77bfc7"><A HREF="javascript:ZweiFrames('match13-1.html#2',3,'match13-top.html#2',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>	int posicao;
 	Type valor;
-<A NAME="2"></A>	for(;C&gt;0;C--)
+	for(;C&gt;0;C--)
     {
         scanf(&quot;%s&quot;,function);
-<FONT color="#77bfc7"><A HREF="javascript:ZweiFrames('match13-1.html#2',3,'match13-top.html#2',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>        if(strcmp(&quot;push_back&quot;,function)==0)
+        if(strcmp(&quot;push_back&quot;,function)==0)
         {
             scanf(&quot;%d&quot;,&amp;valor);
             Vector_Push_Back(v, valor);
@@ -163,12 +163,12 @@ int main()
             scanf(&quot;%d&quot;,&amp;posicao);
             scanf(&quot;%d&quot;,&amp;valor);
             Vector_Set(v, posicao, valor);
-        }</B></FONT>
+        }
         Vector_Print(v);
     }
     Free_Vector(v);
     return 0;
-}
+}</B></FONT>
 </PRE>
 </BODY>
 </HTML>

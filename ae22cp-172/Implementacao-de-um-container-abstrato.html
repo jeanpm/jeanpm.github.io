@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Contêiners abstratos - list, forward_list, vector</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/ae22cp-172/Implementacao-de-um-container-abstrato.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Contêiners abstratos - list, forward_list, vector</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Sep 10, 2017
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/ae22cp-172/Pilhas-Valida%C3%A7%C3%A3o-de-express%C3%B5es-parentizadas.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#pilhas-usando-um-container-abstrato" id="markdown-toc-pilhas-usando-um-container-abstrato">Pilhas usando um <em>container</em> abstrato</a></li>
+  <li><a href="#implementação-da-interface-containerh" id="markdown-toc-implementação-da-interface-containerh">Implementação da interface <em>container.h</em></a></li>
+</ul>
+
+<h2 id="pilhas-usando-um-container-abstrato">Pilhas usando um <em>container</em> abstrato</h2>
+
+<p>Em princípio, não há problemas em utilizar as funções de <code class="highlighter-rouge">vector</code> para implementar as funcionalidades de <code class="highlighter-rouge">stack</code>. Muito pelo contrário, reuso de funções é um dos objetivos da programação estruturada.</p>
+
+<p>No entanto, como mencionado anteriormente, pilhas podem ser implementadas sobre diferentes <em>contêiners</em>. A nossa versão atual, porém, está totalmente acoplada ao <em>contêiner</em> <code class="highlighter-rouge">vector</code>.</p>
+
+<p><img src="../assets/stack-vector.png" alt="stack-vector" /></p>
+
+<p>Como podemos eliminar essa limitação e tornar nossa implementação mais geral ainda? De modo que outros contêiners sequenciais (<code class="highlighter-rouge">list</code>, por exemplo) também pudessem ser facilmente utilizados quando necessário. A ideia é introduzir uma interface entre a implementação de um contêiner e sua definição.</p>
+
+<p><img src="../assets/stack-container.png" alt="stack-container" /></p>
+
+<p>Essa interface nada mais é do que um arquivo que define todas as funcionalidades que as implementações devem ter para serem um <strong>contêiner</strong>. Tais arquivos, em geral, contém apenas cabeçalhos de funções e possivelmente definições de tipos de dados.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// **** container.h ****
+</span><span class="cp">#define Type int
+</span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_container</span> <span class="n">container</span><span class="p">;</span>
+<span class="c1">// Funções de remoção de elementos
+</span><span class="n">Type</span> <span class="n">pop_back</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="n">Type</span> <span class="n">pop_front</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="n">Type</span> <span class="n">erase</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+<span class="c1">// Funções de inserção de elementos
+</span><span class="kt">void</span> <span class="n">insert</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">push_back</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">push_front</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+<span class="n">Type</span><span class="o">*</span> <span class="n">at</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pos</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">set</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pos</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">resize</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">print</span><span class="p">(</span><span class="n">container</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">format</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>Dada uma interface que define um contêiner genérico (abstrato), podemos redefinir nossa estrutura <code class="highlighter-rouge">stack</code> para que ela utilize essas funções, ao invés daquelas específicas de <code class="highlighter-rouge">vector</code>.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// **** stack.c ****
+</span><span class="cp">#include "container.h"
+</span><span class="c1">// Redefinir o nome vector
+</span><span class="k">typedef</span> <span class="n">container</span> <span class="n">stack</span><span class="p">;</span>
+<span class="c1">// Alocação desalocação
+</span><span class="n">stack</span><span class="o">*</span> <span class="nf">new_stack</span><span class="p">(</span><span class="kt">int</span> <span class="n">initial_capacity</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">container</span><span class="o">*</span> <span class="n">s</span> <span class="o">=</span> <span class="n">new_container</span><span class="p">(</span><span class="n">initial_capacity</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="n">free_stack</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">){</span>
+    <span class="n">free_container</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// Inserção e remoção de elementos
+</span><span class="n">Type</span> <span class="n">stack_pop</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">pop_back</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="n">stack_push</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">push_back</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// Retorna um ponteiro para o topo da pilha
+</span><span class="n">Type</span><span class="o">*</span> <span class="n">stack_top</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">at</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="implementação-da-interface-containerh">Implementação da interface <em>container.h</em></h2>
+
+<p>Até este momento a implementação de <code class="highlighter-rouge">stack</code> não existe de forma concreta, pois ela depende da implementação de funções que não foram implementadas em <code class="highlighter-rouge">container.h</code>.</p>
+
+<p>Como já mencionado anteriormente, podem existir diferentes implementações da mesma interface. Qual delas será utilizada por <code class="highlighter-rouge">stack.c</code> é uma decisão feita durante a compilação.</p>
+
+<p>Suponhamos a existência de duas implementações de <code class="highlighter-rouge">container.h</code>, a primeira em <code class="highlighter-rouge">vector.c</code> e a segunda em <code class="highlighter-rouge">list.c</code>. Ao passarmos uma das duas ao compilador, elas fornecerão a implementação das funções abstratas utilizadas em <code class="highlighter-rouge">stack.c</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gcc main.c stack.c vector.c -o main-vector
+
+gcc main.c stack.c list.c -o main-list
+</code></pre>
+</div>
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

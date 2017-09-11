@@ -34,12 +34,12 @@ typedef struct
 
 } vector;
 
-void vector_insert(vector *v, Type value, int i);
+<A NAME="0"></A>void vector_insert(vector *v, Type value, int i);
 Type vector_erase(vector *v, int i);
-<A NAME="0"></A>
-vector *new_vector(int intial_capacity)
+
+<FONT color="#0000ff"><A HREF="javascript:ZweiFrames('match2-1.html#0',3,'match2-top.html#0',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>vector *new_vector(int intial_capacity)
 {
-<FONT color="#0000ff"><A HREF="javascript:ZweiFrames('match2-1.html#0',3,'match2-top.html#0',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>	vector *v = malloc(sizeof(vector));
+	vector *v = malloc(sizeof(vector));
 	v-&gt;data = malloc(sizeof(int) * intial_capacity);
 	v-&gt;size = 0;
 	v-&gt;capacity = intial_capacity;
@@ -55,10 +55,10 @@ void free_vector(vector *v)
 
 // Funções de remoção de elementos
 Type vector_pop_back(vector *v)
-{
+<A NAME="1"></A>{
 	v-&gt;size--;
 	return 1;
-}
+<FONT color="#f63526"><A HREF="javascript:ZweiFrames('match2-1.html#1',3,'match2-top.html#1',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>}
 
 Type vector_pop_front(vector *v)
 {
@@ -74,16 +74,16 @@ Type vector_erase(vector *v, int i)
 
 	v-&gt;size--;
 	return 1;
-}
+}</B></FONT>
 
 // Retorna um ponteiro para o item na posição i
 int *vector_at(vector *v, int i)
 {
 	return &amp;(v-&gt;data[i]);
-<A NAME="1"></A>}
+}
 
 // Retorna o valor na posição i
-<FONT color="#f63526"><A HREF="javascript:ZweiFrames('match2-1.html#1',3,'match2-top.html#1',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>int vector_get(vector *v, int i)
+int vector_get(vector *v, int i)
 {
 	return v-&gt;data[i];
 }
@@ -98,7 +98,7 @@ void vector_set(vector *v, Type value, int i)
 void vector_resize(vector *v)
 {
 	if (v-&gt;capacity == 0)
-		v-&gt;capacity = 4;</B></FONT>
+		v-&gt;capacity = 4;
 
 	else
 		v-&gt;capacity *= 2;
@@ -111,12 +111,12 @@ void vector_push_back(vector *v, Type value)
 	vector_insert(v, value, v-&gt;size);
 }
 
-<A NAME="2"></A>void vector_push_front(vector *v, Type value)
+void vector_push_front(vector *v, Type value)
 {
-	vector_insert(v, value, 0);
-<FONT color="#77bfc7"><A HREF="javascript:ZweiFrames('match2-1.html#2',3,'match2-top.html#2',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>}
+<A NAME="2"></A>	vector_insert(v, value, 0);
+}
 
-void vector_insert(vector *v, Type value, int i)
+<FONT color="#77bfc7"><A HREF="javascript:ZweiFrames('match2-1.html#2',3,'match2-top.html#2',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>void vector_insert(vector *v, Type value, int i)
 {
 	if (i &gt;= v-&gt;capacity || v-&gt;size + 1 &gt; v-&gt;capacity)
 		vector_resize(v);
@@ -130,8 +130,8 @@ void vector_insert(vector *v, Type value, int i)
 }
 
 // Impressão do valores no vetor [0]...[size-1]
-void vector_print(vector *v)
-{</B></FONT>
+void vector_print(vector *v)</B></FONT>
+{
 	int i;
 
 	printf(&quot;[%d/%d]&quot;, v-&gt;size, v-&gt;capacity);
@@ -149,20 +149,20 @@ int main(int argc, char *argv[])
 	vector *v = intial_capacity != 0 ? new_vector(intial_capacity) : new_vector(4);
 
 	scanf(&quot;%d&quot;, &amp;operacoes);
-
+<A NAME="3"></A>
 	//strcmp - compara
 
-	for (i = 0; i &lt; operacoes; i++)
+<FONT color="#6cc417"><A HREF="javascript:ZweiFrames('match2-1.html#3',3,'match2-top.html#3',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>	for (i = 0; i &lt; operacoes; i++)
 	{
 		scanf(&quot;%s&quot;, funcao);
 
 		if (strcmp(funcao, &quot;push_back&quot;) == 0)
 		{
 			scanf(&quot;%d&quot;, &amp;cap_inicial);
-<A NAME="3"></A>			vector_push_back(v, cap_inicial);
+			vector_push_back(v, cap_inicial);
 		}
 
-<FONT color="#6cc417"><A HREF="javascript:ZweiFrames('match2-1.html#3',3,'match2-top.html#3',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>		if (strcmp(funcao, &quot;push_front&quot;) == 0)
+		if (strcmp(funcao, &quot;push_front&quot;) == 0)
 		{
 			scanf(&quot;%d&quot;, &amp;cap_inicial);
 			vector_push_front(v, cap_inicial);
