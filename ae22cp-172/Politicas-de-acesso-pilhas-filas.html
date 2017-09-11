@@ -250,7 +250,8 @@ Sequência de pessoas ou coisas alinhadas uma atrás da outra, organizada geralm
   <li><em>Questão:</em> Porque devemos preferir a opção 1 para implementação de <code class="highlighter-rouge">stack</code> se o contêiner base for <code class="highlighter-rouge">vector</code>?</li>
 </ul>
 
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "stack.h"
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// **** stack.c ****
+</span><span class="cp">#include "stack.h"
 </span><span class="c1">// Alocação desalocação
 </span><span class="n">stack</span><span class="o">*</span> <span class="nf">new_stack</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">stack</span><span class="o">*</span> <span class="n">s</span> <span class="o">=</span> <span class="n">new_vector</span><span class="p">(</span><span class="n">STACK_INIT_SIZE</span><span class="p">);</span>
@@ -300,11 +301,9 @@ Sequência de pessoas ou coisas alinhadas uma atrás da outra, organizada geralm
   <li><em>Questão:</em> Quais as deficiências em termos da eficiência de cada uma das opções?</li>
 </ul>
 
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "vector.h"
-#define QUEUE_INIT_SIZE 10
-</span><span class="c1">// Redefinir o nome vector
-</span><span class="k">typedef</span> <span class="n">vector</span> <span class="n">queue</span><span class="p">;</span>
-<span class="c1">// Alocação desalocação
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// **** queue.c ***
+</span><span class="cp">#include "queue.h"
+</span><span class="c1">// Alocação desalocação
 </span><span class="n">queue</span><span class="o">*</span> <span class="nf">new_queue</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">queue</span><span class="o">*</span> <span class="n">s</span> <span class="o">=</span> <span class="n">new_vector</span><span class="p">(</span><span class="n">QUEUE_INIT_SIZE</span><span class="p">);</span>
     <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
