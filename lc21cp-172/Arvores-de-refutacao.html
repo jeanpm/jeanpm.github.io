@@ -70,7 +70,7 @@
   
   
     <div class="right">
-      <a href="/ae22cp-172/Implementacao-de-um-container-abstrato.html">
+      <a href="/lc21cp-172/Exercicios-Arvores-de-refutacao.html">
         <i class="fa fa-angle-right fa-2x"></i>
       </a>
     </div>
@@ -102,6 +102,12 @@
           <li><a href="#bicondicional-negado-negleftrightarrow" id="markdown-toc-bicondicional-negado-negleftrightarrow">Bicondicional negado $(\neg\leftrightarrow)$</a></li>
         </ul>
       </li>
+      <li><a href="#satisfazibilidade" id="markdown-toc-satisfazibilidade">Satisfazibilidade</a></li>
+    </ul>
+  </li>
+  <li><a href="#exercícios-em-aula" id="markdown-toc-exercícios-em-aula">Exercícios em aula</a>    <ul>
+      <li><a href="#1-validade-de-argumentos" id="markdown-toc-1-validade-de-argumentos">1. Validade de argumentos</a></li>
+      <li><a href="#2-satisfazibilidade-de-fórmulas" id="markdown-toc-2-satisfazibilidade-de-fórmulas">2. Satisfazibilidade de fórmulas</a></li>
     </ul>
   </li>
   <li><a href="#referências" id="markdown-toc-referências">Referências</a></li>
@@ -302,11 +308,89 @@
 
 <script type="math/tex; mode=display">p, p\to q \vdash p\leftrightarrow q</script>
 
-<h1 id="referências">Referências</h1>
+<h2 id="satisfazibilidade">Satisfazibilidade</h2>
+
+<p>Assim como as tabelas-verdade, as árvores de refutação também podem ser utilizadas para verificar as características de fórmulas: satizfazibilidade, insatisfatibilidade, tautologia.</p>
+
+<p>Em geral, uma árvore de refutação nos permite encontrar uma atribuição de valores verdade que satisfaça uma determinada fórmula. No caso de formas de argumento, como visto até então, inserimos a negação da conclusão dentre as premissas. Deste modo se uma atribuição for encontrada, teríamos como demostrar a invalidade da forma de argumento.</p>
+
+<p>Se ignorarmos a negação da conclusão (visto que uma fórmula não possui conclusão), esse tipo de árvore de expansão pode ser utilizada para encontrar uma atribuição de valores-verdade que satisfaça determinada fórmula. Sempre que uma atribuição for encontrada, podemos concluir que a fórmula é então <em>satisfazível</em>, caso contrário ela é <em>insatisfatível</em>.</p>
+
+<p>Como exemplo, vamos procurar uma atribuição de valores-verdade para a fórmula:</p>
+
+<script type="math/tex; mode=display">(p\to q)\lor (p\land \neg q)</script>
+
+<p>Como não há conclusão a ser negada, inserimos apenas a fórmula inicial</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{lccc}
+1&    (p\to q) \lor (p\land \neg q) & & 
+\end{array} %]]></script>
+
+<p>A única fórmula disponível pode então ser expandida em dois ramos pela regra de eliminação da disjunção.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{lccc}
+1&    (p\to q) \lor (p\land \neg q) & & (\times)\\
+2&    p\to q & p\land\neg q&
+\end{array} %]]></script>
+
+<p>Aplicando agora a regra da eliminação da conjunção em $p\land\neg q$ e a eliminação do condicional em $p\to q$, chegaremos a tabela</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{lcccc}
+1&    &(p\to q) \lor (p\land \neg q) & &(\times)\\
+2&    p\to q & & p\land\neg q& (\times)\\
+3&    \neg p & q & p & \\
+4&     &  & \neg q &
+\end{array} %]]></script>
+
+<p>As duas últimas expansões completam a árvore de refutação. Como nenhuma contradição foi encontrada, então encontramos exemplos de atribuição de valores-verdade a $p$ e $q$ tais que a fórmula $(p\to q) \lor (p\land \neg q)$ é verdadeira. Cada ramo ainda aberto representa uma dessas atribuições, ou seja:</p>
 
 <ul>
-  <li><a href="https://racionalistasusp.files.wordpress.com/2010/01/nolt-john-rohatyn-dennis-lc3b3gica.pdf">Logica - John Nolt (PDF). Capítulo 4: Pgs. 185</a></li>
+  <li>$p: F$ e $q: V$ no ramo esquerdo, e</li>
+  <li>$p: V$ e $q: F$ no ramo da direita.</li>
 </ul>
+
+<p>O fato de existir uma atribuição que torne verdadeira a fórmula (ausência de contradição na árvore) implica que a fórmula é <em>satisfazível</em>. O caso oposto, de todos os ramos gerarem uma contradição indicaria que a fórmula é <em>insatisfatível</em>.</p>
+
+<p>A negação de uma fórmula <em>insatisfatível</em> é sempre uma tautologia. Portanto, para demonstrarmos se uma fórmula é uma <em>tautologia</em> basta expandirmos a árvore de refutação para a sua negação. Se todos ramos abertos levarem a uma contradição (se fecharem), então a fórmula original é uma tautologia. Como exercício, demonstre que a fórmula a seguir é uma tautologia.</p>
+
+<script type="math/tex; mode=display">(p\to q) \lor (p\land \neg q)</script>
+
+<h1 id="exercícios-em-aula">Exercícios em aula</h1>
+
+<h2 id="1-validade-de-argumentos">1. Validade de argumentos</h2>
+
+<p>Verifique se as formas de argumento a seguir são válidas ou inválidas utilizando árvores de refutação.</p>
+
+<script type="math/tex; mode=display">p \lor q \vdash p\land q</script>
+
+<script type="math/tex; mode=display">p \vdash (p\to (q\land p)) \to (p\land q)</script>
+
+<script type="math/tex; mode=display">(q\land r)\to p, \neg q, \neg r \vdash \neg p</script>
+
+<script type="math/tex; mode=display">\neg(p\land q), r \leftrightarrow p \vdash \neg r</script>
+
+<script type="math/tex; mode=display">p\to(r\lor s), (r\land s) \to q \vdash p\to q</script>
+
+<h2 id="2-satisfazibilidade-de-fórmulas">2. Satisfazibilidade de fórmulas</h2>
+
+<p>Verifique se as fórmulas a seguir são satifazíveis, caso afirmativo, verifique se são tautologias.</p>
+
+<script type="math/tex; mode=display">p \to \neg p</script>
+
+<script type="math/tex; mode=display">p \to q</script>
+
+<script type="math/tex; mode=display">(p\land q) \to p</script>
+
+<script type="math/tex; mode=display">\neg((p\land q) \leftrightarrow(p\lor q))</script>
+
+<script type="math/tex; mode=display">(p\to(q\land r)) \to (p\to r)</script>
+
+<h1 id="referências">Referências</h1>
+
+<p>Capítulo 4: Pgs. 185 - 203, <a href="https://racionalistasusp.files.wordpress.com/2010/01/nolt-john-rohatyn-dennis-lc3b3gica.pdf">Logica - John Nolt (PDF).</a></p>
 
   </article>
 
