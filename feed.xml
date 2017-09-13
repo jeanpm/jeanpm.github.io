@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 12 Sep 2017 11:46:18 -0300</pubDate>
-    <lastBuildDate>Tue, 12 Sep 2017 11:46:18 -0300</lastBuildDate>
+    <pubDate>Wed, 13 Sep 2017 09:59:02 -0300</pubDate>
+    <lastBuildDate>Wed, 13 Sep 2017 09:59:02 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -100,6 +100,243 @@ gcc main.c stack.c list.c -o main-list
         
         
         <category>AE22CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>Semântica da lógica proposicional - Árvores de refutação</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#Árvores-de-refutação&quot; id=&quot;markdown-toc-Árvores-de-refutação&quot;&gt;Árvores de refutação&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#introdução&quot; id=&quot;markdown-toc-introdução&quot;&gt;Introdução&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#exemplo-conjunção&quot; id=&quot;markdown-toc-exemplo-conjunção&quot;&gt;Exemplo: conjunção&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#exemplo-disjunção&quot; id=&quot;markdown-toc-exemplo-disjunção&quot;&gt;Exemplo: disjunção&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#exemplo-invalidade&quot; id=&quot;markdown-toc-exemplo-invalidade&quot;&gt;Exemplo: invalidade&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#regras-de-expansão&quot; id=&quot;markdown-toc-regras-de-expansão&quot;&gt;Regras de expansão&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#condicional-to&quot; id=&quot;markdown-toc-condicional-to&quot;&gt;Condicional $(\to)$&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#bicondicional-leftrightarrow&quot; id=&quot;markdown-toc-bicondicional-leftrightarrow&quot;&gt;Bicondicional $(\leftrightarrow)$&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#conjunção-negada-negland&quot; id=&quot;markdown-toc-conjunção-negada-negland&quot;&gt;Conjunção negada $(\neg\land)$&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#disjunção-negada-neglor&quot; id=&quot;markdown-toc-disjunção-negada-neglor&quot;&gt;Disjunção negada $(\neg\lor)$&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#condicional-negado-negto&quot; id=&quot;markdown-toc-condicional-negado-negto&quot;&gt;Condicional negado $(\neg\to)$&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#bicondicional-negado-negleftrightarrow&quot; id=&quot;markdown-toc-bicondicional-negado-negleftrightarrow&quot;&gt;Bicondicional negado $(\neg\leftrightarrow)$&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#referências&quot; id=&quot;markdown-toc-referências&quot;&gt;Referências&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;Árvores-de-refutação&quot;&gt;Árvores de refutação&lt;/h1&gt;
+
+&lt;p&gt;As tabelas verdade fornecem um teste rigoroso e completo para a validade ou invalidade de formas de argumento. De fato, elas são algoritmos que podem ser implementados para verificar tais formas de argumento. Devido a existência desse algoritmo, diz-se que a lógica proposicional é &lt;em&gt;decidível&lt;/em&gt;, pois ele nos permite, em princípio, verificar a validade de qualquer forma de argumento. No entanto, as tabelas-verdade são ineficientes e de difícil utilização por seres humanos. As árvores de refutação são fornecem um algoritmo alternativo, mais eficaz, para o mesmo propósito.&lt;/p&gt;
+
+&lt;h2 id=&quot;introdução&quot;&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;O primeiro passo de uma árvore de refutação é criar uma lista constituída das premissas e da negação da conclusão. A cada etapa, tentamos desmembrar as fórmulas em subfórmulas menores, até que restem apenas letras sentenciais, ou a negação das mesmas. Se encontrarmos uma atribuição de valores-verdade que valide todas as fórmulas da lista, então encontramos um caso em que as premissas são verdadeiras e a conclusão falsa: portanto a forma de argumento será inválida.&lt;/p&gt;
+
+&lt;h3 id=&quot;exemplo-conjunção&quot;&gt;Exemplo: conjunção&lt;/h3&gt;
+&lt;p&gt;Para exemplificar, considere a forma de argumento a seguir:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land q \vdash \neg\neg p&lt;/script&gt;
+
+&lt;p&gt;A lista de fórmulas consiste das premissas e da negação da conclusão:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\land q\\
+\neg \neg \neg p&lt;/script&gt;
+
+&lt;p&gt;Como desmembrar qualquer uma dessas fórmulas? Utilizando a derivação de eliminação da conjunção, temos que $p\land q$ pode ser desmembrado em $p,q$.&lt;/p&gt;
+
+&lt;p&gt;Indicamos isso inserindo essas duas subfórmulas abaixo da lista e marcando $p\land q$ como já desmembrada.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{lcc}
+1&amp;    p\land q &amp;(\times)\\
+2&amp;    \neg \neg \neg p &amp;\\
+3&amp;    p &amp;\\
+4&amp;    q &amp;
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;A próxima fórmula disponível é $\neg\neg\neg p$, a qual por eliminação da negação é equivalente a $\neg p$. Portanto essa segunda é inserida na lista, enquanto a primeira é marcada como já avaliada.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{lcc}
+1&amp;    p\land q &amp;(\times)\\
+2&amp;    \neg \neg \neg p &amp; (\times)\\
+3&amp;    p &amp;\\
+4&amp;    q &amp;\\
+5&amp;    \neg p
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Neste momento, já não há mais nada a ser desmembrado. Caso a lista inicial contenha apenas fórmulas verdadeiras, a lista restante deve conter apenas elementos verdadeiros. No entanto, chegamos a uma contradição $p \land \neg p$. Isso significa que a lista inicial não pode conter apenas fórmulas verdadeiras. Na prática isso significa que a tentativa de redução ao absurdo (inserindo a conclusão negada na lista inicial) nos levou a uma contradição, portanto a forma de argumento original precisa ser valida.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{lcc}
+1&amp;    p\land q &amp;(\times)\\
+2&amp;    \neg \neg \neg p &amp; (\times)\\
+3&amp;    p &amp;\\
+4&amp;    q &amp;\\
+5&amp;    \neg p &amp;\\
+6&amp;    \perp &amp; 3,5
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;A árvore de refutação tem esse nome porque por meio é possível descobrir uma refutação para a forma de argumento. No caso acima, existe apenas um ramo, no entanto, nos próximos exemplos veremos que diversos ramos podem ser expandidos, dependendo da forma de argumento inicial.&lt;/p&gt;
+
+&lt;h3 id=&quot;exemplo-disjunção&quot;&gt;Exemplo: disjunção&lt;/h3&gt;
+
+&lt;p&gt;Considere a forma de argumento:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\lor q, \neg p \vdash q&lt;/script&gt;
+
+&lt;p&gt;Novamente, a lista de fórmulas inicial consiste das premissas e a negação da conclusão.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{lcc}
+1&amp;    p\lor q &amp;\\
+2&amp;    \neg p &amp; \\
+3&amp;    \neg q &amp;
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;A única fórmula que ainda pode ser desmembrada neste caso é a disjunção $p\lor q$. Esta fórmula tem a característica de ser verdadeira em ambos os casos $p$ ou $q$ separadamente. Para representar essa separação, criamos dois ramos, um para cada letra.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{lccc}
+1&amp;    p\lor q &amp; &amp; (\times)\\
+2&amp;    \neg p &amp; &amp;\\
+3&amp;    \neg q &amp; &amp;\\
+4&amp;    p &amp; q &amp; 
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Observemos que nessa representação temos $p \land \neg p$ e temos $q \land \neg q$, uma contradição em cada um dos ramos. Como todos os ramos abertos levaram a uma contradição, a lista de fórmulas inicial não pode ser verdadeira, implicando que a forma de argumento original é válida. Ou seja, a refutação falhou em todos os ramos que foram abertos.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{lccc}
+1&amp;    p\lor q &amp; &amp; (\times)\\
+2&amp;    \neg p &amp; &amp;\\
+3&amp;    \neg q &amp; &amp;\\
+4&amp;    p &amp; q &amp; \\
+5&amp;    \perp 2,4 &amp; \perp 3,4&amp;  
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;h3 id=&quot;exemplo-invalidade&quot;&gt;Exemplo: invalidade&lt;/h3&gt;
+
+&lt;p&gt;Consideremos agora a seguinte forma de argumento:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\lor q, p\vdash \neg q&lt;/script&gt;
+
+&lt;p&gt;Novamente, a lista de fórmulas inicial consiste das premissas e a negação da conclusão. Desta lista inicial, apenas a primeira e a terceira fórmula podem ser desmembradas.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{lcc}
+1&amp;    p\lor q &amp;\\
+2&amp;    p &amp; \\
+3&amp;    \neg\neg q &amp;
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Como a fórmula $p\lor$ é desmembrada em dois ramos, deixaremos ela pra depois, pois assim economizamos trabalho. Sendo assim, desmembraremos $\neg\neg q$ em sua equivalente $q$.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{lcc}
+1&amp;    p\lor q &amp;\\
+2&amp;    p &amp; \\
+3&amp;    \neg\neg q &amp; (\times)\\
+4&amp;    q &amp; 
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Agora podemos desmembrar a disjunção em dois ramos, cada um contendo apenas um dos disnjuctos.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{lccc}
+1&amp;    p\lor q &amp; &amp; (\times)\\
+2&amp;    p &amp; &amp;\\
+3&amp;    \neg\neg q &amp; &amp; (\times)\\
+4&amp;    q &amp; &amp;\\
+5&amp;    p &amp; q &amp; \\
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Neste ponto, todos as fórmulas foram espandidas, no entanto, nenhuma contradição foi encontrada. Isso significa que a árvore de refutação encontrou um contra-exemplo para a forma de argumento original, o qual diz que quando $p$ e $q$ são verdadeiros, a conclusão será falsa. Portanto $p\lor q, p\vdash \neg q$ é uma forma de argumento inválida.&lt;/p&gt;
+
+&lt;p&gt;Um ramo é dito &lt;em&gt;fechado&lt;/em&gt; se ele termina em contradição, e dito &lt;em&gt;aberto&lt;/em&gt; caso contrário.&lt;/p&gt;
+
+&lt;h2 id=&quot;regras-de-expansão&quot;&gt;Regras de expansão&lt;/h2&gt;
+
+&lt;p&gt;Fórmulas diferentes requerem diferentes regras para serem desmembradas (expandidas). No entanto, em geral, qualquer fórmula pode ser incluída em uma das seguintes categorias:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Negação&lt;/td&gt;
+      &lt;td&gt;Negação negada&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Conjunção&lt;/td&gt;
+      &lt;td&gt;Conjunção negada&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Disjunção&lt;/td&gt;
+      &lt;td&gt;Disjunção negada&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Condicional&lt;/td&gt;
+      &lt;td&gt;Condicional negado&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Bicondicional&lt;/td&gt;
+      &lt;td&gt;Bicondicional negado&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;condicional-to&quot;&gt;Condicional $(\to)$&lt;/h3&gt;
+
+&lt;p&gt;Se um ramo aberto contém uma fórmula da forma $\phi\to\psi$, bifurca-se em dois ramos contendo $\neg\phi$ e $\psi$. Isso se deve à equivalência $\phi\to\psi \dashv\vdash \neg\phi \lor \psi$.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to q, q\to r, p \vdash r&lt;/script&gt;
+
+&lt;h3 id=&quot;bicondicional-leftrightarrow&quot;&gt;Bicondicional $(\leftrightarrow)$&lt;/h3&gt;
+
+&lt;p&gt;Se um ramo aberto contém um bicondicional $\phi\leftrightarrow\psi$, bifurca-se em dois ramos contendo $\phi\land\psi$, $\neg\phi\land\neg\psi$. Isso se deve à equivalência $\phi\leftrightarrow\psi \dashv\vdash (\phi\land\psi) \lor (\neg\phi\land\neg\psi)$&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\leftrightarrow q, \neg p \vdash \neg q&lt;/script&gt;
+
+&lt;h3 id=&quot;conjunção-negada-negland&quot;&gt;Conjunção negada $(\neg\land)$&lt;/h3&gt;
+
+&lt;p&gt;Se um ramo aberto contém a negação de uma conjunção $\neg(\phi\land\psi)$, bifurca-se em dois ramos contendo $\neg\phi$ e $\neg\psi$. Isso se deve à equivalência $\neg(\phi\land\psi) \dashv\vdash \neg\phi \lor \neg\psi$ (lei de De Morgan).&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(p\land q) \vdash \neg p \land \neg q&lt;/script&gt;
+
+&lt;h3 id=&quot;disjunção-negada-neglor&quot;&gt;Disjunção negada $(\neg\lor)$&lt;/h3&gt;
+
+&lt;p&gt;Se um ramo aberto contém a negação de uma disjunção $\neg(\phi\lor\psi)$, adiciona-se $\neg\phi$ e $\neg\psi$ ao fim de cada ramo aberto, abaixo. Isso se deve à equivalência $\neg(\phi\lor\psi) \dashv\vdash \neg\phi \land \neg\psi$.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to q \vdash p \lor q&lt;/script&gt;
+
+&lt;h3 id=&quot;condicional-negado-negto&quot;&gt;Condicional negado $(\neg\to)$&lt;/h3&gt;
+
+&lt;p&gt;Se um ramo aberto contém a negação de um condicional $\neg(\phi\to\psi)$, adiciona-se $\phi$ e $\neg\psi$ ao fim de cada ramo aberto abaixo. Isso se deve à equivalência  $\neg(\phi\to\psi) \dashv\vdash \phi \land \neg \psi$.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p \to \neg q \vdash p \to q&lt;/script&gt;
+
+&lt;h3 id=&quot;bicondicional-negado-negleftrightarrow&quot;&gt;Bicondicional negado $(\neg\leftrightarrow)$&lt;/h3&gt;
+
+&lt;p&gt;Se um ramo aberto contém a negação de um bicondicional $\neg(\phi\leftrightarrow\psi)$, bifurca-se cada ramo abaixo em $\phi\land\neg\psi$ e $\neg\phi\land\psi$. Cada uma dessas partes é por sua vez expandida em duas linhas: $\phi$ e $\neg\psi$, no primeiro ramo; e $\neg\phi$ e $\psi$, no segundo ramo. Isso se deve à equivalência $\neg(\phi\leftrightarrow\psi) \dashv\vdash (\phi\land\neg\psi) \lor (\neg\phi\land\psi)$&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p, p\to q \vdash p\leftrightarrow q&lt;/script&gt;
+
+&lt;h1 id=&quot;referências&quot;&gt;Referências&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://racionalistasusp.files.wordpress.com/2010/01/nolt-john-rohatyn-dennis-lc3b3gica.pdf&quot;&gt;Logica - John Nolt (PDF). Capítulo 4: Pgs. 185&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Wed, 13 Sep 2017 10:20:00 -0300</pubDate>
+        <link>http://localhost:4000/lc21cp-172/Arvores-de-refutacao.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Arvores-de-refutacao.html</guid>
+        
+        <category>semântica</category>
+        
+        
+        <category>LC21CP-172</category>
         
       </item>
     
@@ -2419,133 +2656,6 @@ pop_back
         
         
         <category>AE22CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Exercícios III - Regras de dedução</title>
-        <description>&lt;h1 id=&quot;demonstre-os-argumentos-a-seguir&quot;&gt;Demonstre os argumentos a seguir:&lt;/h1&gt;
-
-&lt;p&gt;Utilize as regras de derivação:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Introdução da conjunção:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;$\dfrac{\phi\quad\psi}{\phi \land \psi} \land\mbox{i}$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Eliminação da conjunção:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;$\dfrac{\phi \land \psi}{\phi} \land\mbox{e}_1,\quad \dfrac{\phi \land \psi}{\psi} \land\mbox{e}_2$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Introdução da dupla negação:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;$\dfrac{\phi}{\neg\neg\phi} \neg\neg\mbox{i}$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Eliminação da dupla negação:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;$\dfrac{\neg\neg\phi}{\phi} \neg\neg\mbox{e}$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Modus Ponens:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;$\dfrac{\phi\to\psi\qquad \phi}{\psi}{MP}$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Introdução da disjunção:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;$\dfrac{\phi}{\phi \lor \psi}\lor\mbox{i}$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Modus Tollens:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;$\dfrac{\phi\to\psi\qquad \neg\psi}{\neg\phi}{MT}$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Eliminação da disjunção:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;$\dfrac{\phi \lor \psi\quad (\phi\dots\chi)\quad (\psi\dots\chi)}{\chi} \lor\mbox{e}$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Introdução da contradição:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;script type=&quot;math/tex&quot;&gt;\dfrac{\phi\quad \neg\phi}{\perp}\perp\mbox{i}&lt;/script&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Introdução da negação:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;script type=&quot;math/tex&quot;&gt;\dfrac{(\phi\dots\perp)}{\neg \phi}\neg\mbox{i}&lt;/script&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Eliminação da contradição:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;script type=&quot;math/tex&quot;&gt;\dfrac{\perp}{\phi}\perp\mbox{e}&lt;/script&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\lor (q\to p)) \land q \vdash p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\lor (p\land q)\vdash p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q) \lor (p\land r) \vdash p\land(q\lor r)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \vdash q \to (p \land q)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \vdash (p\to q) \to q&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\to r) \land (q \to r) \vdash (p\land q )\to r&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;q \to r \vdash (p\to q) \to (p\to r)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (q \to r), p\to q \vdash p\to r&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to q, r \to s \vdash (p\lor r) \to (q \lor s)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor q \vdash r \to ((p\lor q)\land r)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to q, r \to s \vdash (p \land r) \to (q \land s)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (q\land r) \vdash (p\to q) \land (p\to r)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor (p\land q) \vdash p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;r, p \to (r\to q) \vdash p \to (q \land r)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (q \lor r), q \to s, r \to s \vdash p \to s&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(p \land q) \vdash (\neg p \lor \neg q) \tag{Lei de De Morgan (DM)}&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(p \lor q) \vdash (\neg p \land \neg q) \tag{Lei de De Morgan (DM)}&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land (q \lor r )) \vdash ((p \land q) \lor (p \land r)) \tag{Distribuição (DIST)}&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p \to \neg q \vdash q \to p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p \lor \neg q \vdash \neg(p \land q)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor q, \neg q \lor r \vdash p \lor r&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p \land \neg q \vdash \neg (p\lor q)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to q, s \to t \vdash (p\lor s) \to (q \land t)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p \vdash p \to q&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(p\to q) \vdash q \to p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\to q)\to r, s \to \neg p, t, \neg s \land t\to q \vdash r&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(s\to p)\lor(t\to q) \vdash (s\to q) \lor (t\to p)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q) \to r, r \to s, q \land \neg s \vdash \neg p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to q \vdash \neg p \lor q&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(c \land n) \to t, h \land \neg s, h \land \neg(s \lor c) \to p \vdash (n \land \neg t) \to p&lt;/script&gt;
-
-</description>
-        <pubDate>Thu, 24 Aug 2017 10:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/Exercicios3-regras-de-dedu%C3%A7%C3%A3o.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Exercicios3-regras-de-dedu%C3%A7%C3%A3o.html</guid>
-        
-        <category>dedução-natural</category>
-        
-        
-        <category>LC21CP-172</category>
         
       </item>
     

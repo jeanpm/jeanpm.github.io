@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Semântica da lógica proposicional - Árvores de refutação</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/lc21cp-172/Arvores-de-refutacao.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Semântica da lógica proposicional - Árvores de refutação</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Sep 13, 2017
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/ae22cp-172/Pilhas-Valida%C3%A7%C3%A3o-de-express%C3%B5es-parentizadas.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/ae22cp-172/Implementacao-de-um-container-abstrato.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#Árvores-de-refutação" id="markdown-toc-Árvores-de-refutação">Árvores de refutação</a>    <ul>
+      <li><a href="#introdução" id="markdown-toc-introdução">Introdução</a>        <ul>
+          <li><a href="#exemplo-conjunção" id="markdown-toc-exemplo-conjunção">Exemplo: conjunção</a></li>
+          <li><a href="#exemplo-disjunção" id="markdown-toc-exemplo-disjunção">Exemplo: disjunção</a></li>
+          <li><a href="#exemplo-invalidade" id="markdown-toc-exemplo-invalidade">Exemplo: invalidade</a></li>
+        </ul>
+      </li>
+      <li><a href="#regras-de-expansão" id="markdown-toc-regras-de-expansão">Regras de expansão</a>        <ul>
+          <li><a href="#condicional-to" id="markdown-toc-condicional-to">Condicional $(\to)$</a></li>
+          <li><a href="#bicondicional-leftrightarrow" id="markdown-toc-bicondicional-leftrightarrow">Bicondicional $(\leftrightarrow)$</a></li>
+          <li><a href="#conjunção-negada-negland" id="markdown-toc-conjunção-negada-negland">Conjunção negada $(\neg\land)$</a></li>
+          <li><a href="#disjunção-negada-neglor" id="markdown-toc-disjunção-negada-neglor">Disjunção negada $(\neg\lor)$</a></li>
+          <li><a href="#condicional-negado-negto" id="markdown-toc-condicional-negado-negto">Condicional negado $(\neg\to)$</a></li>
+          <li><a href="#bicondicional-negado-negleftrightarrow" id="markdown-toc-bicondicional-negado-negleftrightarrow">Bicondicional negado $(\neg\leftrightarrow)$</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#referências" id="markdown-toc-referências">Referências</a></li>
+</ul>
+
+<h1 id="Árvores-de-refutação">Árvores de refutação</h1>
+
+<p>As tabelas verdade fornecem um teste rigoroso e completo para a validade ou invalidade de formas de argumento. De fato, elas são algoritmos que podem ser implementados para verificar tais formas de argumento. Devido a existência desse algoritmo, diz-se que a lógica proposicional é <em>decidível</em>, pois ele nos permite, em princípio, verificar a validade de qualquer forma de argumento. No entanto, as tabelas-verdade são ineficientes e de difícil utilização por seres humanos. As árvores de refutação são fornecem um algoritmo alternativo, mais eficaz, para o mesmo propósito.</p>
+
+<h2 id="introdução">Introdução</h2>
+<p>O primeiro passo de uma árvore de refutação é criar uma lista constituída das premissas e da negação da conclusão. A cada etapa, tentamos desmembrar as fórmulas em subfórmulas menores, até que restem apenas letras sentenciais, ou a negação das mesmas. Se encontrarmos uma atribuição de valores-verdade que valide todas as fórmulas da lista, então encontramos um caso em que as premissas são verdadeiras e a conclusão falsa: portanto a forma de argumento será inválida.</p>
+
+<h3 id="exemplo-conjunção">Exemplo: conjunção</h3>
+<p>Para exemplificar, considere a forma de argumento a seguir:</p>
+
+<script type="math/tex; mode=display">p \land q \vdash \neg\neg p</script>
+
+<p>A lista de fórmulas consiste das premissas e da negação da conclusão:</p>
+
+<script type="math/tex; mode=display">p\land q\\
+\neg \neg \neg p</script>
+
+<p>Como desmembrar qualquer uma dessas fórmulas? Utilizando a derivação de eliminação da conjunção, temos que $p\land q$ pode ser desmembrado em $p,q$.</p>
+
+<p>Indicamos isso inserindo essas duas subfórmulas abaixo da lista e marcando $p\land q$ como já desmembrada.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{lcc}
+1&    p\land q &(\times)\\
+2&    \neg \neg \neg p &\\
+3&    p &\\
+4&    q &
+\end{array} %]]></script>
+
+<p>A próxima fórmula disponível é $\neg\neg\neg p$, a qual por eliminação da negação é equivalente a $\neg p$. Portanto essa segunda é inserida na lista, enquanto a primeira é marcada como já avaliada.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{lcc}
+1&    p\land q &(\times)\\
+2&    \neg \neg \neg p & (\times)\\
+3&    p &\\
+4&    q &\\
+5&    \neg p
+\end{array} %]]></script>
+
+<p>Neste momento, já não há mais nada a ser desmembrado. Caso a lista inicial contenha apenas fórmulas verdadeiras, a lista restante deve conter apenas elementos verdadeiros. No entanto, chegamos a uma contradição $p \land \neg p$. Isso significa que a lista inicial não pode conter apenas fórmulas verdadeiras. Na prática isso significa que a tentativa de redução ao absurdo (inserindo a conclusão negada na lista inicial) nos levou a uma contradição, portanto a forma de argumento original precisa ser valida.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{lcc}
+1&    p\land q &(\times)\\
+2&    \neg \neg \neg p & (\times)\\
+3&    p &\\
+4&    q &\\
+5&    \neg p &\\
+6&    \perp & 3,5
+\end{array} %]]></script>
+
+<p>A árvore de refutação tem esse nome porque por meio é possível descobrir uma refutação para a forma de argumento. No caso acima, existe apenas um ramo, no entanto, nos próximos exemplos veremos que diversos ramos podem ser expandidos, dependendo da forma de argumento inicial.</p>
+
+<h3 id="exemplo-disjunção">Exemplo: disjunção</h3>
+
+<p>Considere a forma de argumento:</p>
+
+<script type="math/tex; mode=display">p\lor q, \neg p \vdash q</script>
+
+<p>Novamente, a lista de fórmulas inicial consiste das premissas e a negação da conclusão.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{lcc}
+1&    p\lor q &\\
+2&    \neg p & \\
+3&    \neg q &
+\end{array} %]]></script>
+
+<p>A única fórmula que ainda pode ser desmembrada neste caso é a disjunção $p\lor q$. Esta fórmula tem a característica de ser verdadeira em ambos os casos $p$ ou $q$ separadamente. Para representar essa separação, criamos dois ramos, um para cada letra.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{lccc}
+1&    p\lor q & & (\times)\\
+2&    \neg p & &\\
+3&    \neg q & &\\
+4&    p & q & 
+\end{array} %]]></script>
+
+<p>Observemos que nessa representação temos $p \land \neg p$ e temos $q \land \neg q$, uma contradição em cada um dos ramos. Como todos os ramos abertos levaram a uma contradição, a lista de fórmulas inicial não pode ser verdadeira, implicando que a forma de argumento original é válida. Ou seja, a refutação falhou em todos os ramos que foram abertos.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{lccc}
+1&    p\lor q & & (\times)\\
+2&    \neg p & &\\
+3&    \neg q & &\\
+4&    p & q & \\
+5&    \perp 2,4 & \perp 3,4&  
+\end{array} %]]></script>
+
+<h3 id="exemplo-invalidade">Exemplo: invalidade</h3>
+
+<p>Consideremos agora a seguinte forma de argumento:</p>
+
+<script type="math/tex; mode=display">p\lor q, p\vdash \neg q</script>
+
+<p>Novamente, a lista de fórmulas inicial consiste das premissas e a negação da conclusão. Desta lista inicial, apenas a primeira e a terceira fórmula podem ser desmembradas.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{lcc}
+1&    p\lor q &\\
+2&    p & \\
+3&    \neg\neg q &
+\end{array} %]]></script>
+
+<p>Como a fórmula $p\lor$ é desmembrada em dois ramos, deixaremos ela pra depois, pois assim economizamos trabalho. Sendo assim, desmembraremos $\neg\neg q$ em sua equivalente $q$.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{lcc}
+1&    p\lor q &\\
+2&    p & \\
+3&    \neg\neg q & (\times)\\
+4&    q & 
+\end{array} %]]></script>
+
+<p>Agora podemos desmembrar a disjunção em dois ramos, cada um contendo apenas um dos disnjuctos.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{lccc}
+1&    p\lor q & & (\times)\\
+2&    p & &\\
+3&    \neg\neg q & & (\times)\\
+4&    q & &\\
+5&    p & q & \\
+\end{array} %]]></script>
+
+<p>Neste ponto, todos as fórmulas foram espandidas, no entanto, nenhuma contradição foi encontrada. Isso significa que a árvore de refutação encontrou um contra-exemplo para a forma de argumento original, o qual diz que quando $p$ e $q$ são verdadeiros, a conclusão será falsa. Portanto $p\lor q, p\vdash \neg q$ é uma forma de argumento inválida.</p>
+
+<p>Um ramo é dito <em>fechado</em> se ele termina em contradição, e dito <em>aberto</em> caso contrário.</p>
+
+<h2 id="regras-de-expansão">Regras de expansão</h2>
+
+<p>Fórmulas diferentes requerem diferentes regras para serem desmembradas (expandidas). No entanto, em geral, qualquer fórmula pode ser incluída em uma das seguintes categorias:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Negação</td>
+      <td>Negação negada</td>
+    </tr>
+    <tr>
+      <td>Conjunção</td>
+      <td>Conjunção negada</td>
+    </tr>
+    <tr>
+      <td>Disjunção</td>
+      <td>Disjunção negada</td>
+    </tr>
+    <tr>
+      <td>Condicional</td>
+      <td>Condicional negado</td>
+    </tr>
+    <tr>
+      <td>Bicondicional</td>
+      <td>Bicondicional negado</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="condicional-to">Condicional $(\to)$</h3>
+
+<p>Se um ramo aberto contém uma fórmula da forma $\phi\to\psi$, bifurca-se em dois ramos contendo $\neg\phi$ e $\psi$. Isso se deve à equivalência $\phi\to\psi \dashv\vdash \neg\phi \lor \psi$.</p>
+
+<script type="math/tex; mode=display">p\to q, q\to r, p \vdash r</script>
+
+<h3 id="bicondicional-leftrightarrow">Bicondicional $(\leftrightarrow)$</h3>
+
+<p>Se um ramo aberto contém um bicondicional $\phi\leftrightarrow\psi$, bifurca-se em dois ramos contendo $\phi\land\psi$, $\neg\phi\land\neg\psi$. Isso se deve à equivalência $\phi\leftrightarrow\psi \dashv\vdash (\phi\land\psi) \lor (\neg\phi\land\neg\psi)$</p>
+
+<script type="math/tex; mode=display">p\leftrightarrow q, \neg p \vdash \neg q</script>
+
+<h3 id="conjunção-negada-negland">Conjunção negada $(\neg\land)$</h3>
+
+<p>Se um ramo aberto contém a negação de uma conjunção $\neg(\phi\land\psi)$, bifurca-se em dois ramos contendo $\neg\phi$ e $\neg\psi$. Isso se deve à equivalência $\neg(\phi\land\psi) \dashv\vdash \neg\phi \lor \neg\psi$ (lei de De Morgan).</p>
+
+<script type="math/tex; mode=display">\neg(p\land q) \vdash \neg p \land \neg q</script>
+
+<h3 id="disjunção-negada-neglor">Disjunção negada $(\neg\lor)$</h3>
+
+<p>Se um ramo aberto contém a negação de uma disjunção $\neg(\phi\lor\psi)$, adiciona-se $\neg\phi$ e $\neg\psi$ ao fim de cada ramo aberto, abaixo. Isso se deve à equivalência $\neg(\phi\lor\psi) \dashv\vdash \neg\phi \land \neg\psi$.</p>
+
+<script type="math/tex; mode=display">p\to q \vdash p \lor q</script>
+
+<h3 id="condicional-negado-negto">Condicional negado $(\neg\to)$</h3>
+
+<p>Se um ramo aberto contém a negação de um condicional $\neg(\phi\to\psi)$, adiciona-se $\phi$ e $\neg\psi$ ao fim de cada ramo aberto abaixo. Isso se deve à equivalência  $\neg(\phi\to\psi) \dashv\vdash \phi \land \neg \psi$.</p>
+
+<script type="math/tex; mode=display">\neg p \to \neg q \vdash p \to q</script>
+
+<h3 id="bicondicional-negado-negleftrightarrow">Bicondicional negado $(\neg\leftrightarrow)$</h3>
+
+<p>Se um ramo aberto contém a negação de um bicondicional $\neg(\phi\leftrightarrow\psi)$, bifurca-se cada ramo abaixo em $\phi\land\neg\psi$ e $\neg\phi\land\psi$. Cada uma dessas partes é por sua vez expandida em duas linhas: $\phi$ e $\neg\psi$, no primeiro ramo; e $\neg\phi$ e $\psi$, no segundo ramo. Isso se deve à equivalência $\neg(\phi\leftrightarrow\psi) \dashv\vdash (\phi\land\neg\psi) \lor (\neg\phi\land\psi)$</p>
+
+<script type="math/tex; mode=display">p, p\to q \vdash p\leftrightarrow q</script>
+
+<h1 id="referências">Referências</h1>
+
+<ul>
+  <li><a href="https://racionalistasusp.files.wordpress.com/2010/01/nolt-john-rohatyn-dennis-lc3b3gica.pdf">Logica - John Nolt (PDF). Capítulo 4: Pgs. 185</a></li>
+</ul>
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>
