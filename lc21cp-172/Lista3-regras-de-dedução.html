@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Lista III - Regras de dedução</title>
+  <meta name="description" content="Demonstre os argumentos a seguir:">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/lc21cp-172/Lista3-regras-de-dedu%C3%A7%C3%A3o.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Lista III - Regras de dedução</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Aug 24, 2017
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/lc21cp-172/Calculo-proposicional-regras-de-dedu%C3%A7%C3%A3o-3.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/ae22cp-172/APS-vector.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <h1 id="demonstre-os-argumentos-a-seguir">Demonstre os argumentos a seguir:</h1>
+
+<p>Utilize as regras de derivação:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><em>Introdução da conjunção:</em></td>
+      <td>$\dfrac{\phi\quad\psi}{\phi \land \psi} \land\mbox{i}$</td>
+    </tr>
+    <tr>
+      <td><em>Eliminação da conjunção:</em></td>
+      <td>$\dfrac{\phi \land \psi}{\phi} \land\mbox{e}_1,\quad \dfrac{\phi \land \psi}{\psi} \land\mbox{e}_2$</td>
+    </tr>
+    <tr>
+      <td><em>Introdução da dupla negação:</em></td>
+      <td>$\dfrac{\phi}{\neg\neg\phi} \neg\neg\mbox{i}$</td>
+    </tr>
+    <tr>
+      <td><em>Eliminação da dupla negação:</em></td>
+      <td>$\dfrac{\neg\neg\phi}{\phi} \neg\neg\mbox{e}$</td>
+    </tr>
+    <tr>
+      <td><em>Modus Ponens:</em></td>
+      <td>$\dfrac{\phi\to\psi\qquad \phi}{\psi}{MP}$</td>
+    </tr>
+    <tr>
+      <td><em>Introdução da disjunção:</em></td>
+      <td>$\dfrac{\phi}{\phi \lor \psi}\lor\mbox{i}$</td>
+    </tr>
+    <tr>
+      <td><em>Modus Tollens:</em></td>
+      <td>$\dfrac{\phi\to\psi\qquad \neg\psi}{\neg\phi}{MT}$</td>
+    </tr>
+    <tr>
+      <td><em>Eliminação da disjunção:</em></td>
+      <td>$\dfrac{\phi \lor \psi\quad (\phi\dots\chi)\quad (\psi\dots\chi)}{\chi} \lor\mbox{e}$</td>
+    </tr>
+    <tr>
+      <td><em>Introdução da contradição:</em></td>
+      <td><script type="math/tex">\dfrac{\phi\quad \neg\phi}{\perp}\perp\mbox{i}</script></td>
+    </tr>
+    <tr>
+      <td><em>Introdução da negação:</em></td>
+      <td><script type="math/tex">\dfrac{(\phi\dots\perp)}{\neg \phi}\neg\mbox{i}</script></td>
+    </tr>
+    <tr>
+      <td><em>Eliminação da contradição:</em></td>
+      <td><script type="math/tex">\dfrac{\perp}{\phi}\perp\mbox{e}</script></td>
+    </tr>
+  </tbody>
+</table>
+
+<script type="math/tex; mode=display">(p\lor (q\to p)) \land q \vdash p</script>
+
+<script type="math/tex; mode=display">p\lor (p\land q)\vdash p</script>
+
+<script type="math/tex; mode=display">(p\land q) \lor (p\land r) \vdash p\land(q\lor r)</script>
+
+<script type="math/tex; mode=display">p \vdash q \to (p \land q)</script>
+
+<script type="math/tex; mode=display">p \vdash (p\to q) \to q</script>
+
+<script type="math/tex; mode=display">(p\to r) \land (q \to r) \vdash (p\land q )\to r</script>
+
+<script type="math/tex; mode=display">q \to r \vdash (p\to q) \to (p\to r)</script>
+
+<script type="math/tex; mode=display">p \to (q \to r), p\to q \vdash p\to r</script>
+
+<script type="math/tex; mode=display">p \to q, r \to s \vdash (p\lor r) \to (q \lor s)</script>
+
+<script type="math/tex; mode=display">p \lor q \vdash r \to ((p\lor q)\land r)</script>
+
+<script type="math/tex; mode=display">p \to q, r \to s \vdash (p \land r) \to (q \land s)</script>
+
+<script type="math/tex; mode=display">p \to (q\land r) \vdash (p\to q) \land (p\to r)</script>
+
+<script type="math/tex; mode=display">p \lor (p\land q) \vdash p</script>
+
+<script type="math/tex; mode=display">r, p \to (r\to q) \vdash p \to (q \land r)</script>
+
+<script type="math/tex; mode=display">p \to (q \lor r), q \to s, r \to s \vdash p \to s</script>
+
+<script type="math/tex; mode=display">\neg(p \land q) \vdash (\neg p \lor \neg q) \tag{Lei de De Morgan (DM)}</script>
+
+<script type="math/tex; mode=display">\neg(p \lor q) \vdash (\neg p \land \neg q) \tag{Lei de De Morgan (DM)}</script>
+
+<script type="math/tex; mode=display">(p \land (q \lor r )) \vdash ((p \land q) \lor (p \land r)) \tag{Distribuição (DIST)}</script>
+
+<script type="math/tex; mode=display">\neg p \to \neg q \vdash q \to p</script>
+
+<script type="math/tex; mode=display">\neg p \lor \neg q \vdash \neg(p \land q)</script>
+
+<script type="math/tex; mode=display">p \lor q, \neg q \lor r \vdash p \lor r</script>
+
+<script type="math/tex; mode=display">\neg p \land \neg q \vdash \neg (p\lor q)</script>
+
+<script type="math/tex; mode=display">p \to q, s \to t \vdash (p\lor s) \to (q \land t)</script>
+
+<script type="math/tex; mode=display">\neg p \vdash p \to q</script>
+
+<script type="math/tex; mode=display">\neg(p\to q) \vdash q \to p</script>
+
+<script type="math/tex; mode=display">(p\to q)\to r, s \to \neg p, t, \neg s \land t\to q \vdash r</script>
+
+<script type="math/tex; mode=display">(s\to p)\lor(t\to q) \vdash (s\to q) \lor (t\to p)</script>
+
+<script type="math/tex; mode=display">(p\land q) \to r, r \to s, q \land \neg s \vdash \neg p</script>
+
+<script type="math/tex; mode=display">p \to q \vdash \neg p \lor q</script>
+
+<script type="math/tex; mode=display">(c \land n) \to t, h \land \neg s, h \land \neg(s \lor c) \to p \vdash (n \land \neg t) \to p</script>
+
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

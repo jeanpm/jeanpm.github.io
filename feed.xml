@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 13 Sep 2017 15:54:36 -0300</pubDate>
-    <lastBuildDate>Wed, 13 Sep 2017 15:54:36 -0300</lastBuildDate>
+    <pubDate>Mon, 18 Sep 2017 13:09:36 -0300</pubDate>
+    <lastBuildDate>Mon, 18 Sep 2017 13:09:36 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -104,7 +104,247 @@ gcc main.c stack.c list.c -o main-list
       </item>
     
       <item>
-        <title>Exercícios V - Árvores de refutação</title>
+        <title>Listas de encadeamento simples</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#listas-encadeadas&quot; id=&quot;markdown-toc-listas-encadeadas&quot;&gt;Listas encadeadas&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#listas-de-encadeamento-simples&quot; id=&quot;markdown-toc-listas-de-encadeamento-simples&quot;&gt;Listas de encadeamento simples&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#detalhes-de-implementação&quot; id=&quot;markdown-toc-detalhes-de-implementação&quot;&gt;Detalhes de implementação&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#criação-dos-nós&quot; id=&quot;markdown-toc-criação-dos-nós&quot;&gt;Criação dos nós&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#encadeamento-dos-nós&quot; id=&quot;markdown-toc-encadeamento-dos-nós&quot;&gt;Encadeamento dos nós&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#inserção-de-um-novo-nó&quot; id=&quot;markdown-toc-inserção-de-um-novo-nó&quot;&gt;Inserção de um novo nó&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#implementação-de-listas-de-encadeamento-simples&quot; id=&quot;markdown-toc-implementação-de-listas-de-encadeamento-simples&quot;&gt;Implementação de listas de encadeamento simples&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;listas-encadeadas&quot;&gt;Listas encadeadas&lt;/h1&gt;
+
+&lt;p&gt;Da mesma forma que vetores (arrays), listas encadeadas também são estruturas sequenciais. Ou seja, os elementos armazenados em tais estruturas de dados obedecem uma certa ordem linear, em que um sucede (ou precede) outro elemento. Nos vetores, essa ordem é implementada diretamente em memória, ou seja, dado um elemento $v[i]$ em um vetor, o elemento $v[i+1]$ está na posição de memória subsequente.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;valor    := v[0]    v[1]    v[2]    ... v[n-1]
+endereço := x       x+1     x+2     ... x+n-1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Já listas encadeadas, a situação é um pouco diferente. Apesar dos elementos ainda sim manterem uma ordem sequencial, essa ordem não precisa ser refletida nas posições de memória que eles ocupam. Deste modo, estruturas adicionais são necessárias para indicar qual elemento sucede ou precede outro. Nesta seção iremos tratar de uma implementação bem restrita de listas encadeadas, as listas de encadeamento simples &lt;em&gt;forward_list&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;listas-de-encadeamento-simples&quot;&gt;Listas de encadeamento simples&lt;/h2&gt;
+
+&lt;p&gt;Uma lista de encadeamento simples implementa a ideia de uma lista unidirecional. Isto significa que cada elemento somente tem conhecimento sobre o próximo elemento da lista, e não do anterior. Esta característica é ilustrada através de uma aresta direcionada (seta) ligando o elemento ao seu próximo.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a:(valor, b) -&amp;gt; b:(valor, c) -&amp;gt; c:(valor, prox) -&amp;gt; ...&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;O primeiro aspecto a ser notado é que um elemento de lista (um nó, &lt;em&gt;node&lt;/em&gt;), não é um tipo de dado simples. Isto é necessário visto que cada elemento precisa, além de armazenar um valor, armazenar um ponteiro para o próximo.&lt;/p&gt;
+
+&lt;p&gt;Na linguagem C, este tipo de estrutura é implementada por uma &lt;strong&gt;struct&lt;/strong&gt;. Utilizaremos a seguinte definição:&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#define Type int
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_node_&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;             &lt;span class=&quot;c1&quot;&gt;// Valor armazenado
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_node_&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// Endereço do próximo nó
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Antes de implementarmos funções para a manipulação da &lt;em&gt;forward_list&lt;/em&gt; é importante compreendermos na prática o que os conceitos até então descritos realmente significam. Com esse fim, algums exemplos serão demonstrados a seguir.&lt;/p&gt;
+
+&lt;h2 id=&quot;detalhes-de-implementação&quot;&gt;Detalhes de implementação&lt;/h2&gt;
+
+&lt;p&gt;Como tem sido convencionado até então, vamos definir uma função que implemente a alocação de memória para &lt;code class=&quot;highlighter-rouge&quot;&gt;node&lt;/code&gt; que serão utilizados como elementos da nossa lista de encadeamento simples &lt;em&gt;forward_list&lt;/em&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Aloca memória para um 'node' e define o endereço do próximo como NULL
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;valor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;valor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Consideremos agora a criação de uma lista de encadeamento simples feita manualmente. Para isso a única coisa que precisamos é criar vários &lt;code class=&quot;highlighter-rouge&quot;&gt;node&lt;/code&gt; e definir qual apontará para qual.&lt;/p&gt;
+
+&lt;h3 id=&quot;criação-dos-nós&quot;&gt;Criação dos nós&lt;/h3&gt;
+&lt;p&gt;Dada a função &lt;code class=&quot;highlighter-rouge&quot;&gt;new_node&lt;/code&gt;, a etapa de criação (alocação de memória no Heap) dos nós é trivial. Neste exemplo criamos três nós, $a$, $b$ e $c$; contendo, respectivamente, os valores inteiros $0, 1, 2$.&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Etapa de criação dos nós de lista
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (0, NULL)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (1, NULL)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (2, NULL)
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;encadeamento-dos-nós&quot;&gt;Encadeamento dos nós&lt;/h3&gt;
+
+&lt;p&gt;Como cada nó foi alocado por uma chamada independente à &lt;code class=&quot;highlighter-rouge&quot;&gt;malloc&lt;/code&gt;, fica evidente que não temos controle sobre suas posições de memória. Isso implica que o nó &lt;em&gt;b&lt;/em&gt;, por exemplo, pode não estar em uma posição de memória subsequente à posição de &lt;em&gt;a&lt;/em&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;valor    := (b, NULL)   ... (c, NULL)   ...  (a, NULL)
+endereço :=  x          ...  y          ...   z
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Nessas condições, o que definirá a ordem desses nós será o encadeamento entre eles. O termo &lt;em&gt;encadear&lt;/em&gt;, neste contexto, significa apenas dizer qual dos nós será o próximo de qual outro nó. Para clarificar, vamos estender o exemplo acima de modo a criar o encadeamento ilustrado a seguir.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a:(0, b) -&amp;gt; b:(1, c) -&amp;gt; c:(2, NULL)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Observe, que tanto &lt;em&gt;b&lt;/em&gt; quanto &lt;em&gt;c&lt;/em&gt; são ponteiros, portanto representam o endereço de memória no Heap de uma estrutura &lt;code class=&quot;highlighter-rouge&quot;&gt;node&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Criação dos nós
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (0, NULL)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (1, NULL)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (2, NULL)
+&lt;/span&gt;    
+    &lt;span class=&quot;c1&quot;&gt;// Encadeamento
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (0, b)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (1, c), (2, NULL)
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Este exemplo criou manualmente uma lista encadeada simples de três elementos. Como o último elemento, o nó &lt;em&gt;c&lt;/em&gt;, não possui referência a próximo (&lt;code class=&quot;highlighter-rouge&quot;&gt;c-&amp;gt;next == NULL&lt;/code&gt;) isso nos indica que ele está no final da lista (&lt;em&gt;tail&lt;/em&gt;). Pela mesma ideia, o nó &lt;em&gt;a&lt;/em&gt; está no início da lista (&lt;em&gt;head&lt;/em&gt;).&lt;/p&gt;
+
+&lt;h3 id=&quot;inserção-de-um-novo-nó&quot;&gt;Inserção de um novo nó&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Inserção no início&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;De acordo com a posição de inserção, existem três formas de se inserir um novo nó em uma lista já existente. A primeira, e mais simples neste caso, é a inserção no início da lista. Esse tipo de inserção exige apenas que um novo nó aponte para o atual início. Considerando o exemplo anterior, vamos inserir &lt;code class=&quot;highlighter-rouge&quot;&gt;node* d&lt;/code&gt; no início da lista atual, criando a lista ilustrada abaixo.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;d:(3, a) -&amp;gt; a:(0, b) -&amp;gt; b:(1, c) -&amp;gt; c:(2, NULL)&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Criação dos nós
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (0, NULL)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (1, NULL)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (2, NULL)
+&lt;/span&gt;    
+    &lt;span class=&quot;c1&quot;&gt;// Encadeamento
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (0, b)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (1, c), (2, NULL)
+&lt;/span&gt;    
+    &lt;span class=&quot;c1&quot;&gt;// Inserção no início
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Criação do nó (3, NULL)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (3, a)
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Observemos então, que para a inserção no início precisamos apenas de referências ao nó que atualmente está no início (&lt;code class=&quot;highlighter-rouge&quot;&gt;node* a&lt;/code&gt;) e ao novo nó (&lt;code class=&quot;highlighter-rouge&quot;&gt;node* d&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Inserção no final&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;O segundo tipo mais simples de inserção é aquela que introduz um novo elemento no final da lista encadeada. Para isso, precisaremos apenas de referências ao nó que atualmente é o último da lista (&lt;code class=&quot;highlighter-rouge&quot;&gt;node* c&lt;/code&gt;), e o novo nó (&lt;code class=&quot;highlighter-rouge&quot;&gt;node* e&lt;/code&gt;).Considerando o exemplo anterior, vamos inserir &lt;code class=&quot;highlighter-rouge&quot;&gt;node* e&lt;/code&gt; ao fim da lista atual, criando a lista ilustrada abaixo.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;d:(3, a) -&amp;gt; a:(0, b) -&amp;gt; b:(1, c) -&amp;gt; c:(2, e) -&amp;gt; e:(4, NULL)&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Criação dos nós
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (0, NULL)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (1, NULL)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (2, NULL)
+&lt;/span&gt;    
+    &lt;span class=&quot;c1&quot;&gt;// Encadeamento
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (0, b)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (1, c), (2, NULL)
+&lt;/span&gt;    
+    &lt;span class=&quot;c1&quot;&gt;// Inserção no início
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Criação do nó c:(3, NULL)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (3, a)
+&lt;/span&gt;    
+    &lt;span class=&quot;c1&quot;&gt;// Inserção no final
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Criação do nó e:(4, NULL)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Inserção no meio&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Por fim, trataremos do tipo de inserção mais genérico, o que nos permite inserir um novo nó em qualquer posição da lista encadeada. Como forma de exemplo, suponhamos que queremos inserir um novo nó (&lt;code class=&quot;highlighter-rouge&quot;&gt;node* f&lt;/code&gt;) na posição $2$ da lista, ou seja, entre os nós &lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt;. Após essa inserção a lista teria a seguinte ordem.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;d:(3, a) -&amp;gt; a:(0, f) -&amp;gt; f:(5, b) -&amp;gt; b:(1, c) -&amp;gt; c:(2, e) -&amp;gt; e:(4, NULL)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Para melhor compreendermos os passos necessários para implementar essa inserção, vamos focar na parte de interesse da lista, comparando o antes e o depois.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a:(0, b) -&amp;gt; b:(1, c)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a:(0, f) -&amp;gt; f:(5, b) -&amp;gt; b:(1, c)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Talvez o fato mais evidente seja que nada foi alterado em &lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt;. De fato, para inserirmos um novo nó numa posição $i$ qualquer, basta que tenhamos a referência ao nó na posição $i-1$ (&lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt;, neste caso). Vejamos como isso é feito em código:&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Criação dos nós
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (0, NULL)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (1, NULL)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (2, NULL)
+&lt;/span&gt;    
+    &lt;span class=&quot;c1&quot;&gt;// Encadeamento
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (0, b)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (1, c), (2, NULL)
+&lt;/span&gt;    
+    &lt;span class=&quot;c1&quot;&gt;// Inserção no início
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Criação do nó c:(3, NULL)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (3, a)
+&lt;/span&gt;    
+    &lt;span class=&quot;c1&quot;&gt;// Inserção no final
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Criação do nó e:(4, NULL)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;c1&quot;&gt;// Inserção no meio: entre a e b
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Criação do nó f:(5, NULL)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// Aqui ambos apontam para b 
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;// Aqui a aponta para f 
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;implementação-de-listas-de-encadeamento-simples&quot;&gt;Implementação de listas de encadeamento simples&lt;/h1&gt;
+
+&lt;p&gt;Considerando a estrutura &lt;code class=&quot;highlighter-rouge&quot;&gt;list&lt;/code&gt; definida a seguir, implemente todas as funcionalidades que foram implementadas para &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// *** list.h *** 
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Aloca memória inicial para o vetor
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Desaloca a memória de v-&amp;gt;data e do próprio v.
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;free_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Funções de remoção de elementos
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_pop_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_erase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Funções de inserção de elementos
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_push_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Mon, 18 Sep 2017 13:50:00 -0300</pubDate>
+        <link>http://localhost:4000/ae22cp-172/Listas-encadeamento-simples.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/Listas-encadeamento-simples.html</guid>
+        
+        <category>listas</category>
+        
+        
+        <category>AE22CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>Lista V - Árvores de refutação</title>
         <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#1-validade-de-argumentos&quot; id=&quot;markdown-toc-1-validade-de-argumentos&quot;&gt;1. Validade de argumentos&lt;/a&gt;&lt;/li&gt;
@@ -144,8 +384,8 @@ gcc main.c stack.c list.c -o main-list
 &lt;p&gt;Capítulo 4: Pgs. 185 - 203, &lt;a href=&quot;https://racionalistasusp.files.wordpress.com/2010/01/nolt-john-rohatyn-dennis-lc3b3gica.pdf&quot;&gt;Logica - John Nolt (PDF).&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Wed, 13 Sep 2017 10:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/Exercicios-Arvores-de-refutacao.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Exercicios-Arvores-de-refutacao.html</guid>
+        <link>http://localhost:4000/lc21cp-172/Lista5-Arvores-de-refutacao.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Lista5-Arvores-de-refutacao.html</guid>
         
         <category>semântica</category>
         
@@ -1026,13 +1266,14 @@ Sequência de pessoas ou coisas alinhadas uma atrás da outra, organizada geralm
     
       <item>
         <title>APS1 - Implementando vector (Resultados)</title>
-        <description>&lt;p&gt;&lt;strong&gt;Resultados por RA&lt;/strong&gt; (&lt;a href=&quot;../AE22CP-172/APS1-jplag&quot;&gt;Comparação-plágio&lt;/a&gt;)&lt;/p&gt;
+        <description>&lt;p&gt;&lt;strong&gt;Resultados por RA&lt;/strong&gt; (&lt;a href=&quot;../AE22CP-172/APS1-jplag&quot;&gt;Comparação-plágio&lt;/a&gt;, &lt;a href=&quot;../assets/AE22CP-172/UTFPR-A22CP-172-Notas-A.pdf&quot;&gt;NotasA&lt;/a&gt;, &lt;a href=&quot;../assets/AE22CP-172/UTFPR-A22CP-172-Notas-B.pdf&quot;&gt;NotasB&lt;/a&gt;)&lt;/p&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#1368206&quot; id=&quot;markdown-toc-1368206&quot;&gt;1368206&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#1435558&quot; id=&quot;markdown-toc-1435558&quot;&gt;1435558&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#1436236&quot; id=&quot;markdown-toc-1436236&quot;&gt;1436236&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#1436287&quot; id=&quot;markdown-toc-1436287&quot;&gt;1436287&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#1454536&quot; id=&quot;markdown-toc-1454536&quot;&gt;1454536&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1454536-v2&quot; id=&quot;markdown-toc-1454536-v2&quot;&gt;1454536-v2&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#1544292&quot; id=&quot;markdown-toc-1544292&quot;&gt;1544292&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#1636847&quot; id=&quot;markdown-toc-1636847&quot;&gt;1636847&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#1649868&quot; id=&quot;markdown-toc-1649868&quot;&gt;1649868&lt;/a&gt;&lt;/li&gt;
@@ -1057,651 +1298,676 @@ Sequência de pessoas ou coisas alinhadas uma atrás da outra, organizada geralm
 &lt;/ul&gt;
 &lt;h2 id=&quot;1368206&quot;&gt;1368206&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .651
-input01.txt            653             10              0           .604
-input02.txt            224             10              0           .459
-input03.txt             84             10              0           .454
-input04.txt            850             10              0           .742
-input05.txt             34             10              0           .425
-input06.txt            427             10              0           .497
-input07.txt            751             10              0           .701
-input08.txt            599             10              0           .600
+input00.txt            694             10              0           .712
+input01.txt            653             10              0           .615
+input02.txt            224             10              0           .502
+input03.txt             84             10              0           .434
+input04.txt            850             10              0           .745
+input05.txt             34             10              0           .430
+input06.txt            427             10              0           .498
+input07.txt            751             10              0           .696
+input08.txt            599             10              0           .590
 input09.txt            402             10              0           .505
-input10.txt              9             10              0           .424
-input11.txt             10             10              0           .451
-input12.txt              2             10              0           .406
-input13.txt             10             10              0           .439
-input14.txt              2             10              0           .428
-input15.txt              9             10              0           .422
-input16.txt             11             10              0           .423
-input17.txt              7             10              0           .441
-input18.txt              3             10              0           .419
-input19.txt              7             10              0           .445
+input10.txt              9             10              0           .429
+input11.txt             10             10              0           .423
+input12.txt              2             10              0           .408
+input13.txt             10             10              0           .424
+input14.txt              2             10              0           .408
+input15.txt              9             10              0           .427
+input16.txt             11             10              0           .426
+input17.txt              7             10              0           .425
+input18.txt              3             10              0           .423
+input19.txt              7             10              0           .423
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1435558&quot;&gt;1435558&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10          1,040           .680
-input01.txt            653             10          1,040           .612
-input02.txt            224             10            592           .461
-input03.txt             84             10            240           .432
-input04.txt            850             10          1,552           .736
-input05.txt             34             10             80           .457
-input06.txt            427             10            784           .514
-input07.txt            751             10          1,168           .735
-input08.txt            599             10          1,040           .580
-input09.txt            402             10            528           .519
-input10.txt              9             10             36           .423
-input11.txt             10             10             40           .421
-input12.txt              2             10             20           .409
-input13.txt             10             10             52           .424
-input14.txt              2             10             32           .406
-input15.txt              9             10             36           .417
-input16.txt             11             10             32           .422
-input17.txt              7             10             52           .422
-input18.txt              3              0             16          3.395
-input19.txt              7             10             40           .541
+input00.txt            694             10          1,040           .689
+input01.txt            653             10          1,040           .622
+input02.txt            224             10            592           .464
+input03.txt             84             10            240           .435
+input04.txt            850             10          1,552           .739
+input05.txt             34             10             80           .437
+input06.txt            427             10            784           .503
+input07.txt            751             10          1,168           .700
+input08.txt            599             10          1,040           .592
+input09.txt            402             10            528           .509
+input10.txt              9             10             36           .427
+input11.txt             10             10             40           .430
+input12.txt              2             10             20           .411
+input13.txt             10             10             52           .441
+input14.txt              2             10             32           .435
+input15.txt              9             10             36           .428
+input16.txt             11             10             32           .449
+input17.txt              7             10             52           .434
+input18.txt              3              0             16          3.478
+input19.txt              7             10             40           .581
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1436236&quot;&gt;1436236&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .654
-input01.txt            653             10              0           .608
-input02.txt            224             10              0           .484
-input03.txt             84             10              0           .439
-input04.txt            850             10              0           .743
-input05.txt             34             10              0           .419
-input06.txt            427             10              0           .523
-input07.txt            751             10              0           .711
-input08.txt            599             10              0           .589
-input09.txt            402             10              0           .514
-input10.txt              9             10              0           .422
-input11.txt             10             10              0           .426
-input12.txt              2             10              0           .438
-input13.txt             10             10              0           .451
-input14.txt              2             10              0           .409
-input15.txt              9             10              0           .436
-input16.txt             11             10              0           .432
-input17.txt              7             10              0           .430
-input18.txt              3             10              0           .422
-input19.txt              7             10              0           .424
+input00.txt            694             10              0           .671
+input01.txt            653             10              0           .695
+input02.txt            224             10              0           .477
+input03.txt             84             10              0           .460
+input04.txt            850             10              0           .754
+input05.txt             34             10              0           .450
+input06.txt            427             10              0           .509
+input07.txt            751             10              0           .722
+input08.txt            599             10              0           .616
+input09.txt            402             10              0           .518
+input10.txt              9             10              0           .472
+input11.txt             10             10              0           .458
+input12.txt              2             10              0           .423
+input13.txt             10             10              0           .433
+input14.txt              2             10              0           .425
+input15.txt              9             10              0           .437
+input16.txt             11             10              0           .459
+input17.txt              7             10              0           .460
+input18.txt              3             10              0           .454
+input19.txt              7             10              0           .427
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1436287&quot;&gt;1436287&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10          1,040           .660
-input01.txt            653             10          1,040           .606
-input02.txt            224             10            592           .461
-input03.txt             84             10            240           .427
-input04.txt            850             10          1,552           .748
-input05.txt             34             10             80           .446
-input06.txt            427             10            784           .506
-input07.txt            751             10          1,168           .712
-input08.txt            599             10          1,040           .631
-input09.txt            402             10            528           .506
+input00.txt            694             10          1,040           .687
+input01.txt            653             10          1,040           .614
+input02.txt            224             10            592           .493
+input03.txt             84             10            240           .459
+input04.txt            850             10          1,552           .771
+input05.txt             34             10             80           .434
+input06.txt            427             10            784           .513
+input07.txt            751             10          1,168           .731
+input08.txt            599             10          1,040           .617
+input09.txt            402             10            528           .519
 input10.txt              9             10             36           .434
-input11.txt             10             10             40           .432
-input12.txt              2             10             20           .416
-input13.txt             10             10             52           .427
-input14.txt              2             10             32           .409
-input15.txt              9             10             36           .426
-input16.txt             11             10             32           .427
-input17.txt              7             10             52           .422
+input11.txt             10             10             40           .441
+input12.txt              2             10             20           .408
+input13.txt             10             10             52           .441
+input14.txt              2             10             32           .482
+input15.txt              9             10             36           .502
+input16.txt             11             10             32           .456
+input17.txt              7             10             52           .433
 input18.txt              3             10             32           .423
-input19.txt              7             10             40           .426
+input19.txt              7             10             40           .437
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1454536&quot;&gt;1454536&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .712
-input01.txt            653             10              0           .618
-input02.txt            224             10              0           .465
-input03.txt             84             10              0           .445
-input04.txt            850             10              0           .761
-input05.txt             34             10              0           .440
-input06.txt            427             10              0           .500
-input07.txt            751             10              0           .710
-input08.txt            599             10              0           .598
-input09.txt            402             10              0           .505
-input10.txt              9             10              0           .423
-input11.txt             10             10              0           .432
-input12.txt              2             10              0           .413
-input13.txt             10             10              0           .425
-input14.txt              2             10              0           .440
-input15.txt              9             10              0           .433
-input16.txt             11             10              0           .427
-input17.txt              7             10              0           .427
-input18.txt              3             10              0           .421
-input19.txt              7             10              0           .428
+input00.txt            694             10              0           .670
+input01.txt            653             10              0           .626
+input02.txt            224             10              0           .476
+input03.txt             84             10              0           .441
+input04.txt            850             10              0           .756
+input05.txt             34             10              0           .438
+input06.txt            427             10              0           .532
+input07.txt            751             10              0           .730
+input08.txt            599             10              0           .616
+input09.txt            402             10              0           .510
+input10.txt              9             10              0           .437
+input11.txt             10             10              0           .422
+input12.txt              2             10              0           .453
+input13.txt             10             10              0           .437
+input14.txt              2             10              0           .431
+input15.txt              9             10              0           .456
+input16.txt             11             10              0           .428
+input17.txt              7             10              0           .423
+input18.txt              3             10              0           .419
+input19.txt              7             10              0           .468
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;1454536-v2&quot;&gt;1454536-v2&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
+input00.txt            694             10          1,040           .677
+input01.txt            653             10          1,040           .629
+input02.txt            224             10            592           .478
+input03.txt             84             10            240           .466
+input04.txt            850             10          1,552           .764
+input05.txt             34             10             80           .439
+input06.txt            427             10            784           .511
+input07.txt            751             10          1,168           .720
+input08.txt            599             10          1,040           .617
+input09.txt            402             10            528           .514
+input10.txt              9             10             36           .434
+input11.txt             10             10             40           .434
+input12.txt              2             10             20           .427
+input13.txt             10             10             52           .436
+input14.txt              2             10             32           .425
+input15.txt              9             10             36           .427
+input16.txt             11             10             32           .427
+input17.txt              7             10             52           .430
+input18.txt              3             10             32           .422
+input19.txt              7             10             40           .425
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1544292&quot;&gt;1544292&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .679
-input01.txt            653             10              0           .612
-input02.txt            224             10              0           .469
-input03.txt             84             10              0           .433
-input04.txt            850             10              0           .746
-input05.txt             34             10              0           .425
-input06.txt            427             10              0           .502
-input07.txt            751             10              0           .695
-input08.txt            599             10              0           .588
-input09.txt            402             10              0           .508
-input10.txt              9             10              0           .427
-input11.txt             10             10              0           .444
-input12.txt              2             10              0           .412
-input13.txt             10             10              0           .455
-input14.txt              2             10              0           .412
-input15.txt              9             10              0           .428
-input16.txt             11             10              0           .419
-input17.txt              7             10              0           .427
-input18.txt              3             10              0           .439
-input19.txt              7             10              0           .470
+input00.txt            694             10              0           .663
+input01.txt            653             10              0           .624
+input02.txt            224             10              0           .513
+input03.txt             84             10              0           .437
+input04.txt            850             10              0           .755
+input05.txt             34             10              0           .440
+input06.txt            427             10              0           .553
+input07.txt            751             10              0           .723
+input08.txt            599             10              0           .596
+input09.txt            402             10              0           .523
+input10.txt              9             10              0           .425
+input11.txt             10             10              0           .452
+input12.txt              2             10              0           .442
+input13.txt             10             10              0           .463
+input14.txt              2             10              0           .435
+input15.txt              9             10              0           .429
+input16.txt             11             10              0           .442
+input17.txt              7             10              0           .464
+input18.txt              3             10              0           .433
+input19.txt              7             10              0           .430
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1636847&quot;&gt;1636847&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694              0          1,040           .674
-input01.txt            653              0          1,040           .655
-input02.txt            224              0            592           .484
-input03.txt             84              0            240           .430
-input04.txt            850              0          1,552           .808
-input05.txt             34              0             80           .476
-input06.txt            427              0            784           .510
-input07.txt            751              0          1,168           .751
-input08.txt            599              0          1,040           .630
-input09.txt            402              0            528           .512
-input10.txt              9              0             36           .439
-input11.txt             10              0             40           .441
-input12.txt              2             10             20           .449
-input13.txt             10              0             52           .428
-input14.txt              2             10             32           .447
-input15.txt              9             10             36           .444
-input16.txt             11              0             32           .450
-input17.txt              7              0             52           .428
-input18.txt              3             10             32           .444
-input19.txt              7             10             40           .442
+input00.txt            694             10          1,040           .698
+input01.txt            653             10          1,040           .662
+input02.txt            224             10            592           .476
+input03.txt             84             10            240           .471
+input04.txt            850             10          1,552           .834
+input05.txt             34             10             80           .489
+input06.txt            427             10            784           .545
+input07.txt            751             10          1,168           .809
+input08.txt            599             10          1,040           .763
+input09.txt            402             10            528           .587
+input10.txt              9             10             36           .677
+input11.txt             10             10             40           .641
+input12.txt              2             10             20           .460
+input13.txt             10             10             52           .487
+input14.txt              2             10             32           .419
+input15.txt              9             10             36           .446
+input16.txt             11             10             32           .525
+input17.txt              7             10             52           .577
+input18.txt              3             10             32           .442
+input19.txt              7             10             40           .464
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1649868&quot;&gt;1649868&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .664
-input01.txt            653             10              0           .633
-input02.txt            224             10              0           .478
-input03.txt             84             10              0           .446
-input04.txt            850             10              0           .753
-input05.txt             34             10              0           .440
-input06.txt            427             10              0           .519
-input07.txt            751             10              0           .708
-input08.txt            599             10              0           .623
-input09.txt            402             10              0           .527
-input10.txt              9             10              0           .428
-input11.txt             10             10              0           .436
-input12.txt              2             10              0           .421
-input13.txt             10             10              0           .439
-input14.txt              2             10              0           .415
-input15.txt              9             10              0           .456
-input16.txt             11             10              0           .444
-input17.txt              7             10              0           .442
-input18.txt              3             10              0           .425
-input19.txt              7             10              0           .443
+input00.txt            694             10              0           .716
+input01.txt            653             10              0           .690
+input02.txt            224             10              0           .492
+input03.txt             84             10              0           .644
+input04.txt            850             10              0           .992
+input05.txt             34             10              0           .464
+input06.txt            427             10              0           .537
+input07.txt            751             10              0           .741
+input08.txt            599             10              0           .655
+input09.txt            402             10              0           .567
+input10.txt              9             10              0           .521
+input11.txt             10             10              0           .451
+input12.txt              2             10              0           .493
+input13.txt             10             10              0           .465
+input14.txt              2             10              0           .430
+input15.txt              9             10              0           .436
+input16.txt             11             10              0           .449
+input17.txt              7             10              0           .426
+input18.txt              3             10              0           .428
+input19.txt              7             10              0           .437
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1809733&quot;&gt;1809733&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .678
-input01.txt            653             10              0           .625
-input02.txt            224             10              0           .471
-input03.txt             84             10              0           .451
-input04.txt            850             10              0           .769
-input05.txt             34             10              0           .451
-input06.txt            427             10              0           .523
-input07.txt            751             10              0           .721
-input08.txt            599             10              0           .604
-input09.txt            402             10              0           .524
-input10.txt              9             10              0           .442
-input11.txt             10             10              0           .434
-input12.txt              2             10              0           .414
-input13.txt             10             10              0           .476
-input14.txt              2             10              0           .425
-input15.txt              9             10              0           .434
-input16.txt             11             10              0           .434
-input17.txt              7             10              0           .441
-input18.txt              3             10              0           .444
-input19.txt              7             10              0           .434
+input00.txt            694             10              0           .693
+input01.txt            653             10              0           .638
+input02.txt            224             10              0           .496
+input03.txt             84             10              0           .463
+input04.txt            850             10              0           .787
+input05.txt             34             10              0           .441
+input06.txt            427             10              0           .536
+input07.txt            751             10              0           .759
+input08.txt            599             10              0           .679
+input09.txt            402             10              0           .557
+input10.txt              9             10              0           .461
+input11.txt             10             10              0           .454
+input12.txt              2             10              0           .505
+input13.txt             10             10              0           .498
+input14.txt              2             10              0           .442
+input15.txt              9             10              0           .458
+input16.txt             11             10              0           .584
+input17.txt              7             10              0           .489
+input18.txt              3             10              0           .473
+input19.txt              7             10              0           .442
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1809857&quot;&gt;1809857&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .664
-input01.txt            653             10              0           .634
-input02.txt            224             10              0           .472
-input03.txt             84             10              0           .456
-input04.txt            850             10              0           .777
-input05.txt             34             10              0           .448
-input06.txt            427             10              0           .502
-input07.txt            751             10              0           .735
-input08.txt            599             10              0           .611
-input09.txt            402             10              0           .508
-input10.txt              9             10              0           .442
-input11.txt             10             10              0           .519
-input12.txt              2             10              0           .412
-input13.txt             10             10              0           .425
-input14.txt              2             10              0           .421
-input15.txt              9             10              0           .446
-input16.txt             11             10              0           .440
-input17.txt              7             10              0           .420
-input18.txt              3             10              0           .445
-input19.txt              7             10              0           .458
+input00.txt            694             10              0           .776
+input01.txt            653             10              0           .817
+input02.txt            224             10              0           .549
+input03.txt             84             10              0           .504
+input04.txt            850             10              0           .851
+input05.txt             34             10              0           .573
+input06.txt            427             10              0           .538
+input07.txt            751             10              0           .755
+input08.txt            599             10              0           .645
+input09.txt            402             10              0           .562
+input10.txt              9             10              0           .440
+input11.txt             10             10              0           .435
+input12.txt              2             10              0           .407
+input13.txt             10             10              0           .443
+input14.txt              2             10              0           .422
+input15.txt              9             10              0           .438
+input16.txt             11             10              0           .434
+input17.txt              7             10              0           .448
+input18.txt              3             10              0           .472
+input19.txt              7             10              0           .432
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1811754&quot;&gt;1811754&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .685
-input01.txt            653             10              0           .634
-input02.txt            224             10              0           .516
+input00.txt            694             10              0           .673
+input01.txt            653             10              0           .630
+input02.txt            224             10              0           .483
 input03.txt             84             10              0           .447
-input04.txt            850             10              0           .763
-input05.txt             34             10              0           .442
-input06.txt            427             10              0           .545
-input07.txt            751             10              0           .712
-input08.txt            599             10              0           .607
-input09.txt            402             10              0           .526
-input10.txt              9             10              0           .420
-input11.txt             10             10              0           .440
-input12.txt              2             10              0           .424
+input04.txt            850             10              0           .754
+input05.txt             34             10              0           .437
+input06.txt            427             10              0           .512
+input07.txt            751             10              0           .702
+input08.txt            599             10              0           .610
+input09.txt            402             10              0           .517
+input10.txt              9             10              0           .431
+input11.txt             10             10              0           .427
+input12.txt              2             10              0           .426
 input13.txt             10             10              0           .439
-input14.txt              2             10              0           .407
-input15.txt              9             10              0           .442
-input16.txt             11             10              0           .441
-input17.txt              7             10              0           .440
-input18.txt              3             10              0           .439
-input19.txt              7             10              0           .444
+input14.txt              2             10              0           .437
+input15.txt              9             10              0           .441
+input16.txt             11             10              0           .446
+input17.txt              7             10              0           .438
+input18.txt              3             10              0           .450
+input19.txt              7             10              0           .437
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1826697&quot;&gt;1826697&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .687
-input01.txt            653             10              0           .653
-input02.txt            224             10              0           .464
-input03.txt             84             10              0           .449
-input04.txt            850             10              0           .815
-input05.txt             34             10              0           .427
-input06.txt            427             10              0           .515
-input07.txt            751             10              0           .742
-input08.txt            599             10              0           .587
-input09.txt            402             10              0           .537
-input10.txt              9             10              0           .438
-input11.txt             10             10              0           .434
-input12.txt              2             10              0           .412
-input13.txt             10             10              0           .444
+input00.txt            694             10              0           .665
+input01.txt            653             10              0           .664
+input02.txt            224             10              0           .476
+input03.txt             84             10              0           .439
+input04.txt            850             10              0           .797
+input05.txt             34             10              0           .435
+input06.txt            427             10              0           .503
+input07.txt            751             10              0           .715
+input08.txt            599             10              0           .611
+input09.txt            402             10              0           .520
+input10.txt              9             10              0           .421
+input11.txt             10             10              0           .439
+input12.txt              2             10              0           .437
+input13.txt             10             10              0           .435
 input14.txt              2             10              0           .437
-input15.txt              9             10              0           .443
-input16.txt             11             10              0           .433
-input17.txt              7             10              0           .469
-input18.txt              3             10              0           .466
-input19.txt              7             10              0           .459
+input15.txt              9             10              0           .435
+input16.txt             11             10              0           .440
+input17.txt              7             10              0           .435
+input18.txt              3             10              0           .437
+input19.txt              7             10              0           .493
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1881906&quot;&gt;1881906&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .664
-input01.txt            653             10              0           .635
-input02.txt            224             10              0           .481
-input03.txt             84             10              0           .432
-input04.txt            850             10              0           .767
-input05.txt             34             10              0           .445
-input06.txt            427             10              0           .510
-input07.txt            751             10              0           .729
-input08.txt            599             10              0           .620
-input09.txt            402             10              0           .525
-input10.txt              9             10              0           .439
-input11.txt             10             10              0           .440
-input12.txt              2             10              0           .427
-input13.txt             10             10              0           .427
-input14.txt              2             10              0           .446
-input15.txt              9             10              0           .457
-input16.txt             11             10              0           .451
-input17.txt              7             10              0           .427
-input18.txt              3             10              0           .436
-input19.txt              7             10              0           .440
+input00.txt            694             10              0           .733
+input01.txt            653             10              0           .660
+input02.txt            224             10              0           .469
+input03.txt             84             10              0           .468
+input04.txt            850             10              0           .814
+input05.txt             34             10              0           .455
+input06.txt            427             10              0           .521
+input07.txt            751             10              0           .781
+input08.txt            599             10              0           .615
+input09.txt            402             10              0           .521
+input10.txt              9             10              0           .436
+input11.txt             10             10              0           .436
+input12.txt              2             10              0           .416
+input13.txt             10             10              0           .432
+input14.txt              2             10              0           .414
+input15.txt              9             10              0           .439
+input16.txt             11             10              0           .436
+input17.txt              7             10              0           .435
+input18.txt              3             10              0           .420
+input19.txt              7             10              0           .433
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1890867&quot;&gt;1890867&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .695
-input01.txt            653             10              0           .621
-input02.txt            224             10              0           .494
-input03.txt             84             10              0           .451
-input04.txt            850             10              0           .768
-input05.txt             34             10              0           .440
-input06.txt            427             10              0           .521
-input07.txt            751             10              0           .712
-input08.txt            599             10              0           .615
+input00.txt            694             10              0           .690
+input01.txt            653             10              0           .650
+input02.txt            224             10              0           .481
+input03.txt             84             10              0           .464
+input04.txt            850             10              0           .823
+input05.txt             34             10              0           .437
+input06.txt            427             10              0           .547
+input07.txt            751             10              0           .727
+input08.txt            599             10              0           .600
 input09.txt            402             10              0           .524
-input10.txt              9             10              0           .426
-input11.txt             10             10              0           .435
-input12.txt              2             10              0           .422
-input13.txt             10             10              0           .444
-input14.txt              2             10              0           .416
-input15.txt              9             10              0           .428
-input16.txt             11             10              0           .470
-input17.txt              7             10              0           .444
-input18.txt              3             10              0           .441
-input19.txt              7             10              0           .427
+input10.txt              9             10              0           .438
+input11.txt             10             10              0           .456
+input12.txt              2             10              0           .420
+input13.txt             10             10              0           .431
+input14.txt              2             10              0           .417
+input15.txt              9             10              0           .444
+input16.txt             11             10              0           .451
+input17.txt              7             10              0           .424
+input18.txt              3             10              0           .435
+input19.txt              7             10              0           .445
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1917323&quot;&gt;1917323&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10          1,040           .680
-input01.txt            653             10          1,040           .635
-input02.txt            224             10            592           .459
-input03.txt             84             10            240           .450
-input04.txt            850             10          1,552           .776
-input05.txt             34             10             80           .430
-input06.txt            427             10            784           .513
-input07.txt            751             10          1,168           .727
-input08.txt            599             10          1,040           .623
-input09.txt            402             10            528           .540
-input10.txt              9             10             36           .441
-input11.txt             10             10             40           .440
+input00.txt            694             10          1,040           .691
+input01.txt            653             10          1,040           .641
+input02.txt            224             10            592           .483
+input03.txt             84             10            240           .455
+input04.txt            850             10          1,552           .795
+input05.txt             34             10             80           .447
+input06.txt            427             10            784           .515
+input07.txt            751             10          1,168           .722
+input08.txt            599             10          1,040           .642
+input09.txt            402             10            528           .520
+input10.txt              9             10             36           .466
+input11.txt             10             10             40           .436
 input12.txt              2             10             20           .410
-input13.txt             10             10             52           .441
-input14.txt              2             10             32           .427
-input15.txt              9             10             36           .442
-input16.txt             11             10             32           .424
-input17.txt              7             10             52           .440
-input18.txt              3             10             32           .445
-input19.txt              7             10             40           .445
+input13.txt             10             10             52           .446
+input14.txt              2             10             32           .419
+input15.txt              9             10             36           .441
+input16.txt             11             10             32           .433
+input17.txt              7             10             52           .426
+input18.txt              3             10             32           .433
+input19.txt              7             10             40           .436
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1917358&quot;&gt;1917358&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10          1,040           .755
-input01.txt            653             10          1,040           .685
-input02.txt            224             10            592           .509
-input03.txt             84             10            240           .438
-input04.txt            850             10          1,552           .851
-input05.txt             34             10             80           .447
-input06.txt            427             10            784           .523
-input07.txt            751             10          1,168           .827
-input08.txt            599             10          1,040           .649
-input09.txt            402             10            528           .538
-input10.txt              9             10             36           .444
-input11.txt             10             10             40           .450
-input12.txt              2             10             20           .432
-input13.txt             10             10             52           .434
-input14.txt              2             10             32           .425
-input15.txt              9             10             36           .445
-input16.txt             11             10             32           .444
-input17.txt              7             10             52           .431
-input18.txt              3             10             32           .444
-input19.txt              7             10             40           .441
+input00.txt            694             10          1,040           .746
+input01.txt            653             10          1,040           .713
+input02.txt            224             10            592           .500
+input03.txt             84             10            240           .454
+input04.txt            850             10          1,552           .877
+input05.txt             34             10             80           .450
+input06.txt            427             10            784           .543
+input07.txt            751             10          1,168           .785
+input08.txt            599             10          1,040           .648
+input09.txt            402             10            528           .568
+input10.txt              9             10             36           .439
+input11.txt             10             10             40           .453
+input12.txt              2             10             20           .483
+input13.txt             10             10             52           .448
+input14.txt              2             10             32           .408
+input15.txt              9             10             36           .439
+input16.txt             11             10             32           .450
+input17.txt              7             10             52           .441
+input18.txt              3             10             32           .477
+input19.txt              7             10             40           .430
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1917366&quot;&gt;1917366&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10          1,040           .672
-input01.txt            653             10          1,040           .635
-input02.txt            224             10            592           .481
-input03.txt             84             10            240           .454
-input04.txt            850             10          1,552           .755
-input05.txt             34             10             80           .447
-input06.txt            427             10            784           .520
-input07.txt            751             10          1,168           .708
-input08.txt            599             10          1,040           .616
-input09.txt            402             10            528           .525
-input10.txt              9             10             36           .433
-input11.txt             10             10             40           .440
-input12.txt              2             10             20           .449
-input13.txt             10             10             52           .479
-input14.txt              2             10             32           .440
-input15.txt              9             10             36           .438
-input16.txt             11             10             32           .441
-input17.txt              7             10             52           .450
-input18.txt              3             10             32           .439
-input19.txt              7             10             40           .437
+input00.txt            694             10          1,040           .698
+input01.txt            653             10          1,040           .649
+input02.txt            224             10            592           .468
+input03.txt             84             10            240           .460
+input04.txt            850             10          1,552           .766
+input05.txt             34             10             80           .442
+input06.txt            427             10            784           .497
+input07.txt            751             10          1,168           .720
+input08.txt            599             10          1,040           .613
+input09.txt            402             10            528           .507
+input10.txt              9             10             36           .439
+input11.txt             10             10             40           .465
+input12.txt              2             10             20           .430
+input13.txt             10             10             52           .432
+input14.txt              2             10             32           .414
+input15.txt              9             10             36           .472
+input16.txt             11             10             32           .435
+input17.txt              7             10             52           .445
+input18.txt              3             10             32           .418
+input19.txt              7             10             40           .440
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1917374&quot;&gt;1917374&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .747
-input01.txt            653             10              0           .664
-input02.txt            224             10              0           .496
-input03.txt             84             10              0           .458
-input04.txt            850             10              0           .851
-input05.txt             34             10              0           .455
-input06.txt            427             10              0           .537
-input07.txt            751             10              0           .760
-input08.txt            599             10              0           .637
-input09.txt            402             10              0           .549
-input10.txt              9             10              0           .444
-input11.txt             10             10              0           .428
-input12.txt              2             10              0           .425
-input13.txt             10             10              0           .444
-input14.txt              2             10              0           .428
-input15.txt              9             10              0           .432
-input16.txt             11             10              0           .444
-input17.txt              7             10              0           .443
-input18.txt              3             10              0           .442
-input19.txt              7             10              0           .434
+input00.txt            694             10              0           .740
+input01.txt            653             10              0           .662
+input02.txt            224             10              0           .508
+input03.txt             84             10              0           .453
+input04.txt            850             10              0           .827
+input05.txt             34             10              0           .444
+input06.txt            427             10              0           .528
+input07.txt            751             10              0           .765
+input08.txt            599             10              0           .623
+input09.txt            402             10              0           .562
+input10.txt              9             10              0           .454
+input11.txt             10             10              0           .440
+input12.txt              2             10              0           .402
+input13.txt             10             10              0           .456
+input14.txt              2             10              0           .426
+input15.txt              9             10              0           .443
+input16.txt             11             10              0           .434
+input17.txt              7             10              0           .434
+input18.txt              3             10              0           .437
+input19.txt              7             10              0           .437
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1917420&quot;&gt;1917420&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .684
-input01.txt            653             10              0           .632
-input02.txt            224             10              0           .473
-input03.txt             84             10              0           .439
-input04.txt            850             10              0           .778
-input05.txt             34             10              0           .454
-input06.txt            427             10              0           .508
-input07.txt            751             10              0           .751
-input08.txt            599             10              0           .607
-input09.txt            402             10              0           .517
-input10.txt              9             10              0           .444
-input11.txt             10             10              0           .457
-input12.txt              2             10              0           .431
-input13.txt             10             10              0           .434
-input14.txt              2             10              0           .441
-input15.txt              9             10              0           .436
-input16.txt             11             10              0           .439
-input17.txt              7             10              0           .428
-input18.txt              3             10              0           .434
-input19.txt              7             10              0           .441
+input00.txt            694             10              0           .678
+input01.txt            653             10              0           .686
+input02.txt            224             10              0           .491
+input03.txt             84             10              0           .476
+input04.txt            850             10              0           .760
+input05.txt             34             10              0           .444
+input06.txt            427             10              0           .514
+input07.txt            751             10              0           .709
+input08.txt            599             10              0           .643
+input09.txt            402             10              0           .551
+input10.txt              9             10              0           .439
+input11.txt             10             10              0           .430
+input12.txt              2             10              0           .433
+input13.txt             10             10              0           .447
+input14.txt              2             10              0           .429
+input15.txt              9             10              0           .443
+input16.txt             11             10              0           .452
+input17.txt              7             10              0           .440
+input18.txt              3             10              0           .453
+input19.txt              7             10              0           .461
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1917439&quot;&gt;1917439&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .693
-input01.txt            653             10              0           .641
-input02.txt            224             10              0           .487
-input03.txt             84             10              0           .451
-input04.txt            850             10              0           .753
-input05.txt             34             10              0           .437
-input06.txt            427             10              0           .513
-input07.txt            751             10              0           .708
-input08.txt            599             10              0           .613
-input09.txt            402             10              0           .519
-input10.txt              9             10              0           .423
-input11.txt             10             10              0           .424
-input12.txt              2             10              0           .416
-input13.txt             10             10              0           .436
-input14.txt              2             10              0           .404
-input15.txt              9             10              0           .429
-input16.txt             11             10              0           .476
-input17.txt              7             10              0           .466
-input18.txt              3             10              0           .420
-input19.txt              7             10              0           .431
+input00.txt            694             10              0           .686
+input01.txt            653             10              0           .637
+input02.txt            224             10              0           .526
+input03.txt             84             10              0           .476
+input04.txt            850             10              0           .890
+input05.txt             34             10              0           .496
+input06.txt            427             10              0           .611
+input07.txt            751             10              0           .727
+input08.txt            599             10              0           .637
+input09.txt            402             10              0           .557
+input10.txt              9             10              0           .429
+input11.txt             10             10              0           .456
+input12.txt              2             10              0           .449
+input13.txt             10             10              0           .453
+input14.txt              2             10              0           .435
+input15.txt              9             10              0           .445
+input16.txt             11             10              0           .461
+input17.txt              7             10              0           .455
+input18.txt              3             10              0           .481
+input19.txt              7             10              0           .441
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1917455&quot;&gt;1917455&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .704
-input01.txt            653             10              0           .665
-input02.txt            224             10              0           .484
-input03.txt             84             10              0           .438
-input04.txt            850             10              0           .809
-input05.txt             34             10              0           .428
-input06.txt            427             10              0           .508
-input07.txt            751             10              0           .716
-input08.txt            599             10              0           .584
-input09.txt            402             10              0           .524
-input10.txt              9             10              0           .431
-input11.txt             10             10              0           .433
-input12.txt              2             10              0           .405
-input13.txt             10             10              0           .432
-input14.txt              2             10              0           .417
-input15.txt              9             10              0           .438
-input16.txt             11             10              0           .421
-input17.txt              7             10              0           .435
-input18.txt              3             10              0           .430
-input19.txt              7             10              0           .430
+input00.txt            694             10              0           .712
+input01.txt            653             10              0           .664
+input02.txt            224             10              0           .483
+input03.txt             84             10              0           .457
+input04.txt            850             10              0           .829
+input05.txt             34             10              0           .451
+input06.txt            427             10              0           .544
+input07.txt            751             10              0           .733
+input08.txt            599             10              0           .625
+input09.txt            402             10              0           .534
+input10.txt              9             10              0           .436
+input11.txt             10             10              0           .445
+input12.txt              2             10              0           .417
+input13.txt             10             10              0           .436
+input14.txt              2             10              0           .404
+input15.txt              9             10              0           .441
+input16.txt             11             10              0           .441
+input17.txt              7             10              0           .444
+input18.txt              3             10              0           .429
+input19.txt              7             10              0           .432
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1917463&quot;&gt;1917463&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .671
-input01.txt            653             10              0           .658
-input02.txt            224             10              0           .473
-input03.txt             84             10              0           .428
-input04.txt            850             10              0           .778
-input05.txt             34             10              0           .437
-input06.txt            427             10              0           .520
-input07.txt            751             10              0           .733
-input08.txt            599             10              0           .612
-input09.txt            402             10              0           .513
-input10.txt              9             10              0           .430
-input11.txt             10             10              0           .439
-input12.txt              2             10              0           .434
-input13.txt             10             10              0           .430
-input14.txt              2             10              0           .410
+input00.txt            694             10              0           .706
+input01.txt            653             10              0           .660
+input02.txt            224             10              0           .474
+input03.txt             84             10              0           .468
+input04.txt            850             10              0           .823
+input05.txt             34             10              0           .430
+input06.txt            427             10              0           .534
+input07.txt            751             10              0           .764
+input08.txt            599             10              0           .616
+input09.txt            402             10              0           .524
+input10.txt              9             10              0           .435
+input11.txt             10             10              0           .436
+input12.txt              2             10              0           .419
+input13.txt             10             10              0           .425
+input14.txt              2             10              0           .417
 input15.txt              9             10              0           .436
-input16.txt             11             10              0           .434
-input17.txt              7             10              0           .480
-input18.txt              3             10              0           .418
-input19.txt              7             10              0           .447
+input16.txt             11             10              0           .441
+input17.txt              7             10              0           .426
+input18.txt              3             10              0           .429
+input19.txt              7             10              0           .439
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1917471&quot;&gt;1917471&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10          1,040           .710
-input01.txt            653             10          1,040           .692
-input02.txt            224             10            592           .468
-input03.txt             84             10            240           .452
-input04.txt            850             10          1,552           .775
-input05.txt             34             10             80           .533
-input06.txt            427             10            784           .568
-input07.txt            751             10          1,168           .797
-input08.txt            599             10          1,040           .636
-input09.txt            402             10            528           .611
-input10.txt              9             10             36           .462
-input11.txt             10             10             40           .445
-input12.txt              2             10             20           .432
-input13.txt             10             10             52           .449
-input14.txt              2             10             32           .417
-input15.txt              9             10             36           .422
-input16.txt             11             10             32           .485
-input17.txt              7             10             52           .448
-input18.txt              3             10             32           .450
-input19.txt              7             10             40           .433
+input00.txt            694             10          1,040           .700
+input01.txt            653             10          1,040           .635
+input02.txt            224             10            592           .490
+input03.txt             84             10            240           .450
+input04.txt            850             10          1,552           .805
+input05.txt             34             10             80           .458
+input06.txt            427             10            784           .547
+input07.txt            751             10          1,168           .741
+input08.txt            599             10          1,040           .605
+input09.txt            402             10            528           .528
+input10.txt              9             10             36           .466
+input11.txt             10             10             40           .437
+input12.txt              2             10             20           .412
+input13.txt             10             10             52           .437
+input14.txt              2             10             32           .418
+input15.txt              9             10             36           .438
+input16.txt             11             10             32           .433
+input17.txt              7             10             52           .430
+input18.txt              3             10             32           .432
+input19.txt              7             10             40           .436
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1920359&quot;&gt;1920359&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10          1,040           .703
-input01.txt            653             10          1,040           .644
-input02.txt            224             10            592           .468
-input03.txt             84             10            240           .441
-input04.txt            850             10          1,552           .862
-input05.txt             34             10             80           .526
-input06.txt            427             10            784           .670
-input07.txt            751             10          1,168           .864
-input08.txt            599             10          1,040           .646
-input09.txt            402             10            528           .521
-input10.txt              9             10             36           .473
-input11.txt             10             10             40           .441
-input12.txt              2             10             20           .421
-input13.txt             10             10             52           .429
-input14.txt              2             10             32           .418
-input15.txt              9             10             36           .469
-input16.txt             11             10             32           .434
-input17.txt              7             10             52           .425
-input18.txt              3             10             32           .432
-input19.txt              7             10             40           .435
+input00.txt            694             10          1,040           .702
+input01.txt            653             10          1,040           .665
+input02.txt            224             10            592           .497
+input03.txt             84             10            240           .463
+input04.txt            850             10          1,552           .784
+input05.txt             34             10             80           .455
+input06.txt            427             10            784           .540
+input07.txt            751             10          1,168           .733
+input08.txt            599             10          1,040           .625
+input09.txt            402             10            528           .542
+input10.txt              9             10             36           .435
+input11.txt             10             10             40           .452
+input12.txt              2             10             20           .415
+input13.txt             10             10             52           .441
+input14.txt              2             10             32           .423
+input15.txt              9             10             36           .428
+input16.txt             11             10             32           .435
+input17.txt              7             10             52           .439
+input18.txt              3             10             32           .439
+input19.txt              7             10             40           .436
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;1946145&quot;&gt;1946145&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .673
-input01.txt            653             10              0           .626
-input02.txt            224             10              0           .467
-input03.txt             84             10              0           .440
-input04.txt            850             10              0           .766
-input05.txt             34             10              0           .447
-input06.txt            427             10              0           .514
-input07.txt            751             10              0           .710
-input08.txt            599             10              0           .624
-input09.txt            402             10              0           .529
-input10.txt              9             10              0           .471
-input11.txt             10             10              0           .422
-input12.txt              2             10              0           .408
-input13.txt             10             10              0           .432
+input00.txt            694             10              0           .679
+input01.txt            653             10              0           .661
+input02.txt            224             10              0           .490
+input03.txt             84             10              0           .435
+input04.txt            850             10              0           .780
+input05.txt             34             10              0           .517
+input06.txt            427             10              0           .512
+input07.txt            751             10              0           .708
+input08.txt            599             10              0           .619
+input09.txt            402             10              0           .525
+input10.txt              9             10              0           .451
+input11.txt             10             10              0           .424
+input12.txt              2             10              0           .417
+input13.txt             10             10              0           .451
 input14.txt              2             10              0           .417
-input15.txt              9             10              0           .420
-input16.txt             11             10              0           .431
-input17.txt              7             10              0           .439
-input18.txt              3             10              0           .444
-input19.txt              7             10              0           .580
+input15.txt              9             10              0           .429
+input16.txt             11             10              0           .496
+input17.txt              7             10              0           .424
+input18.txt              3             10              0           .434
+input19.txt              7             10              0           .427
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;23931913&quot;&gt;23931913&lt;/h2&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .903
-input01.txt            653             10              0           .676
-input02.txt            224             10              0           .546
-input03.txt             84             10              0           .710
-input04.txt            850             10              0           .832
-input05.txt             34             10              0           .464
-input06.txt            427             10              0           .501
-input07.txt            751             10              0           .721
-input08.txt            599             10              0           .623
-input09.txt            402             10              0           .503
-input10.txt              9             10              0           .467
-input11.txt             10             10              0           .449
-input12.txt              2             10              0           .435
-input13.txt             10             10              0           .437
-input14.txt              2             10              0           .425
-input15.txt              9             10              0           .450
-input16.txt             11             10              0           .491
+input00.txt            694             10              0           .695
+input01.txt            653             10              0           .653
+input02.txt            224             10              0           .475
+input03.txt             84             10              0           .448
+input04.txt            850             10              0           .799
+input05.txt             34             10              0           .450
+input06.txt            427             10              0           .505
+input07.txt            751             10              0           .724
+input08.txt            599             10              0           .608
+input09.txt            402             10              0           .506
+input10.txt              9             10              0           .437
+input11.txt             10             10              0           .445
+input12.txt              2             10              0           .414
+input13.txt             10             10              0           .442
+input14.txt              2             10              0           .405
+input15.txt              9             10              0           .457
+input16.txt             11             10              0           .448
 input17.txt              7             10              0           .441
-input18.txt              3             10              0           .438
-input19.txt              7             10              0           .446
+input18.txt              3             10              0           .433
+input19.txt              7             10              0           .430
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -1718,7 +1984,7 @@ input19.txt              7             10              0           .446
       </item>
     
       <item>
-        <title>Exercícios IV - Equivalências e Tabelas verdade</title>
+        <title>Lista IV - Equivalências e Tabelas verdade</title>
         <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#equivalências&quot; id=&quot;markdown-toc-equivalências&quot;&gt;Equivalências&lt;/a&gt;&lt;/li&gt;
@@ -1802,735 +2068,8 @@ input19.txt              7             10              0           .446
 &lt;/ul&gt;
 </description>
         <pubDate>Thu, 31 Aug 2017 16:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/Exercicios1-Tabelas-verdade.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Exercicios1-Tabelas-verdade.html</guid>
-        
-        <category>semântica</category>
-        
-        
-        <category>LC21CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Semântica da lógica proposicional - Tabelas Verdade</title>
-        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#semântica-da-lógica-proposicional&quot; id=&quot;markdown-toc-semântica-da-lógica-proposicional&quot;&gt;Semântica da Lógica proposicional&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#princípio-da-bivalência&quot; id=&quot;markdown-toc-princípio-da-bivalência&quot;&gt;Princípio da bivalência&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#tabelas-verdade-dos-conectivos&quot; id=&quot;markdown-toc-tabelas-verdade-dos-conectivos&quot;&gt;Tabelas verdade dos conectivos&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#negação-neg&quot; id=&quot;markdown-toc-negação-neg&quot;&gt;Negação ($\neg$)&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#conjunção-land&quot; id=&quot;markdown-toc-conjunção-land&quot;&gt;Conjunção ($\land$)&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#disjunção-lor&quot; id=&quot;markdown-toc-disjunção-lor&quot;&gt;Disjunção ($\lor$)&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#condicional-to&quot; id=&quot;markdown-toc-condicional-to&quot;&gt;Condicional ($\to$)&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#bicondicional-leftrightarrow&quot; id=&quot;markdown-toc-bicondicional-leftrightarrow&quot;&gt;Bicondicional ($\leftrightarrow$)&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#tabelas-verdade-de-fórmulas&quot; id=&quot;markdown-toc-tabelas-verdade-de-fórmulas&quot;&gt;Tabelas verdade de fórmulas&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#tamanho-da-tabela-verdade&quot; id=&quot;markdown-toc-tamanho-da-tabela-verdade&quot;&gt;Tamanho da tabela verdade&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplos-xor&quot; id=&quot;markdown-toc-exemplos-xor&quot;&gt;Exemplos ($XOR$)&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplos-lte&quot; id=&quot;markdown-toc-exemplos-lte&quot;&gt;Exemplos (LTE)&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplos-contradição&quot; id=&quot;markdown-toc-exemplos-contradição&quot;&gt;Exemplos (Contradição)&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#tabelas-verdade-de-formas-de-argumento&quot; id=&quot;markdown-toc-tabelas-verdade-de-formas-de-argumento&quot;&gt;Tabelas verdade de formas de argumento&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplos-afirmação-do-consequente&quot; id=&quot;markdown-toc-exemplos-afirmação-do-consequente&quot;&gt;Exemplos (Afirmação do consequente)&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#exercícios&quot; id=&quot;markdown-toc-exercícios&quot;&gt;Exercícios&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#referências&quot; id=&quot;markdown-toc-referências&quot;&gt;Referências&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;semântica-da-lógica-proposicional&quot;&gt;Semântica da Lógica proposicional&lt;/h1&gt;
-
-&lt;p&gt;Até então tratamos da lógica proposicional do ponto de vista sintático. Ou seja, as regras de inferência utilizadas são baseadas principalmente na forma dos argumentos. Já a &lt;em&gt;semântica&lt;/em&gt; de uma expressão é o seu significado. Por meio da caracterização do significado dos operadores lógicos, desenvolvemos uma visão menos restrita e mais formal sobre os argumentos.&lt;/p&gt;
-
-&lt;h2 id=&quot;princípio-da-bivalência&quot;&gt;Princípio da bivalência&lt;/h2&gt;
-
-&lt;p&gt;O princípio da bivalência ou lei do terceiro excluído (LTE), simplesmente formaliza a noção intuitiva que existem apenas duas opções de valores para uma fórmula qualquer&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \phi \lor \neg \phi \tag{LTE}&lt;/script&gt;
-
-&lt;h2 id=&quot;tabelas-verdade-dos-conectivos&quot;&gt;Tabelas verdade dos conectivos&lt;/h2&gt;
-
-&lt;p&gt;Dada a LTE, a semântica de um conectivo lógico consiste na definição de todos seus possíveis valores lógicos, sendo que cada símbolo atômico e cada fórmula e subfórmulas podem ter, em um dado momento, apenas um valor dentre: verdadeiro (T) e falso (F).&lt;/p&gt;
-
-&lt;p&gt;A seguir, descreveremos as tabelas verdade para cada um dos conectivos lógicos vistos até então.&lt;/p&gt;
-
-&lt;h3 id=&quot;negação-neg&quot;&gt;Negação ($\neg$)&lt;/h3&gt;
-
-&lt;p&gt;A negação é o único conectivo lógico unário visto até então. Dada uma fórmula qualquer $\phi$, esta pode assumir valor-verdade &lt;em&gt;verdadeiro&lt;/em&gt; (V) ou &lt;em&gt;falso&lt;/em&gt; (F), o que está descrito na primeira coluna da tabela abaixo. Já a negação $\neg\phi$, por sua vez assume valor-verdade que depende do valor de $\phi$, fato descrito na segunda coluna da tabela.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg\phi$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;conjunção-land&quot;&gt;Conjunção ($\land$)&lt;/h3&gt;
-
-&lt;p&gt;A conjunção é um operador binário, em que dadas duas fórmulas $\phi$ e $\psi$, assume valor-verdade &lt;em&gt;verdadeiro&lt;/em&gt; apenas quando ambas conjuctos forem também verdadeiros.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi\land\psi$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;disjunção-lor&quot;&gt;Disjunção ($\lor$)&lt;/h3&gt;
-
-&lt;p&gt;A disjunção é um operador binário. Dadas duas fórmulas $\phi$ e $\psi$, sua disjunção assume valor-verdade &lt;em&gt;verdadeiro&lt;/em&gt; sempre que uma delas, ou ambas, forem verdadeiras.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi\lor\psi$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;condicional-to&quot;&gt;Condicional ($\to$)&lt;/h3&gt;
-
-&lt;p&gt;O condicional é um operador binário que representa proposições do tipo “Se.. então…”. Por exemplo&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;“Se Paula for, então Quincas irá.” $(\phi\to\psi)$&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Este argumento tem o mesmo significado a seguir&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;“Não é o caso de Paula ir e Quincas não ir.” $\neg(\phi \land \neg \psi)$&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Deste modo, dizemos que as fórmulas acima são equivalentes&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(\phi\to\psi)\dashv\vdash\neg(\phi\land\neg\psi)&lt;/script&gt;
-
-&lt;p&gt;Dada esta equivalência, a tabela-verdade de ambas fórmulas são iguais, assim como demonstrado nas duas últimas colunas da tabela abaixo.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi\to\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg(\phi\land\neg\psi)$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Como podemos ver pela tabela verdade, o condicional somente é falso quando seu antecedente é falso e seu consequente verdadeiro.&lt;/p&gt;
-
-&lt;h3 id=&quot;bicondicional-leftrightarrow&quot;&gt;Bicondicional ($\leftrightarrow$)&lt;/h3&gt;
-
-&lt;p&gt;O bicondicional é um operador binário derivado do condicional simples e pode ser escrito como $\phi\leftrightarrow\psi$, fórmula a qual é equivalente a $(\phi\to\psi)\land(\psi\to\phi)$. Portanto, temos que&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi\leftrightarrow\psi \dashv\vdash (\phi\to\psi)\land(\psi\to\phi)&lt;/script&gt;
-
-&lt;p&gt;Esse tipo de equivalência é útil para que possamos esclarecer dúvidas no preenchimento da tabela verdade, pois assim é possível comparar nossa interpretação em ambas fórmulas.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi\leftrightarrow\psi$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Pela tabela verdade acima, percebemos que o bicondicional $\phi\leftrightarrow\psi$ é verdadeiro sempre que ambas partes constituintes forem iguais (V,V) ou (F,F).&lt;/p&gt;
-
-&lt;h2 id=&quot;tabelas-verdade-de-fórmulas&quot;&gt;Tabelas verdade de fórmulas&lt;/h2&gt;
-
-&lt;p&gt;Para construirmos a tabela verdade de uma fórmula complexa, devemos inicialmente decompô-la em subfórmulas. Para exemplificar esse procedimento, utilizaremos a fórmula já vista anteriormente: $\neg(\phi\land\neg\psi)$.&lt;/p&gt;
-
-&lt;p&gt;Observe, inicialmente, que essa é uma fórmula da forma $\neg(\chi)$, sendo $\chi: \phi\land\neg\psi$. Isto significa que $\chi$ é uma subfórmula. Por sua vez, para sabermos os valores-verdade da subfórmula $\chi$, é preciso conhecermos primeiro os valores-verdade dos conjuctos $\phi$ e $\neg\psi$, os quais são subfórmulas de $\chi$.&lt;/p&gt;
-
-&lt;p&gt;Para organizarmos essa ideia em forma de tabela, procederemos das menores subfórmulas às maiores, da esquerda para a direita, sendo uma coluna para cada. Inserimos primeiro as duas menores subfórmulas, que de fato são os símbolos atômicos, neste caso $\phi$ e $\psi$&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi \land \neg\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg(\phi\land\neg\psi)$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;A próxima subfórmula a ser inserida seria então a negação $\neg\psi$.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi \land \neg\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg(\phi\land\neg\psi)$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Considerando os valores-verdade da primeira ($\phi$) e terceira ($\neg\psi$) colunas, podemos então deduzir a quarta coluna como sendo a sua conjunção.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi \land \neg\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg(\phi\land\neg\psi)$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Como a última (mais externa) subfórmula é apenas a negação da conjunção anterior, basta invertermos os valores-verdade da coluna ($\phi\land\neg\psi$).&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\phi \land \neg\psi$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg(\phi\land\neg\psi)$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;tamanho-da-tabela-verdade&quot;&gt;Tamanho da tabela verdade&lt;/h3&gt;
-
-&lt;p&gt;Observe que nos exemplos acima, grande parte das tabelas verdade possuem o mesmo número de linhas. Esse valor é completamente definido pelo número de simbolos atômicos utilizados pelas fórmulas. Visto que para cada símbolo dois valores-verdade são possíveis, o número de linhas da tabela-verdade será $2^n$, onde $n$ é o número de símbolos utilizados. Como exemplo, considere a fórmula&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\land q \to w\land s&lt;/script&gt;
-
-&lt;p&gt;A qual utiliza 4 símbolos: $p, q, w$ e $s$. Para cada um desses há 2 possibilidades, portanto, o número de linhas na tabela será.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{array}{cccccccc}
-p &amp; \land &amp; q &amp; \to   &amp; w &amp; \land &amp; s &amp;\\
-2 &amp;\times &amp; 2 &amp;\times &amp; 2 &amp;\times &amp; 2 &amp; = 2^4 = 16
-\end{array} %]]&gt;&lt;/script&gt;
-
-&lt;h3 id=&quot;exemplos-xor&quot;&gt;Exemplos ($XOR$)&lt;/h3&gt;
-
-&lt;p&gt;Construa a tabela verdade para a seguinte fórmulas&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\lor q) \land \neg(p \land q) \tag{XOR}&lt;/script&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p\lor q$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p\land q$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg(p\land q)$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$(p\lor q) \land \neg(p \land q)$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;exemplos-lte&quot;&gt;Exemplos (LTE)&lt;/h3&gt;
-
-&lt;p&gt;Construindo a tabela-verdade para a LTE, observamos um fato curioso. Todas as linhas da última coluna da tabela possuem valor-verdade &lt;em&gt;verdadeiro&lt;/em&gt;.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor \neg p&lt;/script&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg p$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p\lor \neg p$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Fórmulas desse tipo recebem o nome de &lt;em&gt;tautologias&lt;/em&gt; e são verdadeiras para qualquer atribuição de valores para os símbolos atômicos. Uma fórmula é uma tautologia se, e somente se, ela é um teorema, ou seja, provável sem suposições.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Toda &lt;em&gt;tautologia&lt;/em&gt; é &lt;strong&gt;satisfazível&lt;/strong&gt;, ou seja, existe ao menos uma atribuição de valores-verdade que torna a fórmula verdadeira.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;exemplos-contradição&quot;&gt;Exemplos (Contradição)&lt;/h3&gt;
-
-&lt;p&gt;Já a tabela-verdade para a contradição nos dá um resultado oposto ao das &lt;em&gt;tautologias&lt;/em&gt;. Neste caso, todas as linhas da última coluna da tabela-verdade possuem valor-verdade falso. Isso significa que não há atribuição de valores-verdade para as variáveis que torne a fórmula verdadeira.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Toda &lt;em&gt;contradição&lt;/em&gt; é &lt;strong&gt;insatisfatível&lt;/strong&gt;, ou seja, não existe atribuição de valores-verdade que torne a fórmula verdadeira.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land \neg p&lt;/script&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg p$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p\land \neg p$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&quot;tabelas-verdade-de-formas-de-argumento&quot;&gt;Tabelas verdade de formas de argumento&lt;/h2&gt;
-
-&lt;p&gt;Tabelas verdade também podem ser utilizadas para demonstrar se uma forma de argumento é &lt;strong&gt;válida&lt;/strong&gt; ou &lt;strong&gt;inválida&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Uma forma de argumento é &lt;strong&gt;válida&lt;/strong&gt; se não há atribuição de valores-verdade tal que as premissas sejam verdadeiras e a conclusão seja falsa.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Uma forma de argumento é &lt;strong&gt;inválida&lt;/strong&gt; se existe ao menos uma atribuição de valores-verdade que torne as premissas verdadeiras e a conclusão falsa.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Como as tabelas verdade listam exaustivamente todas as possíveis atribuições de valores-verdade, elas podem ser utilizadas para verificar a validade de qualquer forma de argumento.&lt;/p&gt;
-
-&lt;p&gt;Como exemplo, vamos construir a tabela verdade para a forma de argumento:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor q, \neg p \vdash q&lt;/script&gt;
-
-&lt;p&gt;A tabela verdade neste caso ignorará os símbolos: $, \vdash$. Tais símbolos são utilizados apenas para identificar possíveis colunas na tabela.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p\lor q$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\neg p$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;V&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;V&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;V&lt;/strong&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Observe que a única linha da tabela em que as premissas são ambas verdadeiras é a linha 3. Nessa situação a conclusão também é verdadeira, portanto a fórmula é &lt;strong&gt;válida&lt;/strong&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Como há dois casos em que a conclusão é verdadeira (linhas 1 e 3) então a fórmula é &lt;strong&gt;satisfazível&lt;/strong&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;exemplos-afirmação-do-consequente&quot;&gt;Exemplos (Afirmação do consequente)&lt;/h3&gt;
-
-&lt;p&gt;Construa a tabela verdade para a forma de argumento a seguir:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to q, q \vdash p&lt;/script&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p\to q$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;V&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;V&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;F&lt;/strong&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Como a terceira linha nos provê um &lt;strong&gt;contra-exemplo&lt;/strong&gt; do argumento, ou seja, uma atribuição de valores-verdade que torna as premissas verdadeiras e a conclusão falsa, então essa forma de argumento é &lt;strong&gt;inválida&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;exercícios&quot;&gt;Exercícios&lt;/h2&gt;
-
-&lt;p&gt;Construa as tabelas verdade e verifique se as formas de argumento a seguir são &lt;strong&gt;válidas&lt;/strong&gt; ou &lt;strong&gt;inválidas&lt;/strong&gt;:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to q, p\to \neg q \vdash \neg p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to q \vdash \neg(q\to p)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor q, q \lor r \vdash p \lor r&lt;/script&gt;
-
-&lt;h1 id=&quot;referências&quot;&gt;Referências&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://racionalistasusp.files.wordpress.com/2010/01/nolt-john-rohatyn-dennis-lc3b3gica.pdf&quot;&gt;Logica - John Nolt (PDF). Capítulo 4: Pgs. 160 a 184&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Thu, 31 Aug 2017 10:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/Semantica-da-logica-proposicional.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Semantica-da-logica-proposicional.html</guid>
+        <link>http://localhost:4000/lc21cp-172/Lista4-Tabelas-verdade.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Lista4-Tabelas-verdade.html</guid>
         
         <category>semântica</category>
         

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Lista IV - Equivalências e Tabelas verdade</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/lc21cp-172/Lista4-Tabelas-verdade.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Lista IV - Equivalências e Tabelas verdade</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Aug 31, 2017
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/lc21cp-172/Semantica-da-logica-proposicional.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/ae22cp-172/APS-resultados.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#equivalências" id="markdown-toc-equivalências">Equivalências</a></li>
+  <li><a href="#tabelas-verdade" id="markdown-toc-tabelas-verdade">Tabelas verdade</a></li>
+  <li><a href="#referências" id="markdown-toc-referências">Referências</a></li>
+</ul>
+
+<h1 id="equivalências">Equivalências</h1>
+<p>Demonstre as equivalências a seguir:</p>
+
+<script type="math/tex; mode=display">(p \to q) \dashv\vdash \neg(p \land \neg q)</script>
+
+<script type="math/tex; mode=display">\neg(p \land q) \dashv\vdash (\neg p \lor \neg q) \tag{Lei de De Morgan (DM)}</script>
+
+<script type="math/tex; mode=display">\neg(p \lor q) \dashv\vdash (\neg p \land \neg q) \tag{Lei de De Morgan (DM)}</script>
+
+<script type="math/tex; mode=display">(p\lor q) \dashv\vdash (q\lor p) \tag{Comutação (COM)}</script>
+
+<script type="math/tex; mode=display">(p \land q) \dashv\vdash (q\land p) \tag{Comutação (COM)}</script>
+
+<script type="math/tex; mode=display">(p \lor (q \lor r)) \dashv\vdash ((p\lor q)\lor r) \tag{Associação (ASSOC)}</script>
+
+<script type="math/tex; mode=display">(p \land (q \land r))\dashv\vdash((p\land q)\land r) \tag{Associação (ASSOC)}</script>
+
+<script type="math/tex; mode=display">(p \land (q \lor r )) \dashv\vdash ((p \land q) \lor (p \land r)) \tag{Distribuição (DIST)}</script>
+
+<h1 id="tabelas-verdade">Tabelas verdade</h1>
+
+<p>Verifique se as formas de argumento a seguir são <strong>válidas</strong> ou <strong>inválidas</strong>:</p>
+
+<script type="math/tex; mode=display">p\to q, p\to \neg q \vdash \neg p</script>
+
+<script type="math/tex; mode=display">p\to q \vdash \neg(q\to p)</script>
+
+<script type="math/tex; mode=display">p \lor q, q \lor r \vdash p \lor r</script>
+
+<script type="math/tex; mode=display">\neg p \vdash p \to \neg p</script>
+
+<script type="math/tex; mode=display">p \lor q \vdash p \land q</script>
+
+<script type="math/tex; mode=display">p \to \neg q \vdash \neg(p \land q)</script>
+
+<script type="math/tex; mode=display">p\vdash (p\to (q \land p))\to (p \land q)</script>
+
+<script type="math/tex; mode=display">p\lor q, \neg p, \neg q \vdash r</script>
+
+<script type="math/tex; mode=display">(q\land r) \to p, \neg q, \neg r \vdash \neg p</script>
+
+<script type="math/tex; mode=display">p \to (r \lor s), (r \land s)\to q \vdash p\to q</script>
+
+<p>Verifique se as fórmulas a seguir são <strong>satisfazíveis</strong> (tautologia?) ou <strong>insatisfatíveis</strong></p>
+
+<script type="math/tex; mode=display">p \lor (\neg(q\land(r\to q)))</script>
+
+<script type="math/tex; mode=display">(p\land q) \to (p \lor q)</script>
+
+<script type="math/tex; mode=display">( (p\to\neg q) \to \neg p) \to q</script>
+
+<script type="math/tex; mode=display">(p\to q) \lor (p\to \neg q)</script>
+
+<script type="math/tex; mode=display">p \to \neg p</script>
+
+<script type="math/tex; mode=display">\neg(p \to p)</script>
+
+<script type="math/tex; mode=display">(p\lor q )\to p</script>
+
+<script type="math/tex; mode=display">(p\land q) \to p</script>
+
+<script type="math/tex; mode=display">p \leftrightarrow \neg(p\lor q)</script>
+
+<script type="math/tex; mode=display">\neg((p\land q)\leftrightarrow(p\lor q))</script>
+
+<script type="math/tex; mode=display">(p\land q) \land \neg(p\lor r)</script>
+
+<script type="math/tex; mode=display">(p\to(q\land r))\to(p\to r)</script>
+
+<h1 id="referências">Referências</h1>
+
+<ul>
+  <li><a href="https://racionalistasusp.files.wordpress.com/2010/01/nolt-john-rohatyn-dennis-lc3b3gica.pdf">Logica - John Nolt (PDF). Capítulo 4: Pgs. 160 a 184</a></li>
+</ul>
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>
