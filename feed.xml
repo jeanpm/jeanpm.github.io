@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 18 Sep 2017 13:09:36 -0300</pubDate>
-    <lastBuildDate>Mon, 18 Sep 2017 13:09:36 -0300</lastBuildDate>
+    <pubDate>Tue, 19 Sep 2017 12:13:31 -0300</pubDate>
+    <lastBuildDate>Tue, 19 Sep 2017 12:13:31 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -92,11 +92,358 @@ gcc main.c stack.c list.c -o main-list
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
-        <pubDate>Mon, 18 Sep 2017 18:40:00 -0300</pubDate>
+        <pubDate>Mon, 25 Sep 2017 18:40:00 -0300</pubDate>
         <link>http://localhost:4000/ae22cp-172/Implementacao-de-um-container-abstrato.html</link>
         <guid isPermaLink="true">http://localhost:4000/ae22cp-172/Implementacao-de-um-container-abstrato.html</guid>
         
         <category>programação-estruturada</category>
+        
+        
+        <category>AE22CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>Exercícios (Listas)</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#exercícios&quot; id=&quot;markdown-toc-exercícios&quot;&gt;Exercícios&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#swap&quot; id=&quot;markdown-toc-swap&quot;&gt;swap&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#splice&quot; id=&quot;markdown-toc-splice&quot;&gt;splice&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#merge&quot; id=&quot;markdown-toc-merge&quot;&gt;merge&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#reverse&quot; id=&quot;markdown-toc-reverse&quot;&gt;reverse&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#removeif&quot; id=&quot;markdown-toc-removeif&quot;&gt;removeif&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#unique&quot; id=&quot;markdown-toc-unique&quot;&gt;unique&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#referências&quot; id=&quot;markdown-toc-referências&quot;&gt;Referências&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;exercícios&quot;&gt;Exercícios&lt;/h1&gt;
+
+&lt;h2 id=&quot;swap&quot;&gt;swap&lt;/h2&gt;
+
+&lt;p&gt;Dadas duas listas encadeadas &lt;code class=&quot;highlighter-rouge&quot;&gt;list* a&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;list* b&lt;/code&gt;. Implemente uma função que troque o conteúdo das listas.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Exemplo:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Suponhamos como exemplo as listas encadeadas&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a: 1 -&amp;gt;  2 -&amp;gt; 3 -&amp;gt; 4 -&amp;gt; NULL&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;b: 11-&amp;gt; 12 -&amp;gt;13 -&amp;gt;14 -&amp;gt; NULL&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Após a aplicação de &lt;code class=&quot;highlighter-rouge&quot;&gt;swap(a, b)&lt;/code&gt;, elas se tornariam:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a: 11-&amp;gt; 12 -&amp;gt;13 -&amp;gt;14 -&amp;gt; NULL&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;b: 1 -&amp;gt;  2 -&amp;gt; 3 -&amp;gt; 4 -&amp;gt; NULL&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;splice&quot;&gt;splice&lt;/h2&gt;
+
+&lt;p&gt;Dadas duas listas encadeadas &lt;code class=&quot;highlighter-rouge&quot;&gt;list* a&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;list* b&lt;/code&gt;. Implemente uma função que insira todos os elementos de &lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt; em uma dada posição &lt;code class=&quot;highlighter-rouge&quot;&gt;int pos&lt;/code&gt;. Os nós de &lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt; devem ser removidos neste processo, ou seja, ao final, &lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt; estará vazia.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;splice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Exemplo:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Suponhamos como exemplo as listas encadeadas&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a: 1 -&amp;gt;  2 -&amp;gt; 3 -&amp;gt; 4 -&amp;gt; NULL&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;b: 11-&amp;gt; 12 -&amp;gt;13 -&amp;gt;14 -&amp;gt; NULL&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Após a aplicação de &lt;code class=&quot;highlighter-rouge&quot;&gt;splice(a, b, 2)&lt;/code&gt;, elas se tornariam:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a: 1 -&amp;gt;  2 -&amp;gt; ( 11-&amp;gt; 12 -&amp;gt;13 -&amp;gt;14 ) -&amp;gt; 3 -&amp;gt; 4 -&amp;gt; NULL&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;b: NULL&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Os parenteses servem apenas para indicar a inclusão de &lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt; em &lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;merge&quot;&gt;merge&lt;/h2&gt;
+
+&lt;p&gt;Dadas duas listas encadeadas contendo números ordenados: &lt;code class=&quot;highlighter-rouge&quot;&gt;list* a&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;list* b&lt;/code&gt;. Implemente uma função que insira todos os elementos de &lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt; na lista &lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt; de modo que ao final, a lista &lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt; ainda esteja ordenada. Os nós de &lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt; devem ser removidos neste processo, ou seja, ao final, &lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt; estará vazia.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Exemplo:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Suponhamos como exemplo duas listas encadeadas ordenadas.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a: 1 -&amp;gt; 2 -&amp;gt; 12 -&amp;gt; 14 -&amp;gt; NULL&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;b: 3 -&amp;gt; 4 -&amp;gt; 11 -&amp;gt; 13 -&amp;gt; NULL&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Após a aplicação de &lt;code class=&quot;highlighter-rouge&quot;&gt;merge(a, b)&lt;/code&gt;, elas se tornariam:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a: 1 -&amp;gt;  2 -&amp;gt; 3 -&amp;gt; 4 -&amp;gt; 11-&amp;gt; 12 -&amp;gt;13 -&amp;gt;14 -&amp;gt; NULL&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;b: NULL&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;DICA: é possível obter a lista final ordenada percorrendo ambas as listas apenas uma vez!&lt;/p&gt;
+
+&lt;h2 id=&quot;reverse&quot;&gt;reverse&lt;/h2&gt;
+
+&lt;p&gt;Dada uma lista encadeada qualquer &lt;code class=&quot;highlighter-rouge&quot;&gt;list* a&lt;/code&gt;. Implemente uma função que retorne outra lista encadeada em que a ordem dos elementos de &lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt; esteja invertida.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reverse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Exemplo:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Suponhamos como exemplo a listas encadeadas a seguir.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a: 1 -&amp;gt; 2 -&amp;gt; 12 -&amp;gt; 14 -&amp;gt; NULL&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;A aplicação de &lt;code class=&quot;highlighter-rouge&quot;&gt;reverse(a)&lt;/code&gt; deve retornar uma lista:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;b: 14 -&amp;gt; 12 -&amp;gt; 2 -&amp;gt; 1 -&amp;gt; NULL&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;removeif&quot;&gt;removeif&lt;/h2&gt;
+
+&lt;p&gt;Assim como demais operadores da linguagem C, uma função também pode ser passada como referência. Isto é, também podemos utilizar ponteiros para funções. Por exemplo, considere uma função que verifique se um dado número é par.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;iseven&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Um ponteiro para uma função deste tipo, pode ser declarado da seguinte forma:&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;functionPtr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;functionPtr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iseven&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Após a atribuição, &lt;code class=&quot;highlighter-rouge&quot;&gt;functionPtr&lt;/code&gt; pode ser utilizado para verificar se um número é par.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;par&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;functionPtr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Agora suponhamos que tivéssemos outra função de mesmo tipo, a qual apenas verifica se um dado número é igual a outro predefinido (&lt;code class=&quot;highlighter-rouge&quot;&gt;989&lt;/code&gt; neste exemplo).&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;is989&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;989&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Observe que apesar de diferentes, essas funções tem a mesma estrutura, ambas recebem um valor e retornam um &lt;code class=&quot;highlighter-rouge&quot;&gt;bool&lt;/code&gt;. Assim, poderíamos atribui-las a &lt;code class=&quot;highlighter-rouge&quot;&gt;functionPtr&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;functionPtr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;is989&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Após a atribuição, &lt;code class=&quot;highlighter-rouge&quot;&gt;functionPtr&lt;/code&gt; pode ser utilizada para verificar se um número é igual a 989.&lt;/p&gt;
+
+&lt;p&gt;Para exemplificarmos um tipo de situação onde ponteiros para função se tornam úteis. Consideremos o caso da função &lt;code class=&quot;highlighter-rouge&quot;&gt;removeif&lt;/code&gt;, a qual recebe uma lista &lt;code class=&quot;highlighter-rouge&quot;&gt;list* a&lt;/code&gt; e um ponteiro para função.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;removeif&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Como &lt;code class=&quot;highlighter-rouge&quot;&gt;fptr&lt;/code&gt; pode apontar para diferentes funções (todas avaliam uma característica do valor recebido), &lt;code class=&quot;highlighter-rouge&quot;&gt;removeif&lt;/code&gt; se torna mais genérica, e poderia ser utilizada para remover todos números pares, passando-se a função de comparação como argumento:&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;removeif&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iseven&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Ou, de forma análoga, poderia ser utilizada para remover todos nós com valor &lt;code class=&quot;highlighter-rouge&quot;&gt;989&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;removeif&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;is989&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Dada essa descrição, implemente a função &lt;code class=&quot;highlighter-rouge&quot;&gt;removeif&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;unique&quot;&gt;unique&lt;/h2&gt;
+
+&lt;p&gt;Dada uma lista qualquer &lt;code class=&quot;highlighter-rouge&quot;&gt;list* a&lt;/code&gt;. Implemente uma função que remova nós com valores repetidos, deixando apenas um nó com cada valor.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unique&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Exemplo:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Considere como exemplo a lista a seguir:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a: 1 -&amp;gt; 2 -&amp;gt; 3 -&amp;gt; 2 -&amp;gt; 10 -&amp;gt; 1 -&amp;gt; 3 -&amp;gt; 12 -&amp;gt; 10 -&amp;gt; NULL&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Após a aplicação de &lt;code class=&quot;highlighter-rouge&quot;&gt;unique(a)&lt;/code&gt;, ela se tornaria&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a: 1 -&amp;gt; 2 -&amp;gt; 3 -&amp;gt; 10 -&amp;gt; 12 -&amp;gt; NULL&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;referências&quot;&gt;Referências&lt;/h1&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Linked_list&quot;&gt;wikipedia/linked_list&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://pt.wikipedia.org/wiki/Lista_ligada&quot;&gt;wikipedia/lista_ligada&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.san.uri.br/~ober/arquivos/disciplinas/estruturaII_SI/(ebook)Estruturas%20de%20Dados%20Usando%20C%20(Tenenbaum).pdf&quot;&gt;book/Tenenbaum/cap.4.2&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+        <pubDate>Tue, 19 Sep 2017 18:40:00 -0300</pubDate>
+        <link>http://localhost:4000/ae22cp-172/Exercicios-listas.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/Exercicios-listas.html</guid>
+        
+        <category>listas</category>
+        
+        
+        <category>AE22CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>Listas de encadeamento duplo</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#listas-de-encadeamento-duplo&quot; id=&quot;markdown-toc-listas-de-encadeamento-duplo&quot;&gt;Listas de encadeamento duplo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#detalhes-de-implementação&quot; id=&quot;markdown-toc-detalhes-de-implementação&quot;&gt;Detalhes de implementação&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#encadeamento-dos-nós&quot; id=&quot;markdown-toc-encadeamento-dos-nós&quot;&gt;Encadeamento dos nós&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#implementação-de-listas-de-encadeamento-duplo&quot; id=&quot;markdown-toc-implementação-de-listas-de-encadeamento-duplo&quot;&gt;Implementação de listas de encadeamento duplo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#referências&quot; id=&quot;markdown-toc-referências&quot;&gt;Referências&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;listas-de-encadeamento-duplo&quot;&gt;Listas de encadeamento duplo&lt;/h2&gt;
+
+&lt;p&gt;Uma lista de encadeamento duplo (&lt;em&gt;doubly-linked list&lt;/em&gt;) implementa a ideia de uma lista bidirecional. Isto significa que cada elemento  tem conhecimento sobre seu próximo e seu anterior na lista. Esta característica é ilustrada através de uma aresta bidirecionada ligando o elemento ao seu próximo.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a:(NULL, valor, b) &amp;lt;-&amp;gt; b:(a, valor, c) &amp;lt;-&amp;gt; c:(b, valor, NULL)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Assim como nas listas de encadeamento simples, o primeiro aspecto a ser notado é que um elemento de lista (um nó, &lt;em&gt;node&lt;/em&gt;), não é um tipo de dado simples. Isto é necessário visto que cada elemento precisa, além de armazenar um valor, armazenar um ponteiro para o próximo e um ponteiro para o anterior.&lt;/p&gt;
+
+&lt;p&gt;Na linguagem C, este tipo de estrutura é implementada por uma &lt;strong&gt;struct&lt;/strong&gt;. Utilizaremos a seguinte definição:&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#define Type int
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_node&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;             &lt;span class=&quot;c1&quot;&gt;// Valor armazenado
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// Endereço do próximo nó
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prev&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// Endereço do próximo nó
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Antes de implementarmos funções para a manipulação da &lt;em&gt;list&lt;/em&gt; é importante compreendermos na prática o que os conceitos até então descritos realmente significam. Com esse fim, algums exemplos serão demonstrados a seguir.&lt;/p&gt;
+
+&lt;h2 id=&quot;detalhes-de-implementação&quot;&gt;Detalhes de implementação&lt;/h2&gt;
+
+&lt;p&gt;Como tem sido convencionado até então, vamos definir uma função que implemente a alocação de memória para &lt;code class=&quot;highlighter-rouge&quot;&gt;node&lt;/code&gt; que serão utilizados como elementos da nossa lista de encadeamento duplo &lt;em&gt;list&lt;/em&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Aloca memória para um 'node' e define o endereço do próximo como NULL
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;valor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;valor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prev&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Observe que a única diferença deste &lt;code class=&quot;highlighter-rouge&quot;&gt;node&lt;/code&gt; para aquele utilizado em listas de encadeamento simples é o campo adicional &lt;code class=&quot;highlighter-rouge&quot;&gt;prev&lt;/code&gt;, que também precisa ser inicializado.&lt;/p&gt;
+
+&lt;p&gt;Consideremos agora a criação de uma lista de encadeamento simples feita manualmente. Para isso a única coisa que precisamos é criar vários &lt;code class=&quot;highlighter-rouge&quot;&gt;node&lt;/code&gt; e definir qual apontará para qual.&lt;/p&gt;
+
+&lt;h3 id=&quot;encadeamento-dos-nós&quot;&gt;Encadeamento dos nós&lt;/h3&gt;
+
+&lt;p&gt;O &lt;em&gt;encadeamento&lt;/em&gt; no contexto de listas duplamente encadeadas implica em dizer para cada nó, qual será o seu próximo e qual será seu anterior. Para clarificar, vamos criar o encadeamento ilustrado a seguir.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a:(NULL, 0, b) &amp;lt;-&amp;gt; b:(a, 1, c) &amp;lt;-&amp;gt; c:(b, 2, NULL)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Observe, que tanto &lt;em&gt;b&lt;/em&gt; quanto &lt;em&gt;c&lt;/em&gt; são ponteiros, portanto representam o endereço de memória no Heap de uma estrutura &lt;code class=&quot;highlighter-rouge&quot;&gt;node&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Criação dos nós
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (0, NULL)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (1, NULL)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (2, NULL)
+&lt;/span&gt;    
+    &lt;span class=&quot;c1&quot;&gt;// Encadeamento
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prev&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (NULL, 0, b)
+&lt;/span&gt;    
+    &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prev&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// b:(a, 1, NULL)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// b:(a, 1, c)
+&lt;/span&gt;    
+    &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prev&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// c:(b, 2, NULL)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Este exemplo criou manualmente uma lista encadeada simples de três elementos. Como o último elemento, o nó &lt;em&gt;c&lt;/em&gt;, não possui referência a próximo (&lt;code class=&quot;highlighter-rouge&quot;&gt;c-&amp;gt;next == NULL&lt;/code&gt;) isso nos indica que ele está no final da lista (&lt;em&gt;tail&lt;/em&gt;). Pela mesma ideia, o nó &lt;em&gt;a&lt;/em&gt; está no início da lista (&lt;em&gt;head&lt;/em&gt;) pois ele não possui antecessor (&lt;code class=&quot;highlighter-rouge&quot;&gt;a-&amp;gt;prev == NULL&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;Todas as formas de inserção e remoção funcionam da mesma forma em uma lista duplamente encadeada, a única diferença é que neste caso ponteiros para o nó anterior também precisam ser atualizados.&lt;/p&gt;
+
+&lt;h1 id=&quot;implementação-de-listas-de-encadeamento-duplo&quot;&gt;Implementação de listas de encadeamento duplo&lt;/h1&gt;
+
+&lt;p&gt;Nesta implementação de lista, armazenaremos informações adicionais na estrutura &lt;code class=&quot;highlighter-rouge&quot;&gt;list&lt;/code&gt;. Esses campos adicionais tem como objetivo melhorar a eficiência das operações de inserção no final da lista. Para isso consideraremos as seguintes informações.&lt;/p&gt;
+
+&lt;p&gt;Considerando a estrutura &lt;code class=&quot;highlighter-rouge&quot;&gt;list&lt;/code&gt; definida a seguir, implemente todas as funcionalidades que foram implementadas para &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// *** list.h *** 
+&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;#define Type int
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_node&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;             &lt;span class=&quot;c1&quot;&gt;// Valor armazenado
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// Endereço do próximo nó
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prev&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// Endereço do nó anterior
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// Número de elementos na lista
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Ponteiro para o primeiro elemento
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Ponteiro para o último elemento
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Aloca memória inicial para o vetor
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Desaloca a memória de v-&amp;gt;data e do próprio v.
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;free_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Funções de remoção de elementos
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_pop_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_erase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Funções de inserção de elementos
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_push_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;referências&quot;&gt;Referências&lt;/h1&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Linked_list&quot;&gt;wikipedia/linked_list&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://pt.wikipedia.org/wiki/Lista_ligada&quot;&gt;wikipedia/lista_ligada&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.san.uri.br/~ober/arquivos/disciplinas/estruturaII_SI/(ebook)Estruturas%20de%20Dados%20Usando%20C%20(Tenenbaum).pdf&quot;&gt;book/Tenenbaum/cap.4.2&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Tue, 19 Sep 2017 13:50:00 -0300</pubDate>
+        <link>http://localhost:4000/ae22cp-172/Listas-encadeamento-duplo.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/Listas-encadeamento-duplo.html</guid>
+        
+        <category>listas</category>
         
         
         <category>AE22CP-172</category>
@@ -118,6 +465,7 @@ gcc main.c stack.c list.c -o main-list
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#implementação-de-listas-de-encadeamento-simples&quot; id=&quot;markdown-toc-implementação-de-listas-de-encadeamento-simples&quot;&gt;Implementação de listas de encadeamento simples&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#referências&quot; id=&quot;markdown-toc-referências&quot;&gt;Referências&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&quot;listas-encadeadas&quot;&gt;Listas encadeadas&lt;/h1&gt;
@@ -133,7 +481,7 @@ endereço := x       x+1     x+2     ... x+n-1
 
 &lt;h2 id=&quot;listas-de-encadeamento-simples&quot;&gt;Listas de encadeamento simples&lt;/h2&gt;
 
-&lt;p&gt;Uma lista de encadeamento simples implementa a ideia de uma lista unidirecional. Isto significa que cada elemento somente tem conhecimento sobre o próximo elemento da lista, e não do anterior. Esta característica é ilustrada através de uma aresta direcionada (seta) ligando o elemento ao seu próximo.&lt;/p&gt;
+&lt;p&gt;Uma lista de encadeamento simples (&lt;em&gt;singly-linked list&lt;/em&gt;) implementa a ideia de uma lista unidirecional. Isto significa que cada elemento somente tem conhecimento sobre o próximo elemento da lista, e não do anterior. Esta característica é ilustrada através de uma aresta direcionada (seta) ligando o elemento ao seu próximo.&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a:(valor, b) -&amp;gt; b:(valor, c) -&amp;gt; c:(valor, prox) -&amp;gt; ...&lt;/code&gt;&lt;/p&gt;
 
@@ -142,9 +490,9 @@ endereço := x       x+1     x+2     ... x+n-1
 &lt;p&gt;Na linguagem C, este tipo de estrutura é implementada por uma &lt;strong&gt;struct&lt;/strong&gt;. Utilizaremos a seguinte definição:&lt;/p&gt;
 
 &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#define Type int
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_node_&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_node&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;             &lt;span class=&quot;c1&quot;&gt;// Valor armazenado
-&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_node_&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// Endereço do próximo nó
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// Endereço do próximo nó
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -307,7 +655,12 @@ endereço :=  x          ...  y          ...   z
 &lt;p&gt;Considerando a estrutura &lt;code class=&quot;highlighter-rouge&quot;&gt;list&lt;/code&gt; definida a seguir, implemente todas as funcionalidades que foram implementadas para &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// *** list.h *** 
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;#define Type int
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_node&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;             &lt;span class=&quot;c1&quot;&gt;// Valor armazenado
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// Endereço do próximo nó
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
@@ -331,6 +684,13 @@ endereço :=  x          ...  y          ...   z
 &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+
+&lt;h1 id=&quot;referências&quot;&gt;Referências&lt;/h1&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Linked_list&quot;&gt;wikipedia/linked_list&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://pt.wikipedia.org/wiki/Lista_ligada&quot;&gt;wikipedia/lista_ligada&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.san.uri.br/~ober/arquivos/disciplinas/estruturaII_SI/(ebook)Estruturas%20de%20Dados%20Usando%20C%20(Tenenbaum).pdf&quot;&gt;book/Tenenbaum/cap.4.2&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
 </description>
         <pubDate>Mon, 18 Sep 2017 13:50:00 -0300</pubDate>
         <link>http://localhost:4000/ae22cp-172/Listas-encadeamento-simples.html</link>
@@ -797,11 +1157,174 @@ endereço :=  x          ...  y          ...   z
 &lt;p&gt;&lt;a href=&quot;http://www.san.uri.br/~ober/arquivos/disciplinas/estruturaII_SI/(ebook)Estruturas%20de%20Dados%20Usando%20C%20(Tenenbaum).pdf&quot;&gt;&lt;img src=&quot;../assets/tenenbaum-book.jpg&quot; alt=&quot;livro&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 </description>
-        <pubDate>Thu, 07 Sep 2017 18:40:00 -0300</pubDate>
+        <pubDate>Mon, 11 Sep 2017 18:40:00 -0300</pubDate>
         <link>http://localhost:4000/ae22cp-172/Pilhas-Valida%C3%A7%C3%A3o-de-express%C3%B5es-parentizadas.html</link>
         <guid isPermaLink="true">http://localhost:4000/ae22cp-172/Pilhas-Valida%C3%A7%C3%A3o-de-express%C3%B5es-parentizadas.html</guid>
         
         <category>pilhas-filas</category>
+        
+        
+        <category>AE22CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>Pilhas - Representações prefixa e posfixa</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#introdução&quot; id=&quot;markdown-toc-introdução&quot;&gt;Introdução&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#input-format&quot; id=&quot;markdown-toc-input-format&quot;&gt;Input Format&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#motivação&quot; id=&quot;markdown-toc-motivação&quot;&gt;Motivação&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#notação-préfixa&quot; id=&quot;markdown-toc-notação-préfixa&quot;&gt;Notação préfixa&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#notação-pósfixa&quot; id=&quot;markdown-toc-notação-pósfixa&quot;&gt;Notação pósfixa&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#utilidade&quot; id=&quot;markdown-toc-utilidade&quot;&gt;Utilidade&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#conversão-infixapósfixa&quot; id=&quot;markdown-toc-conversão-infixapósfixa&quot;&gt;Conversão infixa/pósfixa&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#avaliação-de-expressão-pósfixa&quot; id=&quot;markdown-toc-avaliação-de-expressão-pósfixa&quot;&gt;Avaliação de expressão pósfixa&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;introdução&quot;&gt;Introdução&lt;/h1&gt;
+
+&lt;p&gt;Considere a soma de A mais B, numa expressão $A+B$. Neste exemplo, $+$ é um operador sendo aplicado aos operandos $A,B$. Este tipo de representação para a expressão de soma dos dois operandos é chamada &lt;strong&gt;infixa&lt;/strong&gt;, pois o operador se posiciona entre os operandos.&lt;/p&gt;
+
+&lt;p&gt;Considerando-se o posicionamento do operador, no entando, existem duas representações alternativas: &lt;strong&gt;prefixa&lt;/strong&gt; e &lt;strong&gt;posfixa&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;+AB (prefixa)&lt;/li&gt;
+  &lt;li&gt;AB+ (posfixa)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;input-format&quot;&gt;Input Format&lt;/h2&gt;
+&lt;p&gt;Uma string contendo operandos (dígitos 0-9) e operandos (+,-,/,^,*) na forma posfixa. O operador &lt;code class=&quot;highlighter-rouge&quot;&gt;exponenciação&lt;/code&gt; é indicado pelo caracter ‘^’, e pode ser implementado pela função:&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;math.h&amp;gt;
+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// Exponenciação, é representada por AB^ (posfixa) =&amp;gt; A^B (infixa) 
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;A string pode conter espaços, os quais devem ser ignorados. As seguintes funções podem ser utilizadas para verificar o tipo de um caracter char c.&lt;/p&gt;
+
+&lt;h2 id=&quot;motivação&quot;&gt;Motivação&lt;/h2&gt;
+&lt;p&gt;Como poderá ser notado, notações prefixa e posfixa removem a ambiguidade de uma expressão, desta forma, parenteses não são mais necessários.&lt;/p&gt;
+
+&lt;h2 id=&quot;notação-préfixa&quot;&gt;Notação préfixa&lt;/h2&gt;
+&lt;p&gt;Para compreendermos a utilidade das notações prefixa e posfixa, consideremos as demais operações definidas como funções:&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mult&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;	
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Dada uma expressão de exemplo, definida como:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(A + B/C) * D&lt;/script&gt;
+
+&lt;p&gt;Ela seria implementada em uma chamada da seguinte forma:&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mult&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;O que utilizando a notação prefixa em termos de &lt;script type=&quot;math/tex&quot;&gt;+,*,/&lt;/script&gt;, avalia-se a expressão acima, considerando-se as operações que serão efetuadas em primeiro lugar, ou seja, neste caso:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;divisão &lt;script type=&quot;math/tex&quot;&gt;\rightarrow /BC&lt;/script&gt;,&lt;/li&gt;
+  &lt;li&gt;adição &lt;script type=&quot;math/tex&quot;&gt;\rightarrow +A/BC&lt;/script&gt;,&lt;/li&gt;
+  &lt;li&gt;multiplicação &lt;script type=&quot;math/tex&quot;&gt;\rightarrow *+A/BCD&lt;/script&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;*+A/BCD&lt;/script&gt;
+
+&lt;p&gt;Para comprovarmos se essa expressão se equivale à forma infixa, performe as operações assim que dois operandos estiverem disponíveis, iniciando a avaliação da esquerda para a direita.&lt;/p&gt;
+
+&lt;p&gt;Ao compararmos as duas representações para a expressão, o que é visivelmente notável?&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(A + B/C) * D&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;*+A/BCD&lt;/script&gt;
+
+&lt;p&gt;&lt;strong&gt;Parenteses se tornam desnecessários!&lt;/strong&gt; Como consequência, avaliar o resultado de uma expressão se torna muito mais simples. De fato pode ser implementado lendo-se a expressão apenas uma vez.&lt;/p&gt;
+
+&lt;h2 id=&quot;notação-pósfixa&quot;&gt;Notação pósfixa&lt;/h2&gt;
+
+&lt;p&gt;Tanto na notação préfixa quanto na pósfixa, é importante lembrar que os operadores com precedência devem ser avaliados/convertidos primeiro, a não ser que uma possível parentização altere a ordem de precedência.&lt;/p&gt;
+
+&lt;p&gt;No exemplo anterior &lt;script type=&quot;math/tex&quot;&gt;(A+B/C) * D&lt;/script&gt;, a multiplicação é efetuado somente ao final, devido à parentização. A ausência de parênteses, nesse exemplo, nos permitiria outras interpretações:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;A + ((B/C) * D)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;A + (B / (C*D))&lt;/script&gt;
+
+&lt;p&gt;A forma pósfixa é a contrapartida da prefixa, em que os operadores são posicionados após os operandos. Retornando ao exemplo original &lt;script type=&quot;math/tex&quot;&gt;(A+B/C)*D&lt;/script&gt;, temos que a divisão &lt;script type=&quot;math/tex&quot;&gt;B/C&lt;/script&gt; deve ser convertida em primeiro lugar:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(A + BC/) * D&lt;/script&gt;
+
+&lt;p&gt;Em seguida a adição entre parênteses&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(ABC/+) * D&lt;/script&gt;
+
+&lt;p&gt;Por fim, a multiplicação&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;ABC/+D*&lt;/script&gt;
+
+&lt;h2 id=&quot;utilidade&quot;&gt;Utilidade&lt;/h2&gt;
+
+&lt;p&gt;Dada a expressão em forma infixa, elabore um algoritmo que dê o resultado da expressão em apenas uma leitura da string:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(A + B/C) * D&lt;/script&gt;
+
+&lt;p&gt;Dada a expressão em forma pósfixa, elabore um  algoritmo que dê o resultado da expressão em apenas uma leitura da string:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;ABC/+D*&lt;/script&gt;
+
+&lt;h2 id=&quot;conversão-infixapósfixa&quot;&gt;Conversão infixa/pósfixa&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Forma infixa&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;Forma pósfixa&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;A+ B&lt;/td&gt;
+      &lt;td&gt;AB+&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;A+B-C&lt;/td&gt;
+      &lt;td&gt;AB+C-&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;(A+B) * C&lt;/td&gt;
+      &lt;td&gt;AB+C*&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;A+(B*C)&lt;/td&gt;
+      &lt;td&gt;ABC*+&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;(A+B)*(C-D)&lt;/td&gt;
+      &lt;td&gt;AB+CD-*&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;((A+B)*C - (D-E))^(F+G)&lt;/td&gt;
+      &lt;td&gt;AB+C*DE- -FG+^&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&quot;avaliação-de-expressão-pósfixa&quot;&gt;Avaliação de expressão pósfixa&lt;/h1&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;623+-382/+*2\hat{ }  3+&lt;/script&gt;
+
+</description>
+        <pubDate>Mon, 11 Sep 2017 13:50:00 -0300</pubDate>
+        <link>http://localhost:4000/ae22cp-172/Pilhas-representa%C3%A7%C3%A3o-de-expressoes.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/Pilhas-representa%C3%A7%C3%A3o-de-expressoes.html</guid>
+        
+        <category>pilhas</category>
         
         
         <category>AE22CP-172</category>
@@ -1151,930 +1674,6 @@ Sequência de pessoas ou coisas alinhadas uma atrás da outra, organizada geralm
         
         
         <category>AE22CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>APS1 - Utilizando C++/STL vector</title>
-        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#cvector&quot; id=&quot;markdown-toc-cvector&quot;&gt;C++/vector&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#inicialização-e-finalização&quot; id=&quot;markdown-toc-inicialização-e-finalização&quot;&gt;Inicialização e Finalização&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#acesso-e-manipulação&quot; id=&quot;markdown-toc-acesso-e-manipulação&quot;&gt;Acesso e manipulação&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#inserção&quot; id=&quot;markdown-toc-inserção&quot;&gt;Inserção&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#remoção&quot; id=&quot;markdown-toc-remoção&quot;&gt;Remoção&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#exercício&quot; id=&quot;markdown-toc-exercício&quot;&gt;Exercício&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;cvector&quot;&gt;C++/vector&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;../assets/cpp.jpg&quot; alt=&quot;c++&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;A estrutura de vetores dinâmicos é de grande utilidade pois abstrai do programador a necessidade de gerenciar o crescimento da região de memória necessária.&lt;/p&gt;
-
-&lt;p&gt;Um ponto negativo quanto a utilização de &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; é a maior complexidade das estruturas que precisam ser mantidas. Ou seja, um vetor simples (&lt;code class=&quot;highlighter-rouge&quot;&gt;int* v&lt;/code&gt;) de capacidade $n$ ocupará menos espaço na memória que um &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; de mesma capacidade.&lt;/p&gt;
-
-&lt;p&gt;Atualmente, no entanto, devido à grande disponibilidade de memória, essa diferença nem sempre é suficiente para que se opte pela utilização da estrutura simples. Por outro lado, os benefícios de se utilizar &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; nem sempre são necessários, e nesses casos um &lt;code class=&quot;highlighter-rouge&quot;&gt;int*&lt;/code&gt; seria preferível.&lt;/p&gt;
-
-&lt;p&gt;Aqui descreveremos brevemente como a &lt;strong&gt;APS1 - Implementando vector&lt;/strong&gt; poderia ser implementada utilizando a classe &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; de C++/STL.&lt;/p&gt;
-
-&lt;h2 id=&quot;inicialização-e-finalização&quot;&gt;Inicialização e Finalização&lt;/h2&gt;
-
-&lt;p&gt;Para testar os códigos a seguir é necessário utilizarmos o compilador de C++ (g++).&lt;/p&gt;
-
-&lt;p&gt;Para utilizarmos as funcionalidades de &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; é necessário incluirmos o arquivo de cabeçalho&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;vector&amp;gt;
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Para definirmos uma estrutura do tipo &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; capaz de armazenar inteiros, declaramos uma variável da seguinte forma:&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// um vetor dinâmico de inteiros
-&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;A memória internamente alocada por &lt;code class=&quot;highlighter-rouge&quot;&gt;v&lt;/code&gt; será desalocada automaticamente ao fim da função main, portanto, não precisamos explicitamente chamar liberar a memória.&lt;/p&gt;
-
-&lt;h2 id=&quot;acesso-e-manipulação&quot;&gt;Acesso e manipulação&lt;/h2&gt;
-
-&lt;h3 id=&quot;inserção&quot;&gt;Inserção&lt;/h3&gt;
-&lt;p&gt;A função a seguir, insere um item no final do vetor&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//vector_push_back(v, value);
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;cm&quot;&gt;/* Exemplo:
- v = 4 5 7 19 2 1
- push_back 5
- v = 4 5 7 19 2 1 5
- */&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Suponha agora que queiramos inserir um elemento no vetor em uma dada posição que não seja o fim. Chamaremos essa função:&lt;/p&gt;
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//vector_insert(v, value, i);
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;cm&quot;&gt;/* Exemplo:
- v = 4 5 7 19 2 1
- vector_insert 5 3
- v = 4 5 7 5 19 2 1
- */&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;A qual recebe um ponteiro para a posição na qual queremos inserir &lt;code class=&quot;highlighter-rouge&quot;&gt;value&lt;/code&gt;. Neste caso &lt;code class=&quot;highlighter-rouge&quot;&gt;v.begin()&lt;/code&gt; nos dá um ponteiro para o primeiro elemento de &lt;code class=&quot;highlighter-rouge&quot;&gt;v&lt;/code&gt;, portanto &lt;code class=&quot;highlighter-rouge&quot;&gt;v.begin() + i&lt;/code&gt; refere a $i$-ésima posição.&lt;/p&gt;
-
-&lt;p&gt;Diferentemente de nossa implementação de &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;, a versão de C++ não possui uma função &lt;code class=&quot;highlighter-rouge&quot;&gt;push_front&lt;/code&gt;. No entanto é óbvio que podemos utilizar a função inser para essa funcionalidade.&lt;/p&gt;
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//vector_insert(v, value, 0);
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;remoção&quot;&gt;Remoção&lt;/h3&gt;
-
-&lt;p&gt;De forma análoga às funções de inserção, temos as funções para remoção de elementos do vetor.&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//vector_pop_back(vector* v);
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//vector_erase(v, int i);
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;erase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//vector_pop_front(vector* v);
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;erase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;exercício&quot;&gt;Exercício&lt;/h1&gt;
-&lt;p&gt;Utilize &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; para solucionar a APS1 no hackerrank.&lt;/p&gt;
-</description>
-        <pubDate>Mon, 04 Sep 2017 18:40:00 -0300</pubDate>
-        <link>http://localhost:4000/ae22cp-172/APS-vector-stl.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/APS-vector-stl.html</guid>
-        
-        <category>aps1-vector</category>
-        
-        
-        <category>AE22CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>APS1 - Implementando vector (Resultados)</title>
-        <description>&lt;p&gt;&lt;strong&gt;Resultados por RA&lt;/strong&gt; (&lt;a href=&quot;../AE22CP-172/APS1-jplag&quot;&gt;Comparação-plágio&lt;/a&gt;, &lt;a href=&quot;../assets/AE22CP-172/UTFPR-A22CP-172-Notas-A.pdf&quot;&gt;NotasA&lt;/a&gt;, &lt;a href=&quot;../assets/AE22CP-172/UTFPR-A22CP-172-Notas-B.pdf&quot;&gt;NotasB&lt;/a&gt;)&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#1368206&quot; id=&quot;markdown-toc-1368206&quot;&gt;1368206&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#1435558&quot; id=&quot;markdown-toc-1435558&quot;&gt;1435558&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#1436236&quot; id=&quot;markdown-toc-1436236&quot;&gt;1436236&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#1436287&quot; id=&quot;markdown-toc-1436287&quot;&gt;1436287&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#1454536&quot; id=&quot;markdown-toc-1454536&quot;&gt;1454536&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#1454536-v2&quot; id=&quot;markdown-toc-1454536-v2&quot;&gt;1454536-v2&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#1544292&quot; id=&quot;markdown-toc-1544292&quot;&gt;1544292&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#1636847&quot; id=&quot;markdown-toc-1636847&quot;&gt;1636847&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#1649868&quot; id=&quot;markdown-toc-1649868&quot;&gt;1649868&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#1809733&quot; id=&quot;markdown-toc-1809733&quot;&gt;1809733&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#1809857&quot; id=&quot;markdown-toc-1809857&quot;&gt;1809857&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#1811754&quot; id=&quot;markdown-toc-1811754&quot;&gt;1811754&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#1826697&quot; id=&quot;markdown-toc-1826697&quot;&gt;1826697&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#1881906&quot; id=&quot;markdown-toc-1881906&quot;&gt;1881906&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#1890867&quot; id=&quot;markdown-toc-1890867&quot;&gt;1890867&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#1917323&quot; id=&quot;markdown-toc-1917323&quot;&gt;1917323&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#1917358&quot; id=&quot;markdown-toc-1917358&quot;&gt;1917358&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#1917366&quot; id=&quot;markdown-toc-1917366&quot;&gt;1917366&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#1917374&quot; id=&quot;markdown-toc-1917374&quot;&gt;1917374&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#1917420&quot; id=&quot;markdown-toc-1917420&quot;&gt;1917420&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#1917439&quot; id=&quot;markdown-toc-1917439&quot;&gt;1917439&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#1917455&quot; id=&quot;markdown-toc-1917455&quot;&gt;1917455&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#1917463&quot; id=&quot;markdown-toc-1917463&quot;&gt;1917463&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#1917471&quot; id=&quot;markdown-toc-1917471&quot;&gt;1917471&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#1920359&quot; id=&quot;markdown-toc-1920359&quot;&gt;1920359&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#1946145&quot; id=&quot;markdown-toc-1946145&quot;&gt;1946145&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#23931913&quot; id=&quot;markdown-toc-23931913&quot;&gt;23931913&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;1368206&quot;&gt;1368206&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .712
-input01.txt            653             10              0           .615
-input02.txt            224             10              0           .502
-input03.txt             84             10              0           .434
-input04.txt            850             10              0           .745
-input05.txt             34             10              0           .430
-input06.txt            427             10              0           .498
-input07.txt            751             10              0           .696
-input08.txt            599             10              0           .590
-input09.txt            402             10              0           .505
-input10.txt              9             10              0           .429
-input11.txt             10             10              0           .423
-input12.txt              2             10              0           .408
-input13.txt             10             10              0           .424
-input14.txt              2             10              0           .408
-input15.txt              9             10              0           .427
-input16.txt             11             10              0           .426
-input17.txt              7             10              0           .425
-input18.txt              3             10              0           .423
-input19.txt              7             10              0           .423
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;1435558&quot;&gt;1435558&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10          1,040           .689
-input01.txt            653             10          1,040           .622
-input02.txt            224             10            592           .464
-input03.txt             84             10            240           .435
-input04.txt            850             10          1,552           .739
-input05.txt             34             10             80           .437
-input06.txt            427             10            784           .503
-input07.txt            751             10          1,168           .700
-input08.txt            599             10          1,040           .592
-input09.txt            402             10            528           .509
-input10.txt              9             10             36           .427
-input11.txt             10             10             40           .430
-input12.txt              2             10             20           .411
-input13.txt             10             10             52           .441
-input14.txt              2             10             32           .435
-input15.txt              9             10             36           .428
-input16.txt             11             10             32           .449
-input17.txt              7             10             52           .434
-input18.txt              3              0             16          3.478
-input19.txt              7             10             40           .581
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;1436236&quot;&gt;1436236&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .671
-input01.txt            653             10              0           .695
-input02.txt            224             10              0           .477
-input03.txt             84             10              0           .460
-input04.txt            850             10              0           .754
-input05.txt             34             10              0           .450
-input06.txt            427             10              0           .509
-input07.txt            751             10              0           .722
-input08.txt            599             10              0           .616
-input09.txt            402             10              0           .518
-input10.txt              9             10              0           .472
-input11.txt             10             10              0           .458
-input12.txt              2             10              0           .423
-input13.txt             10             10              0           .433
-input14.txt              2             10              0           .425
-input15.txt              9             10              0           .437
-input16.txt             11             10              0           .459
-input17.txt              7             10              0           .460
-input18.txt              3             10              0           .454
-input19.txt              7             10              0           .427
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;1436287&quot;&gt;1436287&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10          1,040           .687
-input01.txt            653             10          1,040           .614
-input02.txt            224             10            592           .493
-input03.txt             84             10            240           .459
-input04.txt            850             10          1,552           .771
-input05.txt             34             10             80           .434
-input06.txt            427             10            784           .513
-input07.txt            751             10          1,168           .731
-input08.txt            599             10          1,040           .617
-input09.txt            402             10            528           .519
-input10.txt              9             10             36           .434
-input11.txt             10             10             40           .441
-input12.txt              2             10             20           .408
-input13.txt             10             10             52           .441
-input14.txt              2             10             32           .482
-input15.txt              9             10             36           .502
-input16.txt             11             10             32           .456
-input17.txt              7             10             52           .433
-input18.txt              3             10             32           .423
-input19.txt              7             10             40           .437
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;1454536&quot;&gt;1454536&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .670
-input01.txt            653             10              0           .626
-input02.txt            224             10              0           .476
-input03.txt             84             10              0           .441
-input04.txt            850             10              0           .756
-input05.txt             34             10              0           .438
-input06.txt            427             10              0           .532
-input07.txt            751             10              0           .730
-input08.txt            599             10              0           .616
-input09.txt            402             10              0           .510
-input10.txt              9             10              0           .437
-input11.txt             10             10              0           .422
-input12.txt              2             10              0           .453
-input13.txt             10             10              0           .437
-input14.txt              2             10              0           .431
-input15.txt              9             10              0           .456
-input16.txt             11             10              0           .428
-input17.txt              7             10              0           .423
-input18.txt              3             10              0           .419
-input19.txt              7             10              0           .468
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;1454536-v2&quot;&gt;1454536-v2&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10          1,040           .677
-input01.txt            653             10          1,040           .629
-input02.txt            224             10            592           .478
-input03.txt             84             10            240           .466
-input04.txt            850             10          1,552           .764
-input05.txt             34             10             80           .439
-input06.txt            427             10            784           .511
-input07.txt            751             10          1,168           .720
-input08.txt            599             10          1,040           .617
-input09.txt            402             10            528           .514
-input10.txt              9             10             36           .434
-input11.txt             10             10             40           .434
-input12.txt              2             10             20           .427
-input13.txt             10             10             52           .436
-input14.txt              2             10             32           .425
-input15.txt              9             10             36           .427
-input16.txt             11             10             32           .427
-input17.txt              7             10             52           .430
-input18.txt              3             10             32           .422
-input19.txt              7             10             40           .425
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;1544292&quot;&gt;1544292&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .663
-input01.txt            653             10              0           .624
-input02.txt            224             10              0           .513
-input03.txt             84             10              0           .437
-input04.txt            850             10              0           .755
-input05.txt             34             10              0           .440
-input06.txt            427             10              0           .553
-input07.txt            751             10              0           .723
-input08.txt            599             10              0           .596
-input09.txt            402             10              0           .523
-input10.txt              9             10              0           .425
-input11.txt             10             10              0           .452
-input12.txt              2             10              0           .442
-input13.txt             10             10              0           .463
-input14.txt              2             10              0           .435
-input15.txt              9             10              0           .429
-input16.txt             11             10              0           .442
-input17.txt              7             10              0           .464
-input18.txt              3             10              0           .433
-input19.txt              7             10              0           .430
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;1636847&quot;&gt;1636847&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10          1,040           .698
-input01.txt            653             10          1,040           .662
-input02.txt            224             10            592           .476
-input03.txt             84             10            240           .471
-input04.txt            850             10          1,552           .834
-input05.txt             34             10             80           .489
-input06.txt            427             10            784           .545
-input07.txt            751             10          1,168           .809
-input08.txt            599             10          1,040           .763
-input09.txt            402             10            528           .587
-input10.txt              9             10             36           .677
-input11.txt             10             10             40           .641
-input12.txt              2             10             20           .460
-input13.txt             10             10             52           .487
-input14.txt              2             10             32           .419
-input15.txt              9             10             36           .446
-input16.txt             11             10             32           .525
-input17.txt              7             10             52           .577
-input18.txt              3             10             32           .442
-input19.txt              7             10             40           .464
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;1649868&quot;&gt;1649868&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .716
-input01.txt            653             10              0           .690
-input02.txt            224             10              0           .492
-input03.txt             84             10              0           .644
-input04.txt            850             10              0           .992
-input05.txt             34             10              0           .464
-input06.txt            427             10              0           .537
-input07.txt            751             10              0           .741
-input08.txt            599             10              0           .655
-input09.txt            402             10              0           .567
-input10.txt              9             10              0           .521
-input11.txt             10             10              0           .451
-input12.txt              2             10              0           .493
-input13.txt             10             10              0           .465
-input14.txt              2             10              0           .430
-input15.txt              9             10              0           .436
-input16.txt             11             10              0           .449
-input17.txt              7             10              0           .426
-input18.txt              3             10              0           .428
-input19.txt              7             10              0           .437
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;1809733&quot;&gt;1809733&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .693
-input01.txt            653             10              0           .638
-input02.txt            224             10              0           .496
-input03.txt             84             10              0           .463
-input04.txt            850             10              0           .787
-input05.txt             34             10              0           .441
-input06.txt            427             10              0           .536
-input07.txt            751             10              0           .759
-input08.txt            599             10              0           .679
-input09.txt            402             10              0           .557
-input10.txt              9             10              0           .461
-input11.txt             10             10              0           .454
-input12.txt              2             10              0           .505
-input13.txt             10             10              0           .498
-input14.txt              2             10              0           .442
-input15.txt              9             10              0           .458
-input16.txt             11             10              0           .584
-input17.txt              7             10              0           .489
-input18.txt              3             10              0           .473
-input19.txt              7             10              0           .442
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;1809857&quot;&gt;1809857&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .776
-input01.txt            653             10              0           .817
-input02.txt            224             10              0           .549
-input03.txt             84             10              0           .504
-input04.txt            850             10              0           .851
-input05.txt             34             10              0           .573
-input06.txt            427             10              0           .538
-input07.txt            751             10              0           .755
-input08.txt            599             10              0           .645
-input09.txt            402             10              0           .562
-input10.txt              9             10              0           .440
-input11.txt             10             10              0           .435
-input12.txt              2             10              0           .407
-input13.txt             10             10              0           .443
-input14.txt              2             10              0           .422
-input15.txt              9             10              0           .438
-input16.txt             11             10              0           .434
-input17.txt              7             10              0           .448
-input18.txt              3             10              0           .472
-input19.txt              7             10              0           .432
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;1811754&quot;&gt;1811754&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .673
-input01.txt            653             10              0           .630
-input02.txt            224             10              0           .483
-input03.txt             84             10              0           .447
-input04.txt            850             10              0           .754
-input05.txt             34             10              0           .437
-input06.txt            427             10              0           .512
-input07.txt            751             10              0           .702
-input08.txt            599             10              0           .610
-input09.txt            402             10              0           .517
-input10.txt              9             10              0           .431
-input11.txt             10             10              0           .427
-input12.txt              2             10              0           .426
-input13.txt             10             10              0           .439
-input14.txt              2             10              0           .437
-input15.txt              9             10              0           .441
-input16.txt             11             10              0           .446
-input17.txt              7             10              0           .438
-input18.txt              3             10              0           .450
-input19.txt              7             10              0           .437
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;1826697&quot;&gt;1826697&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .665
-input01.txt            653             10              0           .664
-input02.txt            224             10              0           .476
-input03.txt             84             10              0           .439
-input04.txt            850             10              0           .797
-input05.txt             34             10              0           .435
-input06.txt            427             10              0           .503
-input07.txt            751             10              0           .715
-input08.txt            599             10              0           .611
-input09.txt            402             10              0           .520
-input10.txt              9             10              0           .421
-input11.txt             10             10              0           .439
-input12.txt              2             10              0           .437
-input13.txt             10             10              0           .435
-input14.txt              2             10              0           .437
-input15.txt              9             10              0           .435
-input16.txt             11             10              0           .440
-input17.txt              7             10              0           .435
-input18.txt              3             10              0           .437
-input19.txt              7             10              0           .493
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;1881906&quot;&gt;1881906&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .733
-input01.txt            653             10              0           .660
-input02.txt            224             10              0           .469
-input03.txt             84             10              0           .468
-input04.txt            850             10              0           .814
-input05.txt             34             10              0           .455
-input06.txt            427             10              0           .521
-input07.txt            751             10              0           .781
-input08.txt            599             10              0           .615
-input09.txt            402             10              0           .521
-input10.txt              9             10              0           .436
-input11.txt             10             10              0           .436
-input12.txt              2             10              0           .416
-input13.txt             10             10              0           .432
-input14.txt              2             10              0           .414
-input15.txt              9             10              0           .439
-input16.txt             11             10              0           .436
-input17.txt              7             10              0           .435
-input18.txt              3             10              0           .420
-input19.txt              7             10              0           .433
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;1890867&quot;&gt;1890867&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .690
-input01.txt            653             10              0           .650
-input02.txt            224             10              0           .481
-input03.txt             84             10              0           .464
-input04.txt            850             10              0           .823
-input05.txt             34             10              0           .437
-input06.txt            427             10              0           .547
-input07.txt            751             10              0           .727
-input08.txt            599             10              0           .600
-input09.txt            402             10              0           .524
-input10.txt              9             10              0           .438
-input11.txt             10             10              0           .456
-input12.txt              2             10              0           .420
-input13.txt             10             10              0           .431
-input14.txt              2             10              0           .417
-input15.txt              9             10              0           .444
-input16.txt             11             10              0           .451
-input17.txt              7             10              0           .424
-input18.txt              3             10              0           .435
-input19.txt              7             10              0           .445
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;1917323&quot;&gt;1917323&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10          1,040           .691
-input01.txt            653             10          1,040           .641
-input02.txt            224             10            592           .483
-input03.txt             84             10            240           .455
-input04.txt            850             10          1,552           .795
-input05.txt             34             10             80           .447
-input06.txt            427             10            784           .515
-input07.txt            751             10          1,168           .722
-input08.txt            599             10          1,040           .642
-input09.txt            402             10            528           .520
-input10.txt              9             10             36           .466
-input11.txt             10             10             40           .436
-input12.txt              2             10             20           .410
-input13.txt             10             10             52           .446
-input14.txt              2             10             32           .419
-input15.txt              9             10             36           .441
-input16.txt             11             10             32           .433
-input17.txt              7             10             52           .426
-input18.txt              3             10             32           .433
-input19.txt              7             10             40           .436
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;1917358&quot;&gt;1917358&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10          1,040           .746
-input01.txt            653             10          1,040           .713
-input02.txt            224             10            592           .500
-input03.txt             84             10            240           .454
-input04.txt            850             10          1,552           .877
-input05.txt             34             10             80           .450
-input06.txt            427             10            784           .543
-input07.txt            751             10          1,168           .785
-input08.txt            599             10          1,040           .648
-input09.txt            402             10            528           .568
-input10.txt              9             10             36           .439
-input11.txt             10             10             40           .453
-input12.txt              2             10             20           .483
-input13.txt             10             10             52           .448
-input14.txt              2             10             32           .408
-input15.txt              9             10             36           .439
-input16.txt             11             10             32           .450
-input17.txt              7             10             52           .441
-input18.txt              3             10             32           .477
-input19.txt              7             10             40           .430
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;1917366&quot;&gt;1917366&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10          1,040           .698
-input01.txt            653             10          1,040           .649
-input02.txt            224             10            592           .468
-input03.txt             84             10            240           .460
-input04.txt            850             10          1,552           .766
-input05.txt             34             10             80           .442
-input06.txt            427             10            784           .497
-input07.txt            751             10          1,168           .720
-input08.txt            599             10          1,040           .613
-input09.txt            402             10            528           .507
-input10.txt              9             10             36           .439
-input11.txt             10             10             40           .465
-input12.txt              2             10             20           .430
-input13.txt             10             10             52           .432
-input14.txt              2             10             32           .414
-input15.txt              9             10             36           .472
-input16.txt             11             10             32           .435
-input17.txt              7             10             52           .445
-input18.txt              3             10             32           .418
-input19.txt              7             10             40           .440
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;1917374&quot;&gt;1917374&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .740
-input01.txt            653             10              0           .662
-input02.txt            224             10              0           .508
-input03.txt             84             10              0           .453
-input04.txt            850             10              0           .827
-input05.txt             34             10              0           .444
-input06.txt            427             10              0           .528
-input07.txt            751             10              0           .765
-input08.txt            599             10              0           .623
-input09.txt            402             10              0           .562
-input10.txt              9             10              0           .454
-input11.txt             10             10              0           .440
-input12.txt              2             10              0           .402
-input13.txt             10             10              0           .456
-input14.txt              2             10              0           .426
-input15.txt              9             10              0           .443
-input16.txt             11             10              0           .434
-input17.txt              7             10              0           .434
-input18.txt              3             10              0           .437
-input19.txt              7             10              0           .437
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;1917420&quot;&gt;1917420&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .678
-input01.txt            653             10              0           .686
-input02.txt            224             10              0           .491
-input03.txt             84             10              0           .476
-input04.txt            850             10              0           .760
-input05.txt             34             10              0           .444
-input06.txt            427             10              0           .514
-input07.txt            751             10              0           .709
-input08.txt            599             10              0           .643
-input09.txt            402             10              0           .551
-input10.txt              9             10              0           .439
-input11.txt             10             10              0           .430
-input12.txt              2             10              0           .433
-input13.txt             10             10              0           .447
-input14.txt              2             10              0           .429
-input15.txt              9             10              0           .443
-input16.txt             11             10              0           .452
-input17.txt              7             10              0           .440
-input18.txt              3             10              0           .453
-input19.txt              7             10              0           .461
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;1917439&quot;&gt;1917439&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .686
-input01.txt            653             10              0           .637
-input02.txt            224             10              0           .526
-input03.txt             84             10              0           .476
-input04.txt            850             10              0           .890
-input05.txt             34             10              0           .496
-input06.txt            427             10              0           .611
-input07.txt            751             10              0           .727
-input08.txt            599             10              0           .637
-input09.txt            402             10              0           .557
-input10.txt              9             10              0           .429
-input11.txt             10             10              0           .456
-input12.txt              2             10              0           .449
-input13.txt             10             10              0           .453
-input14.txt              2             10              0           .435
-input15.txt              9             10              0           .445
-input16.txt             11             10              0           .461
-input17.txt              7             10              0           .455
-input18.txt              3             10              0           .481
-input19.txt              7             10              0           .441
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;1917455&quot;&gt;1917455&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .712
-input01.txt            653             10              0           .664
-input02.txt            224             10              0           .483
-input03.txt             84             10              0           .457
-input04.txt            850             10              0           .829
-input05.txt             34             10              0           .451
-input06.txt            427             10              0           .544
-input07.txt            751             10              0           .733
-input08.txt            599             10              0           .625
-input09.txt            402             10              0           .534
-input10.txt              9             10              0           .436
-input11.txt             10             10              0           .445
-input12.txt              2             10              0           .417
-input13.txt             10             10              0           .436
-input14.txt              2             10              0           .404
-input15.txt              9             10              0           .441
-input16.txt             11             10              0           .441
-input17.txt              7             10              0           .444
-input18.txt              3             10              0           .429
-input19.txt              7             10              0           .432
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;1917463&quot;&gt;1917463&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .706
-input01.txt            653             10              0           .660
-input02.txt            224             10              0           .474
-input03.txt             84             10              0           .468
-input04.txt            850             10              0           .823
-input05.txt             34             10              0           .430
-input06.txt            427             10              0           .534
-input07.txt            751             10              0           .764
-input08.txt            599             10              0           .616
-input09.txt            402             10              0           .524
-input10.txt              9             10              0           .435
-input11.txt             10             10              0           .436
-input12.txt              2             10              0           .419
-input13.txt             10             10              0           .425
-input14.txt              2             10              0           .417
-input15.txt              9             10              0           .436
-input16.txt             11             10              0           .441
-input17.txt              7             10              0           .426
-input18.txt              3             10              0           .429
-input19.txt              7             10              0           .439
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;1917471&quot;&gt;1917471&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10          1,040           .700
-input01.txt            653             10          1,040           .635
-input02.txt            224             10            592           .490
-input03.txt             84             10            240           .450
-input04.txt            850             10          1,552           .805
-input05.txt             34             10             80           .458
-input06.txt            427             10            784           .547
-input07.txt            751             10          1,168           .741
-input08.txt            599             10          1,040           .605
-input09.txt            402             10            528           .528
-input10.txt              9             10             36           .466
-input11.txt             10             10             40           .437
-input12.txt              2             10             20           .412
-input13.txt             10             10             52           .437
-input14.txt              2             10             32           .418
-input15.txt              9             10             36           .438
-input16.txt             11             10             32           .433
-input17.txt              7             10             52           .430
-input18.txt              3             10             32           .432
-input19.txt              7             10             40           .436
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;1920359&quot;&gt;1920359&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10          1,040           .702
-input01.txt            653             10          1,040           .665
-input02.txt            224             10            592           .497
-input03.txt             84             10            240           .463
-input04.txt            850             10          1,552           .784
-input05.txt             34             10             80           .455
-input06.txt            427             10            784           .540
-input07.txt            751             10          1,168           .733
-input08.txt            599             10          1,040           .625
-input09.txt            402             10            528           .542
-input10.txt              9             10             36           .435
-input11.txt             10             10             40           .452
-input12.txt              2             10             20           .415
-input13.txt             10             10             52           .441
-input14.txt              2             10             32           .423
-input15.txt              9             10             36           .428
-input16.txt             11             10             32           .435
-input17.txt              7             10             52           .439
-input18.txt              3             10             32           .439
-input19.txt              7             10             40           .436
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;1946145&quot;&gt;1946145&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .679
-input01.txt            653             10              0           .661
-input02.txt            224             10              0           .490
-input03.txt             84             10              0           .435
-input04.txt            850             10              0           .780
-input05.txt             34             10              0           .517
-input06.txt            427             10              0           .512
-input07.txt            751             10              0           .708
-input08.txt            599             10              0           .619
-input09.txt            402             10              0           .525
-input10.txt              9             10              0           .451
-input11.txt             10             10              0           .424
-input12.txt              2             10              0           .417
-input13.txt             10             10              0           .451
-input14.txt              2             10              0           .417
-input15.txt              9             10              0           .429
-input16.txt             11             10              0           .496
-input17.txt              7             10              0           .424
-input18.txt              3             10              0           .434
-input19.txt              7             10              0           .427
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;23931913&quot;&gt;23931913&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Inputfile            Lines          Score         Leaked        Time(s)
-input00.txt            694             10              0           .695
-input01.txt            653             10              0           .653
-input02.txt            224             10              0           .475
-input03.txt             84             10              0           .448
-input04.txt            850             10              0           .799
-input05.txt             34             10              0           .450
-input06.txt            427             10              0           .505
-input07.txt            751             10              0           .724
-input08.txt            599             10              0           .608
-input09.txt            402             10              0           .506
-input10.txt              9             10              0           .437
-input11.txt             10             10              0           .445
-input12.txt              2             10              0           .414
-input13.txt             10             10              0           .442
-input14.txt              2             10              0           .405
-input15.txt              9             10              0           .457
-input16.txt             11             10              0           .448
-input17.txt              7             10              0           .441
-input18.txt              3             10              0           .433
-input19.txt              7             10              0           .430
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-</description>
-        <pubDate>Fri, 01 Sep 2017 10:50:00 -0300</pubDate>
-        <link>http://localhost:4000/ae22cp-172/APS-resultados.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/APS-resultados.html</guid>
-        
-        <category>aps1-vector</category>
-        
-        
-        <category>AE22CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Lista IV - Equivalências e Tabelas verdade</title>
-        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#equivalências&quot; id=&quot;markdown-toc-equivalências&quot;&gt;Equivalências&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#tabelas-verdade&quot; id=&quot;markdown-toc-tabelas-verdade&quot;&gt;Tabelas verdade&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#referências&quot; id=&quot;markdown-toc-referências&quot;&gt;Referências&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;equivalências&quot;&gt;Equivalências&lt;/h1&gt;
-&lt;p&gt;Demonstre as equivalências a seguir:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \to q) \dashv\vdash \neg(p \land \neg q)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(p \land q) \dashv\vdash (\neg p \lor \neg q) \tag{Lei de De Morgan (DM)}&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(p \lor q) \dashv\vdash (\neg p \land \neg q) \tag{Lei de De Morgan (DM)}&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\lor q) \dashv\vdash (q\lor p) \tag{Comutação (COM)}&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \dashv\vdash (q\land p) \tag{Comutação (COM)}&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \lor (q \lor r)) \dashv\vdash ((p\lor q)\lor r) \tag{Associação (ASSOC)}&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land (q \land r))\dashv\vdash((p\land q)\land r) \tag{Associação (ASSOC)}&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land (q \lor r )) \dashv\vdash ((p \land q) \lor (p \land r)) \tag{Distribuição (DIST)}&lt;/script&gt;
-
-&lt;h1 id=&quot;tabelas-verdade&quot;&gt;Tabelas verdade&lt;/h1&gt;
-
-&lt;p&gt;Verifique se as formas de argumento a seguir são &lt;strong&gt;válidas&lt;/strong&gt; ou &lt;strong&gt;inválidas&lt;/strong&gt;:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to q, p\to \neg q \vdash \neg p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to q \vdash \neg(q\to p)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor q, q \lor r \vdash p \lor r&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p \vdash p \to \neg p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor q \vdash p \land q&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to \neg q \vdash \neg(p \land q)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\vdash (p\to (q \land p))\to (p \land q)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\lor q, \neg p, \neg q \vdash r&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(q\land r) \to p, \neg q, \neg r \vdash \neg p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (r \lor s), (r \land s)\to q \vdash p\to q&lt;/script&gt;
-
-&lt;p&gt;Verifique se as fórmulas a seguir são &lt;strong&gt;satisfazíveis&lt;/strong&gt; (tautologia?) ou &lt;strong&gt;insatisfatíveis&lt;/strong&gt;&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \lor (\neg(q\land(r\to q)))&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q) \to (p \lor q)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;( (p\to\neg q) \to \neg p) \to q&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\to q) \lor (p\to \neg q)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to \neg p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(p \to p)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\lor q )\to p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q) \to p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \leftrightarrow \neg(p\lor q)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg((p\land q)\leftrightarrow(p\lor q))&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q) \land \neg(p\lor r)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\to(q\land r))\to(p\to r)&lt;/script&gt;
-
-&lt;h1 id=&quot;referências&quot;&gt;Referências&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://racionalistasusp.files.wordpress.com/2010/01/nolt-john-rohatyn-dennis-lc3b3gica.pdf&quot;&gt;Logica - John Nolt (PDF). Capítulo 4: Pgs. 160 a 184&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Thu, 31 Aug 2017 16:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/Lista4-Tabelas-verdade.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/Lista4-Tabelas-verdade.html</guid>
-        
-        <category>semântica</category>
-        
-        
-        <category>LC21CP-172</category>
         
       </item>
     

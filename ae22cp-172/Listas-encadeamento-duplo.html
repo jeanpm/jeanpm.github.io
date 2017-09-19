@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Listas de encadeamento duplo</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/ae22cp-172/Listas-encadeamento-duplo.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Listas de encadeamento duplo</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Sep 19, 2017
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/ae22cp-172/Listas-encadeamento-simples.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/ae22cp-172/Exercicios-listas.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#listas-de-encadeamento-duplo" id="markdown-toc-listas-de-encadeamento-duplo">Listas de encadeamento duplo</a></li>
+  <li><a href="#detalhes-de-implementação" id="markdown-toc-detalhes-de-implementação">Detalhes de implementação</a>    <ul>
+      <li><a href="#encadeamento-dos-nós" id="markdown-toc-encadeamento-dos-nós">Encadeamento dos nós</a></li>
+    </ul>
+  </li>
+  <li><a href="#implementação-de-listas-de-encadeamento-duplo" id="markdown-toc-implementação-de-listas-de-encadeamento-duplo">Implementação de listas de encadeamento duplo</a></li>
+  <li><a href="#referências" id="markdown-toc-referências">Referências</a></li>
+</ul>
+
+<h2 id="listas-de-encadeamento-duplo">Listas de encadeamento duplo</h2>
+
+<p>Uma lista de encadeamento duplo (<em>doubly-linked list</em>) implementa a ideia de uma lista bidirecional. Isto significa que cada elemento  tem conhecimento sobre seu próximo e seu anterior na lista. Esta característica é ilustrada através de uma aresta bidirecionada ligando o elemento ao seu próximo.</p>
+
+<p><code class="highlighter-rouge">a:(NULL, valor, b) &lt;-&gt; b:(a, valor, c) &lt;-&gt; c:(b, valor, NULL)</code></p>
+
+<p>Assim como nas listas de encadeamento simples, o primeiro aspecto a ser notado é que um elemento de lista (um nó, <em>node</em>), não é um tipo de dado simples. Isto é necessário visto que cada elemento precisa, além de armazenar um valor, armazenar um ponteiro para o próximo e um ponteiro para o anterior.</p>
+
+<p>Na linguagem C, este tipo de estrutura é implementada por uma <strong>struct</strong>. Utilizaremos a seguinte definição:</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="cp">#define Type int
+</span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_node</span> <span class="p">{</span>
+    <span class="n">Type</span> <span class="n">value</span><span class="p">;</span>             <span class="c1">// Valor armazenado
+</span>    <span class="k">struct</span> <span class="n">_node</span><span class="o">*</span> <span class="n">next</span><span class="p">;</span>   <span class="c1">// Endereço do próximo nó
+</span>    <span class="k">struct</span> <span class="n">_node</span><span class="o">*</span> <span class="n">prev</span><span class="p">;</span>   <span class="c1">// Endereço do próximo nó
+</span><span class="p">}</span> <span class="n">node</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>Antes de implementarmos funções para a manipulação da <em>list</em> é importante compreendermos na prática o que os conceitos até então descritos realmente significam. Com esse fim, algums exemplos serão demonstrados a seguir.</p>
+
+<h2 id="detalhes-de-implementação">Detalhes de implementação</h2>
+
+<p>Como tem sido convencionado até então, vamos definir uma função que implemente a alocação de memória para <code class="highlighter-rouge">node</code> que serão utilizados como elementos da nossa lista de encadeamento duplo <em>list</em>.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// Aloca memória para um 'node' e define o endereço do próximo como NULL
+</span><span class="n">node</span><span class="o">*</span> <span class="nf">new_node</span><span class="p">(</span><span class="n">Type</span> <span class="n">valor</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">node</span><span class="o">*</span> <span class="n">n</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">node</span><span class="p">));</span>
+    <span class="n">n</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">=</span> <span class="n">valor</span><span class="p">;</span>
+    <span class="n">n</span><span class="o">-&gt;</span><span class="n">next</span>  <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="n">n</span><span class="o">-&gt;</span><span class="n">prev</span>  <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Observe que a única diferença deste <code class="highlighter-rouge">node</code> para aquele utilizado em listas de encadeamento simples é o campo adicional <code class="highlighter-rouge">prev</code>, que também precisa ser inicializado.</p>
+
+<p>Consideremos agora a criação de uma lista de encadeamento simples feita manualmente. Para isso a única coisa que precisamos é criar vários <code class="highlighter-rouge">node</code> e definir qual apontará para qual.</p>
+
+<h3 id="encadeamento-dos-nós">Encadeamento dos nós</h3>
+
+<p>O <em>encadeamento</em> no contexto de listas duplamente encadeadas implica em dizer para cada nó, qual será o seu próximo e qual será seu anterior. Para clarificar, vamos criar o encadeamento ilustrado a seguir.</p>
+
+<p><code class="highlighter-rouge">a:(NULL, 0, b) &lt;-&gt; b:(a, 1, c) &lt;-&gt; c:(b, 2, NULL)</code></p>
+
+<p>Observe, que tanto <em>b</em> quanto <em>c</em> são ponteiros, portanto representam o endereço de memória no Heap de uma estrutura <code class="highlighter-rouge">node</code>.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Criação dos nós
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">a</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// (0, NULL)
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">b</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// (1, NULL)
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">c</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// (2, NULL)
+</span>    
+    <span class="c1">// Encadeamento
+</span>    <span class="n">a</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="n">a</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// (NULL, 0, b)
+</span>    
+    <span class="n">b</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="c1">// b:(a, 1, NULL)
+</span>    <span class="n">b</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span> <span class="c1">// b:(a, 1, c)
+</span>    
+    <span class="n">c</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// c:(b, 2, NULL)
+</span>    <span class="n">c</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Este exemplo criou manualmente uma lista encadeada simples de três elementos. Como o último elemento, o nó <em>c</em>, não possui referência a próximo (<code class="highlighter-rouge">c-&gt;next == NULL</code>) isso nos indica que ele está no final da lista (<em>tail</em>). Pela mesma ideia, o nó <em>a</em> está no início da lista (<em>head</em>) pois ele não possui antecessor (<code class="highlighter-rouge">a-&gt;prev == NULL</code>).</p>
+
+<p>Todas as formas de inserção e remoção funcionam da mesma forma em uma lista duplamente encadeada, a única diferença é que neste caso ponteiros para o nó anterior também precisam ser atualizados.</p>
+
+<h1 id="implementação-de-listas-de-encadeamento-duplo">Implementação de listas de encadeamento duplo</h1>
+
+<p>Nesta implementação de lista, armazenaremos informações adicionais na estrutura <code class="highlighter-rouge">list</code>. Esses campos adicionais tem como objetivo melhorar a eficiência das operações de inserção no final da lista. Para isso consideraremos as seguintes informações.</p>
+
+<p>Considerando a estrutura <code class="highlighter-rouge">list</code> definida a seguir, implemente todas as funcionalidades que foram implementadas para <code class="highlighter-rouge">vector</code>.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// *** list.h *** 
+</span><span class="cp">#define Type int
+</span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_node</span> <span class="p">{</span>
+    <span class="n">Type</span> <span class="n">value</span><span class="p">;</span>             <span class="c1">// Valor armazenado
+</span>    <span class="k">struct</span> <span class="n">_node</span><span class="o">*</span> <span class="n">next</span><span class="p">;</span>   <span class="c1">// Endereço do próximo nó
+</span>    <span class="k">struct</span> <span class="n">_node</span><span class="o">*</span> <span class="n">prev</span><span class="p">;</span>   <span class="c1">// Endereço do nó anterior
+</span><span class="p">}</span> <span class="n">node</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">size</span><span class="p">;</span>   <span class="c1">// Número de elementos na lista
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">head</span><span class="p">;</span> <span class="c1">// Ponteiro para o primeiro elemento
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">tail</span><span class="p">;</span> <span class="c1">// Ponteiro para o último elemento
+</span><span class="p">}</span> <span class="n">list</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// Aloca memória inicial para o vetor
+</span><span class="n">list</span><span class="o">*</span> <span class="n">new_list</span><span class="p">();</span>
+<span class="c1">// Desaloca a memória de v-&gt;data e do próprio v.
+</span><span class="kt">void</span> <span class="n">free_list</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+
+<span class="c1">// Funções de remoção de elementos
+</span><span class="n">Type</span> <span class="n">list_pop_back</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="n">Type</span> <span class="n">list_pop_front</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="n">Type</span> <span class="n">list_erase</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+
+<span class="c1">// Funções de inserção de elementos
+</span><span class="kt">void</span> <span class="n">list_insert</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">list_push_back</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">list_push_front</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+
+<span class="kt">bool</span> <span class="n">list_empty</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">list_size</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">list_print</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">format</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<h1 id="referências">Referências</h1>
+<ol>
+  <li><a href="https://en.wikipedia.org/wiki/Linked_list">wikipedia/linked_list</a></li>
+  <li><a href="https://pt.wikipedia.org/wiki/Lista_ligada">wikipedia/lista_ligada</a></li>
+  <li><a href="http://www.san.uri.br/~ober/arquivos/disciplinas/estruturaII_SI/(ebook)Estruturas%20de%20Dados%20Usando%20C%20(Tenenbaum).pdf">book/Tenenbaum/cap.4.2</a></li>
+</ol>
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

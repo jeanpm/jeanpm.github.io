@@ -70,7 +70,7 @@
   
   
     <div class="right">
-      <a href="/ae22cp-172/Implementacao-de-um-container-abstrato.html">
+      <a href="/ae22cp-172/Listas-encadeamento-duplo.html">
         <i class="fa fa-angle-right fa-2x"></i>
       </a>
     </div>
@@ -97,6 +97,7 @@
     </ul>
   </li>
   <li><a href="#implementação-de-listas-de-encadeamento-simples" id="markdown-toc-implementação-de-listas-de-encadeamento-simples">Implementação de listas de encadeamento simples</a></li>
+  <li><a href="#referências" id="markdown-toc-referências">Referências</a></li>
 </ul>
 
 <h1 id="listas-encadeadas">Listas encadeadas</h1>
@@ -112,7 +113,7 @@ endereço := x       x+1     x+2     ... x+n-1
 
 <h2 id="listas-de-encadeamento-simples">Listas de encadeamento simples</h2>
 
-<p>Uma lista de encadeamento simples implementa a ideia de uma lista unidirecional. Isto significa que cada elemento somente tem conhecimento sobre o próximo elemento da lista, e não do anterior. Esta característica é ilustrada através de uma aresta direcionada (seta) ligando o elemento ao seu próximo.</p>
+<p>Uma lista de encadeamento simples (<em>singly-linked list</em>) implementa a ideia de uma lista unidirecional. Isto significa que cada elemento somente tem conhecimento sobre o próximo elemento da lista, e não do anterior. Esta característica é ilustrada através de uma aresta direcionada (seta) ligando o elemento ao seu próximo.</p>
 
 <p><code class="highlighter-rouge">a:(valor, b) -&gt; b:(valor, c) -&gt; c:(valor, prox) -&gt; ...</code></p>
 
@@ -121,9 +122,9 @@ endereço := x       x+1     x+2     ... x+n-1
 <p>Na linguagem C, este tipo de estrutura é implementada por uma <strong>struct</strong>. Utilizaremos a seguinte definição:</p>
 
 <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="cp">#define Type int
-</span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_node_</span> <span class="p">{</span>
+</span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_node</span> <span class="p">{</span>
     <span class="n">Type</span> <span class="n">value</span><span class="p">;</span>             <span class="c1">// Valor armazenado
-</span>    <span class="k">struct</span> <span class="n">_node_</span><span class="o">*</span> <span class="n">next</span><span class="p">;</span>   <span class="c1">// Endereço do próximo nó
+</span>    <span class="k">struct</span> <span class="n">_node</span><span class="o">*</span> <span class="n">next</span><span class="p">;</span>   <span class="c1">// Endereço do próximo nó
 </span><span class="p">}</span> <span class="n">node</span><span class="p">;</span>
 </code></pre>
 </div>
@@ -286,7 +287,12 @@ endereço :=  x          ...  y          ...   z
 <p>Considerando a estrutura <code class="highlighter-rouge">list</code> definida a seguir, implemente todas as funcionalidades que foram implementadas para <code class="highlighter-rouge">vector</code>.</p>
 
 <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// *** list.h *** 
-</span><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+</span><span class="cp">#define Type int
+</span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_node</span> <span class="p">{</span>
+    <span class="n">Type</span> <span class="n">value</span><span class="p">;</span>             <span class="c1">// Valor armazenado
+</span>    <span class="k">struct</span> <span class="n">_node</span><span class="o">*</span> <span class="n">next</span><span class="p">;</span>   <span class="c1">// Endereço do próximo nó
+</span><span class="p">}</span> <span class="n">node</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
     <span class="n">node</span><span class="o">*</span> <span class="n">head</span><span class="p">;</span>
 <span class="p">}</span> <span class="n">list</span><span class="p">;</span>
 
@@ -310,6 +316,13 @@ endereço :=  x          ...  y          ...   z
 <span class="kt">void</span> <span class="n">list_print</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">format</span><span class="p">);</span>
 </code></pre>
 </div>
+
+<h1 id="referências">Referências</h1>
+<ol>
+  <li><a href="https://en.wikipedia.org/wiki/Linked_list">wikipedia/linked_list</a></li>
+  <li><a href="https://pt.wikipedia.org/wiki/Lista_ligada">wikipedia/lista_ligada</a></li>
+  <li><a href="http://www.san.uri.br/~ober/arquivos/disciplinas/estruturaII_SI/(ebook)Estruturas%20de%20Dados%20Usando%20C%20(Tenenbaum).pdf">book/Tenenbaum/cap.4.2</a></li>
+</ol>
 
   </article>
 
