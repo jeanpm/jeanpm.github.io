@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>APS1 - Utilizando C++/STL vector</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/ae22cp-172/aps-vector-stl.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">APS1 - Utilizando C++/STL vector</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Sep 4, 2017
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/ae22cp-172/aps-resultados.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/ae22cp-172/pilhas-filas.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#cvector" id="markdown-toc-cvector">C++/vector</a>    <ul>
+      <li><a href="#inicialização-e-finalização" id="markdown-toc-inicialização-e-finalização">Inicialização e Finalização</a></li>
+      <li><a href="#acesso-e-manipulação" id="markdown-toc-acesso-e-manipulação">Acesso e manipulação</a>        <ul>
+          <li><a href="#inserção" id="markdown-toc-inserção">Inserção</a></li>
+          <li><a href="#remoção" id="markdown-toc-remoção">Remoção</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#exercício" id="markdown-toc-exercício">Exercício</a></li>
+</ul>
+
+<h1 id="cvector">C++/vector</h1>
+
+<p><img src="../assets/cpp.jpg" alt="c++" /></p>
+
+<p>A estrutura de vetores dinâmicos é de grande utilidade pois abstrai do programador a necessidade de gerenciar o crescimento da região de memória necessária.</p>
+
+<p>Um ponto negativo quanto a utilização de <code class="highlighter-rouge">vector</code> é a maior complexidade das estruturas que precisam ser mantidas. Ou seja, um vetor simples (<code class="highlighter-rouge">int* v</code>) de capacidade $n$ ocupará menos espaço na memória que um <code class="highlighter-rouge">vector</code> de mesma capacidade.</p>
+
+<p>Atualmente, no entanto, devido à grande disponibilidade de memória, essa diferença nem sempre é suficiente para que se opte pela utilização da estrutura simples. Por outro lado, os benefícios de se utilizar <code class="highlighter-rouge">vector</code> nem sempre são necessários, e nesses casos um <code class="highlighter-rouge">int*</code> seria preferível.</p>
+
+<p>Aqui descreveremos brevemente como a <strong>APS1 - Implementando vector</strong> poderia ser implementada utilizando a classe <code class="highlighter-rouge">vector</code> de C++/STL.</p>
+
+<h2 id="inicialização-e-finalização">Inicialização e Finalização</h2>
+
+<p>Para testar os códigos a seguir é necessário utilizarmos o compilador de C++ (g++).</p>
+
+<p>Para utilizarmos as funcionalidades de <code class="highlighter-rouge">vector</code> é necessário incluirmos o arquivo de cabeçalho</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="cp">#include &lt;vector&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>Para definirmos uma estrutura do tipo <code class="highlighter-rouge">vector</code> capaz de armazenar inteiros, declaramos uma variável da seguinte forma:</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span> <span class="c1">// um vetor dinâmico de inteiros
+</span>    <span class="p">...</span>
+</code></pre>
+</div>
+
+<p>A memória internamente alocada por <code class="highlighter-rouge">v</code> será desalocada automaticamente ao fim da função main, portanto, não precisamos explicitamente chamar liberar a memória.</p>
+
+<h2 id="acesso-e-manipulação">Acesso e manipulação</h2>
+
+<h3 id="inserção">Inserção</h3>
+<p>A função a seguir, insere um item no final do vetor</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">//vector_push_back(v, value);
+</span><span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+<span class="cm">/* Exemplo:
+ v = 4 5 7 19 2 1
+ push_back 5
+ v = 4 5 7 19 2 1 5
+ */</span>
+</code></pre>
+</div>
+
+<p>Suponha agora que queiramos inserir um elemento no vetor em uma dada posição que não seja o fim. Chamaremos essa função:</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">//vector_insert(v, value, i);
+</span><span class="n">v</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="n">i</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+<span class="cm">/* Exemplo:
+ v = 4 5 7 19 2 1
+ vector_insert 5 3
+ v = 4 5 7 5 19 2 1
+ */</span>
+</code></pre>
+</div>
+
+<p>A qual recebe um ponteiro para a posição na qual queremos inserir <code class="highlighter-rouge">value</code>. Neste caso <code class="highlighter-rouge">v.begin()</code> nos dá um ponteiro para o primeiro elemento de <code class="highlighter-rouge">v</code>, portanto <code class="highlighter-rouge">v.begin() + i</code> refere a $i$-ésima posição.</p>
+
+<p>Diferentemente de nossa implementação de <code class="highlighter-rouge">vector</code>, a versão de C++ não possui uma função <code class="highlighter-rouge">push_front</code>. No entanto é óbvio que podemos utilizar a função inser para essa funcionalidade.</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">//vector_insert(v, value, 0);
+</span><span class="n">v</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">value</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<h3 id="remoção">Remoção</h3>
+
+<p>De forma análoga às funções de inserção, temos as funções para remoção de elementos do vetor.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">//vector_pop_back(vector* v);
+</span><span class="n">v</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+<span class="c1">//vector_erase(v, int i);
+</span><span class="n">v</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="n">i</span><span class="p">);</span>
+<span class="c1">//vector_pop_front(vector* v);
+</span><span class="n">v</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">());</span>
+</code></pre>
+</div>
+
+<h1 id="exercício">Exercício</h1>
+<p>Utilize <code class="highlighter-rouge">vector</code> para solucionar a APS1 no hackerrank.</p>
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

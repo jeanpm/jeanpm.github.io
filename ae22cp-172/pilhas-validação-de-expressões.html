@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Exercícios (Pilhas)</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/ae22cp-172/pilhas-valida%C3%A7%C3%A3o-de-express%C3%B5es.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Exercícios (Pilhas)</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Sep 11, 2017
+          • <i class="fa fa-user"></i> Jean P. Martins
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/ae22cp-172/pilhas-representa%C3%A7%C3%A3o-de-expressoes.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/lc21cp-172/arvores-de-refutacao.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#exercícios" id="markdown-toc-exercícios">Exercícios</a>    <ul>
+      <li><a href="#validação-parentética" id="markdown-toc-validação-parentética">Validação parentética</a></li>
+      <li><a href="#validação-de-expressões" id="markdown-toc-validação-de-expressões">Validação de expressões</a></li>
+      <li><a href="#verificação-de-palíndromo" id="markdown-toc-verificação-de-palíndromo">Verificação de palíndromo</a></li>
+      <li><a href="#verificar-concatenação-de-palíndromos" id="markdown-toc-verificar-concatenação-de-palíndromos">Verificar concatenação de palíndromos</a></li>
+      <li><a href="#underflow" id="markdown-toc-underflow">Underflow</a></li>
+    </ul>
+  </li>
+  <li><a href="#referências--pdf" id="markdown-toc-referências--pdf">Referências -pdf</a></li>
+</ul>
+
+<h1 id="exercícios">Exercícios</h1>
+
+<h2 id="validação-parentética">Validação parentética</h2>
+
+<p>Agora que defimos uma pilha e indicamos as operações que podem ser executadas sobre ela, vejamos como podemos usar a pilha na solução de problemas. Examine uma expressão matemática que inclui vários conjuntos de parênteses agrupados. Por exemplo:</p>
+
+<script type="math/tex; mode=display">7 - ((X *((X+ Y)/ (J-3)) + Y)/(4-2.5))</script>
+
+<p>Queremos garantir que os parênteses estejam corretamente agrupados, ou seja, desejamos verificar se:</p>
+
+<ol>
+  <li>Existe um número igual de parênteses esquerdos e direitos.</li>
+  <li>Todo parêntese da direita está precedido por um parêntese da esquerda.</li>
+</ol>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "stack.h"
+</span><span class="c1">// Funções auxiliares para identificar o caractere sendo lido. 
+// [!] É necessário implementá-las para que o exemplo funcione. 
+</span><span class="kt">bool</span> <span class="n">abreEscopo</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">);</span>
+<span class="kt">bool</span> <span class="n">fechaEscopo</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">);</span>
+<span class="kt">bool</span> <span class="n">escopoCorreto</span><span class="p">(</span><span class="kt">char</span> <span class="n">a</span><span class="p">,</span> <span class="kt">char</span> <span class="n">b</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">verificaExpressao</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">expressao</span><span class="p">,</span> <span class="kt">int</span> <span class="n">esize</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">stack</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="n">new_stack</span><span class="p">();</span>	
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">esize</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kt">char</span> <span class="n">atual</span> <span class="o">=</span> <span class="n">expressao</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+		<span class="k">if</span> <span class="p">(</span> <span class="n">abreEscopo</span><span class="p">(</span><span class="n">atual</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+			<span class="n">stack_push</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">atual</span><span class="p">);</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">fechaEscopo</span><span class="p">(</span><span class="n">atual</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">stack_empty</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="k">return</span> <span class="n">i</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">escopoCorreto</span><span class="p">(</span><span class="n">stack_pop</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">atual</span><span class="p">)</span> <span class="p">)</span> <span class="k">return</span> <span class="n">i</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>	
+	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">stack_empty</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="k">return</span> <span class="n">esize</span><span class="p">;</span>
+	<span class="n">free_stack</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+	<span class="k">return</span> <span class="n">esize</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="validação-de-expressões">Validação de expressões</h2>
+<p>Adapte o código do validador para que funcione com expressões mais complexas, contendo os demais delimitadores</p>
+
+<script type="math/tex; mode=display">(, ), [, ] , \{, \}</script>
+
+<h2 id="verificação-de-palíndromo">Verificação de palíndromo</h2>
+
+<p>Escreva um algoritmo para determinar se uma string de caracteres de entrada é da forma:</p>
+
+<script type="math/tex; mode=display">x C y</script>
+
+<p>onde <script type="math/tex">x,y</script> são strings e <script type="math/tex">y</script> é o inverso de <script type="math/tex">x</script>. O caractere <script type="math/tex">C</script> delimita o fim de <script type="math/tex">x</script>. Somente um caractere da string pode ser lido de cada vez.</p>
+
+<h2 id="verificar-concatenação-de-palíndromos">Verificar concatenação de palíndromos</h2>
+
+<p>Escreva um algoritmo para determinar se uma string de caracteres de entrada é da forma:</p>
+
+<script type="math/tex; mode=display">a D b D c D \dots D z</script>
+
+<p>onde cada string <script type="math/tex">a, b, c,\dots,z</script>, é da forma da string definida no exercício anterior, isto é, <script type="math/tex">a = xCy</script></p>
+
+<h2 id="underflow">Underflow</h2>
+<p>Que conjunto de critérios é necessário e suficiente para que uma sequência de operações <code class="highlighter-rouge">push</code> e <code class="highlighter-rouge">pop</code> sobre uma única pilha (inicialmente vazia) deixe a pilha vazia e não provoque <em>underflow</em>?</p>
+
+<h1 id="referências--pdf">Referências -pdf</h1>
+<p><a href="http://www.san.uri.br/~ober/arquivos/disciplinas/estruturaII_SI/(ebook)Estruturas%20de%20Dados%20Usando%20C%20(Tenenbaum).pdf"><img src="../assets/tenenbaum-book.jpg" alt="livro" /></a></p>
+
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

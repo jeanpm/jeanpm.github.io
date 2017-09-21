@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Linguagem da Lógica proposicional - Formalização</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/lc21cp-172/arvores-de-analise.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Linguagem da Lógica proposicional - Formalização</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Sep 20, 2017
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/ae22cp-172/exercicios-listas.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/lc21cp-172/lista6-arvores-de-analise.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#a-linguagem-da-lógica-proposicional" id="markdown-toc-a-linguagem-da-lógica-proposicional">A linguagem da lógica proposicional</a>    <ul>
+      <li><a href="#regras-de-construção" id="markdown-toc-regras-de-construção">Regras de construção</a></li>
+      <li><a href="#Árvores-de-análise" id="markdown-toc-Árvores-de-análise">Árvores de análise</a></li>
+      <li><a href="#tamanho-de-fórmulas" id="markdown-toc-tamanho-de-fórmulas">Tamanho de fórmulas</a></li>
+      <li><a href="#subfórmulas" id="markdown-toc-subfórmulas">Subfórmulas</a></li>
+    </ul>
+  </li>
+  <li><a href="#exercícios" id="markdown-toc-exercícios">Exercícios</a></li>
+  <li><a href="#referências" id="markdown-toc-referências">Referências</a></li>
+</ul>
+
+<h1 id="a-linguagem-da-lógica-proposicional">A linguagem da lógica proposicional</h1>
+
+<p>A definição da linguagem da lógica proposicional é semelhante à definição de outras linguagens, como por exemplo, a língua portuguesa. Define-se, inicialmente, o conjunto de símbolos disponíveis na linguagem: na língua portuguesa podemos definir</p>
+
+<script type="math/tex; mode=display">\{a, b,\dots, z, A, B,\dots, Z\}</script>
+
+<p>A seguir temos as regras gramaticais que são utilizadas na construção de palavras e sentenças. Em linguagem natural, as palavras não são, necessariamente, originadas a partir de regras bem definidas. Em uma linguagem formal, por outro lado, toda palavra ou sentença deve ser gerada pela aplicação de alguma regra gramatical.</p>
+
+<p>Na linguagem da lógica proposicional, podemos então apenas dizer que seu alfabeto será composto por um conjunto de <em>proposições atômicas</em>: $p, q, r,\dots$ ou $p_1, p_2, p_3\dots$ e um o conjunto de <em>conectivos lógicos</em>: $\neg,\land,\lor,\to,(,)$. Portanto, se designarmos o alfabeto por $\sigma$, teríamos:</p>
+
+<script type="math/tex; mode=display">\Sigma = \{p_1, p_2, p_3\dots\} \cup \{\neg,\land,\lor,\to,(,)\}</script>
+
+<p>No entanto, logo percebemos que somente o alfabeto não é suficiente para garantir “palavras” válidas na lógica proposicional, visto que algumas strings compostas por símbolos em $\Sigma$, não são bem formuladas, isto é, não fazem sentido. Veja o exemplo abaixo:</p>
+
+<script type="math/tex; mode=display">(\neg)()\lor pq\to</script>
+
+<p>Deste modo, para a formalização da linguagem da lógica proposicional, além de definirmos os símbolos do alfabeto da lógica proposicional, temos que definir as regras de formação das <em>fórmulas bem formuladas</em> (<em>well-formed-formulas</em>). Nessas condições, podemos dizer que uma fórmula é bem formulada se ela pode ser construída a partir da aplicação das regras de construção.</p>
+
+<h2 id="regras-de-construção">Regras de construção</h2>
+
+<ul>
+  <li>átomo: Toda proposição atômica $p, q, r, \dots, p_1, p_2, \dots$ é uma fórmula bem formulada.</li>
+  <li>$\neg$: Se $\phi$ é uma fórmula bem formulada, então $(\neg\phi)$ também é.</li>
+  <li>$\land$: Se $\phi$ e $\psi$ são fórmulas bem formuladas, então $(\phi\land\psi)$ também é.</li>
+  <li>$\lor$: Se $\phi$ e $\psi$ são fórmulas bem formuladas, então $(\phi\lor\psi)$ também é.</li>
+  <li>$\to$: Se $\phi$ e $\psi$ são fórmulas bem formuladas, então $(\phi\to\psi)$ também é.</li>
+  <li>$\leftrightarrow$: Se $\phi$ e $\psi$ são fórmulas bem formuladas, então $(\phi\leftrightarrow\psi)$ também é.</li>
+</ul>
+
+<p>Observe que os parênteses são parte das fórmulas bem formuladas. Consideraremos então, que qualquer concatenação de símbolos de $\Sigma$ forma uma fórmula apenas se a string puder ser gerada pela aplicação sucessiva das regras acima.</p>
+
+<h2 id="Árvores-de-análise">Árvores de análise</h2>
+
+<p>Até então descrevemos características obrigatórias de fórmulas bem formuladas (sintaticamente corretas). Essas fórmulas são aquelas que compõem a linguagem da lógica proposicional. No entanto, nada foi dito quanto a verificação dessas fórmulas, ou seja, como saber se uma dada fórmula está bem formada? Considere o caso</p>
+
+<script type="math/tex; mode=display">(((\neg p)\land q)\to(p\land(q\lor(\neg r))))</script>
+
+<p><img src="../assets/LC21CP/tree.png" alt="tree" /></p>
+
+<h2 id="tamanho-de-fórmulas">Tamanho de fórmulas</h2>
+
+<p>Seja $\phi$ uma fórmula da lógica proposicional. O tamanho (ou comprimento) de $\phi$ é definido pelas regras:</p>
+
+<ul>
+  <li>átomo: Toda proposição atômica tem tamanho $|\phi|=1$.</li>
+  <li>$\neg\phi$: tem tamanho $|\neg\phi| = 1 + |\phi|$.</li>
+  <li>$|\phi\land\psi| = |\phi| + 1 + |\psi|$</li>
+  <li>$|\phi\lor\psi| = |\phi| + 1 + |\psi|$</li>
+  <li>$|\phi\to\psi| = |\phi| + 1 + |\psi|$</li>
+  <li>$|\phi\leftrightarrow\psi| = |\phi| + 1 + |\psi|$</li>
+</ul>
+
+<h2 id="subfórmulas">Subfórmulas</h2>
+
+<p>Toda subárvore de uma árvore de análise é uma subfórmula.</p>
+
+<h1 id="exercícios">Exercícios</h1>
+
+<p>Dadas as fórmulas a seguir, construa suas árvores de análise:</p>
+
+<script type="math/tex; mode=display">p \land q</script>
+
+<script type="math/tex; mode=display">p \land \neg q \to \neg p</script>
+
+<script type="math/tex; mode=display">p \land (\neg q \to \neg p)</script>
+
+<script type="math/tex; mode=display">\neg((\neg q \land (p\to r))\land (r\to q))</script>
+
+<script type="math/tex; mode=display">(p\land q)\to (\neg r\lor(q \to r))</script>
+
+<script type="math/tex; mode=display">(((s\to(r\lor \ell))\lor((\neg q)\land r))\to((\neg(p\to s))\to r))</script>
+
+<p>Para cada uma das fórmulas, construa suas árvores de análise e liste todas subfórmulas.</p>
+
+<script type="math/tex; mode=display">p \to (\neg p \lor (\neg\neg q \to (p\land q)))</script>
+
+<script type="math/tex; mode=display">(s \to r \lor \ell) \lor (\neg q\land r) \to (\neg(p \to s) \to r)</script>
+
+<script type="math/tex; mode=display">(p\to q) \land (\neg r \to (q \lor(\neg p\land r)))</script>
+
+<h1 id="referências">Referências</h1>
+
+<p>Seção 1.3: Pgs. 25-28, <a href="http://www.cse.chalmers.se/edu/course/DAT060/huthryan_lics2_sol.pdf">Logica - Huth &amp; Ryan (PDF).</a></p>
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

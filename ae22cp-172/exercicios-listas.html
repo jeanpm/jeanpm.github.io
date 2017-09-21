@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Exercícios (Listas)</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/ae22cp-172/exercicios-listas.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Exercícios (Listas)</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Sep 19, 2017
+          • <i class="fa fa-user"></i> Jean P. Martins
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/ae22cp-172/listas-encadeamento-duplo.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/lc21cp-172/arvores-de-analise.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#exercícios" id="markdown-toc-exercícios">Exercícios</a>    <ul>
+      <li><a href="#swap" id="markdown-toc-swap">swap</a></li>
+      <li><a href="#splice" id="markdown-toc-splice">splice</a></li>
+      <li><a href="#merge" id="markdown-toc-merge">merge</a></li>
+      <li><a href="#reverse" id="markdown-toc-reverse">reverse</a></li>
+      <li><a href="#removeif" id="markdown-toc-removeif">removeif</a></li>
+      <li><a href="#unique" id="markdown-toc-unique">unique</a></li>
+    </ul>
+  </li>
+  <li><a href="#referências" id="markdown-toc-referências">Referências</a></li>
+</ul>
+
+<h1 id="exercícios">Exercícios</h1>
+
+<h2 id="swap">swap</h2>
+
+<p>Dadas duas listas encadeadas <code class="highlighter-rouge">list* a</code> e <code class="highlighter-rouge">list* b</code>. Implemente uma função que troque o conteúdo das listas.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">swap</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="n">list</span><span class="o">*</span> <span class="n">b</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p><strong>Exemplo:</strong></p>
+
+<p>Suponhamos como exemplo as listas encadeadas</p>
+
+<p><code class="highlighter-rouge">a: 1 -&gt;  2 -&gt; 3 -&gt; 4 -&gt; NULL</code></p>
+
+<p><code class="highlighter-rouge">b: 11-&gt; 12 -&gt;13 -&gt;14 -&gt; NULL</code></p>
+
+<p>Após a aplicação de <code class="highlighter-rouge">swap(a, b)</code>, elas se tornariam:</p>
+
+<p><code class="highlighter-rouge">a: 11-&gt; 12 -&gt;13 -&gt;14 -&gt; NULL</code></p>
+
+<p><code class="highlighter-rouge">b: 1 -&gt;  2 -&gt; 3 -&gt; 4 -&gt; NULL</code></p>
+
+<h2 id="splice">splice</h2>
+
+<p>Dadas duas listas encadeadas <code class="highlighter-rouge">list* a</code> e <code class="highlighter-rouge">list* b</code>. Implemente uma função que insira todos os elementos de <code class="highlighter-rouge">b</code> em uma dada posição <code class="highlighter-rouge">int pos</code>. Os nós de <code class="highlighter-rouge">b</code> devem ser removidos neste processo, ou seja, ao final, <code class="highlighter-rouge">b</code> estará vazia.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">splice</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="n">list</span><span class="o">*</span> <span class="n">b</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pos</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p><strong>Exemplo:</strong></p>
+
+<p>Suponhamos como exemplo as listas encadeadas</p>
+
+<p><code class="highlighter-rouge">a: 1 -&gt;  2 -&gt; 3 -&gt; 4 -&gt; NULL</code></p>
+
+<p><code class="highlighter-rouge">b: 11-&gt; 12 -&gt;13 -&gt;14 -&gt; NULL</code></p>
+
+<p>Após a aplicação de <code class="highlighter-rouge">splice(a, b, 2)</code>, elas se tornariam:</p>
+
+<p><code class="highlighter-rouge">a: 1 -&gt;  2 -&gt; ( 11-&gt; 12 -&gt;13 -&gt;14 ) -&gt; 3 -&gt; 4 -&gt; NULL</code></p>
+
+<p><code class="highlighter-rouge">b: NULL</code></p>
+
+<p>Os parenteses servem apenas para indicar a inclusão de <code class="highlighter-rouge">b</code> em <code class="highlighter-rouge">a</code>.</p>
+
+<h2 id="merge">merge</h2>
+
+<p>Dadas duas listas encadeadas contendo números ordenados: <code class="highlighter-rouge">list* a</code> e <code class="highlighter-rouge">list* b</code>. Implemente uma função que insira todos os elementos de <code class="highlighter-rouge">b</code> na lista <code class="highlighter-rouge">a</code> de modo que ao final, a lista <code class="highlighter-rouge">a</code> ainda esteja ordenada. Os nós de <code class="highlighter-rouge">b</code> devem ser removidos neste processo, ou seja, ao final, <code class="highlighter-rouge">b</code> estará vazia.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">merge</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="n">list</span><span class="o">*</span> <span class="n">b</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p><strong>Exemplo:</strong></p>
+
+<p>Suponhamos como exemplo duas listas encadeadas ordenadas.</p>
+
+<p><code class="highlighter-rouge">a: 1 -&gt; 2 -&gt; 12 -&gt; 14 -&gt; NULL</code></p>
+
+<p><code class="highlighter-rouge">b: 3 -&gt; 4 -&gt; 11 -&gt; 13 -&gt; NULL</code></p>
+
+<p>Após a aplicação de <code class="highlighter-rouge">merge(a, b)</code>, elas se tornariam:</p>
+
+<p><code class="highlighter-rouge">a: 1 -&gt;  2 -&gt; 3 -&gt; 4 -&gt; 11-&gt; 12 -&gt;13 -&gt;14 -&gt; NULL</code></p>
+
+<p><code class="highlighter-rouge">b: NULL</code></p>
+
+<p>DICA: é possível obter a lista final ordenada percorrendo ambas as listas apenas uma vez!</p>
+
+<h2 id="reverse">reverse</h2>
+
+<p>Dada uma lista encadeada qualquer <code class="highlighter-rouge">list* a</code>. Implemente uma função que retorne outra lista encadeada em que a ordem dos elementos de <code class="highlighter-rouge">a</code> esteja invertida.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="n">list</span><span class="o">*</span> <span class="n">reverse</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">a</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p><strong>Exemplo:</strong></p>
+
+<p>Suponhamos como exemplo a listas encadeadas a seguir.</p>
+
+<p><code class="highlighter-rouge">a: 1 -&gt; 2 -&gt; 12 -&gt; 14 -&gt; NULL</code></p>
+
+<p>A aplicação de <code class="highlighter-rouge">reverse(a)</code> deve retornar uma lista:</p>
+
+<p><code class="highlighter-rouge">b: 14 -&gt; 12 -&gt; 2 -&gt; 1 -&gt; NULL</code></p>
+
+<h2 id="removeif">removeif</h2>
+
+<p>Assim como demais operadores da linguagem C, uma função também pode ser passada como referência. Isto é, também podemos utilizar ponteiros para funções. Por exemplo, considere uma função que verifique se um dado número é par.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">bool</span> <span class="nf">iseven</span><span class="p">(</span><span class="n">Type</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">value</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Um ponteiro para uma função deste tipo, pode ser declarado da seguinte forma:</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">functionPtr</span><span class="p">)(</span><span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+<span class="n">functionPtr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">iseven</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>Após a atribuição, <code class="highlighter-rouge">functionPtr</code> pode ser utilizado para verificar se um número é par.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">bool</span> <span class="n">par</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">functionPtr</span><span class="p">)(</span><span class="mi">10</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>Agora suponhamos que tivéssemos outra função de mesmo tipo, a qual apenas verifica se um dado número é igual a outro predefinido (<code class="highlighter-rouge">989</code> neste exemplo).</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">bool</span> <span class="nf">is989</span><span class="p">(</span><span class="n">Type</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">value</span> <span class="o">==</span> <span class="mi">989</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Observe que apesar de diferentes, essas funções tem a mesma estrutura, ambas recebem um valor e retornam um <code class="highlighter-rouge">bool</code>. Assim, poderíamos atribui-las a <code class="highlighter-rouge">functionPtr</code>.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="n">functionPtr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">is989</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>Após a atribuição, <code class="highlighter-rouge">functionPtr</code> pode ser utilizada para verificar se um número é igual a 989.</p>
+
+<p>Para exemplificarmos um tipo de situação onde ponteiros para função se tornam úteis. Consideremos o caso da função <code class="highlighter-rouge">removeif</code>, a qual recebe uma lista <code class="highlighter-rouge">list* a</code> e um ponteiro para função.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">removeif</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="kt">bool</span> <span class="p">(</span><span class="o">*</span><span class="n">fptr</span><span class="p">)(</span><span class="n">Type</span><span class="p">));</span>
+</code></pre>
+</div>
+
+<p>Como <code class="highlighter-rouge">fptr</code> pode apontar para diferentes funções (todas avaliam uma característica do valor recebido), <code class="highlighter-rouge">removeif</code> se torna mais genérica, e poderia ser utilizada para remover todos números pares, passando-se a função de comparação como argumento:</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="n">removeif</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">iseven</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>Ou, de forma análoga, poderia ser utilizada para remover todos nós com valor <code class="highlighter-rouge">989</code></p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="n">removeif</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">is989</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>Dada essa descrição, implemente a função <code class="highlighter-rouge">removeif</code>.</p>
+
+<h2 id="unique">unique</h2>
+
+<p>Dada uma lista qualquer <code class="highlighter-rouge">list* a</code>. Implemente uma função que remova nós com valores repetidos, deixando apenas um nó com cada valor.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">unique</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">a</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p><strong>Exemplo:</strong></p>
+
+<p>Considere como exemplo a lista a seguir:</p>
+
+<p><code class="highlighter-rouge">a: 1 -&gt; 2 -&gt; 3 -&gt; 2 -&gt; 10 -&gt; 1 -&gt; 3 -&gt; 12 -&gt; 10 -&gt; NULL</code></p>
+
+<p>Após a aplicação de <code class="highlighter-rouge">unique(a)</code>, ela se tornaria</p>
+
+<p><code class="highlighter-rouge">a: 1 -&gt; 2 -&gt; 3 -&gt; 10 -&gt; 12 -&gt; NULL</code></p>
+
+<h1 id="referências">Referências</h1>
+<ol>
+  <li><a href="https://en.wikipedia.org/wiki/Linked_list">wikipedia/linked_list</a></li>
+  <li><a href="https://pt.wikipedia.org/wiki/Lista_ligada">wikipedia/lista_ligada</a></li>
+  <li><a href="http://www.san.uri.br/~ober/arquivos/disciplinas/estruturaII_SI/(ebook)Estruturas%20de%20Dados%20Usando%20C%20(Tenenbaum).pdf">book/Tenenbaum/cap.4.2</a></li>
+</ol>
+
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

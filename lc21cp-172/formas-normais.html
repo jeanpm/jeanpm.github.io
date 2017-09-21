@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Linguagem da Lógica proposicional - Formas normais</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/lc21cp-172/formas-normais.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Linguagem da Lógica proposicional - Formas normais</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Sep 21, 2017
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/lc21cp-172/lista6-arvores-de-analise.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/ae22cp-172/um-container-abstrato.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#formas-normais" id="markdown-toc-formas-normais">Formas normais</a>    <ul>
+      <li><a href="#forma-normal-conjuntiva" id="markdown-toc-forma-normal-conjuntiva">Forma normal conjuntiva</a></li>
+      <li><a href="#forma-normal-disjuntiva" id="markdown-toc-forma-normal-disjuntiva">Forma normal disjuntiva</a></li>
+      <li><a href="#conversão-para-forma-normal" id="markdown-toc-conversão-para-forma-normal">Conversão para forma normal</a>        <ul>
+          <li><a href="#forma-normal-disjuntiva-fnd" id="markdown-toc-forma-normal-disjuntiva-fnd">Forma normal disjuntiva (FND)</a></li>
+          <li><a href="#forma-normal-conjuntiva-fnc" id="markdown-toc-forma-normal-conjuntiva-fnc">Forma normal conjuntiva (FNC)</a></li>
+        </ul>
+      </li>
+      <li><a href="#benefícios-das-formas-normais" id="markdown-toc-benefícios-das-formas-normais">Benefícios das formas normais</a></li>
+      <li><a href="#cláusulas-de-horn" id="markdown-toc-cláusulas-de-horn">Cláusulas de Horn</a></li>
+    </ul>
+  </li>
+  <li><a href="#exercícios" id="markdown-toc-exercícios">Exercícios</a></li>
+  <li><a href="#referências" id="markdown-toc-referências">Referências</a></li>
+</ul>
+
+<h1 id="formas-normais">Formas normais</h1>
+
+<p>Dada uma fórmula qualquer $\phi$ na linguagem da lógica proposicional, existe uma fórmula $\psi$ equivalente que está na <em>forma normal</em>. As formas normais são fórmulas com estruturas predefinidas. Tais estruturas são definidas em termos de <em>literais</em>, que são nada mais que uma definição que engloba tanto símbolos proposicionais quanto suas negações. Exemplos de literais.</p>
+
+<script type="math/tex; mode=display">p,\neg p, q, r, \neg s</script>
+
+<p><strong>Definição (literal):</strong> Um literal é um símbolo proposicional ou sua negação.</p>
+
+<p>Consideraremos nesta seção dois tipos de formas normais.</p>
+
+<h2 id="forma-normal-conjuntiva">Forma normal conjuntiva</h2>
+
+<p>Uma fórmula está na <em>forma normal conjuntiva</em> se ela é uma conjunção de disjunção de literais. Para compreendermos essa definição, iremos por partes, primeiro, considere que uma disjunção de literais é qualquer fórmula do tipos</p>
+
+<script type="math/tex; mode=display">(p \lor \neg q \lor \dots)</script>
+
+<p>Portanto, a forma normal conjuntiva é a conjunção de diversas fórmulas desse tipo. Como exemplo temos a seguinte fórmulas</p>
+
+<script type="math/tex; mode=display">(\neg p \lor q) \land (\neg r \lor \neg q \lor p) \land (p \lor s)</script>
+
+<h2 id="forma-normal-disjuntiva">Forma normal disjuntiva</h2>
+
+<p>Uma fórmula está na <em>forma normal disjuntiva</em> se ela é uma disjunção de conjunção de literais. Uma conjunção de literais, é qualquer fórmula do tipo</p>
+
+<script type="math/tex; mode=display">(p \land \neg q \land \dots)</script>
+
+<p>Portanto, a forma normal disjuntiva é a disjunção de diversas fórmulas desse tipo. Como exemplo</p>
+
+<script type="math/tex; mode=display">(\neg p \land q) \lor (\neg r \land \neg q \land p) \lor (p \land s)</script>
+
+<h2 id="conversão-para-forma-normal">Conversão para forma normal</h2>
+
+<p>Como mencionado no início desta seção, a toda fórmula há uma outra fórmula equivalente escrita na forma normal; tanto conjuntiva quanto disjuntiva. Como podemos garantir que essa afirmação seja verdadeira?</p>
+
+<p>A justificativa para a veracidade dessa afirmação é o fato de que as formas normais conjuntiva e disjuntiva refletem os valores verdade presente em uma tabela-verdade. Como toda fórmula pode ser analizada por uma tabela-verdade, então toda fórmula pode ser escrita na forma normal. Vejamos como isso funciona na prática, considere a seguinte fórmula</p>
+
+<script type="math/tex; mode=display">(p\to q) \land r</script>
+
+<p>Sua tabela verdade possui 8 linhas, e está descrita a seguir:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center">$p$</th>
+      <th style="text-align: center">$q$</th>
+      <th style="text-align: center">$r$</th>
+      <th style="text-align: center">$(p\to q)$</th>
+      <th style="text-align: center">$(p\to q) \land r$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="forma-normal-disjuntiva-fnd">Forma normal disjuntiva (FND)</h3>
+
+<p>Vamos primeiro analisar como utilizar a tabela-verdade acima para  transformar a fórmula $(p\to q) \land r$ em uma fórmula equivalente na forma normal disjuntiva. Para isso observemos as linhas da tabela que tornam a fórmula verdadeira, as quais estão indicadas por um * na tabela abaixo.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center">$p$</th>
+      <th style="text-align: center">$q$</th>
+      <th style="text-align: center">$r$</th>
+      <th style="text-align: center">$(p\to q)$</th>
+      <th style="text-align: center">$(p\to q) \land r$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">*</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">*</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">*</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Se essas são as únicas atribuições de valores-verdade às variáveis $p, q, r$ que tornam a fórmula verdadeira, podemos as utilizar para definir uma outra fórmula, que sempre será verdadeira quando $(p\to q) \land r$ for verdadeira. Para isso, iremos escrever cada uma dessas linhas como uma conjunção. A primeira linha marcada seria representada pela fórmulas</p>
+
+<script type="math/tex; mode=display">(p \land q \land r)</script>
+
+<p>A segunda linha marcada seria representada portanto como</p>
+
+<script type="math/tex; mode=display">(\neg p \land q \land r)</script>
+
+<p>E seguindo a mesma ideia, a terceira seria</p>
+
+<script type="math/tex; mode=display">(\neg p \land \neg q \land r)</script>
+
+<p>Como cada uma dessas fórmulas representa uma determinada atribuição de valores-verdade que torna a fórmula original verdadeira, a sua disjunção cobre todas as situações de veracidade da fórmula original</p>
+
+<script type="math/tex; mode=display">(p \land q \land r) \lor (\neg p \land q \land r) \lor (\neg p \land \neg q \land r)</script>
+
+<h3 id="forma-normal-conjuntiva-fnc">Forma normal conjuntiva (FNC)</h3>
+
+<p>Para convertermos uma fórmula na forma normal conjuntiva utilizaremos ideia similar à usada anteriormente. No entanto, ao invés de nos focar nas linhas que tornam a fórmula verdadeira, consideraremos àquelas que a torma falsa, as quais estão indicadas na tabela a seguir.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center">$p$</th>
+      <th style="text-align: center">$q$</th>
+      <th style="text-align: center">$r$</th>
+      <th style="text-align: center">$(p\to q)$</th>
+      <th style="text-align: center">$(p\to q) \land r$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">*</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">*</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">*</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">*</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">*</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">F</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>A ideia a ser seguida neste caso é que, estas atribuições de valores-verdade são as únicas alternativas em que a fórmula $(p\to q) \land r$ é falsa. Se falharmos em encontrar uma atribuição que se encaixe numa dessas alternativas, então a fórmula, por consequência, será verdadeira. A forma normal conjuntiva dessa fórmula será a conjunção desses casos.</p>
+
+<script type="math/tex; mode=display">(\neg p \lor \neg q \lor r)</script>
+
+<script type="math/tex; mode=display">(\neg p \lor q \lor \neg r)</script>
+
+<script type="math/tex; mode=display">(\neg p \lor q \lor r)</script>
+
+<script type="math/tex; mode=display">(p \lor \neg q \lor r)</script>
+
+<script type="math/tex; mode=display">(p \lor q \lor r)</script>
+
+<p>Em resumo, para a fórmula $(p\to q) \land r$ ser verdadeira, todos os casos em que ela poderia ser falsificada (linhas da tabela) devem falhar.</p>
+
+<h2 id="benefícios-das-formas-normais">Benefícios das formas normais</h2>
+
+<p>Por que nos preocuparíamos em utilizar fórmulas na forma normal conjuntiva, por exemplo? Visto que muitas vezes isso gera fórmulas maiores que a original, não parece evidente tal motivação. No entanto, com uma análise adicional perceberemos que facilmente que a forma normal conjuntiva nos permite muito mais facilmente verificar a satisfabilidade de uma fórmula. Consideremos, como exemplo, a fórmula na forma normal conjuntiva definida a seguir</p>
+
+<script type="math/tex; mode=display">(\neg q \lor p \lor r) \land (\neg p\lor r) \land q</script>
+
+<p>Por definição da conjunção, esta fórmula completa apenas será verdadeira se cada um de seus conjuctos forem verdadeiros. Por outro lado, cada um dos conjuctos é uma disjunção. Suponhamos agora que queremos verificar se a fórmula é uma <strong>tautologia</strong>. Para isso, o seguinte lema se aplica:</p>
+
+<p><strong>Lema:</strong> Uma disjunção de proposições literais $\ell_1 \lor \ell_2 \lor \dots \lor \ell_n$ é uma tautologia se e somente se exitem $1\leq i, j\leq m$ tais que $\ell_i$ é $\neg\ell_j$.</p>
+
+<p>Em outras palavras, uma disjunção é uma tautologia apenas se contiver um símbolo e sua negação. Como é evidente, do ponto de vista computacional, isso pode ser verificado muito mais facilmente em uma fórmula em forma normal.</p>
+
+<p>Se por outro lado, precisarmos demonstrar que uma fórmula em forma normal conjuntiva é <strong>satisfatível</strong>, podemos nos basear na seguinte proposição.</p>
+
+<p><strong>Proposição:</strong> Seja uma fórmula $\phi$ da lógica proposicional. Então $\phi$ pode ser satisfeita se e somente se $\neg \phi$ não for uma tautologia.</p>
+
+<h2 id="cláusulas-de-horn">Cláusulas de Horn</h2>
+
+<p>As cláusulas de Horn são compostas por no máximo um literal positivo. Este tipo de fórmula posssui características interessantes em termos da verificação de satisfabilidade, que verificaremos depois. Uma cláusula de Horn tem a forma</p>
+
+<script type="math/tex; mode=display">\neg p \lor \neg q \lor \dots \lor r</script>
+
+<p>Deste modo, para satisfazer cláusulas desse tipo, basta atribuir valores-verdade falso para todas as variáveis envolvidas. Como toda cláusula de Horn é a disjunção de vários literais negados, um deles sendo verdadeiro torna toda a cláusula verdadeira.</p>
+
+<h1 id="exercícios">Exercícios</h1>
+
+<p>Transformar as seguinte fórmulas para a forma normal conjuntiva e disjuntiva (FNC, FND), utilizando tabelas-verdade. Verificar se algumas das fórmulas contém cláusulas de Horn.</p>
+
+<script type="math/tex; mode=display">((p\to q)\to p)\to p</script>
+
+<script type="math/tex; mode=display">\neg(p\land \neg p)</script>
+
+<script type="math/tex; mode=display">(p\lor q)\to \neg(q \lor r)</script>
+
+<script type="math/tex; mode=display">(p\to q) \leftrightarrow (r\land p)</script>
+
+<script type="math/tex; mode=display">(p\leftrightarrow q) \to (p \lor q)</script>
+
+<h1 id="referências">Referências</h1>
+
+<p>Seção 1.3: Pgs. 25-28, <a href="http://www.cse.chalmers.se/edu/course/DAT060/huthryan_lics2_sol.pdf">Logica - Huth &amp; Ryan (PDF).</a></p>
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>
