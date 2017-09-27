@@ -6,9 +6,345 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 21 Sep 2017 09:54:22 -0300</pubDate>
-    <lastBuildDate>Thu, 21 Sep 2017 09:54:22 -0300</lastBuildDate>
+    <pubDate>Wed, 27 Sep 2017 09:15:56 -0300</pubDate>
+    <lastBuildDate>Wed, 27 Sep 2017 09:15:56 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Lógica de predicados - Informal</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#a-necessidade-de-uma-linguagem-mais-rica&quot; id=&quot;markdown-toc-a-necessidade-de-uma-linguagem-mais-rica&quot;&gt;A necessidade de uma linguagem mais rica&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#predicados&quot; id=&quot;markdown-toc-predicados&quot;&gt;Predicados&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#variáveis&quot; id=&quot;markdown-toc-variáveis&quot;&gt;Variáveis&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#quantificadores&quot; id=&quot;markdown-toc-quantificadores&quot;&gt;Quantificadores&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#exemplo&quot; id=&quot;markdown-toc-exemplo&quot;&gt;Exemplo&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#exercícios&quot; id=&quot;markdown-toc-exercícios&quot;&gt;Exercícios&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#0&quot; id=&quot;markdown-toc-0&quot;&gt;#0&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#1&quot; id=&quot;markdown-toc-1&quot;&gt;#1&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#2&quot; id=&quot;markdown-toc-2&quot;&gt;#2&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#referências&quot; id=&quot;markdown-toc-referências&quot;&gt;Referências&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;a-necessidade-de-uma-linguagem-mais-rica&quot;&gt;A necessidade de uma linguagem mais rica&lt;/h1&gt;
+
+&lt;p&gt;Até então desenvolvemos a lógica proposicional, examinando-a de três ângulos: sua teoria de demonstração (dedução natural), sua sintaxe (árvores das fórmulas) e sua semântica (tabelas-verdade). Toda essa discussão se inicou com &lt;em&gt;frases declarativas&lt;/em&gt;, ou &lt;em&gt;proposições&lt;/em&gt;, as quais sempre é possível atribuir um valor lógico. A linguagem da lógica proposicional, por outro lado, é limitada, e existem tipos de afirmações que nela não podem ser representadas satisfatoriamente.&lt;/p&gt;
+
+&lt;p&gt;Vejamos, por exemplo, a frase declarativa:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“Todo estudante é mais jovem do que algum instrutor.”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;É fácil perceber que esta sentença não faz uso de nenhum dos conectivos da lógica proposicional: &lt;em&gt;não&lt;/em&gt;, &lt;em&gt;e&lt;/em&gt;, &lt;em&gt;ou&lt;/em&gt;, &lt;em&gt;se… então&lt;/em&gt;. Deste modo, o máximo que poderíamos fazer, seria representá-la como uma proposição atômica $p$&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;$p$: “Todo estudante é mais jovem do que algum instrutor.”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Obviamente, isto não nos traria nenhuma informação sobre a estrutura da frase.&lt;/p&gt;
+
+&lt;p&gt;No contexto dessas limitações, a &lt;em&gt;lógica de predicados&lt;/em&gt;, ou &lt;em&gt;lógica de segunda ordem&lt;/em&gt;, é proposta como forma de representar modificadores do tipo&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;existe&lt;/em&gt;,&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;todo&lt;/em&gt;,&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;entre&lt;/em&gt; e&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;apenas&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;predicados&quot;&gt;Predicados&lt;/h2&gt;
+
+&lt;p&gt;Na frase acima, podemos identificar algumas propriedades&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;ser um estudante&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;ser um instrutor&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;ser mais jovem do que alguém&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Gostaríamos de algum mecanismo por meio do qual pudéssemos representá-las, juntamente com suas relações lógicas e dependências.&lt;/p&gt;
+
+&lt;p&gt;Tomemos como exemplo &lt;em&gt;ser um estudante&lt;/em&gt;, podemos definir que essa propriedade como um &lt;em&gt;predicado&lt;/em&gt; $E(\cdot)$, o qual quando aplicado a algo nos diz que esse algo é um estudante.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;$E($André$)$: nos diz que &lt;em&gt;André&lt;/em&gt; é um estudante.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Seguindo a mesma idéia, podemos definir predicados para as demais propriedades&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;$I($Paulo$)$: &lt;em&gt;Paulo&lt;/em&gt; é um instrutor.&lt;/li&gt;
+  &lt;li&gt;$J($André, Paulo$)$: &lt;em&gt;André&lt;/em&gt; é mais jovem do que &lt;em&gt;Paulo&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Nestes exemplos, $E,I,J$ são chamados &lt;strong&gt;predicados&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/predicado/&quot;&gt;&lt;strong&gt;pre·di·ca·do&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Atributo de um ser; característica, propriedade, qualidade.&lt;/li&gt;
+  &lt;li&gt;Qualidade considerada positiva ou desejável, como bondade, delicadeza, gentileza etc.; mérito, virtude: Encontrou uma pessoa com muitos predicados.&lt;/li&gt;
+  &lt;li&gt;GRAM Tudo aquilo que se diz do sujeito da frase: Pedro vendeu o carro (vendeu o carro, o predicado, representa aquilo que se declara a respeito de Pedro, o sujeito).&lt;/li&gt;
+  &lt;li&gt;LÓG Numa proposição ou num juízo, atributo de um sujeito, que pode ser afirmado ou negado. Símbolo P.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;variáveis&quot;&gt;Variáveis&lt;/h2&gt;
+
+&lt;p&gt;Os predicados acima nos permitem definir propriedades, as quais podem ser utilizadas para identificar &lt;em&gt;estudantes&lt;/em&gt;, &lt;em&gt;instrutores&lt;/em&gt; e a relação de &lt;em&gt;juventude&lt;/em&gt; entre um estudante e um instrutor. No entanto, ainda não é viável representar todos estudantes&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“&lt;strong&gt;Todo estudante&lt;/strong&gt; é mais jovem do que algum instrutor.”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sem que para isso tenhamos que defini-los um a um.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;$E($André$)$, $E($Pedro$)$, $E($Maria$)$, $E($Joana$)$, etc..&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Claramente isto se torna inviável para qualquer número razoável de alunos, e portanto não é uma bom mecanismo para representar “&lt;strong&gt;Todo estudante…&lt;/strong&gt;”&lt;/p&gt;
+
+&lt;p&gt;Para contornarmos esse problema, utilizaremos o conceito de &lt;em&gt;variável&lt;/em&gt;. Uma variável $u,v,w,x,y,z,\dots$ nada mais é que um substituto para  valores concretos. Utilizando $x,y$, poderíamos formalizar os predicados anteriores.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;$E(x)$: $x$ é um estudante.&lt;/li&gt;
+  &lt;li&gt;$I(x)$: $x$ é um instrutor.&lt;/li&gt;
+  &lt;li&gt;$J(x,y)$: $x$ é mais jovem do que $y$.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;quantificadores&quot;&gt;Quantificadores&lt;/h2&gt;
+
+&lt;p&gt;As váriaveis nos oferecem a formalização necessária, porém ainda não nos permite especificar que um &lt;em&gt;predicado&lt;/em&gt; se aplica a &lt;strong&gt;todo&lt;/strong&gt; ou &lt;strong&gt;algum&lt;/strong&gt;. Para isso, utilizamos os &lt;strong&gt;quantificadores&lt;/strong&gt;, os quais definem o escopo das variáveis.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;$\forall$: “para todo”&lt;/li&gt;
+  &lt;li&gt;$\exists$: “existe” ou “algum”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Os quantificadores em conjunto com variáveis nos permitem então definir afirmações sobre algo genérico&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;$\forall y$: “para todo $y$&lt;/li&gt;
+  &lt;li&gt;$\exists z$: “existe $z$” ou “existe algum $z$”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Portanto, se quero dizer que todo $x$ é estudante, utilizo o quantificador $\forall$ em conjunto com o predicado e a variável $x$.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x E(x)&lt;/script&gt;
+
+&lt;p&gt;Retornando à frase original&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“Todo estudante é mais jovem do que algum instrutor.”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Podemos reescrevê-la, de forma a tornar mais óbvia as relações.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“Se $x$ é um estudante, então existe um instrutor $y$, tal que $x$ é mais jovem do que $y$.”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Devemos, no entanto, observar que a segunda frase se aplica a apenas um estudante $x$, como queremos generalizar a todos estudantes, utilizaremos o quantificador $\forall$&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(\dots)&lt;/script&gt;
+
+&lt;p&gt;A parte interna dos parênteses é um condicional que se aplica a todo estudante, e portanto&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(E(x)\to \dots)&lt;/script&gt;
+
+&lt;p&gt;O consequente deste condicional se refere ao trecho:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“existe um instrutor $y$, tal que $x$ é mais jovem do que $y$.”&lt;/li&gt;
+  &lt;li&gt;“existe $y$, tal que $y$ é um instrutor e $x$ é mais jovem do que $y$.”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Que pode ser representado por:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\exists y (I(y) \land J(x,y))&lt;/script&gt;
+
+&lt;p&gt;Por fim, a estrutura da frase exemplo pode ser escrita de maneira simbólica da seguinte forma&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(E(x)\to \exists y (I(y) \land J(x,y)))&lt;/script&gt;
+
+&lt;p&gt;A qual pode ser lida da seguinte forma:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“Para todo $x$, se $x$ é um estudante, então existe algum $y$ que é um instrutor tal que $x$ é mais novo do que $y$”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;exemplo&quot;&gt;Exemplo&lt;/h3&gt;
+
+&lt;p&gt;Considere os seguintes predicados:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;$A(x)$: $x$ é uma ave&lt;/li&gt;
+  &lt;li&gt;$V(x)$: $x$ pode voar&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Represente simbolicamente a frase&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;“Nem todas as aves podem voar”
+&lt;script type=&quot;math/tex&quot;&gt;\neg(\forall x (A(x)\to V(x)))&lt;/script&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;“Existem aves que não voam”
+&lt;script type=&quot;math/tex&quot;&gt;\exists x(A(x)\land \neg V(x))&lt;/script&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;exercícios&quot;&gt;Exercícios&lt;/h1&gt;
+
+&lt;h2 id=&quot;0&quot;&gt;#0&lt;/h2&gt;
+
+&lt;p&gt;Interpretando como&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;$c$: “está chovendo”&lt;/li&gt;
+  &lt;li&gt;$R$: “é uma rã”&lt;/li&gt;
+  &lt;li&gt;$V$: “é verde”&lt;/li&gt;
+  &lt;li&gt;$S$: “é saltitante”&lt;/li&gt;
+  &lt;li&gt;$I$: “é iridescente”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Formalize as seguintes sentenças:&lt;/p&gt;
+
+&lt;p&gt;a. Todas as rãs são verdes&lt;/p&gt;
+
+&lt;p&gt;b. Nenhuma rã é verdes&lt;/p&gt;
+
+&lt;p&gt;c. Algumas rãs são verdes&lt;/p&gt;
+
+&lt;p&gt;d. Algumas rãs não são verdes&lt;/p&gt;
+
+&lt;p&gt;e. Toda coisa é uma rã.&lt;/p&gt;
+
+&lt;p&gt;f. Alguma coisa é uma rã.&lt;/p&gt;
+
+&lt;p&gt;g. Nem toda coisa é uma rã.&lt;/p&gt;
+
+&lt;p&gt;h. Nada é uma rã.&lt;/p&gt;
+
+&lt;p&gt;i. Existem rãs verdes&lt;/p&gt;
+
+&lt;p&gt;j. Qualquer coisa ou é rã ou é iridescente.&lt;/p&gt;
+
+&lt;p&gt;k. Qualquer coisa é uma rã verde.&lt;/p&gt;
+
+&lt;p&gt;l. Está chovendo e algumas rãs estão saltitando&lt;/p&gt;
+
+&lt;p&gt;m. Se está chovendo, então todas as rãs estão saltitando&lt;/p&gt;
+
+&lt;p&gt;n. Algumas coisas são verdes e algumas não são&lt;/p&gt;
+
+&lt;p&gt;o. Algumas coisas são verdes e iridescentes simultaneamente&lt;/p&gt;
+
+&lt;p&gt;p. Ou qualquer coisa é uma rã, ou nada é uma rã&lt;/p&gt;
+
+&lt;p&gt;q. Qualquer coisa ou é uma rã ou não é uma rã.&lt;/p&gt;
+
+&lt;p&gt;r. Todas as rãs são rãs.&lt;/p&gt;
+
+&lt;p&gt;s. Somente rãs são verdes.&lt;/p&gt;
+
+&lt;p&gt;t. Não existem rãs iridescentes.&lt;/p&gt;
+
+&lt;p&gt;u. Todas as rãs verdes estão saltitando&lt;/p&gt;
+
+&lt;p&gt;v. Algumas rãs verdes não estão saltitando&lt;/p&gt;
+
+&lt;p&gt;w. Não é verdade que algumas rãs verdes estão saltitando.&lt;/p&gt;
+
+&lt;p&gt;x. Se nada é verde, então não existem rãs verdes.&lt;/p&gt;
+
+&lt;p&gt;y. Rãs verdes saltam se e somente se não está chovendo.&lt;/p&gt;
+
+&lt;h2 id=&quot;1&quot;&gt;#1&lt;/h2&gt;
+
+&lt;p&gt;Use os predicados&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;$A(x,y)$: $x$ admira $y$&lt;/li&gt;
+  &lt;li&gt;$B(x,y)$: $x$ estava presente em $y$&lt;/li&gt;
+  &lt;li&gt;$P(x)$: $x$ é um professor&lt;/li&gt;
+  &lt;li&gt;$E(x)$: $x$ é um estudante&lt;/li&gt;
+  &lt;li&gt;$L(x)$: $x$ é uma aula&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;e o símbolo funcional (constante)&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;$m$: Maria&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;a. Maria admira todo professor&lt;/p&gt;
+
+&lt;p&gt;b. Algum professor admira Maria&lt;/p&gt;
+
+&lt;p&gt;c. Maria admira a si própria&lt;/p&gt;
+
+&lt;p&gt;d. Nenhum estudante estava presente em todas as aulas.&lt;/p&gt;
+
+&lt;p&gt;e. Nenhuma aula teve a presença de todos os estudantes&lt;/p&gt;
+
+&lt;p&gt;f. Nenhuma aula teve a presença de qualquer estudante.&lt;/p&gt;
+
+&lt;h2 id=&quot;2&quot;&gt;#2&lt;/h2&gt;
+&lt;p&gt;Suponha&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;$F(x,y)$: $x$ é o pai de $y$&lt;/li&gt;
+  &lt;li&gt;$M(x,y)$: $x$ é a mãe de $y$&lt;/li&gt;
+  &lt;li&gt;$H(x,y)$: $x$ é marido de $y$&lt;/li&gt;
+  &lt;li&gt;$S(x,y)$: $x$ é irmã de $y$&lt;/li&gt;
+  &lt;li&gt;$B(x,y)$: $x$ é irmão de $y$&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;É permitido usar constantes para representar nomes: ‘Ed’, ‘Patsy’&lt;/p&gt;
+
+&lt;p&gt;a. Todos têm uma mãe&lt;/p&gt;
+
+&lt;p&gt;b. Todos têm um pai e uma mãe&lt;/p&gt;
+
+&lt;p&gt;c. Todos que tem uma mãe tem um pai&lt;/p&gt;
+
+&lt;p&gt;d. Ed é um avô&lt;/p&gt;
+
+&lt;p&gt;e. Todos os pais são pais ou mães&lt;/p&gt;
+
+&lt;p&gt;f. Todos os maridos são cônjuges&lt;/p&gt;
+
+&lt;p&gt;g. Nenhum tio é tia&lt;/p&gt;
+
+&lt;p&gt;h. Todos os irmãos são irmãos ou irmãs&lt;/p&gt;
+
+&lt;p&gt;i. Nenhuma avó é pai de alguém&lt;/p&gt;
+
+&lt;p&gt;j. Ed e Patsy são marido e mulher&lt;/p&gt;
+
+&lt;p&gt;k. Carlos é cunhado de Monique.&lt;/p&gt;
+
+&lt;h1 id=&quot;referências&quot;&gt;Referências&lt;/h1&gt;
+
+&lt;p&gt;Seção 1.3: Pgs. 25-28, &lt;a href=&quot;http://www.cse.chalmers.se/edu/course/DAT060/huthryan_lics2_sol.pdf&quot;&gt;Logica - Huth &amp;amp; Ryan (PDF).&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Wed, 27 Sep 2017 10:20:00 -0300</pubDate>
+        <link>http://localhost:4000/lc21cp-172/logica-predicados-informal.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/logica-predicados-informal.html</guid>
+        
+        <category>predicados</category>
+        
+        
+        <category>LC21CP-172</category>
+        
+      </item>
     
       <item>
         <title>Contêiners abstratos - list, forward_list, vector</title>
@@ -45,7 +381,7 @@
 &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;push_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -92,7 +428,7 @@ gcc main.c stack.c list.c -o main-list
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
-        <pubDate>Mon, 25 Sep 2017 18:40:00 -0300</pubDate>
+        <pubDate>Tue, 26 Sep 2017 13:50:00 -0300</pubDate>
         <link>http://localhost:4000/ae22cp-172/um-container-abstrato.html</link>
         <guid isPermaLink="true">http://localhost:4000/ae22cp-172/um-container-abstrato.html</guid>
         
@@ -100,6 +436,72 @@ gcc main.c stack.c list.c -o main-list
         
         
         <category>AE22CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>Lista VI - Árvores de análise e formas normais</title>
+        <description>&lt;h1 id=&quot;exercícios&quot;&gt;Exercícios&lt;/h1&gt;
+
+&lt;h2 id=&quot;fórmulas-bem-formuladas&quot;&gt;Fórmulas bem formuladas&lt;/h2&gt;
+
+&lt;p&gt;Dadas as fórmulas a seguir, construa suas árvores de análise e diga quais são bem formuladas:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land q&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\land \neg(p \lor q \land s) \to (r\to s)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land \neg q \to \neg p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land (\neg q \to \neg p)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg((\neg q \land (p\to r))\land (r\to q))&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\land \neg(p\lor \land s) \to (r \to s)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q)\to (\neg r\lor(q \to r))&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(((s\to(r\lor \ell))\lor((\neg q)\land r))\to((\neg(p\to s))\to r))&lt;/script&gt;
+
+&lt;h2 id=&quot;subfórmulas&quot;&gt;Subfórmulas&lt;/h2&gt;
+
+&lt;p&gt;Para cada uma das fórmulas, construa suas árvores de análise e liste todas subfórmulas.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (\neg p \lor (\neg\neg q \to (p\land q)))&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(s \to r \lor \ell) \lor (\neg q\land r) \to (\neg(p \to s) \to r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\to q) \land (\neg r \to (q \lor(\neg p\land r)))&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(s\to(\neg(p\to(q\lor\neg s))))&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;((p\to \neg q))\lor(p\land r)\to s) \lor \neg r&lt;/script&gt;
+
+&lt;h2 id=&quot;formas-normais&quot;&gt;Formas normais&lt;/h2&gt;
+
+&lt;p&gt;Transformar as seguinte fórmulas para a forma normal conjuntiva e disjuntiva (FNC, FND), utilizando tabelas-verdade. Verificar se algumas das fórmulas contém cláusulas de Horn.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;((p\to q)\to p)\to p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(p\land \neg p)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\lor q)\to \neg(q \lor r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\to q) \leftrightarrow (r\land p)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\leftrightarrow q) \to (p \lor q)&lt;/script&gt;
+
+&lt;h1 id=&quot;referências&quot;&gt;Referências&lt;/h1&gt;
+&lt;p&gt;Capítulo 4: Pgs. 185 - 203, &lt;a href=&quot;https://racionalistasusp.files.wordpress.com/2010/01/nolt-john-rohatyn-dennis-lc3b3gica.pdf&quot;&gt;Logica - John Nolt (PDF).&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 21 Sep 2017 18:20:00 -0300</pubDate>
+        <link>http://localhost:4000/lc21cp-172/lista6-arvores-de-analise.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/lista6-arvores-de-analise.html</guid>
+        
+        <category>formalização</category>
+        
+        
+        <category>LC21CP-172</category>
         
       </item>
     
@@ -485,58 +887,6 @@ gcc main.c stack.c list.c -o main-list
         <guid isPermaLink="true">http://localhost:4000/lc21cp-172/formas-normais.html</guid>
         
         <category>linguagem</category>
-        
-        
-        <category>LC21CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Lista VI - Árvores de análise</title>
-        <description>&lt;h1 id=&quot;exercícios&quot;&gt;Exercícios&lt;/h1&gt;
-
-&lt;h2 id=&quot;fórmulas-bem-formuladas&quot;&gt;Fórmulas bem formuladas&lt;/h2&gt;
-
-&lt;p&gt;Dadas as fórmulas a seguir, construa suas árvores de análise e diga quais são bem formuladas:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land q&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\land \neg(p \lor q \land s) \to (r\to s)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land \neg q \to \neg p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land (\neg q \to \neg p)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg((\neg q \land (p\to r))\land (r\to q))&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\land \neg(p\lor \land s) \to (r \to s)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q)\to (\neg r\lor(q \to r))&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(((s\to(r\lor \ell))\lor((\neg q)\land r))\to((\neg(p\to s))\to r))&lt;/script&gt;
-
-&lt;h2 id=&quot;subfórmulas&quot;&gt;Subfórmulas&lt;/h2&gt;
-
-&lt;p&gt;Para cada uma das fórmulas, construa suas árvores de análise e liste todas subfórmulas.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (\neg p \lor (\neg\neg q \to (p\land q)))&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(s \to r \lor \ell) \lor (\neg q\land r) \to (\neg(p \to s) \to r)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\to q) \land (\neg r \to (q \lor(\neg p\land r)))&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(s\to(\neg(p\to(q\lor\neg s))))&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;((p\to \neg q))\lor(p\land r)\to s) \lor \neg r&lt;/script&gt;
-
-&lt;h1 id=&quot;referências&quot;&gt;Referências&lt;/h1&gt;
-&lt;p&gt;Capítulo 4: Pgs. 185 - 203, &lt;a href=&quot;https://racionalistasusp.files.wordpress.com/2010/01/nolt-john-rohatyn-dennis-lc3b3gica.pdf&quot;&gt;Logica - John Nolt (PDF).&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Wed, 20 Sep 2017 15:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/lista6-arvores-de-analise.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/lista6-arvores-de-analise.html</guid>
-        
-        <category>formalização</category>
         
         
         <category>LC21CP-172</category>
@@ -1625,99 +1975,6 @@ endereço :=  x          ...  y          ...   z
         
         
         <category>LC21CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Exercícios (Pilhas)</title>
-        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#exercícios&quot; id=&quot;markdown-toc-exercícios&quot;&gt;Exercícios&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#validação-parentética&quot; id=&quot;markdown-toc-validação-parentética&quot;&gt;Validação parentética&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#validação-de-expressões&quot; id=&quot;markdown-toc-validação-de-expressões&quot;&gt;Validação de expressões&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#verificação-de-palíndromo&quot; id=&quot;markdown-toc-verificação-de-palíndromo&quot;&gt;Verificação de palíndromo&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#verificar-concatenação-de-palíndromos&quot; id=&quot;markdown-toc-verificar-concatenação-de-palíndromos&quot;&gt;Verificar concatenação de palíndromos&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#underflow&quot; id=&quot;markdown-toc-underflow&quot;&gt;Underflow&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#referências--pdf&quot; id=&quot;markdown-toc-referências--pdf&quot;&gt;Referências -pdf&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;exercícios&quot;&gt;Exercícios&lt;/h1&gt;
-
-&lt;h2 id=&quot;validação-parentética&quot;&gt;Validação parentética&lt;/h2&gt;
-
-&lt;p&gt;Agora que defimos uma pilha e indicamos as operações que podem ser executadas sobre ela, vejamos como podemos usar a pilha na solução de problemas. Examine uma expressão matemática que inclui vários conjuntos de parênteses agrupados. Por exemplo:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;7 - ((X *((X+ Y)/ (J-3)) + Y)/(4-2.5))&lt;/script&gt;
-
-&lt;p&gt;Queremos garantir que os parênteses estejam corretamente agrupados, ou seja, desejamos verificar se:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Existe um número igual de parênteses esquerdos e direitos.&lt;/li&gt;
-  &lt;li&gt;Todo parêntese da direita está precedido por um parêntese da esquerda.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;stack.h&quot;
-&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// Funções auxiliares para identificar o caractere sendo lido. 
-// [!] É necessário implementá-las para que o exemplo funcione. 
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;abreEscopo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fechaEscopo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;escopoCorreto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;verificaExpressao&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expressao&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;esize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;	
-	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;esize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;atual&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expressao&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;abreEscopo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;atual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-			&lt;span class=&quot;n&quot;&gt;stack_push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;atual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fechaEscopo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;atual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-			&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack_empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-			&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;escopoCorreto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack_pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;atual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;	
-	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack_empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;esize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;free_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;esize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;validação-de-expressões&quot;&gt;Validação de expressões&lt;/h2&gt;
-&lt;p&gt;Adapte o código do validador para que funcione com expressões mais complexas, contendo os demais delimitadores&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(, ), [, ] , \{, \}&lt;/script&gt;
-
-&lt;h2 id=&quot;verificação-de-palíndromo&quot;&gt;Verificação de palíndromo&lt;/h2&gt;
-
-&lt;p&gt;Escreva um algoritmo para determinar se uma string de caracteres de entrada é da forma:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;x C y&lt;/script&gt;
-
-&lt;p&gt;onde &lt;script type=&quot;math/tex&quot;&gt;x,y&lt;/script&gt; são strings e &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; é o inverso de &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;. O caractere &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt; delimita o fim de &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;. Somente um caractere da string pode ser lido de cada vez.&lt;/p&gt;
-
-&lt;h2 id=&quot;verificar-concatenação-de-palíndromos&quot;&gt;Verificar concatenação de palíndromos&lt;/h2&gt;
-
-&lt;p&gt;Escreva um algoritmo para determinar se uma string de caracteres de entrada é da forma:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;a D b D c D \dots D z&lt;/script&gt;
-
-&lt;p&gt;onde cada string &lt;script type=&quot;math/tex&quot;&gt;a, b, c,\dots,z&lt;/script&gt;, é da forma da string definida no exercício anterior, isto é, &lt;script type=&quot;math/tex&quot;&gt;a = xCy&lt;/script&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;underflow&quot;&gt;Underflow&lt;/h2&gt;
-&lt;p&gt;Que conjunto de critérios é necessário e suficiente para que uma sequência de operações &lt;code class=&quot;highlighter-rouge&quot;&gt;push&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;pop&lt;/code&gt; sobre uma única pilha (inicialmente vazia) deixe a pilha vazia e não provoque &lt;em&gt;underflow&lt;/em&gt;?&lt;/p&gt;
-
-&lt;h1 id=&quot;referências--pdf&quot;&gt;Referências -pdf&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.san.uri.br/~ober/arquivos/disciplinas/estruturaII_SI/(ebook)Estruturas%20de%20Dados%20Usando%20C%20(Tenenbaum).pdf&quot;&gt;&lt;img src=&quot;../assets/tenenbaum-book.jpg&quot; alt=&quot;livro&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Mon, 11 Sep 2017 18:40:00 -0300</pubDate>
-        <link>http://localhost:4000/ae22cp-172/pilhas-valida%C3%A7%C3%A3o-de-express%C3%B5es.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/pilhas-valida%C3%A7%C3%A3o-de-express%C3%B5es.html</guid>
-        
-        <category>pilhas-filas</category>
-        
-        
-        <category>AE22CP-172</category>
         
       </item>
     

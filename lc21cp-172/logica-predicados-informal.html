@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Lógica de predicados - Informal</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/lc21cp-172/logica-predicados-informal.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Lógica de predicados - Informal</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Sep 27, 2017
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/ae22cp-172/um-container-abstrato.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#a-necessidade-de-uma-linguagem-mais-rica" id="markdown-toc-a-necessidade-de-uma-linguagem-mais-rica">A necessidade de uma linguagem mais rica</a>    <ul>
+      <li><a href="#predicados" id="markdown-toc-predicados">Predicados</a></li>
+      <li><a href="#variáveis" id="markdown-toc-variáveis">Variáveis</a></li>
+      <li><a href="#quantificadores" id="markdown-toc-quantificadores">Quantificadores</a>        <ul>
+          <li><a href="#exemplo" id="markdown-toc-exemplo">Exemplo</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#exercícios" id="markdown-toc-exercícios">Exercícios</a>    <ul>
+      <li><a href="#0" id="markdown-toc-0">#0</a></li>
+      <li><a href="#1" id="markdown-toc-1">#1</a></li>
+      <li><a href="#2" id="markdown-toc-2">#2</a></li>
+    </ul>
+  </li>
+  <li><a href="#referências" id="markdown-toc-referências">Referências</a></li>
+</ul>
+
+<h1 id="a-necessidade-de-uma-linguagem-mais-rica">A necessidade de uma linguagem mais rica</h1>
+
+<p>Até então desenvolvemos a lógica proposicional, examinando-a de três ângulos: sua teoria de demonstração (dedução natural), sua sintaxe (árvores das fórmulas) e sua semântica (tabelas-verdade). Toda essa discussão se inicou com <em>frases declarativas</em>, ou <em>proposições</em>, as quais sempre é possível atribuir um valor lógico. A linguagem da lógica proposicional, por outro lado, é limitada, e existem tipos de afirmações que nela não podem ser representadas satisfatoriamente.</p>
+
+<p>Vejamos, por exemplo, a frase declarativa:</p>
+
+<ul>
+  <li>“Todo estudante é mais jovem do que algum instrutor.”</li>
+</ul>
+
+<p>É fácil perceber que esta sentença não faz uso de nenhum dos conectivos da lógica proposicional: <em>não</em>, <em>e</em>, <em>ou</em>, <em>se… então</em>. Deste modo, o máximo que poderíamos fazer, seria representá-la como uma proposição atômica $p$</p>
+
+<ul>
+  <li>$p$: “Todo estudante é mais jovem do que algum instrutor.”</li>
+</ul>
+
+<p>Obviamente, isto não nos traria nenhuma informação sobre a estrutura da frase.</p>
+
+<p>No contexto dessas limitações, a <em>lógica de predicados</em>, ou <em>lógica de segunda ordem</em>, é proposta como forma de representar modificadores do tipo</p>
+
+<ul>
+  <li><em>existe</em>,</li>
+  <li><em>todo</em>,</li>
+  <li><em>entre</em> e</li>
+  <li><em>apenas</em>.</li>
+</ul>
+
+<h2 id="predicados">Predicados</h2>
+
+<p>Na frase acima, podemos identificar algumas propriedades</p>
+
+<ul>
+  <li><em>ser um estudante</em></li>
+  <li><em>ser um instrutor</em></li>
+  <li><em>ser mais jovem do que alguém</em></li>
+</ul>
+
+<p>Gostaríamos de algum mecanismo por meio do qual pudéssemos representá-las, juntamente com suas relações lógicas e dependências.</p>
+
+<p>Tomemos como exemplo <em>ser um estudante</em>, podemos definir que essa propriedade como um <em>predicado</em> $E(\cdot)$, o qual quando aplicado a algo nos diz que esse algo é um estudante.</p>
+
+<ul>
+  <li>$E($André$)$: nos diz que <em>André</em> é um estudante.</li>
+</ul>
+
+<p>Seguindo a mesma idéia, podemos definir predicados para as demais propriedades</p>
+
+<ul>
+  <li>$I($Paulo$)$: <em>Paulo</em> é um instrutor.</li>
+  <li>$J($André, Paulo$)$: <em>André</em> é mais jovem do que <em>Paulo</em>.</li>
+</ul>
+
+<p>Nestes exemplos, $E,I,J$ são chamados <strong>predicados</strong>.</p>
+
+<p><a href="http://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/predicado/"><strong>pre·di·ca·do</strong></a></p>
+<ol>
+  <li>Atributo de um ser; característica, propriedade, qualidade.</li>
+  <li>Qualidade considerada positiva ou desejável, como bondade, delicadeza, gentileza etc.; mérito, virtude: Encontrou uma pessoa com muitos predicados.</li>
+  <li>GRAM Tudo aquilo que se diz do sujeito da frase: Pedro vendeu o carro (vendeu o carro, o predicado, representa aquilo que se declara a respeito de Pedro, o sujeito).</li>
+  <li>LÓG Numa proposição ou num juízo, atributo de um sujeito, que pode ser afirmado ou negado. Símbolo P.</li>
+</ol>
+
+<h2 id="variáveis">Variáveis</h2>
+
+<p>Os predicados acima nos permitem definir propriedades, as quais podem ser utilizadas para identificar <em>estudantes</em>, <em>instrutores</em> e a relação de <em>juventude</em> entre um estudante e um instrutor. No entanto, ainda não é viável representar todos estudantes</p>
+
+<ul>
+  <li>“<strong>Todo estudante</strong> é mais jovem do que algum instrutor.”</li>
+</ul>
+
+<p>Sem que para isso tenhamos que defini-los um a um.</p>
+
+<ul>
+  <li>$E($André$)$, $E($Pedro$)$, $E($Maria$)$, $E($Joana$)$, etc..</li>
+</ul>
+
+<p>Claramente isto se torna inviável para qualquer número razoável de alunos, e portanto não é uma bom mecanismo para representar “<strong>Todo estudante…</strong>”</p>
+
+<p>Para contornarmos esse problema, utilizaremos o conceito de <em>variável</em>. Uma variável $u,v,w,x,y,z,\dots$ nada mais é que um substituto para  valores concretos. Utilizando $x,y$, poderíamos formalizar os predicados anteriores.</p>
+
+<ul>
+  <li>$E(x)$: $x$ é um estudante.</li>
+  <li>$I(x)$: $x$ é um instrutor.</li>
+  <li>$J(x,y)$: $x$ é mais jovem do que $y$.</li>
+</ul>
+
+<h2 id="quantificadores">Quantificadores</h2>
+
+<p>As váriaveis nos oferecem a formalização necessária, porém ainda não nos permite especificar que um <em>predicado</em> se aplica a <strong>todo</strong> ou <strong>algum</strong>. Para isso, utilizamos os <strong>quantificadores</strong>, os quais definem o escopo das variáveis.</p>
+
+<ul>
+  <li>$\forall$: “para todo”</li>
+  <li>$\exists$: “existe” ou “algum”</li>
+</ul>
+
+<p>Os quantificadores em conjunto com variáveis nos permitem então definir afirmações sobre algo genérico</p>
+
+<ul>
+  <li>$\forall y$: “para todo $y$</li>
+  <li>$\exists z$: “existe $z$” ou “existe algum $z$”</li>
+</ul>
+
+<p>Portanto, se quero dizer que todo $x$ é estudante, utilizo o quantificador $\forall$ em conjunto com o predicado e a variável $x$.</p>
+
+<script type="math/tex; mode=display">\forall x E(x)</script>
+
+<p>Retornando à frase original</p>
+
+<ul>
+  <li>“Todo estudante é mais jovem do que algum instrutor.”</li>
+</ul>
+
+<p>Podemos reescrevê-la, de forma a tornar mais óbvia as relações.</p>
+
+<ul>
+  <li>“Se $x$ é um estudante, então existe um instrutor $y$, tal que $x$ é mais jovem do que $y$.”</li>
+</ul>
+
+<p>Devemos, no entanto, observar que a segunda frase se aplica a apenas um estudante $x$, como queremos generalizar a todos estudantes, utilizaremos o quantificador $\forall$</p>
+
+<script type="math/tex; mode=display">\forall x(\dots)</script>
+
+<p>A parte interna dos parênteses é um condicional que se aplica a todo estudante, e portanto</p>
+
+<script type="math/tex; mode=display">\forall x(E(x)\to \dots)</script>
+
+<p>O consequente deste condicional se refere ao trecho:</p>
+
+<ul>
+  <li>“existe um instrutor $y$, tal que $x$ é mais jovem do que $y$.”</li>
+  <li>“existe $y$, tal que $y$ é um instrutor e $x$ é mais jovem do que $y$.”</li>
+</ul>
+
+<p>Que pode ser representado por:</p>
+
+<script type="math/tex; mode=display">\exists y (I(y) \land J(x,y))</script>
+
+<p>Por fim, a estrutura da frase exemplo pode ser escrita de maneira simbólica da seguinte forma</p>
+
+<script type="math/tex; mode=display">\forall x(E(x)\to \exists y (I(y) \land J(x,y)))</script>
+
+<p>A qual pode ser lida da seguinte forma:</p>
+
+<ul>
+  <li>“Para todo $x$, se $x$ é um estudante, então existe algum $y$ que é um instrutor tal que $x$ é mais novo do que $y$”</li>
+</ul>
+
+<h3 id="exemplo">Exemplo</h3>
+
+<p>Considere os seguintes predicados:</p>
+
+<ul>
+  <li>$A(x)$: $x$ é uma ave</li>
+  <li>$V(x)$: $x$ pode voar</li>
+</ul>
+
+<p>Represente simbolicamente a frase</p>
+
+<ul>
+  <li>
+    <p>“Nem todas as aves podem voar”
+<script type="math/tex">\neg(\forall x (A(x)\to V(x)))</script></p>
+  </li>
+  <li>
+    <p>“Existem aves que não voam”
+<script type="math/tex">\exists x(A(x)\land \neg V(x))</script></p>
+  </li>
+</ul>
+
+<h1 id="exercícios">Exercícios</h1>
+
+<h2 id="0">#0</h2>
+
+<p>Interpretando como</p>
+
+<ul>
+  <li>$c$: “está chovendo”</li>
+  <li>$R$: “é uma rã”</li>
+  <li>$V$: “é verde”</li>
+  <li>$S$: “é saltitante”</li>
+  <li>$I$: “é iridescente”</li>
+</ul>
+
+<p>Formalize as seguintes sentenças:</p>
+
+<p>a. Todas as rãs são verdes</p>
+
+<p>b. Nenhuma rã é verdes</p>
+
+<p>c. Algumas rãs são verdes</p>
+
+<p>d. Algumas rãs não são verdes</p>
+
+<p>e. Toda coisa é uma rã.</p>
+
+<p>f. Alguma coisa é uma rã.</p>
+
+<p>g. Nem toda coisa é uma rã.</p>
+
+<p>h. Nada é uma rã.</p>
+
+<p>i. Existem rãs verdes</p>
+
+<p>j. Qualquer coisa ou é rã ou é iridescente.</p>
+
+<p>k. Qualquer coisa é uma rã verde.</p>
+
+<p>l. Está chovendo e algumas rãs estão saltitando</p>
+
+<p>m. Se está chovendo, então todas as rãs estão saltitando</p>
+
+<p>n. Algumas coisas são verdes e algumas não são</p>
+
+<p>o. Algumas coisas são verdes e iridescentes simultaneamente</p>
+
+<p>p. Ou qualquer coisa é uma rã, ou nada é uma rã</p>
+
+<p>q. Qualquer coisa ou é uma rã ou não é uma rã.</p>
+
+<p>r. Todas as rãs são rãs.</p>
+
+<p>s. Somente rãs são verdes.</p>
+
+<p>t. Não existem rãs iridescentes.</p>
+
+<p>u. Todas as rãs verdes estão saltitando</p>
+
+<p>v. Algumas rãs verdes não estão saltitando</p>
+
+<p>w. Não é verdade que algumas rãs verdes estão saltitando.</p>
+
+<p>x. Se nada é verde, então não existem rãs verdes.</p>
+
+<p>y. Rãs verdes saltam se e somente se não está chovendo.</p>
+
+<h2 id="1">#1</h2>
+
+<p>Use os predicados</p>
+
+<ul>
+  <li>$A(x,y)$: $x$ admira $y$</li>
+  <li>$B(x,y)$: $x$ estava presente em $y$</li>
+  <li>$P(x)$: $x$ é um professor</li>
+  <li>$E(x)$: $x$ é um estudante</li>
+  <li>$L(x)$: $x$ é uma aula</li>
+</ul>
+
+<p>e o símbolo funcional (constante)</p>
+
+<ul>
+  <li>$m$: Maria</li>
+</ul>
+
+<p>a. Maria admira todo professor</p>
+
+<p>b. Algum professor admira Maria</p>
+
+<p>c. Maria admira a si própria</p>
+
+<p>d. Nenhum estudante estava presente em todas as aulas.</p>
+
+<p>e. Nenhuma aula teve a presença de todos os estudantes</p>
+
+<p>f. Nenhuma aula teve a presença de qualquer estudante.</p>
+
+<h2 id="2">#2</h2>
+<p>Suponha</p>
+<ul>
+  <li>$F(x,y)$: $x$ é o pai de $y$</li>
+  <li>$M(x,y)$: $x$ é a mãe de $y$</li>
+  <li>$H(x,y)$: $x$ é marido de $y$</li>
+  <li>$S(x,y)$: $x$ é irmã de $y$</li>
+  <li>$B(x,y)$: $x$ é irmão de $y$</li>
+</ul>
+
+<p>É permitido usar constantes para representar nomes: ‘Ed’, ‘Patsy’</p>
+
+<p>a. Todos têm uma mãe</p>
+
+<p>b. Todos têm um pai e uma mãe</p>
+
+<p>c. Todos que tem uma mãe tem um pai</p>
+
+<p>d. Ed é um avô</p>
+
+<p>e. Todos os pais são pais ou mães</p>
+
+<p>f. Todos os maridos são cônjuges</p>
+
+<p>g. Nenhum tio é tia</p>
+
+<p>h. Todos os irmãos são irmãos ou irmãs</p>
+
+<p>i. Nenhuma avó é pai de alguém</p>
+
+<p>j. Ed e Patsy são marido e mulher</p>
+
+<p>k. Carlos é cunhado de Monique.</p>
+
+<h1 id="referências">Referências</h1>
+
+<p>Seção 1.3: Pgs. 25-28, <a href="http://www.cse.chalmers.se/edu/course/DAT060/huthryan_lics2_sol.pdf">Logica - Huth &amp; Ryan (PDF).</a></p>
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>
