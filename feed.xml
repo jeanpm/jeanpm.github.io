@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 06 Oct 2017 15:07:16 -0300</pubDate>
-    <lastBuildDate>Fri, 06 Oct 2017 15:07:16 -0300</lastBuildDate>
+    <pubDate>Fri, 06 Oct 2017 15:08:18 -0300</pubDate>
+    <lastBuildDate>Fri, 06 Oct 2017 15:08:18 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -214,7 +214,7 @@ Program received signal SIGSEGV, Segmentation fault.
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \exists x \exists y Lxy \vdash \forall x \neg Lxx&lt;/script&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\eixsts x Fx \vdash \exists x \exists y(Fx \land Fy)&lt;/script&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\exists x Fx \vdash \exists x \exists y(Fx \land Fy)&lt;/script&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x \neg Fx \vdash \forall x(Fx \to Gx)&lt;/script&gt;
 
