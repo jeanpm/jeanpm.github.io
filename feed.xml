@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 06 Oct 2017 13:43:36 -0300</pubDate>
-    <lastBuildDate>Fri, 06 Oct 2017 13:43:36 -0300</lastBuildDate>
+    <pubDate>Fri, 06 Oct 2017 14:15:29 -0300</pubDate>
+    <lastBuildDate>Fri, 06 Oct 2017 14:15:29 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -174,161 +174,45 @@ Program received signal SIGSEGV, Segmentation fault.
         <title>Lista VIII - Lógica de predicados, dedução</title>
         <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#exercícios&quot; id=&quot;markdown-toc-exercícios&quot;&gt;Exercícios&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#0-predicados-unários&quot; id=&quot;markdown-toc-0-predicados-unários&quot;&gt;#0 Predicados unários&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#1--predicados-binários&quot; id=&quot;markdown-toc-1--predicados-binários&quot;&gt;#1  Predicados binários&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#2-predicados-binários&quot; id=&quot;markdown-toc-2-predicados-binários&quot;&gt;#2 Predicados binários&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#3-fórmulas-bem-formadas&quot; id=&quot;markdown-toc-3-fórmulas-bem-formadas&quot;&gt;#3 Fórmulas bem formadas&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#exercícios&quot; id=&quot;markdown-toc-exercícios&quot;&gt;Exercícios&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#referências&quot; id=&quot;markdown-toc-referências&quot;&gt;Referências&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&quot;exercícios&quot;&gt;Exercícios&lt;/h1&gt;
 
-&lt;h2 id=&quot;0-predicados-unários&quot;&gt;#0 Predicados unários&lt;/h2&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x Fx \vdash Fa \land (Fb \land (Fc \land Fd))&lt;/script&gt;
 
-&lt;p&gt;Interpretando como&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(Fx \lor Gx), \neg Fa \vdash \neg Ga&lt;/script&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;$c$: “está chovendo”&lt;/li&gt;
-  &lt;li&gt;$R$: “é uma rã”&lt;/li&gt;
-  &lt;li&gt;$V$: “é verde”&lt;/li&gt;
-  &lt;li&gt;$S$: “é saltitante”&lt;/li&gt;
-  &lt;li&gt;$I$: “é iridescente”&lt;/li&gt;
-&lt;/ul&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg Fa \vdash \neg \forall x (Fx \land Gx)&lt;/script&gt;
 
-&lt;p&gt;Formalize as seguintes sentenças:&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(Fx \leftrightarrow r), r \vdash Fa&lt;/script&gt;
 
-&lt;p&gt;a. Todas as rãs são verdes&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(\neg Fx \lor \neg Gx) \vdash \neg(Fa \land Ga)&lt;/script&gt;
 
-&lt;p&gt;b. Nenhuma rã é verdes&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(Fx \to Gx) \vdash \forall x(\neg Gx \to \neg Fx)&lt;/script&gt;
 
-&lt;p&gt;c. Algumas rãs são verdes&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(Fx \to Gx) \vdash \forall x\neg Gx \to \forall x \neg Fx&lt;/script&gt;
 
-&lt;p&gt;d. Algumas rãs não são verdes&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x \forall y Fxy \vdash \forall x Fxx&lt;/script&gt;
 
-&lt;p&gt;e. Toda coisa é uma rã.&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x Fx \vdash \forall x Gx \to \forall x (Fx \land Gx)&lt;/script&gt;
 
-&lt;p&gt;f. Alguma coisa é uma rã.&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x \forall y(Fxy \to \neg Fyx) \vdash \forall x \neg Fxx&lt;/script&gt;
 
-&lt;p&gt;g. Nem toda coisa é uma rã.&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x Fx \vdash \exists x Fx&lt;/script&gt;
 
-&lt;p&gt;h. Nada é uma rã.&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \exists x Fx \vdash \neg Fa&lt;/script&gt;
 
-&lt;p&gt;i. Existem rãs verdes&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\exists x \neg Fx \vdash \neg \forall x Fx&lt;/script&gt;
 
-&lt;p&gt;j. Qualquer coisa ou é rã ou é iridescente.&lt;/p&gt;
-
-&lt;p&gt;k. Qualquer coisa é uma rã verde.&lt;/p&gt;
-
-&lt;p&gt;l. Está chovendo e algumas rãs estão saltitando&lt;/p&gt;
-
-&lt;p&gt;m. Se está chovendo, então todas as rãs estão saltitando&lt;/p&gt;
-
-&lt;p&gt;n. Algumas coisas são verdes e algumas não são&lt;/p&gt;
-
-&lt;p&gt;o. Algumas coisas são verdes e iridescentes simultaneamente&lt;/p&gt;
-
-&lt;p&gt;p. Ou qualquer coisa é uma rã, ou nada é uma rã&lt;/p&gt;
-
-&lt;p&gt;q. Qualquer coisa ou é uma rã ou não é uma rã.&lt;/p&gt;
-
-&lt;p&gt;r. Todas as rãs são rãs.&lt;/p&gt;
-
-&lt;p&gt;s. Somente rãs são verdes.&lt;/p&gt;
-
-&lt;p&gt;t. Não existem rãs iridescentes.&lt;/p&gt;
-
-&lt;p&gt;u. Todas as rãs verdes estão saltitando&lt;/p&gt;
-
-&lt;p&gt;v. Algumas rãs verdes não estão saltitando&lt;/p&gt;
-
-&lt;p&gt;w. Não é verdade que algumas rãs verdes estão saltitando.&lt;/p&gt;
-
-&lt;p&gt;x. Se nada é verde, então não existem rãs verdes.&lt;/p&gt;
-
-&lt;p&gt;y. Rãs verdes saltam se e somente se não está chovendo.&lt;/p&gt;
-
-&lt;h2 id=&quot;1--predicados-binários&quot;&gt;#1  Predicados binários&lt;/h2&gt;
-
-&lt;p&gt;Use os predicados&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;$A(x,y)$: $x$ admira $y$&lt;/li&gt;
-  &lt;li&gt;$B(x,y)$: $x$ estava presente em $y$&lt;/li&gt;
-  &lt;li&gt;$P(x)$: $x$ é um professor&lt;/li&gt;
-  &lt;li&gt;$E(x)$: $x$ é um estudante&lt;/li&gt;
-  &lt;li&gt;$L(x)$: $x$ é uma aula&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;e o símbolo funcional (constante)&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;$m$: Maria&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;a. Maria admira todo professor&lt;/p&gt;
-
-&lt;p&gt;b. Algum professor admira Maria&lt;/p&gt;
-
-&lt;p&gt;c. Maria admira a si própria&lt;/p&gt;
-
-&lt;p&gt;d. Nenhum estudante estava presente em todas as aulas.&lt;/p&gt;
-
-&lt;p&gt;e. Nenhuma aula teve a presença de todos os estudantes&lt;/p&gt;
-
-&lt;p&gt;f. Nenhuma aula teve a presença de qualquer estudante.&lt;/p&gt;
-
-&lt;h2 id=&quot;2-predicados-binários&quot;&gt;#2 Predicados binários&lt;/h2&gt;
-&lt;p&gt;Suponha&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;$F(x,y)$: $x$ é o pai de $y$&lt;/li&gt;
-  &lt;li&gt;$M(x,y)$: $x$ é a mãe de $y$&lt;/li&gt;
-  &lt;li&gt;$H(x,y)$: $x$ é marido de $y$&lt;/li&gt;
-  &lt;li&gt;$S(x,y)$: $x$ é irmã de $y$&lt;/li&gt;
-  &lt;li&gt;$B(x,y)$: $x$ é irmão de $y$&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;É permitido usar constantes para representar nomes: ‘Ed’, ‘Patsy’&lt;/p&gt;
-
-&lt;p&gt;a. Todos têm uma mãe&lt;/p&gt;
-
-&lt;p&gt;b. Todos têm um pai e uma mãe&lt;/p&gt;
-
-&lt;p&gt;c. Todos que tem uma mãe tem um pai&lt;/p&gt;
-
-&lt;p&gt;d. Ed é um avô&lt;/p&gt;
-
-&lt;p&gt;e. Todos os pais são pais ou mães&lt;/p&gt;
-
-&lt;p&gt;f. Todos os maridos são cônjuges&lt;/p&gt;
-
-&lt;p&gt;g. Nenhum tio é tia&lt;/p&gt;
-
-&lt;p&gt;h. Todos os irmãos são irmãos ou irmãs&lt;/p&gt;
-
-&lt;p&gt;i. Nenhuma avó é pai de alguém&lt;/p&gt;
-
-&lt;p&gt;j. Ed e Patsy são marido e mulher&lt;/p&gt;
-
-&lt;p&gt;k. Carlos é cunhado de Monique.&lt;/p&gt;
-
-&lt;h2 id=&quot;3-fórmulas-bem-formadas&quot;&gt;#3 Fórmulas bem formadas&lt;/h2&gt;
-
-&lt;p&gt;Sejam $m$ uma constante, $f$ um símbolo funcional unário e $S$ e $B$ dois símbolos predicados binários. Quais das cadeias a seguir são fórmulas na lógica de predicados.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;S(m)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;B(m, f(m))&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;B(B(m,x),y)&lt;/script&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(Fx \to Gx) \vdash \exists x Fx \to \exists x Gx&lt;/script&gt;
 
 &lt;h1 id=&quot;referências&quot;&gt;Referências&lt;/h1&gt;
 
 &lt;p&gt;Seção 2.1: Pg. 71, &lt;a href=&quot;http://www.cse.chalmers.se/edu/course/DAT060/huthryan_lics2_sol.pdf&quot;&gt;Logica - Huth &amp;amp; Ryan (PDF).&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Capítulo 6: Pgs. 239, &lt;a href=&quot;https://racionalistasusp.files.wordpress.com/2010/01/nolt-john-rohatyn-dennis-lc3b3gica.pdf&quot;&gt;Logica - John Nolt (PDF).&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Capítulo 6: Pgs. 254-284, &lt;a href=&quot;https://racionalistasusp.files.wordpress.com/2010/01/nolt-john-rohatyn-dennis-lc3b3gica.pdf&quot;&gt;Logica - John Nolt (PDF).&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Thu, 05 Oct 2017 10:00:00 -0300</pubDate>
         <link>http://localhost:4000/lc21cp-172/lista8-logica-predicados-deducao.html</link>
