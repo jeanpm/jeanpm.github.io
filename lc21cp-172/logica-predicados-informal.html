@@ -69,6 +69,12 @@
     </div>
   
   
+    <div class="right">
+      <a href="/lc21cp-172/logica-predicados-formal.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
 </div>
 
 
@@ -87,12 +93,11 @@
           <li><a href="#exemplo" id="markdown-toc-exemplo">Exemplo</a></li>
         </ul>
       </li>
-    </ul>
-  </li>
-  <li><a href="#exercícios" id="markdown-toc-exercícios">Exercícios</a>    <ul>
-      <li><a href="#0" id="markdown-toc-0">#0</a></li>
-      <li><a href="#1" id="markdown-toc-1">#1</a></li>
-      <li><a href="#2" id="markdown-toc-2">#2</a></li>
+      <li><a href="#símbolos-funcionais" id="markdown-toc-símbolos-funcionais">Símbolos funcionais</a>        <ul>
+          <li><a href="#exemplo-1" id="markdown-toc-exemplo-1">Exemplo</a></li>
+          <li><a href="#exemplo-2" id="markdown-toc-exemplo-2">Exemplo</a></li>
+        </ul>
+      </li>
     </ul>
   </li>
   <li><a href="#referências" id="markdown-toc-referências">Referências</a></li>
@@ -267,139 +272,76 @@
   </li>
 </ul>
 
-<h1 id="exercícios">Exercícios</h1>
+<h2 id="símbolos-funcionais">Símbolos funcionais</h2>
 
-<h2 id="0">#0</h2>
+<p>A lógica de predicados estende a lógica proposicional não só quanto aos quantificadores, mas também com o conceito de <em>símbolo funcional</em>. Um símbolo funcional nada mais é que uma função, a qual, dada uma variável, retorna alguma informação não ambígua sobre a variável em questão. Por exemplo, consideremos a sentenças</p>
 
-<p>Interpretando como</p>
+<p>“Toda criança é mais jovem do que sua mãe”.</p>
 
-<ul>
-  <li>$c$: “está chovendo”</li>
-  <li>$R$: “é uma rã”</li>
-  <li>$V$: “é verde”</li>
-  <li>$S$: “é saltitante”</li>
-  <li>$I$: “é iridescente”</li>
-</ul>
-
-<p>Formalize as seguintes sentenças:</p>
-
-<p>a. Todas as rãs são verdes</p>
-
-<p>b. Nenhuma rã é verdes</p>
-
-<p>c. Algumas rãs são verdes</p>
-
-<p>d. Algumas rãs não são verdes</p>
-
-<p>e. Toda coisa é uma rã.</p>
-
-<p>f. Alguma coisa é uma rã.</p>
-
-<p>g. Nem toda coisa é uma rã.</p>
-
-<p>h. Nada é uma rã.</p>
-
-<p>i. Existem rãs verdes</p>
-
-<p>j. Qualquer coisa ou é rã ou é iridescente.</p>
-
-<p>k. Qualquer coisa é uma rã verde.</p>
-
-<p>l. Está chovendo e algumas rãs estão saltitando</p>
-
-<p>m. Se está chovendo, então todas as rãs estão saltitando</p>
-
-<p>n. Algumas coisas são verdes e algumas não são</p>
-
-<p>o. Algumas coisas são verdes e iridescentes simultaneamente</p>
-
-<p>p. Ou qualquer coisa é uma rã, ou nada é uma rã</p>
-
-<p>q. Qualquer coisa ou é uma rã ou não é uma rã.</p>
-
-<p>r. Todas as rãs são rãs.</p>
-
-<p>s. Somente rãs são verdes.</p>
-
-<p>t. Não existem rãs iridescentes.</p>
-
-<p>u. Todas as rãs verdes estão saltitando</p>
-
-<p>v. Algumas rãs verdes não estão saltitando</p>
-
-<p>w. Não é verdade que algumas rãs verdes estão saltitando.</p>
-
-<p>x. Se nada é verde, então não existem rãs verdes.</p>
-
-<p>y. Rãs verdes saltam se e somente se não está chovendo.</p>
-
-<h2 id="1">#1</h2>
-
-<p>Use os predicados</p>
+<p>Ela pode ser representada simbolicamente utilizando os predicados:</p>
 
 <ul>
-  <li>$A(x,y)$: $x$ admira $y$</li>
-  <li>$B(x,y)$: $x$ estava presente em $y$</li>
-  <li>$P(x)$: $x$ é um professor</li>
-  <li>$E(x)$: $x$ é um estudante</li>
-  <li>$L(x)$: $x$ é uma aula</li>
+  <li>$C(x)$: $x$ é uma criança</li>
+  <li>$M(x,y)$: $x$ é mãe de $y$</li>
+  <li>$J(x,y)$: $x$ é mais jovem que $y$</li>
 </ul>
 
-<p>e o símbolo funcional (constante)</p>
+<script type="math/tex; mode=display">\forall x \forall y(C(x) \land M(y,x) \to J(x,y))</script>
+
+<p>Não há nada errado com esta fórmula, no entanto ela poderia ser simplificada por meio do uso de um símbolo funcional que retornasse a mãe de $x$.</p>
 
 <ul>
-  <li>$m$: Maria</li>
+  <li>$m(x)$: retorna a mãe de $x$</li>
 </ul>
 
-<p>a. Maria admira todo professor</p>
+<script type="math/tex; mode=display">\forall x (C(x) \to J(x, m(x)))</script>
 
-<p>b. Algum professor admira Maria</p>
+<p>Símbolos funcionais também podem ser binários, terciários e assim por diante:</p>
 
-<p>c. Maria admira a si própria</p>
-
-<p>d. Nenhum estudante estava presente em todas as aulas.</p>
-
-<p>e. Nenhuma aula teve a presença de todos os estudantes</p>
-
-<p>f. Nenhuma aula teve a presença de qualquer estudante.</p>
-
-<h2 id="2">#2</h2>
-<p>Suponha</p>
 <ul>
-  <li>$F(x,y)$: $x$ é o pai de $y$</li>
-  <li>$M(x,y)$: $x$ é a mãe de $y$</li>
-  <li>$H(x,y)$: $x$ é marido de $y$</li>
-  <li>$S(x,y)$: $x$ é irmã de $y$</li>
-  <li>$B(x,y)$: $x$ é irmão de $y$</li>
+  <li>$g(x,y)$: nota do aluno $x$ na disciplina $y$</li>
 </ul>
 
-<p>É permitido usar constantes para representar nomes: ‘Ed’, ‘Patsy’</p>
+<p>No caso especial em que nenhuma variável é necessária o simbolo funcional representa uma constante.</p>
 
-<p>a. Todos têm uma mãe</p>
+<ul>
+  <li>$m$: é uma constante para indicar Márcia</li>
+</ul>
 
-<p>b. Todos têm um pai e uma mãe</p>
+<h3 id="exemplo-1">Exemplo</h3>
+<p>Utilizando o predicado $M(x,y)$: $x$ é mãe de $y$, considere a simbolização da frase:</p>
 
-<p>c. Todos que tem uma mãe tem um pai</p>
+<p>“André e Paulo têm a mesma avó materna”</p>
 
-<p>d. Ed é um avô</p>
+<ol>
+  <li>
+    <p>Reescreva de forma simbólica utilizando somente predicados.</p>
+  </li>
+  <li>
+    <p>Reescreva de forma simbólica utilizando predicados e símbolos funcionais.</p>
+  </li>
+</ol>
 
-<p>e. Todos os pais são pais ou mães</p>
+<p>OBS: Utilize o símbolo de igualdade $=$ se necessário.</p>
 
-<p>f. Todos os maridos são cônjuges</p>
+<h3 id="exemplo-2">Exemplo</h3>
 
-<p>g. Nenhum tio é tia</p>
+<p>Considere a simbolização da frase:</p>
 
-<p>h. Todos os irmãos são irmãos ou irmãs</p>
+<p>“Todo filho de meu pai é meu irmão”</p>
 
-<p>i. Nenhuma avó é pai de alguém</p>
-
-<p>j. Ed e Patsy são marido e mulher</p>
-
-<p>k. Carlos é cunhado de Monique.</p>
+<ol>
+  <li>
+    <p>Reescreva de forma simbólica utilizando somente predicados.</p>
+  </li>
+  <li>
+    <p>Reescreva de forma simbólica utilizando predicados e símbolos funcionais.</p>
+  </li>
+</ol>
 
 <h1 id="referências">Referências</h1>
 
-<p>Seção 1.3: Pgs. 25-28, <a href="http://www.cse.chalmers.se/edu/course/DAT060/huthryan_lics2_sol.pdf">Logica - Huth &amp; Ryan (PDF).</a></p>
+<p>Seção 2.1: Pg. 71, <a href="http://www.cse.chalmers.se/edu/course/DAT060/huthryan_lics2_sol.pdf">Logica - Huth &amp; Ryan (PDF).</a></p>
 
   </article>
 

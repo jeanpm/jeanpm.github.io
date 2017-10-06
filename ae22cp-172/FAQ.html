@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>FAQ</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/ae22cp-172/FAQ.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">FAQ</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Dec 29, 2017
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/lc21cp-172/lista8-logica-predicados-deducao.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#segmentation-fault" id="markdown-toc-segmentation-fault">Segmentation Fault</a>    <ul>
+      <li><a href="#exemplo-1" id="markdown-toc-exemplo-1">Exemplo 1</a></li>
+      <li><a href="#exemplo-2" id="markdown-toc-exemplo-2">Exemplo 2</a></li>
+    </ul>
+  </li>
+  <li><a href="#programação-estruturada" id="markdown-toc-programação-estruturada">Programação estruturada</a>    <ul>
+      <li><a href="#função-list_sizel" id="markdown-toc-função-list_sizel">Função <code class="highlighter-rouge">list_size(l)</code></a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="segmentation-fault">Segmentation Fault</h1>
+
+<p>Se seu código está dando falha de segmentação, rode ele dentro do gdb, em muitos casos nem é preciso procurar o erro passo a passo, pois o gdb mostra informações de onde a falha de segmentação ocorreu.</p>
+
+<h2 id="exemplo-1">Exemplo 1</h2>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">@:~$ </span>./list &lt; input/input02.txt 
+<span class="o">[</span>1] 35 
+Falha de segmentação <span class="o">(</span>imagem <span class="k">do </span>núcleo gravada<span class="o">)</span>
+</code></pre>
+</div>
+
+<p>Esta saída não nos dá informação suficiente para a correção do erro. Portanto, utilizarei o gdb. Primeiro passo, compilar com a flag <code class="highlighter-rouge">-g</code></p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">@:~$ </span>gcc main.c list.c -o list -g
+</code></pre>
+</div>
+
+<p>Após isso, inicializar o gdb passando o executável como parâmetro</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">@:~$ </span>gdb ./list
+</code></pre>
+</div>
+
+<p>A seguir, utilizar o comando <code class="highlighter-rouge">run</code> do gdb para iniciar a execução do programa.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">(</span>gdb<span class="o">)</span> run ./list &lt; input/input02.txt &gt; out
+Starting program: ./list &lt; input/input02.txt &gt; out
+ 
+Program received signal SIGSEGV, Segmentation fault.
+0x00000000004009fb <span class="k">in </span>list_erase <span class="o">(</span><span class="nv">v</span><span class="o">=</span>0x7fffffffdfd0, <span class="nv">i</span><span class="o">=</span>1<span class="o">)</span> at list.c:101
+101        n-&gt;next<span class="o">=</span>j-&gt;next;
+</code></pre>
+</div>
+
+<p>Desta saída, podemos focar apenas em algumas partes.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>Program received signal SIGSEGV, Segmentation fault.
+<span class="k">in </span>list_erase <span class="o">(</span>v, <span class="nv">i</span><span class="o">=</span>1<span class="o">)</span> at list.c:101
+101        n-&gt;next<span class="o">=</span>j-&gt;next;
+</code></pre>
+</div>
+
+<p>SIGSEGV, é uma constante representando o tipo de erro, neste caso <em>segmentation fault</em>, que se refere à tentativa de acesso de memória não permitido: além dos limites de um vetor, ou em posições de memória que não foram alocadas pelo programador.</p>
+
+<p>Note, que <code class="highlighter-rouge">list_erase (v, i=1)</code>, nos diz que o erro aconteceu na função <code class="highlighter-rouge">list_erase</code>, quando recebendo a posição <code class="highlighter-rouge">i=1</code> e nos mostra também a linha exata onde a falha de segmentação aconteceu.</p>
+
+<h2 id="exemplo-2">Exemplo 2</h2>
+
+<p>Seguiremos o mesmo procedimento descrito anteriormente.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">@:~$ </span>./list &lt; input/input03.txt 
+<span class="o">[</span>1] 68
+<span class="o">[</span>2] 68 98
+<span class="o">[</span>3] 16 68 98
+<span class="o">[</span>2] 68 98
+<span class="o">[</span>1] 98
+Falha de segmentação <span class="o">(</span>imagem <span class="k">do </span>núcleo gravada<span class="o">)</span>
+</code></pre>
+</div>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">@:~$ </span>gdb ./list
+</code></pre>
+</div>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">(</span>gdb<span class="o">)</span> run ./list &lt; input/input03.txt 
+<span class="o">[</span>1] 68
+<span class="o">[</span>2] 68 98
+<span class="o">[</span>3] 16 68 98
+<span class="o">[</span>2] 68 98
+<span class="o">[</span>1] 98
+ 
+Program received signal SIGSEGV, Segmentation fault.
+0x0000000000400acb <span class="k">in </span>list_pop_back <span class="o">(</span><span class="nv">l</span><span class="o">=</span>0x604020<span class="o">)</span> at list.c:183
+183 <span class="k">while</span><span class="o">(</span>ptr-&gt;next-&gt;next !<span class="o">=</span> NULL<span class="o">)</span>
+</code></pre>
+</div>
+
+<p>Neste exemplo, a falha de segmentação ocorreu na linha 183, na função <code class="highlighter-rouge">list_pop_back</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>in list_pop_back (l=0x604020) at list.c:183
+183 while(ptr-&gt;next-&gt;next != NULL)
+</code></pre>
+</div>
+
+<p>Como sabemos, <em>segmentation fault</em> indica acesso indevido de memória. Portanto podemos imaginar que algo errado com a operação</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>183 while(ptr-&gt;next-&gt;next != NULL)
+</code></pre>
+</div>
+
+<p>O que aconteceria se <code class="highlighter-rouge">ptr-&gt;next</code> for <code class="highlighter-rouge">NULL</code>? Bom, neste caso, ao tentar acessar o próximo <code class="highlighter-rouge">-&gt;next</code>, estariamos acessando o endereço indicado por <code class="highlighter-rouge">NULL</code>, e lá procurando o campo <code class="highlighter-rouge">next</code>, algo como: <code class="highlighter-rouge">NULL-&gt;next</code>.</p>
+
+<p>Como <code class="highlighter-rouge">NULL</code> é usualmente definido como o endereço <code class="highlighter-rouge">0</code> da memória, qualquer acesso a esse endereço levará à falha de segmentação. Portanto, sempre que houver falha de segmentação, a primeira suspeita deve ser:</p>
+
+<ol>
+  <li>Acesso fora dos limites de um vetor</li>
+  <li>Acesso (dereferenciamento) ao endereço <code class="highlighter-rouge">NULL</code>.</li>
+</ol>
+
+<h1 id="programação-estruturada">Programação estruturada</h1>
+
+<h2 id="função-list_sizel">Função <code class="highlighter-rouge">list_size(l)</code></h2>
+
+<p><em>“Se a estrutura de dados <code class="highlighter-rouge">list</code> duplamente encadeada já possui um campo <code class="highlighter-rouge">size</code>, qual a necessidade da função <code class="highlighter-rouge">list_size()</code>.”</em></p>
+
+<p>Em algumas situações certas funções parecem desnecessárias, é o caso do <code class="highlighter-rouge">list_size()</code>. Para entender o porque de sua utilidade, é bom pensarmos em termos da lista como estrutura abstrata, a qual tem uma interface <code class="highlighter-rouge">list.h</code>.</p>
+
+<p>Nesse sentido, ambas implementações, “lista simples”, “listas duplas”, teriam uma implementação de <code class="highlighter-rouge">list_size()</code>. Nas listas simples, preciso percorrer toda lista para saber o tamanho, nas duplas, basta acessar o size já existente. Algo desse tipo</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// forward_list.c
+</span><span class="kt">int</span> <span class="nf">list_size</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">l</span><span class="p">)</span> <span class="p">{</span>
+     <span class="k">while</span> <span class="p">(</span><span class="n">ptr</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="n">size</span><span class="o">++</span><span class="p">...</span>
+     <span class="k">return</span> <span class="n">size</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// list.c
+</span><span class="kt">int</span> <span class="nf">list_size</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">l</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="n">l</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Agora suponha que estejamos utilizando uma estrutura lista para resolver algum problema, soma/multiplicação de inteiros grandes, splice, por exemplo.</p>
+
+<p>Neste caso, se sempre que precisarmos saber o tamanho de uma lista, utilizarmos <code class="highlighter-rouge">list_size()</code> (e as demais funções de acesso a lista), isso nos permitiria utilizar tanto a implementação da lista de encadeamento simples (<code class="highlighter-rouge">forward_list.c</code>) quanto a de encadeamento duplo (<code class="highlighter-rouge">list.c</code>). Bastando escolher durante a compilação.</p>
+
+<p>Se pelo contrário, eu utilizasse <code class="highlighter-rouge">l-&gt;size</code> diretamente, eu não conseguiria utilizar a implementação <code class="highlighter-rouge">forward_list.c</code>, visto que nela, esse campo não existe.</p>
+
+<p>Portanto, a ideia de termos várias funções para acessar certas propriedades da estrutura, nos permite separar a implementação da definição da estrutura de dados. Isso é sugerido quando programamos pensando em reutilização, e programação de bibliotecas.</p>
+
+<p>Obviamente, podemos também querer implementar uma lista para algo bem específico, sem pensar que tal código será reutilizado para várias coisas diferentes, e então, não precisaríamos nos preocupar com isso.</p>
+
+<p>Em geral é essa a ideia, e se aplica ao uso das demais funções também.</p>
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

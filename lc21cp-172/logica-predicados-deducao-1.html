@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Lógica de predicados - Regras de dedução I</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/lc21cp-172/logica-predicados-deducao-1.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Lógica de predicados - Regras de dedução I</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Oct 4, 2017
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/lc21cp-172/lista7-logica-predicados.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/lc21cp-172/logica-predicados-deducao-2.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#regras-de-inferência" id="markdown-toc-regras-de-inferência">Regras de inferência</a>    <ul>
+      <li><a href="#quantificador-universal" id="markdown-toc-quantificador-universal">Quantificador universal</a>        <ul>
+          <li><a href="#regra-de-eliminação" id="markdown-toc-regra-de-eliminação">Regra de eliminação</a>            <ul>
+              <li><a href="#exemplo-1" id="markdown-toc-exemplo-1">Exemplo 1</a></li>
+              <li><a href="#exemplo-2" id="markdown-toc-exemplo-2">Exemplo 2</a></li>
+              <li><a href="#exemplo-3" id="markdown-toc-exemplo-3">Exemplo 3</a></li>
+            </ul>
+          </li>
+          <li><a href="#regra-de-introdução" id="markdown-toc-regra-de-introdução">Regra de introdução</a>            <ul>
+              <li><a href="#exemplo-1-1" id="markdown-toc-exemplo-1-1">Exemplo 1</a></li>
+              <li><a href="#exemplo-2-1" id="markdown-toc-exemplo-2-1">Exemplo 2</a></li>
+              <li><a href="#exemplo-3-1" id="markdown-toc-exemplo-3-1">Exemplo 3</a></li>
+              <li><a href="#exemplo-4" id="markdown-toc-exemplo-4">Exemplo 4</a></li>
+              <li><a href="#exemplo-5" id="markdown-toc-exemplo-5">Exemplo 5</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="regras-de-inferência">Regras de inferência</h1>
+
+<p>O cálculo de predicados usa as mesmas dez regras do cálculo proposicional. Adicionalmente, temos as regras de introdução e de eliminação dos quantificadores. Relembremos um exemplo do cálculo proposicional</p>
+
+<script type="math/tex; mode=display">\neg r \lor q, q \to p \vdash r \to p</script>
+
+<p>Este exemplo pode ser demonstrado utilizando a abordagem de prova de condicionais: assumir o antecedente como hipótese e derivar o consequente. Vejamos como ficaria</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{llr}
+1 & \neg r \lor q & \mbox{premissa}\\
+2 & q \to p       & \mbox{premissa}\\
+3 & r             & \mbox{hipótese}\\
+4 & \neg\neg r     & \mbox{Dupla negação 3}\\
+5 & q            & \mbox{Silogismo disjuntivo 1,4}\\
+6 & p           &  \mbox{Modus ponens 2,5}\\
+7 & r \to p     & \mbox{Prova do condicional 3-6}
+\end{array} %]]></script>
+
+<p>Um exemplo similar na lógica de predicados, poderia ser provado utilizando-se das mesmas regras de derivação. Consideremos, por exemplo, a forma de argumento.</p>
+
+<script type="math/tex; mode=display">\neg F(a) \lor \exists x F(x), \exists x F(x) \to p \vdash F(a) \to p</script>
+
+<p>Se substituirmos as subfórmulas análogamente ao exemplo anterior, temos a demonstração a seguir:</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{llr}
+1 & \neg F(a) \lor \exists x F(x) & \mbox{premissa}\\
+2 & \exists x F(x) \to p       & \mbox{premissa}\\
+3 & F(a)             & \mbox{hipótese}\\
+4 & \neg\neg F(a)     & \mbox{Dupla negação 3}\\
+5 & \exists x F(x)            & \mbox{Silogismo disjuntivo 1,4}\\
+6 & p           &  \mbox{Modus ponens 2,5}\\
+7 & F(a) \to p     & \mbox{Prova do condicional 3-6}
+\end{array} %]]></script>
+
+<p>Neste exemplo da lógica de predicados não precisamos utilizar regras de inferência para os quantificadores, deste modo a demonstração se restringiu à utilização das regras já definidas para a lógica proposicional. Como esse não é sempre o caso, precisamos especificar o funcionamento das regras de derivação para os quantificadores: <em>universal</em> ($\forall$) e <em>existencial</em> ($\exists$).</p>
+
+<h2 id="quantificador-universal">Quantificador universal</h2>
+
+<h3 id="regra-de-eliminação">Regra de eliminação</h3>
+<p>Iremos iniciar pela definição da regra de eliminação do quantificador universal ($\forall$e). Intuitivamente a regra de eliminação do quantificador universal é bem simples e segue a seguinte ideia:</p>
+
+<ul>
+  <li>Se algo é valido para todos objetos, também é válido para um objeto em específico.</li>
+</ul>
+
+<p>Portanto, uma fórmula geral do tipo $\forall x P(x)$, pode ser substituída durante uma demonstração por um caso específico $P(a)$, onde $a$ é um termo qualquer. Vejamos o seguinte exemplo.</p>
+
+<p>“Todos os homens são mortais”</p>
+
+<p>“Sócrates é homem”</p>
+
+<p>“Sócrates é mortal”</p>
+
+<p>Se definirmos os predicados:</p>
+
+<ul>
+  <li>$H(x):$ $x$ é homem</li>
+  <li>$M(x):$ $x$ é mortal</li>
+  <li>$s:$ Sócrates</li>
+</ul>
+
+<p>Temos o seguinte argumento formalizado:</p>
+
+<script type="math/tex; mode=display">\forall x(H(x)\to M(x)), H(s) \vdash M(s)</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{llr}
+1 & \forall x(H(x)\to M(x)) & \mbox{premissa}\\
+2 & H(s)       & \mbox{premissa}\\
+3 & H(s)\to M(s) & \mbox{Eliminação do universal 1}\\
+4 & M(s)        &  \mbox{Modus Ponens 2, 3}
+\end{array} %]]></script>
+
+<p>O caso genérico indicado pela premissa $\forall x(H(x)\to M(x))$ pode ser especializado em termos de $s$ (Sócrates), levando à fórmula $H(s)\to M(s)$. Ou seja, se o fato de ser homem implica ser mortal, essa regra se aplica a qualquer homem $x$, inclusive Sócrates $s$. Pode-se dizer que $H(s)\to M(s)$ é uma instanciação da regra universal.</p>
+
+<h4 id="exemplo-1">Exemplo 1</h4>
+
+<p>Prove a validade da seguinte forma de argumento</p>
+
+<script type="math/tex; mode=display">\forall x ~F(x)\to G(x), ~\forall x F(x) ~~~\vdash~~ G(a)</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{llr}
+1 & \forall x ~F(x)\to G(x) & \mbox{premissa}\\
+2 & \forall x F(x)       & \mbox{premissa}\\
+3 & F(a)\to G(a) & \mbox{Eliminação do universal 1}\\
+4 & F(a)        &  \mbox{Eliminação do universal 2}\\
+5 & G(A)        &  \mbox{Modus Ponens 3, 4}
+\end{array} %]]></script>
+
+<h4 id="exemplo-2">Exemplo 2</h4>
+
+<p>Prove a validade da seguinte forma de argumento</p>
+
+<script type="math/tex; mode=display">\neg F(a)~~\vdash ~~\neg \forall x F(x)</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{llr}
+1 & \neg F(a)        & \mbox{premissa}\\
+2 & \forall x F(x)   & \mbox{Hipótese por absurdo}\\
+3 & F(a)             & \mbox{Eliminação do universal 1}\\
+4 & \neg F(a) \land F(a)       &  \mbox{Introdução do condicional 1,3}\\
+5 & \neg \forall x F(x)        &  \mbox{Redução ao absurdo 2-4}
+\end{array} %]]></script>
+
+<h4 id="exemplo-3">Exemplo 3</h4>
+
+<script type="math/tex; mode=display">\forall x \forall y F(x,y)~~ \vdash F(a,a)</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{llr}
+1 & \forall x \forall y F(x,y)        & \mbox{premissa}\\
+2 & \forall y F(a,y)   & \mbox{Eliminação do universal 1}\\
+3 & F(a,a)      & \mbox{Eliminação do universal 2}
+\end{array} %]]></script>
+
+<h3 id="regra-de-introdução">Regra de introdução</h3>
+
+<p>Em princípio, para introduzirmos uma fórmula do tipo $\forall x F(x)$, teríamos que demonstrar que para qualquer que seja $x$ então o predicado $P(x)$ é verdadeiro. Obviamente, sendo $x$ parte de um domínio possivelmente infinito esse tipo de abordagem não é possível. Como então introduzirmos o quantificador universal?</p>
+
+<p>A ideia também é simples, apesar de um pouco confusa no início. Se eu consigo demonstrar que para um caso específico $a$, $P(a)$ é verdadeiro, então, se nenhuma consideração/restrição foi feita em termos de $a$, essa demonstração poderia ser utilizada para demonstrar que para qualquer $x$, $P(x)$ também é verdadeiro. Consideremos um exemplo:</p>
+
+<p>“Todos os peixes são ciprinídeos”</p>
+
+<p>“Todos ciprinídeos são vistosos”</p>
+
+<p>“Todos os peixes são vistosos”</p>
+
+<p>Que formalizada por meio dos predicados:</p>
+
+<ul>
+  <li>$P(x)$: $x$ é peixe</li>
+  <li>$C(x)$: $x$ é ciprinídeo</li>
+  <li>$V(x)$: $x$ é vistoso</li>
+</ul>
+
+<script type="math/tex; mode=display">\forall x(Px\to Cx),~~\forall x(Cx\to Vx) \vdash \forall (Px\to Vx)</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{llr}
+1 & \forall x(Px\to Cx)        & \mbox{premissa}\\
+2 & \forall x(Cx\to Vx)   & \mbox{premissa}\\
+3 & Pa\to Ca      & \mbox{Eliminação do universal 1}\\
+4 & Ca\to Va      & \mbox{Eliminação do universal 2}\\
+5 & Pa\to Va      & \mbox{Transitividade 3,4}\\
+6 & \forall x(Px\to Vx)      & \mbox{Generalização universal 5}
+\end{array} %]]></script>
+
+<p>Apesar de $a$ neste exemplo ser utilizado para referenciar um caso específico de $x$, nenhuma suposição foi feita acerca de $a$, portanto ele poderia ser utilizado para substituir qualquer $x$. Portanto é possível generalizar a conclusão de $a$ para $\forall x$.</p>
+
+<ul>
+  <li>Para que a aplicação dessa regra seja válida, não pode haver suposições sobre o símbolo $a$, ou seja, ele <strong>não pode aparecer nas premissas</strong> nem e nenhuma <strong>hipótese vigente</strong>.</li>
+  <li>Pois nesses casos haveria suposições sobre $a$, consequentemente ele não poderia representar um $x$ arbitrário.</li>
+</ul>
+
+<h4 id="exemplo-1-1">Exemplo 1</h4>
+
+<script type="math/tex; mode=display">\forall (Fx \land Gx) ~~ \vdash ~~\forall x Fx \land \forall x Gx</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{llr}
+1 & \forall (Fx \land Gx)        & \mbox{premissa}\\
+2 & Fa \land Ga   & \mbox{Eliminação do universal 1}\\
+3 & Fa      & \mbox{Eliminação da conjunção 2}\\
+4 & Ga      & \mbox{Eliminação da conjunção 2}\\
+5 & \forall x Fx      & \mbox{Introdução do universal 3}\\
+6 & \forall x Gx      & \mbox{Introdução do universal 4}\\
+7 & \forall x Fx \land \forall x Gx      & \mbox{Introdução da conjunção 5, 6}
+\end{array} %]]></script>
+
+<h4 id="exemplo-2-1">Exemplo 2</h4>
+
+<script type="math/tex; mode=display">\forall x (Fx \to (Gx \lor Hx)), \forall x \neg Gx  \vdash \forall x Fx \to \forall x Hx</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{llr}
+1 & \forall x (Fx \to (Gx \lor Hx))        & \mbox{premissa}\\
+2 & \forall x \neg Gx   & \mbox{premissa}\\
+3 & Fa \to (Ga \lor Ha)      & \mbox{Eliminação do universal 1}\\
+4 & \neg Ga      & \mbox{Eliminação do universal 2}\\
+5 & \qquad \forall x Fx      & \mbox{Hipótese do condicional}\\
+6 & \qquad Fa      & \mbox{Eliminação do universal 5}\\
+7 & \qquad Ga \lor Ha      & \mbox{Modus Ponens 3, 6}\\
+8 & \qquad Ha             & \mbox{Silogismo disjuntivo 4,7}\\
+9 & \qquad\forall x Hx   & \mbox{Introdução do universal 8}\\
+10 & \forall x Fx \to \forall x Hx & \mbox{Prova do condicional 5-9}
+\end{array} %]]></script>
+
+<h4 id="exemplo-3-1">Exemplo 3</h4>
+
+<script type="math/tex; mode=display">\forall x (Fx \to (Gx \lor Hx)), \forall x \neg Gx  \vdash \forall x (Fx \to Hx)</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{llr}
+1 & \forall x (Fx \to (Gx \lor Hx))        & \mbox{premissa}\\
+2 & \forall x \neg Gx   & \mbox{premissa}\\
+3 & Fa \to (Ga \lor Ha)      & \mbox{Eliminação do universal 1}\\
+4 & \neg Ga      & \mbox{Eliminação do universal 2}\\
+5 & \qquad Fa      & \mbox{Hipótese do condicional}\\
+6 & \qquad Ga \lor Ha      & \mbox{Modus Ponens 3, 5}\\
+7 & \qquad Ha             & \mbox{Silogismo disjuntivo 4,7}\\
+8 & Fa \to Ha   & \mbox{Prova do condicional 5-7}\\
+9 & \forall x (Fx \to Hx) & \mbox{Introdução do universal 8}
+\end{array} %]]></script>
+
+<h4 id="exemplo-4">Exemplo 4</h4>
+
+<script type="math/tex; mode=display">\forall x Fax, \forall x \forall y (Fxy \to Gyx) \vdash \forall x Gxa</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{llr}
+1 & \forall x Fax        & \mbox{premissa}\\
+2 & \forall x \forall y (Fxy \to Gyx)  & \mbox{premissa}\\
+3 & Fab      & \mbox{Eliminação do universal 1}\\
+4 & \forall y (Fay \to Gya)      & \mbox{Eliminação do universal 2}\\
+5 & Fab \to Gba      & \mbox{Eliminação do universal 4}\\
+6 & Gba      & \mbox{Modus Ponens 3, 5}\\
+7 & \forall x Gxa             & \mbox{Introdução do universal 6}
+\end{array} %]]></script>
+
+<h4 id="exemplo-5">Exemplo 5</h4>
+
+<script type="math/tex; mode=display">\forall x Fx \to \forall x Gx, \neg Ga \vdash \neg \forall x Fx</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{llr}
+1 & \forall x Fx \to \forall x Gx        & \mbox{premissa}\\
+2 & \neg Ga  & \mbox{premissa}\\
+3 & \qquad \forall x Fx      & \mbox{Hipótese para absurdo}\\
+4 & \qquad \forall x Gx      & \mbox{Modus Ponens 1, 3}\\
+5 & \qquad Ga      & \mbox{Eliminação do universal 4}\\
+6 & \qquad Ga \land \neg Ga      & \mbox{Introdução da conjunção 2,5}\\
+7 & \neg \forall x Fx             & \mbox{Redução ao absurdo 3-6}
+\end{array} %]]></script>
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

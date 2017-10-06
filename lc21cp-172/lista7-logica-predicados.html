@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Lista VII - Lógica de predicados, formalização</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/lc21cp-172/lista7-logica-predicados.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Lista VII - Lógica de predicados, formalização</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Sep 28, 2017
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/lc21cp-172/logica-predicados-formal.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/lc21cp-172/logica-predicados-deducao-1.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#exercícios" id="markdown-toc-exercícios">Exercícios</a>    <ul>
+      <li><a href="#0-predicados-unários" id="markdown-toc-0-predicados-unários">#0 Predicados unários</a></li>
+      <li><a href="#1--predicados-binários" id="markdown-toc-1--predicados-binários">#1  Predicados binários</a></li>
+      <li><a href="#2-predicados-binários" id="markdown-toc-2-predicados-binários">#2 Predicados binários</a></li>
+      <li><a href="#3-fórmulas-bem-formadas" id="markdown-toc-3-fórmulas-bem-formadas">#3 Fórmulas bem formadas</a></li>
+    </ul>
+  </li>
+  <li><a href="#referências" id="markdown-toc-referências">Referências</a></li>
+</ul>
+
+<h1 id="exercícios">Exercícios</h1>
+
+<h2 id="0-predicados-unários">#0 Predicados unários</h2>
+
+<p>Interpretando como</p>
+
+<ul>
+  <li>$c$: “está chovendo”</li>
+  <li>$R$: “é uma rã”</li>
+  <li>$V$: “é verde”</li>
+  <li>$S$: “é saltitante”</li>
+  <li>$I$: “é iridescente”</li>
+</ul>
+
+<p>Formalize as seguintes sentenças:</p>
+
+<p>a. Todas as rãs são verdes</p>
+
+<p>b. Nenhuma rã é verdes</p>
+
+<p>c. Algumas rãs são verdes</p>
+
+<p>d. Algumas rãs não são verdes</p>
+
+<p>e. Toda coisa é uma rã.</p>
+
+<p>f. Alguma coisa é uma rã.</p>
+
+<p>g. Nem toda coisa é uma rã.</p>
+
+<p>h. Nada é uma rã.</p>
+
+<p>i. Existem rãs verdes</p>
+
+<p>j. Qualquer coisa ou é rã ou é iridescente.</p>
+
+<p>k. Qualquer coisa é uma rã verde.</p>
+
+<p>l. Está chovendo e algumas rãs estão saltitando</p>
+
+<p>m. Se está chovendo, então todas as rãs estão saltitando</p>
+
+<p>n. Algumas coisas são verdes e algumas não são</p>
+
+<p>o. Algumas coisas são verdes e iridescentes simultaneamente</p>
+
+<p>p. Ou qualquer coisa é uma rã, ou nada é uma rã</p>
+
+<p>q. Qualquer coisa ou é uma rã ou não é uma rã.</p>
+
+<p>r. Todas as rãs são rãs.</p>
+
+<p>s. Somente rãs são verdes.</p>
+
+<p>t. Não existem rãs iridescentes.</p>
+
+<p>u. Todas as rãs verdes estão saltitando</p>
+
+<p>v. Algumas rãs verdes não estão saltitando</p>
+
+<p>w. Não é verdade que algumas rãs verdes estão saltitando.</p>
+
+<p>x. Se nada é verde, então não existem rãs verdes.</p>
+
+<p>y. Rãs verdes saltam se e somente se não está chovendo.</p>
+
+<h2 id="1--predicados-binários">#1  Predicados binários</h2>
+
+<p>Use os predicados</p>
+
+<ul>
+  <li>$A(x,y)$: $x$ admira $y$</li>
+  <li>$B(x,y)$: $x$ estava presente em $y$</li>
+  <li>$P(x)$: $x$ é um professor</li>
+  <li>$E(x)$: $x$ é um estudante</li>
+  <li>$L(x)$: $x$ é uma aula</li>
+</ul>
+
+<p>e o símbolo funcional (constante)</p>
+
+<ul>
+  <li>$m$: Maria</li>
+</ul>
+
+<p>a. Maria admira todo professor</p>
+
+<p>b. Algum professor admira Maria</p>
+
+<p>c. Maria admira a si própria</p>
+
+<p>d. Nenhum estudante estava presente em todas as aulas.</p>
+
+<p>e. Nenhuma aula teve a presença de todos os estudantes</p>
+
+<p>f. Nenhuma aula teve a presença de qualquer estudante.</p>
+
+<h2 id="2-predicados-binários">#2 Predicados binários</h2>
+<p>Suponha</p>
+<ul>
+  <li>$F(x,y)$: $x$ é o pai de $y$</li>
+  <li>$M(x,y)$: $x$ é a mãe de $y$</li>
+  <li>$H(x,y)$: $x$ é marido de $y$</li>
+  <li>$S(x,y)$: $x$ é irmã de $y$</li>
+  <li>$B(x,y)$: $x$ é irmão de $y$</li>
+</ul>
+
+<p>É permitido usar constantes para representar nomes: ‘Ed’, ‘Patsy’</p>
+
+<p>a. Todos têm uma mãe</p>
+
+<p>b. Todos têm um pai e uma mãe</p>
+
+<p>c. Todos que tem uma mãe tem um pai</p>
+
+<p>d. Ed é um avô</p>
+
+<p>e. Todos os pais são pais ou mães</p>
+
+<p>f. Todos os maridos são cônjuges</p>
+
+<p>g. Nenhum tio é tia</p>
+
+<p>h. Todos os irmãos são irmãos ou irmãs</p>
+
+<p>i. Nenhuma avó é pai de alguém</p>
+
+<p>j. Ed e Patsy são marido e mulher</p>
+
+<p>k. Carlos é cunhado de Monique.</p>
+
+<h2 id="3-fórmulas-bem-formadas">#3 Fórmulas bem formadas</h2>
+
+<p>Sejam $m$ uma constante, $f$ um símbolo funcional unário e $S$ e $B$ dois símbolos predicados binários. Quais das cadeias a seguir são fórmulas na lógica de predicados.</p>
+
+<script type="math/tex; mode=display">S(m)</script>
+
+<script type="math/tex; mode=display">B(m, f(m))</script>
+
+<script type="math/tex; mode=display">B(B(m,x),y)</script>
+
+<h1 id="referências">Referências</h1>
+
+<p>Seção 2.1: Pg. 71, <a href="http://www.cse.chalmers.se/edu/course/DAT060/huthryan_lics2_sol.pdf">Logica - Huth &amp; Ryan (PDF).</a></p>
+
+<p>Capítulo 6: Pgs. 239, <a href="https://racionalistasusp.files.wordpress.com/2010/01/nolt-john-rohatyn-dennis-lc3b3gica.pdf">Logica - John Nolt (PDF).</a></p>
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

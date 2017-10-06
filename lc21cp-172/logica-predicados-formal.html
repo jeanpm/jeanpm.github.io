@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Lógica de predicados - Formalização</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/lc21cp-172/logica-predicados-formal.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Lógica de predicados - Formalização</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Sep 28, 2017
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/lc21cp-172/logica-predicados-informal.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/lc21cp-172/lista7-logica-predicados.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#lógica-de-predicados-como-uma-linguagem-formal" id="markdown-toc-lógica-de-predicados-como-uma-linguagem-formal">Lógica de predicados como uma linguagem formal</a>    <ul>
+      <li><a href="#termos" id="markdown-toc-termos">Termos</a>        <ul>
+          <li><a href="#exemplo" id="markdown-toc-exemplo">Exemplo</a></li>
+        </ul>
+      </li>
+      <li><a href="#fórmulas" id="markdown-toc-fórmulas">Fórmulas</a>        <ul>
+          <li><a href="#exemplo-1" id="markdown-toc-exemplo-1">Exemplo</a></li>
+        </ul>
+      </li>
+      <li><a href="#prioridades" id="markdown-toc-prioridades">Prioridades</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="lógica-de-predicados-como-uma-linguagem-formal">Lógica de predicados como uma linguagem formal</h1>
+
+<p>A nossa discussão até então, envolveu apenas a codificação de sentenças como fórmulas da lógica de predicados. Para isso, foi necessário compreender os uso de variáveis, quantificadores e predicados. Dissemos que essa discussão foi informal pois não foram descritas as regras gramaticais de formação das fórmulas válidas. Assunto desta seção.</p>
+
+<p>O primeiro passo para a formalização da linguagem da lógica de predicados é a identificação/classificação de seus componentes. Essa classificação nos mostra, inicialmente, que há dois tipos de coisas envolvidas em toda fórmula da lógica de predicados. As primeiras são:</p>
+
+<ul>
+  <li>Objetos aos quais estamos referenciando:
+    <ul>
+      <li>Variáveis $x$ e $y$.</li>
+      <li>Símbolos funcionais $m(x)$, $g(x,y)$, $a$, $p$</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Toda expressão na lógica de predicados que se refere a um objeto é chamada um <strong>termo</strong>. O segundo tipo de componentes na lógica de predicados denotam valores lógicos</p>
+
+<ul>
+  <li>Valores lógicos, <em>fórmulas</em>
+    <ul>
+      <li>$J(x, m(x))$ ($J$ é um predicado) é uma fórmula, embora $x$ e $m(x)$ sejam termos.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Um vocabulário predicado consiste em dois conjuntos:</p>
+
+<ul>
+  <li>Um conjunto de símbolos predicados $P$</li>
+  <li>Um conjunto de símbolos funcionais $F$ (incluindo constantes: funções $0$-árias)</li>
+</ul>
+
+<h2 id="termos">Termos</h2>
+
+<p>Os <em>termos</em> da linguagem são feitos de variáveis, símbolos constantes e funções aplicadas a ambos. De modo geral, as regras de construção dos termos estão definidas a seguir:</p>
+
+<ul>
+  <li>Qualquer variável é um termo</li>
+  <li>Se $c\in F$ é uma função $0$-ária, então $c$ é um termo</li>
+  <li>Se $t_1,t_2,\dots,t_n$ são termos e $f\in F$ é $n$-ária, com $n&gt; 0$, então $f(t_1,t_2,\dots,t_n)$ é um termo.</li>
+  <li>Nada mais é um termo.</li>
+</ul>
+
+<h3 id="exemplo">Exemplo</h3>
+
+<p>Suponha os símbolos funcionais $n, f$ e $g$, respectivamente $0$-ário, unário, binário. De acordo com as regra de construção de <em>termos</em> bem formados, temos que :</p>
+
+<ul>
+  <li>$n$, $f(x)$, $g(x,f(y))$ são termos</li>
+  <li>$n(x)$, $f$, $g(x)$ não são termos.</li>
+</ul>
+
+<p>Ou seja, o número de parâmetros deve corresponder à definição da função.</p>
+
+<h2 id="fórmulas">Fórmulas</h2>
+
+<p>A escolha dos conjuntos $P$ e $F$ depende do que queremos expressar, portanto, dependem do contexto. Porém, ainda sim podemos definir as fórmulas bem formadas sobre esses conjuntos de forma indutiva.</p>
+
+<ul>
+  <li>Se $Q\in P$ é um predicado $n$-ário com $n\geq 1$ e se $t_1, t_2, \dots, t_n$ são termos sobre $F$, então $Q(t_1, t_2, \dots, t_n)$ é uma fórmula</li>
+  <li>Se $\phi$ é uma fórmula, então $(\neg\phi)$ também é</li>
+  <li>Se $\phi$ e $\psi$ são fórmulas, então $(\phi\land\psi)$, $(\phi\lor\psi)$ e $(\phi\to\psi)$ também são</li>
+  <li>Se $\phi$ é uma fórmula e $x$ é uma variável, então $(\forall x\phi)$ e $(\exists x\phi)$ são fórmulas</li>
+</ul>
+
+<p>Em resumo, podemos escrever:</p>
+
+<script type="math/tex; mode=display">\phi ::= Q(t_1, t_2, \dots, t_n) | (\neg\phi) | (\phi\land\phi) | (\phi\lor\phi) | (\phi\to\phi) | (\forall x \phi) | (\exists x\phi)</script>
+
+<h3 id="exemplo-1">Exemplo</h3>
+
+<p>Verifique se a fórmula a seguir é bem formada</p>
+
+<script type="math/tex; mode=display">\forall x ((P(x)\to Q(x)) \land S(x,y))</script>
+
+<script type="math/tex; mode=display">\exists x( P(y,z) \land (\forall y (\neg Q(y,x) \lor P(y,z))))</script>
+
+<h2 id="prioridades">Prioridades</h2>
+
+<p>Na prática, muitas vezes preferimos ignorar alguns parenteses, em troca de melhor visibilidade. Nessas situações a prioridade dos quantificadores/operadores deve ser levada em consideração:</p>
+
+<ul>
+  <li>$\neg$, $\forall y$, $\exists y$ tem prioridade mais alta;</li>
+  <li>depois vem os símbolos $\lor$ e $\land$;</li>
+  <li>por fim, temos $\to$</li>
+</ul>
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Lógica de predicados - Regras de dedução II</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/lc21cp-172/logica-predicados-deducao-2.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Lógica de predicados - Regras de dedução II</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Oct 4, 2017
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/lc21cp-172/logica-predicados-deducao-1.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/lc21cp-172/lista8-logica-predicados-deducao.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#quantificador-existencial" id="markdown-toc-quantificador-existencial">Quantificador existencial</a>    <ul>
+      <li><a href="#regra-de-introdução" id="markdown-toc-regra-de-introdução">Regra de introdução</a>        <ul>
+          <li><a href="#exemplo-1" id="markdown-toc-exemplo-1">Exemplo 1</a></li>
+          <li><a href="#exemplo-2" id="markdown-toc-exemplo-2">Exemplo 2</a></li>
+          <li><a href="#exemplo-4" id="markdown-toc-exemplo-4">Exemplo 4</a></li>
+          <li><a href="#exemplo-5" id="markdown-toc-exemplo-5">Exemplo 5</a></li>
+        </ul>
+      </li>
+      <li><a href="#regra-eliminação" id="markdown-toc-regra-eliminação">Regra Eliminação</a>        <ul>
+          <li><a href="#exemplo-1-1" id="markdown-toc-exemplo-1-1">Exemplo 1</a></li>
+          <li><a href="#exemplo-2-619---pg277" id="markdown-toc-exemplo-2-619---pg277">Exemplo 2 (6.19 - pg.277)</a></li>
+          <li><a href="#exemplo-3-620" id="markdown-toc-exemplo-3-620">Exemplo 3 (6.20)</a></li>
+          <li><a href="#exemplo-4-621" id="markdown-toc-exemplo-4-621">Exemplo 4 (6.21)</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="quantificador-existencial">Quantificador existencial</h2>
+
+<p>Assim como todos os demais operadores o quantificador existencial ($\exists$) também possui duas regras de inferência: introdução e eliminação.</p>
+
+<h3 id="regra-de-introdução">Regra de introdução</h3>
+
+<p>A regra de introdução do quantificador existencial segue de forma intuitiva e direta a partir de sua definição. Suponhamos, por exemplo, o caso específico $F(a)\land G(a)$. Por si só, este exemplo já nos permite concluir a forma mais geral $\exists x (Fx \land Gx)$, nesta situação $a$ serviu como prova da existência de um determinado $x$ para o qual $Fx \land Gx$ fosse verdadeira.</p>
+
+<h4 id="exemplo-1">Exemplo 1</h4>
+
+<script type="math/tex; mode=display">\forall x (Fx \lor Gx) \vdash \exists x(Fx \lor Gx)</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{llr}
+1 & \forall x (Fx \lor Gx) & \mbox{premissa}\\
+2 & Fa \lor Ga       & \mbox{e-}\forall 1 \\
+3 & \exists x (Fx \lor Gx) & \mbox{Introdução do existencial em 2}
+\end{array} %]]></script>
+
+<h4 id="exemplo-2">Exemplo 2</h4>
+
+<script type="math/tex; mode=display">\forall x (Fx \lor Gx) \vdash \exists x Fx \lor \exists x Gx</script>
+
+<p>Apesar da similaridade como exemplo anterior, a demonstração neste caso é um pouco mais complexa. Precisamos provar que é possível derivar a conclusão a partir de cada disjuncto, utilizando a regra de eliminação da disjunção.</p>
+
+<script type="math/tex; mode=display">\dfrac{\phi\quad\psi\quad (\phi\to\chi) \quad (\psi\to\chi)}{\chi}</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{llr}
+1 & \forall x (Fx \lor Gx) & \mbox{premissa}\\
+2 & Fa \lor Ga       & \mbox{e-}\forall 1 \\
+3.1 & \qquad Fa  & \mbox{Hipótese 1 da disjunção}\\
+3.2 & \qquad \exists x Fx & \mbox{i-}\exists 3.1 \\
+3.3 & \qquad \exists x Fx \lor \exists x Gx & \mbox{i-}\lor 3.2 \\
+4   & Fa \to (\exists x Fx \lor \exists x Gx) & \mbox{i-}\to 3.1-3.3 \\
+5.1   & \qquad Ga      & \mbox{Hipótese 2 da disjunção} \\
+5.2 & \qquad \exists x Gx & \mbox{i-}\exists 5 \\
+5.3 & \qquad \exists x Fx \lor \exists x Gx & \mbox{i-}\lor 5.2 \\
+6  & Ga \to (\exists x Fx \lor \exists x Gx) & \mbox{i-}\to 5.1-5.3 \\
+7  & \exists x Fx \lor \exists x Gx & \mbox{e-}\lor 2, 4, 6
+\end{array} %]]></script>
+
+<h4 id="exemplo-4">Exemplo 4</h4>
+
+<script type="math/tex; mode=display">\neg \exists x Fx \vdash \forall x \neg Fx</script>
+
+<p>Para provar a inexistência de um $Fa$, utilizamos a estratégia de redução ao absurdo.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{llr}
+1 & \neg \exists x Fx & \mbox{premissa}\\
+2.1 & Fa        & \mbox{Hipótese de absurdo} \\
+2.2 & \exists x Fx & \mbox{Introdução do existencial 2.1}\\
+2.3 & \exists x Fx \land \neg \exists x Fx & \mbox{Introdução da conjunção 1,2.2}\\
+3   & \neg Fa  & \mbox{Por redução ao absurdo 2.1-2.3}\\
+4   & \forall x \neg Fx  & \mbox{Introdução do universal 3}
+\end{array} %]]></script>
+
+<h4 id="exemplo-5">Exemplo 5</h4>
+
+<script type="math/tex; mode=display">\neg \exists x (Fx \land \neg Gx) \vdash \forall x (Fx \to Gx)</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{llr}
+1 & \neg \exists x (Fx \land \neg Gx) & \mbox{premissa}\\
+2.1.0 & \qquad Fa             & \mbox{Hipótese para o condicional}\\
+2.1.1 & \qquad\qquad \neg Ga & \mbox{Hipótese para o absurdo}\\
+2.1.2 & \qquad\qquad Fa \land \neg Ga & \mbox{Introdução conjunção 2.1,2.1.1}\\
+2.1.3 & \qquad\qquad \exists x (Fx \land \neg Gx) & \mbox{Introdução existencial 2.1.2}\\
+2.1.4 & \qquad\qquad Ga & \mbox{Absurdo em 1 e 2.1.3}\\
+2.2   & \qquad Fa \to Ga & \mbox{Introdução do condicional 2.1.0 - 2.1.4}\\\
+3   & \forall x (Fx \to Gx) & \mbox{Introdução universal 2.2}
+\end{array} %]]></script>
+
+<h3 id="regra-eliminação">Regra Eliminação</h3>
+
+<p>A eliminação do quantificador existencial segue raciocínio contrário. Da premissa que afirma a existência de algo, por exemplo, $\exists x (Fx \land Gx)$, sabemos que para algum $x$ a propriedade é verdadeira. No entanto, não sabemos qual elemento substituir no lugar de $x$, visto que pode ser o caso de nem todos possíveis elementos satisfazerem $(Fx \land Gx)$.</p>
+
+<p>Por esse motivo, para eliminarmos um quantificador existencial, temos que o fazer por meio de uma hipótese, a qual irá supor que um determinado objetvo $a$ satisfaça a propriedade em questão.</p>
+
+<h4 id="exemplo-1-1">Exemplo 1</h4>
+
+<script type="math/tex; mode=display">\exists (Fx \land Gx) \vdash \exists x Fx</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{llr}
+1 & \exists x (Fx \land Gx) & \mbox{premissa}\\
+2 & \qquad Fa \land Ga     &  \mbox{Hipótese para eliminação do existencial}\\
+3 & \qquad Fa             &   \mbox{Eliminação da conjunção 2}\\
+4 & \qquad \exists x Fx   &   \mbox{Introdução do existencial 3}\\
+5 & \exists x Fx   &  \mbox{Eliminação do existencial 1, 2-4}
+\end{array} %]]></script>
+
+<h4 id="exemplo-2-619---pg277">Exemplo 2 (6.19 - pg.277)</h4>
+
+<script type="math/tex; mode=display">\forall x (Fx \to Gx), \exists x Fx \vdash \exists x Gx</script>
+
+<h4 id="exemplo-3-620">Exemplo 3 (6.20)</h4>
+
+<script type="math/tex; mode=display">\exists x (Fx \lor Gx) \vdash \exists x Fx \lor \exists x Gx</script>
+
+<h4 id="exemplo-4-621">Exemplo 4 (6.21)</h4>
+
+<script type="math/tex; mode=display">\exists Fx \lor \exists x Gx \vdash \exists x (Fx \lor Gx)</script>
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>
