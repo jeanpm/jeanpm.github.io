@@ -6,9 +6,183 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 06 Oct 2017 15:08:18 -0300</pubDate>
-    <lastBuildDate>Fri, 06 Oct 2017 15:08:18 -0300</lastBuildDate>
+    <pubDate>Wed, 18 Oct 2017 17:01:06 -0200</pubDate>
+    <lastBuildDate>Wed, 18 Oct 2017 17:01:06 -0200</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Algoritmos de ordenação</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#introdução&quot; id=&quot;markdown-toc-introdução&quot;&gt;Introdução&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#ordenação-de-inteiros&quot; id=&quot;markdown-toc-ordenação-de-inteiros&quot;&gt;Ordenação de inteiros&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#o-que-são-algoritmos-de-ordenação&quot; id=&quot;markdown-toc-o-que-são-algoritmos-de-ordenação&quot;&gt;O que são Algoritmos de ordenação?&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#algoritmos-de-ordenação&quot; id=&quot;markdown-toc-algoritmos-de-ordenação&quot;&gt;Algoritmos de Ordenação&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#bubble-sort&quot; id=&quot;markdown-toc-bubble-sort&quot;&gt;Bubble sort&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#selection-sort&quot; id=&quot;markdown-toc-selection-sort&quot;&gt;Selection sort&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#insertion-sort&quot; id=&quot;markdown-toc-insertion-sort&quot;&gt;Insertion sort&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#quicksort&quot; id=&quot;markdown-toc-quicksort&quot;&gt;Quicksort&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#partition&quot; id=&quot;markdown-toc-partition&quot;&gt;Partition&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;introdução&quot;&gt;Introdução&lt;/h1&gt;
+
+&lt;p&gt;A ordenação de informação tem impacto relevante em diversos aspectos do nosso cotidiano. Considere, por exemplo, a ordem alfabética em que um dicionário é organizado, ou a ordem crescente (decrescente) em que os preços de um determinado produto são exibidos em uma compra online. Nessas situações, o fato da informação estar organizada (ordenada) de um modo consistente nos permite procurar por determinado item (uma &lt;em&gt;palavra&lt;/em&gt; nos dicionários, um objeto de determinado &lt;em&gt;valor&lt;/em&gt; na lista de compras) de forma muito mais simples.&lt;/p&gt;
+
+&lt;p&gt;Do ponto de vista computacional a ordenação de dados tem influência similar. Ao reorganizarmos a informação de forma consistente, diversas operações que poderiam ser feitas sobre o conteúdo armazenado podem, possivelmente, se tornar mais simples e eficientes.&lt;/p&gt;
+
+&lt;p&gt;Em princípio qualquer sequência de dados pode ser ordenada. Para isso, no entanto, é necessário que exista uma &lt;a href=&quot;https://pt.wikipedia.org/wiki/Rela%C3%A7%C3%A3o_de_ordem&quot;&gt;relação de ordem&lt;/a&gt; para o conjunto dos dados a serem ordenados. Sem perda de generalidade, consideraremos que cada item $i$ na sequência a ser ordenada possui uma chave $k_i\in \mathbb{D}$, tal que essas chaves pertençam a um domínio para o qual exista uma relação de ordem $R \subseteq \mathbb{D}\times \mathbb{D}$. Exemplos de relações de &lt;a href=&quot;https://pt.wikipedia.org/wiki/Rela%C3%A7%C3%A3o_de_ordem#Rela.C3.A7.C3.B5es_de_ordem_linear_ou_total&quot;&gt;ordem totais&lt;/a&gt; mais comuns são: menor ou igual ($\leq$) e maior ou igual ($\geq$).&lt;/p&gt;
+
+&lt;h2 id=&quot;ordenação-de-inteiros&quot;&gt;Ordenação de inteiros&lt;/h2&gt;
+
+&lt;p&gt;Suponha uma sequência finita de números inteiros dispostos em uma ordem arbitrária, gerado de forma aleatória, por exemplo. Podemos representar essa sequência por:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;x_1, ~x_2, ~\dots, ~x_n,~\forall x_i\in\mathbb{Z} \mbox{ e } n\in\mathbb{Z}&lt;/script&gt;
+
+&lt;p&gt;Como o conjunto dos números inteiros $\mathbb{Z}$ é totalmente ordenado de acordo com a relação de ordem $\leq$, existe então uma reordenação dos elementos dessa sequência $\alpha : \mathbb{Z}\to\mathbb{Z}$, tal que:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\alpha(1) ~\leq~\alpha(2)~\leq~ \dots ~\leq~\alpha(n)&lt;/script&gt;
+
+&lt;p&gt;O mesmo é verdade para a relação de ordem $\geq$, e portanto existe também uma reordenação $\beta : \mathbb{Z}\to\mathbb{Z}$&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;{\beta(1)} ~\geq~{\beta(2)}~\geq~ \dots ~\geq~{\beta(n)}&lt;/script&gt;
+
+&lt;p&gt;Transformar uma sequência de dados em ordem arbitrária em uma sequência ordenada é o objetivo dos &lt;strong&gt;algoritmos de ordenação&lt;/strong&gt; que veremos a seguir.&lt;/p&gt;
+
+&lt;h2 id=&quot;o-que-são-algoritmos-de-ordenação&quot;&gt;O que são Algoritmos de ordenação?&lt;/h2&gt;
+
+&lt;p&gt;Um algoritmo de ordenação é um procedimento que recebe como entrada uma sequência de dados, os quais assumiremos como números inteiros daqui em diante, e rearranja os items dessa sequência de modo que ao final eles estejam em uma determinada ordem: crescente, decrescente, por exemplo.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(13, 1, 0 -1, 9, 6, 3, 1) \Rightarrow (-1, 0, 1, 1, 3, 6, 9, 13)&lt;/script&gt;
+
+&lt;h1 id=&quot;algoritmos-de-ordenação&quot;&gt;Algoritmos de Ordenação&lt;/h1&gt;
+
+&lt;h2 id=&quot;bubble-sort&quot;&gt;Bubble sort&lt;/h2&gt;
+
+&lt;p&gt;Dada uma sequência de entrada, a &lt;em&gt;ordenação por bolha&lt;/em&gt; compara pares de itens $x_i$ e $x_{i+1}$, levando para posições posteriores aquele elemento que seja o maior. Na prática isso significa que se $x_{i+1}$ for maior que $x_i$ esses elementos devem trocar de posição:&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Trocar os elementos nas posições i e i+1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;O Bubble sort percorre do início ao fim do vetor várias vezes, efetuando trocas da forma acima. Na primeira passagem pelo vetor, o maior elemento é levado à posição final $x_{n}$, e, portanto, já estará na posição correta. A próxima iteração levará o segundo maior valor à posição anterior a final $x_{n-1}$ e assim sucessivamente, até que o primeiro elemento seja avaliado. Neste momento, o algoritmo precisa parar pois o vetor estará ordenado e nenhuma troca adicional ocorrerá.&lt;/p&gt;
+
+&lt;h2 id=&quot;selection-sort&quot;&gt;Selection sort&lt;/h2&gt;
+
+&lt;p&gt;Dada uma sequência de entrada, a &lt;em&gt;ordenação por seleção&lt;/em&gt; seleciona a cada passagem pelo vetor o menor elemento e o coloca na posição inicial $x_1$. Na segunda iteração o menor elemento entre $x_2$ e $x_n$ será selecionado e colocado na posição $x_2$. Ou seja, a cada iteração, o algoritmo deixa um elemento a mais na posição correta.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Trocar os elementos nas posições i e posição do menor elemento de i-n. 
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;insertion-sort&quot;&gt;Insertion sort&lt;/h2&gt;
+
+&lt;p&gt;Dada uma sequência de entrada, a &lt;em&gt;ordenação por inserção&lt;/em&gt; percorre a sequência e para cada valor em uma determinada posição $i$, reinsere o valor $x_i$ na sua posição correta no momento. A posição correta $j$ para um elemento qualquer $x_i$ em um dado momento é aquela posição tal que $x_{j} \leq x_i \leq x_{j+1}$.&lt;/p&gt;
+
+&lt;h2 id=&quot;quicksort&quot;&gt;Quicksort&lt;/h2&gt;
+
+&lt;p&gt;Consideremos uma sequência numérica qualquer de tamanho $n$, em ordem arbitrária.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;x_1, ~x_2, ~\dots, ~x_n,~\forall x_i\in\mathbb{Z} \mbox{ e } n\in\mathbb{Z}&lt;/script&gt;
+
+&lt;p&gt;Vamos analisar as propriedades produzidas pelo seguinte procedimento, o qual é mais simples que a ordenação em si.&lt;/p&gt;
+
+&lt;p&gt;Dado qualquer elemento desta sequência $x_p$, o qual chamaremos &lt;em&gt;pivô&lt;/em&gt;, &lt;strong&gt;reordene a sequência&lt;/strong&gt; de modo que $\forall x_i$ que preceda $x_p$, $x_i\leq x_p$. Em contrapartida, $\forall x_j$ que suceda $x_p$, $x_p \leq x_j$. Observe que não estamos exigindo que os elementos anteriores ou posteriores a $x_p$ estejam ordenados. No entanto, uma propriedade importante é evidente.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Se todos antes de $x_p$ são menores ou iguais a ele e todos elementos depois são maiores ou iguais, então $x_p$ está na sua posição correta. Ou seja, na posição que ele ocuparia em uma sequência ordenada.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Por essa propriedade concluímos que $x_p$ não precisa mais ser comparado a nenhum outro elemento. Nos restando duas subpsequências a serem ordenadas. Aquela contendo os elementos anteriores e aquela contendo os elementos posteriores a $x_p$.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;[\dots],~ x_p,~ [\dots]&lt;/script&gt;
+
+&lt;p&gt;Podemos então repetir o mesmo procedimento em cada uma dessas subsequências, até que todos elementos tenham sido considerados como pivô e, portanto, colocados em suas devidas posições ordenadas.&lt;/p&gt;
+
+&lt;p&gt;O Algoritmo acima descrito é chamado, no contexto do &lt;em&gt;Quicksort&lt;/em&gt;, de  &lt;em&gt;partition&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;partition&quot;&gt;Partition&lt;/h3&gt;
+
+&lt;p&gt;Dada uma sequência númerica em ordem arbitrária como entrada e um valor &lt;em&gt;pivô&lt;/em&gt; $k$.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;x_1, ~x_2, ~\dots, ~x_n,~\forall x_i\in\mathbb{Z} \mbox{ e } n\in\mathbb{Z}&lt;/script&gt;
+
+&lt;p&gt;&lt;em&gt;Partition&lt;/em&gt; irá produzir uma nova sequência, com o pivô numa posição $p$, de modo que $y_i \leq k$, $\forall i \leq p$ e $y_j \geq k$, $\forall j \geq p$.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;y_1,~y_2,~\dots,y_{p-1},~ k_p,~ y_{p+1}, \dots,~ y_{n-1},~ y_{n}&lt;/script&gt;
+
+&lt;p&gt;Outra característica importante dessa nova sequência é que todos elementos $y_1,\dots,y_{p-1}$ são menores que aqueles em $y_{p+1},\dots,y_n$. Portanto, eles não precisam mais ser comparados. As comparações adicionais acontecerão internamente a cada uma das sequências apenas.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Versão Cormen (Lomuto)
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;partition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;    
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Versao simples (Hoare)
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;partition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+            &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Partition&lt;/li&gt;
+  &lt;li&gt;Complexidade no melhor caso&lt;/li&gt;
+  &lt;li&gt;O que afeta o melhor caso&lt;/li&gt;
+  &lt;li&gt;Complexidade no pior caso&lt;/li&gt;
+  &lt;li&gt;Como contornar o pior caso: escolha do pivô&lt;/li&gt;
+  &lt;li&gt;Mediana de três: p, r, (p+r)/2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;-Insertionsort
+  -Heapsort
+  -Shellsort
+  -Mergesort&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 29 Dec 2017 13:50:00 -0200</pubDate>
+        <link>http://localhost:4000/ae22cp-172/ordenacao.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/ordenacao.html</guid>
+        
+        <category>ordenação</category>
+        
+        
+        <category>AE22CP-172</category>
+        
+      </item>
     
       <item>
         <title>FAQ</title>
@@ -171,6 +345,217 @@ Program received signal SIGSEGV, Segmentation fault.
       </item>
     
       <item>
+        <title>Lógica de predicados - Teoremas e regras de equivalência</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#teoremas&quot; id=&quot;markdown-toc-teoremas&quot;&gt;Teoremas&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#exemplo-1&quot; id=&quot;markdown-toc-exemplo-1&quot;&gt;Exemplo 1&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exemplo-2&quot; id=&quot;markdown-toc-exemplo-2&quot;&gt;Exemplo 2&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exemplo-3&quot; id=&quot;markdown-toc-exemplo-3&quot;&gt;Exemplo 3&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#equivalências&quot; id=&quot;markdown-toc-equivalências&quot;&gt;Equivalências&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#exemplo-1-1&quot; id=&quot;markdown-toc-exemplo-1-1&quot;&gt;Exemplo 1&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exemplo-2-1&quot; id=&quot;markdown-toc-exemplo-2-1&quot;&gt;Exemplo 2&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exemplo-3-1&quot; id=&quot;markdown-toc-exemplo-3-1&quot;&gt;Exemplo 3&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#intercâmbio-de-quantificadores&quot; id=&quot;markdown-toc-intercâmbio-de-quantificadores&quot;&gt;Intercâmbio de quantificadores&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#variáveis-abertas-e-fechadas&quot; id=&quot;markdown-toc-variáveis-abertas-e-fechadas&quot;&gt;Variáveis abertas e fechadas&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exemplo&quot; id=&quot;markdown-toc-exemplo&quot;&gt;Exemplo&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#qual-a-utilidade&quot; id=&quot;markdown-toc-qual-a-utilidade&quot;&gt;Qual a utilidade?&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#exemplo-1&quot; id=&quot;markdown-toc-exemplo-1&quot;&gt;Exemplo&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;teoremas&quot;&gt;Teoremas&lt;/h1&gt;
+
+&lt;p&gt;Assim como na lógica proposicional, existem fórmulas na lógica de predicados que podem ser demonstradas sem a necessidade de premissas. Tais fórmulas, chamadas &lt;em&gt;teoremas&lt;/em&gt;, são verdades lógicas, ou seja sua verdade é necessária de acordo com as regras da lógica de predicados. Todos os teoremas da lógica proposicional são, também, teoremas na lógica de predicados.&lt;/p&gt;
+
+&lt;h2 id=&quot;exemplo-1&quot;&gt;Exemplo 1&lt;/h2&gt;
+
+&lt;p&gt;O condicional quando aplicado a antecedente e consequente iguais é um teorema na lógica proposicional, $p \to p$, sendo portanto representado em forma de argumento sem premissas&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash p \to p&lt;/script&gt;
+
+&lt;p&gt;Na lógica de predicados temos a versão generalizada deste teorema, a qual é produzida pela introdução do quantificador universal.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \forall x (Fx\to Fx)&lt;/script&gt;
+
+&lt;p&gt;A demonstração deste teorema segue a estratégia utilizada para demonstrarmos qualquer condicional. Assumimos como hipótese o antecedente e derivamos o consequente.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{llr}
+1 &amp; Fa                   &amp;   \mbox{Hipótese para prova do condicional}\\
+2 &amp; Fa\to Fa     &amp;  \mbox{Introdução do condicional 1}\\
+3 &amp; \forall x (Fx\to Fx)             &amp;   \mbox{Introdução do universal em 2}
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;exemplo-2&quot;&gt;Exemplo 2&lt;/h2&gt;
+
+&lt;p&gt;Provemos o seguinte teorema:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \forall x Fx \to Fa&lt;/script&gt;
+
+&lt;p&gt;A estratégia de demonstração é a mesma, basta observarmos que $Fa$ é uma instância da fórmula generalizada $\forall x Fx$. Portanto&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{llr}
+1 &amp; \forall x Fx                   &amp;   \mbox{Hipótese para prova do condicional}\\
+2 &amp; \qquad Fa     &amp;  \mbox{Eliminação do universal em 1}\\
+3 &amp; \forall x Fx\to Fa             &amp;   \mbox{Prova do condicional 1-2}
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;exemplo-3&quot;&gt;Exemplo 3&lt;/h2&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \neg(\forall x Fx \land \exists x \neg Fx)&lt;/script&gt;
+
+&lt;p&gt;Neste exemplo, não é evidente qual regra de derivação utilizar. Seguindo a estratégia já mencionada anteriormente, tentaremos a demonstração por redução ao absurdo. Assumindo a negação da conclusão como hipótese&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{llr}
+1 &amp; \forall x Fx \land \exists x \neg Fx    &amp;   \mbox{Hipótese para redução ao absurdo}\\
+2 &amp; \qquad \forall x Fx     &amp;  \mbox{Eliminação do condicional em 1}\\
+3 &amp; \qquad \exists x \neg Fx     &amp;  \mbox{Eliminação do condicional em 1}\\
+4 &amp; \qquad\quad \neg Fa          &amp;   \mbox{Hipótese para eliminação do existencial}\\
+5 &amp; \qquad\quad Fa              &amp;    \mbox{Eliminação do universal em 2}\\
+6 &amp; \qquad\quad p \land \neg p    &amp;  \mbox{Pela contradição de } Fa\\
+7 &amp; \qquad p \land \neg p &amp; \mbox{Eliminação do existencial 4-6}\\
+8 &amp; \neg(\forall x Fx \land \exists x \neg Fx) &amp; \mbox{Redução a absurdo 1-7}
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;h1 id=&quot;equivalências&quot;&gt;Equivalências&lt;/h1&gt;
+
+&lt;p&gt;Assim como vimos para as árvores de refutação da lógica proposicional, nem sempre uma fórmula é facilmente demonstrável ou derivavel. Em alguns desses casos, no entanto, a utilização de uma fórmula equivalente facilita consideravelmente o trabalho.&lt;/p&gt;
+
+&lt;p&gt;Para ilustrar essa ideia, como demonstraríamos o teorema a seguir?&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \forall x Fx \lor \exists x \neg Fx&lt;/script&gt;
+
+&lt;p&gt;Não é evidente quais regras aplicar, visto que não temos premissas, a regra de eliminação ou introdução da disjunção não são aplicáveis. Podemos então tentar substituir essa fórmula por uma equivalente, mas qual utilizar? Na lógica proposicional demonstramos a equivalência $p \to q \dashv\vdash \neg p \lor q$, seria essa quivalência válida na lógica de predicados.&lt;/p&gt;
+
+&lt;h2 id=&quot;exemplo-1-1&quot;&gt;Exemplo 1&lt;/h2&gt;
+
+&lt;p&gt;Demonstre a equivalência&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x Fx \lor \exists x \neg Fx \dashv\vdash \neg\forall x Fx \to \exists x \neg Fx&lt;/script&gt;
+
+&lt;p&gt;Dada a equivalência acima, demonstrar o teorema $\vdash \forall x Fx \lor \exists x \neg Fx$ é equivalente a demonstrar sua equivalência&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \neg\forall x Fx \to \exists x \neg Fx&lt;/script&gt;
+
+&lt;h2 id=&quot;exemplo-2-1&quot;&gt;Exemplo 2&lt;/h2&gt;
+
+&lt;p&gt;Demonstre a equivalência&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(Fx \to \neg Gx) \dashv\vdash \neg \exists x(Fx \land Gx)&lt;/script&gt;
+
+&lt;h2 id=&quot;exemplo-3-1&quot;&gt;Exemplo 3&lt;/h2&gt;
+
+&lt;p&gt;Demonstre as equivalências&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \forall x \neg Fx \dashv \vdash \exists x Fx \label{eq:1}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \forall x Fx \dashv \vdash \exists x \neg Fx \label{eq:2}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x \neg Fx \dashv\vdash \neg \exists x Fx \label{eq:3}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x Fx \dashv\vdash \neg \exists x \neg Fx \label{eq:4}&lt;/script&gt;
+
+&lt;h1 id=&quot;intercâmbio-de-quantificadores&quot;&gt;Intercâmbio de quantificadores&lt;/h1&gt;
+
+&lt;p&gt;As últimas equivalências, descritas no Exemplo 3, são mais genéricas do que parecem à primeira vista. De fato, elas são válidas para quaiquer subfórmulas, desde que sejam subfórmulas dependentes da mesma variável. No entanto, para formalizarmos essa ideia, precisamos definir antes alguns conceitos.&lt;/p&gt;
+
+&lt;h2 id=&quot;variáveis-abertas-e-fechadas&quot;&gt;Variáveis abertas e fechadas&lt;/h2&gt;
+
+&lt;p&gt;Consideremos como exemplo simples a fórmula $\forall x Fx$. Pela definição das regras de formação da linguagem da lógica de predicados, sabemos que $Fx$ só faz sentido, se houver antes um quantificador discriminando $x$.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Uma fórmula é dita fechada em relação a uma variável $x$ qualquer, se existe um quantificador associado a tal variável. Exemplo: $\forall x (Fx \land Gx)$&lt;/li&gt;
+  &lt;li&gt;Uma fórmula é dita aberta em relação a uma variável $x$ qualquer, se não existe quantificador que discrimine tal variável. Exemplo: $Fx \land Gx$, $\forall y Fxy$&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Essa terminologia permite nos referirmos mais facilmente a fórmulas e subfórmulas com a mesma característica em termos de variáveis. Para melhor exemplificar, consideremos a equivalência $\eqref{eq:4}$ descrita anteriormente.&lt;/p&gt;
+
+&lt;p&gt;Nela, podemos nos referir $Fx$ como uma fórmula &lt;strong&gt;aberta em $x$&lt;/strong&gt; enquanto $\forall x Fx$ é uma fórmula &lt;strong&gt;fechada em $x$&lt;/strong&gt;. Obviamente, existem diversas outras fórmulas abertas em $x$. Por exemplo $Fx\land Gx$ e $Fx\to Gx$ são ambas fórmulas abertas em $x$. Ou seja, todas elas compartilham essa mesma característica com $Fx$. Podemos então, expressar ideias como&lt;/p&gt;
+
+&lt;p&gt;“Seja qualquer fórmula $\phi$ que seja aberta em $\beta$”.&lt;/p&gt;
+
+&lt;p&gt;Em que $\beta$ represente qualquer variável, e.g. $x, y, z,\dots$. Isso nos permite generalizar as equivalências $\eqref{eq:1}-\eqref{eq:4}$ para além de $Fx$, da seguinte forma:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \forall \beta \neg \phi \dashv \vdash \exists \beta \phi \label{eq:5}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \forall \beta \phi \dashv \vdash \exists \beta \neg \phi&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall \beta \neg \phi \dashv\vdash \neg \exists \beta \phi&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall \beta \phi \dashv\vdash \neg \exists \beta \neg \phi \label{eq:8}&lt;/script&gt;
+
+&lt;h2 id=&quot;exemplo&quot;&gt;Exemplo&lt;/h2&gt;
+
+&lt;p&gt;Vejamos um exemplo da aplicação dessa generalização. Considere a forma de argumento a seguir:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x (Fx \to \neg Gx) \vdash \neg \exists x (Fx \land Gx)&lt;/script&gt;
+
+&lt;p&gt;Neste exemplo, $(Fx\to\neg Gx)$ e $(Fx \land Gx)$ são fórmulas abertas em $x$. Se dermos um nome mais simples para cada uma delas, por exemplo, $\phi$ e $\psi$, respectivamente. Então a forma de argumento acima é instância de algo mais genérico&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x \phi \vdash \exists x \psi&lt;/script&gt;
+
+&lt;h2 id=&quot;qual-a-utilidade&quot;&gt;Qual a utilidade?&lt;/h2&gt;
+
+&lt;p&gt;A principal utilidade desse tipo de generalização é nos permitir utilizar as equivalências em um contexto amplo, sem necessariamente ter que provar cada uma delas, mostrando que todas são instâncias dos mesmos teoremas. Em outras palavras, se:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \forall x \neg Fx  \leftrightarrow \neg \exists Fx&lt;/script&gt;
+
+&lt;p&gt;Então o teorema a seguir também é verdadeiro&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \forall x \neg (Fx \land Gx)  \leftrightarrow \neg \exists (Fx \land Gx)&lt;/script&gt;
+
+&lt;p&gt;pois ambos são instâncias do mesmo teorema genérico.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \forall \beta \neg \phi \leftrightarrow \neg \exists\beta \phi&lt;/script&gt;
+
+&lt;p&gt;Este tipo de intercâmbio entre equivalências em muitos casos torna as demonstrações muito mais simples.&lt;/p&gt;
+
+&lt;h3 id=&quot;exemplo-1&quot;&gt;Exemplo&lt;/h3&gt;
+
+&lt;p&gt;Demonstre o seguinte teoremas&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \forall x  Fx \lor \exists x \neg Fx&lt;/script&gt;
+
+&lt;p&gt;Iniciaremos com a tautologia&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x Fx \lor \neg \forall x Fx&lt;/script&gt;
+
+&lt;p&gt;A subfórmula $\neg \forall x Fx$ pode ser interpretada como&lt;/p&gt;
+
+&lt;p&gt;“Nem todo x satisfaz o predicado F”&lt;/p&gt;
+
+&lt;p&gt;Que por sua vez é equivalente a dizermos que&lt;/p&gt;
+
+&lt;p&gt;“Existe x que não satisfaz F”&lt;/p&gt;
+
+&lt;p&gt;A segunda versão pode ser escrita simbolicamente como $\exists x \neg Fx$. Esta equivalência está representada em $\eqref{eq:2}$. Substituindo essa equivalência na tautologia acima, produzimos&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x Fx \lor \exists x \neg Fx&lt;/script&gt;
+
+&lt;p&gt;O qual finaliza a demonstração do teorema.&lt;/p&gt;
+</description>
+        <pubDate>Wed, 18 Oct 2017 10:20:00 -0200</pubDate>
+        <link>http://localhost:4000/lc21cp-172/lp-teoremas-equivalencias.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/lp-teoremas-equivalencias.html</guid>
+        
+        <category>predicados</category>
+        
+        
+        <category>LC21CP-172</category>
+        
+      </item>
+    
+      <item>
         <title>Lista VIII - Lógica de predicados, dedução</title>
         <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
@@ -254,6 +639,9 @@ Program received signal SIGSEGV, Segmentation fault.
           &lt;li&gt;&lt;a href=&quot;#exemplo-2-619---pg277&quot; id=&quot;markdown-toc-exemplo-2-619---pg277&quot;&gt;Exemplo 2 (6.19 - pg.277)&lt;/a&gt;&lt;/li&gt;
           &lt;li&gt;&lt;a href=&quot;#exemplo-3-620&quot; id=&quot;markdown-toc-exemplo-3-620&quot;&gt;Exemplo 3 (6.20)&lt;/a&gt;&lt;/li&gt;
           &lt;li&gt;&lt;a href=&quot;#exemplo-4-621&quot; id=&quot;markdown-toc-exemplo-4-621&quot;&gt;Exemplo 4 (6.21)&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#exemplo-5-1&quot; id=&quot;markdown-toc-exemplo-5-1&quot;&gt;Exemplo 5&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#exemplo-6&quot; id=&quot;markdown-toc-exemplo-6&quot;&gt;Exemplo 6&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#exemplo-7&quot; id=&quot;markdown-toc-exemplo-7&quot;&gt;Exemplo 7&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
@@ -364,6 +752,18 @@ Program received signal SIGSEGV, Segmentation fault.
 &lt;h4 id=&quot;exemplo-4-621&quot;&gt;Exemplo 4 (6.21)&lt;/h4&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\exists Fx \lor \exists x Gx \vdash \exists x (Fx \lor Gx)&lt;/script&gt;
+
+&lt;h4 id=&quot;exemplo-5-1&quot;&gt;Exemplo 5&lt;/h4&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\exists x \forall y Lxy \vdash \forall x \exists y Lyx&lt;/script&gt;
+
+&lt;h4 id=&quot;exemplo-6&quot;&gt;Exemplo 6&lt;/h4&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x (Fx \to \exists y Lxy), \exists x (Fx \land Gx) \vdash \exists x\exists y (Gx \land Lxy)&lt;/script&gt;
+
+&lt;h4 id=&quot;exemplo-7&quot;&gt;Exemplo 7&lt;/h4&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x (Fx \to \neg Gx) \vdash \neg \exists x (Fx \land Gx)&lt;/script&gt;
 </description>
         <pubDate>Wed, 04 Oct 2017 10:20:00 -0300</pubDate>
         <link>http://localhost:4000/lc21cp-172/logica-predicados-deducao-2.html</link>
@@ -1299,460 +1699,6 @@ gcc main.c stack.c list.c -o main-list
         
         
         <category>AE22CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Lista VI - Árvores de análise e formas normais</title>
-        <description>&lt;h1 id=&quot;exercícios&quot;&gt;Exercícios&lt;/h1&gt;
-
-&lt;h2 id=&quot;fórmulas-bem-formuladas&quot;&gt;Fórmulas bem formuladas&lt;/h2&gt;
-
-&lt;p&gt;Dadas as fórmulas a seguir, construa suas árvores de análise e diga quais são bem formuladas:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land q&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\land \neg(p \lor q \land s) \to (r\to s)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land \neg q \to \neg p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land (\neg q \to \neg p)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg((\neg q \land (p\to r))\land (r\to q))&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\land \neg(p\lor \land s) \to (r \to s)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q)\to (\neg r\lor(q \to r))&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(((s\to(r\lor \ell))\lor((\neg q)\land r))\to((\neg(p\to s))\to r))&lt;/script&gt;
-
-&lt;h2 id=&quot;subfórmulas&quot;&gt;Subfórmulas&lt;/h2&gt;
-
-&lt;p&gt;Para cada uma das fórmulas, construa suas árvores de análise e liste todas subfórmulas.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (\neg p \lor (\neg\neg q \to (p\land q)))&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(s \to r \lor \ell) \lor (\neg q\land r) \to (\neg(p \to s) \to r)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\to q) \land (\neg r \to (q \lor(\neg p\land r)))&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(s\to(\neg(p\to(q\lor\neg s))))&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;((p\to \neg q))\lor(p\land r)\to s) \lor \neg r&lt;/script&gt;
-
-&lt;h2 id=&quot;formas-normais&quot;&gt;Formas normais&lt;/h2&gt;
-
-&lt;p&gt;Transformar as seguinte fórmulas para a forma normal conjuntiva e disjuntiva (FNC, FND), utilizando tabelas-verdade. Verificar se algumas das fórmulas contém cláusulas de Horn.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;((p\to q)\to p)\to p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(p\land \neg p)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\lor q)\to \neg(q \lor r)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\to q) \leftrightarrow (r\land p)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\leftrightarrow q) \to (p \lor q)&lt;/script&gt;
-
-&lt;h1 id=&quot;referências&quot;&gt;Referências&lt;/h1&gt;
-&lt;p&gt;Capítulo 4: Pgs. 185 - 203, &lt;a href=&quot;https://racionalistasusp.files.wordpress.com/2010/01/nolt-john-rohatyn-dennis-lc3b3gica.pdf&quot;&gt;Logica - John Nolt (PDF).&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Thu, 21 Sep 2017 18:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/lista6-arvores-de-analise.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/lista6-arvores-de-analise.html</guid>
-        
-        <category>formalização</category>
-        
-        
-        <category>LC21CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Linguagem da Lógica proposicional - Formas normais</title>
-        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#formas-normais&quot; id=&quot;markdown-toc-formas-normais&quot;&gt;Formas normais&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#forma-normal-conjuntiva&quot; id=&quot;markdown-toc-forma-normal-conjuntiva&quot;&gt;Forma normal conjuntiva&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#forma-normal-disjuntiva&quot; id=&quot;markdown-toc-forma-normal-disjuntiva&quot;&gt;Forma normal disjuntiva&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#conversão-para-forma-normal&quot; id=&quot;markdown-toc-conversão-para-forma-normal&quot;&gt;Conversão para forma normal&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#forma-normal-disjuntiva-fnd&quot; id=&quot;markdown-toc-forma-normal-disjuntiva-fnd&quot;&gt;Forma normal disjuntiva (FND)&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#forma-normal-conjuntiva-fnc&quot; id=&quot;markdown-toc-forma-normal-conjuntiva-fnc&quot;&gt;Forma normal conjuntiva (FNC)&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#benefícios-das-formas-normais&quot; id=&quot;markdown-toc-benefícios-das-formas-normais&quot;&gt;Benefícios das formas normais&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#cláusulas-de-horn&quot; id=&quot;markdown-toc-cláusulas-de-horn&quot;&gt;Cláusulas de Horn&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#exercícios&quot; id=&quot;markdown-toc-exercícios&quot;&gt;Exercícios&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#referências&quot; id=&quot;markdown-toc-referências&quot;&gt;Referências&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;formas-normais&quot;&gt;Formas normais&lt;/h1&gt;
-
-&lt;p&gt;Dada uma fórmula qualquer $\phi$ na linguagem da lógica proposicional, existe uma fórmula $\psi$ equivalente que está na &lt;em&gt;forma normal&lt;/em&gt;. As formas normais são fórmulas com estruturas predefinidas. Tais estruturas são definidas em termos de &lt;em&gt;literais&lt;/em&gt;, que são nada mais que uma definição que engloba tanto símbolos proposicionais quanto suas negações. Exemplos de literais.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p,\neg p, q, r, \neg s&lt;/script&gt;
-
-&lt;p&gt;&lt;strong&gt;Definição (literal):&lt;/strong&gt; Um literal é um símbolo proposicional ou sua negação.&lt;/p&gt;
-
-&lt;p&gt;Consideraremos nesta seção dois tipos de formas normais.&lt;/p&gt;
-
-&lt;h2 id=&quot;forma-normal-conjuntiva&quot;&gt;Forma normal conjuntiva&lt;/h2&gt;
-
-&lt;p&gt;Uma fórmula está na &lt;em&gt;forma normal conjuntiva&lt;/em&gt; se ela é uma conjunção de disjunção de literais. Para compreendermos essa definição, iremos por partes, primeiro, considere que uma disjunção de literais é qualquer fórmula do tipos&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \lor \neg q \lor \dots)&lt;/script&gt;
-
-&lt;p&gt;Portanto, a forma normal conjuntiva é a conjunção de diversas fórmulas desse tipo. Como exemplo temos a seguinte fórmulas&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(\neg p \lor q) \land (\neg r \lor \neg q \lor p) \land (p \lor s)&lt;/script&gt;
-
-&lt;h2 id=&quot;forma-normal-disjuntiva&quot;&gt;Forma normal disjuntiva&lt;/h2&gt;
-
-&lt;p&gt;Uma fórmula está na &lt;em&gt;forma normal disjuntiva&lt;/em&gt; se ela é uma disjunção de conjunção de literais. Uma conjunção de literais, é qualquer fórmula do tipo&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land \neg q \land \dots)&lt;/script&gt;
-
-&lt;p&gt;Portanto, a forma normal disjuntiva é a disjunção de diversas fórmulas desse tipo. Como exemplo&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(\neg p \land q) \lor (\neg r \land \neg q \land p) \lor (p \land s)&lt;/script&gt;
-
-&lt;h2 id=&quot;conversão-para-forma-normal&quot;&gt;Conversão para forma normal&lt;/h2&gt;
-
-&lt;p&gt;Como mencionado no início desta seção, a toda fórmula há uma outra fórmula equivalente escrita na forma normal; tanto conjuntiva quanto disjuntiva. Como podemos garantir que essa afirmação seja verdadeira?&lt;/p&gt;
-
-&lt;p&gt;A justificativa para a veracidade dessa afirmação é o fato de que as formas normais conjuntiva e disjuntiva refletem os valores verdade presente em uma tabela-verdade. Como toda fórmula pode ser analizada por uma tabela-verdade, então toda fórmula pode ser escrita na forma normal. Vejamos como isso funciona na prática, considere a seguinte fórmula&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\to q) \land r&lt;/script&gt;
-
-&lt;p&gt;Sua tabela verdade possui 8 linhas, e está descrita a seguir:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt; &lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$r$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$(p\to q)$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$(p\to q) \land r$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;forma-normal-disjuntiva-fnd&quot;&gt;Forma normal disjuntiva (FND)&lt;/h3&gt;
-
-&lt;p&gt;Vamos primeiro analisar como utilizar a tabela-verdade acima para  transformar a fórmula $(p\to q) \land r$ em uma fórmula equivalente na forma normal disjuntiva. Para isso observemos as linhas da tabela que tornam a fórmula verdadeira, as quais estão indicadas por um * na tabela abaixo.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt; &lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$r$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$(p\to q)$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$(p\to q) \land r$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;*&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;*&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;*&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Se essas são as únicas atribuições de valores-verdade às variáveis $p, q, r$ que tornam a fórmula verdadeira, podemos as utilizar para definir uma outra fórmula, que sempre será verdadeira quando $(p\to q) \land r$ for verdadeira. Para isso, iremos escrever cada uma dessas linhas como uma conjunção. A primeira linha marcada seria representada pela fórmulas&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q \land r)&lt;/script&gt;
-
-&lt;p&gt;A segunda linha marcada seria representada portanto como&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(\neg p \land q \land r)&lt;/script&gt;
-
-&lt;p&gt;E seguindo a mesma ideia, a terceira seria&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(\neg p \land \neg q \land r)&lt;/script&gt;
-
-&lt;p&gt;Como cada uma dessas fórmulas representa uma determinada atribuição de valores-verdade que torna a fórmula original verdadeira, a sua disjunção cobre todas as situações de veracidade da fórmula original&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q \land r) \lor (\neg p \land q \land r) \lor (\neg p \land \neg q \land r)&lt;/script&gt;
-
-&lt;h3 id=&quot;forma-normal-conjuntiva-fnc&quot;&gt;Forma normal conjuntiva (FNC)&lt;/h3&gt;
-
-&lt;p&gt;Para convertermos uma fórmula na forma normal conjuntiva utilizaremos ideia similar à usada anteriormente. No entanto, ao invés de nos focar nas linhas que tornam a fórmula verdadeira, consideraremos àquelas que a torma falsa, as quais estão indicadas na tabela a seguir.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt; &lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$r$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$(p\to q)$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$(p\to q) \land r$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;*&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;*&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;*&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;*&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;*&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;A ideia a ser seguida neste caso é que, estas atribuições de valores-verdade são as únicas alternativas em que a fórmula $(p\to q) \land r$ é falsa. Se falharmos em encontrar uma atribuição que se encaixe numa dessas alternativas, então a fórmula, por consequência, será verdadeira. A forma normal conjuntiva dessa fórmula será a conjunção desses casos.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(\neg p \lor \neg q \lor r)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(\neg p \lor q \lor \neg r)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(\neg p \lor q \lor r)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \lor \neg q \lor r)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \lor q \lor r)&lt;/script&gt;
-
-&lt;p&gt;Em resumo, para a fórmula $(p\to q) \land r$ ser verdadeira, todos os casos em que ela poderia ser falsificada (linhas da tabela) devem falhar.&lt;/p&gt;
-
-&lt;h2 id=&quot;benefícios-das-formas-normais&quot;&gt;Benefícios das formas normais&lt;/h2&gt;
-
-&lt;p&gt;Por que nos preocuparíamos em utilizar fórmulas na forma normal conjuntiva, por exemplo? Visto que muitas vezes isso gera fórmulas maiores que a original, não parece evidente tal motivação. No entanto, com uma análise adicional perceberemos que facilmente que a forma normal conjuntiva nos permite muito mais facilmente verificar a satisfabilidade de uma fórmula. Consideremos, como exemplo, a fórmula na forma normal conjuntiva definida a seguir&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(\neg q \lor p \lor r) \land (\neg p\lor r) \land q&lt;/script&gt;
-
-&lt;p&gt;Por definição da conjunção, esta fórmula completa apenas será verdadeira se cada um de seus conjuctos forem verdadeiros. Por outro lado, cada um dos conjuctos é uma disjunção. Suponhamos agora que queremos verificar se a fórmula é uma &lt;strong&gt;tautologia&lt;/strong&gt;. Para isso, o seguinte lema se aplica:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Lema:&lt;/strong&gt; Uma disjunção de proposições literais $\ell_1 \lor \ell_2 \lor \dots \lor \ell_n$ é uma tautologia se e somente se exitem $1\leq i, j\leq m$ tais que $\ell_i$ é $\neg\ell_j$.&lt;/p&gt;
-
-&lt;p&gt;Em outras palavras, uma disjunção é uma tautologia apenas se contiver um símbolo e sua negação. Como é evidente, do ponto de vista computacional, isso pode ser verificado muito mais facilmente em uma fórmula em forma normal.&lt;/p&gt;
-
-&lt;p&gt;Se por outro lado, precisarmos demonstrar que uma fórmula em forma normal conjuntiva é &lt;strong&gt;satisfatível&lt;/strong&gt;, podemos nos basear na seguinte proposição.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Proposição:&lt;/strong&gt; Seja uma fórmula $\phi$ da lógica proposicional. Então $\phi$ pode ser satisfeita se e somente se $\neg \phi$ não for uma tautologia.&lt;/p&gt;
-
-&lt;h2 id=&quot;cláusulas-de-horn&quot;&gt;Cláusulas de Horn&lt;/h2&gt;
-
-&lt;p&gt;As cláusulas de Horn são compostas por no máximo um literal positivo. Este tipo de fórmula posssui características interessantes em termos da verificação de satisfabilidade, que verificaremos depois. Uma cláusula de Horn tem a forma&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p \lor \neg q \lor \dots \lor r&lt;/script&gt;
-
-&lt;p&gt;Deste modo, para satisfazer cláusulas desse tipo, basta atribuir valores-verdade falso para todas as variáveis envolvidas. Como toda cláusula de Horn é a disjunção de vários literais negados, um deles sendo verdadeiro torna toda a cláusula verdadeira.&lt;/p&gt;
-
-&lt;h1 id=&quot;exercícios&quot;&gt;Exercícios&lt;/h1&gt;
-
-&lt;p&gt;Transformar as seguinte fórmulas para a forma normal conjuntiva e disjuntiva (FNC, FND), utilizando tabelas-verdade. Verificar se algumas das fórmulas contém cláusulas de Horn.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;((p\to q)\to p)\to p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(p\land \neg p)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\lor q)\to \neg(q \lor r)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\to q) \leftrightarrow (r\land p)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\leftrightarrow q) \to (p \lor q)&lt;/script&gt;
-
-&lt;h1 id=&quot;referências&quot;&gt;Referências&lt;/h1&gt;
-
-&lt;p&gt;Seção 1.3: Pgs. 25-28, &lt;a href=&quot;http://www.cse.chalmers.se/edu/course/DAT060/huthryan_lics2_sol.pdf&quot;&gt;Logica - Huth &amp;amp; Ryan (PDF).&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Thu, 21 Sep 2017 10:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/formas-normais.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/formas-normais.html</guid>
-        
-        <category>linguagem</category>
-        
-        
-        <category>LC21CP-172</category>
         
       </item>
     
