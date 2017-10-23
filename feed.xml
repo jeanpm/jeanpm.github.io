@@ -6,9 +6,318 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 19 Oct 2017 11:34:17 -0200</pubDate>
-    <lastBuildDate>Thu, 19 Oct 2017 11:34:17 -0200</lastBuildDate>
+    <pubDate>Mon, 23 Oct 2017 20:57:47 -0200</pubDate>
+    <lastBuildDate>Mon, 23 Oct 2017 20:57:47 -0200</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>FAQ</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#segmentation-fault&quot; id=&quot;markdown-toc-segmentation-fault&quot;&gt;Segmentation Fault&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#exemplo-1&quot; id=&quot;markdown-toc-exemplo-1&quot;&gt;Exemplo 1&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exemplo-2&quot; id=&quot;markdown-toc-exemplo-2&quot;&gt;Exemplo 2&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#programação-estruturada&quot; id=&quot;markdown-toc-programação-estruturada&quot;&gt;Programação estruturada&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#função-list_sizel&quot; id=&quot;markdown-toc-função-list_sizel&quot;&gt;Função &lt;code class=&quot;highlighter-rouge&quot;&gt;list_size(l)&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;segmentation-fault&quot;&gt;Segmentation Fault&lt;/h1&gt;
+
+&lt;p&gt;Se seu código está dando falha de segmentação, rode ele dentro do gdb, em muitos casos nem é preciso procurar o erro passo a passo, pois o gdb mostra informações de onde a falha de segmentação ocorreu.&lt;/p&gt;
+
+&lt;h2 id=&quot;exemplo-1&quot;&gt;Exemplo 1&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;@:~$ &lt;/span&gt;./list &amp;lt; input/input02.txt 
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1] 35 
+Falha de segmentação &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;imagem &lt;span class=&quot;k&quot;&gt;do &lt;/span&gt;núcleo gravada&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Esta saída não nos dá informação suficiente para a correção do erro. Portanto, utilizarei o gdb. Primeiro passo, compilar com a flag &lt;code class=&quot;highlighter-rouge&quot;&gt;-g&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;@:~$ &lt;/span&gt;gcc main.c list.c -o list -g
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Após isso, inicializar o gdb passando o executável como parâmetro&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;@:~$ &lt;/span&gt;gdb ./list
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;A seguir, utilizar o comando &lt;code class=&quot;highlighter-rouge&quot;&gt;run&lt;/code&gt; do gdb para iniciar a execução do programa.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;gdb&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; run ./list &amp;lt; input/input02.txt &amp;gt; out
+Starting program: ./list &amp;lt; input/input02.txt &amp;gt; out
+ 
+Program received signal SIGSEGV, Segmentation fault.
+0x00000000004009fb &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;list_erase &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0x7fffffffdfd0, &lt;span class=&quot;nv&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; at list.c:101
+101        n-&amp;gt;next&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;j-&amp;gt;next;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Desta saída, podemos focar apenas em algumas partes.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Program received signal SIGSEGV, Segmentation fault.
+&lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;list_erase &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;v, &lt;span class=&quot;nv&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; at list.c:101
+101        n-&amp;gt;next&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;j-&amp;gt;next;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;SIGSEGV, é uma constante representando o tipo de erro, neste caso &lt;em&gt;segmentation fault&lt;/em&gt;, que se refere à tentativa de acesso de memória não permitido: além dos limites de um vetor, ou em posições de memória que não foram alocadas pelo programador.&lt;/p&gt;
+
+&lt;p&gt;Note, que &lt;code class=&quot;highlighter-rouge&quot;&gt;list_erase (v, i=1)&lt;/code&gt;, nos diz que o erro aconteceu na função &lt;code class=&quot;highlighter-rouge&quot;&gt;list_erase&lt;/code&gt;, quando recebendo a posição &lt;code class=&quot;highlighter-rouge&quot;&gt;i=1&lt;/code&gt; e nos mostra também a linha exata onde a falha de segmentação aconteceu.&lt;/p&gt;
+
+&lt;h2 id=&quot;exemplo-2&quot;&gt;Exemplo 2&lt;/h2&gt;
+
+&lt;p&gt;Seguiremos o mesmo procedimento descrito anteriormente.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;@:~$ &lt;/span&gt;./list &amp;lt; input/input03.txt 
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1] 68
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2] 68 98
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;3] 16 68 98
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2] 68 98
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1] 98
+Falha de segmentação &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;imagem &lt;span class=&quot;k&quot;&gt;do &lt;/span&gt;núcleo gravada&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;@:~$ &lt;/span&gt;gdb ./list
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;gdb&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; run ./list &amp;lt; input/input03.txt 
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1] 68
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2] 68 98
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;3] 16 68 98
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2] 68 98
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1] 98
+ 
+Program received signal SIGSEGV, Segmentation fault.
+0x0000000000400acb &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;list_pop_back &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0x604020&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; at list.c:183
+183 &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;ptr-&amp;gt;next-&amp;gt;next !&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; NULL&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Neste exemplo, a falha de segmentação ocorreu na linha 183, na função &lt;code class=&quot;highlighter-rouge&quot;&gt;list_pop_back&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;in list_pop_back (l=0x604020) at list.c:183
+183 while(ptr-&amp;gt;next-&amp;gt;next != NULL)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Como sabemos, &lt;em&gt;segmentation fault&lt;/em&gt; indica acesso indevido de memória. Portanto podemos imaginar que algo errado com a operação&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;183 while(ptr-&amp;gt;next-&amp;gt;next != NULL)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;O que aconteceria se &lt;code class=&quot;highlighter-rouge&quot;&gt;ptr-&amp;gt;next&lt;/code&gt; for &lt;code class=&quot;highlighter-rouge&quot;&gt;NULL&lt;/code&gt;? Bom, neste caso, ao tentar acessar o próximo &lt;code class=&quot;highlighter-rouge&quot;&gt;-&amp;gt;next&lt;/code&gt;, estariamos acessando o endereço indicado por &lt;code class=&quot;highlighter-rouge&quot;&gt;NULL&lt;/code&gt;, e lá procurando o campo &lt;code class=&quot;highlighter-rouge&quot;&gt;next&lt;/code&gt;, algo como: &lt;code class=&quot;highlighter-rouge&quot;&gt;NULL-&amp;gt;next&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Como &lt;code class=&quot;highlighter-rouge&quot;&gt;NULL&lt;/code&gt; é usualmente definido como o endereço &lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt; da memória, qualquer acesso a esse endereço levará à falha de segmentação. Portanto, sempre que houver falha de segmentação, a primeira suspeita deve ser:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Acesso fora dos limites de um vetor&lt;/li&gt;
+  &lt;li&gt;Acesso (dereferenciamento) ao endereço &lt;code class=&quot;highlighter-rouge&quot;&gt;NULL&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;programação-estruturada&quot;&gt;Programação estruturada&lt;/h1&gt;
+
+&lt;h2 id=&quot;função-list_sizel&quot;&gt;Função &lt;code class=&quot;highlighter-rouge&quot;&gt;list_size(l)&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;“Se a estrutura de dados &lt;code class=&quot;highlighter-rouge&quot;&gt;list&lt;/code&gt; duplamente encadeada já possui um campo &lt;code class=&quot;highlighter-rouge&quot;&gt;size&lt;/code&gt;, qual a necessidade da função &lt;code class=&quot;highlighter-rouge&quot;&gt;list_size()&lt;/code&gt;.”&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Em algumas situações certas funções parecem desnecessárias, é o caso do &lt;code class=&quot;highlighter-rouge&quot;&gt;list_size()&lt;/code&gt;. Para entender o porque de sua utilidade, é bom pensarmos em termos da lista como estrutura abstrata, a qual tem uma interface &lt;code class=&quot;highlighter-rouge&quot;&gt;list.h&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Nesse sentido, ambas implementações, “lista simples”, “listas duplas”, teriam uma implementação de &lt;code class=&quot;highlighter-rouge&quot;&gt;list_size()&lt;/code&gt;. Nas listas simples, preciso percorrer toda lista para saber o tamanho, nas duplas, basta acessar o size já existente. Algo desse tipo&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// forward_list.c
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;list_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+     &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// list.c
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;list_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Agora suponha que estejamos utilizando uma estrutura lista para resolver algum problema, soma/multiplicação de inteiros grandes, splice, por exemplo.&lt;/p&gt;
+
+&lt;p&gt;Neste caso, se sempre que precisarmos saber o tamanho de uma lista, utilizarmos &lt;code class=&quot;highlighter-rouge&quot;&gt;list_size()&lt;/code&gt; (e as demais funções de acesso a lista), isso nos permitiria utilizar tanto a implementação da lista de encadeamento simples (&lt;code class=&quot;highlighter-rouge&quot;&gt;forward_list.c&lt;/code&gt;) quanto a de encadeamento duplo (&lt;code class=&quot;highlighter-rouge&quot;&gt;list.c&lt;/code&gt;). Bastando escolher durante a compilação.&lt;/p&gt;
+
+&lt;p&gt;Se pelo contrário, eu utilizasse &lt;code class=&quot;highlighter-rouge&quot;&gt;l-&amp;gt;size&lt;/code&gt; diretamente, eu não conseguiria utilizar a implementação &lt;code class=&quot;highlighter-rouge&quot;&gt;forward_list.c&lt;/code&gt;, visto que nela, esse campo não existe.&lt;/p&gt;
+
+&lt;p&gt;Portanto, a ideia de termos várias funções para acessar certas propriedades da estrutura, nos permite separar a implementação da definição da estrutura de dados. Isso é sugerido quando programamos pensando em reutilização, e programação de bibliotecas.&lt;/p&gt;
+
+&lt;p&gt;Obviamente, podemos também querer implementar uma lista para algo bem específico, sem pensar que tal código será reutilizado para várias coisas diferentes, e então, não precisaríamos nos preocupar com isso.&lt;/p&gt;
+
+&lt;p&gt;Em geral é essa a ideia, e se aplica ao uso das demais funções também.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 29 Dec 2017 13:50:00 -0200</pubDate>
+        <link>http://localhost:4000/ae22cp-172/FAQ.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/FAQ.html</guid>
+        
+        <category>faq</category>
+        
+        
+        <category>AE22CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>APS3 - Algoritmos de ordenação</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#objetivos&quot; id=&quot;markdown-toc-objetivos&quot;&gt;Objetivos&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#motivação&quot; id=&quot;markdown-toc-motivação&quot;&gt;Motivação&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#experimentos&quot; id=&quot;markdown-toc-experimentos&quot;&gt;Experimentos&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#entrada&quot; id=&quot;markdown-toc-entrada&quot;&gt;Entrada&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#execução-e-medição&quot; id=&quot;markdown-toc-execução-e-medição&quot;&gt;Execução e medição&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#execução-exemplo-para-n20&quot; id=&quot;markdown-toc-execução-exemplo-para-n20&quot;&gt;Execução exemplo para $n=20$&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#resultados-para-todos-n&quot; id=&quot;markdown-toc-resultados-para-todos-n&quot;&gt;Resultados para todos $n$&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;objetivos&quot;&gt;Objetivos&lt;/h1&gt;
+
+&lt;p&gt;Comparar experimentalmente os algoritmos de ordenação em diferentes cenários. Identificar a relação entre os tipos de entradas e a eficiência desses algoritmos.&lt;/p&gt;
+
+&lt;h1 id=&quot;motivação&quot;&gt;Motivação&lt;/h1&gt;
+
+&lt;p&gt;Aprender a identificar qual algoritmo utilizar para ordenação de dados em um determinado contexto.&lt;/p&gt;
+
+&lt;h1 id=&quot;experimentos&quot;&gt;Experimentos&lt;/h1&gt;
+
+&lt;p&gt;Todos algoritmos deverão ser executados para os mesmos casos de teste e depois comparados quanto ao &lt;strong&gt;tempo médio&lt;/strong&gt; e ao &lt;strong&gt;número de comparações&lt;/strong&gt;. Nesta seção descrevo em detalhes como isso pode ser feito.&lt;/p&gt;
+
+&lt;h2 id=&quot;entrada&quot;&gt;Entrada&lt;/h2&gt;
+
+&lt;p&gt;Teremos diversos arquivos de entrada de nome &lt;code class=&quot;highlighter-rouge&quot;&gt;input_e.txt&lt;/code&gt;, onde $e=1,2,\dots,15$, todos eles contendo $100$ sequências numéricas, uma por linha.&lt;/p&gt;
+
+&lt;p&gt;Cada sequência contém $n=10 \times 2^e$ elementos numéricos, ou seja indica $n$ indica o tamanho das sequências que esse arquivo contém. Exemplo:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;O arquivo &lt;code class=&quot;highlighter-rouge&quot;&gt;input_1.txt&lt;/code&gt;, conterá &lt;code class=&quot;highlighter-rouge&quot;&gt;100&lt;/code&gt; linhas.
+    &lt;ul&gt;
+      &lt;li&gt;Cada linha representa uma sequência a ser ordenada, contendo $n=10\times 2^1 = 20$ elementos.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;O arquivo &lt;code class=&quot;highlighter-rouge&quot;&gt;input_3.txt&lt;/code&gt;, conterá &lt;code class=&quot;highlighter-rouge&quot;&gt;100&lt;/code&gt; linhas.
+    &lt;ul&gt;
+      &lt;li&gt;Cada linha representa uma sequência a ser ordenada, contendo $n=10\times 2^3 = 80$ elementos.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;O arquivo &lt;code class=&quot;highlighter-rouge&quot;&gt;input_15.txt&lt;/code&gt;, conterá &lt;code class=&quot;highlighter-rouge&quot;&gt;100&lt;/code&gt; linhas.
+    &lt;ul&gt;
+      &lt;li&gt;Cada linha representa uma sequência a ser ordenada, contendo $n=10\times 2^{15} = 327680$ elementos.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Cada cenário de testes (irei explicar os demais adiante), contém então, um conjunto de arquivos da forma:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Arquivo          e         n(e)=10 * 2^e
+input_1.txt      1         20
+input_2.txt      2         40
+input_3.txt      3         80
+input_4.txt      4         160
+input_5.txt      5         320
+input_6.txt      6         640
+input_7.txt      7         1280
+input_8.txt      8         2560
+input_9.txt      9         5120
+input_10.txt     10        10240
+input_11.txt     11        20480
+input_12.txt     12        40960
+input_13.txt     13        81920
+input_14.txt     14        163840
+input_15.txt     15        327680
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Teremos, então, sequências de tamanhos que crescem exponencialmente. Isso serve para observarmos o comportamento dos algoritmos em sequências pequenas e em sequências grandes. Alguns deles podem ser rápidos para sequências pequenas, enquanto outros podem ser mais rápidos em sequências grandes. Isso é algo que gostaríamos de identificar com os experimentos.&lt;/p&gt;
+
+&lt;h2 id=&quot;execução-e-medição&quot;&gt;Execução e medição&lt;/h2&gt;
+
+&lt;p&gt;Para cada cenário, teremos então um conjunto de $15$ arquivos de entrada, assim como descrito acima. E um certo número de algoritmos de ordenação a serem comparados. Considere a entrada &lt;code class=&quot;highlighter-rouge&quot;&gt;input_1.txt&lt;/code&gt; e assuma que desejamos comparar 4 algoritmos:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;bubble&lt;/code&gt;,&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;selection&lt;/code&gt;,&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;insertion&lt;/code&gt; e&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;quicksort&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A primeira etapa consiste em executar cada um desses algoritmos tendo como entrada um arquivo &lt;code class=&quot;highlighter-rouge&quot;&gt;input_1.txt&lt;/code&gt;. Vamos ilustrar esse procedimento por meio do &lt;code class=&quot;highlighter-rouge&quot;&gt;bubblesort&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;execução-exemplo-para-n20&quot;&gt;Execução exemplo para $n=20$&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Primeiramente alteramos o código do &lt;code class=&quot;highlighter-rouge&quot;&gt;bubblesort&lt;/code&gt; de modo a contar todas as comparações que ele efetua. Inserimos um contador para isso, que será incrementado sempre que dois elementos forem comparados. Ex:
+    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ncomparacoes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Ler uma linha do arquivo de entrada e armazená-la num vetor &lt;code class=&quot;highlighter-rouge&quot;&gt;v&lt;/code&gt; (ou vector, ou lista). Chamar a função de ordenação nesse vetor.
+    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ncomparacoes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;bubblesort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vsize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Ler uma nova linha do arquivo e armazená-la outra vez em &lt;code class=&quot;highlighter-rouge&quot;&gt;v&lt;/code&gt;, chamar a função de ordenação nesse vetor.
+    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;bubblesort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vsize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Repetir esse procedimento até a última linha do arquivo de entrada (centésima linha).&lt;/li&gt;
+  &lt;li&gt;Após a última chamada, teremos o total &lt;code class=&quot;highlighter-rouge&quot;&gt;ncomparacoes&lt;/code&gt; efetuadas em todas as chamadas a &lt;code class=&quot;highlighter-rouge&quot;&gt;bubblesort&lt;/code&gt;. Dividindo esse valor por &lt;code class=&quot;highlighter-rouge&quot;&gt;100&lt;/code&gt;, teremos o número médio esperado de comparações que o &lt;code class=&quot;highlighter-rouge&quot;&gt;bubblesort&lt;/code&gt; efetua em sequências de tamanho $n=20$ (neste exemplo).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Ao fim deste processo temos um par de valores, relacionado ao tamanho das sequências, e o número médio de comparações do bubblesort $\sigma_b$. Se repetirmos esse procedimento para todos os demais algoritmos teremos para eles outros pares de valores&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Bubble sort:    $(20, \sigma_b)$&lt;/li&gt;
+  &lt;li&gt;Selection sort: $(20, \sigma_s)$&lt;/li&gt;
+  &lt;li&gt;Insertion sort: $(20, \sigma_i)$&lt;/li&gt;
+  &lt;li&gt;Quick sort:     $(20, \sigma_q)$&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Assuma que os tempos médios de cada algoritmo sejam, respectivamente, $t_1, t_2, t_3, t_4$. Poderíamos agora iniciar uma comparação gráfica entre eles. Plotando como eixo $x$ os possíveis tamanhos de $n$ e no eixo $y$ os respectivos tempos médios.&lt;/p&gt;
+
+&lt;h3 id=&quot;resultados-para-todos-n&quot;&gt;Resultados para todos $n$&lt;/h3&gt;
+
+&lt;p&gt;Se o procedimento acima for efetuado para todos os arquivos de entrada, ou seja, todos possíveis $n=20,40,80,\dots,327680$, teremos ao final, para cada algoritmo o número médio de comparações em cada $n$. Os quais podemos utilizar para plotar um gráfico e comparar a eficiência desses algoritmos.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Bubble sort:    $(20, \sigma_b), (40, \sigma_b), \dots, (327680, \sigma_b)$&lt;/li&gt;
+  &lt;li&gt;Selection sort: $(20, \sigma_s), (40, \sigma_s), \dots, (327680, \sigma_s)$&lt;/li&gt;
+  &lt;li&gt;Insertion sort: $(20, \sigma_i), (40, \sigma_i), \dots, (327680, \sigma_i)$&lt;/li&gt;
+  &lt;li&gt;Quick sort:     $(20, \sigma_q), (40, \sigma_q), \dots, (327680, \sigma_q)$&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Fri, 20 Oct 2017 13:50:00 -0200</pubDate>
+        <link>http://localhost:4000/ae22cp-172/APS3-ordenacao.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/APS3-ordenacao.html</guid>
+        
+        <category>ordenação</category>
+        
+        
+        <category>AE22CP-172</category>
+        
+      </item>
     
       <item>
         <title>Lógica de predicados - Teoremas e regras de equivalência</title>
@@ -218,6 +527,180 @@
         
         
         <category>LC21CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>Algoritmos de ordenação</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#introdução&quot; id=&quot;markdown-toc-introdução&quot;&gt;Introdução&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#ordenação-de-inteiros&quot; id=&quot;markdown-toc-ordenação-de-inteiros&quot;&gt;Ordenação de inteiros&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#o-que-são-algoritmos-de-ordenação&quot; id=&quot;markdown-toc-o-que-são-algoritmos-de-ordenação&quot;&gt;O que são Algoritmos de ordenação?&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#algoritmos-de-ordenação&quot; id=&quot;markdown-toc-algoritmos-de-ordenação&quot;&gt;Algoritmos de Ordenação&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#bubble-sort&quot; id=&quot;markdown-toc-bubble-sort&quot;&gt;Bubble sort&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#selection-sort&quot; id=&quot;markdown-toc-selection-sort&quot;&gt;Selection sort&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#insertion-sort&quot; id=&quot;markdown-toc-insertion-sort&quot;&gt;Insertion sort&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#quicksort&quot; id=&quot;markdown-toc-quicksort&quot;&gt;Quicksort&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#partition&quot; id=&quot;markdown-toc-partition&quot;&gt;Partition&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;introdução&quot;&gt;Introdução&lt;/h1&gt;
+
+&lt;p&gt;A ordenação de informação tem impacto relevante em diversos aspectos do nosso cotidiano. Considere, por exemplo, a ordem alfabética em que um dicionário é organizado, ou a ordem crescente (decrescente) em que os preços de um determinado produto são exibidos em uma compra online. Nessas situações, o fato da informação estar organizada (ordenada) de um modo consistente nos permite procurar por determinado item (uma &lt;em&gt;palavra&lt;/em&gt; nos dicionários, um objeto de determinado &lt;em&gt;valor&lt;/em&gt; na lista de compras) de forma muito mais simples.&lt;/p&gt;
+
+&lt;p&gt;Do ponto de vista computacional a ordenação de dados tem influência similar. Ao reorganizarmos a informação de forma consistente, diversas operações que poderiam ser feitas sobre o conteúdo armazenado podem, possivelmente, se tornar mais simples e eficientes.&lt;/p&gt;
+
+&lt;p&gt;Em princípio qualquer sequência de dados pode ser ordenada. Para isso, no entanto, é necessário que exista uma &lt;a href=&quot;https://pt.wikipedia.org/wiki/Rela%C3%A7%C3%A3o_de_ordem&quot;&gt;relação de ordem&lt;/a&gt; para o conjunto dos dados a serem ordenados. Sem perda de generalidade, consideraremos que cada item $i$ na sequência a ser ordenada possui uma chave $k_i\in \mathbb{D}$, tal que essas chaves pertençam a um domínio para o qual exista uma relação de ordem $R \subseteq \mathbb{D}\times \mathbb{D}$. Exemplos de relações de &lt;a href=&quot;https://pt.wikipedia.org/wiki/Rela%C3%A7%C3%A3o_de_ordem#Rela.C3.A7.C3.B5es_de_ordem_linear_ou_total&quot;&gt;ordem totais&lt;/a&gt; mais comuns são: menor ou igual ($\leq$) e maior ou igual ($\geq$).&lt;/p&gt;
+
+&lt;h2 id=&quot;ordenação-de-inteiros&quot;&gt;Ordenação de inteiros&lt;/h2&gt;
+
+&lt;p&gt;Suponha uma sequência finita de números inteiros dispostos em uma ordem arbitrária, gerado de forma aleatória, por exemplo. Podemos representar essa sequência por:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;x_1, ~x_2, ~\dots, ~x_n,~\forall x_i\in\mathbb{Z} \mbox{ e } n\in\mathbb{Z}&lt;/script&gt;
+
+&lt;p&gt;Como o conjunto dos números inteiros $\mathbb{Z}$ é totalmente ordenado de acordo com a relação de ordem $\leq$, existe então uma reordenação dos elementos dessa sequência $\alpha : \mathbb{Z}\to\mathbb{Z}$, tal que:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\alpha(1) ~\leq~\alpha(2)~\leq~ \dots ~\leq~\alpha(n)&lt;/script&gt;
+
+&lt;p&gt;O mesmo é verdade para a relação de ordem $\geq$, e portanto existe também uma reordenação $\beta : \mathbb{Z}\to\mathbb{Z}$&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;{\beta(1)} ~\geq~{\beta(2)}~\geq~ \dots ~\geq~{\beta(n)}&lt;/script&gt;
+
+&lt;p&gt;Transformar uma sequência de dados em ordem arbitrária em uma sequência ordenada é o objetivo dos &lt;strong&gt;algoritmos de ordenação&lt;/strong&gt; que veremos a seguir.&lt;/p&gt;
+
+&lt;h2 id=&quot;o-que-são-algoritmos-de-ordenação&quot;&gt;O que são Algoritmos de ordenação?&lt;/h2&gt;
+
+&lt;p&gt;Um algoritmo de ordenação é um procedimento que recebe como entrada uma sequência de dados, os quais assumiremos como números inteiros daqui em diante, e rearranja os items dessa sequência de modo que ao final eles estejam em uma determinada ordem: crescente, decrescente, por exemplo.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(13, 1, 0 -1, 9, 6, 3, 1) \Rightarrow (-1, 0, 1, 1, 3, 6, 9, 13)&lt;/script&gt;
+
+&lt;h1 id=&quot;algoritmos-de-ordenação&quot;&gt;Algoritmos de Ordenação&lt;/h1&gt;
+
+&lt;h2 id=&quot;bubble-sort&quot;&gt;Bubble sort&lt;/h2&gt;
+
+&lt;p&gt;Dada uma sequência de entrada, a &lt;em&gt;ordenação por bolha&lt;/em&gt; compara pares de itens $x_i$ e $x_{i+1}$, levando para posições posteriores aquele elemento que seja o maior. Na prática isso significa que se $x_{i+1}$ for maior que $x_i$ esses elementos devem trocar de posição:&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Trocar os elementos nas posições i e i+1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;O Bubble sort percorre do início ao fim do vetor várias vezes, efetuando trocas da forma acima. Na primeira passagem pelo vetor, o maior elemento é levado à posição final $x_{n}$, e, portanto, já estará na posição correta. A próxima iteração levará o segundo maior valor à posição anterior a final $x_{n-1}$ e assim sucessivamente, até que o primeiro elemento seja avaliado. Neste momento, o algoritmo precisa parar pois o vetor estará ordenado e nenhuma troca adicional ocorrerá.&lt;/p&gt;
+
+&lt;h2 id=&quot;selection-sort&quot;&gt;Selection sort&lt;/h2&gt;
+
+&lt;p&gt;Dada uma sequência de entrada, a &lt;em&gt;ordenação por seleção&lt;/em&gt; seleciona a cada passagem pelo vetor o menor elemento e o coloca na posição inicial $x_1$. Na segunda iteração o menor elemento entre $x_2$ e $x_n$ será selecionado e colocado na posição $x_2$. Ou seja, a cada iteração, o algoritmo deixa um elemento a mais na posição correta.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Trocar os elementos nas posições i e posição do menor elemento de i-n. 
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;insertion-sort&quot;&gt;Insertion sort&lt;/h2&gt;
+
+&lt;p&gt;Dada uma sequência de entrada, a &lt;em&gt;ordenação por inserção&lt;/em&gt; percorre a sequência e para cada valor em uma determinada posição $i$, reinsere o valor $x_i$ na sua posição correta no momento. A posição correta $j$ para um elemento qualquer $x_i$ em um dado momento é aquela posição tal que $x_{j} \leq x_i \leq x_{j+1}$.&lt;/p&gt;
+
+&lt;h2 id=&quot;quicksort&quot;&gt;Quicksort&lt;/h2&gt;
+
+&lt;p&gt;Consideremos uma sequência numérica qualquer de tamanho $n$, em ordem arbitrária.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;x_1, ~x_2, ~\dots, ~x_n,~\forall x_i\in\mathbb{Z} \mbox{ e } n\in\mathbb{Z}&lt;/script&gt;
+
+&lt;p&gt;Vamos analisar as propriedades produzidas pelo seguinte procedimento, o qual é mais simples que a ordenação em si.&lt;/p&gt;
+
+&lt;p&gt;Dado qualquer elemento desta sequência $x_p$, o qual chamaremos &lt;em&gt;pivô&lt;/em&gt;, &lt;strong&gt;reordene a sequência&lt;/strong&gt; de modo que $\forall x_i$ que preceda $x_p$, $x_i\leq x_p$. Em contrapartida, $\forall x_j$ que suceda $x_p$, $x_p \leq x_j$. Observe que não estamos exigindo que os elementos anteriores ou posteriores a $x_p$ estejam ordenados. No entanto, uma propriedade importante é evidente.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Se todos antes de $x_p$ são menores ou iguais a ele e todos elementos depois são maiores ou iguais, então $x_p$ está na sua posição correta. Ou seja, na posição que ele ocuparia em uma sequência ordenada.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Por essa propriedade concluímos que $x_p$ não precisa mais ser comparado a nenhum outro elemento. Nos restando duas subpsequências a serem ordenadas. Aquela contendo os elementos anteriores e aquela contendo os elementos posteriores a $x_p$.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;[\dots],~ x_p,~ [\dots]&lt;/script&gt;
+
+&lt;p&gt;Podemos então repetir o mesmo procedimento em cada uma dessas subsequências, até que todos elementos tenham sido considerados como pivô e, portanto, colocados em suas devidas posições ordenadas.&lt;/p&gt;
+
+&lt;p&gt;O Algoritmo acima descrito é chamado, no contexto do &lt;em&gt;Quicksort&lt;/em&gt;, de  &lt;em&gt;partition&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;partition&quot;&gt;Partition&lt;/h3&gt;
+
+&lt;p&gt;Dada uma sequência númerica em ordem arbitrária como entrada e um valor &lt;em&gt;pivô&lt;/em&gt; $k$.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;x_1, ~x_2, ~\dots, ~x_n,~\forall x_i\in\mathbb{Z} \mbox{ e } n\in\mathbb{Z}&lt;/script&gt;
+
+&lt;p&gt;&lt;em&gt;Partition&lt;/em&gt; irá produzir uma nova sequência, com o pivô numa posição $p$, de modo que $y_i \leq k$, $\forall i \leq p$ e $y_j \geq k$, $\forall j \geq p$.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;y_1,~y_2,~\dots,y_{p-1},~ k_p,~ y_{p+1}, \dots,~ y_{n-1},~ y_{n}&lt;/script&gt;
+
+&lt;p&gt;Outra característica importante dessa nova sequência é que todos elementos $y_1,\dots,y_{p-1}$ são menores que aqueles em $y_{p+1},\dots,y_n$. Portanto, eles não precisam mais ser comparados. As comparações adicionais acontecerão internamente a cada uma das sequências apenas.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Versão Cormen (Lomuto)
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;partition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;    
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Versao simples (Hoare)
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;partition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+            &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Partition&lt;/li&gt;
+  &lt;li&gt;Complexidade no melhor caso&lt;/li&gt;
+  &lt;li&gt;O que afeta o melhor caso&lt;/li&gt;
+  &lt;li&gt;Complexidade no pior caso&lt;/li&gt;
+  &lt;li&gt;Como contornar o pior caso: escolha do pivô&lt;/li&gt;
+  &lt;li&gt;Mediana de três: p, r, (p+r)/2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;-Insertionsort
+  -Heapsort
+  -Shellsort
+  -Mergesort&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 17 Oct 2017 13:50:00 -0200</pubDate>
+        <link>http://localhost:4000/ae22cp-172/ordenacao.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/ordenacao.html</guid>
+        
+        <category>ordenação</category>
+        
+        
+        <category>AE22CP-172</category>
         
       </item>
     
@@ -1269,553 +1752,6 @@
         <guid isPermaLink="true">http://localhost:4000/lc21cp-172/logica-predicados-informal.html</guid>
         
         <category>predicados</category>
-        
-        
-        <category>LC21CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Contêiners abstratos - list, forward_list, vector</title>
-        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#pilhas-usando-um-container-abstrato&quot; id=&quot;markdown-toc-pilhas-usando-um-container-abstrato&quot;&gt;Pilhas usando um &lt;em&gt;container&lt;/em&gt; abstrato&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#implementação-da-interface-containerh&quot; id=&quot;markdown-toc-implementação-da-interface-containerh&quot;&gt;Implementação da interface &lt;em&gt;container.h&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;pilhas-usando-um-container-abstrato&quot;&gt;Pilhas usando um &lt;em&gt;container&lt;/em&gt; abstrato&lt;/h2&gt;
-
-&lt;p&gt;Em princípio, não há problemas em utilizar as funções de &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; para implementar as funcionalidades de &lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt;. Muito pelo contrário, reuso de funções é um dos objetivos da programação estruturada.&lt;/p&gt;
-
-&lt;p&gt;No entanto, como mencionado anteriormente, pilhas podem ser implementadas sobre diferentes &lt;em&gt;contêiners&lt;/em&gt;. A nossa versão atual, porém, está totalmente acoplada ao &lt;em&gt;contêiner&lt;/em&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../assets/stack-vector.png&quot; alt=&quot;stack-vector&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Como podemos eliminar essa limitação e tornar nossa implementação mais geral ainda? De modo que outros contêiners sequenciais (&lt;code class=&quot;highlighter-rouge&quot;&gt;list&lt;/code&gt;, por exemplo) também pudessem ser facilmente utilizados quando necessário. A ideia é introduzir uma interface entre a implementação de um contêiner e sua definição.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../assets/stack-container.png&quot; alt=&quot;stack-container&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Essa interface nada mais é do que um arquivo que define todas as funcionalidades que as implementações devem ter para serem um &lt;strong&gt;contêiner&lt;/strong&gt;. Tais arquivos, em geral, contém apenas cabeçalhos de funções e possivelmente definições de tipos de dados.&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// **** container.h ****
-&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;#define Type int
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_container&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Funções de remoção de elementos
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pop_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;erase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Funções de inserção de elementos
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;push_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Dada uma interface que define um contêiner genérico (abstrato), podemos redefinir nossa estrutura &lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt; para que ela utilize essas funções, ao invés daquelas específicas de &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// **** stack.c ****
-&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;container.h&quot;
-&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// Redefinir o nome vector
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;container&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Alocação desalocação
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;new_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;initial_capacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;initial_capacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;free_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;free_container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Inserção e remoção de elementos
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Retorna um ponteiro para o topo da pilha
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;implementação-da-interface-containerh&quot;&gt;Implementação da interface &lt;em&gt;container.h&lt;/em&gt;&lt;/h2&gt;
-
-&lt;p&gt;Até este momento a implementação de &lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt; não existe de forma concreta, pois ela depende da implementação de funções que não foram implementadas em &lt;code class=&quot;highlighter-rouge&quot;&gt;container.h&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Como já mencionado anteriormente, podem existir diferentes implementações da mesma interface. Qual delas será utilizada por &lt;code class=&quot;highlighter-rouge&quot;&gt;stack.c&lt;/code&gt; é uma decisão feita durante a compilação.&lt;/p&gt;
-
-&lt;p&gt;Suponhamos a existência de duas implementações de &lt;code class=&quot;highlighter-rouge&quot;&gt;container.h&lt;/code&gt;, a primeira em &lt;code class=&quot;highlighter-rouge&quot;&gt;vector.c&lt;/code&gt; e a segunda em &lt;code class=&quot;highlighter-rouge&quot;&gt;list.c&lt;/code&gt;. Ao passarmos uma das duas ao compilador, elas fornecerão a implementação das funções abstratas utilizadas em &lt;code class=&quot;highlighter-rouge&quot;&gt;stack.c&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gcc main.c stack.c vector.c -o main-vector
-
-gcc main.c stack.c list.c -o main-list
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Tue, 26 Sep 2017 13:50:00 -0300</pubDate>
-        <link>http://localhost:4000/ae22cp-172/um-container-abstrato.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/um-container-abstrato.html</guid>
-        
-        <category>programação-estruturada</category>
-        
-        
-        <category>AE22CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Lista VI - Árvores de análise e formas normais</title>
-        <description>&lt;h1 id=&quot;exercícios&quot;&gt;Exercícios&lt;/h1&gt;
-
-&lt;h2 id=&quot;fórmulas-bem-formuladas&quot;&gt;Fórmulas bem formuladas&lt;/h2&gt;
-
-&lt;p&gt;Dadas as fórmulas a seguir, construa suas árvores de análise e diga quais são bem formuladas:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land q&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\land \neg(p \lor q \land s) \to (r\to s)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land \neg q \to \neg p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \land (\neg q \to \neg p)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg((\neg q \land (p\to r))\land (r\to q))&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\land \neg(p\lor \land s) \to (r \to s)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q)\to (\neg r\lor(q \to r))&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(((s\to(r\lor \ell))\lor((\neg q)\land r))\to((\neg(p\to s))\to r))&lt;/script&gt;
-
-&lt;h2 id=&quot;subfórmulas&quot;&gt;Subfórmulas&lt;/h2&gt;
-
-&lt;p&gt;Para cada uma das fórmulas, construa suas árvores de análise e liste todas subfórmulas.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (\neg p \lor (\neg\neg q \to (p\land q)))&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(s \to r \lor \ell) \lor (\neg q\land r) \to (\neg(p \to s) \to r)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\to q) \land (\neg r \to (q \lor(\neg p\land r)))&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(s\to(\neg(p\to(q\lor\neg s))))&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;((p\to \neg q))\lor(p\land r)\to s) \lor \neg r&lt;/script&gt;
-
-&lt;h2 id=&quot;formas-normais&quot;&gt;Formas normais&lt;/h2&gt;
-
-&lt;p&gt;Transformar as seguinte fórmulas para a forma normal conjuntiva e disjuntiva (FNC, FND), utilizando tabelas-verdade. Verificar se algumas das fórmulas contém cláusulas de Horn.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;((p\to q)\to p)\to p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(p\land \neg p)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\lor q)\to \neg(q \lor r)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\to q) \leftrightarrow (r\land p)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\leftrightarrow q) \to (p \lor q)&lt;/script&gt;
-
-&lt;h1 id=&quot;referências&quot;&gt;Referências&lt;/h1&gt;
-&lt;p&gt;Capítulo 4: Pgs. 185 - 203, &lt;a href=&quot;https://racionalistasusp.files.wordpress.com/2010/01/nolt-john-rohatyn-dennis-lc3b3gica.pdf&quot;&gt;Logica - John Nolt (PDF).&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Thu, 21 Sep 2017 18:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/lista6-arvores-de-analise.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/lista6-arvores-de-analise.html</guid>
-        
-        <category>formalização</category>
-        
-        
-        <category>LC21CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Linguagem da Lógica proposicional - Formas normais</title>
-        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#formas-normais&quot; id=&quot;markdown-toc-formas-normais&quot;&gt;Formas normais&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#forma-normal-conjuntiva&quot; id=&quot;markdown-toc-forma-normal-conjuntiva&quot;&gt;Forma normal conjuntiva&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#forma-normal-disjuntiva&quot; id=&quot;markdown-toc-forma-normal-disjuntiva&quot;&gt;Forma normal disjuntiva&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#conversão-para-forma-normal&quot; id=&quot;markdown-toc-conversão-para-forma-normal&quot;&gt;Conversão para forma normal&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#forma-normal-disjuntiva-fnd&quot; id=&quot;markdown-toc-forma-normal-disjuntiva-fnd&quot;&gt;Forma normal disjuntiva (FND)&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#forma-normal-conjuntiva-fnc&quot; id=&quot;markdown-toc-forma-normal-conjuntiva-fnc&quot;&gt;Forma normal conjuntiva (FNC)&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#benefícios-das-formas-normais&quot; id=&quot;markdown-toc-benefícios-das-formas-normais&quot;&gt;Benefícios das formas normais&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#cláusulas-de-horn&quot; id=&quot;markdown-toc-cláusulas-de-horn&quot;&gt;Cláusulas de Horn&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#exercícios&quot; id=&quot;markdown-toc-exercícios&quot;&gt;Exercícios&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#referências&quot; id=&quot;markdown-toc-referências&quot;&gt;Referências&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;formas-normais&quot;&gt;Formas normais&lt;/h1&gt;
-
-&lt;p&gt;Dada uma fórmula qualquer $\phi$ na linguagem da lógica proposicional, existe uma fórmula $\psi$ equivalente que está na &lt;em&gt;forma normal&lt;/em&gt;. As formas normais são fórmulas com estruturas predefinidas. Tais estruturas são definidas em termos de &lt;em&gt;literais&lt;/em&gt;, que são nada mais que uma definição que engloba tanto símbolos proposicionais quanto suas negações. Exemplos de literais.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p,\neg p, q, r, \neg s&lt;/script&gt;
-
-&lt;p&gt;&lt;strong&gt;Definição (literal):&lt;/strong&gt; Um literal é um símbolo proposicional ou sua negação.&lt;/p&gt;
-
-&lt;p&gt;Consideraremos nesta seção dois tipos de formas normais.&lt;/p&gt;
-
-&lt;h2 id=&quot;forma-normal-conjuntiva&quot;&gt;Forma normal conjuntiva&lt;/h2&gt;
-
-&lt;p&gt;Uma fórmula está na &lt;em&gt;forma normal conjuntiva&lt;/em&gt; se ela é uma conjunção de disjunção de literais. Para compreendermos essa definição, iremos por partes, primeiro, considere que uma disjunção de literais é qualquer fórmula do tipos&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \lor \neg q \lor \dots)&lt;/script&gt;
-
-&lt;p&gt;Portanto, a forma normal conjuntiva é a conjunção de diversas fórmulas desse tipo. Como exemplo temos a seguinte fórmulas&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(\neg p \lor q) \land (\neg r \lor \neg q \lor p) \land (p \lor s)&lt;/script&gt;
-
-&lt;h2 id=&quot;forma-normal-disjuntiva&quot;&gt;Forma normal disjuntiva&lt;/h2&gt;
-
-&lt;p&gt;Uma fórmula está na &lt;em&gt;forma normal disjuntiva&lt;/em&gt; se ela é uma disjunção de conjunção de literais. Uma conjunção de literais, é qualquer fórmula do tipo&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land \neg q \land \dots)&lt;/script&gt;
-
-&lt;p&gt;Portanto, a forma normal disjuntiva é a disjunção de diversas fórmulas desse tipo. Como exemplo&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(\neg p \land q) \lor (\neg r \land \neg q \land p) \lor (p \land s)&lt;/script&gt;
-
-&lt;h2 id=&quot;conversão-para-forma-normal&quot;&gt;Conversão para forma normal&lt;/h2&gt;
-
-&lt;p&gt;Como mencionado no início desta seção, a toda fórmula há uma outra fórmula equivalente escrita na forma normal; tanto conjuntiva quanto disjuntiva. Como podemos garantir que essa afirmação seja verdadeira?&lt;/p&gt;
-
-&lt;p&gt;A justificativa para a veracidade dessa afirmação é o fato de que as formas normais conjuntiva e disjuntiva refletem os valores verdade presente em uma tabela-verdade. Como toda fórmula pode ser analizada por uma tabela-verdade, então toda fórmula pode ser escrita na forma normal. Vejamos como isso funciona na prática, considere a seguinte fórmula&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\to q) \land r&lt;/script&gt;
-
-&lt;p&gt;Sua tabela verdade possui 8 linhas, e está descrita a seguir:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt; &lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$r$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$(p\to q)$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$(p\to q) \land r$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;forma-normal-disjuntiva-fnd&quot;&gt;Forma normal disjuntiva (FND)&lt;/h3&gt;
-
-&lt;p&gt;Vamos primeiro analisar como utilizar a tabela-verdade acima para  transformar a fórmula $(p\to q) \land r$ em uma fórmula equivalente na forma normal disjuntiva. Para isso observemos as linhas da tabela que tornam a fórmula verdadeira, as quais estão indicadas por um * na tabela abaixo.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt; &lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$r$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$(p\to q)$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$(p\to q) \land r$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;*&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;*&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;*&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Se essas são as únicas atribuições de valores-verdade às variáveis $p, q, r$ que tornam a fórmula verdadeira, podemos as utilizar para definir uma outra fórmula, que sempre será verdadeira quando $(p\to q) \land r$ for verdadeira. Para isso, iremos escrever cada uma dessas linhas como uma conjunção. A primeira linha marcada seria representada pela fórmulas&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q \land r)&lt;/script&gt;
-
-&lt;p&gt;A segunda linha marcada seria representada portanto como&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(\neg p \land q \land r)&lt;/script&gt;
-
-&lt;p&gt;E seguindo a mesma ideia, a terceira seria&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(\neg p \land \neg q \land r)&lt;/script&gt;
-
-&lt;p&gt;Como cada uma dessas fórmulas representa uma determinada atribuição de valores-verdade que torna a fórmula original verdadeira, a sua disjunção cobre todas as situações de veracidade da fórmula original&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q \land r) \lor (\neg p \land q \land r) \lor (\neg p \land \neg q \land r)&lt;/script&gt;
-
-&lt;h3 id=&quot;forma-normal-conjuntiva-fnc&quot;&gt;Forma normal conjuntiva (FNC)&lt;/h3&gt;
-
-&lt;p&gt;Para convertermos uma fórmula na forma normal conjuntiva utilizaremos ideia similar à usada anteriormente. No entanto, ao invés de nos focar nas linhas que tornam a fórmula verdadeira, consideraremos àquelas que a torma falsa, as quais estão indicadas na tabela a seguir.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt; &lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$p$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$q$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$r$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$(p\to q)$&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$(p\to q) \land r$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;*&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;*&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;*&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;*&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;*&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;V&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;F&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;A ideia a ser seguida neste caso é que, estas atribuições de valores-verdade são as únicas alternativas em que a fórmula $(p\to q) \land r$ é falsa. Se falharmos em encontrar uma atribuição que se encaixe numa dessas alternativas, então a fórmula, por consequência, será verdadeira. A forma normal conjuntiva dessa fórmula será a conjunção desses casos.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(\neg p \lor \neg q \lor r)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(\neg p \lor q \lor \neg r)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(\neg p \lor q \lor r)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \lor \neg q \lor r)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \lor q \lor r)&lt;/script&gt;
-
-&lt;p&gt;Em resumo, para a fórmula $(p\to q) \land r$ ser verdadeira, todos os casos em que ela poderia ser falsificada (linhas da tabela) devem falhar.&lt;/p&gt;
-
-&lt;h2 id=&quot;benefícios-das-formas-normais&quot;&gt;Benefícios das formas normais&lt;/h2&gt;
-
-&lt;p&gt;Por que nos preocuparíamos em utilizar fórmulas na forma normal conjuntiva, por exemplo? Visto que muitas vezes isso gera fórmulas maiores que a original, não parece evidente tal motivação. No entanto, com uma análise adicional perceberemos que facilmente que a forma normal conjuntiva nos permite muito mais facilmente verificar a satisfabilidade de uma fórmula. Consideremos, como exemplo, a fórmula na forma normal conjuntiva definida a seguir&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(\neg q \lor p \lor r) \land (\neg p\lor r) \land q&lt;/script&gt;
-
-&lt;p&gt;Por definição da conjunção, esta fórmula completa apenas será verdadeira se cada um de seus conjuctos forem verdadeiros. Por outro lado, cada um dos conjuctos é uma disjunção. Suponhamos agora que queremos verificar se a fórmula é uma &lt;strong&gt;tautologia&lt;/strong&gt;. Para isso, o seguinte lema se aplica:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Lema:&lt;/strong&gt; Uma disjunção de proposições literais $\ell_1 \lor \ell_2 \lor \dots \lor \ell_n$ é uma tautologia se e somente se exitem $1\leq i, j\leq m$ tais que $\ell_i$ é $\neg\ell_j$.&lt;/p&gt;
-
-&lt;p&gt;Em outras palavras, uma disjunção é uma tautologia apenas se contiver um símbolo e sua negação. Como é evidente, do ponto de vista computacional, isso pode ser verificado muito mais facilmente em uma fórmula em forma normal.&lt;/p&gt;
-
-&lt;p&gt;Se por outro lado, precisarmos demonstrar que uma fórmula em forma normal conjuntiva é &lt;strong&gt;satisfatível&lt;/strong&gt;, podemos nos basear na seguinte proposição.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Proposição:&lt;/strong&gt; Seja uma fórmula $\phi$ da lógica proposicional. Então $\phi$ pode ser satisfeita se e somente se $\neg \phi$ não for uma tautologia.&lt;/p&gt;
-
-&lt;h2 id=&quot;cláusulas-de-horn&quot;&gt;Cláusulas de Horn&lt;/h2&gt;
-
-&lt;p&gt;As cláusulas de Horn são compostas por no máximo um literal positivo. Este tipo de fórmula posssui características interessantes em termos da verificação de satisfabilidade, que verificaremos depois. Uma cláusula de Horn tem a forma&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p \lor \neg q \lor \dots \lor r&lt;/script&gt;
-
-&lt;p&gt;Deste modo, para satisfazer cláusulas desse tipo, basta atribuir valores-verdade falso para todas as variáveis envolvidas. Como toda cláusula de Horn é a disjunção de vários literais negados, um deles sendo verdadeiro torna toda a cláusula verdadeira.&lt;/p&gt;
-
-&lt;h1 id=&quot;exercícios&quot;&gt;Exercícios&lt;/h1&gt;
-
-&lt;p&gt;Transformar as seguinte fórmulas para a forma normal conjuntiva e disjuntiva (FNC, FND), utilizando tabelas-verdade. Verificar se algumas das fórmulas contém cláusulas de Horn.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;((p\to q)\to p)\to p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(p\land \neg p)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\lor q)\to \neg(q \lor r)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\to q) \leftrightarrow (r\land p)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\leftrightarrow q) \to (p \lor q)&lt;/script&gt;
-
-&lt;h1 id=&quot;referências&quot;&gt;Referências&lt;/h1&gt;
-
-&lt;p&gt;Seção 1.3: Pgs. 25-28, &lt;a href=&quot;http://www.cse.chalmers.se/edu/course/DAT060/huthryan_lics2_sol.pdf&quot;&gt;Logica - Huth &amp;amp; Ryan (PDF).&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Thu, 21 Sep 2017 10:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/formas-normais.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/formas-normais.html</guid>
-        
-        <category>linguagem</category>
         
         
         <category>LC21CP-172</category>

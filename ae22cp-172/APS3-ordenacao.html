@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>APS3 - Algoritmos de ordenação</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/ae22cp-172/APS3-ordenacao.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">APS3 - Algoritmos de ordenação</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Oct 20, 2017
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/lc21cp-172/lp-teoremas-equivalencias.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/ae22cp-172/FAQ.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#objetivos" id="markdown-toc-objetivos">Objetivos</a></li>
+  <li><a href="#motivação" id="markdown-toc-motivação">Motivação</a></li>
+  <li><a href="#experimentos" id="markdown-toc-experimentos">Experimentos</a>    <ul>
+      <li><a href="#entrada" id="markdown-toc-entrada">Entrada</a></li>
+      <li><a href="#execução-e-medição" id="markdown-toc-execução-e-medição">Execução e medição</a>        <ul>
+          <li><a href="#execução-exemplo-para-n20" id="markdown-toc-execução-exemplo-para-n20">Execução exemplo para $n=20$</a></li>
+          <li><a href="#resultados-para-todos-n" id="markdown-toc-resultados-para-todos-n">Resultados para todos $n$</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="objetivos">Objetivos</h1>
+
+<p>Comparar experimentalmente os algoritmos de ordenação em diferentes cenários. Identificar a relação entre os tipos de entradas e a eficiência desses algoritmos.</p>
+
+<h1 id="motivação">Motivação</h1>
+
+<p>Aprender a identificar qual algoritmo utilizar para ordenação de dados em um determinado contexto.</p>
+
+<h1 id="experimentos">Experimentos</h1>
+
+<p>Todos algoritmos deverão ser executados para os mesmos casos de teste e depois comparados quanto ao <strong>tempo médio</strong> e ao <strong>número de comparações</strong>. Nesta seção descrevo em detalhes como isso pode ser feito.</p>
+
+<h2 id="entrada">Entrada</h2>
+
+<p>Teremos diversos arquivos de entrada de nome <code class="highlighter-rouge">input_e.txt</code>, onde $e=1,2,\dots,15$, todos eles contendo $100$ sequências numéricas, uma por linha.</p>
+
+<p>Cada sequência contém $n=10 \times 2^e$ elementos numéricos, ou seja indica $n$ indica o tamanho das sequências que esse arquivo contém. Exemplo:</p>
+
+<ul>
+  <li>O arquivo <code class="highlighter-rouge">input_1.txt</code>, conterá <code class="highlighter-rouge">100</code> linhas.
+    <ul>
+      <li>Cada linha representa uma sequência a ser ordenada, contendo $n=10\times 2^1 = 20$ elementos.</li>
+    </ul>
+  </li>
+  <li>O arquivo <code class="highlighter-rouge">input_3.txt</code>, conterá <code class="highlighter-rouge">100</code> linhas.
+    <ul>
+      <li>Cada linha representa uma sequência a ser ordenada, contendo $n=10\times 2^3 = 80$ elementos.</li>
+    </ul>
+  </li>
+  <li>O arquivo <code class="highlighter-rouge">input_15.txt</code>, conterá <code class="highlighter-rouge">100</code> linhas.
+    <ul>
+      <li>Cada linha representa uma sequência a ser ordenada, contendo $n=10\times 2^{15} = 327680$ elementos.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Cada cenário de testes (irei explicar os demais adiante), contém então, um conjunto de arquivos da forma:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Arquivo          e         n(e)=10 * 2^e
+input_1.txt      1         20
+input_2.txt      2         40
+input_3.txt      3         80
+input_4.txt      4         160
+input_5.txt      5         320
+input_6.txt      6         640
+input_7.txt      7         1280
+input_8.txt      8         2560
+input_9.txt      9         5120
+input_10.txt     10        10240
+input_11.txt     11        20480
+input_12.txt     12        40960
+input_13.txt     13        81920
+input_14.txt     14        163840
+input_15.txt     15        327680
+</code></pre>
+</div>
+
+<p>Teremos, então, sequências de tamanhos que crescem exponencialmente. Isso serve para observarmos o comportamento dos algoritmos em sequências pequenas e em sequências grandes. Alguns deles podem ser rápidos para sequências pequenas, enquanto outros podem ser mais rápidos em sequências grandes. Isso é algo que gostaríamos de identificar com os experimentos.</p>
+
+<h2 id="execução-e-medição">Execução e medição</h2>
+
+<p>Para cada cenário, teremos então um conjunto de $15$ arquivos de entrada, assim como descrito acima. E um certo número de algoritmos de ordenação a serem comparados. Considere a entrada <code class="highlighter-rouge">input_1.txt</code> e assuma que desejamos comparar 4 algoritmos:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">bubble</code>,</li>
+  <li><code class="highlighter-rouge">selection</code>,</li>
+  <li><code class="highlighter-rouge">insertion</code> e</li>
+  <li><code class="highlighter-rouge">quicksort</code>.</li>
+</ul>
+
+<p>A primeira etapa consiste em executar cada um desses algoritmos tendo como entrada um arquivo <code class="highlighter-rouge">input_1.txt</code>. Vamos ilustrar esse procedimento por meio do <code class="highlighter-rouge">bubblesort</code>.</p>
+
+<h3 id="execução-exemplo-para-n20">Execução exemplo para $n=20$</h3>
+
+<ol>
+  <li>Primeiramente alteramos o código do <code class="highlighter-rouge">bubblesort</code> de modo a contar todas as comparações que ele efetua. Inserimos um contador para isso, que será incrementado sempre que dois elementos forem comparados. Ex:
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> <span class="p">{</span>
+    <span class="n">ncomparacoes</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</code></pre>
+    </div>
+  </li>
+  <li>Ler uma linha do arquivo de entrada e armazená-la num vetor <code class="highlighter-rouge">v</code> (ou vector, ou lista). Chamar a função de ordenação nesse vetor.
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">long</span> <span class="n">ncomparacoes</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">bubblesort</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">vsize</span><span class="p">);</span>
+</code></pre>
+    </div>
+  </li>
+  <li>Ler uma nova linha do arquivo e armazená-la outra vez em <code class="highlighter-rouge">v</code>, chamar a função de ordenação nesse vetor.
+    <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="n">bubblesort</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">vsize</span><span class="p">);</span>
+</code></pre>
+    </div>
+  </li>
+  <li>Repetir esse procedimento até a última linha do arquivo de entrada (centésima linha).</li>
+  <li>Após a última chamada, teremos o total <code class="highlighter-rouge">ncomparacoes</code> efetuadas em todas as chamadas a <code class="highlighter-rouge">bubblesort</code>. Dividindo esse valor por <code class="highlighter-rouge">100</code>, teremos o número médio esperado de comparações que o <code class="highlighter-rouge">bubblesort</code> efetua em sequências de tamanho $n=20$ (neste exemplo).</li>
+</ol>
+
+<p>Ao fim deste processo temos um par de valores, relacionado ao tamanho das sequências, e o número médio de comparações do bubblesort $\sigma_b$. Se repetirmos esse procedimento para todos os demais algoritmos teremos para eles outros pares de valores</p>
+
+<ul>
+  <li>Bubble sort:    $(20, \sigma_b)$</li>
+  <li>Selection sort: $(20, \sigma_s)$</li>
+  <li>Insertion sort: $(20, \sigma_i)$</li>
+  <li>Quick sort:     $(20, \sigma_q)$</li>
+</ul>
+
+<p>Assuma que os tempos médios de cada algoritmo sejam, respectivamente, $t_1, t_2, t_3, t_4$. Poderíamos agora iniciar uma comparação gráfica entre eles. Plotando como eixo $x$ os possíveis tamanhos de $n$ e no eixo $y$ os respectivos tempos médios.</p>
+
+<h3 id="resultados-para-todos-n">Resultados para todos $n$</h3>
+
+<p>Se o procedimento acima for efetuado para todos os arquivos de entrada, ou seja, todos possíveis $n=20,40,80,\dots,327680$, teremos ao final, para cada algoritmo o número médio de comparações em cada $n$. Os quais podemos utilizar para plotar um gráfico e comparar a eficiência desses algoritmos.</p>
+
+<ul>
+  <li>Bubble sort:    $(20, \sigma_b), (40, \sigma_b), \dots, (327680, \sigma_b)$</li>
+  <li>Selection sort: $(20, \sigma_s), (40, \sigma_s), \dots, (327680, \sigma_s)$</li>
+  <li>Insertion sort: $(20, \sigma_i), (40, \sigma_i), \dots, (327680, \sigma_i)$</li>
+  <li>Quick sort:     $(20, \sigma_q), (40, \sigma_q), \dots, (327680, \sigma_q)$</li>
+</ul>
+
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>
