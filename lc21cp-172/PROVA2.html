@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>PROVA 2</title>
+  <meta name="description" content="NOME:">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/lc21cp-172/PROVA2.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">PROVA 2</h1>
+  </header>
+
+  <article class="post-content">
+    <p><strong>NOME:</strong></p>
+
+<h1 id="equivalências">Equivalências</h1>
+
+<table>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>$\phi\to\psi$</td>
+      <td>$\neg\phi\lor\psi$</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>$\phi\leftrightarrow\psi$</td>
+      <td>$(\phi\land\psi)\lor(\neg\phi\land\neg\psi)$</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>$\neg(\phi\land\psi)$</td>
+      <td>$\neg\phi \lor \neg \psi$</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>$\neg(\phi\lor\psi)$</td>
+      <td>$\neg\phi\land\neg\psi$</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>$\neg(\phi\to\psi)$</td>
+      <td>$\phi\land \neg \psi$</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>$\neg(\phi\leftrightarrow\psi)$</td>
+      <td>$(\phi\land \neg\psi)\lor (\neg\phi\land\psi)$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>(2,0pts)</strong></p>
+
+<p><strong>1.</strong> Verifique se as formas de argumento a seguir são válidas ou inválidas utilizando árvores de refutação.</p>
+
+<script type="math/tex; mode=display">p \vdash (p\to (q\land p)) \to (p\land q)</script>
+
+<script type="math/tex; mode=display">(q\land r)\to p, \neg q, \neg r \vdash \neg p</script>
+
+<script type="math/tex; mode=display">\neg(p\land q), r \leftrightarrow p \vdash \neg r</script>
+
+<script type="math/tex; mode=display">p\leftrightarrow q, q \leftrightarrow r \vdash p \leftrightarrow r</script>
+
+<p><strong>(2,0pts)</strong></p>
+
+<p><strong>2.</strong> Verifique se as fórmulas a seguir são tautologias utilizando árvores de refutação.</p>
+
+<script type="math/tex; mode=display">p \leftrightarrow \neg(p\lor q)</script>
+
+<script type="math/tex; mode=display">(p\land q) \land \neg(p\lor r)</script>
+
+<script type="math/tex; mode=display">(p\land q) \to p</script>
+
+<script type="math/tex; mode=display">\neg((p\land q) \leftrightarrow(p\lor q))</script>
+
+<script type="math/tex; mode=display">(p\to(q\land r)) \to (p\to r)</script>
+
+<p><strong>(1,0pt)</strong></p>
+
+<p><strong>3.</strong> Reescreva as sentenças a seguir como fórmulas da lógica de predicados. Utilize os predicados:</p>
+<ul>
+  <li>$A(x,y)$ : $x$ ama $y$</li>
+  <li>$L(x,y)$ : $x$ é mais alto que $y$</li>
+  <li>“Benedito”: $b$</li>
+  <li>“Cassandra”: $c$</li>
+</ul>
+
+<p>a. Para quaisquer três objetos, se o primeiro é mais alto que o segundo e o segundo mais alto que o terceiro, então o primeiro é mais alto que o terceiro.</p>
+
+<p>b. Todo mundo é amado por alguém</p>
+
+<p>c. Benedito e Cassandra amam todo mundo.</p>
+
+<p>d. Se alguém ama o Benedito então Cassandra ama esse alguém.</p>
+
+<p><strong>(4,0pts)</strong></p>
+
+<p><strong>4.</strong> Demonstre 5 das seguintes formas de argumento da lógica de predicados.</p>
+
+<script type="math/tex; mode=display">\neg \exists x (Fx \land Gx) \vdash \forall x (Fx \to \neg Gx)</script>
+
+<script type="math/tex; mode=display">\forall x(\neg Fx \lor \neg Gx) \vdash \neg(Fa \land Ga)</script>
+
+<script type="math/tex; mode=display">\forall x(Fx \to Gx) \vdash \forall x(\neg Gx \to \neg Fx)</script>
+
+<script type="math/tex; mode=display">\forall x \forall y(Fxy \to \neg Fyx) \vdash \forall x \neg Fxx</script>
+
+<script type="math/tex; mode=display">\neg \exists x (Fx \land Gx) \vdash \forall x (\neg Fx \lor \neg Gx)</script>
+
+<script type="math/tex; mode=display">\neg \forall x(Fx \land Gx) \vdash \exists x(\neg Fx \lor \neg Gx)</script>
+
+<script type="math/tex; mode=display">\neg \exists x \exists y Lxy \vdash \forall x \neg Lxx</script>
+
+<p><strong>(1,0pts)</strong></p>
+
+<p><strong>5.</strong> Descreva em linguagem natural cada uma das fórmulas e as reescreva utilizando outro quantificador</p>
+
+<script type="math/tex; mode=display">\neg \forall x \neg Fx</script>
+
+<script type="math/tex; mode=display">\exists x \neg Fx</script>
+
+<script type="math/tex; mode=display">\forall x \neg Fx</script>
+
+<script type="math/tex; mode=display">\neg \exists x \neg Fx</script>
+
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

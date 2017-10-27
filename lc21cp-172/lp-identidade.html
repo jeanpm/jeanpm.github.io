@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Lógica de predicados - Identidade</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/lc21cp-172/lp-identidade.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Lógica de predicados - Identidade</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Oct 26, 2017
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/lc21cp-172/PROVA2.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/ae22cp-172/FAQ.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#identidades" id="markdown-toc-identidades">Identidades</a>    <ul>
+      <li><a href="#exemplos" id="markdown-toc-exemplos">Exemplos</a></li>
+      <li><a href="#introdução-da-identidade" id="markdown-toc-introdução-da-identidade">Introdução da identidade</a>        <ul>
+          <li><a href="#exemplos-1" id="markdown-toc-exemplos-1">Exemplos</a></li>
+        </ul>
+      </li>
+      <li><a href="#eliminação-da-identidade" id="markdown-toc-eliminação-da-identidade">Eliminação da identidade</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="identidades">Identidades</h1>
+
+<p>Na lógica de predicados podemos definir um predicado $I(x,y)$ para denotar a igualdade entre $x$ e $y$.</p>
+<ul>
+  <li>$I(x,y)$: $x$ igual a $y$</li>
+</ul>
+
+<p>No entanto, por esse predicado ser de uso bastante comum, se torna às vezes conveniente representá-lo de forma mais compacta. O mesmo aconteceria se quiséssemos definir um predicado $M(x,y)$ para denotar $x$ é menor que $y$. Como tais predicados são comumente representado pelos símbolos $=$ e $&lt;$ não há motivos para que não utilizemos os mesmos símbolos também na linguagem da lógica de predicados.</p>
+
+<p>Enquanto a letra ‘I’ pode ser utilizada para denotar o predicado de igualdade/identidade, ou seja $I(x,y)$ indicando a igualdade entre $x$ e $y$; ela também poderia ser utilizada em outras situações para denotar outro predicado qualquer, exemplo $I(x)$ indicando que $x$ é impar. Por outro lado, o símbolo ‘=’ também representa o predicado identidade, no entanto, ele nunca assumirá um significado diferente, ou seja, é um símbolo específico para representar o predicado de igualdade.</p>
+<ul>
+  <li>$x=y$: $x$ igual a $y$</li>
+</ul>
+
+<p>Diferentemente dos demais predicados, $=$ é utilizado na forma infixa, ou seja, entre os operandos. Isso facilita pois mantém a forma de representação convencionalmente utilizada nas demais áreas da matemática.</p>
+
+<h2 id="exemplos">Exemplos</h2>
+
+<p>Formalize as seguintes sentenças utilizando o predicado identidade ‘$=$’</p>
+
+<ul>
+  <li>$a$: Álvaro de Campos</li>
+  <li>$t$: Tabacaria</li>
+  <li>$f$: Fernando Pessoa</li>
+  <li>$A(x)$: $x$ é um autor português</li>
+  <li>$M(x,y)$: $x$ é melhor autor que $y$</li>
+  <li>$E(x,y)$: $x$ escreveu $y$</li>
+</ul>
+
+<p>a. Fernando Pessoa não é Álvaro de Campos</p>
+
+<p>b. Existe Fernando Pessoa</p>
+
+<p>c. Se Fernando Pessoa é Álvaro de Campos, então Álvaro de Campos escreveu Tabacaria</p>
+
+<p>d. Somente Fernando Pessoa escreveu Tabacaria</p>
+
+<p>e. Fernando Pessoa é o melhor autor português</p>
+
+<p>f. Existem ao menos duas coisas diferentes.</p>
+
+<p>g. Existe somente uma coisa.</p>
+
+<p>h. Existem exatamente duas coisas.</p>
+
+<h2 id="introdução-da-identidade">Introdução da identidade</h2>
+
+<p>Para qualquer letra nominal $\alpha$, podemos sempre introduzir a identidade $\alpha = \alpha$. Esse tipo de regra é útil para produzir exemplos para outras regras de derivação. Considere, por exemplo, a introdução dos quantificadores universal e existencial, a introdução de ambos depende da existência de um exemplo.</p>
+
+<p>Para o quantificador universal, esse exemplo deve utilizar uma letra nominal genérica, de modo que seja possível generalizar a afirmação. Nesse caso, uma instância/exemplo $Fa\land Ga$ pode ser generalizada à $\forall x (Fx \land Gx)$, desde que não haja restrições quanto à letra $a$.</p>
+
+<p>Para o quantificador existencial, por outro lado, o funcionamento é mais simples. Se tivermos um exemplo, então podemos generalizá-lo. Deste modo, a partir de $(Fa\land Ga)$ podemos imediatamente concluir $\exists x(Fx \land Gx)$.</p>
+
+<h3 id="exemplos-1">Exemplos</h3>
+
+<p>Dada a interpretação acima, como demonstraríamos os seguintes argumentos?</p>
+
+<script type="math/tex; mode=display">\vdash \forall x (x=x)</script>
+
+<script type="math/tex; mode=display">\vdash \exists x (a=x)</script>
+
+<h2 id="eliminação-da-identidade">Eliminação da identidade</h2>
+
+<p>A regra de eliminação da identidade é apenas uma formalização da nossa intuição. Se duas coisas são iguais, posso utilizar tanto uma quanto a outra em qualquer situação.</p>
+
+<script type="math/tex; mode=display">Fa, a=b \vdash Fb</script>
+
+<script type="math/tex; mode=display">Fa, \neg Fb \vdash \neg (a = b)</script>
+
+<script type="math/tex; mode=display">\vdash \forall x \forall y (x=y)\to(y=x)</script>
+
+<script type="math/tex; mode=display">\vdash \forall x \forall y \forall z (x=y\land y=z)\to (x=z))</script>
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

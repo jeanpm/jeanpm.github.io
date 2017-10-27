@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 23 Oct 2017 20:57:47 -0200</pubDate>
-    <lastBuildDate>Mon, 23 Oct 2017 20:57:47 -0200</lastBuildDate>
+    <pubDate>Fri, 27 Oct 2017 15:17:38 -0200</pubDate>
+    <lastBuildDate>Fri, 27 Oct 2017 15:17:38 -0200</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -167,6 +167,232 @@ Program received signal SIGSEGV, Segmentation fault.
         
         
         <category>AE22CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>Lógica de predicados - Identidade</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#identidades&quot; id=&quot;markdown-toc-identidades&quot;&gt;Identidades&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#exemplos&quot; id=&quot;markdown-toc-exemplos&quot;&gt;Exemplos&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#introdução-da-identidade&quot; id=&quot;markdown-toc-introdução-da-identidade&quot;&gt;Introdução da identidade&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#exemplos-1&quot; id=&quot;markdown-toc-exemplos-1&quot;&gt;Exemplos&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#eliminação-da-identidade&quot; id=&quot;markdown-toc-eliminação-da-identidade&quot;&gt;Eliminação da identidade&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;identidades&quot;&gt;Identidades&lt;/h1&gt;
+
+&lt;p&gt;Na lógica de predicados podemos definir um predicado $I(x,y)$ para denotar a igualdade entre $x$ e $y$.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;$I(x,y)$: $x$ igual a $y$&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;No entanto, por esse predicado ser de uso bastante comum, se torna às vezes conveniente representá-lo de forma mais compacta. O mesmo aconteceria se quiséssemos definir um predicado $M(x,y)$ para denotar $x$ é menor que $y$. Como tais predicados são comumente representado pelos símbolos $=$ e $&amp;lt;$ não há motivos para que não utilizemos os mesmos símbolos também na linguagem da lógica de predicados.&lt;/p&gt;
+
+&lt;p&gt;Enquanto a letra ‘I’ pode ser utilizada para denotar o predicado de igualdade/identidade, ou seja $I(x,y)$ indicando a igualdade entre $x$ e $y$; ela também poderia ser utilizada em outras situações para denotar outro predicado qualquer, exemplo $I(x)$ indicando que $x$ é impar. Por outro lado, o símbolo ‘=’ também representa o predicado identidade, no entanto, ele nunca assumirá um significado diferente, ou seja, é um símbolo específico para representar o predicado de igualdade.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;$x=y$: $x$ igual a $y$&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Diferentemente dos demais predicados, $=$ é utilizado na forma infixa, ou seja, entre os operandos. Isso facilita pois mantém a forma de representação convencionalmente utilizada nas demais áreas da matemática.&lt;/p&gt;
+
+&lt;h2 id=&quot;exemplos&quot;&gt;Exemplos&lt;/h2&gt;
+
+&lt;p&gt;Formalize as seguintes sentenças utilizando o predicado identidade ‘$=$’&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;$a$: Álvaro de Campos&lt;/li&gt;
+  &lt;li&gt;$t$: Tabacaria&lt;/li&gt;
+  &lt;li&gt;$f$: Fernando Pessoa&lt;/li&gt;
+  &lt;li&gt;$A(x)$: $x$ é um autor português&lt;/li&gt;
+  &lt;li&gt;$M(x,y)$: $x$ é melhor autor que $y$&lt;/li&gt;
+  &lt;li&gt;$E(x,y)$: $x$ escreveu $y$&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;a. Fernando Pessoa não é Álvaro de Campos&lt;/p&gt;
+
+&lt;p&gt;b. Existe Fernando Pessoa&lt;/p&gt;
+
+&lt;p&gt;c. Se Fernando Pessoa é Álvaro de Campos, então Álvaro de Campos escreveu Tabacaria&lt;/p&gt;
+
+&lt;p&gt;d. Somente Fernando Pessoa escreveu Tabacaria&lt;/p&gt;
+
+&lt;p&gt;e. Fernando Pessoa é o melhor autor português&lt;/p&gt;
+
+&lt;p&gt;f. Existem ao menos duas coisas diferentes.&lt;/p&gt;
+
+&lt;p&gt;g. Existe somente uma coisa.&lt;/p&gt;
+
+&lt;p&gt;h. Existem exatamente duas coisas.&lt;/p&gt;
+
+&lt;h2 id=&quot;introdução-da-identidade&quot;&gt;Introdução da identidade&lt;/h2&gt;
+
+&lt;p&gt;Para qualquer letra nominal $\alpha$, podemos sempre introduzir a identidade $\alpha = \alpha$. Esse tipo de regra é útil para produzir exemplos para outras regras de derivação. Considere, por exemplo, a introdução dos quantificadores universal e existencial, a introdução de ambos depende da existência de um exemplo.&lt;/p&gt;
+
+&lt;p&gt;Para o quantificador universal, esse exemplo deve utilizar uma letra nominal genérica, de modo que seja possível generalizar a afirmação. Nesse caso, uma instância/exemplo $Fa\land Ga$ pode ser generalizada à $\forall x (Fx \land Gx)$, desde que não haja restrições quanto à letra $a$.&lt;/p&gt;
+
+&lt;p&gt;Para o quantificador existencial, por outro lado, o funcionamento é mais simples. Se tivermos um exemplo, então podemos generalizá-lo. Deste modo, a partir de $(Fa\land Ga)$ podemos imediatamente concluir $\exists x(Fx \land Gx)$.&lt;/p&gt;
+
+&lt;h3 id=&quot;exemplos-1&quot;&gt;Exemplos&lt;/h3&gt;
+
+&lt;p&gt;Dada a interpretação acima, como demonstraríamos os seguintes argumentos?&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \forall x (x=x)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \exists x (a=x)&lt;/script&gt;
+
+&lt;h2 id=&quot;eliminação-da-identidade&quot;&gt;Eliminação da identidade&lt;/h2&gt;
+
+&lt;p&gt;A regra de eliminação da identidade é apenas uma formalização da nossa intuição. Se duas coisas são iguais, posso utilizar tanto uma quanto a outra em qualquer situação.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;Fa, a=b \vdash Fb&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;Fa, \neg Fb \vdash \neg (a = b)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \forall x \forall y (x=y)\to(y=x)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \forall x \forall y \forall z (x=y\land y=z)\to (x=z))&lt;/script&gt;
+</description>
+        <pubDate>Thu, 26 Oct 2017 10:20:00 -0200</pubDate>
+        <link>http://localhost:4000/lc21cp-172/lp-identidade.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/lp-identidade.html</guid>
+        
+        <category>predicados</category>
+        
+        
+        <category>LC21CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>PROVA 2</title>
+        <description>&lt;p&gt;&lt;strong&gt;NOME:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;equivalências&quot;&gt;Equivalências&lt;/h1&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;$\phi\to\psi$&lt;/td&gt;
+      &lt;td&gt;$\neg\phi\lor\psi$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;$\phi\leftrightarrow\psi$&lt;/td&gt;
+      &lt;td&gt;$(\phi\land\psi)\lor(\neg\phi\land\neg\psi)$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;$\neg(\phi\land\psi)$&lt;/td&gt;
+      &lt;td&gt;$\neg\phi \lor \neg \psi$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;4&lt;/td&gt;
+      &lt;td&gt;$\neg(\phi\lor\psi)$&lt;/td&gt;
+      &lt;td&gt;$\neg\phi\land\neg\psi$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;5&lt;/td&gt;
+      &lt;td&gt;$\neg(\phi\to\psi)$&lt;/td&gt;
+      &lt;td&gt;$\phi\land \neg \psi$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;6&lt;/td&gt;
+      &lt;td&gt;$\neg(\phi\leftrightarrow\psi)$&lt;/td&gt;
+      &lt;td&gt;$(\phi\land \neg\psi)\lor (\neg\phi\land\psi)$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;(2,0pts)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.&lt;/strong&gt; Verifique se as formas de argumento a seguir são válidas ou inválidas utilizando árvores de refutação.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \vdash (p\to (q\land p)) \to (p\land q)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(q\land r)\to p, \neg q, \neg r \vdash \neg p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg(p\land q), r \leftrightarrow p \vdash \neg r&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\leftrightarrow q, q \leftrightarrow r \vdash p \leftrightarrow r&lt;/script&gt;
+
+&lt;p&gt;&lt;strong&gt;(2,0pts)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2.&lt;/strong&gt; Verifique se as fórmulas a seguir são tautologias utilizando árvores de refutação.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \leftrightarrow \neg(p\lor q)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q) \land \neg(p\lor r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q) \to p&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg((p\land q) \leftrightarrow(p\lor q))&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\to(q\land r)) \to (p\to r)&lt;/script&gt;
+
+&lt;p&gt;&lt;strong&gt;(1,0pt)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;3.&lt;/strong&gt; Reescreva as sentenças a seguir como fórmulas da lógica de predicados. Utilize os predicados:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;$A(x,y)$ : $x$ ama $y$&lt;/li&gt;
+  &lt;li&gt;$L(x,y)$ : $x$ é mais alto que $y$&lt;/li&gt;
+  &lt;li&gt;“Benedito”: $b$&lt;/li&gt;
+  &lt;li&gt;“Cassandra”: $c$&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;a. Para quaisquer três objetos, se o primeiro é mais alto que o segundo e o segundo mais alto que o terceiro, então o primeiro é mais alto que o terceiro.&lt;/p&gt;
+
+&lt;p&gt;b. Todo mundo é amado por alguém&lt;/p&gt;
+
+&lt;p&gt;c. Benedito e Cassandra amam todo mundo.&lt;/p&gt;
+
+&lt;p&gt;d. Se alguém ama o Benedito então Cassandra ama esse alguém.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;(4,0pts)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;4.&lt;/strong&gt; Demonstre 5 das seguintes formas de argumento da lógica de predicados.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \exists x (Fx \land Gx) \vdash \forall x (Fx \to \neg Gx)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(\neg Fx \lor \neg Gx) \vdash \neg(Fa \land Ga)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(Fx \to Gx) \vdash \forall x(\neg Gx \to \neg Fx)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x \forall y(Fxy \to \neg Fyx) \vdash \forall x \neg Fxx&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \exists x (Fx \land Gx) \vdash \forall x (\neg Fx \lor \neg Gx)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \forall x(Fx \land Gx) \vdash \exists x(\neg Fx \lor \neg Gx)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \exists x \exists y Lxy \vdash \forall x \neg Lxx&lt;/script&gt;
+
+&lt;p&gt;&lt;strong&gt;(1,0pts)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;5.&lt;/strong&gt; Descreva em linguagem natural cada uma das fórmulas e as reescreva utilizando outro quantificador&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \forall x \neg Fx&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\exists x \neg Fx&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x \neg Fx&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \exists x \neg Fx&lt;/script&gt;
+
+</description>
+        <pubDate>Wed, 25 Oct 2017 10:20:00 -0200</pubDate>
+        <link>http://localhost:4000/lc21cp-172/PROVA2.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/PROVA2.html</guid>
+        
+        <category>predicados</category>
+        
+        
+        <category>LC21CP-172</category>
         
       </item>
     
@@ -708,9 +934,47 @@ input_15.txt     15        327680
         <title>Lista VIII - Lógica de predicados, dedução</title>
         <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#equivalências&quot; id=&quot;markdown-toc-equivalências&quot;&gt;Equivalências&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#exercícios&quot; id=&quot;markdown-toc-exercícios&quot;&gt;Exercícios&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#referências&quot; id=&quot;markdown-toc-referências&quot;&gt;Referências&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h1 id=&quot;equivalências&quot;&gt;Equivalências&lt;/h1&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;$\phi\to\psi$&lt;/td&gt;
+      &lt;td&gt;$\neg\phi\lor\psi$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;$\phi\leftrightarrow\psi$&lt;/td&gt;
+      &lt;td&gt;$(\phi\land\psi)\lor(\neg\phi\land\neg\psi)$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;$\neg(\phi\land\psi)$&lt;/td&gt;
+      &lt;td&gt;$\neg\psi \lor \neg \psi$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;4&lt;/td&gt;
+      &lt;td&gt;$\neg(\phi\lor\psi)$&lt;/td&gt;
+      &lt;td&gt;$\neg\phi\land\neg\psi$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;5&lt;/td&gt;
+      &lt;td&gt;$\neg(\phi\to\psi)$&lt;/td&gt;
+      &lt;td&gt;$\phi\land \neg \psi$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;6&lt;/td&gt;
+      &lt;td&gt;$\neg(\phi\leftrightarrow\psi)$&lt;/td&gt;
+      &lt;td&gt;$(\phi\land \neg\psi)\lor (\neg\phi\land\psi)$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;h1 id=&quot;exercícios&quot;&gt;Exercícios&lt;/h1&gt;
 
@@ -759,6 +1023,7 @@ input_15.txt     15        327680
 &lt;p&gt;Seção 2.1: Pg. 71, &lt;a href=&quot;http://www.cse.chalmers.se/edu/course/DAT060/huthryan_lics2_sol.pdf&quot;&gt;Logica - Huth &amp;amp; Ryan (PDF).&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Capítulo 6: Pgs. 254-284, &lt;a href=&quot;https://racionalistasusp.files.wordpress.com/2010/01/nolt-john-rohatyn-dennis-lc3b3gica.pdf&quot;&gt;Logica - John Nolt (PDF).&lt;/a&gt;&lt;/p&gt;
+
 </description>
         <pubDate>Thu, 05 Oct 2017 10:00:00 -0300</pubDate>
         <link>http://localhost:4000/lc21cp-172/lista8-logica-predicados-deducao.html</link>
@@ -1362,394 +1627,6 @@ input_15.txt     15        327680
         <pubDate>Thu, 28 Sep 2017 12:00:00 -0300</pubDate>
         <link>http://localhost:4000/lc21cp-172/lista7-logica-predicados.html</link>
         <guid isPermaLink="true">http://localhost:4000/lc21cp-172/lista7-logica-predicados.html</guid>
-        
-        <category>predicados</category>
-        
-        
-        <category>LC21CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Lógica de predicados - Formalização</title>
-        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#lógica-de-predicados-como-uma-linguagem-formal&quot; id=&quot;markdown-toc-lógica-de-predicados-como-uma-linguagem-formal&quot;&gt;Lógica de predicados como uma linguagem formal&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#termos&quot; id=&quot;markdown-toc-termos&quot;&gt;Termos&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplo&quot; id=&quot;markdown-toc-exemplo&quot;&gt;Exemplo&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#fórmulas&quot; id=&quot;markdown-toc-fórmulas&quot;&gt;Fórmulas&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplo-1&quot; id=&quot;markdown-toc-exemplo-1&quot;&gt;Exemplo&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#prioridades&quot; id=&quot;markdown-toc-prioridades&quot;&gt;Prioridades&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;lógica-de-predicados-como-uma-linguagem-formal&quot;&gt;Lógica de predicados como uma linguagem formal&lt;/h1&gt;
-
-&lt;p&gt;A nossa discussão até então, envolveu apenas a codificação de sentenças como fórmulas da lógica de predicados. Para isso, foi necessário compreender os uso de variáveis, quantificadores e predicados. Dissemos que essa discussão foi informal pois não foram descritas as regras gramaticais de formação das fórmulas válidas. Assunto desta seção.&lt;/p&gt;
-
-&lt;p&gt;O primeiro passo para a formalização da linguagem da lógica de predicados é a identificação/classificação de seus componentes. Essa classificação nos mostra, inicialmente, que há dois tipos de coisas envolvidas em toda fórmula da lógica de predicados. As primeiras são:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Objetos aos quais estamos referenciando:
-    &lt;ul&gt;
-      &lt;li&gt;Variáveis $x$ e $y$.&lt;/li&gt;
-      &lt;li&gt;Símbolos funcionais $m(x)$, $g(x,y)$, $a$, $p$&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Toda expressão na lógica de predicados que se refere a um objeto é chamada um &lt;strong&gt;termo&lt;/strong&gt;. O segundo tipo de componentes na lógica de predicados denotam valores lógicos&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Valores lógicos, &lt;em&gt;fórmulas&lt;/em&gt;
-    &lt;ul&gt;
-      &lt;li&gt;$J(x, m(x))$ ($J$ é um predicado) é uma fórmula, embora $x$ e $m(x)$ sejam termos.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Um vocabulário predicado consiste em dois conjuntos:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Um conjunto de símbolos predicados $P$&lt;/li&gt;
-  &lt;li&gt;Um conjunto de símbolos funcionais $F$ (incluindo constantes: funções $0$-árias)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;termos&quot;&gt;Termos&lt;/h2&gt;
-
-&lt;p&gt;Os &lt;em&gt;termos&lt;/em&gt; da linguagem são feitos de variáveis, símbolos constantes e funções aplicadas a ambos. De modo geral, as regras de construção dos termos estão definidas a seguir:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Qualquer variável é um termo&lt;/li&gt;
-  &lt;li&gt;Se $c\in F$ é uma função $0$-ária, então $c$ é um termo&lt;/li&gt;
-  &lt;li&gt;Se $t_1,t_2,\dots,t_n$ são termos e $f\in F$ é $n$-ária, com $n&amp;gt; 0$, então $f(t_1,t_2,\dots,t_n)$ é um termo.&lt;/li&gt;
-  &lt;li&gt;Nada mais é um termo.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;exemplo&quot;&gt;Exemplo&lt;/h3&gt;
-
-&lt;p&gt;Suponha os símbolos funcionais $n, f$ e $g$, respectivamente $0$-ário, unário, binário. De acordo com as regra de construção de &lt;em&gt;termos&lt;/em&gt; bem formados, temos que :&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;$n$, $f(x)$, $g(x,f(y))$ são termos&lt;/li&gt;
-  &lt;li&gt;$n(x)$, $f$, $g(x)$ não são termos.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Ou seja, o número de parâmetros deve corresponder à definição da função.&lt;/p&gt;
-
-&lt;h2 id=&quot;fórmulas&quot;&gt;Fórmulas&lt;/h2&gt;
-
-&lt;p&gt;A escolha dos conjuntos $P$ e $F$ depende do que queremos expressar, portanto, dependem do contexto. Porém, ainda sim podemos definir as fórmulas bem formadas sobre esses conjuntos de forma indutiva.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Se $Q\in P$ é um predicado $n$-ário com $n\geq 1$ e se $t_1, t_2, \dots, t_n$ são termos sobre $F$, então $Q(t_1, t_2, \dots, t_n)$ é uma fórmula&lt;/li&gt;
-  &lt;li&gt;Se $\phi$ é uma fórmula, então $(\neg\phi)$ também é&lt;/li&gt;
-  &lt;li&gt;Se $\phi$ e $\psi$ são fórmulas, então $(\phi\land\psi)$, $(\phi\lor\psi)$ e $(\phi\to\psi)$ também são&lt;/li&gt;
-  &lt;li&gt;Se $\phi$ é uma fórmula e $x$ é uma variável, então $(\forall x\phi)$ e $(\exists x\phi)$ são fórmulas&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Em resumo, podemos escrever:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi ::= Q(t_1, t_2, \dots, t_n) | (\neg\phi) | (\phi\land\phi) | (\phi\lor\phi) | (\phi\to\phi) | (\forall x \phi) | (\exists x\phi)&lt;/script&gt;
-
-&lt;h3 id=&quot;exemplo-1&quot;&gt;Exemplo&lt;/h3&gt;
-
-&lt;p&gt;Verifique se a fórmula a seguir é bem formada&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x ((P(x)\to Q(x)) \land S(x,y))&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\exists x( P(y,z) \land (\forall y (\neg Q(y,x) \lor P(y,z))))&lt;/script&gt;
-
-&lt;h2 id=&quot;prioridades&quot;&gt;Prioridades&lt;/h2&gt;
-
-&lt;p&gt;Na prática, muitas vezes preferimos ignorar alguns parenteses, em troca de melhor visibilidade. Nessas situações a prioridade dos quantificadores/operadores deve ser levada em consideração:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;$\neg$, $\forall y$, $\exists y$ tem prioridade mais alta;&lt;/li&gt;
-  &lt;li&gt;depois vem os símbolos $\lor$ e $\land$;&lt;/li&gt;
-  &lt;li&gt;por fim, temos $\to$&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Thu, 28 Sep 2017 10:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/logica-predicados-formal.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/logica-predicados-formal.html</guid>
-        
-        <category>predicados</category>
-        
-        
-        <category>LC21CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Lógica de predicados - Informal</title>
-        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#a-necessidade-de-uma-linguagem-mais-rica&quot; id=&quot;markdown-toc-a-necessidade-de-uma-linguagem-mais-rica&quot;&gt;A necessidade de uma linguagem mais rica&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#predicados&quot; id=&quot;markdown-toc-predicados&quot;&gt;Predicados&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#variáveis&quot; id=&quot;markdown-toc-variáveis&quot;&gt;Variáveis&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#quantificadores&quot; id=&quot;markdown-toc-quantificadores&quot;&gt;Quantificadores&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplo&quot; id=&quot;markdown-toc-exemplo&quot;&gt;Exemplo&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#símbolos-funcionais&quot; id=&quot;markdown-toc-símbolos-funcionais&quot;&gt;Símbolos funcionais&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplo-1&quot; id=&quot;markdown-toc-exemplo-1&quot;&gt;Exemplo&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplo-2&quot; id=&quot;markdown-toc-exemplo-2&quot;&gt;Exemplo&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#referências&quot; id=&quot;markdown-toc-referências&quot;&gt;Referências&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;a-necessidade-de-uma-linguagem-mais-rica&quot;&gt;A necessidade de uma linguagem mais rica&lt;/h1&gt;
-
-&lt;p&gt;Até então desenvolvemos a lógica proposicional, examinando-a de três ângulos: sua teoria de demonstração (dedução natural), sua sintaxe (árvores das fórmulas) e sua semântica (tabelas-verdade). Toda essa discussão se inicou com &lt;em&gt;frases declarativas&lt;/em&gt;, ou &lt;em&gt;proposições&lt;/em&gt;, as quais sempre é possível atribuir um valor lógico. A linguagem da lógica proposicional, por outro lado, é limitada, e existem tipos de afirmações que nela não podem ser representadas satisfatoriamente.&lt;/p&gt;
-
-&lt;p&gt;Vejamos, por exemplo, a frase declarativa:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;“Todo estudante é mais jovem do que algum instrutor.”&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;É fácil perceber que esta sentença não faz uso de nenhum dos conectivos da lógica proposicional: &lt;em&gt;não&lt;/em&gt;, &lt;em&gt;e&lt;/em&gt;, &lt;em&gt;ou&lt;/em&gt;, &lt;em&gt;se… então&lt;/em&gt;. Deste modo, o máximo que poderíamos fazer, seria representá-la como uma proposição atômica $p$&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;$p$: “Todo estudante é mais jovem do que algum instrutor.”&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Obviamente, isto não nos traria nenhuma informação sobre a estrutura da frase.&lt;/p&gt;
-
-&lt;p&gt;No contexto dessas limitações, a &lt;em&gt;lógica de predicados&lt;/em&gt;, ou &lt;em&gt;lógica de segunda ordem&lt;/em&gt;, é proposta como forma de representar modificadores do tipo&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;em&gt;existe&lt;/em&gt;,&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;todo&lt;/em&gt;,&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;entre&lt;/em&gt; e&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;apenas&lt;/em&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;predicados&quot;&gt;Predicados&lt;/h2&gt;
-
-&lt;p&gt;Na frase acima, podemos identificar algumas propriedades&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;em&gt;ser um estudante&lt;/em&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;ser um instrutor&lt;/em&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;ser mais jovem do que alguém&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Gostaríamos de algum mecanismo por meio do qual pudéssemos representá-las, juntamente com suas relações lógicas e dependências.&lt;/p&gt;
-
-&lt;p&gt;Tomemos como exemplo &lt;em&gt;ser um estudante&lt;/em&gt;, podemos definir que essa propriedade como um &lt;em&gt;predicado&lt;/em&gt; $E(\cdot)$, o qual quando aplicado a algo nos diz que esse algo é um estudante.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;$E($André$)$: nos diz que &lt;em&gt;André&lt;/em&gt; é um estudante.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Seguindo a mesma idéia, podemos definir predicados para as demais propriedades&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;$I($Paulo$)$: &lt;em&gt;Paulo&lt;/em&gt; é um instrutor.&lt;/li&gt;
-  &lt;li&gt;$J($André, Paulo$)$: &lt;em&gt;André&lt;/em&gt; é mais jovem do que &lt;em&gt;Paulo&lt;/em&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Nestes exemplos, $E,I,J$ são chamados &lt;strong&gt;predicados&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/predicado/&quot;&gt;&lt;strong&gt;pre·di·ca·do&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;Atributo de um ser; característica, propriedade, qualidade.&lt;/li&gt;
-  &lt;li&gt;Qualidade considerada positiva ou desejável, como bondade, delicadeza, gentileza etc.; mérito, virtude: Encontrou uma pessoa com muitos predicados.&lt;/li&gt;
-  &lt;li&gt;GRAM Tudo aquilo que se diz do sujeito da frase: Pedro vendeu o carro (vendeu o carro, o predicado, representa aquilo que se declara a respeito de Pedro, o sujeito).&lt;/li&gt;
-  &lt;li&gt;LÓG Numa proposição ou num juízo, atributo de um sujeito, que pode ser afirmado ou negado. Símbolo P.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;variáveis&quot;&gt;Variáveis&lt;/h2&gt;
-
-&lt;p&gt;Os predicados acima nos permitem definir propriedades, as quais podem ser utilizadas para identificar &lt;em&gt;estudantes&lt;/em&gt;, &lt;em&gt;instrutores&lt;/em&gt; e a relação de &lt;em&gt;juventude&lt;/em&gt; entre um estudante e um instrutor. No entanto, ainda não é viável representar todos estudantes&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;“&lt;strong&gt;Todo estudante&lt;/strong&gt; é mais jovem do que algum instrutor.”&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Sem que para isso tenhamos que defini-los um a um.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;$E($André$)$, $E($Pedro$)$, $E($Maria$)$, $E($Joana$)$, etc..&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Claramente isto se torna inviável para qualquer número razoável de alunos, e portanto não é uma bom mecanismo para representar “&lt;strong&gt;Todo estudante…&lt;/strong&gt;”&lt;/p&gt;
-
-&lt;p&gt;Para contornarmos esse problema, utilizaremos o conceito de &lt;em&gt;variável&lt;/em&gt;. Uma variável $u,v,w,x,y,z,\dots$ nada mais é que um substituto para  valores concretos. Utilizando $x,y$, poderíamos formalizar os predicados anteriores.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;$E(x)$: $x$ é um estudante.&lt;/li&gt;
-  &lt;li&gt;$I(x)$: $x$ é um instrutor.&lt;/li&gt;
-  &lt;li&gt;$J(x,y)$: $x$ é mais jovem do que $y$.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;quantificadores&quot;&gt;Quantificadores&lt;/h2&gt;
-
-&lt;p&gt;As váriaveis nos oferecem a formalização necessária, porém ainda não nos permite especificar que um &lt;em&gt;predicado&lt;/em&gt; se aplica a &lt;strong&gt;todo&lt;/strong&gt; ou &lt;strong&gt;algum&lt;/strong&gt;. Para isso, utilizamos os &lt;strong&gt;quantificadores&lt;/strong&gt;, os quais definem o escopo das variáveis.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;$\forall$: “para todo”&lt;/li&gt;
-  &lt;li&gt;$\exists$: “existe” ou “algum”&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Os quantificadores em conjunto com variáveis nos permitem então definir afirmações sobre algo genérico&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;$\forall y$: “para todo $y$&lt;/li&gt;
-  &lt;li&gt;$\exists z$: “existe $z$” ou “existe algum $z$”&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Portanto, se quero dizer que todo $x$ é estudante, utilizo o quantificador $\forall$ em conjunto com o predicado e a variável $x$.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x E(x)&lt;/script&gt;
-
-&lt;p&gt;Retornando à frase original&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;“Todo estudante é mais jovem do que algum instrutor.”&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Podemos reescrevê-la, de forma a tornar mais óbvia as relações.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;“Se $x$ é um estudante, então existe um instrutor $y$, tal que $x$ é mais jovem do que $y$.”&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Devemos, no entanto, observar que a segunda frase se aplica a apenas um estudante $x$, como queremos generalizar a todos estudantes, utilizaremos o quantificador $\forall$&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(\dots)&lt;/script&gt;
-
-&lt;p&gt;A parte interna dos parênteses é um condicional que se aplica a todo estudante, e portanto&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(E(x)\to \dots)&lt;/script&gt;
-
-&lt;p&gt;O consequente deste condicional se refere ao trecho:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;“existe um instrutor $y$, tal que $x$ é mais jovem do que $y$.”&lt;/li&gt;
-  &lt;li&gt;“existe $y$, tal que $y$ é um instrutor e $x$ é mais jovem do que $y$.”&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Que pode ser representado por:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\exists y (I(y) \land J(x,y))&lt;/script&gt;
-
-&lt;p&gt;Por fim, a estrutura da frase exemplo pode ser escrita de maneira simbólica da seguinte forma&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(E(x)\to \exists y (I(y) \land J(x,y)))&lt;/script&gt;
-
-&lt;p&gt;A qual pode ser lida da seguinte forma:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;“Para todo $x$, se $x$ é um estudante, então existe algum $y$ que é um instrutor tal que $x$ é mais novo do que $y$”&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;exemplo&quot;&gt;Exemplo&lt;/h3&gt;
-
-&lt;p&gt;Considere os seguintes predicados:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;$A(x)$: $x$ é uma ave&lt;/li&gt;
-  &lt;li&gt;$V(x)$: $x$ pode voar&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Represente simbolicamente a frase&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;“Nem todas as aves podem voar”
-&lt;script type=&quot;math/tex&quot;&gt;\neg(\forall x (A(x)\to V(x)))&lt;/script&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;“Existem aves que não voam”
-&lt;script type=&quot;math/tex&quot;&gt;\exists x(A(x)\land \neg V(x))&lt;/script&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;símbolos-funcionais&quot;&gt;Símbolos funcionais&lt;/h2&gt;
-
-&lt;p&gt;A lógica de predicados estende a lógica proposicional não só quanto aos quantificadores, mas também com o conceito de &lt;em&gt;símbolo funcional&lt;/em&gt;. Um símbolo funcional nada mais é que uma função, a qual, dada uma variável, retorna alguma informação não ambígua sobre a variável em questão. Por exemplo, consideremos a sentenças&lt;/p&gt;
-
-&lt;p&gt;“Toda criança é mais jovem do que sua mãe”.&lt;/p&gt;
-
-&lt;p&gt;Ela pode ser representada simbolicamente utilizando os predicados:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;$C(x)$: $x$ é uma criança&lt;/li&gt;
-  &lt;li&gt;$M(x,y)$: $x$ é mãe de $y$&lt;/li&gt;
-  &lt;li&gt;$J(x,y)$: $x$ é mais jovem que $y$&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x \forall y(C(x) \land M(y,x) \to J(x,y))&lt;/script&gt;
-
-&lt;p&gt;Não há nada errado com esta fórmula, no entanto ela poderia ser simplificada por meio do uso de um símbolo funcional que retornasse a mãe de $x$.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;$m(x)$: retorna a mãe de $x$&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x (C(x) \to J(x, m(x)))&lt;/script&gt;
-
-&lt;p&gt;Símbolos funcionais também podem ser binários, terciários e assim por diante:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;$g(x,y)$: nota do aluno $x$ na disciplina $y$&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;No caso especial em que nenhuma variável é necessária o simbolo funcional representa uma constante.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;$m$: é uma constante para indicar Márcia&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;exemplo-1&quot;&gt;Exemplo&lt;/h3&gt;
-&lt;p&gt;Utilizando o predicado $M(x,y)$: $x$ é mãe de $y$, considere a simbolização da frase:&lt;/p&gt;
-
-&lt;p&gt;“André e Paulo têm a mesma avó materna”&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Reescreva de forma simbólica utilizando somente predicados.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Reescreva de forma simbólica utilizando predicados e símbolos funcionais.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;OBS: Utilize o símbolo de igualdade $=$ se necessário.&lt;/p&gt;
-
-&lt;h3 id=&quot;exemplo-2&quot;&gt;Exemplo&lt;/h3&gt;
-
-&lt;p&gt;Considere a simbolização da frase:&lt;/p&gt;
-
-&lt;p&gt;“Todo filho de meu pai é meu irmão”&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Reescreva de forma simbólica utilizando somente predicados.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Reescreva de forma simbólica utilizando predicados e símbolos funcionais.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&quot;referências&quot;&gt;Referências&lt;/h1&gt;
-
-&lt;p&gt;Seção 2.1: Pg. 71, &lt;a href=&quot;http://www.cse.chalmers.se/edu/course/DAT060/huthryan_lics2_sol.pdf&quot;&gt;Logica - Huth &amp;amp; Ryan (PDF).&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Wed, 27 Sep 2017 10:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/logica-predicados-informal.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/logica-predicados-informal.html</guid>
         
         <category>predicados</category>
         
