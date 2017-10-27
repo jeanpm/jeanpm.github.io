@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 27 Oct 2017 15:17:38 -0200</pubDate>
-    <lastBuildDate>Fri, 27 Oct 2017 15:17:38 -0200</lastBuildDate>
+    <pubDate>Fri, 27 Oct 2017 18:01:01 -0200</pubDate>
+    <lastBuildDate>Fri, 27 Oct 2017 18:01:01 -0200</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -402,15 +402,10 @@ Program received signal SIGSEGV, Segmentation fault.
 &lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#objetivos&quot; id=&quot;markdown-toc-objetivos&quot;&gt;Objetivos&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#motivação&quot; id=&quot;markdown-toc-motivação&quot;&gt;Motivação&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#experimentos&quot; id=&quot;markdown-toc-experimentos&quot;&gt;Experimentos&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#entrada&quot; id=&quot;markdown-toc-entrada&quot;&gt;Entrada&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#execução-e-medição&quot; id=&quot;markdown-toc-execução-e-medição&quot;&gt;Execução e medição&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#execução-exemplo-para-n20&quot; id=&quot;markdown-toc-execução-exemplo-para-n20&quot;&gt;Execução exemplo para $n=20$&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#resultados-para-todos-n&quot; id=&quot;markdown-toc-resultados-para-todos-n&quot;&gt;Resultados para todos $n$&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#experimentos&quot; id=&quot;markdown-toc-experimentos&quot;&gt;Experimentos&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#cenários-de-experimentação&quot; id=&quot;markdown-toc-cenários-de-experimentação&quot;&gt;Cenários de experimentação&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#experimentos-1&quot; id=&quot;markdown-toc-experimentos-1&quot;&gt;Experimentos&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#análise-dos-resultados&quot; id=&quot;markdown-toc-análise-dos-resultados&quot;&gt;Análise dos resultados&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&quot;objetivos&quot;&gt;Objetivos&lt;/h1&gt;
@@ -423,116 +418,151 @@ Program received signal SIGSEGV, Segmentation fault.
 
 &lt;h1 id=&quot;experimentos&quot;&gt;Experimentos&lt;/h1&gt;
 
-&lt;p&gt;Todos algoritmos deverão ser executados para os mesmos casos de teste e depois comparados quanto ao &lt;strong&gt;tempo médio&lt;/strong&gt; e ao &lt;strong&gt;número de comparações&lt;/strong&gt;. Nesta seção descrevo em detalhes como isso pode ser feito.&lt;/p&gt;
-
-&lt;h2 id=&quot;entrada&quot;&gt;Entrada&lt;/h2&gt;
-
-&lt;p&gt;Teremos diversos arquivos de entrada de nome &lt;code class=&quot;highlighter-rouge&quot;&gt;input_e.txt&lt;/code&gt;, onde $e=1,2,\dots,15$, todos eles contendo $100$ sequências numéricas, uma por linha.&lt;/p&gt;
-
-&lt;p&gt;Cada sequência contém $n=10 \times 2^e$ elementos numéricos, ou seja indica $n$ indica o tamanho das sequências que esse arquivo contém. Exemplo:&lt;/p&gt;
+&lt;p&gt;Todos algoritmos deverão ser executados para os mesmos casos de teste e depois comparados quanto ao&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;O arquivo &lt;code class=&quot;highlighter-rouge&quot;&gt;input_1.txt&lt;/code&gt;, conterá &lt;code class=&quot;highlighter-rouge&quot;&gt;100&lt;/code&gt; linhas.
-    &lt;ul&gt;
-      &lt;li&gt;Cada linha representa uma sequência a ser ordenada, contendo $n=10\times 2^1 = 20$ elementos.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;O arquivo &lt;code class=&quot;highlighter-rouge&quot;&gt;input_3.txt&lt;/code&gt;, conterá &lt;code class=&quot;highlighter-rouge&quot;&gt;100&lt;/code&gt; linhas.
-    &lt;ul&gt;
-      &lt;li&gt;Cada linha representa uma sequência a ser ordenada, contendo $n=10\times 2^3 = 80$ elementos.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;O arquivo &lt;code class=&quot;highlighter-rouge&quot;&gt;input_15.txt&lt;/code&gt;, conterá &lt;code class=&quot;highlighter-rouge&quot;&gt;100&lt;/code&gt; linhas.
-    &lt;ul&gt;
-      &lt;li&gt;Cada linha representa uma sequência a ser ordenada, contendo $n=10\times 2^{15} = 327680$ elementos.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;tempo médio&lt;/strong&gt;,&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;número de comparações&lt;/strong&gt;,&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;número de trocas&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Cada cenário de testes (irei explicar os demais adiante), contém então, um conjunto de arquivos da forma:&lt;/p&gt;
+&lt;p&gt;Deste modo, a primeira etapa do trabalho consiste em adaptar seus códigos para que a cada execução esses três dados sejam coletados/contabilizados.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Arquivo          e         n(e)=10 * 2^e
-input_1.txt      1         20
-input_2.txt      2         40
-input_3.txt      3         80
-input_4.txt      4         160
-input_5.txt      5         320
-input_6.txt      6         640
-input_7.txt      7         1280
-input_8.txt      8         2560
-input_9.txt      9         5120
-input_10.txt     10        10240
-input_11.txt     11        20480
-input_12.txt     12        40960
-input_13.txt     13        81920
-input_14.txt     14        163840
-input_15.txt     15        327680
+&lt;h1 id=&quot;cenários-de-experimentação&quot;&gt;Cenários de experimentação&lt;/h1&gt;
+
+&lt;p&gt;Os algoritmos serão avaliados em quatro cenários. Cada cenário representará um tipo de sequência de entrada.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Sequências aleatórias,&lt;/li&gt;
+  &lt;li&gt;Sequências ordenadas de forma crescente&lt;/li&gt;
+  &lt;li&gt;Sequências ordenadas de forma decrescente&lt;/li&gt;
+  &lt;li&gt;Sequências quase ordenadas&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Consideraremos que uma sequência quase ordenada é gerada por dois passos principais.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Gerar uma sequência ordenada,&lt;/li&gt;
+  &lt;li&gt;Efetuar um certo número de trocas aleatórias
+    - O número de trocas deve equivaler a 15% do tamanho da sequência.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;experimentos-1&quot;&gt;Experimentos&lt;/h1&gt;
+
+&lt;p&gt;Cada um dos cenários acima serão avaliados seguindo o mesmo planejamento de experimentos. Como exemplo, podemos considerar o caso de sequências &lt;em&gt;aleatórias&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Queremos avaliar o desempenho dos algoritmos para sequências de tamanhos diferentes, então neste contexto a primeira etapa seria definirmos quais tamanhos de sequências farão parte dos experimentos. É importante que possamos avaliar os algoritos em sequências pequenas e grandes, portanto os tamanhos utilizados devem atender essa demanda.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Sugestão de tamanhos $n(x) = 10 \times 2^x$.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;$x$&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;4&lt;/td&gt;
+      &lt;td&gt;5&lt;/td&gt;
+      &lt;td&gt;6&lt;/td&gt;
+      &lt;td&gt;7&lt;/td&gt;
+      &lt;td&gt;8&lt;/td&gt;
+      &lt;td&gt;9&lt;/td&gt;
+      &lt;td&gt;10&lt;/td&gt;
+      &lt;td&gt;11&lt;/td&gt;
+      &lt;td&gt;12&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;$n$&lt;/td&gt;
+      &lt;td&gt;20&lt;/td&gt;
+      &lt;td&gt;40&lt;/td&gt;
+      &lt;td&gt;80&lt;/td&gt;
+      &lt;td&gt;160&lt;/td&gt;
+      &lt;td&gt;320&lt;/td&gt;
+      &lt;td&gt;640&lt;/td&gt;
+      &lt;td&gt;1280&lt;/td&gt;
+      &lt;td&gt;2560&lt;/td&gt;
+      &lt;td&gt;5120&lt;/td&gt;
+      &lt;td&gt;10240&lt;/td&gt;
+      &lt;td&gt;20480&lt;/td&gt;
+      &lt;td&gt;40960&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;Os experimentos terão que ser repetidos para cada $n$.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Vamos assumir, como exemplo, o caso de $n=20$. Cada algoritmo deverá ser executado em sequências de tamanho $n$, porém, como estamos estamos interessados no comportamento médio do algoritmo, não podemos executá-lo apenas uma vez. Deste modo, cada algoritmo deverá ser executado um determinado número $N$ de vezes com sequências diferentes de tamanho $n$, $N$ é chamado &lt;em&gt;número de experimentos&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Sugestão para o número de experimentos $N$: $30 \leq N \leq 100$.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Cada execução de um algoritmo &lt;code class=&quot;highlighter-rouge&quot;&gt;A&lt;/code&gt; com as sequências aleatórias (&lt;code class=&quot;highlighter-rouge&quot;&gt;rand&lt;/code&gt;) de um determinado tamanho $n$ (&lt;code class=&quot;highlighter-rouge&quot;&gt;20&lt;/code&gt;), produzirá três dados:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;num. comparações&lt;/em&gt;,&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;num. trocas&lt;/em&gt;,&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;tempo&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;17823812 123213 0.2345
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Teremos, então, sequências de tamanhos que crescem exponencialmente. Isso serve para observarmos o comportamento dos algoritmos em sequências pequenas e em sequências grandes. Alguns deles podem ser rápidos para sequências pequenas, enquanto outros podem ser mais rápidos em sequências grandes. Isso é algo que gostaríamos de identificar com os experimentos.&lt;/p&gt;
+&lt;p&gt;O conjunto de $N$ execuções produzirá então, um arquivo de saída &lt;code class=&quot;highlighter-rouge&quot;&gt;rand_20_A.out&lt;/code&gt;, com $N$ linhas, cada uma delas representando um experimento.&lt;/p&gt;
 
-&lt;h2 id=&quot;execução-e-medição&quot;&gt;Execução e medição&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;17823812 123213 0.2345
+17823812 123213 0.2345
+...
+17823812 123213 0.2345
+17823812 123213 0.2345
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;p&gt;Para cada cenário, teremos então um conjunto de $15$ arquivos de entrada, assim como descrito acima. E um certo número de algoritmos de ordenação a serem comparados. Considere a entrada &lt;code class=&quot;highlighter-rouge&quot;&gt;input_1.txt&lt;/code&gt; e assuma que desejamos comparar 4 algoritmos:&lt;/p&gt;
-
+&lt;p&gt;Suponha que estejamos comparando quatro algoritmos: &lt;code class=&quot;highlighter-rouge&quot;&gt;A&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;B&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;C&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;D&lt;/code&gt;. Ao repetirmos o procedimento acima para cada um deles, teremos produzido quatro arquivos:&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;bubble&lt;/code&gt;,&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;selection&lt;/code&gt;,&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;insertion&lt;/code&gt; e&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;quicksort&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;rand_20_A.out&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;rand_20_B.out&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;rand_20_C.out&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;rand_20_D.out&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;A primeira etapa consiste em executar cada um desses algoritmos tendo como entrada um arquivo &lt;code class=&quot;highlighter-rouge&quot;&gt;input_1.txt&lt;/code&gt;. Vamos ilustrar esse procedimento por meio do &lt;code class=&quot;highlighter-rouge&quot;&gt;bubblesort&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Tais nomes foram escolhidos pois são informativos sobre o experimento que eles representam. O prefixo &lt;code class=&quot;highlighter-rouge&quot;&gt;rand&lt;/code&gt; indica que a sequência foi gerada aleatoriamente, o infixo &lt;code class=&quot;highlighter-rouge&quot;&gt;20&lt;/code&gt; indica o tamanho dessas sequências, e o sufixo &lt;code class=&quot;highlighter-rouge&quot;&gt;A&lt;/code&gt;, indica o algoritmo.&lt;/p&gt;
 
-&lt;h3 id=&quot;execução-exemplo-para-n20&quot;&gt;Execução exemplo para $n=20$&lt;/h3&gt;
+&lt;h1 id=&quot;análise-dos-resultados&quot;&gt;Análise dos resultados&lt;/h1&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;Primeiramente alteramos o código do &lt;code class=&quot;highlighter-rouge&quot;&gt;bubblesort&lt;/code&gt; de modo a contar todas as comparações que ele efetua. Inserimos um contador para isso, que será incrementado sempre que dois elementos forem comparados. Ex:
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;ncomparacoes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;p&gt;Esses arquivos contém os dados brutos dos experimentos. Podemos a partir deles iniciar a análise dos resultados. Primeiro passo é calcular a média de cada coluna. No exemplo, acima, a média de cada coluna em cada um dos arquivos produzirá três valores.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;rand_20_A.out&lt;/code&gt;, média das colunas:
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;17823812 123213 0.2345
 &lt;/code&gt;&lt;/pre&gt;
     &lt;/div&gt;
   &lt;/li&gt;
-  &lt;li&gt;Ler uma linha do arquivo de entrada e armazená-la num vetor &lt;code class=&quot;highlighter-rouge&quot;&gt;v&lt;/code&gt; (ou vector, ou lista). Chamar a função de ordenação nesse vetor.
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ncomparacoes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;bubblesort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vsize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;rand_20_B.out&lt;/code&gt;, média das colunas:
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;89898923 1342213 2.2345
 &lt;/code&gt;&lt;/pre&gt;
     &lt;/div&gt;
   &lt;/li&gt;
-  &lt;li&gt;Ler uma nova linha do arquivo e armazená-la outra vez em &lt;code class=&quot;highlighter-rouge&quot;&gt;v&lt;/code&gt;, chamar a função de ordenação nesse vetor.
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;bubblesort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vsize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;rand_20_C.out&lt;/code&gt;, média das colunas:
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;123812 123213 9.2345
 &lt;/code&gt;&lt;/pre&gt;
     &lt;/div&gt;
   &lt;/li&gt;
-  &lt;li&gt;Repetir esse procedimento até a última linha do arquivo de entrada (centésima linha).&lt;/li&gt;
-  &lt;li&gt;Após a última chamada, teremos o total &lt;code class=&quot;highlighter-rouge&quot;&gt;ncomparacoes&lt;/code&gt; efetuadas em todas as chamadas a &lt;code class=&quot;highlighter-rouge&quot;&gt;bubblesort&lt;/code&gt;. Dividindo esse valor por &lt;code class=&quot;highlighter-rouge&quot;&gt;100&lt;/code&gt;, teremos o número médio esperado de comparações que o &lt;code class=&quot;highlighter-rouge&quot;&gt;bubblesort&lt;/code&gt; efetua em sequências de tamanho $n=20$ (neste exemplo).&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Ao fim deste processo temos um par de valores, relacionado ao tamanho das sequências, e o número médio de comparações do bubblesort $\sigma_b$. Se repetirmos esse procedimento para todos os demais algoritmos teremos para eles outros pares de valores&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Bubble sort:    $(20, \sigma_b)$&lt;/li&gt;
-  &lt;li&gt;Selection sort: $(20, \sigma_s)$&lt;/li&gt;
-  &lt;li&gt;Insertion sort: $(20, \sigma_i)$&lt;/li&gt;
-  &lt;li&gt;Quick sort:     $(20, \sigma_q)$&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;rand_20_D.out&lt;/code&gt;, média das colunas:
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;948812 99213 11.2345
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Assuma que os tempos médios de cada algoritmo sejam, respectivamente, $t_1, t_2, t_3, t_4$. Poderíamos agora iniciar uma comparação gráfica entre eles. Plotando como eixo $x$ os possíveis tamanhos de $n$ e no eixo $y$ os respectivos tempos médios.&lt;/p&gt;
+&lt;p&gt;Com esses novos valores (médias), podemos inciar a popular nossos gráficos, um para cada dado sendo avaliado.&lt;/p&gt;
 
-&lt;h3 id=&quot;resultados-para-todos-n&quot;&gt;Resultados para todos $n$&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Número médio de comparações&lt;/strong&gt;
+&lt;img src=&quot;../assets/AE22CP/rand_20.png&quot; alt=&quot;rand_20&quot; /&gt;
+&lt;strong&gt;Número médio de trocas&lt;/strong&gt;
+&lt;img src=&quot;../assets/AE22CP/rand_20.png&quot; alt=&quot;rand_20&quot; /&gt;
+&lt;strong&gt;Tempo médio de execução&lt;/strong&gt;
+&lt;img src=&quot;../assets/AE22CP/rand_20.png&quot; alt=&quot;rand_20&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Se o procedimento acima for efetuado para todos os arquivos de entrada, ou seja, todos possíveis $n=20,40,80,\dots,327680$, teremos ao final, para cada algoritmo o número médio de comparações em cada $n$. Os quais podemos utilizar para plotar um gráfico e comparar a eficiência desses algoritmos.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Bubble sort:    $(20, \sigma_b), (40, \sigma_b), \dots, (327680, \sigma_b)$&lt;/li&gt;
-  &lt;li&gt;Selection sort: $(20, \sigma_s), (40, \sigma_s), \dots, (327680, \sigma_s)$&lt;/li&gt;
-  &lt;li&gt;Insertion sort: $(20, \sigma_i), (40, \sigma_i), \dots, (327680, \sigma_i)$&lt;/li&gt;
-  &lt;li&gt;Quick sort:     $(20, \sigma_q), (40, \sigma_q), \dots, (327680, \sigma_q)$&lt;/li&gt;
-&lt;/ul&gt;
-
+&lt;p&gt;Ao repetirmos esse procedimento para os demais tamanhos de sequência, teremos vários outros pontos populando o gráfico indicando o comportamento dos algoritmos com os diferentes tamanhos de sequência.&lt;/p&gt;
 </description>
         <pubDate>Fri, 20 Oct 2017 13:50:00 -0200</pubDate>
         <link>http://localhost:4000/ae22cp-172/APS3-ordenacao.html</link>
