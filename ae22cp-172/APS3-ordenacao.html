@@ -92,6 +92,7 @@
   <li><a href="#cenários-de-experimentação" id="markdown-toc-cenários-de-experimentação">Cenários de experimentação</a></li>
   <li><a href="#experimentos-1" id="markdown-toc-experimentos-1">Experimentos</a></li>
   <li><a href="#análise-dos-resultados" id="markdown-toc-análise-dos-resultados">Análise dos resultados</a></li>
+  <li><a href="#nomenclatura-de-arquivos" id="markdown-toc-nomenclatura-de-arquivos">Nomenclatura de arquivos</a></li>
 </ul>
 
 <h1 id="objetivos">Objetivos</h1>
@@ -239,13 +240,51 @@
   </li>
 </ul>
 
-<p>Com esses novos valores (médias), podemos inciar a popular nossos gráficos, um para cada dado sendo avaliado. Nos gráficos abaixo inserimos os pontos referentes aos valores médios de <em>comparações</em>, <em>trocas</em> e <em>tempo</em> obtidos para sequências aleatórias de tamanho $20$. Portanto, todos os pontos ficam na mesma coluna (posição 20 no eixo $x$).</p>
+<p>Com esses novos valores (médias), podemos inciar a popular nossos gráficos, um para cada dado sendo avaliado. Nos gráficos abaixo inserimos os pontos referentes aos valores médios de <em>comparações</em>, <em>trocas</em> e <em>tempo</em> obtidos para sequências crescentes de tamanho $20$. Portanto, todos os pontos ficam na mesma coluna ($n=20$).</p>
 
 <p><img src="../assets/AE22CP/rand_20.png" alt="rand_20" /></p>
 
-<p>Ao efetuarmos esses mesmos experimentos mas agora com os demais tamanhos de sequência, teremos vários outros pontos para popular o gráfico, indicando o comportamento dos algoritmos com os diferentes tamanhos de sequência.</p>
+<p>Ao efetuarmos esses mesmos experimentos mas agora com os demais tamanhos de sequência, teremos vários outros pontos para popular o gráfico, indicando o comportamento dos algoritmos com os diferentes tamanhos de sequência. As linhas pontilhadas são as referências teóricas de complexidade $O(n), O(n \log n)$ e $O(n^2)$ (da menos inclinada à mais inclinada).</p>
 
 <p><img src="../assets/AE22CP/rand_20_todos.png" alt="rand_20" /></p>
+
+<h1 id="nomenclatura-de-arquivos">Nomenclatura de arquivos</h1>
+
+<p>Minha sugestão para que tenhamos um padrão de nomenclatura e organização dos arquivos da APS3 é a seguinte:</p>
+<ul>
+  <li>Crie um diretório (pasta) de nome igual ao seu RA: “227728/”</li>
+  <li>Dentro desse diretório insira seus códigos fonte, que deverão ter como prefixo seu “RA_”:</li>
+  <li>
+    <p>Caso tenha implementados todos em um mesmo arquivo, nomeie este arquivo como “RA_sort.c”</p>
+  </li>
+  <li>Os arquivos produzidos para os experimentos ficarão em um subdiretório chamado “output”, exemplo:
+    <ul>
+      <li>“227728/output/”</li>
+      <li>Para os arquivos dos experimentos, sugiro o padrão de nomenclatura: “cenario_tamanho_algoritmo.out”</li>
+      <li>Para “cenário”, temos quatro tipos possíveis:
+        <ul>
+          <li>“rand”: sequências aleatórias</li>
+          <li>“cres”: sequências aleatórias crescentes</li>
+          <li>“decr”: sequências aleatórias decrescentes</li>
+          <li>“semi”: sequências aleatórias semi-ordenadas</li>
+        </ul>
+      </li>
+      <li>Para “tamanho”, temos os valores indicados na tabela no início deste documento</li>
+      <li>Para “algoritmo”, temos várias possibilidades, como as descritas a seguir.
+        <ul>
+          <li>Mergesort:        “merge”</li>
+          <li>Quicksort:        “quick”</li>
+          <li>Selectionsort:    “selct”</li>
+          <li>Insertionsort:    “insrt”</li>
+          <li>Bubblesort:       “bubbl”</li>
+          <li>Heapsort:         “heaps”</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Esses padrões de nomenclatura nos dão uma melhor organização, e me permite automatizar a verificação de suas submissões, o que se torna inviável caso contrário</strong>.</p>
 
   </article>
 

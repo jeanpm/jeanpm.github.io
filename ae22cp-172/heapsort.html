@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Filas de prioridades e Ordenação - Heapsort</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/ae22cp-172/heapsort.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Filas de prioridades e Ordenação - Heapsort</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Oct 30, 2017
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/lc21cp-172/lp-identidade.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/ae22cp-172/FAQ.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#introdução" id="markdown-toc-introdução">Introdução</a></li>
+  <li><a href="#filas-de-prioridades" id="markdown-toc-filas-de-prioridades">Filas de prioridades</a></li>
+</ul>
+
+<h1 id="introdução">Introdução</h1>
+
+<p>Para compreendermos o significado e a utilidade de <em>filas de prioridade</em>, vamos utilizar como referência inicial o algoritmo de ordenação <em>selection sort</em>. Esse algoritmo de ordenação funciona de forma bastante intuitiva</p>
+<ul>
+  <li>A cada passo, selecione o menor elemento e o insira na posição adequada.</li>
+</ul>
+
+<p>Se assumirmos que o objetivo seja ordenar a sequência de forma crescente, o menor elemento deve ser inserido na parte inicial da sequência. Na primeira iteração, portanto, o menor elemento de toda a sequência será identificado e inserido na posição zero. Na segunda iteração, o próximo menor elemento será identificado e inserido na posição um, até que toda a sequência esteja ordenada.</p>
+
+<p>Podemos perceber que em todo o procedimento acima descrito, a etapa principal é a identificação do menor elemento da sequência. Uma forma simples de implementarmos essa ideia seria uma função <code class="highlighter-rouge">min</code>, que retorna o índice do menor elemento num intervalo de $i$ a $f$.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">min</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">f</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">menor</span> <span class="o">=</span> <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">f</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">v</span><span class="p">[</span><span class="n">menor</span><span class="p">])</span> <span class="n">menor</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">menor</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Utilizando a função <code class="highlighter-rouge">min</code>, o algoritmo de ordenação selection sort se torna bastante simples.</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">selectsort</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">swap</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">min</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Observemos que a repetição do laço <code class="highlighter-rouge">for</code> em <code class="highlighter-rouge">selectsort</code> acontece $n$ vezes. Em cada uma dessas vezes, a função <code class="highlighter-rouge">min</code> é chamada para identificar o menor elemento. Na primeira chamada, <code class="highlighter-rouge">min</code> tem que percorrer toda a sequência para identificar o menor elemento, ou seja $n-1$ comparações. Na segunda chamada, <code class="highlighter-rouge">min</code> terá que percorrer um elemento a menos, pois o primeiro já foi identificado, ou seja, $n-2$ comparações.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{lr}
+[9 & 8 & 1 & 2 & 3 & 7 & 9 & 0] & i=0 & O(n-1)\\
+0 & [8 & 1 & 2 & 3 & 7 & 9 & 9] & i=1 &  O(n-2)\\
+0 & 1 & [8 & 2 & 3 & 7 & 9 & 9] & i=2 &  O(n-3)\\
+0 & 1 & 2 & [8 & 3 & 7 & 9 & 9] & i=3 &  O(n-4)\\
+\end{array} %]]></script>
+
+<p>Para contabilizarmos todas as etapas efetuadas por <code class="highlighter-rouge">min</code>, basta somar o número de comparações feito em cada uma delas.</p>
+
+<script type="math/tex; mode=display">(n-1) + (n-2) + \dots + (1) = \sum_{i=1}^n (n-i)</script>
+
+<script type="math/tex; mode=display">\sum_{i=1}^n (n-i) = n(n+1)/2 = O(n^2)</script>
+
+<h1 id="filas-de-prioridades">Filas de prioridades</h1>
+<p>A análise simples do selection sort, nos indica claramente que o maior processamento feito por este algoritmo ocorre durante a identificação do menor elemento da sequência. Sendo o custo de <code class="highlighter-rouge">min</code> determinante para o custo total do algoritmo. Em cada iteração, o único objetivo é identificar o elemento mínimo, o que nos leva a uma pergunta.</p>
+
+<ul>
+  <li>Não haveria uma estrutura de dados que nos permitisse sempre obter o menor elemento de forma mais rápida do que a feita por <code class="highlighter-rouge">min</code>?</li>
+</ul>
+
+<p>Uma das respostas para essa pergunta são as filas de prioridades. Tais estruturas tem como principal objetivo organizar os dados de modo que obter o mínimo/máximo elemento seja tão rápido quanto possível. Diferentemente das filas comuns, em que a ordem de inserção de um elemento determina sua ordem de remoção, nas filas de prioridade é a prioridade que determina a ordem de saída de um elemento. A prioridade, no caso mais simples é o próprio valor do elemento.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">selectsort</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span>
+        <span class="n">swap</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">max</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

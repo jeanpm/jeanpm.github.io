@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 28 Oct 2017 23:43:35 -0200</pubDate>
-    <lastBuildDate>Sat, 28 Oct 2017 23:43:35 -0200</lastBuildDate>
+    <pubDate>Mon, 30 Oct 2017 15:58:54 -0200</pubDate>
+    <lastBuildDate>Mon, 30 Oct 2017 15:58:54 -0200</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -164,6 +164,86 @@ Program received signal SIGSEGV, Segmentation fault.
         <guid isPermaLink="true">http://localhost:4000/ae22cp-172/FAQ.html</guid>
         
         <category>faq</category>
+        
+        
+        <category>AE22CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>Filas de prioridades e Ordenação - Heapsort</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#introdução&quot; id=&quot;markdown-toc-introdução&quot;&gt;Introdução&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#filas-de-prioridades&quot; id=&quot;markdown-toc-filas-de-prioridades&quot;&gt;Filas de prioridades&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;introdução&quot;&gt;Introdução&lt;/h1&gt;
+
+&lt;p&gt;Para compreendermos o significado e a utilidade de &lt;em&gt;filas de prioridade&lt;/em&gt;, vamos utilizar como referência inicial o algoritmo de ordenação &lt;em&gt;selection sort&lt;/em&gt;. Esse algoritmo de ordenação funciona de forma bastante intuitiva&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;A cada passo, selecione o menor elemento e o insira na posição adequada.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Se assumirmos que o objetivo seja ordenar a sequência de forma crescente, o menor elemento deve ser inserido na parte inicial da sequência. Na primeira iteração, portanto, o menor elemento de toda a sequência será identificado e inserido na posição zero. Na segunda iteração, o próximo menor elemento será identificado e inserido na posição um, até que toda a sequência esteja ordenada.&lt;/p&gt;
+
+&lt;p&gt;Podemos perceber que em todo o procedimento acima descrito, a etapa principal é a identificação do menor elemento da sequência. Uma forma simples de implementarmos essa ideia seria uma função &lt;code class=&quot;highlighter-rouge&quot;&gt;min&lt;/code&gt;, que retorna o índice do menor elemento num intervalo de $i$ a $f$.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;menor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;menor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;menor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;menor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Utilizando a função &lt;code class=&quot;highlighter-rouge&quot;&gt;min&lt;/code&gt;, o algoritmo de ordenação selection sort se torna bastante simples.&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;selectsort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Observemos que a repetição do laço &lt;code class=&quot;highlighter-rouge&quot;&gt;for&lt;/code&gt; em &lt;code class=&quot;highlighter-rouge&quot;&gt;selectsort&lt;/code&gt; acontece $n$ vezes. Em cada uma dessas vezes, a função &lt;code class=&quot;highlighter-rouge&quot;&gt;min&lt;/code&gt; é chamada para identificar o menor elemento. Na primeira chamada, &lt;code class=&quot;highlighter-rouge&quot;&gt;min&lt;/code&gt; tem que percorrer toda a sequência para identificar o menor elemento, ou seja $n-1$ comparações. Na segunda chamada, &lt;code class=&quot;highlighter-rouge&quot;&gt;min&lt;/code&gt; terá que percorrer um elemento a menos, pois o primeiro já foi identificado, ou seja, $n-2$ comparações.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{lr}
+[9 &amp; 8 &amp; 1 &amp; 2 &amp; 3 &amp; 7 &amp; 9 &amp; 0] &amp; i=0 &amp; O(n-1)\\
+0 &amp; [8 &amp; 1 &amp; 2 &amp; 3 &amp; 7 &amp; 9 &amp; 9] &amp; i=1 &amp;  O(n-2)\\
+0 &amp; 1 &amp; [8 &amp; 2 &amp; 3 &amp; 7 &amp; 9 &amp; 9] &amp; i=2 &amp;  O(n-3)\\
+0 &amp; 1 &amp; 2 &amp; [8 &amp; 3 &amp; 7 &amp; 9 &amp; 9] &amp; i=3 &amp;  O(n-4)\\
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Para contabilizarmos todas as etapas efetuadas por &lt;code class=&quot;highlighter-rouge&quot;&gt;min&lt;/code&gt;, basta somar o número de comparações feito em cada uma delas.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(n-1) + (n-2) + \dots + (1) = \sum_{i=1}^n (n-i)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\sum_{i=1}^n (n-i) = n(n+1)/2 = O(n^2)&lt;/script&gt;
+
+&lt;h1 id=&quot;filas-de-prioridades&quot;&gt;Filas de prioridades&lt;/h1&gt;
+&lt;p&gt;A análise simples do selection sort, nos indica claramente que o maior processamento feito por este algoritmo ocorre durante a identificação do menor elemento da sequência. Sendo o custo de &lt;code class=&quot;highlighter-rouge&quot;&gt;min&lt;/code&gt; determinante para o custo total do algoritmo. Em cada iteração, o único objetivo é identificar o elemento mínimo, o que nos leva a uma pergunta.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Não haveria uma estrutura de dados que nos permitisse sempre obter o menor elemento de forma mais rápida do que a feita por &lt;code class=&quot;highlighter-rouge&quot;&gt;min&lt;/code&gt;?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Uma das respostas para essa pergunta são as filas de prioridades. Tais estruturas tem como principal objetivo organizar os dados de modo que obter o mínimo/máximo elemento seja tão rápido quanto possível. Diferentemente das filas comuns, em que a ordem de inserção de um elemento determina sua ordem de remoção, nas filas de prioridade é a prioridade que determina a ordem de saída de um elemento. A prioridade, no caso mais simples é o próprio valor do elemento.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;selectsort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Mon, 30 Oct 2017 13:50:00 -0200</pubDate>
+        <link>http://localhost:4000/ae22cp-172/heapsort.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/heapsort.html</guid>
+        
+        <category>ordenação</category>
         
         
         <category>AE22CP-172</category>
@@ -406,6 +486,7 @@ Program received signal SIGSEGV, Segmentation fault.
   &lt;li&gt;&lt;a href=&quot;#cenários-de-experimentação&quot; id=&quot;markdown-toc-cenários-de-experimentação&quot;&gt;Cenários de experimentação&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#experimentos-1&quot; id=&quot;markdown-toc-experimentos-1&quot;&gt;Experimentos&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#análise-dos-resultados&quot; id=&quot;markdown-toc-análise-dos-resultados&quot;&gt;Análise dos resultados&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#nomenclatura-de-arquivos&quot; id=&quot;markdown-toc-nomenclatura-de-arquivos&quot;&gt;Nomenclatura de arquivos&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&quot;objetivos&quot;&gt;Objetivos&lt;/h1&gt;
@@ -553,13 +634,51 @@ Program received signal SIGSEGV, Segmentation fault.
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Com esses novos valores (médias), podemos inciar a popular nossos gráficos, um para cada dado sendo avaliado. Nos gráficos abaixo inserimos os pontos referentes aos valores médios de &lt;em&gt;comparações&lt;/em&gt;, &lt;em&gt;trocas&lt;/em&gt; e &lt;em&gt;tempo&lt;/em&gt; obtidos para sequências aleatórias de tamanho $20$. Portanto, todos os pontos ficam na mesma coluna (posição 20 no eixo $x$).&lt;/p&gt;
+&lt;p&gt;Com esses novos valores (médias), podemos inciar a popular nossos gráficos, um para cada dado sendo avaliado. Nos gráficos abaixo inserimos os pontos referentes aos valores médios de &lt;em&gt;comparações&lt;/em&gt;, &lt;em&gt;trocas&lt;/em&gt; e &lt;em&gt;tempo&lt;/em&gt; obtidos para sequências crescentes de tamanho $20$. Portanto, todos os pontos ficam na mesma coluna ($n=20$).&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;../assets/AE22CP/rand_20.png&quot; alt=&quot;rand_20&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Ao efetuarmos esses mesmos experimentos mas agora com os demais tamanhos de sequência, teremos vários outros pontos para popular o gráfico, indicando o comportamento dos algoritmos com os diferentes tamanhos de sequência.&lt;/p&gt;
+&lt;p&gt;Ao efetuarmos esses mesmos experimentos mas agora com os demais tamanhos de sequência, teremos vários outros pontos para popular o gráfico, indicando o comportamento dos algoritmos com os diferentes tamanhos de sequência. As linhas pontilhadas são as referências teóricas de complexidade $O(n), O(n \log n)$ e $O(n^2)$ (da menos inclinada à mais inclinada).&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;../assets/AE22CP/rand_20_todos.png&quot; alt=&quot;rand_20&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;nomenclatura-de-arquivos&quot;&gt;Nomenclatura de arquivos&lt;/h1&gt;
+
+&lt;p&gt;Minha sugestão para que tenhamos um padrão de nomenclatura e organização dos arquivos da APS3 é a seguinte:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Crie um diretório (pasta) de nome igual ao seu RA: “227728/”&lt;/li&gt;
+  &lt;li&gt;Dentro desse diretório insira seus códigos fonte, que deverão ter como prefixo seu “RA_”:&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Caso tenha implementados todos em um mesmo arquivo, nomeie este arquivo como “RA_sort.c”&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Os arquivos produzidos para os experimentos ficarão em um subdiretório chamado “output”, exemplo:
+    &lt;ul&gt;
+      &lt;li&gt;“227728/output/”&lt;/li&gt;
+      &lt;li&gt;Para os arquivos dos experimentos, sugiro o padrão de nomenclatura: “cenario_tamanho_algoritmo.out”&lt;/li&gt;
+      &lt;li&gt;Para “cenário”, temos quatro tipos possíveis:
+        &lt;ul&gt;
+          &lt;li&gt;“rand”: sequências aleatórias&lt;/li&gt;
+          &lt;li&gt;“cres”: sequências aleatórias crescentes&lt;/li&gt;
+          &lt;li&gt;“decr”: sequências aleatórias decrescentes&lt;/li&gt;
+          &lt;li&gt;“semi”: sequências aleatórias semi-ordenadas&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Para “tamanho”, temos os valores indicados na tabela no início deste documento&lt;/li&gt;
+      &lt;li&gt;Para “algoritmo”, temos várias possibilidades, como as descritas a seguir.
+        &lt;ul&gt;
+          &lt;li&gt;Mergesort:        “merge”&lt;/li&gt;
+          &lt;li&gt;Quicksort:        “quick”&lt;/li&gt;
+          &lt;li&gt;Selectionsort:    “selct”&lt;/li&gt;
+          &lt;li&gt;Insertionsort:    “insrt”&lt;/li&gt;
+          &lt;li&gt;Bubblesort:       “bubbl”&lt;/li&gt;
+          &lt;li&gt;Heapsort:         “heaps”&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Esses padrões de nomenclatura nos dão uma melhor organização, e me permite automatizar a verificação de suas submissões, o que se torna inviável caso contrário&lt;/strong&gt;.&lt;/p&gt;
 </description>
         <pubDate>Fri, 20 Oct 2017 13:50:00 -0200</pubDate>
         <link>http://localhost:4000/ae22cp-172/APS3-ordenacao.html</link>
@@ -1483,177 +1602,6 @@ Program received signal SIGSEGV, Segmentation fault.
         <pubDate>Wed, 04 Oct 2017 10:20:00 -0300</pubDate>
         <link>http://localhost:4000/lc21cp-172/logica-predicados-deducao-1.html</link>
         <guid isPermaLink="true">http://localhost:4000/lc21cp-172/logica-predicados-deducao-1.html</guid>
-        
-        <category>predicados</category>
-        
-        
-        <category>LC21CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Lista VII - Lógica de predicados, formalização</title>
-        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#exercícios&quot; id=&quot;markdown-toc-exercícios&quot;&gt;Exercícios&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#0-predicados-unários&quot; id=&quot;markdown-toc-0-predicados-unários&quot;&gt;#0 Predicados unários&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#1--predicados-binários&quot; id=&quot;markdown-toc-1--predicados-binários&quot;&gt;#1  Predicados binários&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#2-predicados-binários&quot; id=&quot;markdown-toc-2-predicados-binários&quot;&gt;#2 Predicados binários&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#3-fórmulas-bem-formadas&quot; id=&quot;markdown-toc-3-fórmulas-bem-formadas&quot;&gt;#3 Fórmulas bem formadas&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#referências&quot; id=&quot;markdown-toc-referências&quot;&gt;Referências&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;exercícios&quot;&gt;Exercícios&lt;/h1&gt;
-
-&lt;h2 id=&quot;0-predicados-unários&quot;&gt;#0 Predicados unários&lt;/h2&gt;
-
-&lt;p&gt;Interpretando como&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;$c$: “está chovendo”&lt;/li&gt;
-  &lt;li&gt;$R$: “é uma rã”&lt;/li&gt;
-  &lt;li&gt;$V$: “é verde”&lt;/li&gt;
-  &lt;li&gt;$S$: “é saltitante”&lt;/li&gt;
-  &lt;li&gt;$I$: “é iridescente”&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Formalize as seguintes sentenças:&lt;/p&gt;
-
-&lt;p&gt;a. Todas as rãs são verdes&lt;/p&gt;
-
-&lt;p&gt;b. Nenhuma rã é verdes&lt;/p&gt;
-
-&lt;p&gt;c. Algumas rãs são verdes&lt;/p&gt;
-
-&lt;p&gt;d. Algumas rãs não são verdes&lt;/p&gt;
-
-&lt;p&gt;e. Toda coisa é uma rã.&lt;/p&gt;
-
-&lt;p&gt;f. Alguma coisa é uma rã.&lt;/p&gt;
-
-&lt;p&gt;g. Nem toda coisa é uma rã.&lt;/p&gt;
-
-&lt;p&gt;h. Nada é uma rã.&lt;/p&gt;
-
-&lt;p&gt;i. Existem rãs verdes&lt;/p&gt;
-
-&lt;p&gt;j. Qualquer coisa ou é rã ou é iridescente.&lt;/p&gt;
-
-&lt;p&gt;k. Qualquer coisa é uma rã verde.&lt;/p&gt;
-
-&lt;p&gt;l. Está chovendo e algumas rãs estão saltitando&lt;/p&gt;
-
-&lt;p&gt;m. Se está chovendo, então todas as rãs estão saltitando&lt;/p&gt;
-
-&lt;p&gt;n. Algumas coisas são verdes e algumas não são&lt;/p&gt;
-
-&lt;p&gt;o. Algumas coisas são verdes e iridescentes simultaneamente&lt;/p&gt;
-
-&lt;p&gt;p. Ou qualquer coisa é uma rã, ou nada é uma rã&lt;/p&gt;
-
-&lt;p&gt;q. Qualquer coisa ou é uma rã ou não é uma rã.&lt;/p&gt;
-
-&lt;p&gt;r. Todas as rãs são rãs.&lt;/p&gt;
-
-&lt;p&gt;s. Somente rãs são verdes.&lt;/p&gt;
-
-&lt;p&gt;t. Não existem rãs iridescentes.&lt;/p&gt;
-
-&lt;p&gt;u. Todas as rãs verdes estão saltitando&lt;/p&gt;
-
-&lt;p&gt;v. Algumas rãs verdes não estão saltitando&lt;/p&gt;
-
-&lt;p&gt;w. Não é verdade que algumas rãs verdes estão saltitando.&lt;/p&gt;
-
-&lt;p&gt;x. Se nada é verde, então não existem rãs verdes.&lt;/p&gt;
-
-&lt;p&gt;y. Rãs verdes saltam se e somente se não está chovendo.&lt;/p&gt;
-
-&lt;h2 id=&quot;1--predicados-binários&quot;&gt;#1  Predicados binários&lt;/h2&gt;
-
-&lt;p&gt;Use os predicados&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;$A(x,y)$: $x$ admira $y$&lt;/li&gt;
-  &lt;li&gt;$B(x,y)$: $x$ estava presente em $y$&lt;/li&gt;
-  &lt;li&gt;$P(x)$: $x$ é um professor&lt;/li&gt;
-  &lt;li&gt;$E(x)$: $x$ é um estudante&lt;/li&gt;
-  &lt;li&gt;$L(x)$: $x$ é uma aula&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;e o símbolo funcional (constante)&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;$m$: Maria&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;a. Maria admira todo professor&lt;/p&gt;
-
-&lt;p&gt;b. Algum professor admira Maria&lt;/p&gt;
-
-&lt;p&gt;c. Maria admira a si própria&lt;/p&gt;
-
-&lt;p&gt;d. Nenhum estudante estava presente em todas as aulas.&lt;/p&gt;
-
-&lt;p&gt;e. Nenhuma aula teve a presença de todos os estudantes&lt;/p&gt;
-
-&lt;p&gt;f. Nenhuma aula teve a presença de qualquer estudante.&lt;/p&gt;
-
-&lt;h2 id=&quot;2-predicados-binários&quot;&gt;#2 Predicados binários&lt;/h2&gt;
-&lt;p&gt;Suponha&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;$F(x,y)$: $x$ é o pai de $y$&lt;/li&gt;
-  &lt;li&gt;$M(x,y)$: $x$ é a mãe de $y$&lt;/li&gt;
-  &lt;li&gt;$H(x,y)$: $x$ é marido de $y$&lt;/li&gt;
-  &lt;li&gt;$S(x,y)$: $x$ é irmã de $y$&lt;/li&gt;
-  &lt;li&gt;$B(x,y)$: $x$ é irmão de $y$&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;É permitido usar constantes para representar nomes: ‘Ed’, ‘Patsy’&lt;/p&gt;
-
-&lt;p&gt;a. Todos têm uma mãe&lt;/p&gt;
-
-&lt;p&gt;b. Todos têm um pai e uma mãe&lt;/p&gt;
-
-&lt;p&gt;c. Todos que tem uma mãe tem um pai&lt;/p&gt;
-
-&lt;p&gt;d. Ed é um avô&lt;/p&gt;
-
-&lt;p&gt;e. Todos os pais são pais ou mães&lt;/p&gt;
-
-&lt;p&gt;f. Todos os maridos são cônjuges&lt;/p&gt;
-
-&lt;p&gt;g. Nenhum tio é tia&lt;/p&gt;
-
-&lt;p&gt;h. Todos os irmãos são irmãos ou irmãs&lt;/p&gt;
-
-&lt;p&gt;i. Nenhuma avó é pai de alguém&lt;/p&gt;
-
-&lt;p&gt;j. Ed e Patsy são marido e mulher&lt;/p&gt;
-
-&lt;p&gt;k. Carlos é cunhado de Monique.&lt;/p&gt;
-
-&lt;h2 id=&quot;3-fórmulas-bem-formadas&quot;&gt;#3 Fórmulas bem formadas&lt;/h2&gt;
-
-&lt;p&gt;Sejam $m$ uma constante, $f$ um símbolo funcional unário e $S$ e $B$ dois símbolos predicados binários. Quais das cadeias a seguir são fórmulas na lógica de predicados.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;S(m)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;B(m, f(m))&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;B(B(m,x),y)&lt;/script&gt;
-
-&lt;h1 id=&quot;referências&quot;&gt;Referências&lt;/h1&gt;
-
-&lt;p&gt;Seção 2.1: Pg. 71, &lt;a href=&quot;http://www.cse.chalmers.se/edu/course/DAT060/huthryan_lics2_sol.pdf&quot;&gt;Logica - Huth &amp;amp; Ryan (PDF).&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Capítulo 6: Pgs. 239, &lt;a href=&quot;https://racionalistasusp.files.wordpress.com/2010/01/nolt-john-rohatyn-dennis-lc3b3gica.pdf&quot;&gt;Logica - John Nolt (PDF).&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Thu, 28 Sep 2017 12:00:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/lista7-logica-predicados.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/lista7-logica-predicados.html</guid>
         
         <category>predicados</category>
         
