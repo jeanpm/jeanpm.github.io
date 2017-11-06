@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>PROVA 2 - sub</title>
+  <meta name="description" content="NOME:">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/lc21cp-172/PROVA2-sub.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">PROVA 2 - sub</h1>
+  </header>
+
+  <article class="post-content">
+    <p><strong>NOME:</strong></p>
+
+<h1 id="equivalências">Equivalências</h1>
+
+<table>
+  <tbody>
+    <tr>
+      <td>eq.1</td>
+      <td>$\phi\to\psi$</td>
+      <td>$\neg\phi\lor\psi$</td>
+    </tr>
+    <tr>
+      <td>eq.2</td>
+      <td>$\phi\leftrightarrow\psi$</td>
+      <td>$(\phi\land\psi)\lor(\neg\phi\land\neg\psi)$</td>
+    </tr>
+    <tr>
+      <td>eq.3</td>
+      <td>$\neg(\phi\land\psi)$</td>
+      <td>$\neg\phi \lor \neg \psi$</td>
+    </tr>
+    <tr>
+      <td>eq.4</td>
+      <td>$\neg(\phi\lor\psi)$</td>
+      <td>$\neg\phi\land\neg\psi$</td>
+    </tr>
+    <tr>
+      <td>eq.5</td>
+      <td>$\neg(\phi\to\psi)$</td>
+      <td>$\phi\land \neg \psi$</td>
+    </tr>
+    <tr>
+      <td>eq.6</td>
+      <td>$\neg(\phi\leftrightarrow\psi)$</td>
+      <td>$(\phi\land \neg\psi)\lor (\neg\phi\land\psi)$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>(2,0pts)</strong></p>
+
+<p><strong>1.</strong> Verifique se as formas de argumento a seguir são válidas ou inválidas utilizando árvores de refutação.</p>
+
+<script type="math/tex; mode=display">p \to \neg q \vdash \neg (p\land q)</script>
+
+<script type="math/tex; mode=display">p\lor q, \neg p, \neg q \vdash r</script>
+
+<script type="math/tex; mode=display">\vdash (p\to q) \leftrightarrow \neg (p \land \neg q)</script>
+
+<script type="math/tex; mode=display">\neg (p\lor q), r\leftrightarrow p \vdash  r</script>
+
+<script type="math/tex; mode=display">p\leftrightarrow q, \neg(q \leftrightarrow r) \vdash p \leftrightarrow r</script>
+
+<p><strong>(2,0pts)</strong></p>
+
+<p><strong>2.</strong> Utilize árvores de refutação para determinar quais das fórmulas a seguir são satifazíveis ou insatisfatíveis.</p>
+
+<script type="math/tex; mode=display">\neg((p\land q) \leftrightarrow(p\lor q))</script>
+
+<script type="math/tex; mode=display">p \leftrightarrow \neg(p\lor q)</script>
+
+<script type="math/tex; mode=display">(p\land q) \land \neg(p\lor r)</script>
+
+<script type="math/tex; mode=display">\neg ((p\to(q\land r)) \to (p\to r))</script>
+
+<p><strong>(2,0pt)</strong></p>
+
+<p><strong>3.</strong> Reescreva as sentenças a seguir como fórmulas da lógica de predicados. Utilize os predicados:</p>
+<ul>
+  <li>$G(x,y)$ : $x$ ganha de $y$</li>
+  <li>$F(x)$ : $x$ é um time de futebol</li>
+  <li>$Z(x,y)$: $x$ é zagueiro de $y$</li>
+  <li>$P(x,y)$: $x$ perde para $y$</li>
+  <li>“c”: Coritiba</li>
+  <li>“j”: Joinville</li>
+</ul>
+
+<p>a. Todo time de futebol tem um zagueiro</p>
+
+<p>b. Se o Joinville ganha do Coritiba, então o Joinville não perde para todos os times de futebol</p>
+
+<p>c. O Coritiba ganha de algum time de futebol.</p>
+
+<p>d. O Joinville ganhha de algum time que ganha do Coritiba</p>
+
+<p><strong>(1,0pts)</strong></p>
+
+<p><strong>4.</strong> a) Descreva em linguagem natural cada uma das fórmulas. b) Reescreva as fórmulas utilizando outro quantificador.</p>
+
+<script type="math/tex; mode=display">\neg \forall x \neg Fx</script>
+
+<script type="math/tex; mode=display">\exists x \neg Fx</script>
+
+<script type="math/tex; mode=display">\forall x \neg Fx</script>
+
+<script type="math/tex; mode=display">\neg \exists x \neg Fx</script>
+
+<p><strong>(3,0pts)</strong></p>
+
+<p><strong>5.</strong> Demonstre 5 das seguintes formas de argumento da lógica de predicados.</p>
+
+<script type="math/tex; mode=display">\exists x Fx \vdash \exists x \exists y(Fx \land Fy)</script>
+
+<script type="math/tex; mode=display">\forall x(Fx \leftrightarrow r), r \vdash Fa</script>
+
+<script type="math/tex; mode=display">\neg \forall x(Fx \land Gx) \vdash \exists x(\neg Fx \lor \neg Gx)</script>
+
+<script type="math/tex; mode=display">\neg \exists x \exists y Lxy \vdash \forall x \neg Lxx</script>
+
+<script type="math/tex; mode=display">\forall x(Fx \to Gx) \vdash \exists x Fx \to \exists x Gx</script>
+
+<script type="math/tex; mode=display">\forall x \forall y(Fxy \to \neg Fyx) \vdash \forall x \neg Fxx</script>
+
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

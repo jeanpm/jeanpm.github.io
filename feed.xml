@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 30 Oct 2017 15:58:54 -0200</pubDate>
-    <lastBuildDate>Mon, 30 Oct 2017 15:58:54 -0200</lastBuildDate>
+    <pubDate>Mon, 06 Nov 2017 16:14:53 -0200</pubDate>
+    <lastBuildDate>Mon, 06 Nov 2017 16:14:53 -0200</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -171,11 +171,326 @@ Program received signal SIGSEGV, Segmentation fault.
       </item>
     
       <item>
+        <title>Algoritmos ótimos para Ordenação por comparação</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#introdução&quot; id=&quot;markdown-toc-introdução&quot;&gt;Introdução&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#ordenação-por-comparações&quot; id=&quot;markdown-toc-ordenação-por-comparações&quot;&gt;Ordenação por comparações&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#Árvore-de-decisão&quot; id=&quot;markdown-toc-Árvore-de-decisão&quot;&gt;Árvore de decisão&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#altura-da-árvore-de-decisão&quot; id=&quot;markdown-toc-altura-da-árvore-de-decisão&quot;&gt;Altura da árvore de decisão&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#limitante-inferior&quot; id=&quot;markdown-toc-limitante-inferior&quot;&gt;Limitante Inferior&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#qual-seria-o-limitante-inferior-para-a-busca-binária&quot; id=&quot;markdown-toc-qual-seria-o-limitante-inferior-para-a-busca-binária&quot;&gt;Qual seria o limitante inferior para a busca binária?&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;introdução&quot;&gt;Introdução&lt;/h1&gt;
+
+&lt;p&gt;Até então discutimos vários algoritmo de ordenação como alternativas para solucionar o mesmo problema. Dada uma sequência numérica $x_1,\dots,x_n$, reordenar a sequência de modo a produzir uma nova que respeite uma relação de ordem:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;x_i \leq x_{i+1}, \qquad i=1,\dots,n-1&lt;/script&gt;
+
+&lt;p&gt;A comparação de eficiência entre os algoritmos discutidos tem sido feita considerando principalmente o pior caso de cada um, ou seja, sequências de entrada que levam esses algoritmos a terem seu pior desempenho, seja em tempo de execução ou número de comparações. Tal comparação teórica também pode ser feita em ao menos dois casos adicionais:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;melhor caso, e&lt;/li&gt;
+  &lt;li&gt;caso médio.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;De forma genérica, o melhor caso de qualquer algoritmo representa tipos de entradas para as quais ele tem o seu melhor desempenho (menor número de comparações). Nos algoritmos de ordenação, isso geralmente ocorre quando a sequência já está ordenada da forma correta (ver tabela: buble sort e insertion sort).&lt;/p&gt;
+
+&lt;p&gt;O caso médio, por outro lado, representa o comportamento médio do algoritmo em todas as entradas possíveis. O desempenho médio desses algoritmos pode ser avaliado de forma aproximada por meio de experimentos. A tabela abaixo nos indica a complexidade de cada um dos algoritmos vistos até então nesses três casos.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Algoritmo&lt;/th&gt;
+      &lt;th&gt;Melhor caso&lt;/th&gt;
+      &lt;th&gt;Caso médio&lt;/th&gt;
+      &lt;th&gt;Pior caso&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Bubble sort&lt;/td&gt;
+      &lt;td&gt;$O(n)$&lt;/td&gt;
+      &lt;td&gt;$O(n^2)$&lt;/td&gt;
+      &lt;td&gt;$O(n^2)$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Selection sort&lt;/td&gt;
+      &lt;td&gt;$O(n^2)$&lt;/td&gt;
+      &lt;td&gt;$O(n^2)$&lt;/td&gt;
+      &lt;td&gt;$O(n^2)$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Insertion sort&lt;/td&gt;
+      &lt;td&gt;$O(n)$&lt;/td&gt;
+      &lt;td&gt;$O(n^2)$&lt;/td&gt;
+      &lt;td&gt;$O(n^2)$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Quicksort&lt;/td&gt;
+      &lt;td&gt;$O(n \log n)$&lt;/td&gt;
+      &lt;td&gt;$O(n \log n)$&lt;/td&gt;
+      &lt;td&gt;$O(n^2)$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Mergesort&lt;/td&gt;
+      &lt;td&gt;$O(n \log n)$&lt;/td&gt;
+      &lt;td&gt;$O(n \log n)$&lt;/td&gt;
+      &lt;td&gt;$O(n \log n)$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Heapsort&lt;/td&gt;
+      &lt;td&gt;$O(n \log n)$&lt;/td&gt;
+      &lt;td&gt;$O(n \log n)$&lt;/td&gt;
+      &lt;td&gt;$O(n \log n)$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Tais resultados teóricos nos dão um bom indicativo da eficiência relativa de cada um desses algoritmos. No entanto, caso dois algoritmos tenham a mesma complexidade teórica (ex.: quicksort, mergesort e heapsort) eles não são suficientes para dizermos qual algoritmo será mais “rápido” do ponto de vista prático. Isso ocorre pois na prática existem outras características que influenciarão o desempenho do algoritmo, como exemplo, podemos citar: forma de acesso à memória, menor número de trocas, qualidade da implementação, etc.&lt;/p&gt;
+
+&lt;p&gt;Algoritmos como o &lt;code class=&quot;highlighter-rouge&quot;&gt;quicksort&lt;/code&gt; são muito úteis na prática. Porém, como eficiência nunca é demais, podemos nos perguntar: – &lt;strong&gt;“Não existiria algoritmo mais rápido?”&lt;/strong&gt; –. O objetivo desta seção é oferecer uma resposta a essa pergunta.&lt;/p&gt;
+
+&lt;h1 id=&quot;ordenação-por-comparações&quot;&gt;Ordenação por comparações&lt;/h1&gt;
+
+&lt;h2 id=&quot;Árvore-de-decisão&quot;&gt;Árvore de decisão&lt;/h2&gt;
+&lt;p&gt;Ao examinarmos a implementação dos algoritmos acima podemos notar algo em comum. Todos eles utilizam comparações entre pares de elementos $x_i, x_j$ para determinar a ordem relativa entre esses elementos. Obviamente, cada uma dessas comparações pode oferecer como resposta, apenas uma dentre duas possibilidades que existem como resposta:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;$x_i \leq x_j$, ou&lt;/li&gt;
+  &lt;li&gt;$x_j \leq x_i$.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A ordem que os elementos serão comparados, ou a quantidade de vezes que um mesmo par de elementos será comparado depende de um algoritmo específico e portanto deve ser ignorado nessa análise.&lt;/p&gt;
+
+&lt;p&gt;O ponto mais importante seria notar que a cada comparação $x_i \leq x_j$, um determinado algoritmo ganha informação sobre a ordem relativa desses dois elementos. Se representarmos todas as possíveis sequências de comparações, temos uma estrutura chamada &lt;strong&gt;árvore binária de decisão&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/AE22CP/decision-tree.png&quot; alt=&quot;decision-tree&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Esse tipo de árvore representa as decisões tomadas por um algoritmo qualquer, em que cada nó inicia com a informação adicional obtida da comparação feita acima dele. Por exemplo, o nó &lt;code class=&quot;highlighter-rouge&quot;&gt;2:3&lt;/code&gt; (o qual representa a comparação entre $x_2$ e $x_3$) já assume que $x_1\leq x_2$.&lt;/p&gt;
+
+&lt;h2 id=&quot;altura-da-árvore-de-decisão&quot;&gt;Altura da árvore de decisão&lt;/h2&gt;
+
+&lt;p&gt;Os nós folhas da árvore indicam qual permutação da sequência original tornaria essa sequência ordenada de forma não decrescente. Por exemplo, &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;3,1,2&amp;gt;&lt;/code&gt;, no diz que a sequência ordenada é $x_3,x_1,x_2$.&lt;/p&gt;
+
+&lt;p&gt;É de se esperar que um algoritmo correto permita uma resposta correta para toda possível entrada. Se os nós folhas da árvore nos dão a permutação da entrada que produz a resposta correta, então devem existir ao menos $n!$ permutações como nós folhas, uma para cada possível entrada. Sabendo disso,&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Qual seria o limitante inferior para a complexidade de qualquer algoritmo de ordenação por comparação?&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A ordenação de uma sequência é o procedimento descrito como um caminho que inicia na raíz da árvore de decisão e chega até uma de suas folhas, portanto o número total de comparações é equivalente a altura da árvore.&lt;/p&gt;
+
+&lt;h2 id=&quot;limitante-inferior&quot;&gt;Limitante Inferior&lt;/h2&gt;
+
+&lt;p&gt;Um limitante inferior (&lt;em&gt;lower-bound&lt;/em&gt;), como o próprio nome diz, limita por baixo a complexidade de algo. No nosso caso, esse algo é o &lt;em&gt;problema de ordenação de uma sequência&lt;/em&gt;. Como temos discutido complexidade da ordenação em termos do número de comparações, esse limitante inferior nos dará uma estimativa do menor número comparações possível, que um algoritmo teria que fazer para conseguir ordenar uma sequência qualquer. Este limitante inferior é equivalente a altura da árvore de decisão.&lt;/p&gt;
+
+&lt;p&gt;Uma árvore binária qualquer tem, em seu $\ell$-ésimo nível, $2^\ell$ nós. Sabemos que o último nível dessa árvore deve ter no mínimo $n!$ nós, portanto, no último nível&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;n! \leq 2^\ell&lt;/script&gt;
+
+&lt;p&gt;Aplicando o logaritmo em ambos os lados&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\log(n!) \leq \ell&lt;/script&gt;
+
+&lt;p&gt;Não nos preocuparemos com os detalhes da demonstração, mas a partir dessa desigualdade é possível chegar ao resultado.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\ell \geq n \log n&lt;/script&gt;
+
+&lt;p&gt;O qual significa que qualquer algoritmo de ordenação baseado em comparações terá que fazer no mínimo $n \log n$ comparações.&lt;/p&gt;
+
+&lt;h2 id=&quot;qual-seria-o-limitante-inferior-para-a-busca-binária&quot;&gt;Qual seria o limitante inferior para a busca binária?&lt;/h2&gt;
+
+&lt;p&gt;Siga a mesma ideia descrita acima para obter um limitante inferior para busca binária.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Referências&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;CORMEN, Thomas H. Desmistificando algoritmos. 1. ed. Rio de Janeiro, RJ: Elsevier, c2014. xii, 188 p. ISBN 9788535271775.&lt;a href=&quot;https://book-store.github.io/cse/thirdyear/%5BThomas_H._Cormen%5D_Algorithms_unlocked(BookZZ.org).pdf&quot;&gt;(pdf:Algorithms Unlocked)&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;CORMEN, Thomas H. et al. Algoritmos: teoria e prática. Rio de Janeiro, RJ: Campus, 2002. xvii, 916 p. ISBN 8535209263. &lt;a href=&quot;http://www.inf.ufrgs.br/~tsrodrigues/utilidades/cormem.pdf&quot;&gt;(pdf: Algoritmos)&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;MIT - https://www.youtube.com/watch?v=Nz1KZXbghj8&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+&lt;iframe width=&quot;360&quot; height=&quot;205&quot; src=&quot;https://www.youtube.com/embed/Nz1KZXbghj8&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;
+&lt;/iframe&gt;
+
+&lt;iframe width=&quot;360&quot; height=&quot;205&quot; src=&quot;https://www.youtube.com/embed/tVjVaO3KD0w&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;
+&lt;/iframe&gt;
+
+</description>
+        <pubDate>Mon, 06 Nov 2017 13:50:00 -0200</pubDate>
+        <link>http://localhost:4000/ae22cp-172/limite-inferior-ordenacao.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/limite-inferior-ordenacao.html</guid>
+        
+        <category>ordenação</category>
+        
+        
+        <category>AE22CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>Lógica de predicados - Árvores de refutação</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#introdução&quot; id=&quot;markdown-toc-introdução&quot;&gt;Introdução&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#Árvores-de-refutação&quot; id=&quot;markdown-toc-Árvores-de-refutação&quot;&gt;Árvores de refutação&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#generalização-das-Árvores-de-refutação&quot; id=&quot;markdown-toc-generalização-das-Árvores-de-refutação&quot;&gt;Generalização das Árvores de Refutação&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#quantificador-universal-forall&quot; id=&quot;markdown-toc-quantificador-universal-forall&quot;&gt;Quantificador universal ($\forall$)&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#quantificador-existencial-negado-neg-exists&quot; id=&quot;markdown-toc-quantificador-existencial-negado-neg-exists&quot;&gt;Quantificador existencial negado ($\neg \exists$)&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#quantificador-existencial-exists&quot; id=&quot;markdown-toc-quantificador-existencial-exists&quot;&gt;Quantificador existencial ($\exists$)&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#quantificador-universal-negado-neg-forall&quot; id=&quot;markdown-toc-quantificador-universal-negado-neg-forall&quot;&gt;Quantificador universal negado ($\neg \forall$)&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;introdução&quot;&gt;Introdução&lt;/h1&gt;
+
+&lt;p&gt;Estudamos na lógica proposicional dois algoritmos principais para demonstrarmos a validade e invalidade de formas de argumentos: tabelas verdade, árvores de refutação. Deste modo, dada qualquer forma de argumento com premissas e uma conclusão&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi,\psi \vdash \chi&lt;/script&gt;
+
+&lt;p&gt;é possível na lógica proposicional determinarmos se tal forma de argumento é válida ou não é valida.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Uma forma de argumento é válida&lt;/strong&gt;, se sempre que suas premissas forem verdadeiras ($\phi,\psi$) sua conclusão seja verdadeira ($\chi$)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Apesar de ineficientes em certas situações, tanto tabelas verdade quanto árvores de refutação podem, em princípio, ser utilizados para implementarmos um programa que verifique a validade de formas de argumento. Esse programa hipotético, pode tomar um tempo consideravelmente grande para chegar a uma decisão, mas ele eventualmente chegará a essa decisão, portanto diz-se que:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;A lógica proposicional é decidível&lt;/strong&gt;. Pois existem algoritmos que decidem se &lt;em&gt;qualquer&lt;/em&gt; forma de argumento é válida ou não.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Na lógica de predicados, a situação é diferente. Apesar de existirem procedimentos que nos permitem verificar a validade e invalidade de alguns tipos de formas de argumentos, não existe, e não pode existir, um procedimento que verifique &lt;em&gt;qualquer&lt;/em&gt; forma de argumento da lógica de predicados. Portanto, diz-se que:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;A lógica de predicados é indecidível&lt;/strong&gt;. Pois não existe algoritmo que decida a validade de &lt;em&gt;qualquer&lt;/em&gt; forma de argumento.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;Árvores-de-refutação&quot;&gt;Árvores de refutação&lt;/h1&gt;
+
+&lt;p&gt;As árvores de refutação para a lógica de predicados são generalizadas pela introdução de seis novas regras, as quais tratarão fórmulas precedidas pelos quantificadores universal ou existencial. No entanto, existirão situações em que apenas as regras utilizadas na lógica proposicional serão úteis. Vejamos um exemplo:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x Fx \to \forall x Gx, \neg \forall x Gx \vdash \neg \forall x Fx&lt;/script&gt;
+
+&lt;p&gt;Na primeira etapa da demonstração, apenas listamos as premissas e a negação da conclusão. Neste momento a árvore possui apenas um ramo contendo todas essas três fórmulas.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{lclr}
+&amp; 1 &amp; \forall x Fx \to \forall x Gx &amp; \mbox{(premissa)} \\
+&amp; 2&amp; \neg \forall x Gx &amp; \mbox{(premissa)} \\
+&amp; 3&amp; \neg \neg \forall x Fx &amp; \mbox{(negação da conclusão)} \\
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Como visto nas árvores de refutação da lógica proposicional, existem apenas duas regras para expansão da árvore: conjunção, disjunção. Qualquer outro operador lógico deve ser tratado por meio de fórmulas equivalentes que utilizem apenas conjunção e/ou disjunção.&lt;/p&gt;
+
+&lt;p&gt;Neste exemplo, temos uma fórmula condicional do tipo $\phi\to\psi$, representada por $\forall x Fx \to \forall x Gx$, devemos então utilizar em seu lugar uma fórmula equivalente. Como $\phi\to\psi \dashv\vdash \neg\phi\lor\psi$, podemos utilizar a equivalência.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{lclr}
+\checkmark&amp;  1&amp; \forall x Fx \to \forall x Gx &amp; \mbox{(premissa)} \\
+&amp; 2&amp; \neg \forall x Gx &amp; \mbox{(premissa)} \\
+&amp; 3&amp; \neg \neg \forall x Fx &amp; \mbox{(negação da conclusão)} \\
+&amp; 4&amp; \neg \forall x Fx \lor \forall x Gx &amp; \mbox{(Equivalência de 1)}\\
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Das três fórmulas restantes não marcadas, apenas aquela na linha 4 pode ser expandida, para tal aplicamos a regra da disjunção, a qual cria dois ramos, um para cada disjuncto.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{lclr}
+\checkmark&amp; 1 &amp; \forall x Fx \to \forall x Gx &amp; \mbox{(premissa)} \\
+&amp; 2&amp; \neg \forall x Gx &amp; \mbox{(premissa)} \\
+&amp; 3&amp; \neg \neg \forall x Fx &amp; \mbox{(negação da conclusão)} \\
+\checkmark&amp; 4&amp; \neg \forall x Fx \lor \forall x Gx &amp; \mbox{(Equivalência de 1)}\\
+&amp; 5&amp; \neg \forall x Fx \qquad\qquad \forall x Gx&amp; \mbox{(Regra da disjunção)}\\
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Neste momento, encontramos uma contradição em cada um dos ramos.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{lclr}
+\checkmark&amp; 1 &amp; \forall x Fx \to \forall x Gx &amp; \mbox{(premissa)} \\
+&amp; 2&amp; \neg \forall x Gx &amp; \mbox{(premissa)} \\
+&amp; 3&amp; \neg \neg \forall x Fx &amp; \mbox{(negação da conclusão)} \\
+\checkmark&amp;4&amp; \neg \forall x Fx \lor \forall x Gx &amp; \mbox{(Equivalência de 1)}\\
+&amp; 5&amp; \neg \forall x Fx \qquad \forall x Gx&amp; \mbox{(Regra da disjunção)}\\
+&amp; 6&amp; \perp (5,3) \qquad \perp(5,2) &amp; \\
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;As contradições fecharam todos os ramos, portanto essa é uma forma de argumento válida, significando que sempre que $\forall x Fx \to \forall x Gx$ e $\neg \forall x Gx$ forem verdadeiras, então $\neg \forall x Fx$ também será verdadeira. Esta fórmula é a versão em lógica de predicados da regra &lt;em&gt;Modus Tollens&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;generalização-das-Árvores-de-refutação&quot;&gt;Generalização das Árvores de Refutação&lt;/h1&gt;
+
+&lt;h2 id=&quot;quantificador-universal-forall&quot;&gt;Quantificador universal ($\forall$)&lt;/h2&gt;
+
+&lt;p&gt;Se uma fórmla $\forall x Fx$ aparece num ramo aberto da árvore de refutação, e $a$ é uma letra nominal que aparece numa fórmula desse ramo, então podemos instanciar a fórmula, obtendo: $Fa$. Diferente do que ocorreria para as demais regras, a fórmula $\forall x Fx$ não é marcada com $\checkmark$ neste caso, pois ela pode ser instanciada novamente com outras letras nominais que também apareçam no mesmo ramo. Apenas nos casos em que não existam letras nominais no ramo é que uma letra pode ser introduzida.&lt;/p&gt;
+
+&lt;p&gt;Demonstre a validade ou invalidade das seguintes forma de argumento.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x (Fx \to Gx), \forall x Fx \vdash Ga&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;Fa\to Gb, \forall x \neg Fx \vdash \neg Gb&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x (Fx \to Gx), \forall x Gx \vdash Fa&lt;/script&gt;
+
+&lt;h2 id=&quot;quantificador-existencial-negado-neg-exists&quot;&gt;Quantificador existencial negado ($\neg \exists$)&lt;/h2&gt;
+
+&lt;p&gt;Se uma fórmula da forma $\neg \exists x Fx$ aparece num ramo aberto, ela deverá ser marcada e substituída por sua equivalente $\forall x\neg Fx$ no final de cada ramo aberto que a contém. $\neg \exists x Fx \dashv \vdash \forall x \neg Fx$&lt;/p&gt;
+
+&lt;p&gt;Demonstre a validade ou invalidade das seguintes forma de argumento.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x (Fx \to Gx), \neg \exists x Gx \vdash \neg Fa&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \exists x(Fx \land Gx) \vdash \neg Fa&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x Fx \to \forall x Gx, \neg \exists x Gx \vdash \exists x \neg Fx&lt;/script&gt;
+
+&lt;h2 id=&quot;quantificador-existencial-exists&quot;&gt;Quantificador existencial ($\exists$)&lt;/h2&gt;
+
+&lt;p&gt;Se uma fórmula da forma $\exists x Fx$ aparece num ramo aberto, ela deve ser marcada. Escolhemos então, uma letra nominal $a$ que ainda não apareceu no mesmo ramo e instanciamos a fórmula, como $Fa$, no final de todo ramo aberto que a contenha.&lt;/p&gt;
+
+&lt;h2 id=&quot;quantificador-universal-negado-neg-forall&quot;&gt;Quantificador universal negado ($\neg \forall$)&lt;/h2&gt;
+
+&lt;p&gt;Se uma fórmula da forma $\neg \forall x Fx$ aparece num ramo aberto, ela deve ser marcada e substituída por sua equivalente $\exists x \neg Fx$.&lt;/p&gt;
+
+&lt;p&gt;Demonstre a validade ou invalidade das seguintes forma de argumento.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\exists x Fx \vdash \forall x Fx&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\exists x (Fx \land Gx) \vdash \exists Fx \land \exists Gx&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\exists x Fx, \exists x Gx \vdash \exists x(Fx \land Gx)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \neg(\exists x Fx \land \forall x \neg Fx)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x \exists y Lxy \vdash Laa&lt;/script&gt;
+
+</description>
+        <pubDate>Wed, 01 Nov 2017 10:20:00 -0200</pubDate>
+        <link>http://localhost:4000/lc21cp-172/logica-predicados-arvores-de-refutacao.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/logica-predicados-arvores-de-refutacao.html</guid>
+        
+        <category>predicados</category>
+        
+        
+        <category>LC21CP-172</category>
+        
+      </item>
+    
+      <item>
         <title>Filas de prioridades e Ordenação - Heapsort</title>
         <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#introdução&quot; id=&quot;markdown-toc-introdução&quot;&gt;Introdução&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#filas-de-prioridades&quot; id=&quot;markdown-toc-filas-de-prioridades&quot;&gt;Filas de prioridades&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#filas-de-prioridades&quot; id=&quot;markdown-toc-filas-de-prioridades&quot;&gt;Filas de prioridades&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#heap&quot; id=&quot;markdown-toc-heap&quot;&gt;Heap&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&quot;introdução&quot;&gt;Introdução&lt;/h1&gt;
@@ -232,11 +547,13 @@ Program received signal SIGSEGV, Segmentation fault.
 &lt;p&gt;Uma das respostas para essa pergunta são as filas de prioridades. Tais estruturas tem como principal objetivo organizar os dados de modo que obter o mínimo/máximo elemento seja tão rápido quanto possível. Diferentemente das filas comuns, em que a ordem de inserção de um elemento determina sua ordem de remoção, nas filas de prioridade é a prioridade que determina a ordem de saída de um elemento. A prioridade, no caso mais simples é o próprio valor do elemento.&lt;/p&gt;
 
 &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;selectsort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+
+&lt;h2 id=&quot;heap&quot;&gt;Heap&lt;/h2&gt;
 
 </description>
         <pubDate>Mon, 30 Oct 2017 13:50:00 -0200</pubDate>
@@ -341,6 +658,133 @@ Program received signal SIGSEGV, Segmentation fault.
         <pubDate>Thu, 26 Oct 2017 10:20:00 -0200</pubDate>
         <link>http://localhost:4000/lc21cp-172/lp-identidade.html</link>
         <guid isPermaLink="true">http://localhost:4000/lc21cp-172/lp-identidade.html</guid>
+        
+        <category>predicados</category>
+        
+        
+        <category>LC21CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>PROVA 2 - sub</title>
+        <description>&lt;p&gt;&lt;strong&gt;NOME:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;equivalências&quot;&gt;Equivalências&lt;/h1&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;eq.1&lt;/td&gt;
+      &lt;td&gt;$\phi\to\psi$&lt;/td&gt;
+      &lt;td&gt;$\neg\phi\lor\psi$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;eq.2&lt;/td&gt;
+      &lt;td&gt;$\phi\leftrightarrow\psi$&lt;/td&gt;
+      &lt;td&gt;$(\phi\land\psi)\lor(\neg\phi\land\neg\psi)$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;eq.3&lt;/td&gt;
+      &lt;td&gt;$\neg(\phi\land\psi)$&lt;/td&gt;
+      &lt;td&gt;$\neg\phi \lor \neg \psi$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;eq.4&lt;/td&gt;
+      &lt;td&gt;$\neg(\phi\lor\psi)$&lt;/td&gt;
+      &lt;td&gt;$\neg\phi\land\neg\psi$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;eq.5&lt;/td&gt;
+      &lt;td&gt;$\neg(\phi\to\psi)$&lt;/td&gt;
+      &lt;td&gt;$\phi\land \neg \psi$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;eq.6&lt;/td&gt;
+      &lt;td&gt;$\neg(\phi\leftrightarrow\psi)$&lt;/td&gt;
+      &lt;td&gt;$(\phi\land \neg\psi)\lor (\neg\phi\land\psi)$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;(2,0pts)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.&lt;/strong&gt; Verifique se as formas de argumento a seguir são válidas ou inválidas utilizando árvores de refutação.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to \neg q \vdash \neg (p\land q)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\lor q, \neg p, \neg q \vdash r&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash (p\to q) \leftrightarrow \neg (p \land \neg q)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg (p\lor q), r\leftrightarrow p \vdash  r&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\leftrightarrow q, \neg(q \leftrightarrow r) \vdash p \leftrightarrow r&lt;/script&gt;
+
+&lt;p&gt;&lt;strong&gt;(2,0pts)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2.&lt;/strong&gt; Utilize árvores de refutação para determinar quais das fórmulas a seguir são satifazíveis ou insatisfatíveis.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg((p\land q) \leftrightarrow(p\lor q))&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \leftrightarrow \neg(p\lor q)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q) \land \neg(p\lor r)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg ((p\to(q\land r)) \to (p\to r))&lt;/script&gt;
+
+&lt;p&gt;&lt;strong&gt;(2,0pt)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;3.&lt;/strong&gt; Reescreva as sentenças a seguir como fórmulas da lógica de predicados. Utilize os predicados:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;$G(x,y)$ : $x$ ganha de $y$&lt;/li&gt;
+  &lt;li&gt;$F(x)$ : $x$ é um time de futebol&lt;/li&gt;
+  &lt;li&gt;$Z(x,y)$: $x$ é zagueiro de $y$&lt;/li&gt;
+  &lt;li&gt;$P(x,y)$: $x$ perde para $y$&lt;/li&gt;
+  &lt;li&gt;“c”: Coritiba&lt;/li&gt;
+  &lt;li&gt;“j”: Joinville&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;a. Todo time de futebol tem um zagueiro&lt;/p&gt;
+
+&lt;p&gt;b. Se o Joinville ganha do Coritiba, então o Joinville não perde para todos os times de futebol&lt;/p&gt;
+
+&lt;p&gt;c. O Coritiba ganha de algum time de futebol.&lt;/p&gt;
+
+&lt;p&gt;d. O Joinville ganhha de algum time que ganha do Coritiba&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;(1,0pts)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;4.&lt;/strong&gt; a) Descreva em linguagem natural cada uma das fórmulas. b) Reescreva as fórmulas utilizando outro quantificador.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \forall x \neg Fx&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\exists x \neg Fx&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x \neg Fx&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \exists x \neg Fx&lt;/script&gt;
+
+&lt;p&gt;&lt;strong&gt;(3,0pts)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;5.&lt;/strong&gt; Demonstre 5 das seguintes formas de argumento da lógica de predicados.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\exists x Fx \vdash \exists x \exists y(Fx \land Fy)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(Fx \leftrightarrow r), r \vdash Fa&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \forall x(Fx \land Gx) \vdash \exists x(\neg Fx \lor \neg Gx)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \exists x \exists y Lxy \vdash \forall x \neg Lxx&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(Fx \to Gx) \vdash \exists x Fx \to \exists x Gx&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x \forall y(Fxy \to \neg Fyx) \vdash \forall x \neg Fxx&lt;/script&gt;
+
+</description>
+        <pubDate>Wed, 25 Oct 2017 10:20:00 -0200</pubDate>
+        <link>http://localhost:4000/lc21cp-172/PROVA2-sub.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/PROVA2-sub.html</guid>
         
         <category>predicados</category>
         
@@ -912,9 +1356,12 @@ Program received signal SIGSEGV, Segmentation fault.
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#algoritmos-de-ordenação&quot; id=&quot;markdown-toc-algoritmos-de-ordenação&quot;&gt;Algoritmos de Ordenação&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#bubble-sort&quot; id=&quot;markdown-toc-bubble-sort&quot;&gt;Bubble sort&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#selection-sort&quot; id=&quot;markdown-toc-selection-sort&quot;&gt;Selection sort&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#insertion-sort&quot; id=&quot;markdown-toc-insertion-sort&quot;&gt;Insertion sort&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#estratégias-simples&quot; id=&quot;markdown-toc-estratégias-simples&quot;&gt;Estratégias simples&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#bubble-sort&quot; id=&quot;markdown-toc-bubble-sort&quot;&gt;Bubble sort&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#selection-sort&quot; id=&quot;markdown-toc-selection-sort&quot;&gt;Selection sort&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#insertion-sort&quot; id=&quot;markdown-toc-insertion-sort&quot;&gt;Insertion sort&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#quicksort&quot; id=&quot;markdown-toc-quicksort&quot;&gt;Quicksort&lt;/a&gt;        &lt;ul&gt;
           &lt;li&gt;&lt;a href=&quot;#partition&quot; id=&quot;markdown-toc-partition&quot;&gt;Partition&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
@@ -955,9 +1402,15 @@ Program received signal SIGSEGV, Segmentation fault.
 
 &lt;h1 id=&quot;algoritmos-de-ordenação&quot;&gt;Algoritmos de Ordenação&lt;/h1&gt;
 
-&lt;h2 id=&quot;bubble-sort&quot;&gt;Bubble sort&lt;/h2&gt;
+&lt;p&gt;Definidos os objetivos de um algoritmo de ordenação, é interessante iniciaremos a discussão nos questionando qual seria nossa estratégia para solucionar o problema da ordenação. Dada uma sequência numérica em um vetor &lt;code class=&quot;highlighter-rouge&quot;&gt;int* v&lt;/code&gt;, qual seria sua intuição para um procedimento que reordenasse essa sequência de forma crescente?&lt;/p&gt;
 
-&lt;p&gt;Dada uma sequência de entrada, a &lt;em&gt;ordenação por bolha&lt;/em&gt; compara pares de itens $x_i$ e $x_{i+1}$, levando para posições posteriores aquele elemento que seja o maior. Na prática isso significa que se $x_{i+1}$ for maior que $x_i$ esses elementos devem trocar de posição:&lt;/p&gt;
+&lt;p&gt;Ao pensarmos um pouco sobre esse problema, são grandes as chances que tenhamos concluído algum dos algoritmos de ordenação que serão descritos a seguir.&lt;/p&gt;
+
+&lt;h2 id=&quot;estratégias-simples&quot;&gt;Estratégias simples&lt;/h2&gt;
+
+&lt;h3 id=&quot;bubble-sort&quot;&gt;Bubble sort&lt;/h3&gt;
+
+&lt;p&gt;Dada uma sequência de entrada, a &lt;em&gt;ordenação por trocas&lt;/em&gt; compara pares de itens $x_i$ e $x_{i+1}$ e os troca de posição caso $x_i&amp;gt;x_{i+1}$. Isso tem como efeito levar para posições posteriores aquele elemento que seja o maior.&lt;/p&gt;
 
 &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Trocar os elementos nas posições i e i+1
@@ -966,16 +1419,16 @@ Program received signal SIGSEGV, Segmentation fault.
 
 &lt;p&gt;O Bubble sort percorre do início ao fim do vetor várias vezes, efetuando trocas da forma acima. Na primeira passagem pelo vetor, o maior elemento é levado à posição final $x_{n}$, e, portanto, já estará na posição correta. A próxima iteração levará o segundo maior valor à posição anterior a final $x_{n-1}$ e assim sucessivamente, até que o primeiro elemento seja avaliado. Neste momento, o algoritmo precisa parar pois o vetor estará ordenado e nenhuma troca adicional ocorrerá.&lt;/p&gt;
 
-&lt;h2 id=&quot;selection-sort&quot;&gt;Selection sort&lt;/h2&gt;
+&lt;h3 id=&quot;selection-sort&quot;&gt;Selection sort&lt;/h3&gt;
 
 &lt;p&gt;Dada uma sequência de entrada, a &lt;em&gt;ordenação por seleção&lt;/em&gt; seleciona a cada passagem pelo vetor o menor elemento e o coloca na posição inicial $x_1$. Na segunda iteração o menor elemento entre $x_2$ e $x_n$ será selecionado e colocado na posição $x_2$. Ou seja, a cada iteração, o algoritmo deixa um elemento a mais na posição correta.&lt;/p&gt;
 
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Trocar os elementos nas posições i e posição do menor elemento de i-n. 
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Trocar os elementos nas posições i e posição do menor elemento de i a n. 
 &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt; 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h2 id=&quot;insertion-sort&quot;&gt;Insertion sort&lt;/h2&gt;
+&lt;h3 id=&quot;insertion-sort&quot;&gt;Insertion sort&lt;/h3&gt;
 
 &lt;p&gt;Dada uma sequência de entrada, a &lt;em&gt;ordenação por inserção&lt;/em&gt; percorre a sequência e para cada valor em uma determinada posição $i$, reinsere o valor $x_i$ na sua posição correta no momento. A posição correta $j$ para um elemento qualquer $x_i$ em um dado momento é aquela posição tal que $x_{j} \leq x_i \leq x_{j+1}$.&lt;/p&gt;
 
@@ -1073,540 +1526,6 @@ Program received signal SIGSEGV, Segmentation fault.
         
         
         <category>AE22CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Lista VIII - Lógica de predicados, dedução</title>
-        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#equivalências&quot; id=&quot;markdown-toc-equivalências&quot;&gt;Equivalências&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#exercícios&quot; id=&quot;markdown-toc-exercícios&quot;&gt;Exercícios&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#referências&quot; id=&quot;markdown-toc-referências&quot;&gt;Referências&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;equivalências&quot;&gt;Equivalências&lt;/h1&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;$\phi\to\psi$&lt;/td&gt;
-      &lt;td&gt;$\neg\phi\lor\psi$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2&lt;/td&gt;
-      &lt;td&gt;$\phi\leftrightarrow\psi$&lt;/td&gt;
-      &lt;td&gt;$(\phi\land\psi)\lor(\neg\phi\land\neg\psi)$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;3&lt;/td&gt;
-      &lt;td&gt;$\neg(\phi\land\psi)$&lt;/td&gt;
-      &lt;td&gt;$\neg\psi \lor \neg \psi$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;4&lt;/td&gt;
-      &lt;td&gt;$\neg(\phi\lor\psi)$&lt;/td&gt;
-      &lt;td&gt;$\neg\phi\land\neg\psi$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;5&lt;/td&gt;
-      &lt;td&gt;$\neg(\phi\to\psi)$&lt;/td&gt;
-      &lt;td&gt;$\phi\land \neg \psi$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;6&lt;/td&gt;
-      &lt;td&gt;$\neg(\phi\leftrightarrow\psi)$&lt;/td&gt;
-      &lt;td&gt;$(\phi\land \neg\psi)\lor (\neg\phi\land\psi)$&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h1 id=&quot;exercícios&quot;&gt;Exercícios&lt;/h1&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x Fx \vdash Fa \land (Fb \land (Fc \land Fd))&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(Fx \lor Gx), \neg Fa \vdash \neg Ga&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg Fa \vdash \neg \forall x (Fx \land Gx)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(Fx \leftrightarrow r), r \vdash Fa&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(\neg Fx \lor \neg Gx) \vdash \neg(Fa \land Ga)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(Fx \to Gx) \vdash \forall x(\neg Gx \to \neg Fx)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(Fx \to Gx) \vdash \forall x\neg Gx \to \forall x \neg Fx&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x \forall y Fxy \vdash \forall x Fxx&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x Fx \vdash \forall x Gx \to \forall x (Fx \land Gx)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x \forall y(Fxy \to \neg Fyx) \vdash \forall x \neg Fxx&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x Fx \vdash \exists x Fx&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \exists x Fx \vdash \neg Fa&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\exists x \neg Fx \vdash \neg \forall x Fx&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(Fx \to Gx) \vdash \exists x Fx \to \exists x Gx&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \exists x (Fx \land Gx) \vdash \forall x (\neg Fx \lor \neg Gx)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \forall x(Fx \land Gx) \vdash \exists x(\neg Fx \lor \neg Gx)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \exists x \exists y Lxy \vdash \forall x \neg Lxx&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\exists x Fx \vdash \exists x \exists y(Fx \land Fy)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x \neg Fx \vdash \forall x(Fx \to Gx)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x \neg Fx \vdash \forall x(Fx \to \neg Gx)&lt;/script&gt;
-
-&lt;h1 id=&quot;referências&quot;&gt;Referências&lt;/h1&gt;
-
-&lt;p&gt;Seção 2.1: Pg. 71, &lt;a href=&quot;http://www.cse.chalmers.se/edu/course/DAT060/huthryan_lics2_sol.pdf&quot;&gt;Logica - Huth &amp;amp; Ryan (PDF).&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Capítulo 6: Pgs. 254-284, &lt;a href=&quot;https://racionalistasusp.files.wordpress.com/2010/01/nolt-john-rohatyn-dennis-lc3b3gica.pdf&quot;&gt;Logica - John Nolt (PDF).&lt;/a&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Thu, 05 Oct 2017 10:00:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/lista8-logica-predicados-deducao.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/lista8-logica-predicados-deducao.html</guid>
-        
-        <category>predicados</category>
-        
-        
-        <category>LC21CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Lógica de predicados - Regras de dedução II</title>
-        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#quantificador-existencial&quot; id=&quot;markdown-toc-quantificador-existencial&quot;&gt;Quantificador existencial&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#regra-de-introdução&quot; id=&quot;markdown-toc-regra-de-introdução&quot;&gt;Regra de introdução&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplo-1&quot; id=&quot;markdown-toc-exemplo-1&quot;&gt;Exemplo 1&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplo-2&quot; id=&quot;markdown-toc-exemplo-2&quot;&gt;Exemplo 2&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplo-4&quot; id=&quot;markdown-toc-exemplo-4&quot;&gt;Exemplo 4&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplo-5&quot; id=&quot;markdown-toc-exemplo-5&quot;&gt;Exemplo 5&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#regra-eliminação&quot; id=&quot;markdown-toc-regra-eliminação&quot;&gt;Regra Eliminação&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplo-1-1&quot; id=&quot;markdown-toc-exemplo-1-1&quot;&gt;Exemplo 1&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplo-2-619---pg277&quot; id=&quot;markdown-toc-exemplo-2-619---pg277&quot;&gt;Exemplo 2 (6.19 - pg.277)&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplo-3-620&quot; id=&quot;markdown-toc-exemplo-3-620&quot;&gt;Exemplo 3 (6.20)&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplo-4-621&quot; id=&quot;markdown-toc-exemplo-4-621&quot;&gt;Exemplo 4 (6.21)&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplo-5-1&quot; id=&quot;markdown-toc-exemplo-5-1&quot;&gt;Exemplo 5&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplo-6&quot; id=&quot;markdown-toc-exemplo-6&quot;&gt;Exemplo 6&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplo-7&quot; id=&quot;markdown-toc-exemplo-7&quot;&gt;Exemplo 7&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;quantificador-existencial&quot;&gt;Quantificador existencial&lt;/h2&gt;
-
-&lt;p&gt;Assim como todos os demais operadores o quantificador existencial ($\exists$) também possui duas regras de inferência: introdução e eliminação.&lt;/p&gt;
-
-&lt;h3 id=&quot;regra-de-introdução&quot;&gt;Regra de introdução&lt;/h3&gt;
-
-&lt;p&gt;A regra de introdução do quantificador existencial segue de forma intuitiva e direta a partir de sua definição. Suponhamos, por exemplo, o caso específico $F(a)\land G(a)$. Por si só, este exemplo já nos permite concluir a forma mais geral $\exists x (Fx \land Gx)$, nesta situação $a$ serviu como prova da existência de um determinado $x$ para o qual $Fx \land Gx$ fosse verdadeira.&lt;/p&gt;
-
-&lt;h4 id=&quot;exemplo-1&quot;&gt;Exemplo 1&lt;/h4&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x (Fx \lor Gx) \vdash \exists x(Fx \lor Gx)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{array}{llr}
-1 &amp; \forall x (Fx \lor Gx) &amp; \mbox{premissa}\\
-2 &amp; Fa \lor Ga       &amp; \mbox{e-}\forall 1 \\
-3 &amp; \exists x (Fx \lor Gx) &amp; \mbox{Introdução do existencial em 2}
-\end{array} %]]&gt;&lt;/script&gt;
-
-&lt;h4 id=&quot;exemplo-2&quot;&gt;Exemplo 2&lt;/h4&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x (Fx \lor Gx) \vdash \exists x Fx \lor \exists x Gx&lt;/script&gt;
-
-&lt;p&gt;Apesar da similaridade como exemplo anterior, a demonstração neste caso é um pouco mais complexa. Precisamos provar que é possível derivar a conclusão a partir de cada disjuncto, utilizando a regra de eliminação da disjunção.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dfrac{\phi\quad\psi\quad (\phi\to\chi) \quad (\psi\to\chi)}{\chi}&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{array}{llr}
-1 &amp; \forall x (Fx \lor Gx) &amp; \mbox{premissa}\\
-2 &amp; Fa \lor Ga       &amp; \mbox{e-}\forall 1 \\
-3.1 &amp; \qquad Fa  &amp; \mbox{Hipótese 1 da disjunção}\\
-3.2 &amp; \qquad \exists x Fx &amp; \mbox{i-}\exists 3.1 \\
-3.3 &amp; \qquad \exists x Fx \lor \exists x Gx &amp; \mbox{i-}\lor 3.2 \\
-4   &amp; Fa \to (\exists x Fx \lor \exists x Gx) &amp; \mbox{i-}\to 3.1-3.3 \\
-5.1   &amp; \qquad Ga      &amp; \mbox{Hipótese 2 da disjunção} \\
-5.2 &amp; \qquad \exists x Gx &amp; \mbox{i-}\exists 5 \\
-5.3 &amp; \qquad \exists x Fx \lor \exists x Gx &amp; \mbox{i-}\lor 5.2 \\
-6  &amp; Ga \to (\exists x Fx \lor \exists x Gx) &amp; \mbox{i-}\to 5.1-5.3 \\
-7  &amp; \exists x Fx \lor \exists x Gx &amp; \mbox{e-}\lor 2, 4, 6
-\end{array} %]]&gt;&lt;/script&gt;
-
-&lt;h4 id=&quot;exemplo-4&quot;&gt;Exemplo 4&lt;/h4&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \exists x Fx \vdash \forall x \neg Fx&lt;/script&gt;
-
-&lt;p&gt;Para provar a inexistência de um $Fa$, utilizamos a estratégia de redução ao absurdo.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{array}{llr}
-1 &amp; \neg \exists x Fx &amp; \mbox{premissa}\\
-2.1 &amp; Fa        &amp; \mbox{Hipótese de absurdo} \\
-2.2 &amp; \exists x Fx &amp; \mbox{Introdução do existencial 2.1}\\
-2.3 &amp; \exists x Fx \land \neg \exists x Fx &amp; \mbox{Introdução da conjunção 1,2.2}\\
-3   &amp; \neg Fa  &amp; \mbox{Por redução ao absurdo 2.1-2.3}\\
-4   &amp; \forall x \neg Fx  &amp; \mbox{Introdução do universal 3}
-\end{array} %]]&gt;&lt;/script&gt;
-
-&lt;h4 id=&quot;exemplo-5&quot;&gt;Exemplo 5&lt;/h4&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \exists x (Fx \land \neg Gx) \vdash \forall x (Fx \to Gx)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{array}{llr}
-1 &amp; \neg \exists x (Fx \land \neg Gx) &amp; \mbox{premissa}\\
-2.1.0 &amp; \qquad Fa             &amp; \mbox{Hipótese para o condicional}\\
-2.1.1 &amp; \qquad\qquad \neg Ga &amp; \mbox{Hipótese para o absurdo}\\
-2.1.2 &amp; \qquad\qquad Fa \land \neg Ga &amp; \mbox{Introdução conjunção 2.1,2.1.1}\\
-2.1.3 &amp; \qquad\qquad \exists x (Fx \land \neg Gx) &amp; \mbox{Introdução existencial 2.1.2}\\
-2.1.4 &amp; \qquad\qquad Ga &amp; \mbox{Absurdo em 1 e 2.1.3}\\
-2.2   &amp; \qquad Fa \to Ga &amp; \mbox{Introdução do condicional 2.1.0 - 2.1.4}\\\
-3   &amp; \forall x (Fx \to Gx) &amp; \mbox{Introdução universal 2.2}
-\end{array} %]]&gt;&lt;/script&gt;
-
-&lt;h3 id=&quot;regra-eliminação&quot;&gt;Regra Eliminação&lt;/h3&gt;
-
-&lt;p&gt;A eliminação do quantificador existencial segue raciocínio contrário. Da premissa que afirma a existência de algo, por exemplo, $\exists x (Fx \land Gx)$, sabemos que para algum $x$ a propriedade é verdadeira. No entanto, não sabemos qual elemento substituir no lugar de $x$, visto que pode ser o caso de nem todos possíveis elementos satisfazerem $(Fx \land Gx)$.&lt;/p&gt;
-
-&lt;p&gt;Por esse motivo, para eliminarmos um quantificador existencial, temos que o fazer por meio de uma hipótese, a qual irá supor que um determinado objetvo $a$ satisfaça a propriedade em questão.&lt;/p&gt;
-
-&lt;h4 id=&quot;exemplo-1-1&quot;&gt;Exemplo 1&lt;/h4&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\exists (Fx \land Gx) \vdash \exists x Fx&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{array}{llr}
-1 &amp; \exists x (Fx \land Gx) &amp; \mbox{premissa}\\
-2 &amp; \qquad Fa \land Ga     &amp;  \mbox{Hipótese para eliminação do existencial}\\
-3 &amp; \qquad Fa             &amp;   \mbox{Eliminação da conjunção 2}\\
-4 &amp; \qquad \exists x Fx   &amp;   \mbox{Introdução do existencial 3}\\
-5 &amp; \exists x Fx   &amp;  \mbox{Eliminação do existencial 1, 2-4}
-\end{array} %]]&gt;&lt;/script&gt;
-
-&lt;h4 id=&quot;exemplo-2-619---pg277&quot;&gt;Exemplo 2 (6.19 - pg.277)&lt;/h4&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x (Fx \to Gx), \exists x Fx \vdash \exists x Gx&lt;/script&gt;
-
-&lt;h4 id=&quot;exemplo-3-620&quot;&gt;Exemplo 3 (6.20)&lt;/h4&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\exists x (Fx \lor Gx) \vdash \exists x Fx \lor \exists x Gx&lt;/script&gt;
-
-&lt;h4 id=&quot;exemplo-4-621&quot;&gt;Exemplo 4 (6.21)&lt;/h4&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\exists Fx \lor \exists x Gx \vdash \exists x (Fx \lor Gx)&lt;/script&gt;
-
-&lt;h4 id=&quot;exemplo-5-1&quot;&gt;Exemplo 5&lt;/h4&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\exists x \forall y Lxy \vdash \forall x \exists y Lyx&lt;/script&gt;
-
-&lt;h4 id=&quot;exemplo-6&quot;&gt;Exemplo 6&lt;/h4&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x (Fx \to \exists y Lxy), \exists x (Fx \land Gx) \vdash \exists x\exists y (Gx \land Lxy)&lt;/script&gt;
-
-&lt;h4 id=&quot;exemplo-7&quot;&gt;Exemplo 7&lt;/h4&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x (Fx \to \neg Gx) \vdash \neg \exists x (Fx \land Gx)&lt;/script&gt;
-</description>
-        <pubDate>Wed, 04 Oct 2017 10:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/logica-predicados-deducao-2.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/logica-predicados-deducao-2.html</guid>
-        
-        <category>predicados</category>
-        
-        
-        <category>LC21CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Lógica de predicados - Regras de dedução I</title>
-        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#regras-de-inferência&quot; id=&quot;markdown-toc-regras-de-inferência&quot;&gt;Regras de inferência&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#quantificador-universal&quot; id=&quot;markdown-toc-quantificador-universal&quot;&gt;Quantificador universal&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#regra-de-eliminação&quot; id=&quot;markdown-toc-regra-de-eliminação&quot;&gt;Regra de eliminação&lt;/a&gt;            &lt;ul&gt;
-              &lt;li&gt;&lt;a href=&quot;#exemplo-1&quot; id=&quot;markdown-toc-exemplo-1&quot;&gt;Exemplo 1&lt;/a&gt;&lt;/li&gt;
-              &lt;li&gt;&lt;a href=&quot;#exemplo-2&quot; id=&quot;markdown-toc-exemplo-2&quot;&gt;Exemplo 2&lt;/a&gt;&lt;/li&gt;
-              &lt;li&gt;&lt;a href=&quot;#exemplo-3&quot; id=&quot;markdown-toc-exemplo-3&quot;&gt;Exemplo 3&lt;/a&gt;&lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#regra-de-introdução&quot; id=&quot;markdown-toc-regra-de-introdução&quot;&gt;Regra de introdução&lt;/a&gt;            &lt;ul&gt;
-              &lt;li&gt;&lt;a href=&quot;#exemplo-1-1&quot; id=&quot;markdown-toc-exemplo-1-1&quot;&gt;Exemplo 1&lt;/a&gt;&lt;/li&gt;
-              &lt;li&gt;&lt;a href=&quot;#exemplo-2-1&quot; id=&quot;markdown-toc-exemplo-2-1&quot;&gt;Exemplo 2&lt;/a&gt;&lt;/li&gt;
-              &lt;li&gt;&lt;a href=&quot;#exemplo-3-1&quot; id=&quot;markdown-toc-exemplo-3-1&quot;&gt;Exemplo 3&lt;/a&gt;&lt;/li&gt;
-              &lt;li&gt;&lt;a href=&quot;#exemplo-4&quot; id=&quot;markdown-toc-exemplo-4&quot;&gt;Exemplo 4&lt;/a&gt;&lt;/li&gt;
-              &lt;li&gt;&lt;a href=&quot;#exemplo-5&quot; id=&quot;markdown-toc-exemplo-5&quot;&gt;Exemplo 5&lt;/a&gt;&lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;regras-de-inferência&quot;&gt;Regras de inferência&lt;/h1&gt;
-
-&lt;p&gt;O cálculo de predicados usa as mesmas dez regras do cálculo proposicional. Adicionalmente, temos as regras de introdução e de eliminação dos quantificadores. Relembremos um exemplo do cálculo proposicional&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg r \lor q, q \to p \vdash r \to p&lt;/script&gt;
-
-&lt;p&gt;Este exemplo pode ser demonstrado utilizando a abordagem de prova de condicionais: assumir o antecedente como hipótese e derivar o consequente. Vejamos como ficaria&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{array}{llr}
-1 &amp; \neg r \lor q &amp; \mbox{premissa}\\
-2 &amp; q \to p       &amp; \mbox{premissa}\\
-3 &amp; r             &amp; \mbox{hipótese}\\
-4 &amp; \neg\neg r     &amp; \mbox{Dupla negação 3}\\
-5 &amp; q            &amp; \mbox{Silogismo disjuntivo 1,4}\\
-6 &amp; p           &amp;  \mbox{Modus ponens 2,5}\\
-7 &amp; r \to p     &amp; \mbox{Prova do condicional 3-6}
-\end{array} %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;Um exemplo similar na lógica de predicados, poderia ser provado utilizando-se das mesmas regras de derivação. Consideremos, por exemplo, a forma de argumento.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg F(a) \lor \exists x F(x), \exists x F(x) \to p \vdash F(a) \to p&lt;/script&gt;
-
-&lt;p&gt;Se substituirmos as subfórmulas análogamente ao exemplo anterior, temos a demonstração a seguir:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{array}{llr}
-1 &amp; \neg F(a) \lor \exists x F(x) &amp; \mbox{premissa}\\
-2 &amp; \exists x F(x) \to p       &amp; \mbox{premissa}\\
-3 &amp; F(a)             &amp; \mbox{hipótese}\\
-4 &amp; \neg\neg F(a)     &amp; \mbox{Dupla negação 3}\\
-5 &amp; \exists x F(x)            &amp; \mbox{Silogismo disjuntivo 1,4}\\
-6 &amp; p           &amp;  \mbox{Modus ponens 2,5}\\
-7 &amp; F(a) \to p     &amp; \mbox{Prova do condicional 3-6}
-\end{array} %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;Neste exemplo da lógica de predicados não precisamos utilizar regras de inferência para os quantificadores, deste modo a demonstração se restringiu à utilização das regras já definidas para a lógica proposicional. Como esse não é sempre o caso, precisamos especificar o funcionamento das regras de derivação para os quantificadores: &lt;em&gt;universal&lt;/em&gt; ($\forall$) e &lt;em&gt;existencial&lt;/em&gt; ($\exists$).&lt;/p&gt;
-
-&lt;h2 id=&quot;quantificador-universal&quot;&gt;Quantificador universal&lt;/h2&gt;
-
-&lt;h3 id=&quot;regra-de-eliminação&quot;&gt;Regra de eliminação&lt;/h3&gt;
-&lt;p&gt;Iremos iniciar pela definição da regra de eliminação do quantificador universal ($\forall$e). Intuitivamente a regra de eliminação do quantificador universal é bem simples e segue a seguinte ideia:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Se algo é valido para todos objetos, também é válido para um objeto em específico.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Portanto, uma fórmula geral do tipo $\forall x P(x)$, pode ser substituída durante uma demonstração por um caso específico $P(a)$, onde $a$ é um termo qualquer. Vejamos o seguinte exemplo.&lt;/p&gt;
-
-&lt;p&gt;“Todos os homens são mortais”&lt;/p&gt;
-
-&lt;p&gt;“Sócrates é homem”&lt;/p&gt;
-
-&lt;p&gt;“Sócrates é mortal”&lt;/p&gt;
-
-&lt;p&gt;Se definirmos os predicados:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;$H(x):$ $x$ é homem&lt;/li&gt;
-  &lt;li&gt;$M(x):$ $x$ é mortal&lt;/li&gt;
-  &lt;li&gt;$s:$ Sócrates&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Temos o seguinte argumento formalizado:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(H(x)\to M(x)), H(s) \vdash M(s)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{array}{llr}
-1 &amp; \forall x(H(x)\to M(x)) &amp; \mbox{premissa}\\
-2 &amp; H(s)       &amp; \mbox{premissa}\\
-3 &amp; H(s)\to M(s) &amp; \mbox{Eliminação do universal 1}\\
-4 &amp; M(s)        &amp;  \mbox{Modus Ponens 2, 3}
-\end{array} %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;O caso genérico indicado pela premissa $\forall x(H(x)\to M(x))$ pode ser especializado em termos de $s$ (Sócrates), levando à fórmula $H(s)\to M(s)$. Ou seja, se o fato de ser homem implica ser mortal, essa regra se aplica a qualquer homem $x$, inclusive Sócrates $s$. Pode-se dizer que $H(s)\to M(s)$ é uma instanciação da regra universal.&lt;/p&gt;
-
-&lt;h4 id=&quot;exemplo-1&quot;&gt;Exemplo 1&lt;/h4&gt;
-
-&lt;p&gt;Prove a validade da seguinte forma de argumento&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x ~F(x)\to G(x), ~\forall x F(x) ~~~\vdash~~ G(a)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{array}{llr}
-1 &amp; \forall x ~F(x)\to G(x) &amp; \mbox{premissa}\\
-2 &amp; \forall x F(x)       &amp; \mbox{premissa}\\
-3 &amp; F(a)\to G(a) &amp; \mbox{Eliminação do universal 1}\\
-4 &amp; F(a)        &amp;  \mbox{Eliminação do universal 2}\\
-5 &amp; G(A)        &amp;  \mbox{Modus Ponens 3, 4}
-\end{array} %]]&gt;&lt;/script&gt;
-
-&lt;h4 id=&quot;exemplo-2&quot;&gt;Exemplo 2&lt;/h4&gt;
-
-&lt;p&gt;Prove a validade da seguinte forma de argumento&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg F(a)~~\vdash ~~\neg \forall x F(x)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{array}{llr}
-1 &amp; \neg F(a)        &amp; \mbox{premissa}\\
-2 &amp; \forall x F(x)   &amp; \mbox{Hipótese por absurdo}\\
-3 &amp; F(a)             &amp; \mbox{Eliminação do universal 1}\\
-4 &amp; \neg F(a) \land F(a)       &amp;  \mbox{Introdução do condicional 1,3}\\
-5 &amp; \neg \forall x F(x)        &amp;  \mbox{Redução ao absurdo 2-4}
-\end{array} %]]&gt;&lt;/script&gt;
-
-&lt;h4 id=&quot;exemplo-3&quot;&gt;Exemplo 3&lt;/h4&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x \forall y F(x,y)~~ \vdash F(a,a)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{array}{llr}
-1 &amp; \forall x \forall y F(x,y)        &amp; \mbox{premissa}\\
-2 &amp; \forall y F(a,y)   &amp; \mbox{Eliminação do universal 1}\\
-3 &amp; F(a,a)      &amp; \mbox{Eliminação do universal 2}
-\end{array} %]]&gt;&lt;/script&gt;
-
-&lt;h3 id=&quot;regra-de-introdução&quot;&gt;Regra de introdução&lt;/h3&gt;
-
-&lt;p&gt;Em princípio, para introduzirmos uma fórmula do tipo $\forall x F(x)$, teríamos que demonstrar que para qualquer que seja $x$ então o predicado $P(x)$ é verdadeiro. Obviamente, sendo $x$ parte de um domínio possivelmente infinito esse tipo de abordagem não é possível. Como então introduzirmos o quantificador universal?&lt;/p&gt;
-
-&lt;p&gt;A ideia também é simples, apesar de um pouco confusa no início. Se eu consigo demonstrar que para um caso específico $a$, $P(a)$ é verdadeiro, então, se nenhuma consideração/restrição foi feita em termos de $a$, essa demonstração poderia ser utilizada para demonstrar que para qualquer $x$, $P(x)$ também é verdadeiro. Consideremos um exemplo:&lt;/p&gt;
-
-&lt;p&gt;“Todos os peixes são ciprinídeos”&lt;/p&gt;
-
-&lt;p&gt;“Todos ciprinídeos são vistosos”&lt;/p&gt;
-
-&lt;p&gt;“Todos os peixes são vistosos”&lt;/p&gt;
-
-&lt;p&gt;Que formalizada por meio dos predicados:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;$P(x)$: $x$ é peixe&lt;/li&gt;
-  &lt;li&gt;$C(x)$: $x$ é ciprinídeo&lt;/li&gt;
-  &lt;li&gt;$V(x)$: $x$ é vistoso&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(Px\to Cx),~~\forall x(Cx\to Vx) \vdash \forall (Px\to Vx)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{array}{llr}
-1 &amp; \forall x(Px\to Cx)        &amp; \mbox{premissa}\\
-2 &amp; \forall x(Cx\to Vx)   &amp; \mbox{premissa}\\
-3 &amp; Pa\to Ca      &amp; \mbox{Eliminação do universal 1}\\
-4 &amp; Ca\to Va      &amp; \mbox{Eliminação do universal 2}\\
-5 &amp; Pa\to Va      &amp; \mbox{Transitividade 3,4}\\
-6 &amp; \forall x(Px\to Vx)      &amp; \mbox{Generalização universal 5}
-\end{array} %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;Apesar de $a$ neste exemplo ser utilizado para referenciar um caso específico de $x$, nenhuma suposição foi feita acerca de $a$, portanto ele poderia ser utilizado para substituir qualquer $x$. Portanto é possível generalizar a conclusão de $a$ para $\forall x$.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Para que a aplicação dessa regra seja válida, não pode haver suposições sobre o símbolo $a$, ou seja, ele &lt;strong&gt;não pode aparecer nas premissas&lt;/strong&gt; nem e nenhuma &lt;strong&gt;hipótese vigente&lt;/strong&gt;.&lt;/li&gt;
-  &lt;li&gt;Pois nesses casos haveria suposições sobre $a$, consequentemente ele não poderia representar um $x$ arbitrário.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;exemplo-1-1&quot;&gt;Exemplo 1&lt;/h4&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall (Fx \land Gx) ~~ \vdash ~~\forall x Fx \land \forall x Gx&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{array}{llr}
-1 &amp; \forall (Fx \land Gx)        &amp; \mbox{premissa}\\
-2 &amp; Fa \land Ga   &amp; \mbox{Eliminação do universal 1}\\
-3 &amp; Fa      &amp; \mbox{Eliminação da conjunção 2}\\
-4 &amp; Ga      &amp; \mbox{Eliminação da conjunção 2}\\
-5 &amp; \forall x Fx      &amp; \mbox{Introdução do universal 3}\\
-6 &amp; \forall x Gx      &amp; \mbox{Introdução do universal 4}\\
-7 &amp; \forall x Fx \land \forall x Gx      &amp; \mbox{Introdução da conjunção 5, 6}
-\end{array} %]]&gt;&lt;/script&gt;
-
-&lt;h4 id=&quot;exemplo-2-1&quot;&gt;Exemplo 2&lt;/h4&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x (Fx \to (Gx \lor Hx)), \forall x \neg Gx  \vdash \forall x Fx \to \forall x Hx&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{array}{llr}
-1 &amp; \forall x (Fx \to (Gx \lor Hx))        &amp; \mbox{premissa}\\
-2 &amp; \forall x \neg Gx   &amp; \mbox{premissa}\\
-3 &amp; Fa \to (Ga \lor Ha)      &amp; \mbox{Eliminação do universal 1}\\
-4 &amp; \neg Ga      &amp; \mbox{Eliminação do universal 2}\\
-5 &amp; \qquad \forall x Fx      &amp; \mbox{Hipótese do condicional}\\
-6 &amp; \qquad Fa      &amp; \mbox{Eliminação do universal 5}\\
-7 &amp; \qquad Ga \lor Ha      &amp; \mbox{Modus Ponens 3, 6}\\
-8 &amp; \qquad Ha             &amp; \mbox{Silogismo disjuntivo 4,7}\\
-9 &amp; \qquad\forall x Hx   &amp; \mbox{Introdução do universal 8}\\
-10 &amp; \forall x Fx \to \forall x Hx &amp; \mbox{Prova do condicional 5-9}
-\end{array} %]]&gt;&lt;/script&gt;
-
-&lt;h4 id=&quot;exemplo-3-1&quot;&gt;Exemplo 3&lt;/h4&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x (Fx \to (Gx \lor Hx)), \forall x \neg Gx  \vdash \forall x (Fx \to Hx)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{array}{llr}
-1 &amp; \forall x (Fx \to (Gx \lor Hx))        &amp; \mbox{premissa}\\
-2 &amp; \forall x \neg Gx   &amp; \mbox{premissa}\\
-3 &amp; Fa \to (Ga \lor Ha)      &amp; \mbox{Eliminação do universal 1}\\
-4 &amp; \neg Ga      &amp; \mbox{Eliminação do universal 2}\\
-5 &amp; \qquad Fa      &amp; \mbox{Hipótese do condicional}\\
-6 &amp; \qquad Ga \lor Ha      &amp; \mbox{Modus Ponens 3, 5}\\
-7 &amp; \qquad Ha             &amp; \mbox{Silogismo disjuntivo 4,7}\\
-8 &amp; Fa \to Ha   &amp; \mbox{Prova do condicional 5-7}\\
-9 &amp; \forall x (Fx \to Hx) &amp; \mbox{Introdução do universal 8}
-\end{array} %]]&gt;&lt;/script&gt;
-
-&lt;h4 id=&quot;exemplo-4&quot;&gt;Exemplo 4&lt;/h4&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x Fax, \forall x \forall y (Fxy \to Gyx) \vdash \forall x Gxa&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{array}{llr}
-1 &amp; \forall x Fax        &amp; \mbox{premissa}\\
-2 &amp; \forall x \forall y (Fxy \to Gyx)  &amp; \mbox{premissa}\\
-3 &amp; Fab      &amp; \mbox{Eliminação do universal 1}\\
-4 &amp; \forall y (Fay \to Gya)      &amp; \mbox{Eliminação do universal 2}\\
-5 &amp; Fab \to Gba      &amp; \mbox{Eliminação do universal 4}\\
-6 &amp; Gba      &amp; \mbox{Modus Ponens 3, 5}\\
-7 &amp; \forall x Gxa             &amp; \mbox{Introdução do universal 6}
-\end{array} %]]&gt;&lt;/script&gt;
-
-&lt;h4 id=&quot;exemplo-5&quot;&gt;Exemplo 5&lt;/h4&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x Fx \to \forall x Gx, \neg Ga \vdash \neg \forall x Fx&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{array}{llr}
-1 &amp; \forall x Fx \to \forall x Gx        &amp; \mbox{premissa}\\
-2 &amp; \neg Ga  &amp; \mbox{premissa}\\
-3 &amp; \qquad \forall x Fx      &amp; \mbox{Hipótese para absurdo}\\
-4 &amp; \qquad \forall x Gx      &amp; \mbox{Modus Ponens 1, 3}\\
-5 &amp; \qquad Ga      &amp; \mbox{Eliminação do universal 4}\\
-6 &amp; \qquad Ga \land \neg Ga      &amp; \mbox{Introdução da conjunção 2,5}\\
-7 &amp; \neg \forall x Fx             &amp; \mbox{Redução ao absurdo 3-6}
-\end{array} %]]&gt;&lt;/script&gt;
-</description>
-        <pubDate>Wed, 04 Oct 2017 10:20:00 -0300</pubDate>
-        <link>http://localhost:4000/lc21cp-172/logica-predicados-deducao-1.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/logica-predicados-deducao-1.html</guid>
-        
-        <category>predicados</category>
-        
-        
-        <category>LC21CP-172</category>
         
       </item>
     

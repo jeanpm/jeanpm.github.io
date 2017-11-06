@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Lógica de predicados - Árvores de refutação</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/lc21cp-172/logica-predicados-arvores-de-refutacao.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Lógica de predicados - Árvores de refutação</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Nov 1, 2017
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/ae22cp-172/heapsort.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/ae22cp-172/limite-inferior-ordenacao.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#introdução" id="markdown-toc-introdução">Introdução</a></li>
+  <li><a href="#Árvores-de-refutação" id="markdown-toc-Árvores-de-refutação">Árvores de refutação</a></li>
+  <li><a href="#generalização-das-Árvores-de-refutação" id="markdown-toc-generalização-das-Árvores-de-refutação">Generalização das Árvores de Refutação</a>    <ul>
+      <li><a href="#quantificador-universal-forall" id="markdown-toc-quantificador-universal-forall">Quantificador universal ($\forall$)</a></li>
+      <li><a href="#quantificador-existencial-negado-neg-exists" id="markdown-toc-quantificador-existencial-negado-neg-exists">Quantificador existencial negado ($\neg \exists$)</a></li>
+      <li><a href="#quantificador-existencial-exists" id="markdown-toc-quantificador-existencial-exists">Quantificador existencial ($\exists$)</a></li>
+      <li><a href="#quantificador-universal-negado-neg-forall" id="markdown-toc-quantificador-universal-negado-neg-forall">Quantificador universal negado ($\neg \forall$)</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="introdução">Introdução</h1>
+
+<p>Estudamos na lógica proposicional dois algoritmos principais para demonstrarmos a validade e invalidade de formas de argumentos: tabelas verdade, árvores de refutação. Deste modo, dada qualquer forma de argumento com premissas e uma conclusão</p>
+
+<script type="math/tex; mode=display">\phi,\psi \vdash \chi</script>
+
+<p>é possível na lógica proposicional determinarmos se tal forma de argumento é válida ou não é valida.</p>
+
+<ul>
+  <li><strong>Uma forma de argumento é válida</strong>, se sempre que suas premissas forem verdadeiras ($\phi,\psi$) sua conclusão seja verdadeira ($\chi$)</li>
+</ul>
+
+<p>Apesar de ineficientes em certas situações, tanto tabelas verdade quanto árvores de refutação podem, em princípio, ser utilizados para implementarmos um programa que verifique a validade de formas de argumento. Esse programa hipotético, pode tomar um tempo consideravelmente grande para chegar a uma decisão, mas ele eventualmente chegará a essa decisão, portanto diz-se que:</p>
+
+<ul>
+  <li><strong>A lógica proposicional é decidível</strong>. Pois existem algoritmos que decidem se <em>qualquer</em> forma de argumento é válida ou não.</li>
+</ul>
+
+<p>Na lógica de predicados, a situação é diferente. Apesar de existirem procedimentos que nos permitem verificar a validade e invalidade de alguns tipos de formas de argumentos, não existe, e não pode existir, um procedimento que verifique <em>qualquer</em> forma de argumento da lógica de predicados. Portanto, diz-se que:</p>
+
+<ul>
+  <li><strong>A lógica de predicados é indecidível</strong>. Pois não existe algoritmo que decida a validade de <em>qualquer</em> forma de argumento.</li>
+</ul>
+
+<h1 id="Árvores-de-refutação">Árvores de refutação</h1>
+
+<p>As árvores de refutação para a lógica de predicados são generalizadas pela introdução de seis novas regras, as quais tratarão fórmulas precedidas pelos quantificadores universal ou existencial. No entanto, existirão situações em que apenas as regras utilizadas na lógica proposicional serão úteis. Vejamos um exemplo:</p>
+
+<script type="math/tex; mode=display">\forall x Fx \to \forall x Gx, \neg \forall x Gx \vdash \neg \forall x Fx</script>
+
+<p>Na primeira etapa da demonstração, apenas listamos as premissas e a negação da conclusão. Neste momento a árvore possui apenas um ramo contendo todas essas três fórmulas.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{lclr}
+& 1 & \forall x Fx \to \forall x Gx & \mbox{(premissa)} \\
+& 2& \neg \forall x Gx & \mbox{(premissa)} \\
+& 3& \neg \neg \forall x Fx & \mbox{(negação da conclusão)} \\
+\end{array} %]]></script>
+
+<p>Como visto nas árvores de refutação da lógica proposicional, existem apenas duas regras para expansão da árvore: conjunção, disjunção. Qualquer outro operador lógico deve ser tratado por meio de fórmulas equivalentes que utilizem apenas conjunção e/ou disjunção.</p>
+
+<p>Neste exemplo, temos uma fórmula condicional do tipo $\phi\to\psi$, representada por $\forall x Fx \to \forall x Gx$, devemos então utilizar em seu lugar uma fórmula equivalente. Como $\phi\to\psi \dashv\vdash \neg\phi\lor\psi$, podemos utilizar a equivalência.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{lclr}
+\checkmark&  1& \forall x Fx \to \forall x Gx & \mbox{(premissa)} \\
+& 2& \neg \forall x Gx & \mbox{(premissa)} \\
+& 3& \neg \neg \forall x Fx & \mbox{(negação da conclusão)} \\
+& 4& \neg \forall x Fx \lor \forall x Gx & \mbox{(Equivalência de 1)}\\
+\end{array} %]]></script>
+
+<p>Das três fórmulas restantes não marcadas, apenas aquela na linha 4 pode ser expandida, para tal aplicamos a regra da disjunção, a qual cria dois ramos, um para cada disjuncto.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{lclr}
+\checkmark& 1 & \forall x Fx \to \forall x Gx & \mbox{(premissa)} \\
+& 2& \neg \forall x Gx & \mbox{(premissa)} \\
+& 3& \neg \neg \forall x Fx & \mbox{(negação da conclusão)} \\
+\checkmark& 4& \neg \forall x Fx \lor \forall x Gx & \mbox{(Equivalência de 1)}\\
+& 5& \neg \forall x Fx \qquad\qquad \forall x Gx& \mbox{(Regra da disjunção)}\\
+\end{array} %]]></script>
+
+<p>Neste momento, encontramos uma contradição em cada um dos ramos.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{lclr}
+\checkmark& 1 & \forall x Fx \to \forall x Gx & \mbox{(premissa)} \\
+& 2& \neg \forall x Gx & \mbox{(premissa)} \\
+& 3& \neg \neg \forall x Fx & \mbox{(negação da conclusão)} \\
+\checkmark&4& \neg \forall x Fx \lor \forall x Gx & \mbox{(Equivalência de 1)}\\
+& 5& \neg \forall x Fx \qquad \forall x Gx& \mbox{(Regra da disjunção)}\\
+& 6& \perp (5,3) \qquad \perp(5,2) & \\
+\end{array} %]]></script>
+
+<p>As contradições fecharam todos os ramos, portanto essa é uma forma de argumento válida, significando que sempre que $\forall x Fx \to \forall x Gx$ e $\neg \forall x Gx$ forem verdadeiras, então $\neg \forall x Fx$ também será verdadeira. Esta fórmula é a versão em lógica de predicados da regra <em>Modus Tollens</em>.</p>
+
+<h1 id="generalização-das-Árvores-de-refutação">Generalização das Árvores de Refutação</h1>
+
+<h2 id="quantificador-universal-forall">Quantificador universal ($\forall$)</h2>
+
+<p>Se uma fórmla $\forall x Fx$ aparece num ramo aberto da árvore de refutação, e $a$ é uma letra nominal que aparece numa fórmula desse ramo, então podemos instanciar a fórmula, obtendo: $Fa$. Diferente do que ocorreria para as demais regras, a fórmula $\forall x Fx$ não é marcada com $\checkmark$ neste caso, pois ela pode ser instanciada novamente com outras letras nominais que também apareçam no mesmo ramo. Apenas nos casos em que não existam letras nominais no ramo é que uma letra pode ser introduzida.</p>
+
+<p>Demonstre a validade ou invalidade das seguintes forma de argumento.</p>
+
+<script type="math/tex; mode=display">\forall x (Fx \to Gx), \forall x Fx \vdash Ga</script>
+
+<script type="math/tex; mode=display">Fa\to Gb, \forall x \neg Fx \vdash \neg Gb</script>
+
+<script type="math/tex; mode=display">\forall x (Fx \to Gx), \forall x Gx \vdash Fa</script>
+
+<h2 id="quantificador-existencial-negado-neg-exists">Quantificador existencial negado ($\neg \exists$)</h2>
+
+<p>Se uma fórmula da forma $\neg \exists x Fx$ aparece num ramo aberto, ela deverá ser marcada e substituída por sua equivalente $\forall x\neg Fx$ no final de cada ramo aberto que a contém. $\neg \exists x Fx \dashv \vdash \forall x \neg Fx$</p>
+
+<p>Demonstre a validade ou invalidade das seguintes forma de argumento.</p>
+
+<script type="math/tex; mode=display">\forall x (Fx \to Gx), \neg \exists x Gx \vdash \neg Fa</script>
+
+<script type="math/tex; mode=display">\neg \exists x(Fx \land Gx) \vdash \neg Fa</script>
+
+<script type="math/tex; mode=display">\forall x Fx \to \forall x Gx, \neg \exists x Gx \vdash \exists x \neg Fx</script>
+
+<h2 id="quantificador-existencial-exists">Quantificador existencial ($\exists$)</h2>
+
+<p>Se uma fórmula da forma $\exists x Fx$ aparece num ramo aberto, ela deve ser marcada. Escolhemos então, uma letra nominal $a$ que ainda não apareceu no mesmo ramo e instanciamos a fórmula, como $Fa$, no final de todo ramo aberto que a contenha.</p>
+
+<h2 id="quantificador-universal-negado-neg-forall">Quantificador universal negado ($\neg \forall$)</h2>
+
+<p>Se uma fórmula da forma $\neg \forall x Fx$ aparece num ramo aberto, ela deve ser marcada e substituída por sua equivalente $\exists x \neg Fx$.</p>
+
+<p>Demonstre a validade ou invalidade das seguintes forma de argumento.</p>
+
+<script type="math/tex; mode=display">\exists x Fx \vdash \forall x Fx</script>
+
+<script type="math/tex; mode=display">\exists x (Fx \land Gx) \vdash \exists Fx \land \exists Gx</script>
+
+<script type="math/tex; mode=display">\exists x Fx, \exists x Gx \vdash \exists x(Fx \land Gx)</script>
+
+<script type="math/tex; mode=display">\vdash \neg(\exists x Fx \land \forall x \neg Fx)</script>
+
+<script type="math/tex; mode=display">\forall x \exists y Lxy \vdash Laa</script>
+
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

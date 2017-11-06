@@ -70,7 +70,7 @@
   
   
     <div class="right">
-      <a href="/ae22cp-172/FAQ.html">
+      <a href="/lc21cp-172/logica-predicados-arvores-de-refutacao.html">
         <i class="fa fa-angle-right fa-2x"></i>
       </a>
     </div>
@@ -87,7 +87,10 @@
     <p><strong>Conteúdo</strong></p>
 <ul id="markdown-toc">
   <li><a href="#introdução" id="markdown-toc-introdução">Introdução</a></li>
-  <li><a href="#filas-de-prioridades" id="markdown-toc-filas-de-prioridades">Filas de prioridades</a></li>
+  <li><a href="#filas-de-prioridades" id="markdown-toc-filas-de-prioridades">Filas de prioridades</a>    <ul>
+      <li><a href="#heap" id="markdown-toc-heap">Heap</a></li>
+    </ul>
+  </li>
 </ul>
 
 <h1 id="introdução">Introdução</h1>
@@ -144,11 +147,13 @@
 <p>Uma das respostas para essa pergunta são as filas de prioridades. Tais estruturas tem como principal objetivo organizar os dados de modo que obter o mínimo/máximo elemento seja tão rápido quanto possível. Diferentemente das filas comuns, em que a ordem de inserção de um elemento determina sua ordem de remoção, nas filas de prioridade é a prioridade que determina a ordem de saída de um elemento. A prioridade, no caso mais simples é o próprio valor do elemento.</p>
 
 <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">selectsort</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span>
-        <span class="n">swap</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">max</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">));</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span>
+        <span class="n">swap</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">max</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
 <span class="p">}</span>
 </code></pre>
 </div>
+
+<h2 id="heap">Heap</h2>
 
 
   </article>

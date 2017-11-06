@@ -92,9 +92,12 @@
     </ul>
   </li>
   <li><a href="#algoritmos-de-ordenação" id="markdown-toc-algoritmos-de-ordenação">Algoritmos de Ordenação</a>    <ul>
-      <li><a href="#bubble-sort" id="markdown-toc-bubble-sort">Bubble sort</a></li>
-      <li><a href="#selection-sort" id="markdown-toc-selection-sort">Selection sort</a></li>
-      <li><a href="#insertion-sort" id="markdown-toc-insertion-sort">Insertion sort</a></li>
+      <li><a href="#estratégias-simples" id="markdown-toc-estratégias-simples">Estratégias simples</a>        <ul>
+          <li><a href="#bubble-sort" id="markdown-toc-bubble-sort">Bubble sort</a></li>
+          <li><a href="#selection-sort" id="markdown-toc-selection-sort">Selection sort</a></li>
+          <li><a href="#insertion-sort" id="markdown-toc-insertion-sort">Insertion sort</a></li>
+        </ul>
+      </li>
       <li><a href="#quicksort" id="markdown-toc-quicksort">Quicksort</a>        <ul>
           <li><a href="#partition" id="markdown-toc-partition">Partition</a></li>
         </ul>
@@ -135,9 +138,15 @@
 
 <h1 id="algoritmos-de-ordenação">Algoritmos de Ordenação</h1>
 
-<h2 id="bubble-sort">Bubble sort</h2>
+<p>Definidos os objetivos de um algoritmo de ordenação, é interessante iniciaremos a discussão nos questionando qual seria nossa estratégia para solucionar o problema da ordenação. Dada uma sequência numérica em um vetor <code class="highlighter-rouge">int* v</code>, qual seria sua intuição para um procedimento que reordenasse essa sequência de forma crescente?</p>
 
-<p>Dada uma sequência de entrada, a <em>ordenação por bolha</em> compara pares de itens $x_i$ e $x_{i+1}$, levando para posições posteriores aquele elemento que seja o maior. Na prática isso significa que se $x_{i+1}$ for maior que $x_i$ esses elementos devem trocar de posição:</p>
+<p>Ao pensarmos um pouco sobre esse problema, são grandes as chances que tenhamos concluído algum dos algoritmos de ordenação que serão descritos a seguir.</p>
+
+<h2 id="estratégias-simples">Estratégias simples</h2>
+
+<h3 id="bubble-sort">Bubble sort</h3>
+
+<p>Dada uma sequência de entrada, a <em>ordenação por trocas</em> compara pares de itens $x_i$ e $x_{i+1}$ e os troca de posição caso $x_i&gt;x_{i+1}$. Isso tem como efeito levar para posições posteriores aquele elemento que seja o maior.</p>
 
 <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
     <span class="n">swap</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// Trocar os elementos nas posições i e i+1
@@ -146,16 +155,16 @@
 
 <p>O Bubble sort percorre do início ao fim do vetor várias vezes, efetuando trocas da forma acima. Na primeira passagem pelo vetor, o maior elemento é levado à posição final $x_{n}$, e, portanto, já estará na posição correta. A próxima iteração levará o segundo maior valor à posição anterior a final $x_{n-1}$ e assim sucessivamente, até que o primeiro elemento seja avaliado. Neste momento, o algoritmo precisa parar pois o vetor estará ordenado e nenhuma troca adicional ocorrerá.</p>
 
-<h2 id="selection-sort">Selection sort</h2>
+<h3 id="selection-sort">Selection sort</h3>
 
 <p>Dada uma sequência de entrada, a <em>ordenação por seleção</em> seleciona a cada passagem pelo vetor o menor elemento e o coloca na posição inicial $x_1$. Na segunda iteração o menor elemento entre $x_2$ e $x_n$ será selecionado e colocado na posição $x_2$. Ou seja, a cada iteração, o algoritmo deixa um elemento a mais na posição correta.</p>
 
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// Trocar os elementos nas posições i e posição do menor elemento de i-n. 
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// Trocar os elementos nas posições i e posição do menor elemento de i a n. 
 </span><span class="n">swap</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">));</span> 
 </code></pre>
 </div>
 
-<h2 id="insertion-sort">Insertion sort</h2>
+<h3 id="insertion-sort">Insertion sort</h3>
 
 <p>Dada uma sequência de entrada, a <em>ordenação por inserção</em> percorre a sequência e para cada valor em uma determinada posição $i$, reinsere o valor $x_i$ na sua posição correta no momento. A posição correta $j$ para um elemento qualquer $x_i$ em um dado momento é aquela posição tal que $x_{j} \leq x_i \leq x_{j+1}$.</p>
 
