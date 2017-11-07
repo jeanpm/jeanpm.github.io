@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Tabelas hash</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/ae22cp-172/tabelas-hash.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Tabelas hash</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Nov 7, 2017
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/ae22cp-172/limite-inferior-ordenacao.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/ae22cp-172/FAQ.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#introdução" id="markdown-toc-introdução">Introdução</a></li>
+  <li><a href="#endereçamento-direto" id="markdown-toc-endereçamento-direto">Endereçamento direto</a></li>
+  <li><a href="#tabelas-hash" id="markdown-toc-tabelas-hash">Tabelas Hash</a>    <ul>
+      <li><a href="#resolução-de-colisões-por-encadeamento" id="markdown-toc-resolução-de-colisões-por-encadeamento">Resolução de colisões por encadeamento</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="introdução">Introdução</h1>
+
+<p>Muitas aplicações precisam manipular informações sem necessariamente se preocupar na ordem em que essas informações estão armazenadas na memória. A maioria das estruturas de dados “lineares” estudadas até então, no entanto, impõe uma ordem específica aos elementos. Em uma lista, por exemplo, a inserção de um novo elemento requer que especifiquemos a posição de inserção desse elemento, o mesmo ocorre para vetores. O uso de fila de prioridades (implementadas sobre uma estrutura Heap) foi a primeira excessão a esta regra que investigamos, onde estavamos interessados sempre no mínimo elemento armazenado, mas sem nos importar necessariamente em que posição da estrutura esse elemento estava armazenado.</p>
+
+<p>Nesta seção uma nova estrutura de dados será introduzida, a qual nos permitirá efetuar operações como:</p>
+<ul>
+  <li>Inserção,</li>
+  <li>Remoção, e</li>
+  <li>Procura</li>
+</ul>
+
+<p>de forma eficiente e sem nos preocuparmos com o posicionamento em memória dos elementos armazenados. Diferentemente das filas de prioridade, no entanto, tabelas hash permitem remoção de quaisquer elementos armazenados, não somento o mínimo/máximo. A única exigência sendo que cada um dos elementos armazenados tenha uma <em>chave</em> única que o identifique.</p>
+
+<p>Exemplos:</p>
+<ul>
+  <li>Um aluno tem como chave única que o identifica, seu RA.</li>
+  <li>Uma pessoa tem como chave única que a identifica, seu CPF.</li>
+</ul>
+
+<h1 id="endereçamento-direto">Endereçamento direto</h1>
+
+<p>Tabelas hash são uma generalização de uma forma de armazenamento com mais limitações, chamada endereçamento aberto.</p>
+
+<p>Suponha que desejemos armazenar as informações sobre os funcionários de uma pequena empresa. Cada funcionário tem o seu identificador, um número que indica seu cadastro na empresa. Por se tratar de uma empresa pequena, o número de funcionários $n$ não é grande, $n\leq m$ por exemplo. É natural assumirmos que esses identificadores sejam atribuídos de forma crescente a cada novo funcionário contratado.</p>
+
+<p>Neste pequeno exemplo, assumimos que tais identificadores são as <em>chaves</em> únicas de cada funcionário. Como o número $n$ de funcionários nunca ultrapassa $m$, um conjunto universo de chaves possíveis contendo números</p>
+
+<script type="math/tex; mode=display">U=\{0,1,\dots,m-1\}</script>
+
+<p>é suficiente para identificar todos eles. Ou seja, cada funcionário tem um número identificador $u\in U$. Como armazenar as informações sobre tais funcionários na memória de modo a ser possível inserir, remover, e procurar de forma eficiente?</p>
+
+<p>Sendo o número total de chaves $m$ de tamanho moderado, poderíamos simplesmente criar um vetor de $m$ posições.</p>
+
+<p>Dada uma chave, procurar pelo funcionário associado é então trivial. Tão triviais quanto serão as operações de inserção e removação de um funcionário.</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="n">Info</span><span class="o">*</span> <span class="n">search</span><span class="p">(</span><span class="n">Info</span><span class="o">*</span> <span class="n">t</span><span class="p">,</span> <span class="kt">int</span> <span class="n">chave</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">t</span><span class="p">[</span><span class="n">chave</span><span class="p">];</span>
+<span class="n">Info</span><span class="o">*</span> <span class="n">remove</span><span class="p">(</span><span class="n">Info</span><span class="o">*</span> <span class="n">t</span><span class="p">,</span> <span class="kt">int</span> <span class="n">chave</span><span class="p">)</span>
+    <span class="n">t</span><span class="p">[</span><span class="n">chave</span><span class="p">]</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="kt">void</span> <span class="n">insert</span><span class="p">(</span><span class="n">Info</span><span class="o">*</span> <span class="n">t</span><span class="p">,</span> <span class="n">Info</span> <span class="n">f</span><span class="p">)</span>
+    <span class="n">t</span><span class="p">[</span><span class="n">f</span><span class="p">.</span><span class="n">chave</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>Neste contexto tão específico, em que sabemos que a maior chave possível $m$ é um número razoavelmente pequeno, esta é a implementação mais rápida possível. Porém, não é difícil percebermos suas limitações:</p>
+<ul>
+  <li>E se as chaves $m$ forem números de 9 dígitos?
+    <ul>
+      <li>A tabela seria gigantesca, e se o número de itens armazenados for pequeno, um grande desperdício de memória ocorreria.</li>
+    </ul>
+  </li>
+  <li>E se as chaves não forem inteiros?
+    <ul>
+      <li>Não há como indexar a tabela com chaves não-inteiras.</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="tabelas-hash">Tabelas Hash</h1>
+
+<p>Nas situações em que endereçamento direto não se aplica, devido ao grande número de chaves possíveis, as Tabelas hash são opções interessantes.</p>
+
+<p>A ideia geral de uma tabela hash é diminuir o número de chaves que precisam ser tratadas, saindo de $|U|$ para um número $m \ll |U|$ (“muito menor que”). Para isso precisamos de função</p>
+
+<script type="math/tex; mode=display">h: U \to \{0,\dots,m-1\}</script>
+
+<p>que mapeie cada possível chave $k\in U$ para um número $h(k)$, onde $h$ é chamada <strong>função hash</strong>.</p>
+
+<p>Neste contexto, se utilizarmos $h(k)$ como índice na tabela, precisaríamos de uma tabela de tamanho $m$ ao invés de $|U|$. Como, por definição $m\ll|U|$, uma grande economia de espaço é possível. O exemplo mais simples de função hash é o uso do operador de <em>resto</em> (mod, <code class="highlighter-rouge">%</code>), o qual quando aplicado com o parâmetro $m$ produz um valor em ${0,\dots,m-1}$ (ver Figura).</p>
+
+<script type="math/tex; mode=display">h(k) = k \mod m.</script>
+
+<p><img src="/assets/AE22CP/hash.png" alt="hash" /></p>
+
+<p>Mas antes de finalizarmos uma implementação de tabelas hash, precisamos lidar com um importante problema. A função hash mapeia cada valor em $U$ para um valor entre $0$ e $m$, porém, como $m\ll |U|$, é inevitável que para alguns valores $k_1,k_2 \in U$, $h(k_1) = h(k_2)$, o que chamamos de <em>colisão</em>.</p>
+
+<p>A existência de colisões nos impede uma implementação direta de tabela hash</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">insert</span><span class="p">(</span><span class="n">Info</span><span class="o">*</span> <span class="n">t</span><span class="p">,</span> <span class="n">Info</span> <span class="n">f</span><span class="p">)</span>
+    <span class="n">t</span><span class="p">[</span><span class="n">h</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">chave</span><span class="p">)]</span> <span class="o">=</span> <span class="n">f</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>Pois esse tipo de implementação somente aceitaria um dos elementos que tenham o mesmo valor de hash. Por exemplo, se houvéssemos inserido $k_1$ e posteriormente tentado inserir $k_2$, o valor de que $k_1$ que estava armazenado em <code class="highlighter-rouge">t[h(k1)]</code> seria sobrescrito, visto que $h(k_1)=h(k_2)$.</p>
+
+<p>A seguir, analisaremos formas de tratar colisões, de modo que a tabela hash permita o armazenamento simultâneo de diversos itens com mesmo valor de hash.</p>
+
+<h2 id="resolução-de-colisões-por-encadeamento">Resolução de colisões por encadeamento</h2>
+
+<p><strong>Referências</strong></p>
+<ol>
+  <li>CORMEN, Thomas H. et al. Algoritmos: teoria e prática. Rio de Janeiro, RJ: Campus, 2002. xvii, 916 p. ISBN 8535209263. <a href="http://www.inf.ufrgs.br/~tsrodrigues/utilidades/cormem.pdf">(pdf: Algoritmos - cap. 11)</a></li>
+</ol>
+
+<iframe width="360" height="205" src="https://www.youtube.com/embed/0M_kIqhwbFo" frameborder="0" allowfullscreen="">
+</iframe>
+
+<iframe width="360" height="205" src="https://www.youtube.com/embed/BRO7mVIFt08" frameborder="0" allowfullscreen="">
+</iframe>
+
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

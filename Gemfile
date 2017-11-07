@@ -8,3 +8,4 @@ gem 'rouge'
 gem 'jemoji'
 gem "minima"
 gem 'jekyll-scholar'
+gem "jekyll-pseudo"

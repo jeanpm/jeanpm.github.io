@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 06 Nov 2017 16:14:53 -0200</pubDate>
-    <lastBuildDate>Mon, 06 Nov 2017 16:14:53 -0200</lastBuildDate>
+    <pubDate>Tue, 07 Nov 2017 13:20:59 -0200</pubDate>
+    <lastBuildDate>Tue, 07 Nov 2017 13:20:59 -0200</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -164,6 +164,128 @@ Program received signal SIGSEGV, Segmentation fault.
         <guid isPermaLink="true">http://localhost:4000/ae22cp-172/FAQ.html</guid>
         
         <category>faq</category>
+        
+        
+        <category>AE22CP-172</category>
+        
+      </item>
+    
+      <item>
+        <title>Tabelas hash</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#introdução&quot; id=&quot;markdown-toc-introdução&quot;&gt;Introdução&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#endereçamento-direto&quot; id=&quot;markdown-toc-endereçamento-direto&quot;&gt;Endereçamento direto&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#tabelas-hash&quot; id=&quot;markdown-toc-tabelas-hash&quot;&gt;Tabelas Hash&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#resolução-de-colisões-por-encadeamento&quot; id=&quot;markdown-toc-resolução-de-colisões-por-encadeamento&quot;&gt;Resolução de colisões por encadeamento&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;introdução&quot;&gt;Introdução&lt;/h1&gt;
+
+&lt;p&gt;Muitas aplicações precisam manipular informações sem necessariamente se preocupar na ordem em que essas informações estão armazenadas na memória. A maioria das estruturas de dados “lineares” estudadas até então, no entanto, impõe uma ordem específica aos elementos. Em uma lista, por exemplo, a inserção de um novo elemento requer que especifiquemos a posição de inserção desse elemento, o mesmo ocorre para vetores. O uso de fila de prioridades (implementadas sobre uma estrutura Heap) foi a primeira excessão a esta regra que investigamos, onde estavamos interessados sempre no mínimo elemento armazenado, mas sem nos importar necessariamente em que posição da estrutura esse elemento estava armazenado.&lt;/p&gt;
+
+&lt;p&gt;Nesta seção uma nova estrutura de dados será introduzida, a qual nos permitirá efetuar operações como:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Inserção,&lt;/li&gt;
+  &lt;li&gt;Remoção, e&lt;/li&gt;
+  &lt;li&gt;Procura&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;de forma eficiente e sem nos preocuparmos com o posicionamento em memória dos elementos armazenados. Diferentemente das filas de prioridade, no entanto, tabelas hash permitem remoção de quaisquer elementos armazenados, não somento o mínimo/máximo. A única exigência sendo que cada um dos elementos armazenados tenha uma &lt;em&gt;chave&lt;/em&gt; única que o identifique.&lt;/p&gt;
+
+&lt;p&gt;Exemplos:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Um aluno tem como chave única que o identifica, seu RA.&lt;/li&gt;
+  &lt;li&gt;Uma pessoa tem como chave única que a identifica, seu CPF.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;endereçamento-direto&quot;&gt;Endereçamento direto&lt;/h1&gt;
+
+&lt;p&gt;Tabelas hash são uma generalização de uma forma de armazenamento com mais limitações, chamada endereçamento aberto.&lt;/p&gt;
+
+&lt;p&gt;Suponha que desejemos armazenar as informações sobre os funcionários de uma pequena empresa. Cada funcionário tem o seu identificador, um número que indica seu cadastro na empresa. Por se tratar de uma empresa pequena, o número de funcionários $n$ não é grande, $n\leq m$ por exemplo. É natural assumirmos que esses identificadores sejam atribuídos de forma crescente a cada novo funcionário contratado.&lt;/p&gt;
+
+&lt;p&gt;Neste pequeno exemplo, assumimos que tais identificadores são as &lt;em&gt;chaves&lt;/em&gt; únicas de cada funcionário. Como o número $n$ de funcionários nunca ultrapassa $m$, um conjunto universo de chaves possíveis contendo números&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;U=\{0,1,\dots,m-1\}&lt;/script&gt;
+
+&lt;p&gt;é suficiente para identificar todos eles. Ou seja, cada funcionário tem um número identificador $u\in U$. Como armazenar as informações sobre tais funcionários na memória de modo a ser possível inserir, remover, e procurar de forma eficiente?&lt;/p&gt;
+
+&lt;p&gt;Sendo o número total de chaves $m$ de tamanho moderado, poderíamos simplesmente criar um vetor de $m$ posições.&lt;/p&gt;
+
+&lt;p&gt;Dada uma chave, procurar pelo funcionário associado é então trivial. Tão triviais quanto serão as operações de inserção e removação de um funcionário.&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;chave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;chave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Neste contexto tão específico, em que sabemos que a maior chave possível $m$ é um número razoavelmente pequeno, esta é a implementação mais rápida possível. Porém, não é difícil percebermos suas limitações:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;E se as chaves $m$ forem números de 9 dígitos?
+    &lt;ul&gt;
+      &lt;li&gt;A tabela seria gigantesca, e se o número de itens armazenados for pequeno, um grande desperdício de memória ocorreria.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;E se as chaves não forem inteiros?
+    &lt;ul&gt;
+      &lt;li&gt;Não há como indexar a tabela com chaves não-inteiras.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;tabelas-hash&quot;&gt;Tabelas Hash&lt;/h1&gt;
+
+&lt;p&gt;Nas situações em que endereçamento direto não se aplica, devido ao grande número de chaves possíveis, as Tabelas hash são opções interessantes.&lt;/p&gt;
+
+&lt;p&gt;A ideia geral de uma tabela hash é diminuir o número de chaves que precisam ser tratadas, saindo de $|U|$ para um número $m \ll |U|$ (“muito menor que”). Para isso precisamos de função&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;h: U \to \{0,\dots,m-1\}&lt;/script&gt;
+
+&lt;p&gt;que mapeie cada possível chave $k\in U$ para um número $h(k)$, onde $h$ é chamada &lt;strong&gt;função hash&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Neste contexto, se utilizarmos $h(k)$ como índice na tabela, precisaríamos de uma tabela de tamanho $m$ ao invés de $|U|$. Como, por definição $m\ll|U|$, uma grande economia de espaço é possível. O exemplo mais simples de função hash é o uso do operador de &lt;em&gt;resto&lt;/em&gt; (mod, &lt;code class=&quot;highlighter-rouge&quot;&gt;%&lt;/code&gt;), o qual quando aplicado com o parâmetro $m$ produz um valor em ${0,\dots,m-1}$ (ver Figura).&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;h(k) = k \mod m.&lt;/script&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/AE22CP/hash.png&quot; alt=&quot;hash&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Mas antes de finalizarmos uma implementação de tabelas hash, precisamos lidar com um importante problema. A função hash mapeia cada valor em $U$ para um valor entre $0$ e $m$, porém, como $m\ll |U|$, é inevitável que para alguns valores $k_1,k_2 \in U$, $h(k_1) = h(k_2)$, o que chamamos de &lt;em&gt;colisão&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;A existência de colisões nos impede uma implementação direta de tabela hash&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Pois esse tipo de implementação somente aceitaria um dos elementos que tenham o mesmo valor de hash. Por exemplo, se houvéssemos inserido $k_1$ e posteriormente tentado inserir $k_2$, o valor de que $k_1$ que estava armazenado em &lt;code class=&quot;highlighter-rouge&quot;&gt;t[h(k1)]&lt;/code&gt; seria sobrescrito, visto que $h(k_1)=h(k_2)$.&lt;/p&gt;
+
+&lt;p&gt;A seguir, analisaremos formas de tratar colisões, de modo que a tabela hash permita o armazenamento simultâneo de diversos itens com mesmo valor de hash.&lt;/p&gt;
+
+&lt;h2 id=&quot;resolução-de-colisões-por-encadeamento&quot;&gt;Resolução de colisões por encadeamento&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Referências&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;CORMEN, Thomas H. et al. Algoritmos: teoria e prática. Rio de Janeiro, RJ: Campus, 2002. xvii, 916 p. ISBN 8535209263. &lt;a href=&quot;http://www.inf.ufrgs.br/~tsrodrigues/utilidades/cormem.pdf&quot;&gt;(pdf: Algoritmos - cap. 11)&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;iframe width=&quot;360&quot; height=&quot;205&quot; src=&quot;https://www.youtube.com/embed/0M_kIqhwbFo&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;
+&lt;/iframe&gt;
+
+&lt;iframe width=&quot;360&quot; height=&quot;205&quot; src=&quot;https://www.youtube.com/embed/BRO7mVIFt08&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;
+&lt;/iframe&gt;
+
+</description>
+        <pubDate>Tue, 07 Nov 2017 13:50:00 -0200</pubDate>
+        <link>http://localhost:4000/ae22cp-172/tabelas-hash.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/tabelas-hash.html</guid>
+        
+        <category>tabelas-hash</category>
         
         
         <category>AE22CP-172</category>
@@ -1343,189 +1465,6 @@ Program received signal SIGSEGV, Segmentation fault.
         
         
         <category>LC21CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Algoritmos de ordenação</title>
-        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#introdução&quot; id=&quot;markdown-toc-introdução&quot;&gt;Introdução&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#ordenação-de-inteiros&quot; id=&quot;markdown-toc-ordenação-de-inteiros&quot;&gt;Ordenação de inteiros&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#o-que-são-algoritmos-de-ordenação&quot; id=&quot;markdown-toc-o-que-são-algoritmos-de-ordenação&quot;&gt;O que são Algoritmos de ordenação?&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#algoritmos-de-ordenação&quot; id=&quot;markdown-toc-algoritmos-de-ordenação&quot;&gt;Algoritmos de Ordenação&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#estratégias-simples&quot; id=&quot;markdown-toc-estratégias-simples&quot;&gt;Estratégias simples&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#bubble-sort&quot; id=&quot;markdown-toc-bubble-sort&quot;&gt;Bubble sort&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#selection-sort&quot; id=&quot;markdown-toc-selection-sort&quot;&gt;Selection sort&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#insertion-sort&quot; id=&quot;markdown-toc-insertion-sort&quot;&gt;Insertion sort&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#quicksort&quot; id=&quot;markdown-toc-quicksort&quot;&gt;Quicksort&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#partition&quot; id=&quot;markdown-toc-partition&quot;&gt;Partition&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;introdução&quot;&gt;Introdução&lt;/h1&gt;
-
-&lt;p&gt;A ordenação de informação tem impacto relevante em diversos aspectos do nosso cotidiano. Considere, por exemplo, a ordem alfabética em que um dicionário é organizado, ou a ordem crescente (decrescente) em que os preços de um determinado produto são exibidos em uma compra online. Nessas situações, o fato da informação estar organizada (ordenada) de um modo consistente nos permite procurar por determinado item (uma &lt;em&gt;palavra&lt;/em&gt; nos dicionários, um objeto de determinado &lt;em&gt;valor&lt;/em&gt; na lista de compras) de forma muito mais simples.&lt;/p&gt;
-
-&lt;p&gt;Do ponto de vista computacional a ordenação de dados tem influência similar. Ao reorganizarmos a informação de forma consistente, diversas operações que poderiam ser feitas sobre o conteúdo armazenado podem, possivelmente, se tornar mais simples e eficientes.&lt;/p&gt;
-
-&lt;p&gt;Em princípio qualquer sequência de dados pode ser ordenada. Para isso, no entanto, é necessário que exista uma &lt;a href=&quot;https://pt.wikipedia.org/wiki/Rela%C3%A7%C3%A3o_de_ordem&quot;&gt;relação de ordem&lt;/a&gt; para o conjunto dos dados a serem ordenados. Sem perda de generalidade, consideraremos que cada item $i$ na sequência a ser ordenada possui uma chave $k_i\in \mathbb{D}$, tal que essas chaves pertençam a um domínio para o qual exista uma relação de ordem $R \subseteq \mathbb{D}\times \mathbb{D}$. Exemplos de relações de &lt;a href=&quot;https://pt.wikipedia.org/wiki/Rela%C3%A7%C3%A3o_de_ordem#Rela.C3.A7.C3.B5es_de_ordem_linear_ou_total&quot;&gt;ordem totais&lt;/a&gt; mais comuns são: menor ou igual ($\leq$) e maior ou igual ($\geq$).&lt;/p&gt;
-
-&lt;h2 id=&quot;ordenação-de-inteiros&quot;&gt;Ordenação de inteiros&lt;/h2&gt;
-
-&lt;p&gt;Suponha uma sequência finita de números inteiros dispostos em uma ordem arbitrária, gerado de forma aleatória, por exemplo. Podemos representar essa sequência por:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;x_1, ~x_2, ~\dots, ~x_n,~\forall x_i\in\mathbb{Z} \mbox{ e } n\in\mathbb{Z}&lt;/script&gt;
-
-&lt;p&gt;Como o conjunto dos números inteiros $\mathbb{Z}$ é totalmente ordenado de acordo com a relação de ordem $\leq$, existe então uma reordenação dos elementos dessa sequência $\alpha : \mathbb{Z}\to\mathbb{Z}$, tal que:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\alpha(1) ~\leq~\alpha(2)~\leq~ \dots ~\leq~\alpha(n)&lt;/script&gt;
-
-&lt;p&gt;O mesmo é verdade para a relação de ordem $\geq$, e portanto existe também uma reordenação $\beta : \mathbb{Z}\to\mathbb{Z}$&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;{\beta(1)} ~\geq~{\beta(2)}~\geq~ \dots ~\geq~{\beta(n)}&lt;/script&gt;
-
-&lt;p&gt;Transformar uma sequência de dados em ordem arbitrária em uma sequência ordenada é o objetivo dos &lt;strong&gt;algoritmos de ordenação&lt;/strong&gt; que veremos a seguir.&lt;/p&gt;
-
-&lt;h2 id=&quot;o-que-são-algoritmos-de-ordenação&quot;&gt;O que são Algoritmos de ordenação?&lt;/h2&gt;
-
-&lt;p&gt;Um algoritmo de ordenação é um procedimento que recebe como entrada uma sequência de dados, os quais assumiremos como números inteiros daqui em diante, e rearranja os items dessa sequência de modo que ao final eles estejam em uma determinada ordem: crescente, decrescente, por exemplo.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(13, 1, 0 -1, 9, 6, 3, 1) \Rightarrow (-1, 0, 1, 1, 3, 6, 9, 13)&lt;/script&gt;
-
-&lt;h1 id=&quot;algoritmos-de-ordenação&quot;&gt;Algoritmos de Ordenação&lt;/h1&gt;
-
-&lt;p&gt;Definidos os objetivos de um algoritmo de ordenação, é interessante iniciaremos a discussão nos questionando qual seria nossa estratégia para solucionar o problema da ordenação. Dada uma sequência numérica em um vetor &lt;code class=&quot;highlighter-rouge&quot;&gt;int* v&lt;/code&gt;, qual seria sua intuição para um procedimento que reordenasse essa sequência de forma crescente?&lt;/p&gt;
-
-&lt;p&gt;Ao pensarmos um pouco sobre esse problema, são grandes as chances que tenhamos concluído algum dos algoritmos de ordenação que serão descritos a seguir.&lt;/p&gt;
-
-&lt;h2 id=&quot;estratégias-simples&quot;&gt;Estratégias simples&lt;/h2&gt;
-
-&lt;h3 id=&quot;bubble-sort&quot;&gt;Bubble sort&lt;/h3&gt;
-
-&lt;p&gt;Dada uma sequência de entrada, a &lt;em&gt;ordenação por trocas&lt;/em&gt; compara pares de itens $x_i$ e $x_{i+1}$ e os troca de posição caso $x_i&amp;gt;x_{i+1}$. Isso tem como efeito levar para posições posteriores aquele elemento que seja o maior.&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Trocar os elementos nas posições i e i+1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;O Bubble sort percorre do início ao fim do vetor várias vezes, efetuando trocas da forma acima. Na primeira passagem pelo vetor, o maior elemento é levado à posição final $x_{n}$, e, portanto, já estará na posição correta. A próxima iteração levará o segundo maior valor à posição anterior a final $x_{n-1}$ e assim sucessivamente, até que o primeiro elemento seja avaliado. Neste momento, o algoritmo precisa parar pois o vetor estará ordenado e nenhuma troca adicional ocorrerá.&lt;/p&gt;
-
-&lt;h3 id=&quot;selection-sort&quot;&gt;Selection sort&lt;/h3&gt;
-
-&lt;p&gt;Dada uma sequência de entrada, a &lt;em&gt;ordenação por seleção&lt;/em&gt; seleciona a cada passagem pelo vetor o menor elemento e o coloca na posição inicial $x_1$. Na segunda iteração o menor elemento entre $x_2$ e $x_n$ será selecionado e colocado na posição $x_2$. Ou seja, a cada iteração, o algoritmo deixa um elemento a mais na posição correta.&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Trocar os elementos nas posições i e posição do menor elemento de i a n. 
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;insertion-sort&quot;&gt;Insertion sort&lt;/h3&gt;
-
-&lt;p&gt;Dada uma sequência de entrada, a &lt;em&gt;ordenação por inserção&lt;/em&gt; percorre a sequência e para cada valor em uma determinada posição $i$, reinsere o valor $x_i$ na sua posição correta no momento. A posição correta $j$ para um elemento qualquer $x_i$ em um dado momento é aquela posição tal que $x_{j} \leq x_i \leq x_{j+1}$.&lt;/p&gt;
-
-&lt;h2 id=&quot;quicksort&quot;&gt;Quicksort&lt;/h2&gt;
-
-&lt;p&gt;Consideremos uma sequência numérica qualquer de tamanho $n$, em ordem arbitrária.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;x_1, ~x_2, ~\dots, ~x_n,~\forall x_i\in\mathbb{Z} \mbox{ e } n\in\mathbb{Z}&lt;/script&gt;
-
-&lt;p&gt;Vamos analisar as propriedades produzidas pelo seguinte procedimento, o qual é mais simples que a ordenação em si.&lt;/p&gt;
-
-&lt;p&gt;Dado qualquer elemento desta sequência $x_p$, o qual chamaremos &lt;em&gt;pivô&lt;/em&gt;, &lt;strong&gt;reordene a sequência&lt;/strong&gt; de modo que $\forall x_i$ que preceda $x_p$, $x_i\leq x_p$. Em contrapartida, $\forall x_j$ que suceda $x_p$, $x_p \leq x_j$. Observe que não estamos exigindo que os elementos anteriores ou posteriores a $x_p$ estejam ordenados. No entanto, uma propriedade importante é evidente.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Se todos antes de $x_p$ são menores ou iguais a ele e todos elementos depois são maiores ou iguais, então $x_p$ está na sua posição correta. Ou seja, na posição que ele ocuparia em uma sequência ordenada.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Por essa propriedade concluímos que $x_p$ não precisa mais ser comparado a nenhum outro elemento. Nos restando duas subpsequências a serem ordenadas. Aquela contendo os elementos anteriores e aquela contendo os elementos posteriores a $x_p$.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;[\dots],~ x_p,~ [\dots]&lt;/script&gt;
-
-&lt;p&gt;Podemos então repetir o mesmo procedimento em cada uma dessas subsequências, até que todos elementos tenham sido considerados como pivô e, portanto, colocados em suas devidas posições ordenadas.&lt;/p&gt;
-
-&lt;p&gt;O Algoritmo acima descrito é chamado, no contexto do &lt;em&gt;Quicksort&lt;/em&gt;, de  &lt;em&gt;partition&lt;/em&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;partition&quot;&gt;Partition&lt;/h3&gt;
-
-&lt;p&gt;Dada uma sequência númerica em ordem arbitrária como entrada e um valor &lt;em&gt;pivô&lt;/em&gt; $k$.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;x_1, ~x_2, ~\dots, ~x_n,~\forall x_i\in\mathbb{Z} \mbox{ e } n\in\mathbb{Z}&lt;/script&gt;
-
-&lt;p&gt;&lt;em&gt;Partition&lt;/em&gt; irá produzir uma nova sequência, com o pivô numa posição $p$, de modo que $y_i \leq k$, $\forall i \leq p$ e $y_j \geq k$, $\forall j \geq p$.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;y_1,~y_2,~\dots,y_{p-1},~ k_p,~ y_{p+1}, \dots,~ y_{n-1},~ y_{n}&lt;/script&gt;
-
-&lt;p&gt;Outra característica importante dessa nova sequência é que todos elementos $y_1,\dots,y_{p-1}$ são menores que aqueles em $y_{p+1},\dots,y_n$. Portanto, eles não precisam mais ser comparados. As comparações adicionais acontecerão internamente a cada uma das sequências apenas.&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Versão Cormen (Lomuto)
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;partition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;    
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Versao simples (Hoare)
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;partition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
-    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
-            &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Partition&lt;/li&gt;
-  &lt;li&gt;Complexidade no melhor caso&lt;/li&gt;
-  &lt;li&gt;O que afeta o melhor caso&lt;/li&gt;
-  &lt;li&gt;Complexidade no pior caso&lt;/li&gt;
-  &lt;li&gt;Como contornar o pior caso: escolha do pivô&lt;/li&gt;
-  &lt;li&gt;Mediana de três: p, r, (p+r)/2&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;-Insertionsort
-  -Heapsort
-  -Shellsort
-  -Mergesort&lt;/p&gt;
-
-</description>
-        <pubDate>Tue, 17 Oct 2017 13:50:00 -0200</pubDate>
-        <link>http://localhost:4000/ae22cp-172/ordenacao.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/ordenacao.html</guid>
-        
-        <category>ordenação</category>
-        
-        
-        <category>AE22CP-172</category>
         
       </item>
     
