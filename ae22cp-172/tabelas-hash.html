@@ -70,7 +70,7 @@
   
   
     <div class="right">
-      <a href="/ae22cp-172/FAQ.html">
+      <a href="/lc21cp-172/prolog-relacoes.html">
         <i class="fa fa-angle-right fa-2x"></i>
       </a>
     </div>
@@ -89,7 +89,12 @@
   <li><a href="#introdução" id="markdown-toc-introdução">Introdução</a></li>
   <li><a href="#endereçamento-direto" id="markdown-toc-endereçamento-direto">Endereçamento direto</a></li>
   <li><a href="#tabelas-hash" id="markdown-toc-tabelas-hash">Tabelas Hash</a>    <ul>
-      <li><a href="#resolução-de-colisões-por-encadeamento" id="markdown-toc-resolução-de-colisões-por-encadeamento">Resolução de colisões por encadeamento</a></li>
+      <li><a href="#resolução-de-colisões-por-encadeamento" id="markdown-toc-resolução-de-colisões-por-encadeamento">Resolução de colisões por encadeamento</a>        <ul>
+          <li><a href="#inserção" id="markdown-toc-inserção">Inserção</a></li>
+          <li><a href="#procura" id="markdown-toc-procura">Procura</a></li>
+          <li><a href="#remover" id="markdown-toc-remover">Remover</a></li>
+        </ul>
+      </li>
     </ul>
   </li>
 </ul>
@@ -155,7 +160,7 @@
 
 <p>Nas situações em que endereçamento direto não se aplica, devido ao grande número de chaves possíveis, as Tabelas hash são opções interessantes.</p>
 
-<p>A ideia geral de uma tabela hash é diminuir o número de chaves que precisam ser tratadas, saindo de $|U|$ para um número $m \ll |U|$ (“muito menor que”). Para isso precisamos de função</p>
+<p>A ideia geral de uma tabela hash é diminuir o número de chaves que precisam ser tratadas, saindo de $|U|$ para um número $m \ll |U|$ (“muito menor que”). Para isso precisamos de uma função</p>
 
 <script type="math/tex; mode=display">h: U \to \{0,\dots,m-1\}</script>
 
@@ -167,19 +172,61 @@
 
 <p><img src="/assets/AE22CP/hash.png" alt="hash" /></p>
 
-<p>Mas antes de finalizarmos uma implementação de tabelas hash, precisamos lidar com um importante problema. A função hash mapeia cada valor em $U$ para um valor entre $0$ e $m$, porém, como $m\ll |U|$, é inevitável que para alguns valores $k_1,k_2 \in U$, $h(k_1) = h(k_2)$, o que chamamos de <em>colisão</em>.</p>
+<p>Mas antes de finalizarmos uma implementação de tabelas hash, precisamos lidar com um importante problema. A função hash mapeia cada valor em $U$ para um valor entre $0$ e $m$, porém, como $m\ll |U|$, é inevitável que alguns valores $k_1,k_2 \in U$ tenham o mesmo valor de hash, ou seja, $h(k_1) = h(k_2)$. Isto é chamado <em>colisão</em>.</p>
 
-<p>A existência de colisões nos impede uma implementação direta de tabela hash</p>
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">insert</span><span class="p">(</span><span class="n">Info</span><span class="o">*</span> <span class="n">t</span><span class="p">,</span> <span class="n">Info</span> <span class="n">f</span><span class="p">)</span>
+<p>A menos que não nos importemos em sobrescrever elementos com memso hash, a existência de colisões nos impede uma implementação simples, em que inserimos os elementos na posição dada pela função de hash.</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// Implementação inviável
+</span><span class="kt">void</span> <span class="n">insert</span><span class="p">(</span><span class="n">Info</span><span class="o">*</span> <span class="n">t</span><span class="p">,</span> <span class="n">Info</span> <span class="n">f</span><span class="p">)</span>
     <span class="n">t</span><span class="p">[</span><span class="n">h</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">chave</span><span class="p">)]</span> <span class="o">=</span> <span class="n">f</span><span class="p">;</span>
 </code></pre>
 </div>
 
-<p>Pois esse tipo de implementação somente aceitaria um dos elementos que tenham o mesmo valor de hash. Por exemplo, se houvéssemos inserido $k_1$ e posteriormente tentado inserir $k_2$, o valor de que $k_1$ que estava armazenado em <code class="highlighter-rouge">t[h(k1)]</code> seria sobrescrito, visto que $h(k_1)=h(k_2)$.</p>
+<p>Pois esse tipo de implementação somente aceitaria um dos elementos que tenham o mesmo valor de hash. Por exemplo, se houvéssemos inserido $k_1$ e posteriormente tentado inserir $k_2$, o valor $k_1$ que estava armazenado em <code class="highlighter-rouge">t[h(k1)]</code> seria sobrescrito, visto que $h(k_1)=h(k_2)$.</p>
 
 <p>A seguir, analisaremos formas de tratar colisões, de modo que a tabela hash permita o armazenamento simultâneo de diversos itens com mesmo valor de hash.</p>
 
 <h2 id="resolução-de-colisões-por-encadeamento">Resolução de colisões por encadeamento</h2>
+
+<p>A resolução, ou tratamento, de colisões mais intuitiva consiste em simplesmente armazenar todos elementos cujos hash tenham colidido em uma lista encadeada.  A figura abaixo ilustra essa situação</p>
+
+<p><img src="/assets/AE22CP/chain.png" alt="hash" /></p>
+
+<p>Esta forma de tratarmos colisões define como as funcionalidades devem ser implementadas: inserção, remoção, procura.</p>
+
+<h3 id="inserção">Inserção</h3>
+
+<p>Nesta situação, a tabela hash é simplesmente um vetor $T$, com uma lista em cada uma de suas $m$ posições (um vetor de listas: <code class="highlighter-rouge">list** T</code>). Cada uma das listas $T[i]$ armazenará elementos $x$ cujo hash seja igual ao índice $i$, i.e. $h(x)=i$. Deste modo, se o elemento $x$ ainda não existe na lista $T[i]$, basta inserí-lo.</p>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">insert</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">Info</span> <span class="n">f</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">h</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">chave</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">not</span> <span class="n">contains</span> <span class="n">f</span>
+        <span class="n">insert</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h3 id="procura">Procura</h3>
+
+<p>De forma análoga à inserção, podemos com certeza afirmar que se um elemento $x$, com hash $h(x)$, não é encontrado na lista $T[h(x)]$, então ele não existe na tabela hash. A função <code class="highlighter-rouge">search</code>, deste modo, é implementada em duas etapas apenas:</p>
+<ol>
+  <li>calcular o hash da chave $k$ sendo procurada,</li>
+  <li>percorrer a lista $T[h(k)]$ procurando por um item cuja chave seja igual a $k$.
+    <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">search</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">h</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="n">contains</span> <span class="n">an</span> <span class="n">element</span> <span class="n">x</span> <span class="n">of</span> <span class="n">key</span> <span class="n">k</span><span class="p">:</span> <span class="k">return</span> <span class="n">x</span>
+    <span class="k">else</span> <span class="k">return</span> <span class="n">null</span>
+</code></pre>
+    </div>
+  </li>
+</ol>
+
+<h3 id="remover">Remover</h3>
+
+<p>A funcionalidade remover procede a partir de uma chave $k$. Similarmente a <code class="highlighter-rouge">search</code>, a primeira etapa consiste em calcular o hash da chave $k$, $h(k)$. A partir de $h(k)$, sabemos em qual das listas procurar, $T[h(k)]$. A remoção precisa então percorrer a lista $T[h(k)]$ procurando por um elemento cuja chave seja igual $k$. Caso esse elemento exista, basta removê-lo da lista, caso ele não exista, não há nada a ser feito.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">remove</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">h</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">search</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">k</span><span class="p">)</span> <span class="ow">not</span> <span class="n">null</span><span class="p">:</span> <span class="n">remove</span> <span class="n">x</span> <span class="kn">from</span> <span class="nn">T</span><span class="err">[</span><span class="nn">i</span><span class="err">]
+</span></code></pre>
+</div>
 
 <p><strong>Referências</strong></p>
 <ol>

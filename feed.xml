@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 07 Nov 2017 13:20:59 -0200</pubDate>
-    <lastBuildDate>Tue, 07 Nov 2017 13:20:59 -0200</lastBuildDate>
+    <pubDate>Thu, 16 Nov 2017 16:21:56 -0200</pubDate>
+    <lastBuildDate>Thu, 16 Nov 2017 16:21:56 -0200</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -171,13 +171,182 @@ Program received signal SIGSEGV, Segmentation fault.
       </item>
     
       <item>
+        <title>PROLOG - Programando com relações</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#introdução&quot; id=&quot;markdown-toc-introdução&quot;&gt;Introdução&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#programando-com-relações&quot; id=&quot;markdown-toc-programando-com-relações&quot;&gt;Programando com relações&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#estruturas-recursivas&quot; id=&quot;markdown-toc-estruturas-recursivas&quot;&gt;Estruturas recursivas&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#listas&quot; id=&quot;markdown-toc-listas&quot;&gt;Listas&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#exercícios&quot; id=&quot;markdown-toc-exercícios&quot;&gt;Exercícios&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;introdução&quot;&gt;Introdução&lt;/h1&gt;
+
+&lt;p&gt;Programação lógica funciona por meio da definição de relações entre informações. Nesta seção definiremos algumas técnicas para definir relações mais complexas a partir de outras mais simples.&lt;/p&gt;
+
+&lt;h2 id=&quot;programando-com-relações&quot;&gt;Programando com relações&lt;/h2&gt;
+&lt;p&gt;A forma mais simples de definir uma relação é fornecendo uma lista de fatos. Abaixo listamos alguns fatos sobre usuários de computador: mario, ana, joana; as ferramentas que eles utilizam: compilador, editor, diario, banco de dados, planilha; a arquitetura dos computadores que eles utilizam: sun, pc, mac, e os requisitos de memória de cada aplicação.&lt;/p&gt;
+
+&lt;div class=&quot;language-prolog highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;ss&quot;&gt;usa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;mario&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;compilador&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;sun&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+&lt;span class=&quot;ss&quot;&gt;usa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;mario&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;compilador&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;pc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+&lt;span class=&quot;ss&quot;&gt;usa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;mario&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;compilador&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;mac&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+&lt;span class=&quot;ss&quot;&gt;usa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;mario&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;editor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;sun&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+&lt;span class=&quot;ss&quot;&gt;usa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;mario&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;editor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;pc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+&lt;span class=&quot;ss&quot;&gt;usa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;mario&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;diario&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;pc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+&lt;span class=&quot;ss&quot;&gt;usa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;ana&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;editor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;mac&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+&lt;span class=&quot;ss&quot;&gt;usa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;ana&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;planilha&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;mac&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+&lt;span class=&quot;ss&quot;&gt;usa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;joana&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;bancodados&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;pc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+&lt;span class=&quot;ss&quot;&gt;usa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;joana&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;compilador&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;pc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+&lt;span class=&quot;ss&quot;&gt;usa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;joana&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;editor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;pc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+
+&lt;span class=&quot;ss&quot;&gt;requer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;compilador&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;128&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+&lt;span class=&quot;ss&quot;&gt;requer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;editor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;512&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+&lt;span class=&quot;ss&quot;&gt;requer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;planilha&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;640&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+&lt;span class=&quot;ss&quot;&gt;requer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;bancodados&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;8192&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Da forma que foram definidos, esses fatos podem ser interpretatos como um banco de dados. Do mesmo modo que em um banco de dados é possível formularmos perguntas sobre as informações armazenadas: &lt;strong&gt;query&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Uma possível pergunta seria: “Quais aplicações &lt;code class=&quot;highlighter-rouge&quot;&gt;mario&lt;/code&gt; utiliza num computador &lt;code class=&quot;highlighter-rouge&quot;&gt;sun&lt;/code&gt;?”&lt;/p&gt;
+
+&lt;div class=&quot;language-prolog highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;ss&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;mario&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;sun&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Num banco de dados relacional, temos a possibilidade de formular questões por meio da combinação de informações que estão definidas em relações diferentes. Essa característica pode ser simulada em PROLOG.&lt;/p&gt;
+
+&lt;p&gt;Escreva um trecho de código PROLOG para representar as seguintes questões:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“Quais são os requisitos de memória dos programas utilizados no Mac?”
+    &lt;div class=&quot;language-prolog highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;ss&quot;&gt;usa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PESSOA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;PROGRAMA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;mac&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;requer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PROGRAMA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;MEMORIA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;“Quais os requisitos de memória dos programas que precisam de mais que 256K?”
+    &lt;div class=&quot;language-prolog highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;ss&quot;&gt;requer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PROGRAMA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;MEMORIA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;MEMORIA&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;256&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;“Quais os requisitos de memória do editor?”
+    &lt;div class=&quot;language-prolog highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;ss&quot;&gt;requer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PROGRAMA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;MEMORIA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;PROGRAMA&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;editor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;ss&quot;&gt;requer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;editor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;MEMORIA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;“Quais pessoas usam quais programas em quais máquinas e quanto de memória eles precisam?”
+    &lt;div class=&quot;language-prolog highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;ss&quot;&gt;usa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PESSOA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;PROGRAMA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;MAQUINA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;requer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PROGRAMA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;MEMORIA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;“Quais os requisitos de memória dos programas que a Ana usa no mac?”
+    &lt;div class=&quot;language-prolog highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;ss&quot;&gt;usa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;ana&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;mac&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;requer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;Y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;“Quais programas são usados por pessoas diferentes na mesma máquina?”
+    &lt;div class=&quot;language-prolog highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;ss&quot;&gt;usa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PESSOA1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;usa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PESSOA2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;PESSOA1&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;PESSOA2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;“Quais programas ambas, Ana e Joana, usam?”
+    &lt;div class=&quot;language-prolog highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;ss&quot;&gt;usa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;ana&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;M1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;usa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;joana&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;M2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;“Quais programas ambas, Ana e Joana, usam na mesma máquina?”
+    &lt;div class=&quot;language-prolog highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;ss&quot;&gt;usa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;ana&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;usa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;joana&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;“Quais programas são usados por Ana ou Joana?”
+    &lt;div class=&quot;language-prolog highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;ss&quot;&gt;ana_ou_joana&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:-&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;usa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;ana&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+&lt;span class=&quot;ss&quot;&gt;ana_ou_joana&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:-&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;usa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;joana&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;“Quais programas são usados por Ana mas não por Joana?”
+    &lt;div class=&quot;language-prolog highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;ss&quot;&gt;usa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;ana&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;M1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;not&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;usa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;joana&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;M2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)).&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;estruturas-recursivas&quot;&gt;Estruturas recursivas&lt;/h2&gt;
+
+&lt;p&gt;Em situações mais realistas os fatos e as relações utilizadas precisam representar  informações que posssuam estrutura interna mais ricas do que as vistas na seção anterior. Nesta seção veremos como construir regras capazes de modelar situações com mais que um número fixo de escolhas.&lt;/p&gt;
+
+&lt;h3 id=&quot;listas&quot;&gt;Listas&lt;/h3&gt;
+
+&lt;p&gt;Uma lista é uma sequência de elementos definida de acordo com a sintaxe&lt;/p&gt;
+
+&lt;div class=&quot;language-prolog highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;23&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;A definição de regras que utilizam listas como parâmetros aumenta as possibilidades e complexidade das regras. Em geral, operações sobre listas são definidas recursivamente. Por exemplo, suponha que queiramos definir uma regra que diga se um determinado elemento X é ou não um membro da lista.&lt;/p&gt;
+
+&lt;div class=&quot;language-prolog highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/*&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; Notação informal &lt;/span&gt;&lt;span class=&quot;cm&quot;&gt;*/&lt;/span&gt;
+&lt;span class=&quot;ss&quot;&gt;membro&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;H&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:-&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;está&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;em&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;23&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;?.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;A notação &lt;code class=&quot;highlighter-rouge&quot;&gt;[H|T]&lt;/code&gt; indica uma lista qualquer, cujo inicio &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; é &lt;code class=&quot;highlighter-rouge&quot;&gt;H&lt;/code&gt; e o restante da lista é referenciado por &lt;code class=&quot;highlighter-rouge&quot;&gt;T&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;tail&lt;/code&gt;. Com esse tipo de notação só temos acesso a variáveis $H$ e $T$, não temos acesso a toda lista de uma vez. Exemplo, dada a lista &lt;code class=&quot;highlighter-rouge&quot;&gt;[1,23,5,6]&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;H=1&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;T=[23,5,6]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;A seguinte definição recursiva, percorre a lista procurando por uma situação em que $X$ seja o inicio da sublista. Nesta situação teremos que $X$ é membro da lista.&lt;/p&gt;
+&lt;div class=&quot;language-prolog highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;ss&quot;&gt;membro&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]).&lt;/span&gt;
+&lt;span class=&quot;ss&quot;&gt;membro&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;H&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:-&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;membro&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;exercícios&quot;&gt;Exercícios&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Membro&lt;/li&gt;
+  &lt;li&gt;Imprimir lista&lt;/li&gt;
+  &lt;li&gt;Gerar Sequência no intervalo&lt;/li&gt;
+  &lt;li&gt;Máximo&lt;/li&gt;
+  &lt;li&gt;Comprimento da lista&lt;/li&gt;
+  &lt;li&gt;Soma da lista&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Referências&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;MICHAEL SPIVEY. An introduction to logic programming through Prolog. Prentice-Hall, Inc. Upper Saddle River, NJ, USA ©1996 
+ISBN:0-13-536047-1. &lt;a href=&quot;https://pdfs.semanticscholar.org/6b7d/1f67f9b3c600e530e00f0e255229d93dd881.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+        <pubDate>Thu, 16 Nov 2017 10:20:00 -0200</pubDate>
+        <link>http://localhost:4000/lc21cp-172/prolog-relacoes.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/prolog-relacoes.html</guid>
+        
+        <category>prolog</category>
+        
+        
+        <category>LC21CP-172</category>
+        
+      </item>
+    
+      <item>
         <title>Tabelas hash</title>
         <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#introdução&quot; id=&quot;markdown-toc-introdução&quot;&gt;Introdução&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#endereçamento-direto&quot; id=&quot;markdown-toc-endereçamento-direto&quot;&gt;Endereçamento direto&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#tabelas-hash&quot; id=&quot;markdown-toc-tabelas-hash&quot;&gt;Tabelas Hash&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#resolução-de-colisões-por-encadeamento&quot; id=&quot;markdown-toc-resolução-de-colisões-por-encadeamento&quot;&gt;Resolução de colisões por encadeamento&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#resolução-de-colisões-por-encadeamento&quot; id=&quot;markdown-toc-resolução-de-colisões-por-encadeamento&quot;&gt;Resolução de colisões por encadeamento&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#inserção&quot; id=&quot;markdown-toc-inserção&quot;&gt;Inserção&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#procura&quot; id=&quot;markdown-toc-procura&quot;&gt;Procura&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#remover&quot; id=&quot;markdown-toc-remover&quot;&gt;Remover&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -243,7 +412,7 @@ Program received signal SIGSEGV, Segmentation fault.
 
 &lt;p&gt;Nas situações em que endereçamento direto não se aplica, devido ao grande número de chaves possíveis, as Tabelas hash são opções interessantes.&lt;/p&gt;
 
-&lt;p&gt;A ideia geral de uma tabela hash é diminuir o número de chaves que precisam ser tratadas, saindo de $|U|$ para um número $m \ll |U|$ (“muito menor que”). Para isso precisamos de função&lt;/p&gt;
+&lt;p&gt;A ideia geral de uma tabela hash é diminuir o número de chaves que precisam ser tratadas, saindo de $|U|$ para um número $m \ll |U|$ (“muito menor que”). Para isso precisamos de uma função&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;h: U \to \{0,\dots,m-1\}&lt;/script&gt;
 
@@ -255,19 +424,61 @@ Program received signal SIGSEGV, Segmentation fault.
 
 &lt;p&gt;&lt;img src=&quot;/assets/AE22CP/hash.png&quot; alt=&quot;hash&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Mas antes de finalizarmos uma implementação de tabelas hash, precisamos lidar com um importante problema. A função hash mapeia cada valor em $U$ para um valor entre $0$ e $m$, porém, como $m\ll |U|$, é inevitável que para alguns valores $k_1,k_2 \in U$, $h(k_1) = h(k_2)$, o que chamamos de &lt;em&gt;colisão&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Mas antes de finalizarmos uma implementação de tabelas hash, precisamos lidar com um importante problema. A função hash mapeia cada valor em $U$ para um valor entre $0$ e $m$, porém, como $m\ll |U|$, é inevitável que alguns valores $k_1,k_2 \in U$ tenham o mesmo valor de hash, ou seja, $h(k_1) = h(k_2)$. Isto é chamado &lt;em&gt;colisão&lt;/em&gt;.&lt;/p&gt;
 
-&lt;p&gt;A existência de colisões nos impede uma implementação direta de tabela hash&lt;/p&gt;
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;p&gt;A menos que não nos importemos em sobrescrever elementos com memso hash, a existência de colisões nos impede uma implementação simples, em que inserimos os elementos na posição dada pela função de hash.&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Implementação inviável
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Pois esse tipo de implementação somente aceitaria um dos elementos que tenham o mesmo valor de hash. Por exemplo, se houvéssemos inserido $k_1$ e posteriormente tentado inserir $k_2$, o valor de que $k_1$ que estava armazenado em &lt;code class=&quot;highlighter-rouge&quot;&gt;t[h(k1)]&lt;/code&gt; seria sobrescrito, visto que $h(k_1)=h(k_2)$.&lt;/p&gt;
+&lt;p&gt;Pois esse tipo de implementação somente aceitaria um dos elementos que tenham o mesmo valor de hash. Por exemplo, se houvéssemos inserido $k_1$ e posteriormente tentado inserir $k_2$, o valor $k_1$ que estava armazenado em &lt;code class=&quot;highlighter-rouge&quot;&gt;t[h(k1)]&lt;/code&gt; seria sobrescrito, visto que $h(k_1)=h(k_2)$.&lt;/p&gt;
 
 &lt;p&gt;A seguir, analisaremos formas de tratar colisões, de modo que a tabela hash permita o armazenamento simultâneo de diversos itens com mesmo valor de hash.&lt;/p&gt;
 
 &lt;h2 id=&quot;resolução-de-colisões-por-encadeamento&quot;&gt;Resolução de colisões por encadeamento&lt;/h2&gt;
+
+&lt;p&gt;A resolução, ou tratamento, de colisões mais intuitiva consiste em simplesmente armazenar todos elementos cujos hash tenham colidido em uma lista encadeada.  A figura abaixo ilustra essa situação&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/AE22CP/chain.png&quot; alt=&quot;hash&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Esta forma de tratarmos colisões define como as funcionalidades devem ser implementadas: inserção, remoção, procura.&lt;/p&gt;
+
+&lt;h3 id=&quot;inserção&quot;&gt;Inserção&lt;/h3&gt;
+
+&lt;p&gt;Nesta situação, a tabela hash é simplesmente um vetor $T$, com uma lista em cada uma de suas $m$ posições (um vetor de listas: &lt;code class=&quot;highlighter-rouge&quot;&gt;list** T&lt;/code&gt;). Cada uma das listas $T[i]$ armazenará elementos $x$ cujo hash seja igual ao índice $i$, i.e. $h(x)=i$. Deste modo, se o elemento $x$ ainda não existe na lista $T[i]$, basta inserí-lo.&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contains&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;procura&quot;&gt;Procura&lt;/h3&gt;
+
+&lt;p&gt;De forma análoga à inserção, podemos com certeza afirmar que se um elemento $x$, com hash $h(x)$, não é encontrado na lista $T[h(x)]$, então ele não existe na tabela hash. A função &lt;code class=&quot;highlighter-rouge&quot;&gt;search&lt;/code&gt;, deste modo, é implementada em duas etapas apenas:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;calcular o hash da chave $k$ sendo procurada,&lt;/li&gt;
+  &lt;li&gt;percorrer a lista $T[h(k)]$ procurando por um item cuja chave seja igual a $k$.
+    &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contains&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;an&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;element&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;null&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;remover&quot;&gt;Remover&lt;/h3&gt;
+
+&lt;p&gt;A funcionalidade remover procede a partir de uma chave $k$. Similarmente a &lt;code class=&quot;highlighter-rouge&quot;&gt;search&lt;/code&gt;, a primeira etapa consiste em calcular o hash da chave $k$, $h(k)$. A partir de $h(k)$, sabemos em qual das listas procurar, $T[h(k)]$. A remoção precisa então percorrer a lista $T[h(k)]$ procurando por um elemento cuja chave seja igual $k$. Caso esse elemento exista, basta removê-lo da lista, caso ele não exista, não há nada a ser feito.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;remove&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nn&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;]
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;Referências&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
@@ -1254,217 +1465,6 @@ Program received signal SIGSEGV, Segmentation fault.
         
         
         <category>AE22CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Lógica de predicados - Teoremas e regras de equivalência</title>
-        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#teoremas&quot; id=&quot;markdown-toc-teoremas&quot;&gt;Teoremas&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#exemplo-1&quot; id=&quot;markdown-toc-exemplo-1&quot;&gt;Exemplo 1&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#exemplo-2&quot; id=&quot;markdown-toc-exemplo-2&quot;&gt;Exemplo 2&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#exemplo-3&quot; id=&quot;markdown-toc-exemplo-3&quot;&gt;Exemplo 3&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#equivalências&quot; id=&quot;markdown-toc-equivalências&quot;&gt;Equivalências&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#exemplo-1-1&quot; id=&quot;markdown-toc-exemplo-1-1&quot;&gt;Exemplo 1&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#exemplo-2-1&quot; id=&quot;markdown-toc-exemplo-2-1&quot;&gt;Exemplo 2&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#exemplo-3-1&quot; id=&quot;markdown-toc-exemplo-3-1&quot;&gt;Exemplo 3&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#intercâmbio-de-quantificadores&quot; id=&quot;markdown-toc-intercâmbio-de-quantificadores&quot;&gt;Intercâmbio de quantificadores&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#variáveis-abertas-e-fechadas&quot; id=&quot;markdown-toc-variáveis-abertas-e-fechadas&quot;&gt;Variáveis abertas e fechadas&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#exemplo&quot; id=&quot;markdown-toc-exemplo&quot;&gt;Exemplo&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#qual-a-utilidade&quot; id=&quot;markdown-toc-qual-a-utilidade&quot;&gt;Qual a utilidade?&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplo-1&quot; id=&quot;markdown-toc-exemplo-1&quot;&gt;Exemplo&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;teoremas&quot;&gt;Teoremas&lt;/h1&gt;
-
-&lt;p&gt;Assim como na lógica proposicional, existem fórmulas na lógica de predicados que podem ser demonstradas sem a necessidade de premissas. Tais fórmulas, chamadas &lt;em&gt;teoremas&lt;/em&gt;, são verdades lógicas, ou seja sua verdade é necessária de acordo com as regras da lógica de predicados. Todos os teoremas da lógica proposicional são, também, teoremas na lógica de predicados.&lt;/p&gt;
-
-&lt;h2 id=&quot;exemplo-1&quot;&gt;Exemplo 1&lt;/h2&gt;
-
-&lt;p&gt;O condicional quando aplicado a antecedente e consequente iguais é um teorema na lógica proposicional, $p \to p$, sendo portanto representado em forma de argumento sem premissas&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash p \to p \alpha 3&lt;/script&gt;
-
-&lt;p&gt;Na lógica de predicados temos a versão generalizada deste teorema, a qual é produzida pela introdução do quantificador universal.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \forall x (Fx\to Fx)&lt;/script&gt;
-
-&lt;p&gt;A demonstração deste teorema segue a estratégia utilizada para demonstrarmos qualquer condicional. Assumimos como hipótese o antecedente e derivamos o consequente.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{array}{llr}
-1 &amp; Fa                   &amp;   \mbox{Hipótese para prova do condicional}\\
-2 &amp; Fa\to Fa     &amp;  \mbox{Introdução do condicional 1}\\
-3 &amp; \forall x (Fx\to Fx)             &amp;   \mbox{Introdução do universal em 2}
-\end{array} %]]&gt;&lt;/script&gt;
-
-&lt;h2 id=&quot;exemplo-2&quot;&gt;Exemplo 2&lt;/h2&gt;
-
-&lt;p&gt;Provemos o seguinte teorema:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \forall x Fx \to Fa&lt;/script&gt;
-
-&lt;p&gt;A estratégia de demonstração é a mesma, basta observarmos que $Fa$ é uma instância da fórmula generalizada $\forall x Fx$. Portanto&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{array}{llr}
-1 &amp; \forall x Fx                   &amp;   \mbox{Hipótese para prova do condicional}\\
-2 &amp; \qquad Fa     &amp;  \mbox{Eliminação do universal em 1}\\
-3 &amp; \forall x Fx\to Fa             &amp;   \mbox{Prova do condicional 1-2}
-\end{array} %]]&gt;&lt;/script&gt;
-
-&lt;h2 id=&quot;exemplo-3&quot;&gt;Exemplo 3&lt;/h2&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \neg(\forall x Fx \land \exists x \neg Fx)&lt;/script&gt;
-
-&lt;p&gt;Neste exemplo, não é evidente qual regra de derivação utilizar. Seguindo a estratégia já mencionada anteriormente, tentaremos a demonstração por redução ao absurdo. Assumindo a negação da conclusão como hipótese&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{array}{llr}
-1 &amp; \forall x Fx \land \exists x \neg Fx    &amp;   \mbox{Hipótese para redução ao absurdo}\\
-2 &amp; \qquad \forall x Fx     &amp;  \mbox{Eliminação do condicional em 1}\\
-3 &amp; \qquad \exists x \neg Fx     &amp;  \mbox{Eliminação do condicional em 1}\\
-4 &amp; \qquad\quad \neg Fa          &amp;   \mbox{Hipótese para eliminação do existencial}\\
-5 &amp; \qquad\quad Fa              &amp;    \mbox{Eliminação do universal em 2}\\
-6 &amp; \qquad\quad p \land \neg p    &amp;  \mbox{Pela contradição de } Fa\\
-7 &amp; \qquad p \land \neg p &amp; \mbox{Eliminação do existencial 4-6}\\
-8 &amp; \neg(\forall x Fx \land \exists x \neg Fx) &amp; \mbox{Redução a absurdo 1-7}
-\end{array} %]]&gt;&lt;/script&gt;
-
-&lt;h1 id=&quot;equivalências&quot;&gt;Equivalências&lt;/h1&gt;
-
-&lt;p&gt;Assim como vimos para as árvores de refutação da lógica proposicional, nem sempre uma fórmula é facilmente demonstrável ou derivavel. Em alguns desses casos, no entanto, a utilização de uma fórmula equivalente facilita consideravelmente o trabalho.&lt;/p&gt;
-
-&lt;p&gt;Para ilustrar essa ideia, como demonstraríamos o teorema a seguir?&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \forall x Fx \lor \exists x \neg Fx&lt;/script&gt;
-
-&lt;p&gt;Não é evidente quais regras aplicar, visto que não temos premissas, a regra de eliminação ou introdução da disjunção não são aplicáveis. Podemos então tentar substituir essa fórmula por uma equivalente, mas qual utilizar? Na lógica proposicional demonstramos a equivalência $p \to q \dashv\vdash \neg p \lor q$, seria essa quivalência válida na lógica de predicados.&lt;/p&gt;
-
-&lt;h2 id=&quot;exemplo-1-1&quot;&gt;Exemplo 1&lt;/h2&gt;
-
-&lt;p&gt;Demonstre a equivalência&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x Fx \lor \exists x \neg Fx \dashv\vdash \neg\forall x Fx \to \exists x \neg Fx&lt;/script&gt;
-
-&lt;p&gt;Dada a equivalência acima, demonstrar o teorema $\vdash \forall x Fx \lor \exists x \neg Fx$ é equivalente a demonstrar sua equivalência&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \neg\forall x Fx \to \exists x \neg Fx&lt;/script&gt;
-
-&lt;h2 id=&quot;exemplo-2-1&quot;&gt;Exemplo 2&lt;/h2&gt;
-
-&lt;p&gt;Demonstre a equivalência&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x(Fx \to \neg Gx) \dashv\vdash \neg \exists x(Fx \land Gx)&lt;/script&gt;
-
-&lt;h2 id=&quot;exemplo-3-1&quot;&gt;Exemplo 3&lt;/h2&gt;
-
-&lt;p&gt;Demonstre as equivalências&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \forall x \neg Fx \dashv \vdash \exists x Fx \label{eq:1}&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \forall x Fx \dashv \vdash \exists x \neg Fx \label{eq:2}&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x \neg Fx \dashv\vdash \neg \exists x Fx \label{eq:3}&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x Fx \dashv\vdash \neg \exists x \neg Fx \label{eq:4}&lt;/script&gt;
-
-&lt;h1 id=&quot;intercâmbio-de-quantificadores&quot;&gt;Intercâmbio de quantificadores&lt;/h1&gt;
-
-&lt;p&gt;As últimas equivalências, descritas no Exemplo 3, são mais genéricas do que parecem à primeira vista. De fato, elas são válidas para quaiquer subfórmulas, desde que sejam subfórmulas dependentes da mesma variável. No entanto, para formalizarmos essa ideia, precisamos definir antes alguns conceitos.&lt;/p&gt;
-
-&lt;h2 id=&quot;variáveis-abertas-e-fechadas&quot;&gt;Variáveis abertas e fechadas&lt;/h2&gt;
-
-&lt;p&gt;Consideremos como exemplo simples a fórmula $\forall x Fx$. Pela definição das regras de formação da linguagem da lógica de predicados, sabemos que $Fx$ só faz sentido, se houver antes um quantificador discriminando $x$.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Uma fórmula é dita fechada em relação a uma variável $x$ qualquer, se existe um quantificador associado a tal variável. Exemplo: $\forall x (Fx \land Gx)$&lt;/li&gt;
-  &lt;li&gt;Uma fórmula é dita aberta em relação a uma variável $x$ qualquer, se não existe quantificador que discrimine tal variável. Exemplo: $Fx \land Gx$, $\forall y Fxy$&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Essa terminologia permite nos referirmos mais facilmente a fórmulas e subfórmulas com a mesma característica em termos de variáveis. Para melhor exemplificar, consideremos a equivalência $\eqref{eq:4}$ descrita anteriormente.&lt;/p&gt;
-
-&lt;p&gt;Nela, podemos nos referir $Fx$ como uma fórmula &lt;strong&gt;aberta em $x$&lt;/strong&gt; enquanto $\forall x Fx$ é uma fórmula &lt;strong&gt;fechada em $x$&lt;/strong&gt;. Obviamente, existem diversas outras fórmulas abertas em $x$. Por exemplo $Fx\land Gx$ e $Fx\to Gx$ são ambas fórmulas abertas em $x$. Ou seja, todas elas compartilham essa mesma característica com $Fx$. Podemos então, expressar ideias como&lt;/p&gt;
-
-&lt;p&gt;“Seja qualquer fórmula $\phi$ que seja aberta em $\beta$”.&lt;/p&gt;
-
-&lt;p&gt;Em que $\beta$ represente qualquer variável, e.g. $x, y, z,\dots$. Isso nos permite generalizar as equivalências $\eqref{eq:1}-\eqref{eq:4}$ para além de $Fx$, da seguinte forma:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \forall \beta \neg \phi \dashv \vdash \exists \beta \phi \label{eq:5}&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \forall \beta \phi \dashv \vdash \exists \beta \neg \phi&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall \beta \neg \phi \dashv\vdash \neg \exists \beta \phi&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall \beta \phi \dashv\vdash \neg \exists \beta \neg \phi \label{eq:8}&lt;/script&gt;
-
-&lt;h2 id=&quot;exemplo&quot;&gt;Exemplo&lt;/h2&gt;
-
-&lt;p&gt;Vejamos um exemplo da aplicação dessa generalização. Considere a forma de argumento a seguir:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x (Fx \to \neg Gx) \vdash \neg \exists x (Fx \land Gx)&lt;/script&gt;
-
-&lt;p&gt;Neste exemplo, $(Fx\to\neg Gx)$ e $(Fx \land Gx)$ são fórmulas abertas em $x$. Se dermos um nome mais simples para cada uma delas, por exemplo, $\phi$ e $\psi$, respectivamente. Então a forma de argumento acima é instância de algo mais genérico&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x \phi \vdash \exists x \psi&lt;/script&gt;
-
-&lt;h2 id=&quot;qual-a-utilidade&quot;&gt;Qual a utilidade?&lt;/h2&gt;
-
-&lt;p&gt;A principal utilidade desse tipo de generalização é nos permitir utilizar as equivalências em um contexto amplo, sem necessariamente ter que provar cada uma delas, mostrando que todas são instâncias dos mesmos teoremas. Em outras palavras, se:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \forall x \neg Fx  \leftrightarrow \neg \exists Fx&lt;/script&gt;
-
-&lt;p&gt;Então o teorema a seguir também é verdadeiro&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \forall x \neg (Fx \land Gx)  \leftrightarrow \neg \exists (Fx \land Gx)&lt;/script&gt;
-
-&lt;p&gt;pois ambos são instâncias do mesmo teorema genérico.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \forall \beta \neg \phi \leftrightarrow \neg \exists\beta \phi&lt;/script&gt;
-
-&lt;p&gt;Este tipo de intercâmbio entre equivalências em muitos casos torna as demonstrações muito mais simples.&lt;/p&gt;
-
-&lt;h3 id=&quot;exemplo-1&quot;&gt;Exemplo&lt;/h3&gt;
-
-&lt;p&gt;Demonstre o seguinte teoremas&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\vdash \forall x  Fx \lor \exists x \neg Fx&lt;/script&gt;
-
-&lt;p&gt;Iniciaremos com a tautologia&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x Fx \lor \neg \forall x Fx&lt;/script&gt;
-
-&lt;p&gt;A subfórmula $\neg \forall x Fx$ pode ser interpretada como&lt;/p&gt;
-
-&lt;p&gt;“Nem todo x satisfaz o predicado F”&lt;/p&gt;
-
-&lt;p&gt;Que por sua vez é equivalente a dizermos que&lt;/p&gt;
-
-&lt;p&gt;“Existe x que não satisfaz F”&lt;/p&gt;
-
-&lt;p&gt;A segunda versão pode ser escrita simbolicamente como $\exists x \neg Fx$. Esta equivalência está representada em $\eqref{eq:2}$. Substituindo essa equivalência na tautologia acima, produzimos&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x Fx \lor \exists x \neg Fx&lt;/script&gt;
-
-&lt;p&gt;O qual finaliza a demonstração do teorema.&lt;/p&gt;
-</description>
-        <pubDate>Wed, 18 Oct 2017 10:20:00 -0200</pubDate>
-        <link>http://localhost:4000/lc21cp-172/lp-teoremas-equivalencias.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/lp-teoremas-equivalencias.html</guid>
-        
-        <category>predicados</category>
-        
-        
-        <category>LC21CP-172</category>
         
       </item>
     

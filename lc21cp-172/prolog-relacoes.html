@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>PROLOG - Programando com relações</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/lc21cp-172/prolog-relacoes.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">PROLOG - Programando com relações</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Nov 16, 2017
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/ae22cp-172/tabelas-hash.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/ae22cp-172/FAQ.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#introdução" id="markdown-toc-introdução">Introdução</a>    <ul>
+      <li><a href="#programando-com-relações" id="markdown-toc-programando-com-relações">Programando com relações</a></li>
+      <li><a href="#estruturas-recursivas" id="markdown-toc-estruturas-recursivas">Estruturas recursivas</a>        <ul>
+          <li><a href="#listas" id="markdown-toc-listas">Listas</a></li>
+          <li><a href="#exercícios" id="markdown-toc-exercícios">Exercícios</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="introdução">Introdução</h1>
+
+<p>Programação lógica funciona por meio da definição de relações entre informações. Nesta seção definiremos algumas técnicas para definir relações mais complexas a partir de outras mais simples.</p>
+
+<h2 id="programando-com-relações">Programando com relações</h2>
+<p>A forma mais simples de definir uma relação é fornecendo uma lista de fatos. Abaixo listamos alguns fatos sobre usuários de computador: mario, ana, joana; as ferramentas que eles utilizam: compilador, editor, diario, banco de dados, planilha; a arquitetura dos computadores que eles utilizam: sun, pc, mac, e os requisitos de memória de cada aplicação.</p>
+
+<div class="language-prolog highlighter-rouge"><pre class="highlight"><code><span class="ss">usa</span><span class="p">(</span><span class="ss">mario</span><span class="p">,</span> <span class="ss">compilador</span><span class="p">,</span> <span class="ss">sun</span><span class="p">).</span>
+<span class="ss">usa</span><span class="p">(</span><span class="ss">mario</span><span class="p">,</span> <span class="ss">compilador</span><span class="p">,</span> <span class="ss">pc</span><span class="p">).</span>
+<span class="ss">usa</span><span class="p">(</span><span class="ss">mario</span><span class="p">,</span> <span class="ss">compilador</span><span class="p">,</span> <span class="ss">mac</span><span class="p">).</span>
+<span class="ss">usa</span><span class="p">(</span><span class="ss">mario</span><span class="p">,</span> <span class="ss">editor</span><span class="p">,</span> <span class="ss">sun</span><span class="p">).</span>
+<span class="ss">usa</span><span class="p">(</span><span class="ss">mario</span><span class="p">,</span> <span class="ss">editor</span><span class="p">,</span> <span class="ss">pc</span><span class="p">).</span>
+<span class="ss">usa</span><span class="p">(</span><span class="ss">mario</span><span class="p">,</span> <span class="ss">diario</span><span class="p">,</span> <span class="ss">pc</span><span class="p">).</span>
+<span class="ss">usa</span><span class="p">(</span><span class="ss">ana</span><span class="p">,</span> <span class="ss">editor</span><span class="p">,</span> <span class="ss">mac</span><span class="p">).</span>
+<span class="ss">usa</span><span class="p">(</span><span class="ss">ana</span><span class="p">,</span> <span class="ss">planilha</span><span class="p">,</span> <span class="ss">mac</span><span class="p">).</span>
+<span class="ss">usa</span><span class="p">(</span><span class="ss">joana</span><span class="p">,</span> <span class="ss">bancodados</span><span class="p">,</span> <span class="ss">pc</span><span class="p">).</span>
+<span class="ss">usa</span><span class="p">(</span><span class="ss">joana</span><span class="p">,</span> <span class="ss">compilador</span><span class="p">,</span> <span class="ss">pc</span><span class="p">).</span>
+<span class="ss">usa</span><span class="p">(</span><span class="ss">joana</span><span class="p">,</span> <span class="ss">editor</span><span class="p">,</span> <span class="ss">pc</span><span class="p">).</span>
+
+<span class="ss">requer</span><span class="p">(</span><span class="ss">compilador</span><span class="p">,</span> <span class="m">128</span><span class="p">).</span>
+<span class="ss">requer</span><span class="p">(</span><span class="ss">editor</span><span class="p">,</span> <span class="m">512</span><span class="p">).</span>
+<span class="ss">requer</span><span class="p">(</span><span class="ss">planilha</span><span class="p">,</span> <span class="m">640</span><span class="p">).</span>
+<span class="ss">requer</span><span class="p">(</span><span class="ss">bancodados</span><span class="p">,</span> <span class="m">8192</span><span class="p">).</span>
+</code></pre>
+</div>
+
+<p>Da forma que foram definidos, esses fatos podem ser interpretatos como um banco de dados. Do mesmo modo que em um banco de dados é possível formularmos perguntas sobre as informações armazenadas: <strong>query</strong>.</p>
+
+<p>Uma possível pergunta seria: “Quais aplicações <code class="highlighter-rouge">mario</code> utiliza num computador <code class="highlighter-rouge">sun</code>?”</p>
+
+<div class="language-prolog highlighter-rouge"><pre class="highlight"><code><span class="ss">uses</span><span class="p">(</span><span class="ss">mario</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="ss">sun</span><span class="p">).</span>
+</code></pre>
+</div>
+
+<p>Num banco de dados relacional, temos a possibilidade de formular questões por meio da combinação de informações que estão definidas em relações diferentes. Essa característica pode ser simulada em PROLOG.</p>
+
+<p>Escreva um trecho de código PROLOG para representar as seguintes questões:</p>
+
+<ul>
+  <li>“Quais são os requisitos de memória dos programas utilizados no Mac?”
+    <div class="language-prolog highlighter-rouge"><pre class="highlight"><code><span class="ss">usa</span><span class="p">(</span><span class="nv">PESSOA</span><span class="p">,</span> <span class="nv">PROGRAMA</span><span class="p">,</span> <span class="ss">mac</span><span class="p">),</span> <span class="ss">requer</span><span class="p">(</span><span class="nv">PROGRAMA</span><span class="p">,</span> <span class="nv">MEMORIA</span><span class="p">).</span>
+</code></pre>
+    </div>
+  </li>
+  <li>“Quais os requisitos de memória dos programas que precisam de mais que 256K?”
+    <div class="language-prolog highlighter-rouge"><pre class="highlight"><code><span class="ss">requer</span><span class="p">(</span><span class="nv">PROGRAMA</span><span class="p">,</span> <span class="nv">MEMORIA</span><span class="p">),</span> <span class="nv">MEMORIA</span> <span class="o">&gt;</span> <span class="m">256</span><span class="p">.</span>
+</code></pre>
+    </div>
+  </li>
+  <li>“Quais os requisitos de memória do editor?”
+    <div class="language-prolog highlighter-rouge"><pre class="highlight"><code><span class="ss">requer</span><span class="p">(</span><span class="nv">PROGRAMA</span><span class="p">,</span> <span class="nv">MEMORIA</span><span class="p">),</span> <span class="nv">PROGRAMA</span> <span class="o">=</span> <span class="ss">editor</span><span class="p">.</span>
+<span class="ss">requer</span><span class="p">(</span><span class="ss">editor</span><span class="p">,</span> <span class="nv">MEMORIA</span><span class="p">).</span>
+</code></pre>
+    </div>
+  </li>
+  <li>“Quais pessoas usam quais programas em quais máquinas e quanto de memória eles precisam?”
+    <div class="language-prolog highlighter-rouge"><pre class="highlight"><code><span class="ss">usa</span><span class="p">(</span><span class="nv">PESSOA</span><span class="p">,</span> <span class="nv">PROGRAMA</span><span class="p">,</span> <span class="nv">MAQUINA</span><span class="p">),</span> <span class="ss">requer</span><span class="p">(</span><span class="nv">PROGRAMA</span><span class="p">,</span> <span class="nv">MEMORIA</span><span class="p">).</span>
+</code></pre>
+    </div>
+  </li>
+  <li>“Quais os requisitos de memória dos programas que a Ana usa no mac?”
+    <div class="language-prolog highlighter-rouge"><pre class="highlight"><code><span class="ss">usa</span><span class="p">(</span><span class="ss">ana</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="ss">mac</span><span class="p">),</span> <span class="ss">requer</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">).</span>
+</code></pre>
+    </div>
+  </li>
+  <li>“Quais programas são usados por pessoas diferentes na mesma máquina?”
+    <div class="language-prolog highlighter-rouge"><pre class="highlight"><code><span class="ss">usa</span><span class="p">(</span><span class="nv">PESSOA1</span><span class="p">,</span> <span class="nv">P</span><span class="p">,</span> <span class="nv">M</span><span class="p">),</span> <span class="ss">usa</span><span class="p">(</span><span class="nv">PESSOA2</span><span class="p">,</span> <span class="nv">P</span><span class="p">,</span> <span class="nv">M</span><span class="p">),</span> <span class="nv">PESSOA1</span> <span class="err">\</span><span class="o">=</span> <span class="nv">PESSOA2</span><span class="p">.</span>
+</code></pre>
+    </div>
+  </li>
+  <li>“Quais programas ambas, Ana e Joana, usam?”
+    <div class="language-prolog highlighter-rouge"><pre class="highlight"><code><span class="ss">usa</span><span class="p">(</span><span class="ss">ana</span><span class="p">,</span> <span class="nv">P</span><span class="p">,</span> <span class="nv">M1</span><span class="p">),</span> <span class="ss">usa</span><span class="p">(</span><span class="ss">joana</span><span class="p">,</span> <span class="nv">P</span><span class="p">,</span> <span class="nv">M2</span><span class="p">).</span>
+</code></pre>
+    </div>
+  </li>
+  <li>“Quais programas ambas, Ana e Joana, usam na mesma máquina?”
+    <div class="language-prolog highlighter-rouge"><pre class="highlight"><code><span class="ss">usa</span><span class="p">(</span><span class="ss">ana</span><span class="p">,</span> <span class="nv">P</span><span class="p">,</span> <span class="nv">M</span><span class="p">),</span> <span class="ss">usa</span><span class="p">(</span><span class="ss">joana</span><span class="p">,</span> <span class="nv">P</span><span class="p">,</span> <span class="nv">M</span><span class="p">).</span>
+</code></pre>
+    </div>
+  </li>
+  <li>“Quais programas são usados por Ana ou Joana?”
+    <div class="language-prolog highlighter-rouge"><pre class="highlight"><code><span class="ss">ana_ou_joana</span><span class="p">(</span><span class="nv">P</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">usa</span><span class="p">(</span><span class="ss">ana</span><span class="p">,</span> <span class="nv">P</span><span class="p">,</span> <span class="nv">M</span><span class="p">).</span>
+<span class="ss">ana_ou_joana</span><span class="p">(</span><span class="nv">P</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">usa</span><span class="p">(</span><span class="ss">joana</span><span class="p">,</span> <span class="nv">P</span><span class="p">,</span> <span class="nv">M</span><span class="p">).</span>
+</code></pre>
+    </div>
+  </li>
+  <li>“Quais programas são usados por Ana mas não por Joana?”
+    <div class="language-prolog highlighter-rouge"><pre class="highlight"><code><span class="ss">usa</span><span class="p">(</span><span class="ss">ana</span><span class="p">,</span> <span class="nv">P</span><span class="p">,</span> <span class="nv">M1</span><span class="p">),</span> <span class="ss">not</span><span class="p">(</span><span class="ss">usa</span><span class="p">(</span><span class="ss">joana</span><span class="p">,</span> <span class="nv">P</span><span class="p">,</span> <span class="nv">M2</span><span class="p">)).</span>
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h2 id="estruturas-recursivas">Estruturas recursivas</h2>
+
+<p>Em situações mais realistas os fatos e as relações utilizadas precisam representar  informações que posssuam estrutura interna mais ricas do que as vistas na seção anterior. Nesta seção veremos como construir regras capazes de modelar situações com mais que um número fixo de escolhas.</p>
+
+<h3 id="listas">Listas</h3>
+
+<p>Uma lista é uma sequência de elementos definida de acordo com a sintaxe</p>
+
+<div class="language-prolog highlighter-rouge"><pre class="highlight"><code><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">23</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">6</span><span class="p">].</span>
+</code></pre>
+</div>
+
+<p>A definição de regras que utilizam listas como parâmetros aumenta as possibilidades e complexidade das regras. Em geral, operações sobre listas são definidas recursivamente. Por exemplo, suponha que queiramos definir uma regra que diga se um determinado elemento X é ou não um membro da lista.</p>
+
+<div class="language-prolog highlighter-rouge"><pre class="highlight"><code><span class="cm">/*</span><span class="err"> Notação informal </span><span class="cm">*/</span>
+<span class="ss">membro</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="p">[</span><span class="nv">H</span><span class="p">|</span><span class="nv">T</span><span class="p">])</span> <span class="p">:-</span> <span class="nv">X</span> <span class="ss">está</span> <span class="ss">em</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">23</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">6</span><span class="p">]</span><span class="o">?.</span>
+</code></pre>
+</div>
+
+<p>A notação <code class="highlighter-rouge">[H|T]</code> indica uma lista qualquer, cujo inicio <code class="highlighter-rouge">head</code> é <code class="highlighter-rouge">H</code> e o restante da lista é referenciado por <code class="highlighter-rouge">T</code>, <code class="highlighter-rouge">tail</code>. Com esse tipo de notação só temos acesso a variáveis $H$ e $T$, não temos acesso a toda lista de uma vez. Exemplo, dada a lista <code class="highlighter-rouge">[1,23,5,6]</code>, <code class="highlighter-rouge">H=1</code> e <code class="highlighter-rouge">T=[23,5,6]</code>.</p>
+
+<p>A seguinte definição recursiva, percorre a lista procurando por uma situação em que $X$ seja o inicio da sublista. Nesta situação teremos que $X$ é membro da lista.</p>
+<div class="language-prolog highlighter-rouge"><pre class="highlight"><code><span class="ss">membro</span><span class="p">(</span><span class="nv">X</span><span class="p">,[</span><span class="nv">X</span><span class="p">|</span><span class="nv">T</span><span class="p">]).</span>
+<span class="ss">membro</span><span class="p">(</span><span class="nv">X</span><span class="p">,[</span><span class="nv">H</span><span class="p">|</span><span class="nv">T</span><span class="p">])</span> <span class="p">:-</span> <span class="ss">membro</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">T</span><span class="p">).</span>
+</code></pre>
+</div>
+
+<h3 id="exercícios">Exercícios</h3>
+
+<ol>
+  <li>Membro</li>
+  <li>Imprimir lista</li>
+  <li>Gerar Sequência no intervalo</li>
+  <li>Máximo</li>
+  <li>Comprimento da lista</li>
+  <li>Soma da lista</li>
+</ol>
+
+<p><strong>Referências</strong></p>
+<ol>
+  <li>MICHAEL SPIVEY. An introduction to logic programming through Prolog. Prentice-Hall, Inc. Upper Saddle River, NJ, USA ©1996 
+ISBN:0-13-536047-1. <a href="https://pdfs.semanticscholar.org/6b7d/1f67f9b3c600e530e00f0e255229d93dd881.pdf">PDF</a></li>
+</ol>
+
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>
