@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>APS4 - Matrizes esparsas</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/ae22cp-172/APS4-matrizes.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">APS4 - Matrizes esparsas</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Nov 22, 2017
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/lc21cp-172/prolog-relacoes.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/ae22cp-172/FAQ.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#matrizes-esparsas" id="markdown-toc-matrizes-esparsas">Matrizes esparsas</a>    <ul>
+      <li><a href="#tabelas-hash" id="markdown-toc-tabelas-hash">Tabelas Hash</a>        <ul>
+          <li><a href="#chaves-únicas" id="markdown-toc-chaves-únicas">Chaves únicas</a></li>
+        </ul>
+      </li>
+      <li><a href="#listas-de-adjacências" id="markdown-toc-listas-de-adjacências">Listas de Adjacências</a></li>
+      <li><a href="#matrizes-esparsas-encadeadas" id="markdown-toc-matrizes-esparsas-encadeadas">Matrizes esparsas encadeadas</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="matrizes-esparsas">Matrizes esparsas</h1>
+
+<p>Uma matriz $N\times M$ é uma estrutura de dados simples e comumente utilizada em situações nas quais existe uma relação entre um elemento e $M$ outros elementos. Todos elementos numa mesma linha estão relacionados por alguma propriedade que os fez serem armazenados em tais posições, essa propriedade depende da informação sendo armazenada. Consideremos a estrutura ilustrada abaixo.</p>
+
+<p><img src="/assets/AE22CP/grafo.png" alt="grafo" /></p>
+
+<p>Observamos pela numeração dos elementos que existem 13 nós. Percebemos também que além disso que alguns desses nós estão relacionados, ou seja, estão conectados por uma linha. Estruturas desse tipo são chamadas grafos, os elementos são chamados vértices e as conexões são chamadas arestas. Como representar uma estrutura desse tipo na memória do computador?</p>
+
+<p>A primeira opção para representarmos um grafo como estruturas de dados é a utilização de uma matriz $N\times N$, onde $N=13$ é o número de vértices. Para cada aresta entre vértices $v_i$ e $v_j$, representada como $(v_i, v_j)$ um valor será inserido na posição $i,j$ da matriz. Na matriz abaixo, marcamos como $X$ todas as arestas no grafo acima.</p>
+
+<ul>
+  <li>A primeira linha e primeira coluna servem apenas de referência, não existiriam na prática.</li>
+</ul>
+
+<script type="math/tex; mode=display">% <![CDATA[
+M = 
+\left[{\begin{array}{lccccccccccccc}
+ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\
+0& 0 & X & X & 0 & 0 & X & X & 0 & 0 & 0 & 0 & 0 & 0 \\
+1& X & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+2& X & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+3& 0 & 0 & 0 & 0 & X & X & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+4& 0 & 0 & 0 & X & 0 & X & X & 0 & 0 & 0 & 0 & 0 & 0 \\
+5& X & 0 & 0 & X & X & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+6& X & 0 & 0 & 0 & X & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+7& 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & X & 0 & 0 & 0 & 0 \\
+8& 0 & 0 & 0 & 0 & 0 & 0 & 0 & X & 0 & 0 & 0 & 0 & 0 \\
+9& 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & X & X & X \\
+10& 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & X & 0 & 0 & 0 \\
+11& 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & X & 0 & 0 & X \\
+12& 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & X & 0 & X & 0 
+\end{array}}\right] %]]></script>
+
+<p>Usando este exemplo simples, é fácil percebermos que há um grande desperdício de memória ao utilizarmos essa estrutura de dados. Grande parte das conexões não existem no grafo que queremos representar, e portanto, a maioria das posições <code class="highlighter-rouge">M[i][j]</code> na matriz permanecerão inutilizadas.</p>
+
+<h2 id="tabelas-hash">Tabelas Hash</h2>
+
+<p>Como forma de economia de memória, podemos armazenar a matriz $M$ de outras forma. A primeira que discutiremos utiliza uma tabela hash como estrutura de dados subjacente. Assuma que tenhamos uma tabela hash com tratamento de colisões qualquer. Podemos definir que a informação a ser armazenada será uma estrutura, como um elemento da matriz M (<code class="highlighter-rouge">Melem</code>).</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">;</span>
+    <span class="n">Type</span> <span class="n">valor</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">Melem</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>Cada elemento desse tipo representa uma posição na matriz $M$, obviamente só armazenaríamos aqueles elementos representados por $X$, ou seja, aqueles que representem arestas no grafo original.</p>
+
+<ul>
+  <li>Neste exemplo, <code class="highlighter-rouge">valor</code> é até desnecessário, mas em outras situações é comum querermos armazenar algo na posição da matriz.</li>
+</ul>
+
+<p>Neste tipo de situação, a existência, na tabela hash, de um elemento</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="n">Melem</span> <span class="n">m</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span> <span class="sc">'X'</span><span class="p">};</span>
+</code></pre>
+</div>
+
+<p>Significaria a existência de uma aresta entre os vértices $v_{10}$ e $v_{9}$, ou seja $(v_{10}, v_{9})$.</p>
+
+<h3 id="chaves-únicas">Chaves únicas</h3>
+
+<p>Em uma tabela hash, os elementos armazenados precisam necessariamente possuir uma chave única que o distingua dos demais elementos. No contexto dos elementos de matriz (<code class="highlighter-rouge">Melem</code>) é possível utilizarmos os índices $i$ e $j$ para compor uma chave.</p>
+
+<ul>
+  <li>Defina uma função que transforme $i$ e $j$ em uma chave única. Essa chave será utilizada como entrada da função hash.</li>
+</ul>
+
+<h2 id="listas-de-adjacências">Listas de Adjacências</h2>
+
+<p>Uma abordagem alternativa que é uma intermediária entre uma matriz comum e uma estrutura encadeada, são as chamadas listas de adjacências. Numa lista de adjacências, cria-se um vetor de <code class="highlighter-rouge">L</code> tamanho $N$, sendo que cada posição armazenará uma lista encadeada.</p>
+
+<p>Diferentemente das tabelas hash, no entanto, temos total controle quanto a em qual lista inserir um determinado elemento. Como temos $N$ listas, a escolha óbvia é inserir um determinado elemento de matriz <code class="highlighter-rouge"><span class="p">{</span><span class="err">i,j,valor</span><span class="p">}</span></code> na lista lista da posição <code class="highlighter-rouge">L[i]</code>. A matriz $M$ descrita anteriormente seria então representada como</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+L = 
+\left[{\begin{array}{ll}
+0:& \rightarrow 1 \rightarrow 2 \rightarrow 5 \rightarrow 6\\
+1:& \rightarrow 0 \\
+2:& \rightarrow 0 \\
+3:& \rightarrow 4 \rightarrow 5\\
+4:& \rightarrow 3 \rightarrow 5 \rightarrow 6\\
+5:& \rightarrow 0 \rightarrow 3 \rightarrow 4\\
+6:& \rightarrow 0 \rightarrow  4\\
+7:& \rightarrow 8 \\
+8:& \rightarrow 7\\
+9:& \rightarrow 10 \rightarrow 11 \rightarrow 12 \\
+10:& \rightarrow 9\\
+11:& \rightarrow 9 \rightarrow 12\\
+12:& \rightarrow 9 \rightarrow 11
+\end{array}}\right] %]]></script>
+
+<p>Onde por conveniência e melhor visualização representei nas listas apenas o indice $j$ ao invés do elemento de matriz completo (<code class="highlighter-rouge">Melem</code>).</p>
+
+<p>Apesar da economia de memória que as listas de adjacências nos oferece, elas possuem um ponto fraco. As informações armazenadas nesse tipo de estrutura somente são facilmente acessadas percorrendo-se uma das linhas em $L$. Em diversas situações precisamos percorrer a matriz por coluna, uma operação que não é facilmente implementada em listas de adjacências.</p>
+
+<h2 id="matrizes-esparsas-encadeadas">Matrizes esparsas encadeadas</h2>
+
+<p>A implementação de matrizes esparsas por estruturas encadeadas é uma extensão da implementação em listas de adjacências. Neste caso, no entanto, se torna possível percorrer a matriz tanto em ordem definida por linha, quanto em ordem definida por coluna. Como isso é feito?</p>
+
+<p>As matrizes esparsas encadeadas que trataremos aqui, consideram dois vetores: vetor linha, e vetor coluna, ambos são vetores de listas. Porém, diferentemente das listas que temos tratados até então, essas precisam de informações adicionais.</p>
+
+<p>Considere que eu deseje percorrer uma linha $i$ da matriz esparsa encadeada. Dado um ponteiro para um nó $p$ da lista <code class="highlighter-rouge">L[i]</code>, basta utilizarmos o campo <code class="highlighter-rouge">next</code> desse nó para acessarmos o próximo elemento na mesma linha.</p>
+
+<script type="math/tex; mode=display">\rightarrow \{1,10, x\}^p \rightarrow^\mbox{next} \{1, 20, y\}\rightarrow</script>
+
+<p>Por outro lado, se quisermos percorrer uma coluna $j$ da matriz esparsa encadeada, precisamos ter referência para os elementos abaixo e acima de um determinado elemento de matriz. Em resumo, cada nó dessas listas precisa armazenar pelo menos ponteiros para: <code class="highlighter-rouge">abaixo</code> e <code class="highlighter-rouge">proximo</code>, ou <code class="highlighter-rouge">abaixo</code> e <code class="highlighter-rouge">anterior</code>, ou <code class="highlighter-rouge">acima</code> e <code class="highlighter-rouge">anterior</code> etc. As figuras abaixo ilustram uma matriz esparsa encadeada com nós do tipo <code class="highlighter-rouge">acima</code> (<code class="highlighter-rouge">UP</code>) e <code class="highlighter-rouge">anterior</code> (<code class="highlighter-rouge">LEFT</code>).</p>
+
+<p><img src="/assets/AE22CP/node.png" alt="node" /></p>
+
+<p><img src="/assets/AE22CP/esparsa.png" alt="mesparsa" /></p>
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

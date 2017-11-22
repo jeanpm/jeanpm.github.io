@@ -97,6 +97,10 @@
       </li>
     </ul>
   </li>
+  <li><a href="#exercícios" id="markdown-toc-exercícios">Exercícios</a>    <ul>
+      <li><a href="#pair-sum-casos-de-teste" id="markdown-toc-pair-sum-casos-de-teste">Pair-sum [<a href="/assets/AE22CP/pair-sum.zip">casos de teste</a>]</a></li>
+    </ul>
+  </li>
 </ul>
 
 <h1 id="introdução">Introdução</h1>
@@ -224,11 +228,25 @@
 
 <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">remove</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
     <span class="n">i</span> <span class="o">=</span> <span class="n">h</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">search</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">k</span><span class="p">)</span> <span class="ow">not</span> <span class="n">null</span><span class="p">:</span> <span class="n">remove</span> <span class="n">x</span> <span class="kn">from</span> <span class="nn">T</span><span class="err">[</span><span class="nn">i</span><span class="err">]
+    <span class="n">x</span> <span class="o">=</span> <span class="n">search</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">k</span><span class="p">)</span> 
+    <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="n">null</span><span class="p">:</span> <span class="n">remove</span> <span class="n">x</span> <span class="kn">from</span> <span class="nn">T</span><span class="err">[</span><span class="nn">i</span><span class="err">]
 </span></code></pre>
 </div>
 
-<p><a href="/assets/AE22CP/pair-sum.zip">pair-sum</a></p>
+<h1 id="exercícios">Exercícios</h1>
+
+<h2 id="pair-sum-casos-de-teste">Pair-sum [<a href="/assets/AE22CP/pair-sum.zip">casos de teste</a>]</h2>
+<p>Dada uma constante $K&gt;0$ e sequência de inteiros não negativos</p>
+
+<script type="math/tex; mode=display">a_1, a_2,\dots, a_n.</script>
+
+<p>Verifique se existe um par $a_i$ e $a_j$, tal que $a_i + a_j = K$.</p>
+
+<p>a) Implemente uma solução que utilize apenas comparações</p>
+
+<p>b) Implemente uma solução com tratamento de colisões por encadeamento</p>
+
+<p>c) Implemente uma solução com tratamento de colisões por endereçamento aberto.</p>
 
 <p><strong>Referências</strong></p>
 <ol>

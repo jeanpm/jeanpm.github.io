@@ -70,7 +70,7 @@
   
   
     <div class="right">
-      <a href="/ae22cp-172/FAQ.html">
+      <a href="/ae22cp-172/APS4-matrizes.html">
         <i class="fa fa-angle-right fa-2x"></i>
       </a>
     </div>
@@ -220,9 +220,52 @@
 <h3 id="exercícios">Exercícios</h3>
 
 <ol>
-  <li>Membro</li>
-  <li>Imprimir lista</li>
-  <li>Gerar Sequência no intervalo</li>
+  <li>Escreva um predicado para verificar se um elemento é um membro da lista, ou procurar todos membros da lista. Aplique esse predicado para procurar todos os membros da lista que sejam maior que um determinado inteiro.</li>
+</ol>
+
+<div class="language-prolog highlighter-rouge"><pre class="highlight"><code><span class="ss">member</span><span class="p">(</span><span class="nv">H</span><span class="p">,</span> <span class="p">[</span><span class="nv">H</span><span class="p">,</span><span class="nv">_</span><span class="p">]).</span>
+<span class="ss">member</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="p">[</span><span class="nv">_</span><span class="p">|</span><span class="nv">T</span><span class="p">])</span> <span class="p">:-</span> <span class="ss">member</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">T</span><span class="p">).</span>
+</code></pre>
+</div>
+
+<ol>
+  <li>Escreva um predicado para encontrar o último elemento de uma lista.
+    <div class="language-prolog highlighter-rouge"><pre class="highlight"><code><span class="ss">find_last</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="p">[</span><span class="nv">X</span><span class="p">]).</span>
+<span class="ss">find_last</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="p">[</span><span class="nv">_</span><span class="p">|</span><span class="nv">T</span><span class="p">])</span> <span class="p">:-</span> <span class="ss">find_last</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">T</span><span class="p">).</span>
+</code></pre>
+    </div>
+  </li>
+  <li>Verificar se duas listas são iguais.
+    <div class="language-prolog highlighter-rouge"><pre class="highlight"><code><span class="ss">equals</span><span class="p">([],[]).</span>
+<span class="ss">equals</span><span class="p">([</span><span class="nv">T</span><span class="p">],[</span><span class="nv">T</span><span class="p">]).</span>
+<span class="ss">equals</span><span class="p">([</span><span class="nv">H</span><span class="p">|</span><span class="nv">T</span><span class="p">],</span> <span class="p">[</span><span class="nv">I</span><span class="p">|</span><span class="nv">F</span><span class="p">])</span> <span class="p">:-</span> <span class="nv">H</span> <span class="o">=</span> <span class="nv">I</span><span class="p">,</span> <span class="ss">equals</span><span class="p">(</span><span class="nv">T</span><span class="p">,</span> <span class="nv">F</span><span class="p">).</span>
+</code></pre>
+    </div>
+  </li>
+  <li>Escreva um predicado para verificar a existencia de dois elementos consecutivos em uma sequência.
+    <div class="language-prolog highlighter-rouge"><pre class="highlight"><code><span class="ss">consecutive</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">,</span> <span class="p">[</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">|</span><span class="nv">_</span><span class="p">]).</span>
+<span class="ss">consecutive</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">,</span> <span class="p">[</span><span class="nv">_</span><span class="p">|</span><span class="nv">T</span><span class="p">])</span> <span class="p">:-</span> <span class="ss">consecutive</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">,</span> <span class="nv">T</span><span class="p">).</span>
+</code></pre>
+    </div>
+  </li>
+  <li>Escreva um predicado para apagar todos elementos de uma lista que sejam igual a um determinado valor.
+    <div class="language-prolog highlighter-rouge"><pre class="highlight"><code><span class="ss">erase_all</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[]).</span>
+<span class="ss">erase_all</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="p">[</span><span class="nv">H</span><span class="p">|</span><span class="nv">T</span><span class="p">],</span> <span class="nv">R</span><span class="p">)</span> <span class="p">:-</span> <span class="nv">X</span> <span class="o">=</span> <span class="nv">H</span><span class="p">,</span> <span class="ss">erase_all</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">T</span><span class="p">,</span> <span class="nv">R</span><span class="p">).</span>
+<span class="ss">erase_all</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="p">[</span><span class="nv">H</span><span class="p">|</span><span class="nv">T</span><span class="p">],</span> <span class="p">[</span><span class="nv">H</span><span class="p">|</span><span class="nv">R</span><span class="p">])</span> <span class="p">:-</span> <span class="ss">erase_all</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">T</span><span class="p">,</span> <span class="nv">R</span><span class="p">).</span>
+</code></pre>
+    </div>
+  </li>
+  <li>Utilize os predicados <code class="highlighter-rouge">reverse([H|T], X)</code> para verificar se uma lista é, ou não, um palindromo.
+    <div class="language-prolog highlighter-rouge"><pre class="highlight"><code><span class="ss">palindrome</span><span class="p">(</span><span class="nv">L</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">reverse</span><span class="p">(</span><span class="nv">L</span><span class="p">,</span> <span class="nv">X</span><span class="p">),</span> <span class="ss">equals</span><span class="p">(</span><span class="nv">L</span><span class="p">,</span> <span class="nv">X</span><span class="p">).</span>
+</code></pre>
+    </div>
+  </li>
+  <li>Escreva um predicado que ternário <code class="highlighter-rouge">seq(I,F, Sequencia)</code>, o qual crie a sequência com inteiros de <code class="highlighter-rouge">I</code> a <code class="highlighter-rouge">F</code>
+    <div class="language-prolog highlighter-rouge"><pre class="highlight"><code><span class="ss">seq</span><span class="p">(</span><span class="nv">F</span><span class="p">,</span> <span class="nv">F</span><span class="p">,</span> <span class="nv">F</span><span class="p">).</span>
+<span class="ss">seq</span><span class="p">(</span><span class="nv">I</span><span class="p">,</span> <span class="nv">F</span><span class="p">,</span> <span class="p">[</span><span class="nv">I</span><span class="p">|</span><span class="nv">Sequencia</span><span class="p">])</span> <span class="p">:-</span> <span class="nv">V</span> <span class="ss">is</span> <span class="nv">I</span> <span class="o">+</span> <span class="m">1</span><span class="p">,</span> <span class="ss">seq</span><span class="p">(</span><span class="nv">V</span><span class="p">,</span> <span class="nv">F</span><span class="p">,</span> <span class="nv">Sequencia</span><span class="p">).</span>
+</code></pre>
+    </div>
+  </li>
   <li>Máximo</li>
   <li>Comprimento da lista</li>
   <li>Soma da lista</li>
