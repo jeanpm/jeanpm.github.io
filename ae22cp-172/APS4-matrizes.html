@@ -86,6 +86,11 @@
     </ul>
     <p><strong>Conteúdo</strong></p>
 <ul id="markdown-toc">
+  <li><a href="#visão-geral" id="markdown-toc-visão-geral">Visão Geral</a>    <ul>
+      <li><a href="#objetivo" id="markdown-toc-objetivo">Objetivo</a></li>
+      <li><a href="#critérios-de-avaliação" id="markdown-toc-critérios-de-avaliação">Critérios de avaliação</a></li>
+    </ul>
+  </li>
   <li><a href="#matrizes-esparsas" id="markdown-toc-matrizes-esparsas">Matrizes esparsas</a>    <ul>
       <li><a href="#tabelas-hash" id="markdown-toc-tabelas-hash">Tabelas Hash</a>        <ul>
           <li><a href="#chaves-únicas" id="markdown-toc-chaves-únicas">Chaves únicas</a></li>
@@ -96,6 +101,24 @@
     </ul>
   </li>
 </ul>
+
+<h1 id="visão-geral">Visão Geral</h1>
+<h3 id="objetivo">Objetivo</h3>
+
+<p>Implementar o algoritmo de multiplicação de matrizes.</p>
+<ol>
+  <li>Utilizando tabelas hash como estruturas de dados para armazenar a matriz.</li>
+  <li>Utilizando matrizes esparsas encadeadas como estruturas de dados para armazenar a matriz.</li>
+</ol>
+
+<h3 id="critérios-de-avaliação">Critérios de avaliação</h3>
+
+<ol>
+  <li>Armazenamento da matriz esparsa em tabela hash.</li>
+  <li>Armazenamento da matriz esparsa em estrutura encadeada.</li>
+  <li>Multiplicação de matriz usando tabelas hash</li>
+  <li>Multiplicação de matriz usando estruturas encadeadas.</li>
+</ol>
 
 <h1 id="matrizes-esparsas">Matrizes esparsas</h1>
 
@@ -203,7 +226,7 @@ L =
 
 <script type="math/tex; mode=display">\rightarrow \{1,10, x\}^p \rightarrow^\mbox{next} \{1, 20, y\}\rightarrow</script>
 
-<p>Por outro lado, se quisermos percorrer uma coluna $j$ da matriz esparsa encadeada, precisamos ter referência para os elementos abaixo e acima de um determinado elemento de matriz. Em resumo, cada nó dessas listas precisa armazenar pelo menos ponteiros para: <code class="highlighter-rouge">abaixo</code> e <code class="highlighter-rouge">proximo</code>, ou <code class="highlighter-rouge">abaixo</code> e <code class="highlighter-rouge">anterior</code>, ou <code class="highlighter-rouge">acima</code> e <code class="highlighter-rouge">anterior</code> etc. As figuras abaixo ilustram uma matriz esparsa encadeada com nós do tipo <code class="highlighter-rouge">acima</code> (<code class="highlighter-rouge">UP</code>) e <code class="highlighter-rouge">anterior</code> (<code class="highlighter-rouge">LEFT</code>).</p>
+<p>Por outro lado, se quisermos percorrer uma coluna $j$ da matriz esparsa encadeada, precisamos ter referência para os elementos abaixo e acima de um determinado elemento de matriz. Em resumo, cada nó dessas listas precisa armazenar pelo menos ponteiros para: <code class="highlighter-rouge">abaixo</code> e <code class="highlighter-rouge">proximo</code>, ou <code class="highlighter-rouge">abaixo</code> e <code class="highlighter-rouge">anterior</code>, ou <code class="highlighter-rouge">acima</code> e <code class="highlighter-rouge">anterior</code> etc; de modo que seja possível percorre a matriz tanto por linhas quanto por colunas. As figuras abaixo ilustram uma matriz esparsa encadeada com nós do tipo <code class="highlighter-rouge">acima</code> (<code class="highlighter-rouge">UP</code>) e <code class="highlighter-rouge">anterior</code> (<code class="highlighter-rouge">LEFT</code>).</p>
 
 <p><img src="/assets/AE22CP/node.png" alt="node" /></p>
 

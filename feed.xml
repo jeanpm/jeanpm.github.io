@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 22 Nov 2017 15:59:17 -0200</pubDate>
-    <lastBuildDate>Wed, 22 Nov 2017 15:59:17 -0200</lastBuildDate>
+    <pubDate>Wed, 22 Nov 2017 16:21:20 -0200</pubDate>
+    <lastBuildDate>Wed, 22 Nov 2017 16:21:20 -0200</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -174,6 +174,11 @@ Program received signal SIGSEGV, Segmentation fault.
         <title>APS4 - Matrizes esparsas</title>
         <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
 &lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#visão-geral&quot; id=&quot;markdown-toc-visão-geral&quot;&gt;Visão Geral&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#objetivo&quot; id=&quot;markdown-toc-objetivo&quot;&gt;Objetivo&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#critérios-de-avaliação&quot; id=&quot;markdown-toc-critérios-de-avaliação&quot;&gt;Critérios de avaliação&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#matrizes-esparsas&quot; id=&quot;markdown-toc-matrizes-esparsas&quot;&gt;Matrizes esparsas&lt;/a&gt;    &lt;ul&gt;
       &lt;li&gt;&lt;a href=&quot;#tabelas-hash&quot; id=&quot;markdown-toc-tabelas-hash&quot;&gt;Tabelas Hash&lt;/a&gt;        &lt;ul&gt;
           &lt;li&gt;&lt;a href=&quot;#chaves-únicas&quot; id=&quot;markdown-toc-chaves-únicas&quot;&gt;Chaves únicas&lt;/a&gt;&lt;/li&gt;
@@ -184,6 +189,24 @@ Program received signal SIGSEGV, Segmentation fault.
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h1 id=&quot;visão-geral&quot;&gt;Visão Geral&lt;/h1&gt;
+&lt;h3 id=&quot;objetivo&quot;&gt;Objetivo&lt;/h3&gt;
+
+&lt;p&gt;Implementar o algoritmo de multiplicação de matrizes.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Utilizando tabelas hash como estruturas de dados para armazenar a matriz.&lt;/li&gt;
+  &lt;li&gt;Utilizando matrizes esparsas encadeadas como estruturas de dados para armazenar a matriz.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;critérios-de-avaliação&quot;&gt;Critérios de avaliação&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Armazenamento da matriz esparsa em tabela hash.&lt;/li&gt;
+  &lt;li&gt;Armazenamento da matriz esparsa em estrutura encadeada.&lt;/li&gt;
+  &lt;li&gt;Multiplicação de matriz usando tabelas hash&lt;/li&gt;
+  &lt;li&gt;Multiplicação de matriz usando estruturas encadeadas.&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;h1 id=&quot;matrizes-esparsas&quot;&gt;Matrizes esparsas&lt;/h1&gt;
 
@@ -291,7 +314,7 @@ L =
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\rightarrow \{1,10, x\}^p \rightarrow^\mbox{next} \{1, 20, y\}\rightarrow&lt;/script&gt;
 
-&lt;p&gt;Por outro lado, se quisermos percorrer uma coluna $j$ da matriz esparsa encadeada, precisamos ter referência para os elementos abaixo e acima de um determinado elemento de matriz. Em resumo, cada nó dessas listas precisa armazenar pelo menos ponteiros para: &lt;code class=&quot;highlighter-rouge&quot;&gt;abaixo&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;proximo&lt;/code&gt;, ou &lt;code class=&quot;highlighter-rouge&quot;&gt;abaixo&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;anterior&lt;/code&gt;, ou &lt;code class=&quot;highlighter-rouge&quot;&gt;acima&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;anterior&lt;/code&gt; etc. As figuras abaixo ilustram uma matriz esparsa encadeada com nós do tipo &lt;code class=&quot;highlighter-rouge&quot;&gt;acima&lt;/code&gt; (&lt;code class=&quot;highlighter-rouge&quot;&gt;UP&lt;/code&gt;) e &lt;code class=&quot;highlighter-rouge&quot;&gt;anterior&lt;/code&gt; (&lt;code class=&quot;highlighter-rouge&quot;&gt;LEFT&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Por outro lado, se quisermos percorrer uma coluna $j$ da matriz esparsa encadeada, precisamos ter referência para os elementos abaixo e acima de um determinado elemento de matriz. Em resumo, cada nó dessas listas precisa armazenar pelo menos ponteiros para: &lt;code class=&quot;highlighter-rouge&quot;&gt;abaixo&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;proximo&lt;/code&gt;, ou &lt;code class=&quot;highlighter-rouge&quot;&gt;abaixo&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;anterior&lt;/code&gt;, ou &lt;code class=&quot;highlighter-rouge&quot;&gt;acima&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;anterior&lt;/code&gt; etc; de modo que seja possível percorre a matriz tanto por linhas quanto por colunas. As figuras abaixo ilustram uma matriz esparsa encadeada com nós do tipo &lt;code class=&quot;highlighter-rouge&quot;&gt;acima&lt;/code&gt; (&lt;code class=&quot;highlighter-rouge&quot;&gt;UP&lt;/code&gt;) e &lt;code class=&quot;highlighter-rouge&quot;&gt;anterior&lt;/code&gt; (&lt;code class=&quot;highlighter-rouge&quot;&gt;LEFT&lt;/code&gt;).&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/AE22CP/node.png&quot; alt=&quot;node&quot; /&gt;&lt;/p&gt;
 
