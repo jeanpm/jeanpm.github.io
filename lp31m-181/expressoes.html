@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Expressões aritméticas</title>
+  <meta name="description" content="Conteúdo  Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/lp31m-181/expressoes.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Expressões aritméticas</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Mar 15, 2018
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/ae22cp-181/aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-exercicios.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <h1 id="conteúdo">Conteúdo</h1>
+<ul id="markdown-toc">
+  <li><a href="#conteúdo" id="markdown-toc-conteúdo">Conteúdo</a></li>
+  <li><a href="#ambiente-de-programação" id="markdown-toc-ambiente-de-programação">Ambiente de programação</a></li>
+  <li><a href="#operadores-aritméticos" id="markdown-toc-operadores-aritméticos">Operadores aritméticos</a></li>
+  <li><a href="#tipos-de-dados-básicos" id="markdown-toc-tipos-de-dados-básicos">Tipos de dados básicos</a></li>
+  <li><a href="#exercícios" id="markdown-toc-exercícios">Exercícios</a></li>
+</ul>
+
+<h1 id="ambiente-de-programação">Ambiente de programação</h1>
+
+<p>Para seguir os exemplos aqui descritos sugiro a utilização do ambiente de programação online <a href="https://repl.it/languages/python3">»repl.it</a>. Mais adiante no curso veremos ferramentas mais apropriadas para programação.</p>
+
+<h1 id="operadores-aritméticos">Operadores aritméticos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Operador</th>
+      <th>Operação</th>
+      <th>Exemplo</th>
+      <th>Resultado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">**</code></td>
+      <td>exponenciação</td>
+      <td><code class="highlighter-rouge">2**3</code></td>
+      <td><code class="highlighter-rouge">8</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/</code></td>
+      <td>divisão</td>
+      <td><code class="highlighter-rouge">22/8</code></td>
+      <td><code class="highlighter-rouge">2.75</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">*</code></td>
+      <td>multiplicação</td>
+      <td><code class="highlighter-rouge">3*5</code></td>
+      <td><code class="highlighter-rouge">15</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">-</code></td>
+      <td>subtração</td>
+      <td><code class="highlighter-rouge">5-2</code></td>
+      <td><code class="highlighter-rouge">3</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">+</code></td>
+      <td>adição</td>
+      <td><code class="highlighter-rouge">2+2</code></td>
+      <td><code class="highlighter-rouge">4</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="tipos-de-dados-básicos">Tipos de dados básicos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tipo de dados</th>
+      <th>Exemplo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Inteiros</td>
+      <td><code class="highlighter-rouge">-2,-1,0,1,2,3,4</code></td>
+    </tr>
+    <tr>
+      <td>Ponto-flutuante</td>
+      <td><code class="highlighter-rouge">-1.25, -1.0, -0.5, 1.0, 1.25</code></td>
+    </tr>
+    <tr>
+      <td>Strings</td>
+      <td><code class="highlighter-rouge">'a', 'jean', 'maria', 'arroz', ''</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="exercícios">Exercícios</h1>
+
+<p>O trecho de código abaixo ao ser executado irá receber três números $a$ e $b$ como entrada digitada no teclado</p>
+
+<pre><code class="language-python3">a = float(input())
+b = float(input())
+c = float(input())
+</code></pre>
+
+<p>Continue a implementação para efetuar as seguintes operações:</p>
+
+<ol>
+  <li>
+    <p>Calcule e imprima a área do retângulo de lados $a$ e $b$</p>
+  </li>
+  <li>
+    <p>Calcule e imprima o perímetro do retângulo de lados $a$ e $b$</p>
+  </li>
+  <li>
+    <p>Calcule e imprima a hipotenusa do triângulo retângulo cujos catetos oposto e adjacente tem tamanhos $a$ e $b$</p>
+  </li>
+  <li>
+    <p>Calcule e imprima a área do círculo de raio $a$.</p>
+  </li>
+  <li>
+    <p>Calcule e imprima o resultado da equação $\sqrt{a^2 + b}$. Utilize a equivalência: $\sqrt[d]{x^e} = x^\frac{e}{d}$.</p>
+  </li>
+  <li>
+    <p>Calcule e imprima o resultado da equação $\sqrt[3]{a^2 + b}$</p>
+  </li>
+  <li>
+    <p>Calcule a média $\frac{a+b}{2}$</p>
+  </li>
+  <li>
+    <p>Calcule a média ponderada $\frac{0.3a + 0.7b}{2}$</p>
+  </li>
+  <li>
+    <p>Implemente o cálculo da fórmula de Bháskara para encontrar as raízes reais da equação $a x^2 + b x + c = 0$. Ou seja, $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$</p>
+  </li>
+  <li>
+    <p>Assuma que $a$ e $b$ sejam, respectivamente, sua nota nas Prova1 e Prova2, enquanto $c$ seja sua nota na APS. Calcule e imprima sua nota final: $NF = 0.45 \times a + 0.45 \times b + 0.1 \times c$</p>
+  </li>
+</ol>
+
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

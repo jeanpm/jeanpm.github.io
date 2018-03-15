@@ -6,9 +6,150 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 13 Mar 2018 13:26:51 -0300</pubDate>
-    <lastBuildDate>Tue, 13 Mar 2018 13:26:51 -0300</lastBuildDate>
+    <pubDate>Thu, 15 Mar 2018 18:21:44 -0300</pubDate>
+    <lastBuildDate>Thu, 15 Mar 2018 18:21:44 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Expressões aritméticas</title>
+        <description>&lt;h1 id=&quot;conteúdo&quot;&gt;Conteúdo&lt;/h1&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#conteúdo&quot; id=&quot;markdown-toc-conteúdo&quot;&gt;Conteúdo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#ambiente-de-programação&quot; id=&quot;markdown-toc-ambiente-de-programação&quot;&gt;Ambiente de programação&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#operadores-aritméticos&quot; id=&quot;markdown-toc-operadores-aritméticos&quot;&gt;Operadores aritméticos&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#tipos-de-dados-básicos&quot; id=&quot;markdown-toc-tipos-de-dados-básicos&quot;&gt;Tipos de dados básicos&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#exercícios&quot; id=&quot;markdown-toc-exercícios&quot;&gt;Exercícios&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;ambiente-de-programação&quot;&gt;Ambiente de programação&lt;/h1&gt;
+
+&lt;p&gt;Para seguir os exemplos aqui descritos sugiro a utilização do ambiente de programação online &lt;a href=&quot;https://repl.it/languages/python3&quot;&gt;»repl.it&lt;/a&gt;. Mais adiante no curso veremos ferramentas mais apropriadas para programação.&lt;/p&gt;
+
+&lt;h1 id=&quot;operadores-aritméticos&quot;&gt;Operadores aritméticos&lt;/h1&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Operador&lt;/th&gt;
+      &lt;th&gt;Operação&lt;/th&gt;
+      &lt;th&gt;Exemplo&lt;/th&gt;
+      &lt;th&gt;Resultado&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;**&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;exponenciação&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;2**3&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;8&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;/&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;divisão&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;22/8&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;2.75&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;*&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;multiplicação&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;3*5&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;15&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;subtração&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;5-2&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;3&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;+&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;adição&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;2+2&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;4&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&quot;tipos-de-dados-básicos&quot;&gt;Tipos de dados básicos&lt;/h1&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Tipo de dados&lt;/th&gt;
+      &lt;th&gt;Exemplo&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Inteiros&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-2,-1,0,1,2,3,4&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Ponto-flutuante&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-1.25, -1.0, -0.5, 1.0, 1.25&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Strings&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;'a', 'jean', 'maria', 'arroz', ''&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&quot;exercícios&quot;&gt;Exercícios&lt;/h1&gt;
+
+&lt;p&gt;O trecho de código abaixo ao ser executado irá receber três números $a$ e $b$ como entrada digitada no teclado&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python3&quot;&gt;a = float(input())
+b = float(input())
+c = float(input())
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Continue a implementação para efetuar as seguintes operações:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Calcule e imprima a área do retângulo de lados $a$ e $b$&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Calcule e imprima o perímetro do retângulo de lados $a$ e $b$&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Calcule e imprima a hipotenusa do triângulo retângulo cujos catetos oposto e adjacente tem tamanhos $a$ e $b$&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Calcule e imprima a área do círculo de raio $a$.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Calcule e imprima o resultado da equação $\sqrt{a^2 + b}$. Utilize a equivalência: $\sqrt[d]{x^e} = x^\frac{e}{d}$.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Calcule e imprima o resultado da equação $\sqrt[3]{a^2 + b}$&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Calcule a média $\frac{a+b}{2}$&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Calcule a média ponderada $\frac{0.3a + 0.7b}{2}$&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Implemente o cálculo da fórmula de Bháskara para encontrar as raízes reais da equação $a x^2 + b x + c = 0$. Ou seja, $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Assuma que $a$ e $b$ sejam, respectivamente, sua nota nas Prova1 e Prova2, enquanto $c$ seja sua nota na APS. Calcule e imprima sua nota final: $NF = 0.45 \times a + 0.45 \times b + 0.1 \times c$&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+        <pubDate>Thu, 15 Mar 2018 17:00:00 -0300</pubDate>
+        <link>http://localhost:4000/lp31m-181/expressoes.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lp31m-181/expressoes.html</guid>
+        
+        <category>memória</category>
+        
+        
+        <category>LP31M-181</category>
+        
+      </item>
     
       <item>
         <title>Exercícios II (Memória, ponteiros)</title>
@@ -2276,193 +2417,6 @@ ISBN:0-13-536047-1. &lt;a href=&quot;https://pdfs.semanticscholar.org/6b7d/1f67f
         
         
         <category>LC21CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>Tabelas hash</title>
-        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#introdução&quot; id=&quot;markdown-toc-introdução&quot;&gt;Introdução&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#endereçamento-direto&quot; id=&quot;markdown-toc-endereçamento-direto&quot;&gt;Endereçamento direto&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#tabelas-hash&quot; id=&quot;markdown-toc-tabelas-hash&quot;&gt;Tabelas Hash&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#resolução-de-colisões-por-encadeamento&quot; id=&quot;markdown-toc-resolução-de-colisões-por-encadeamento&quot;&gt;Resolução de colisões por encadeamento&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#inserção&quot; id=&quot;markdown-toc-inserção&quot;&gt;Inserção&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#procura&quot; id=&quot;markdown-toc-procura&quot;&gt;Procura&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#remover&quot; id=&quot;markdown-toc-remover&quot;&gt;Remover&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#exercícios&quot; id=&quot;markdown-toc-exercícios&quot;&gt;Exercícios&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#pair-sum-casos-de-teste&quot; id=&quot;markdown-toc-pair-sum-casos-de-teste&quot;&gt;Pair-sum [&lt;a href=&quot;/assets/AE22CP/pair-sum.zip&quot;&gt;casos de teste&lt;/a&gt;]&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;introdução&quot;&gt;Introdução&lt;/h1&gt;
-
-&lt;p&gt;Muitas aplicações precisam manipular informações sem necessariamente se preocupar na ordem em que essas informações estão armazenadas na memória. A maioria das estruturas de dados “lineares” estudadas até então, no entanto, impõe uma ordem específica aos elementos. Em uma lista, por exemplo, a inserção de um novo elemento requer que especifiquemos a posição de inserção desse elemento, o mesmo ocorre para vetores. O uso de fila de prioridades (implementadas sobre uma estrutura Heap) foi a primeira excessão a esta regra que investigamos, onde estavamos interessados sempre no mínimo elemento armazenado, mas sem nos importar necessariamente em que posição da estrutura esse elemento estava armazenado.&lt;/p&gt;
-
-&lt;p&gt;Nesta seção uma nova estrutura de dados será introduzida, a qual nos permitirá efetuar operações como:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Inserção,&lt;/li&gt;
-  &lt;li&gt;Remoção, e&lt;/li&gt;
-  &lt;li&gt;Procura&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;de forma eficiente e sem nos preocuparmos com o posicionamento em memória dos elementos armazenados. Diferentemente das filas de prioridade, no entanto, tabelas hash permitem remoção de quaisquer elementos armazenados, não somento o mínimo/máximo. A única exigência sendo que cada um dos elementos armazenados tenha uma &lt;em&gt;chave&lt;/em&gt; única que o identifique.&lt;/p&gt;
-
-&lt;p&gt;Exemplos:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Um aluno tem como chave única que o identifica, seu RA.&lt;/li&gt;
-  &lt;li&gt;Uma pessoa tem como chave única que a identifica, seu CPF.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;endereçamento-direto&quot;&gt;Endereçamento direto&lt;/h1&gt;
-
-&lt;p&gt;Tabelas hash são uma generalização de uma forma de armazenamento com mais limitações, chamada endereçamento aberto.&lt;/p&gt;
-
-&lt;p&gt;Suponha que desejemos armazenar as informações sobre os funcionários de uma pequena empresa. Cada funcionário tem o seu identificador, um número que indica seu cadastro na empresa. Por se tratar de uma empresa pequena, o número de funcionários $n$ não é grande, $n\leq m$ por exemplo. É natural assumirmos que esses identificadores sejam atribuídos de forma crescente a cada novo funcionário contratado.&lt;/p&gt;
-
-&lt;p&gt;Neste pequeno exemplo, assumimos que tais identificadores são as &lt;em&gt;chaves&lt;/em&gt; únicas de cada funcionário. Como o número $n$ de funcionários nunca ultrapassa $m$, um conjunto universo de chaves possíveis contendo números&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;U=\{0,1,\dots,m-1\}&lt;/script&gt;
-
-&lt;p&gt;é suficiente para identificar todos eles. Ou seja, cada funcionário tem um número identificador $u\in U$. Como armazenar as informações sobre tais funcionários na memória de modo a ser possível inserir, remover, e procurar de forma eficiente?&lt;/p&gt;
-
-&lt;p&gt;Sendo o número total de chaves $m$ de tamanho moderado, poderíamos simplesmente criar um vetor de $m$ posições.&lt;/p&gt;
-
-&lt;p&gt;Dada uma chave, procurar pelo funcionário associado é então trivial. Tão triviais quanto serão as operações de inserção e removação de um funcionário.&lt;/p&gt;
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;chave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;chave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Neste contexto tão específico, em que sabemos que a maior chave possível $m$ é um número razoavelmente pequeno, esta é a implementação mais rápida possível. Porém, não é difícil percebermos suas limitações:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;E se as chaves $m$ forem números de 9 dígitos?
-    &lt;ul&gt;
-      &lt;li&gt;A tabela seria gigantesca, e se o número de itens armazenados for pequeno, um grande desperdício de memória ocorreria.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;E se as chaves não forem inteiros?
-    &lt;ul&gt;
-      &lt;li&gt;Não há como indexar a tabela com chaves não-inteiras.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;tabelas-hash&quot;&gt;Tabelas Hash&lt;/h1&gt;
-
-&lt;p&gt;Nas situações em que endereçamento direto não se aplica, devido ao grande número de chaves possíveis, as Tabelas hash são opções interessantes.&lt;/p&gt;
-
-&lt;p&gt;A ideia geral de uma tabela hash é diminuir o número de chaves que precisam ser tratadas, saindo de $|U|$ para um número $m \ll |U|$ (“muito menor que”). Para isso precisamos de uma função&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;h: U \to \{0,\dots,m-1\}&lt;/script&gt;
-
-&lt;p&gt;que mapeie cada possível chave $k\in U$ para um número $h(k)$, onde $h$ é chamada &lt;strong&gt;função hash&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Neste contexto, se utilizarmos $h(k)$ como índice na tabela, precisaríamos de uma tabela de tamanho $m$ ao invés de $|U|$. Como, por definição $m\ll|U|$, uma grande economia de espaço é possível. O exemplo mais simples de função hash é o uso do operador de &lt;em&gt;resto&lt;/em&gt; (mod, &lt;code class=&quot;highlighter-rouge&quot;&gt;%&lt;/code&gt;), o qual quando aplicado com o parâmetro $m$ produz um valor em ${0,\dots,m-1}$ (ver Figura).&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;h(k) = k \mod m.&lt;/script&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/AE22CP/hash.png&quot; alt=&quot;hash&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Mas antes de finalizarmos uma implementação de tabelas hash, precisamos lidar com um importante problema. A função hash mapeia cada valor em $U$ para um valor entre $0$ e $m$, porém, como $m\ll |U|$, é inevitável que alguns valores $k_1,k_2 \in U$ tenham o mesmo valor de hash, ou seja, $h(k_1) = h(k_2)$. Isto é chamado &lt;em&gt;colisão&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;A menos que não nos importemos em sobrescrever elementos com memso hash, a existência de colisões nos impede uma implementação simples, em que inserimos os elementos na posição dada pela função de hash.&lt;/p&gt;
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Implementação inviável
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Pois esse tipo de implementação somente aceitaria um dos elementos que tenham o mesmo valor de hash. Por exemplo, se houvéssemos inserido $k_1$ e posteriormente tentado inserir $k_2$, o valor $k_1$ que estava armazenado em &lt;code class=&quot;highlighter-rouge&quot;&gt;t[h(k1)]&lt;/code&gt; seria sobrescrito, visto que $h(k_1)=h(k_2)$.&lt;/p&gt;
-
-&lt;p&gt;A seguir, analisaremos formas de tratar colisões, de modo que a tabela hash permita o armazenamento simultâneo de diversos itens com mesmo valor de hash.&lt;/p&gt;
-
-&lt;h2 id=&quot;resolução-de-colisões-por-encadeamento&quot;&gt;Resolução de colisões por encadeamento&lt;/h2&gt;
-
-&lt;p&gt;A resolução, ou tratamento, de colisões mais intuitiva consiste em simplesmente armazenar todos elementos cujos hash tenham colidido em uma lista encadeada.  A figura abaixo ilustra essa situação&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/AE22CP/chain.png&quot; alt=&quot;hash&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Esta forma de tratarmos colisões define como as funcionalidades devem ser implementadas: inserção, remoção, procura.&lt;/p&gt;
-
-&lt;h3 id=&quot;inserção&quot;&gt;Inserção&lt;/h3&gt;
-
-&lt;p&gt;Nesta situação, a tabela hash é simplesmente um vetor $T$, com uma lista em cada uma de suas $m$ posições (um vetor de listas: &lt;code class=&quot;highlighter-rouge&quot;&gt;list** T&lt;/code&gt;). Cada uma das listas $T[i]$ armazenará elementos $x$ cujo hash seja igual ao índice $i$, i.e. $h(x)=i$. Deste modo, se o elemento $x$ ainda não existe na lista $T[i]$, basta inserí-lo.&lt;/p&gt;
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contains&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;procura&quot;&gt;Procura&lt;/h3&gt;
-
-&lt;p&gt;De forma análoga à inserção, podemos com certeza afirmar que se um elemento $x$, com hash $h(x)$, não é encontrado na lista $T[h(x)]$, então ele não existe na tabela hash. A função &lt;code class=&quot;highlighter-rouge&quot;&gt;search&lt;/code&gt;, deste modo, é implementada em duas etapas apenas:&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;calcular o hash da chave $k$ sendo procurada,&lt;/li&gt;
-  &lt;li&gt;percorrer a lista $T[h(k)]$ procurando por um item cuja chave seja igual a $k$.
-    &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contains&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;an&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;element&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;null&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;remover&quot;&gt;Remover&lt;/h3&gt;
-
-&lt;p&gt;A funcionalidade remover procede a partir de uma chave $k$. Similarmente a &lt;code class=&quot;highlighter-rouge&quot;&gt;search&lt;/code&gt;, a primeira etapa consiste em calcular o hash da chave $k$, $h(k)$. A partir de $h(k)$, sabemos em qual das listas procurar, $T[h(k)]$. A remoção precisa então percorrer a lista $T[h(k)]$ procurando por um elemento cuja chave seja igual $k$. Caso esse elemento exista, basta removê-lo da lista, caso ele não exista, não há nada a ser feito.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;remove&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nn&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;]
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;exercícios&quot;&gt;Exercícios&lt;/h1&gt;
-
-&lt;h2 id=&quot;pair-sum-casos-de-teste&quot;&gt;Pair-sum [&lt;a href=&quot;/assets/AE22CP/pair-sum.zip&quot;&gt;casos de teste&lt;/a&gt;]&lt;/h2&gt;
-&lt;p&gt;Dada uma constante $K&amp;gt;0$ e sequência de inteiros não negativos&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;a_1, a_2,\dots, a_n.&lt;/script&gt;
-
-&lt;p&gt;Verifique se existe um par $a_i$ e $a_j$, tal que $a_i + a_j = K$.&lt;/p&gt;
-
-&lt;p&gt;a) Implemente uma solução que utilize apenas comparações&lt;/p&gt;
-
-&lt;p&gt;b) Implemente uma solução com tratamento de colisões por encadeamento&lt;/p&gt;
-
-&lt;p&gt;c) Implemente uma solução com tratamento de colisões por endereçamento aberto.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Referências&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;CORMEN, Thomas H. et al. Algoritmos: teoria e prática. Rio de Janeiro, RJ: Campus, 2002. xvii, 916 p. ISBN 8535209263. &lt;a href=&quot;http://www.inf.ufrgs.br/~tsrodrigues/utilidades/cormem.pdf&quot;&gt;(pdf: Algoritmos - cap. 11)&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;iframe width=&quot;360&quot; height=&quot;205&quot; src=&quot;https://www.youtube.com/embed/0M_kIqhwbFo&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-
-&lt;iframe width=&quot;360&quot; height=&quot;205&quot; src=&quot;https://www.youtube.com/embed/BRO7mVIFt08&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-
-</description>
-        <pubDate>Tue, 07 Nov 2017 13:50:00 -0200</pubDate>
-        <link>http://localhost:4000/ae22cp-172/tabelas-hash.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/tabelas-hash.html</guid>
-        
-        <category>tabelas-hash</category>
-        
-        
-        <category>AE22CP-172</category>
         
       </item>
     
