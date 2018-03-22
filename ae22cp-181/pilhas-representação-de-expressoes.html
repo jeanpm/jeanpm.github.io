@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Pilhas - Representações prefixa e posfixa</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/ae22cp-181/pilhas-representa%C3%A7%C3%A3o-de-expressoes.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Pilhas - Representações prefixa e posfixa</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Mar 20, 2018
+          • <i class="fa fa-user"></i> Jean P. Martins
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/ae22cp-181/pilhas-filas.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/ae22cp-181/pilhas-valida%C3%A7%C3%A3o-de-express%C3%B5es.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#introdução" id="markdown-toc-introdução">Introdução</a>    <ul>
+      <li><a href="#input-format" id="markdown-toc-input-format">Input Format</a></li>
+      <li><a href="#motivação" id="markdown-toc-motivação">Motivação</a></li>
+      <li><a href="#notação-préfixa" id="markdown-toc-notação-préfixa">Notação préfixa</a></li>
+      <li><a href="#notação-pósfixa" id="markdown-toc-notação-pósfixa">Notação pósfixa</a></li>
+      <li><a href="#utilidade" id="markdown-toc-utilidade">Utilidade</a></li>
+      <li><a href="#conversão-infixapósfixa" id="markdown-toc-conversão-infixapósfixa">Conversão infixa/pósfixa</a></li>
+    </ul>
+  </li>
+  <li><a href="#avaliação-de-expressão-pósfixa" id="markdown-toc-avaliação-de-expressão-pósfixa">Avaliação de expressão pósfixa</a></li>
+</ul>
+
+<h1 id="introdução">Introdução</h1>
+
+<p>Considere a soma de A mais B, numa expressão $A+B$. Neste exemplo, $+$ é um operador sendo aplicado aos operandos $A,B$. Este tipo de representação para a expressão de soma dos dois operandos é chamada <strong>infixa</strong>, pois o operador se posiciona entre os operandos.</p>
+
+<p>Considerando-se o posicionamento do operador, no entando, existem duas representações alternativas: <strong>prefixa</strong> e <strong>posfixa</strong>.</p>
+
+<ul>
+  <li>+AB (prefixa)</li>
+  <li>AB+ (posfixa)</li>
+</ul>
+
+<h2 id="input-format">Input Format</h2>
+<p>Uma string contendo operandos (dígitos 0-9) e operandos (+,-,/,^,*) na forma posfixa. O operador <code class="highlighter-rouge">exponenciação</code> é indicado pelo caracter ‘^’, e pode ser implementado pela função:</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="cp">#include &lt;math.h&gt;
+</span><span class="c1">// Exponenciação, é representada por AB^ (posfixa) =&gt; A^B (infixa) 
+</span><span class="kt">double</span> <span class="n">r</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>A string pode conter espaços, os quais devem ser ignorados. As seguintes funções podem ser utilizadas para verificar o tipo de um caracter char c.</p>
+
+<h2 id="motivação">Motivação</h2>
+<p>Como poderá ser notado, notações prefixa e posfixa removem a ambiguidade de uma expressão, desta forma, parenteses não são mais necessários.</p>
+
+<h2 id="notação-préfixa">Notação préfixa</h2>
+<p>Para compreendermos a utilidade das notações prefixa e posfixa, consideremos as demais operações definidas como funções:</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">,</span> <span class="kt">int</span> <span class="n">B</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">mult</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">,</span> <span class="kt">int</span> <span class="n">B</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">div</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">,</span> <span class="kt">int</span> <span class="n">B</span><span class="p">);</span>	
+</code></pre>
+</div>
+
+<p>Dada uma expressão de exemplo, definida como:</p>
+
+<script type="math/tex; mode=display">(A + B/C) * D</script>
+
+<p>Ela seria implementada em uma chamada da seguinte forma:</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="n">mult</span><span class="p">(</span><span class="n">add</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">div</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">)),</span><span class="n">D</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>O que utilizando a notação prefixa em termos de <script type="math/tex">+,*,/</script>, avalia-se a expressão acima, considerando-se as operações que serão efetuadas em primeiro lugar, ou seja, neste caso:</p>
+
+<ol>
+  <li>divisão <script type="math/tex">\rightarrow /BC</script>,</li>
+  <li>adição <script type="math/tex">\rightarrow +A/BC</script>,</li>
+  <li>multiplicação <script type="math/tex">\rightarrow *+A/BCD</script>.</li>
+</ol>
+
+<script type="math/tex; mode=display">*+A/BCD</script>
+
+<p>Para comprovarmos se essa expressão se equivale à forma infixa, performe as operações assim que dois operandos estiverem disponíveis, iniciando a avaliação da esquerda para a direita.</p>
+
+<p>Ao compararmos as duas representações para a expressão, o que é visivelmente notável?</p>
+
+<script type="math/tex; mode=display">(A + B/C) * D</script>
+
+<script type="math/tex; mode=display">*+A/BCD</script>
+
+<p><strong>Parenteses se tornam desnecessários!</strong> Como consequência, avaliar o resultado de uma expressão se torna muito mais simples. De fato pode ser implementado lendo-se a expressão apenas uma vez.</p>
+
+<h2 id="notação-pósfixa">Notação pósfixa</h2>
+
+<p>Tanto na notação préfixa quanto na pósfixa, é importante lembrar que os operadores com precedência devem ser avaliados/convertidos primeiro, a não ser que uma possível parentização altere a ordem de precedência.</p>
+
+<p>No exemplo anterior <script type="math/tex">(A+B/C) * D</script>, a multiplicação é efetuado somente ao final, devido à parentização. A ausência de parênteses, nesse exemplo, nos permitiria outras interpretações:</p>
+
+<script type="math/tex; mode=display">A + ((B/C) * D)</script>
+
+<script type="math/tex; mode=display">A + (B / (C*D))</script>
+
+<p>A forma pósfixa é a contrapartida da prefixa, em que os operadores são posicionados após os operandos. Retornando ao exemplo original <script type="math/tex">(A+B/C)*D</script>, temos que a divisão <script type="math/tex">B/C</script> deve ser convertida em primeiro lugar:</p>
+
+<script type="math/tex; mode=display">(A + BC/) * D</script>
+
+<p>Em seguida a adição entre parênteses</p>
+
+<script type="math/tex; mode=display">(ABC/+) * D</script>
+
+<p>Por fim, a multiplicação</p>
+
+<script type="math/tex; mode=display">ABC/+D*</script>
+
+<h2 id="utilidade">Utilidade</h2>
+
+<p>Dada a expressão em forma infixa, elabore um algoritmo que dê o resultado da expressão em apenas uma leitura da string:</p>
+
+<script type="math/tex; mode=display">(A + B/C) * D</script>
+
+<p>Dada a expressão em forma pósfixa, elabore um  algoritmo que dê o resultado da expressão em apenas uma leitura da string:</p>
+
+<script type="math/tex; mode=display">ABC/+D*</script>
+
+<h2 id="conversão-infixapósfixa">Conversão infixa/pósfixa</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Forma infixa</strong></td>
+      <td><strong>Forma pósfixa</strong></td>
+    </tr>
+    <tr>
+      <td>A+ B</td>
+      <td>AB+</td>
+    </tr>
+    <tr>
+      <td>A+B-C</td>
+      <td>AB+C-</td>
+    </tr>
+    <tr>
+      <td>(A+B) * C</td>
+      <td>AB+C*</td>
+    </tr>
+    <tr>
+      <td>A+(B*C)</td>
+      <td>ABC*+</td>
+    </tr>
+    <tr>
+      <td>(A+B)*(C-D)</td>
+      <td>AB+CD-*</td>
+    </tr>
+    <tr>
+      <td>((A+B)*C - (D-E))^(F+G)</td>
+      <td>AB+C*DE- -FG+^</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="avaliação-de-expressão-pósfixa">Avaliação de expressão pósfixa</h1>
+
+<script type="math/tex; mode=display">623+-382/+*2\hat{ }  3+</script>
+
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

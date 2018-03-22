@@ -6,9 +6,525 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 16 Mar 2018 13:06:20 -0300</pubDate>
-    <lastBuildDate>Fri, 16 Mar 2018 13:06:20 -0300</lastBuildDate>
+    <pubDate>Thu, 22 Mar 2018 20:01:13 -0300</pubDate>
+    <lastBuildDate>Thu, 22 Mar 2018 20:01:13 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Exercícios II (Pilhas)</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#exercícios&quot; id=&quot;markdown-toc-exercícios&quot;&gt;Exercícios&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#validação-parentética&quot; id=&quot;markdown-toc-validação-parentética&quot;&gt;Validação parentética&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#validação-de-expressões&quot; id=&quot;markdown-toc-validação-de-expressões&quot;&gt;Validação de expressões&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#verificação-de-palíndromo&quot; id=&quot;markdown-toc-verificação-de-palíndromo&quot;&gt;Verificação de palíndromo&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#verificar-concatenação-de-palíndromos&quot; id=&quot;markdown-toc-verificar-concatenação-de-palíndromos&quot;&gt;Verificar concatenação de palíndromos&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#underflow&quot; id=&quot;markdown-toc-underflow&quot;&gt;Underflow&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#referências--pdf&quot; id=&quot;markdown-toc-referências--pdf&quot;&gt;Referências -pdf&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;exercícios&quot;&gt;Exercícios&lt;/h1&gt;
+
+&lt;h2 id=&quot;validação-parentética&quot;&gt;Validação parentética&lt;/h2&gt;
+
+&lt;p&gt;Agora que defimos uma pilha e indicamos as operações que podem ser executadas sobre ela, vejamos como podemos usar a pilha na solução de problemas. Examine uma expressão matemática que inclui vários conjuntos de parênteses agrupados. Por exemplo:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;7 - ((X *((X+ Y)/ (J-3)) + Y)/(4-2.5))&lt;/script&gt;
+
+&lt;p&gt;Queremos garantir que os parênteses estejam corretamente agrupados, ou seja, desejamos verificar se:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Existe um número igual de parênteses esquerdos e direitos.&lt;/li&gt;
+  &lt;li&gt;Todo parêntese da direita está precedido por um parêntese da esquerda.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;stack.h&quot;
+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// Funções auxiliares para identificar o caractere sendo lido. 
+// [!] É necessário implementá-las para que o exemplo funcione. 
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;abreEscopo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fechaEscopo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;escopoCorreto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;verificaExpressao&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expressao&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;esize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;	
+	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;esize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;atual&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expressao&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;abreEscopo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;atual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+			&lt;span class=&quot;n&quot;&gt;stack_push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;atual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fechaEscopo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;atual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+			&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack_empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+			&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;escopoCorreto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack_pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;atual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;	
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack_empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;esize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;free_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;esize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;validação-de-expressões&quot;&gt;Validação de expressões&lt;/h2&gt;
+&lt;p&gt;Adapte o código do validador para que funcione com expressões mais complexas, contendo os demais delimitadores&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(, ), [, ] , \{, \}&lt;/script&gt;
+
+&lt;h2 id=&quot;verificação-de-palíndromo&quot;&gt;Verificação de palíndromo&lt;/h2&gt;
+
+&lt;p&gt;Escreva um algoritmo para determinar se uma string de caracteres de entrada é da forma:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;x C y&lt;/script&gt;
+
+&lt;p&gt;onde &lt;script type=&quot;math/tex&quot;&gt;x,y&lt;/script&gt; são strings e &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; é o inverso de &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;. O caractere &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt; delimita o fim de &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;. Somente um caractere da string pode ser lido de cada vez.&lt;/p&gt;
+
+&lt;h2 id=&quot;verificar-concatenação-de-palíndromos&quot;&gt;Verificar concatenação de palíndromos&lt;/h2&gt;
+
+&lt;p&gt;Escreva um algoritmo para determinar se uma string de caracteres de entrada é da forma:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;a D b D c D \dots D z&lt;/script&gt;
+
+&lt;p&gt;onde cada string &lt;script type=&quot;math/tex&quot;&gt;a, b, c,\dots,z&lt;/script&gt;, é da forma da string definida no exercício anterior, isto é, &lt;script type=&quot;math/tex&quot;&gt;a = xCy&lt;/script&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;underflow&quot;&gt;Underflow&lt;/h2&gt;
+&lt;p&gt;Que conjunto de critérios é necessário e suficiente para que uma sequência de operações &lt;code class=&quot;highlighter-rouge&quot;&gt;push&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;pop&lt;/code&gt; sobre uma única pilha (inicialmente vazia) deixe a pilha vazia e não provoque &lt;em&gt;underflow&lt;/em&gt;?&lt;/p&gt;
+
+&lt;h1 id=&quot;referências--pdf&quot;&gt;Referências -pdf&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.san.uri.br/~ober/arquivos/disciplinas/estruturaII_SI/(ebook)Estruturas%20de%20Dados%20Usando%20C%20(Tenenbaum).pdf&quot;&gt;&lt;img src=&quot;../assets/tenenbaum-book.jpg&quot; alt=&quot;livro&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 20 Mar 2018 11:00:00 -0300</pubDate>
+        <link>http://localhost:4000/ae22cp-181/pilhas-valida%C3%A7%C3%A3o-de-express%C3%B5es.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-181/pilhas-valida%C3%A7%C3%A3o-de-express%C3%B5es.html</guid>
+        
+        <category>pilhas-filas</category>
+        
+        
+        <category>AE22CP-181</category>
+        
+      </item>
+    
+      <item>
+        <title>Pilhas - Representações prefixa e posfixa</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#introdução&quot; id=&quot;markdown-toc-introdução&quot;&gt;Introdução&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#input-format&quot; id=&quot;markdown-toc-input-format&quot;&gt;Input Format&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#motivação&quot; id=&quot;markdown-toc-motivação&quot;&gt;Motivação&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#notação-préfixa&quot; id=&quot;markdown-toc-notação-préfixa&quot;&gt;Notação préfixa&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#notação-pósfixa&quot; id=&quot;markdown-toc-notação-pósfixa&quot;&gt;Notação pósfixa&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#utilidade&quot; id=&quot;markdown-toc-utilidade&quot;&gt;Utilidade&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#conversão-infixapósfixa&quot; id=&quot;markdown-toc-conversão-infixapósfixa&quot;&gt;Conversão infixa/pósfixa&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#avaliação-de-expressão-pósfixa&quot; id=&quot;markdown-toc-avaliação-de-expressão-pósfixa&quot;&gt;Avaliação de expressão pósfixa&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;introdução&quot;&gt;Introdução&lt;/h1&gt;
+
+&lt;p&gt;Considere a soma de A mais B, numa expressão $A+B$. Neste exemplo, $+$ é um operador sendo aplicado aos operandos $A,B$. Este tipo de representação para a expressão de soma dos dois operandos é chamada &lt;strong&gt;infixa&lt;/strong&gt;, pois o operador se posiciona entre os operandos.&lt;/p&gt;
+
+&lt;p&gt;Considerando-se o posicionamento do operador, no entando, existem duas representações alternativas: &lt;strong&gt;prefixa&lt;/strong&gt; e &lt;strong&gt;posfixa&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;+AB (prefixa)&lt;/li&gt;
+  &lt;li&gt;AB+ (posfixa)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;input-format&quot;&gt;Input Format&lt;/h2&gt;
+&lt;p&gt;Uma string contendo operandos (dígitos 0-9) e operandos (+,-,/,^,*) na forma posfixa. O operador &lt;code class=&quot;highlighter-rouge&quot;&gt;exponenciação&lt;/code&gt; é indicado pelo caracter ‘^’, e pode ser implementado pela função:&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;math.h&amp;gt;
+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// Exponenciação, é representada por AB^ (posfixa) =&amp;gt; A^B (infixa) 
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;A string pode conter espaços, os quais devem ser ignorados. As seguintes funções podem ser utilizadas para verificar o tipo de um caracter char c.&lt;/p&gt;
+
+&lt;h2 id=&quot;motivação&quot;&gt;Motivação&lt;/h2&gt;
+&lt;p&gt;Como poderá ser notado, notações prefixa e posfixa removem a ambiguidade de uma expressão, desta forma, parenteses não são mais necessários.&lt;/p&gt;
+
+&lt;h2 id=&quot;notação-préfixa&quot;&gt;Notação préfixa&lt;/h2&gt;
+&lt;p&gt;Para compreendermos a utilidade das notações prefixa e posfixa, consideremos as demais operações definidas como funções:&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mult&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;	
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Dada uma expressão de exemplo, definida como:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(A + B/C) * D&lt;/script&gt;
+
+&lt;p&gt;Ela seria implementada em uma chamada da seguinte forma:&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mult&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;O que utilizando a notação prefixa em termos de &lt;script type=&quot;math/tex&quot;&gt;+,*,/&lt;/script&gt;, avalia-se a expressão acima, considerando-se as operações que serão efetuadas em primeiro lugar, ou seja, neste caso:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;divisão &lt;script type=&quot;math/tex&quot;&gt;\rightarrow /BC&lt;/script&gt;,&lt;/li&gt;
+  &lt;li&gt;adição &lt;script type=&quot;math/tex&quot;&gt;\rightarrow +A/BC&lt;/script&gt;,&lt;/li&gt;
+  &lt;li&gt;multiplicação &lt;script type=&quot;math/tex&quot;&gt;\rightarrow *+A/BCD&lt;/script&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;*+A/BCD&lt;/script&gt;
+
+&lt;p&gt;Para comprovarmos se essa expressão se equivale à forma infixa, performe as operações assim que dois operandos estiverem disponíveis, iniciando a avaliação da esquerda para a direita.&lt;/p&gt;
+
+&lt;p&gt;Ao compararmos as duas representações para a expressão, o que é visivelmente notável?&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(A + B/C) * D&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;*+A/BCD&lt;/script&gt;
+
+&lt;p&gt;&lt;strong&gt;Parenteses se tornam desnecessários!&lt;/strong&gt; Como consequência, avaliar o resultado de uma expressão se torna muito mais simples. De fato pode ser implementado lendo-se a expressão apenas uma vez.&lt;/p&gt;
+
+&lt;h2 id=&quot;notação-pósfixa&quot;&gt;Notação pósfixa&lt;/h2&gt;
+
+&lt;p&gt;Tanto na notação préfixa quanto na pósfixa, é importante lembrar que os operadores com precedência devem ser avaliados/convertidos primeiro, a não ser que uma possível parentização altere a ordem de precedência.&lt;/p&gt;
+
+&lt;p&gt;No exemplo anterior &lt;script type=&quot;math/tex&quot;&gt;(A+B/C) * D&lt;/script&gt;, a multiplicação é efetuado somente ao final, devido à parentização. A ausência de parênteses, nesse exemplo, nos permitiria outras interpretações:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;A + ((B/C) * D)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;A + (B / (C*D))&lt;/script&gt;
+
+&lt;p&gt;A forma pósfixa é a contrapartida da prefixa, em que os operadores são posicionados após os operandos. Retornando ao exemplo original &lt;script type=&quot;math/tex&quot;&gt;(A+B/C)*D&lt;/script&gt;, temos que a divisão &lt;script type=&quot;math/tex&quot;&gt;B/C&lt;/script&gt; deve ser convertida em primeiro lugar:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(A + BC/) * D&lt;/script&gt;
+
+&lt;p&gt;Em seguida a adição entre parênteses&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(ABC/+) * D&lt;/script&gt;
+
+&lt;p&gt;Por fim, a multiplicação&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;ABC/+D*&lt;/script&gt;
+
+&lt;h2 id=&quot;utilidade&quot;&gt;Utilidade&lt;/h2&gt;
+
+&lt;p&gt;Dada a expressão em forma infixa, elabore um algoritmo que dê o resultado da expressão em apenas uma leitura da string:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(A + B/C) * D&lt;/script&gt;
+
+&lt;p&gt;Dada a expressão em forma pósfixa, elabore um  algoritmo que dê o resultado da expressão em apenas uma leitura da string:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;ABC/+D*&lt;/script&gt;
+
+&lt;h2 id=&quot;conversão-infixapósfixa&quot;&gt;Conversão infixa/pósfixa&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Forma infixa&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;Forma pósfixa&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;A+ B&lt;/td&gt;
+      &lt;td&gt;AB+&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;A+B-C&lt;/td&gt;
+      &lt;td&gt;AB+C-&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;(A+B) * C&lt;/td&gt;
+      &lt;td&gt;AB+C*&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;A+(B*C)&lt;/td&gt;
+      &lt;td&gt;ABC*+&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;(A+B)*(C-D)&lt;/td&gt;
+      &lt;td&gt;AB+CD-*&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;((A+B)*C - (D-E))^(F+G)&lt;/td&gt;
+      &lt;td&gt;AB+C*DE- -FG+^&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&quot;avaliação-de-expressão-pósfixa&quot;&gt;Avaliação de expressão pósfixa&lt;/h1&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;623+-382/+*2\hat{ }  3+&lt;/script&gt;
+
+</description>
+        <pubDate>Tue, 20 Mar 2018 11:00:00 -0300</pubDate>
+        <link>http://localhost:4000/ae22cp-181/pilhas-representa%C3%A7%C3%A3o-de-expressoes.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-181/pilhas-representa%C3%A7%C3%A3o-de-expressoes.html</guid>
+        
+        <category>pilhas</category>
+        
+        
+        <category>AE22CP-181</category>
+        
+      </item>
+    
+      <item>
+        <title>Políticas de acesso - Pilhas &amp; Filas</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#políticas-de-acesso-e-manipulação&quot; id=&quot;markdown-toc-políticas-de-acesso-e-manipulação&quot;&gt;Políticas de acesso e manipulação&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#pilhas-stack&quot; id=&quot;markdown-toc-pilhas-stack&quot;&gt;Pilhas (stack)&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#filas-queue&quot; id=&quot;markdown-toc-filas-queue&quot;&gt;Filas (queue)&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#implementação-sobre-vector&quot; id=&quot;markdown-toc-implementação-sobre-vector&quot;&gt;Implementação sobre &lt;em&gt;vector&lt;/em&gt;&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#pilhas&quot; id=&quot;markdown-toc-pilhas&quot;&gt;Pilhas&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#filas&quot; id=&quot;markdown-toc-filas&quot;&gt;Filas&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#eficiência-das-implementações&quot; id=&quot;markdown-toc-eficiência-das-implementações&quot;&gt;Eficiência das implementações&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;políticas-de-acesso-e-manipulação&quot;&gt;Políticas de acesso e manipulação&lt;/h1&gt;
+
+&lt;p&gt;Algumas estruturas de dados não requerem novas formas de armazenamento dos dados em memória. Nesses casos, tais estruturas são definidas apenas pela forma com a qual elas permitem o acesso e manipulação dos dados armazenados, o que chamei de &lt;strong&gt;política de acesso e manipulação&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Para melhor compreendermos essa ideia, iniciaremos o estudo de duas estruturas de dados (ou políticas de acesso e manipulação) de grande relevância: pilhas (stack) e filas (queue). Por serem apenas políticas de acesso, pilhas e filas podem ser implementadas utilizando como base diferentes tipos de estruturas de dados (contêiners). Neste primeiro momento, no entanto, assumiremos apenas a implementação de pilhas e filas utilizando o contêiner &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; como base.&lt;/p&gt;
+
+&lt;h2 id=&quot;pilhas-stack&quot;&gt;Pilhas (stack)&lt;/h2&gt;
+
+&lt;p&gt;A estrutura de dados Pilha recebe este nome em analogia ao processo de empilhamento. De acordo com o dicionário web &lt;a href=&quot;http://michaelis.uol.com.br/busca?r=0&amp;amp;f=0&amp;amp;t=0&amp;amp;palavra=empilhar&quot;&gt;Michaelis&lt;/a&gt;, empilhar tem o seguinte significado:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;em·pi·lhar&lt;/strong&gt;
+Dispor em pilha ou ficar amontoado em pilha; amontoar(-se):&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;Empilhou os pratos que havia acabado de enxugar.&lt;/li&gt;
+      &lt;li&gt;“[…] erguia o que estava pelo chão e empilhava as cadeiras sobre as mesinhas de mármore” (AA2).&lt;/li&gt;
+      &lt;li&gt;“Entrou no seu escritório e foi sentar-se à secretária. Defronte dele, com uma gravidade oficial, empilhavam-se grandes livros de escrituração mercantil” (AA2).&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;De acordo com esta definição, empilhar significa inserir um objeto em cima de outro. Desempilhar, portanto, se refere a remoção do objeto no topo da pilha.&lt;/p&gt;
+
+&lt;p&gt;Dada a analogia, define-se que uma estrutura de dados pilha é caracterizada pelo fato de que novos elementos somente podem ser inseridos em seu topo. A remoção de elementos da pilha, similarmente, somente pode acontecer para elementos no topo. O acesso ao elemento no topo da pilha, sem a remoção do mesmo, é muitas vezes necessário, desta forma um operador se faz necessário. Em resumo:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Novos elementos são inseridos em apenas uma direção.
+    &lt;ul&gt;
+      &lt;li&gt;O último elemento inserido é chamado o topo da pilha&lt;/li&gt;
+      &lt;li&gt;Essa operação é chamada &lt;code class=&quot;highlighter-rouge&quot;&gt;push&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Elementos são removidos em direção oposta à inserção
+    &lt;ul&gt;
+      &lt;li&gt;Somente o elemento no topo pode ser removido diretamente.&lt;/li&gt;
+      &lt;li&gt;Essa operação é chamada &lt;code class=&quot;highlighter-rouge&quot;&gt;pop&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Este tipo de política de acesso ficou conhecido pela sigla:
+    &lt;ul&gt;
+      &lt;li&gt;LIFO, do inglês &lt;em&gt;last in, first out&lt;/em&gt;. O último elemento inserido é necessáriamente o primeiro a ser removido.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/pilhas-geral.png&quot; alt=&quot;pilhas&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Estruturas do tipo &lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt; são de grande utilidade em aspectos fundamentais da ciência da computação. Seja na construção de compiladores e linguagens de programação, por uma perspectiv teórica, ou no gerenciamento de memória da pilha de chamadas (&lt;a href=&quot;https://pt.stackoverflow.com/questions/3797/o-que-s%C3%A3o-e-onde-est%C3%A3o-o-stack-e-heap&quot;&gt;stack call&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;Implementações de pilhas em linguagens de programação:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;C++/STL, &lt;a href=&quot;http://www.cplusplus.com/reference/stack/stack/&quot;&gt;stack&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;http://www.cplusplus.com/reference/stack/stack/&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Python, &lt;a href=&quot;https://docs.python.org/2/tutorial/datastructures.html#using-lists-as-stacks&quot;&gt;Using lists as stacks&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;https://docs.python.org/2/tutorial/datastructures.html#using-lists-as-stacks&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;C#, &lt;a href=&quot;https://msdn.microsoft.com/pt-br/library/system.collections.stack(v=vs.110).aspx&quot;&gt;Stack&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;https://msdn.microsoft.com/pt-br/library/system.collections.stack(v=vs.110).aspxs&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;filas-queue&quot;&gt;Filas (queue)&lt;/h2&gt;
+
+&lt;p&gt;A estrutura de dados &lt;em&gt;fila&lt;/em&gt; (ou política de acesso) também recebe este nome por analogia ao processo de enfileiramento&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;fi·la&lt;/strong&gt; (&lt;a href=&quot;http://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/enfileirar/&quot;&gt;Michaelis&lt;/a&gt;)
+Sequência de pessoas ou coisas alinhadas uma atrás da outra, organizada geralmente por ordem cronológica de chegada ou por diferentes critérios…
+    &lt;ul&gt;
+      &lt;li&gt;“Havia agora Betinha, Aureluce, Tanara e outras amigas barulhentas em volta, uma fila inteira delas no Cine Cruzeiro do Sul” (CFA).&lt;/li&gt;
+      &lt;li&gt;“Conjunto de soldados em fileira”&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Por essa analogia é fácil notarmos que a estrutura de dados &lt;em&gt;fila&lt;/em&gt; deve suportar operações análogas ao &lt;em&gt;enfileiramento&lt;/em&gt; e o &lt;em&gt;desenfileiramento&lt;/em&gt;. Em termos mais diretos, isso significa que a inserção de novos elementos em uma fila deve ser feita sempre em uma das pontas da estrutua (&lt;code class=&quot;highlighter-rouge&quot;&gt;push_back&lt;/code&gt; ou &lt;code class=&quot;highlighter-rouge&quot;&gt;push_front&lt;/code&gt;) enquanto a remoção poderia apenas ser feita na ponta oposta da estrutura (&lt;code class=&quot;highlighter-rouge&quot;&gt;pop_front&lt;/code&gt; ou &lt;code class=&quot;highlighter-rouge&quot;&gt;pop_back&lt;/code&gt;). Em resumo:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Novos elementos são inseridos em apenas uma das pontas.
+    &lt;ul&gt;
+      &lt;li&gt;Essa operação é chamada &lt;code class=&quot;highlighter-rouge&quot;&gt;push&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Elementos são removidos da ponta oposta à inserção.
+    &lt;ul&gt;
+      &lt;li&gt;Somente o elemento inicial pode ser removido diretamente.&lt;/li&gt;
+      &lt;li&gt;Essa operação é chamada &lt;code class=&quot;highlighter-rouge&quot;&gt;pop&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Este tipo de política de acesso ficou conhecido pela sigla:
+    &lt;ul&gt;
+      &lt;li&gt;FIFO, do inglês &lt;em&gt;first in, first out&lt;/em&gt;. O primeiro elemento inserido é necessáriamente o primeiro a ser removido.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;implementação-sobre-vector&quot;&gt;Implementação sobre &lt;em&gt;vector&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;Pilhas e filas, sendo apenas políticas de acesso, podem ser implementadas utilizando diferentes estruturas de dados como base (contêiner). Neste primeiro momento, utilizaremos como contêiner a estrutura &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; implementada anteriormente.&lt;/p&gt;
+
+&lt;h2 id=&quot;pilhas&quot;&gt;Pilhas&lt;/h2&gt;
+
+&lt;p&gt;É fácil notar que todas as funcionalidades necessárias para manipular uma pilha estão implementadas para &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;. De fato, precisamos apenas de um subconjunto das funcionalidades disponíveis em &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;, ou seja, pilhas são mais restritivas.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// **** stack.h ****
+&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;vector.h&quot;
+#include &amp;lt;stdbool.h&amp;gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#define STACK_INIT_SIZE 10
+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// Alocação desalocação
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;free_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Inserção e remoção de elementos
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Observer o topo da pilha, sem remoção
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Vejamos quais funcionalidades de &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; serão úteis para implementarmos uma estrutura pilha (&lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Opção 1&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Opção 2&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_push_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_pop_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Cada uma dessas opções insere e remove elementos de uma das pontas de &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;. Por razões de eficiência, utilizaremos a opção 1 a seguir.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;Questão:&lt;/em&gt; Porque devemos preferir a opção 1 para implementação de &lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt; se o contêiner base for &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// **** stack.c ****
+&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;stack.h&quot;
+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// Alocação desalocação
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;new_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_vector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;STACK_INIT_SIZE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;free_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;free_vector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Inserção e remoção de elementos
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;vector_push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Retorna um ponteiro para o topo da pilha
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;filas&quot;&gt;Filas&lt;/h2&gt;
+
+&lt;p&gt;É fácil notar que todas as funcionalidades necessárias para manipular uma estão implementadas para &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;. De fato, precisamos apenas de um subconjunto das funcionalidades disponíveis em &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;, ou seja, filas são mais restritivas.&lt;/p&gt;
+
+&lt;p&gt;Vejamos quais funcionalidades de &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; serão úteis para implementarmos uma estrutura pilha (&lt;code class=&quot;highlighter-rouge&quot;&gt;queue&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Opção 1&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_pop_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Opção 2&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_push_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Cada uma dessas opções insere elementos em uma das pontas de &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; e remove da outra.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;Questão:&lt;/em&gt; Quais as deficiências em termos da eficiência de cada uma das opções?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// **** queue.c ***
+&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;queue.h&quot;
+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// Alocação desalocação
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;new_queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_vector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;QUEUE_INIT_SIZE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;free_queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;free_vector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Inserção e remoção de elementos
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;queue_pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;queue_push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;vector_push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Retorna um ponteiro para o topo da pilha
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;queue_begin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;eficiência-das-implementações&quot;&gt;Eficiência das implementações&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Qual a ineficiência da implementação de &lt;code class=&quot;highlighter-rouge&quot;&gt;queue&lt;/code&gt; utilizando &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; diretamente.&lt;/li&gt;
+  &lt;li&gt;Implementação circular (pg. 207 Tenenbaum)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 20 Mar 2018 11:00:00 -0300</pubDate>
+        <link>http://localhost:4000/ae22cp-181/pilhas-filas.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-181/pilhas-filas.html</guid>
+        
+        <category>pilhas-filas</category>
+        
+        
+        <category>AE22CP-181</category>
+        
+      </item>
     
       <item>
         <title>APS1 - Implementando vector</title>
@@ -273,7 +789,9 @@ pop_back
   &lt;li&gt;&lt;a href=&quot;#ambiente-de-programação&quot; id=&quot;markdown-toc-ambiente-de-programação&quot;&gt;Ambiente de programação&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#operadores-aritméticos&quot; id=&quot;markdown-toc-operadores-aritméticos&quot;&gt;Operadores aritméticos&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#tipos-de-dados-básicos&quot; id=&quot;markdown-toc-tipos-de-dados-básicos&quot;&gt;Tipos de dados básicos&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#exercícios&quot; id=&quot;markdown-toc-exercícios&quot;&gt;Exercícios&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#exercícios-de-revisão&quot; id=&quot;markdown-toc-exercícios-de-revisão&quot;&gt;Exercícios de revisão&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#precedência-de-operações&quot; id=&quot;markdown-toc-precedência-de-operações&quot;&gt;Precedência de operações&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#exercícios-de-implementação&quot; id=&quot;markdown-toc-exercícios-de-implementação&quot;&gt;Exercícios de Implementação&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&quot;ambiente-de-programação&quot;&gt;Ambiente de programação&lt;/h1&gt;
@@ -350,7 +868,112 @@ pop_back
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;h1 id=&quot;exercícios&quot;&gt;Exercícios&lt;/h1&gt;
+&lt;h1 id=&quot;exercícios-de-revisão&quot;&gt;Exercícios de revisão&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;O que será mostrado ao digitarmos:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;a)&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nome&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;b)&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nome&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;c)&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nome &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;d)&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;nome&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Jean&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nome&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;e)&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;f)&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;O que é uma variável?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;O que são tipos de dados? Dê exemplos.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;O que é uma string?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Dadas as opções abaixo, qual delas é uma string? O que são as outras opções?
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;a) nome
+b) &quot;nome&quot;
+c) &quot;Maria não trabalha aos sábados.&quot;
+d) 14
+e) &quot;145&quot;
+f) 143.2
+g) &quot;150.2&quot;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Descubra a funcionalidade da função &lt;code class=&quot;highlighter-rouge&quot;&gt;len(&quot;qualquer string&quot;)&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;precedência-de-operações&quot;&gt;Precedência de operações&lt;/h1&gt;
+
+&lt;p&gt;Ao descrevermos expressões aritméticas complexas, existem convenções que nos permitem identificar quais partes devem ser solucionadas em primeiro lugar. Por exemplo, na equação:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{10 \times 5 + 3}{2}&lt;/script&gt;
+
+&lt;p&gt;A convenção é que multiplicações sejam efetuadas antes da soma, portanto, o primeiro passo para obtermos o resultado final é substituir o termo $10 \times 5$ por seu resultado,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{50 + 3}{2}&lt;/script&gt;
+
+&lt;p&gt;Nesta versão da equação, a soma precisa ser efetuada antes da divisão, portanto, novamente a substituímos pelo seu resultado&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{53}{2}&lt;/script&gt;
+
+&lt;p&gt;Finalmente, existe apenas uma operação a ser efetuada, a divisão, e seu resultado nos dará a resposta final.&lt;/p&gt;
+
+&lt;p&gt;O exemplo acima ilustra uma situação bastante comum em programação, na qual utilizamos equações para nos referir a algum valor de interesse. No entanto, as convenções que para nós são evidentes (ex: efetuar primeiramente a multiplicação) não são tão óbvias quando a representamos em uma linguagem de programação, vejamos o exemplo anterior descrito por meio dos operadores da linguagem Python:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(10 * 5 + 3)/2&lt;/script&gt;
+
+&lt;p&gt;Observem que se não houvéssemos inserido os parênteses a equação não seria equivalente à anterior, ou seja&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(10 * 5 + 3)/2 \neq 10 * 5 + 3/2&lt;/script&gt;
+
+&lt;p&gt;&lt;strong&gt;Faça o teste e compare os resultados.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;A versão sem parênteses dessa expressão seria calculada como:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;10 * 5&lt;/code&gt; resulta em &lt;code class=&quot;highlighter-rouge&quot;&gt;50&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;3/2&lt;/code&gt; resulta em &lt;code class=&quot;highlighter-rouge&quot;&gt;1.5&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;50 + 1.5&lt;/code&gt; resulta em &lt;code class=&quot;highlighter-rouge&quot;&gt;51.5&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;A ordem na qual essas operação são efetuadas são chamadas ordem de precedência, são elas que definem o resultado da expressão. Para que essa ordem seja alterada, precisamos utilizar parenteses, definindo assim aquilo que deve ser computado em conjunto.&lt;/p&gt;
+
+&lt;h1 id=&quot;exercícios-de-implementação&quot;&gt;Exercícios de Implementação&lt;/h1&gt;
 
 &lt;p&gt;O trecho de código abaixo ao ser executado irá receber três números $a$ e $b$ como entrada digitada no teclado&lt;/p&gt;
 
@@ -393,7 +1016,6 @@ c = float(input())
     &lt;p&gt;Assuma que $a$ e $b$ sejam, respectivamente, sua nota nas Prova1 e Prova2, enquanto $c$ seja sua nota na APS. Calcule e imprima sua nota final: $NF = 0.45 \times a + 0.45 \times b + 0.1 \times c$&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
-
 </description>
         <pubDate>Thu, 15 Mar 2018 17:00:00 -0300</pubDate>
         <link>http://localhost:4000/lp31m-181/expressoes.html</link>
@@ -407,7 +1029,7 @@ c = float(input())
       </item>
     
       <item>
-        <title>Exercícios II (Memória, ponteiros)</title>
+        <title>Exercícios I (Memória, ponteiros)</title>
         <description>&lt;h2 id=&quot;referências&quot;&gt;Referências&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;
@@ -735,406 +1357,6 @@ c = float(input())
         <pubDate>Tue, 13 Mar 2018 13:00:00 -0300</pubDate>
         <link>http://localhost:4000/ae22cp-181/aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-exercicios.html</link>
         <guid isPermaLink="true">http://localhost:4000/ae22cp-181/aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-exercicios.html</guid>
-        
-        <category>memória</category>
-        
-        
-        <category>AE22CP-181</category>
-        
-      </item>
-    
-      <item>
-        <title>Organização de memória, stack, heap III</title>
-        <description>&lt;h1 id=&quot;conteúdo&quot;&gt;Conteúdo&lt;/h1&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#conteúdo&quot; id=&quot;markdown-toc-conteúdo&quot;&gt;Conteúdo&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#referências&quot; id=&quot;markdown-toc-referências&quot;&gt;Referências&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#revisão&quot; id=&quot;markdown-toc-revisão&quot;&gt;Revisão&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#memória-dinâmica-heap-memory&quot; id=&quot;markdown-toc-memória-dinâmica-heap-memory&quot;&gt;Memória dinâmica (Heap memory)&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#memória-local-e-dinâmica&quot; id=&quot;markdown-toc-memória-local-e-dinâmica&quot;&gt;Memória local e dinâmica&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#estrutura-do-heap&quot; id=&quot;markdown-toc-estrutura-do-heap&quot;&gt;Estrutura do heap&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#gerenciador-de-memória-em-c&quot; id=&quot;markdown-toc-gerenciador-de-memória-em-c&quot;&gt;Gerenciador de memória em C&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#exemplos-de-uso-malloc-e-free&quot; id=&quot;markdown-toc-exemplos-de-uso-malloc-e-free&quot;&gt;Exemplos de uso: malloc e free&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#ponteiros-para-vetores&quot; id=&quot;markdown-toc-ponteiros-para-vetores&quot;&gt;Ponteiros para vetores&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#eficiência-de-alocação-stack-vs-heap&quot; id=&quot;markdown-toc-eficiência-de-alocação-stack-vs-heap&quot;&gt;Eficiência de alocação: stack vs heap&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#exercício&quot; id=&quot;markdown-toc-exercício&quot;&gt;Exercício&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;referências&quot;&gt;Referências&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Material sobre linguagem C (&lt;a href=&quot;https://www.ime.usp.br/~slago/slago-C.pdf&quot;&gt;IME-USP&lt;/a&gt;)&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;em&gt;https://www.ime.usp.br/~slago/slago-C.pdf&lt;/em&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Material sobre memória e ponteiros (&lt;a href=&quot;http://cslibrary.stanford.edu/102/PointersAndMemory.pdf&quot;&gt;cap2::stanford&lt;/a&gt;)&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;em&gt;http://cslibrary.stanford.edu/102/PointersAndMemory.pdf&lt;/em&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Notas sobre estruturas de dados e programação (&lt;a href=&quot;http://cs-www.cs.yale.edu/homes/aspnes/classes/223/notes.pdf&quot;&gt;cap4:yale&lt;/a&gt;)&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;em&gt;http://cs-www.cs.yale.edu/homes/aspnes/classes/223/notes.pdf&lt;/em&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Livro (&lt;a href=&quot;http://pdf.th7.cn/down/files/1312/write_great_code_volume_1.pdf&quot;&gt;cap11.9:Write greate code&lt;/a&gt;)&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;em&gt;http://pdf.th7.cn/down/files/1312/write_great_code_volume_1.pdf&lt;/em&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://pt.stackoverflow.com/questions/3797/o-que-s%C3%A3o-e-onde-est%C3%A3o-o-stack-e-heap&quot;&gt;stackoverflow:O que são e onde estão o stack e heap?&lt;/a&gt;&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;em&gt;https://pt.stackoverflow.com/questions/3797/o-que-s%C3%A3o-e-onde-est%C3%A3o-o-stack-e-heap&lt;/em&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;LEIA LIVROS SOBRE PROGRAMAÇÃO!&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;revisão&quot;&gt;Revisão&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Compreensão de termos: &lt;em&gt;Declaração vs. Definição&lt;/em&gt;&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Declare uma variável de nome &lt;code class=&quot;highlighter-rouge&quot;&gt;aluno&lt;/code&gt; do tipo &lt;code class=&quot;highlighter-rouge&quot;&gt;Pessoa&lt;/code&gt;&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Declare uma variável de nome &lt;code class=&quot;highlighter-rouge&quot;&gt;ra&lt;/code&gt; do tipo &lt;code class=&quot;highlighter-rouge&quot;&gt;long&lt;/code&gt;&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Defina uma &lt;code class=&quot;highlighter-rouge&quot;&gt;struct&lt;/code&gt; de nome &lt;code class=&quot;highlighter-rouge&quot;&gt;Fracao&lt;/code&gt;, contendo campos &lt;code class=&quot;highlighter-rouge&quot;&gt;numerador&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;denominador&lt;/code&gt;.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Defina uma função de nome &lt;code class=&quot;highlighter-rouge&quot;&gt;multiplicar&lt;/code&gt; que receba duas &lt;code class=&quot;highlighter-rouge&quot;&gt;struct&lt;/code&gt; do tipo &lt;code class=&quot;highlighter-rouge&quot;&gt;Fracao&lt;/code&gt;.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Chame a função &lt;code class=&quot;highlighter-rouge&quot;&gt;multiplicar&lt;/code&gt; passando duas &lt;code class=&quot;highlighter-rouge&quot;&gt;struct Fracao&lt;/code&gt; como parâmetro.&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Referências vs ponteiros&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Referência é o termo genérico, independente de linguagem&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Ponteiro é usualmente utilizado no contexto de C/C++&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Pilha de chamadas&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Recebe por valor&lt;/p&gt;
-
-        &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;c1&quot;&gt;// Não altera o conteúdo da variável passada como argumento
-&lt;/span&gt;  &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;inicializa_pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cpf&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;		
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-        &lt;/div&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Recebe por referência&lt;/p&gt;
-
-        &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;c1&quot;&gt;// Altera o conteúdo da variável externa
-&lt;/span&gt;  &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;inicializa_pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cpf&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;		
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-        &lt;/div&gt;
-      &lt;/li&gt;
-      &lt;li&gt;Passagem por valor
-        &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;inicializa_pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-        &lt;/div&gt;
-      &lt;/li&gt;
-      &lt;li&gt;Passagem por referência
-        &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;inicializa_pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-        &lt;/div&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Ponteiros&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Qual o conteúdo da variável?&lt;/p&gt;
-
-        &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-      &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;	
-      &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;		
-      &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-        &lt;/div&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Qual o conteúdo da variável?&lt;/p&gt;
-
-        &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;soma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;		
-  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;	
-      &lt;span class=&quot;n&quot;&gt;soma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-        &lt;/div&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Qual o conteúdo da variável?&lt;/p&gt;
-
-        &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-      &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;	
-      &lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-        &lt;/div&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Qual o conteúdo da variável?&lt;/p&gt;
-
-        &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-      &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;	
-      &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;		
-      &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-        &lt;/div&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;memória-dinâmica-heap-memory&quot;&gt;Memória dinâmica (Heap memory)&lt;/h1&gt;
-
-&lt;p&gt;Memória alocada na pilha de chamadas é automática,&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;O compilador reserva memória quando necessário&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;A memória é liberada ao sairmos do escopo.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Memória dinâmica é diferente&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;O programador requisita alocação&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;O programador precisa liberar a memória quando não mais útil.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Benefícios da memória dinâmica&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;a memória pode ser alocada por qualquer função e retornada para uso posterior&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;O programador tem controle de quando àquela memória deixará ser sua responsabilidade&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Pontos negativos&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Memória dinâmica é manipulada através de ponteiros&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;o ponteiro em si é armazenado na pilha de chamadas, já a memória alocada está no heap&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Aumenta-se a responsabilidade do programador quanto à memória alocada/desalocada&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;memória-local-e-dinâmica&quot;&gt;Memória local e dinâmica&lt;/h2&gt;
-
-&lt;p&gt;Como a memória no heap é sempre acessada por meio de ponteiros e esses ponteiros são armazenados na pilha de chamadas, estas duas formas de memória trabalham juntas. (Figura extraída de &lt;a href=&quot;http://cslibrary.stanford.edu/102/PointersAndMemory.pdf&quot;&gt;cslibrary-stanford-pg.25&lt;/a&gt;)&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/local-heap.png&quot; alt=&quot;Ponteiros para o heap são armazenados na call stack&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;estrutura-do-heap&quot;&gt;Estrutura do heap&lt;/h2&gt;
-
-&lt;p&gt;O Heap é um grande bloco de memória gerenciado por algum mecanismo. Esse mecanismo é responsável por armazenar informações sobre quais partes desse bloco estão em uso e quais estão disponíveis.&lt;/p&gt;
-
-&lt;p&gt;Assuma o exemplo da figura anterior,&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Existe um ponteiro &lt;code class=&quot;highlighter-rouge&quot;&gt;int* Gif2&lt;/code&gt; por meio do qual a memória &lt;code class=&quot;highlighter-rouge&quot;&gt;GIF2&lt;/code&gt; é manipulada.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Caso a memória &lt;code class=&quot;highlighter-rouge&quot;&gt;GIF2&lt;/code&gt; não seja mais necessária, ela pode ser desalocada, deixando espaço útil no Heap&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/local-heap-frag.png&quot; alt=&quot;Fragmentação memória&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;A partir desse momento, uma nova requisição de memória pode utilizar a região desalocada novamente&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;É responsabilidade do gerenciador de memória manter os espaços disponíveis e tentar evitar que a memória fique fragmentada demais.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;É responsabilidade do programador avisar ao gerenciador de memória quando um espaço de memória previamente alocado se torna disponível.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;O gerenciador só é capaz (em C) de manter organizada a memória disponível se o programador se compromete a avisá-lo.&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Algumas linguagens possuem mecanismos para monitorar memórias não utilizadas e liberá-las automaticamente, estes mecanismos se chamam &lt;em&gt;garbage collector&lt;/em&gt; (coletor de lixo).&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Monitorar, no entanto, é dispendioso e linguagens de mais baixo nível não implementam tais mecanismos&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;gerenciador-de-memória-em-c&quot;&gt;Gerenciador de memória em C&lt;/h2&gt;
-
-&lt;p&gt;Em C, memória no Heap é gerenciada pelas funções (&lt;a href=&quot;http://man7.org/linux/man-pages/man3/malloc.3.html&quot;&gt;manpage:malloc&lt;/a&gt;)&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdlib.h&amp;gt;
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;free&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;calloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nmemb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;realloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reallocarray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nmemb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;exemplos-de-uso-malloc-e-free&quot;&gt;Exemplos de uso: malloc e free&lt;/h2&gt;
-
-&lt;p&gt;Qualquer tipo de variável pode ser alocada no heap. Embora nem sempre seja uma boa opção, veja os exemplos:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Alocação de memória para um inteiro
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Observe que um inteiro armazenado no heap utiliza a mesma notação que o um vetor.
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;c1&quot;&gt;// int c[10];
-&lt;/span&gt;  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;ponteiros-para-vetores&quot;&gt;Ponteiros para vetores&lt;/h2&gt;
-
-&lt;p&gt;Desta forma, apesar da sintaxe, um vetor é sempre um ponteiro para sua posição inicial. Isto é verdade para vetores de qualquer tipo, strings inclusas &lt;code class=&quot;highlighter-rouge&quot;&gt;char*&lt;/code&gt;;&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;cp&quot;&gt;#define STR_SIZE 10
-&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// alocação na pilha de chamadas
-&lt;/span&gt;  &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nome&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;STR_SIZE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; 
-  &lt;span class=&quot;c1&quot;&gt;// alocação no heap
-&lt;/span&gt;  &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nome&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;STR_SIZE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Em ambos os casos, a dereferenciação do ponteiro permite acesso ao primeiro elemento do vetor:&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;*nome&lt;/code&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;eficiência-de-alocação-stack-vs-heap&quot;&gt;Eficiência de alocação: stack vs heap&lt;/h2&gt;
-
-&lt;p&gt;A pilha de chamadas é uma estrutura mais simples, memória é sempre alocada em uma direção e desalocada em outra, na mesma ordem. Portanto,&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Alocação de memória na call stack é rápida.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;O heap, é uma estrutura mais complexa, e memória pode ser alocada não sequencialmente, o que torna a procurar por memória disponível mais honerosa, mais demorada.&lt;/p&gt;
-
-&lt;h2 id=&quot;exercício&quot;&gt;Exercício&lt;/h2&gt;
-
-&lt;p&gt;Alterar o código da aula anterior para que a memória da estrutura &lt;code class=&quot;highlighter-rouge&quot;&gt;Pessoa&lt;/code&gt; seja alocada no heap.&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
-#include &amp;lt;stdlib.h&amp;gt;
-#define MAX_SIZE_NOME 20
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cpf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nome&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MAX_SIZE_NOME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Passagem de referência usando ponteiros `Pessoa* p`
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ler_pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%s%d%ld&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nome&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cpf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;	
-	&lt;span class=&quot;n&quot;&gt;ler_pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-</description>
-        <pubDate>Tue, 13 Mar 2018 12:50:00 -0300</pubDate>
-        <link>http://localhost:4000/ae22cp-181/aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-3.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-181/aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-3.html</guid>
         
         <category>memória</category>
         
@@ -2146,322 +2368,6 @@ Program received signal SIGSEGV, Segmentation fault.
         <guid isPermaLink="true">http://localhost:4000/ae22cp-172/FAQ.html</guid>
         
         <category>faq</category>
-        
-        
-        <category>AE22CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>PROVA Substitutiva - SUB</title>
-        <description>&lt;p&gt;&lt;img src=&quot;../assets/utfpr-logo.png&quot; alt=&quot;utfpr-logo&quot; /&gt;&lt;/p&gt;
-
-&lt;center&gt;$4^{a}$ Avaliação LC21CP- 2017/2&lt;/center&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;strong&gt;Nome:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Introdução da conjunção:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;$\dfrac{\phi\quad\psi}{\phi \land \psi} \land\mbox{i}$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Eliminação da conjunção:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;$\dfrac{\phi \land \psi}{\phi} \land\mbox{e}_1,\quad \dfrac{\phi \land \psi}{\psi} \land\mbox{e}_2$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Introdução da dupla negação:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;$\dfrac{\phi}{\neg\neg\phi} \neg\neg\mbox{i}$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Eliminação da dupla negação:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;$\dfrac{\neg\neg\phi}{\phi} \neg\neg\mbox{e}$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Modus Ponens:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;$\dfrac{\phi\to\psi\qquad \phi}{\psi}{MP}$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Introdução da disjunção:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;$\dfrac{\phi}{\phi \lor \psi}\lor\mbox{i}$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Modus Tollens:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;$\dfrac{\phi\to\psi\qquad \neg\psi}{\neg\phi}{MT}$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Eliminação da disjunção:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;$\dfrac{\phi \lor \psi\quad (\phi\dots\chi)\quad (\psi\dots\chi)}{\chi} \lor\mbox{e}$&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Introdução da contradição:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;script type=&quot;math/tex&quot;&gt;\dfrac{\phi\quad \neg\phi}{\perp}\perp\mbox{i}&lt;/script&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Introdução da negação:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;script type=&quot;math/tex&quot;&gt;\dfrac{(\phi\dots\perp)}{\neg \phi}\neg\mbox{i}&lt;/script&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;em&gt;Eliminação da contradição:&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;script type=&quot;math/tex&quot;&gt;\dfrac{\perp}{\phi}\perp\mbox{e}&lt;/script&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;questão-1-40pts&quot;&gt;Questão 1 (4,0pts)&lt;/h3&gt;
-
-&lt;p&gt;Demonstre ao menos 5 das 8 formas de argumento abaixo:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p\land q, (\neg p \land q)\to (r\lor \neg p) \vdash r \lor \neg p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \land q) \to (r \land s), \neg\neg p, q \vdash s&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q)\land r, s \land t \vdash q \land s&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p, \neg\neg(q \land r) \vdash \neg\neg p \land r&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to q, r\to s \vdash (p\lor r)\to (q\lor s)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p\to q, r \to s \vdash (p\land r) \to (q\land s)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\lor(q\to p))\land q \vdash p&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \to (q \lor r), \neg q, \neg r \vdash \neg p&lt;/script&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;questão-2-30pts&quot;&gt;Questão 2 (3,0pts)&lt;/h3&gt;
-
-&lt;p&gt;Utilize árvores de refutação para demonstrar se as fórmulas a seguir são &lt;strong&gt;tautologias&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p \to (q \land r)) \to (p\to r)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\to (q \land p))\to (p \land q)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg((p\land q)\leftrightarrow(p\lor q))&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(p\land q) \land \neg(p\lor r)&lt;/script&gt;
-
-&lt;hr /&gt;
-&lt;h3 id=&quot;questão-3-20pts&quot;&gt;Questão 3 (2,0pts)&lt;/h3&gt;
-
-&lt;p&gt;Interpretando como&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;$c$: “está chovendo”&lt;/li&gt;
-  &lt;li&gt;$R(x)$: “$x$ é uma rã”&lt;/li&gt;
-  &lt;li&gt;$V(x)$: “$x$ é verde”&lt;/li&gt;
-  &lt;li&gt;$S(x)$: “$x$ é saltitante”&lt;/li&gt;
-  &lt;li&gt;$I(x)$: “$x$ é iridescente”&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Formalize as seguintes sentenças:&lt;/p&gt;
-
-&lt;p&gt;a. Todas as rãs são verdes&lt;/p&gt;
-
-&lt;p&gt;b. Nenhuma rã é verdes&lt;/p&gt;
-
-&lt;p&gt;c. Algumas rãs são verdes&lt;/p&gt;
-
-&lt;p&gt;d. Algumas rãs não são verdes&lt;/p&gt;
-
-&lt;p&gt;e. Toda coisa é uma rã.&lt;/p&gt;
-
-&lt;p&gt;f. Alguma coisa é uma rã.&lt;/p&gt;
-
-&lt;p&gt;g. Nem toda coisa é uma rã.&lt;/p&gt;
-
-&lt;p&gt;h. Nada é uma rã.&lt;/p&gt;
-
-&lt;p&gt;i. Existem rãs verdes&lt;/p&gt;
-
-&lt;p&gt;j. Qualquer coisa é uma rã verde.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;questão-4-10pts&quot;&gt;Questão 4 (1,0pts)&lt;/h3&gt;
-
-&lt;p&gt;Reescreva as fórmulas abaixo utilizando outro quantificador. Ou seja, se a fórmula usa $\forall$, dê uma fórmula equivalente utilizando $\exists$ e vice-versa.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \forall x \neg Fx\quad\mbox{equivale a }\quad\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\exists x \neg Fx\quad\mbox{equivale a }\quad\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\forall x \neg Fx\quad\mbox{equivale a }\quad\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg \exists x \neg Fx\quad\mbox{equivale a }\quad\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_&lt;/script&gt;
-</description>
-        <pubDate>Wed, 13 Dec 2017 10:20:00 -0200</pubDate>
-        <link>http://localhost:4000/lc21cp-172/SUB.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lc21cp-172/SUB.html</guid>
-        
-        <category>prova1</category>
-        
-        
-        <category>LC21CP-172</category>
-        
-      </item>
-    
-      <item>
-        <title>APS4 - Matrizes esparsas</title>
-        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#visão-geral&quot; id=&quot;markdown-toc-visão-geral&quot;&gt;Visão Geral&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#objetivo&quot; id=&quot;markdown-toc-objetivo&quot;&gt;Objetivo&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#critérios-de-avaliação&quot; id=&quot;markdown-toc-critérios-de-avaliação&quot;&gt;Critérios de avaliação&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#matrizes-esparsas&quot; id=&quot;markdown-toc-matrizes-esparsas&quot;&gt;Matrizes esparsas&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#tabelas-hash&quot; id=&quot;markdown-toc-tabelas-hash&quot;&gt;Tabelas Hash&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#chaves-únicas&quot; id=&quot;markdown-toc-chaves-únicas&quot;&gt;Chaves únicas&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#listas-de-adjacências&quot; id=&quot;markdown-toc-listas-de-adjacências&quot;&gt;Listas de Adjacências&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#matrizes-esparsas-encadeadas&quot; id=&quot;markdown-toc-matrizes-esparsas-encadeadas&quot;&gt;Matrizes esparsas encadeadas&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;visão-geral&quot;&gt;Visão Geral&lt;/h1&gt;
-&lt;h3 id=&quot;objetivo&quot;&gt;Objetivo&lt;/h3&gt;
-
-&lt;p&gt;Implementar o algoritmo de multiplicação de matrizes.&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;Utilizando tabelas hash como estruturas de dados para armazenar a matriz.&lt;/li&gt;
-  &lt;li&gt;Utilizando matrizes esparsas encadeadas como estruturas de dados para armazenar a matriz.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;critérios-de-avaliação&quot;&gt;Critérios de avaliação&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Armazenamento da matriz esparsa em tabela hash.&lt;/li&gt;
-  &lt;li&gt;Armazenamento da matriz esparsa em estrutura encadeada.&lt;/li&gt;
-  &lt;li&gt;Multiplicação de matriz usando tabelas hash&lt;/li&gt;
-  &lt;li&gt;Multiplicação de matriz usando estruturas encadeadas.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&quot;matrizes-esparsas&quot;&gt;Matrizes esparsas&lt;/h1&gt;
-
-&lt;p&gt;Uma matriz $N\times M$ é uma estrutura de dados simples e comumente utilizada em situações nas quais existe uma relação entre um elemento e $M$ outros elementos. Todos elementos numa mesma linha estão relacionados por alguma propriedade que os fez serem armazenados em tais posições, essa propriedade depende da informação sendo armazenada. Consideremos a estrutura ilustrada abaixo.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/AE22CP/grafo.png&quot; alt=&quot;grafo&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Observamos pela numeração dos elementos que existem 13 nós. Percebemos também que além disso que alguns desses nós estão relacionados, ou seja, estão conectados por uma linha. Estruturas desse tipo são chamadas grafos, os elementos são chamados vértices e as conexões são chamadas arestas. Como representar uma estrutura desse tipo na memória do computador?&lt;/p&gt;
-
-&lt;p&gt;A primeira opção para representarmos um grafo como estruturas de dados é a utilização de uma matriz $N\times N$, onde $N=13$ é o número de vértices. Para cada aresta entre vértices $v_i$ e $v_j$, representada como $(v_i, v_j)$ um valor será inserido na posição $i,j$ da matriz. Na matriz abaixo, marcamos como $X$ todas as arestas no grafo acima.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;A primeira linha e primeira coluna servem apenas de referência, não existiriam na prática.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-M = 
-\left[{\begin{array}{lccccccccccccc}
- &amp; 0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp; 7 &amp; 8 &amp; 9 &amp; 10 &amp; 11 &amp; 12 \\
-0&amp; 0 &amp; X &amp; X &amp; 0 &amp; 0 &amp; X &amp; X &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-1&amp; X &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-2&amp; X &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-3&amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; X &amp; X &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-4&amp; 0 &amp; 0 &amp; 0 &amp; X &amp; 0 &amp; X &amp; X &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-5&amp; X &amp; 0 &amp; 0 &amp; X &amp; X &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-6&amp; X &amp; 0 &amp; 0 &amp; 0 &amp; X &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-7&amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; X &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-8&amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; X &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-9&amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; X &amp; X &amp; X \\
-10&amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; X &amp; 0 &amp; 0 &amp; 0 \\
-11&amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; X &amp; 0 &amp; 0 &amp; X \\
-12&amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; X &amp; 0 &amp; X &amp; 0 
-\end{array}}\right] %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;Usando este exemplo simples, é fácil percebermos que há um grande desperdício de memória ao utilizarmos essa estrutura de dados. Grande parte das conexões não existem no grafo que queremos representar, e portanto, a maioria das posições &lt;code class=&quot;highlighter-rouge&quot;&gt;M[i][j]&lt;/code&gt; na matriz permanecerão inutilizadas.&lt;/p&gt;
-
-&lt;h2 id=&quot;tabelas-hash&quot;&gt;Tabelas Hash&lt;/h2&gt;
-
-&lt;p&gt;Como forma de economia de memória, podemos armazenar a matriz $M$ de outras forma. A primeira que discutiremos utiliza uma tabela hash como estrutura de dados subjacente. Assuma que tenhamos uma tabela hash com tratamento de colisões qualquer. Podemos definir que a informação a ser armazenada será uma estrutura, como um elemento da matriz M (&lt;code class=&quot;highlighter-rouge&quot;&gt;Melem&lt;/code&gt;).&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;valor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Melem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Cada elemento desse tipo representa uma posição na matriz $M$, obviamente só armazenaríamos aqueles elementos representados por $X$, ou seja, aqueles que representem arestas no grafo original.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Neste exemplo, &lt;code class=&quot;highlighter-rouge&quot;&gt;valor&lt;/code&gt; é até desnecessário, mas em outras situações é comum querermos armazenar algo na posição da matriz.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Neste tipo de situação, a existência, na tabela hash, de um elemento&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Melem&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;'X'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Significaria a existência de uma aresta entre os vértices $v_{10}$ e $v_{9}$, ou seja $(v_{10}, v_{9})$.&lt;/p&gt;
-
-&lt;h3 id=&quot;chaves-únicas&quot;&gt;Chaves únicas&lt;/h3&gt;
-
-&lt;p&gt;Em uma tabela hash, os elementos armazenados precisam necessariamente possuir uma chave única que o distingua dos demais elementos. No contexto dos elementos de matriz (&lt;code class=&quot;highlighter-rouge&quot;&gt;Melem&lt;/code&gt;) é possível utilizarmos os índices $i$ e $j$ para compor uma chave.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Defina uma função que transforme $i$ e $j$ em uma chave única. Essa chave será utilizada como entrada da função hash.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;listas-de-adjacências&quot;&gt;Listas de Adjacências&lt;/h2&gt;
-
-&lt;p&gt;Uma abordagem alternativa que é uma intermediária entre uma matriz comum e uma estrutura encadeada, são as chamadas listas de adjacências. Numa lista de adjacências, cria-se um vetor de &lt;code class=&quot;highlighter-rouge&quot;&gt;L&lt;/code&gt; tamanho $N$, sendo que cada posição armazenará uma lista encadeada.&lt;/p&gt;
-
-&lt;p&gt;Diferentemente das tabelas hash, no entanto, temos total controle quanto a em qual lista inserir um determinado elemento. Como temos $N$ listas, a escolha óbvia é inserir um determinado elemento de matriz &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i,j,valor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt; na lista lista da posição &lt;code class=&quot;highlighter-rouge&quot;&gt;L[i]&lt;/code&gt;. A matriz $M$ descrita anteriormente seria então representada como&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-L = 
-\left[{\begin{array}{ll}
-0:&amp; \rightarrow 1 \rightarrow 2 \rightarrow 5 \rightarrow 6\\
-1:&amp; \rightarrow 0 \\
-2:&amp; \rightarrow 0 \\
-3:&amp; \rightarrow 4 \rightarrow 5\\
-4:&amp; \rightarrow 3 \rightarrow 5 \rightarrow 6\\
-5:&amp; \rightarrow 0 \rightarrow 3 \rightarrow 4\\
-6:&amp; \rightarrow 0 \rightarrow  4\\
-7:&amp; \rightarrow 8 \\
-8:&amp; \rightarrow 7\\
-9:&amp; \rightarrow 10 \rightarrow 11 \rightarrow 12 \\
-10:&amp; \rightarrow 9\\
-11:&amp; \rightarrow 9 \rightarrow 12\\
-12:&amp; \rightarrow 9 \rightarrow 11
-\end{array}}\right] %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;Onde por conveniência e melhor visualização representei nas listas apenas o indice $j$ ao invés do elemento de matriz completo (&lt;code class=&quot;highlighter-rouge&quot;&gt;Melem&lt;/code&gt;).&lt;/p&gt;
-
-&lt;p&gt;Apesar da economia de memória que as listas de adjacências nos oferece, elas possuem um ponto fraco. As informações armazenadas nesse tipo de estrutura somente são facilmente acessadas percorrendo-se uma das linhas em $L$. Em diversas situações precisamos percorrer a matriz por coluna, uma operação que não é facilmente implementada em listas de adjacências.&lt;/p&gt;
-
-&lt;h2 id=&quot;matrizes-esparsas-encadeadas&quot;&gt;Matrizes esparsas encadeadas&lt;/h2&gt;
-
-&lt;p&gt;A implementação de matrizes esparsas por estruturas encadeadas é uma extensão da implementação em listas de adjacências. Neste caso, no entanto, se torna possível percorrer a matriz tanto em ordem definida por linha, quanto em ordem definida por coluna. Como isso é feito?&lt;/p&gt;
-
-&lt;p&gt;As matrizes esparsas encadeadas que trataremos aqui, consideram dois vetores: vetor linha, e vetor coluna, ambos são vetores de listas. Porém, diferentemente das listas que temos tratados até então, essas precisam de informações adicionais.&lt;/p&gt;
-
-&lt;p&gt;Considere que eu deseje percorrer uma linha $i$ da matriz esparsa encadeada. Dado um ponteiro para um nó $p$ da lista &lt;code class=&quot;highlighter-rouge&quot;&gt;L[i]&lt;/code&gt;, basta utilizarmos o campo &lt;code class=&quot;highlighter-rouge&quot;&gt;next&lt;/code&gt; desse nó para acessarmos o próximo elemento na mesma linha.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\rightarrow \{1,10, x\}^p \rightarrow^\mbox{next} \{1, 20, y\}\rightarrow&lt;/script&gt;
-
-&lt;p&gt;Por outro lado, se quisermos percorrer uma coluna $j$ da matriz esparsa encadeada, precisamos ter referência para os elementos abaixo e acima de um determinado elemento de matriz. Em resumo, cada nó dessas listas precisa armazenar pelo menos ponteiros para: &lt;code class=&quot;highlighter-rouge&quot;&gt;abaixo&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;proximo&lt;/code&gt;, ou &lt;code class=&quot;highlighter-rouge&quot;&gt;abaixo&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;anterior&lt;/code&gt;, ou &lt;code class=&quot;highlighter-rouge&quot;&gt;acima&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;anterior&lt;/code&gt; etc; de modo que seja possível percorre a matriz tanto por linhas quanto por colunas. As figuras abaixo ilustram uma matriz esparsa encadeada com nós do tipo &lt;code class=&quot;highlighter-rouge&quot;&gt;acima&lt;/code&gt; (&lt;code class=&quot;highlighter-rouge&quot;&gt;UP&lt;/code&gt;) e &lt;code class=&quot;highlighter-rouge&quot;&gt;anterior&lt;/code&gt; (&lt;code class=&quot;highlighter-rouge&quot;&gt;LEFT&lt;/code&gt;).&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/AE22CP/node.png&quot; alt=&quot;node&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/AE22CP/esparsa.png&quot; alt=&quot;mesparsa&quot; /&gt;&lt;/p&gt;
-</description>
-        <pubDate>Wed, 22 Nov 2017 13:50:00 -0200</pubDate>
-        <link>http://localhost:4000/ae22cp-172/APS4-matrizes.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/APS4-matrizes.html</guid>
-        
-        <category>ordenação</category>
         
         
         <category>AE22CP-172</category>

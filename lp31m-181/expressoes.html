@@ -90,7 +90,9 @@
   <li><a href="#ambiente-de-programação" id="markdown-toc-ambiente-de-programação">Ambiente de programação</a></li>
   <li><a href="#operadores-aritméticos" id="markdown-toc-operadores-aritméticos">Operadores aritméticos</a></li>
   <li><a href="#tipos-de-dados-básicos" id="markdown-toc-tipos-de-dados-básicos">Tipos de dados básicos</a></li>
-  <li><a href="#exercícios" id="markdown-toc-exercícios">Exercícios</a></li>
+  <li><a href="#exercícios-de-revisão" id="markdown-toc-exercícios-de-revisão">Exercícios de revisão</a></li>
+  <li><a href="#precedência-de-operações" id="markdown-toc-precedência-de-operações">Precedência de operações</a></li>
+  <li><a href="#exercícios-de-implementação" id="markdown-toc-exercícios-de-implementação">Exercícios de Implementação</a></li>
 </ul>
 
 <h1 id="ambiente-de-programação">Ambiente de programação</h1>
@@ -167,7 +169,112 @@
   </tbody>
 </table>
 
-<h1 id="exercícios">Exercícios</h1>
+<h1 id="exercícios-de-revisão">Exercícios de revisão</h1>
+
+<ol>
+  <li>O que será mostrado ao digitarmos:</li>
+</ol>
+
+<p>a)</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">nome</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>b)</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"nome"</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>c)</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"nome "</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>d)</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">nome</span> <span class="o">=</span> <span class="s">"Jean"</span>
+<span class="k">print</span><span class="p">(</span><span class="n">nome</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>e)</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">idade</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">idade</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>f)</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">idade</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">idade</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<ol>
+  <li>
+    <p>O que é uma variável?</p>
+  </li>
+  <li>
+    <p>O que são tipos de dados? Dê exemplos.</p>
+  </li>
+  <li>
+    <p>O que é uma string?</p>
+  </li>
+  <li>Dadas as opções abaixo, qual delas é uma string? O que são as outras opções?
+    <div class="highlighter-rouge"><pre class="highlight"><code>a) nome
+b) "nome"
+c) "Maria não trabalha aos sábados."
+d) 14
+e) "145"
+f) 143.2
+g) "150.2"
+</code></pre>
+    </div>
+  </li>
+  <li>Descubra a funcionalidade da função <code class="highlighter-rouge">len("qualquer string")</code>.</li>
+</ol>
+
+<h1 id="precedência-de-operações">Precedência de operações</h1>
+
+<p>Ao descrevermos expressões aritméticas complexas, existem convenções que nos permitem identificar quais partes devem ser solucionadas em primeiro lugar. Por exemplo, na equação:</p>
+
+<script type="math/tex; mode=display">\frac{10 \times 5 + 3}{2}</script>
+
+<p>A convenção é que multiplicações sejam efetuadas antes da soma, portanto, o primeiro passo para obtermos o resultado final é substituir o termo $10 \times 5$ por seu resultado,</p>
+
+<script type="math/tex; mode=display">\frac{50 + 3}{2}</script>
+
+<p>Nesta versão da equação, a soma precisa ser efetuada antes da divisão, portanto, novamente a substituímos pelo seu resultado</p>
+
+<script type="math/tex; mode=display">\frac{53}{2}</script>
+
+<p>Finalmente, existe apenas uma operação a ser efetuada, a divisão, e seu resultado nos dará a resposta final.</p>
+
+<p>O exemplo acima ilustra uma situação bastante comum em programação, na qual utilizamos equações para nos referir a algum valor de interesse. No entanto, as convenções que para nós são evidentes (ex: efetuar primeiramente a multiplicação) não são tão óbvias quando a representamos em uma linguagem de programação, vejamos o exemplo anterior descrito por meio dos operadores da linguagem Python:</p>
+
+<script type="math/tex; mode=display">(10 * 5 + 3)/2</script>
+
+<p>Observem que se não houvéssemos inserido os parênteses a equação não seria equivalente à anterior, ou seja</p>
+
+<script type="math/tex; mode=display">(10 * 5 + 3)/2 \neq 10 * 5 + 3/2</script>
+
+<p><strong>Faça o teste e compare os resultados.</strong></p>
+
+<p>A versão sem parênteses dessa expressão seria calculada como:</p>
+
+<ol>
+  <li><code class="highlighter-rouge">10 * 5</code> resulta em <code class="highlighter-rouge">50</code></li>
+  <li><code class="highlighter-rouge">3/2</code> resulta em <code class="highlighter-rouge">1.5</code></li>
+  <li><code class="highlighter-rouge">50 + 1.5</code> resulta em <code class="highlighter-rouge">51.5</code></li>
+</ol>
+
+<p>A ordem na qual essas operação são efetuadas são chamadas ordem de precedência, são elas que definem o resultado da expressão. Para que essa ordem seja alterada, precisamos utilizar parenteses, definindo assim aquilo que deve ser computado em conjunto.</p>
+
+<h1 id="exercícios-de-implementação">Exercícios de Implementação</h1>
 
 <p>O trecho de código abaixo ao ser executado irá receber três números $a$ e $b$ como entrada digitada no teclado</p>
 
@@ -210,7 +317,6 @@ c = float(input())
     <p>Assuma que $a$ e $b$ sejam, respectivamente, sua nota nas Prova1 e Prova2, enquanto $c$ seja sua nota na APS. Calcule e imprima sua nota final: $NF = 0.45 \times a + 0.45 \times b + 0.1 \times c$</p>
   </li>
 </ol>
-
 
   </article>
 
