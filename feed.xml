@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 29 Mar 2018 19:44:14 -0300</pubDate>
-    <lastBuildDate>Thu, 29 Mar 2018 19:44:14 -0300</lastBuildDate>
+    <pubDate>Thu, 29 Mar 2018 19:49:03 -0300</pubDate>
+    <lastBuildDate>Thu, 29 Mar 2018 19:49:03 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -254,7 +254,20 @@
 
 &lt;p&gt;&lt;strong&gt;Se&lt;/strong&gt; ($\Delta = 0$) &lt;strong&gt;então&lt;/strong&gt; (Imprimir ‘A equação possui a raíz $X$.’)&lt;/p&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;$X = \frac{-b}{2a}$&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;p&gt;&lt;strong&gt;Se&lt;/strong&gt; ($\Delta &amp;gt; 0$) &lt;strong&gt;então&lt;/strong&gt; (Imprimir ‘A equação possui duas raízes reais $X_1$ e $X_2$.’)&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;$X_1 = \frac{-b - \Delta}{2a}$&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;e $X_2 = \frac{-b + \Delta}{2a}$&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;Implemente um programa que receba como entrada três números reais &lt;code class=&quot;highlighter-rouge&quot;&gt;a,b&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;c&lt;/code&gt; como sendo os coeficientes da equação $ a x^2  + bx + c = 0$ e calcule a resposta dadas as possíveis situações descritas acima.&lt;/p&gt;
 </description>
