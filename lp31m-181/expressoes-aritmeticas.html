@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Expressões aritméticas</title>
+  <meta name="description" content="Conteúdo  Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/lp31m-181/expressoes-aritmeticas.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Expressões aritméticas</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Mar 15, 2018
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/ae22cp-181/aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-exercicios.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/ae22cp-181/aps-vector.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <h1 id="conteúdo">Conteúdo</h1>
+<ul id="markdown-toc">
+  <li><a href="#conteúdo" id="markdown-toc-conteúdo">Conteúdo</a></li>
+  <li><a href="#ambiente-de-programação" id="markdown-toc-ambiente-de-programação">Ambiente de programação</a></li>
+  <li><a href="#operadores-aritméticos" id="markdown-toc-operadores-aritméticos">Operadores aritméticos</a></li>
+  <li><a href="#tipos-de-dados-básicos" id="markdown-toc-tipos-de-dados-básicos">Tipos de dados básicos</a></li>
+  <li><a href="#exercícios-de-revisão" id="markdown-toc-exercícios-de-revisão">Exercícios de revisão</a></li>
+  <li><a href="#precedência-de-operações" id="markdown-toc-precedência-de-operações">Precedência de operações</a></li>
+  <li><a href="#exercícios-de-implementação" id="markdown-toc-exercícios-de-implementação">Exercícios de Implementação</a></li>
+</ul>
+
+<h1 id="ambiente-de-programação">Ambiente de programação</h1>
+
+<p>Para seguir os exemplos aqui descritos sugiro a utilização do ambiente de programação online <a href="https://repl.it/languages/python3">»repl.it</a>. Mais adiante no curso veremos ferramentas mais apropriadas para programação.</p>
+
+<h1 id="operadores-aritméticos">Operadores aritméticos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Operador</th>
+      <th>Operação</th>
+      <th>Exemplo</th>
+      <th>Resultado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">**</code></td>
+      <td>exponenciação</td>
+      <td><code class="highlighter-rouge">2**3</code></td>
+      <td><code class="highlighter-rouge">8</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">/</code></td>
+      <td>divisão</td>
+      <td><code class="highlighter-rouge">22/8</code></td>
+      <td><code class="highlighter-rouge">2.75</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">*</code></td>
+      <td>multiplicação</td>
+      <td><code class="highlighter-rouge">3*5</code></td>
+      <td><code class="highlighter-rouge">15</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">-</code></td>
+      <td>subtração</td>
+      <td><code class="highlighter-rouge">5-2</code></td>
+      <td><code class="highlighter-rouge">3</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">+</code></td>
+      <td>adição</td>
+      <td><code class="highlighter-rouge">2+2</code></td>
+      <td><code class="highlighter-rouge">4</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="tipos-de-dados-básicos">Tipos de dados básicos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tipo de dados</th>
+      <th>Exemplo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Inteiros</td>
+      <td><code class="highlighter-rouge">-2,-1,0,1,2,3,4</code></td>
+    </tr>
+    <tr>
+      <td>Ponto-flutuante</td>
+      <td><code class="highlighter-rouge">-1.25, -1.0, -0.5, 1.0, 1.25</code></td>
+    </tr>
+    <tr>
+      <td>Strings</td>
+      <td><code class="highlighter-rouge">'a', 'jean', 'maria', 'arroz', ''</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="exercícios-de-revisão">Exercícios de revisão</h1>
+
+<ol>
+  <li>O que será mostrado ao digitarmos:</li>
+</ol>
+
+<p>a)</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">nome</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>b)</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"nome"</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>c)</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"nome "</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>d)</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">nome</span> <span class="o">=</span> <span class="s">"Jean"</span>
+<span class="k">print</span><span class="p">(</span><span class="n">nome</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>e)</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">idade</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">idade</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>f)</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">idade</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">idade</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<ol>
+  <li>
+    <p>O que é uma variável?</p>
+  </li>
+  <li>
+    <p>O que são tipos de dados? Dê exemplos.</p>
+  </li>
+  <li>
+    <p>O que é uma string?</p>
+  </li>
+  <li>Dadas as opções abaixo, qual delas é uma string? O que são as outras opções?
+    <div class="highlighter-rouge"><pre class="highlight"><code>a) nome
+b) "nome"
+c) "Maria não trabalha aos sábados."
+d) 14
+e) "145"
+f) 143.2
+g) "150.2"
+h) inteiro121
+</code></pre>
+    </div>
+  </li>
+  <li>Descubra a funcionalidade da função <code class="highlighter-rouge">len("qualquer string")</code>.</li>
+</ol>
+
+<h1 id="precedência-de-operações">Precedência de operações</h1>
+
+<p>Ao descrevermos expressões aritméticas complexas, existem convenções que nos permitem identificar quais partes devem ser solucionadas em primeiro lugar. Por exemplo, na equação:</p>
+
+<script type="math/tex; mode=display">\frac{10 \times 5 + 3}{2}</script>
+
+<p>A convenção é que multiplicações sejam efetuadas antes da soma, portanto, o primeiro passo para obtermos o resultado final é substituir o termo $10 \times 5$ por seu resultado,</p>
+
+<script type="math/tex; mode=display">\frac{50 + 3}{2}</script>
+
+<p>Nesta versão da equação, a soma precisa ser efetuada antes da divisão, portanto, novamente a substituímos pelo seu resultado</p>
+
+<script type="math/tex; mode=display">\frac{53}{2}</script>
+
+<p>Finalmente, existe apenas uma operação a ser efetuada, a divisão, e seu resultado nos dará a resposta final.</p>
+
+<p>O exemplo acima ilustra uma situação bastante comum em programação, na qual utilizamos equações para nos referir a algum valor de interesse. No entanto, as convenções que para nós são evidentes (ex: efetuar primeiramente a multiplicação) não são tão óbvias quando a representamos em uma linguagem de programação, vejamos o exemplo anterior descrito por meio dos operadores da linguagem Python:</p>
+
+<script type="math/tex; mode=display">(10 * 5 + 3)/2</script>
+
+<p>Observem que se não houvéssemos inserido os parênteses a equação não seria equivalente à anterior, ou seja</p>
+
+<script type="math/tex; mode=display">(10 * 5 + 3)/2 \neq 10 * 5 + 3/2</script>
+
+<p><strong>Faça o teste e compare os resultados.</strong></p>
+
+<p>A versão sem parênteses dessa expressão seria calculada como:</p>
+
+<ol>
+  <li><code class="highlighter-rouge">10 * 5</code> resulta em <code class="highlighter-rouge">50</code></li>
+  <li><code class="highlighter-rouge">3/2</code> resulta em <code class="highlighter-rouge">1.5</code></li>
+  <li><code class="highlighter-rouge">50 + 1.5</code> resulta em <code class="highlighter-rouge">51.5</code></li>
+</ol>
+
+<p>A ordem na qual essas operação são efetuadas são chamadas ordem de precedência, são elas que definem o resultado da expressão. Para que essa ordem seja alterada, precisamos utilizar parenteses, definindo assim aquilo que deve ser computado em conjunto.</p>
+
+<h1 id="exercícios-de-implementação">Exercícios de Implementação</h1>
+
+<p>O trecho de código abaixo ao ser executado irá receber três números $a$ e $b$ como entrada digitada no teclado</p>
+
+<pre><code class="language-python3">a = float(input())
+b = float(input())
+c = float(input())
+</code></pre>
+
+<p>Continue a implementação para efetuar as seguintes operações:</p>
+
+<ol>
+  <li>
+    <p>Calcule e imprima a área do retângulo de lados $a$ e $b$</p>
+  </li>
+  <li>
+    <p>Calcule e imprima o perímetro do retângulo de lados $a$ e $b$</p>
+  </li>
+  <li>
+    <p>Calcule e imprima a hipotenusa do triângulo retângulo cujos catetos oposto e adjacente tem tamanhos $a$ e $b$</p>
+  </li>
+  <li>
+    <p>Calcule e imprima a área do círculo de raio $a$.</p>
+  </li>
+  <li>
+    <p>Calcule e imprima o resultado da equação $\sqrt{a^2 + b}$. Utilize a equivalência: $\sqrt[d]{x^e} = x^\frac{e}{d}$.</p>
+  </li>
+  <li>
+    <p>Calcule e imprima o resultado da equação $\sqrt[3]{a^2 + b}$</p>
+  </li>
+  <li>
+    <p>Calcule a média $\frac{a+b}{2}$</p>
+  </li>
+  <li>
+    <p>Calcule a média ponderada $\frac{0.3a + 0.7b}{2}$</p>
+  </li>
+  <li>
+    <p>Implemente o cálculo da fórmula de Bháskara para encontrar as raízes reais da equação $a x^2 + b x + c = 0$. Ou seja, $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$</p>
+  </li>
+  <li>
+    <p>Assuma que $a$ e $b$ sejam, respectivamente, sua nota nas Prova1 e Prova2, enquanto $c$ seja sua nota na APS. Calcule e imprima sua nota final: $NF = 0.45 \times a + 0.45 \times b + 0.1 \times c$</p>
+  </li>
+</ol>
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

@@ -6,9 +6,268 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 22 Mar 2018 20:06:45 -0300</pubDate>
-    <lastBuildDate>Thu, 22 Mar 2018 20:06:45 -0300</lastBuildDate>
+    <pubDate>Thu, 29 Mar 2018 19:44:14 -0300</pubDate>
+    <lastBuildDate>Thu, 29 Mar 2018 19:44:14 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Expressões lógicas e condicionais</title>
+        <description>&lt;h1 id=&quot;conteúdo&quot;&gt;Conteúdo&lt;/h1&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#conteúdo&quot; id=&quot;markdown-toc-conteúdo&quot;&gt;Conteúdo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#ambiente-de-programação&quot; id=&quot;markdown-toc-ambiente-de-programação&quot;&gt;Ambiente de programação&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#expressões-lógicas&quot; id=&quot;markdown-toc-expressões-lógicas&quot;&gt;Expressões lógicas&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#operadores-de-comparação&quot; id=&quot;markdown-toc-operadores-de-comparação&quot;&gt;Operadores de comparação&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exercício-de-consolidação&quot; id=&quot;markdown-toc-exercício-de-consolidação&quot;&gt;Exercício de consolidação&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#representando-condições&quot; id=&quot;markdown-toc-representando-condições&quot;&gt;Representando condições&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#exercício-de-consolidação-1&quot; id=&quot;markdown-toc-exercício-de-consolidação-1&quot;&gt;Exercício de consolidação&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#blocos-de-código&quot; id=&quot;markdown-toc-blocos-de-código&quot;&gt;Blocos de código&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#exercício-de-consolidação-2&quot; id=&quot;markdown-toc-exercício-de-consolidação-2&quot;&gt;Exercício de consolidação&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#prática-de-programação-bhaskara&quot; id=&quot;markdown-toc-prática-de-programação-bhaskara&quot;&gt;Prática de programação: Bhaskara&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;ambiente-de-programação&quot;&gt;Ambiente de programação&lt;/h1&gt;
+
+&lt;p&gt;Para seguir os exemplos aqui descritos sugiro a utilização do ambiente de programação online &lt;a href=&quot;https://repl.it/languages/python3&quot;&gt;»repl.it&lt;/a&gt;. Mais adiante no curso veremos ferramentas mais apropriadas para programação.&lt;/p&gt;
+
+&lt;h1 id=&quot;expressões-lógicas&quot;&gt;Expressões lógicas&lt;/h1&gt;
+
+&lt;p&gt;As expressões lógicas são aquelas que possuem como resultado um valor que somente pode ser: Verdadeiro ou Falso. Por exemplo, assuma que queiramos desenvolver um pequeno programa que, tendo como entrada um inteiro indicando a idade de uma pessoa, imprima na tela se essa pessoa é maior ou menor de idade.&lt;/p&gt;
+
+&lt;p&gt;Sabemos que para receber como entrada o inteiro que representará a idade devemos utilizar a função &lt;code class=&quot;highlighter-rouge&quot;&gt;input()&lt;/code&gt; e transformar seu resultado em um inteiro &lt;code class=&quot;highlighter-rouge&quot;&gt;int(input())&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Tendo agora a variável idade precisamos de um meio para identificar se o valor nela contido é menor ou maior igual que 18. Na linguagem matemática isso seria representado pelos operadores de comparação, por exemplo $x &amp;lt; 18$ ou $x \geq 18$.&lt;/p&gt;
+
+&lt;p&gt;Tanto $x &amp;lt; 18$ quanto $x \geq 18$ são expressões lógicas, pois seu resultado somente pode ser um dentre dois valores: Verdadeiro (True) ou Falso (False). Expressões, valores ou variáveis que podem assumir como valor apenas Verdadeiro ou Falso são chamadas de Booleanas (&lt;a href=&quot;https://pt.wikipedia.org/wiki/George_Boole&quot;&gt;Georg Boole&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;A tabela abaixo descreve os operadores de comparação tanto em linguagem matemática quanto em linguagens de programação.&lt;/p&gt;
+
+&lt;h3 id=&quot;operadores-de-comparação&quot;&gt;Operadores de comparação&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Expressão&lt;/th&gt;
+      &lt;th&gt;matemática&lt;/th&gt;
+      &lt;th&gt;Significado&lt;/th&gt;
+      &lt;th&gt;Exemplo&lt;/th&gt;
+      &lt;th&gt;Resultado&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a == b&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;$a = b$&lt;/td&gt;
+      &lt;td&gt;a é igual a b?&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;10 == 10&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;True&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a != b&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;$a\neq b$&lt;/td&gt;
+      &lt;td&gt;a é diferente de b?&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;10 != 10&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;False&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a &amp;lt; b&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;$a &amp;lt; b$&lt;/td&gt;
+      &lt;td&gt;a é menor que b?&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;1 &amp;lt; 0&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;False&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a &amp;gt; b&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;$a &amp;gt; b$&lt;/td&gt;
+      &lt;td&gt;a é maior que b?&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;1 &amp;gt; 0&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;True&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a &amp;lt;= b&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;$a \leq b$&lt;/td&gt;
+      &lt;td&gt;a é menor ou igual a b?&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;1 &amp;lt;= 1&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;True&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a &amp;gt;= b&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;$a \geq b$&lt;/td&gt;
+      &lt;td&gt;a é maior ou igual a b?&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;5 &amp;gt;= 5&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;True&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;exercício-de-consolidação&quot;&gt;Exercício de consolidação&lt;/h3&gt;
+
+&lt;p&gt;Utilizando o interpretador Python3 &lt;a href=&quot;https://repl.it/languages/python3&quot;&gt;»repl.it&lt;/a&gt; utilize o trecho abaixo para definir cinco variáveis, depois avalie o resultado das expressões Booleanas que seguem:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;13&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Tangamandápio&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Tangamandapio&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;tangamandápio&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Quais das expressões Booleanas abaixo são verdadeiras?&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;a)&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a &amp;lt; b&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;b)&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a * a &amp;lt; b&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;c)&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;c == d&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;d)&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;c == b&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;e)&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;d &amp;lt; e&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;f)&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a - b &amp;lt; b&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;g)&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a &amp;lt; 25&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;h)&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a - 12 == b&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;i)&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a != b&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;j)&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a - 12 != b&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;k)&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;d == Tangamandapio&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;l)&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Tangamandapio&quot; == e&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;m)&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;True != False&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;n)&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;42 ==&quot;42&quot;&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&quot;representando-condições&quot;&gt;Representando condições&lt;/h1&gt;
+
+&lt;p&gt;No exemplo sugerido inicialmente, temos que implementar um programa que receba como entrada a idade, a armazene em uma variável e, dada o valor dessa idade decida entre duas opções: 1) A pessoa tem menos que 18 anos ou 2) A pessoa tem 18 anos ou mais.&lt;/p&gt;
+
+&lt;p&gt;Por meio dos exemplos de expressões Booleanas dados anteriormente, podemos concluir que a expressão lógica &lt;code class=&quot;highlighter-rouge&quot;&gt;idade &amp;lt; 18&lt;/code&gt; será verdadeira apenas se a pessoa tiver menos que 18 anos. Como utilizar esse fato para definirmos a resposta que daremos em nosso programa? Para isto introduziremos um novo conceito: “condicionais”.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Você ainda não atingiu a maioridade.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;E português o trecho de código acima poderia ser interpretado como:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Se&lt;/strong&gt; (idade menor que 18) &lt;strong&gt;então&lt;/strong&gt; (imprimir ‘Você ainda não atingiu a maioridade.’)&lt;/p&gt;
+
+&lt;p&gt;De modo geral, um condicional &lt;strong&gt;if&lt;/strong&gt; define um bloco de código que será executado apenas se a expressão lógica que o segue for verdadeira. Na linguagem python esse bloco de código precisa estar identado (espaçado) da margem lateral esquerda por uma tabulação (Tab).&lt;/p&gt;
+
+&lt;p&gt;Teste o exemplo acima digitando diferentes valores de entrada.&lt;/p&gt;
+
+&lt;h3 id=&quot;exercício-de-consolidação-1&quot;&gt;Exercício de consolidação&lt;/h3&gt;
+
+&lt;p&gt;Utilizando o código acima como exemplo, implemente um programa que represente a seguinte ideia:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Se&lt;/strong&gt; (idade maior ou igual a 18) &lt;strong&gt;então&lt;/strong&gt; (imprimir ‘Você já atingiu a maioridade.’)&lt;/p&gt;
+
+&lt;h2 id=&quot;blocos-de-código&quot;&gt;Blocos de código&lt;/h2&gt;
+
+&lt;p&gt;Como mencionado anteriormente, um bloco de código é definido pelo espaçamento à esquerda do início da linha. Nos exemplos acima os blocos de código possuíam apenas uma linha, no entanto, em situações mais complexas é comum que esses blocos contenham várias linhas. Para compreendermos melhor essa ideia vejamos um outro exemplo.&lt;/p&gt;
+
+&lt;p&gt;Suponha agora, que ao recebermos a idade queremos imprimir juntamente com a frase o ano de nascimento, ou seja, teremos um programa para representar a ideia:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Se&lt;/strong&gt; (idade menor que 18) &lt;strong&gt;então&lt;/strong&gt; (imprimir ‘Você nasceu em ANO e ainda não atingiu a maioridade.’)&lt;/p&gt;
+
+&lt;p&gt;Como não temos o ano de nascimento, ele precisa ser calculado para que possa ser dado como resposta, para isso basta subrairmos do ano atual a idade recebida como entrada.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ano&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2018&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Você nasceu em&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ano&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;e ainda não atingiu a maioridade.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Observe que as duas linhas abaixo do &lt;strong&gt;if&lt;/strong&gt; estão espaçadas à direita, o que nos diz que elas pertencem ao mesmo bloco e portanto serão executadas apenas quando &lt;code class=&quot;highlighter-rouge&quot;&gt;idade &amp;lt; 18&lt;/code&gt; for verdadeiro.&lt;/p&gt;
+
+&lt;h3 id=&quot;exercício-de-consolidação-2&quot;&gt;Exercício de consolidação&lt;/h3&gt;
+
+&lt;p&gt;Utilizando o código acima como exemplo, implemente um programa que represente a seguinte ideia:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Se&lt;/strong&gt; (idade maior ou igual que 18) &lt;strong&gt;então&lt;/strong&gt; (imprimir ‘Você nasceu em ANO e já atingiu a maioridade.’)&lt;/p&gt;
+
+&lt;h1 id=&quot;prática-de-programação-bhaskara&quot;&gt;Prática de programação: Bhaskara&lt;/h1&gt;
+
+&lt;p&gt;O algoritmo de Bhaskara nos indica como calcular as raízes reais de uma equação do segundo grau de coeficientes $a,b,c$.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;a x^2  + bx + c = 0&lt;/script&gt;
+
+&lt;p&gt;Esse algoritmo pode ser descrito em duas partes, a primeira consiste no cálculo do discriminante&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;$\Delta = b^2 - 4ac$&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;A depender do valor de $\Delta$ temos três situações diferentes:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Se&lt;/strong&gt; ($\Delta &amp;lt; 0$) &lt;strong&gt;então&lt;/strong&gt; (Imprimir ‘A equação não possui raízes reais.’)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Se&lt;/strong&gt; ($\Delta = 0$) &lt;strong&gt;então&lt;/strong&gt; (Imprimir ‘A equação possui a raíz $X$.’)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Se&lt;/strong&gt; ($\Delta &amp;gt; 0$) &lt;strong&gt;então&lt;/strong&gt; (Imprimir ‘A equação possui duas raízes reais $X_1$ e $X_2$.’)&lt;/p&gt;
+
+&lt;p&gt;Implemente um programa que receba como entrada três números reais &lt;code class=&quot;highlighter-rouge&quot;&gt;a,b&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;c&lt;/code&gt; como sendo os coeficientes da equação $ a x^2  + bx + c = 0$ e calcule a resposta dadas as possíveis situações descritas acima.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 29 Mar 2018 17:00:00 -0300</pubDate>
+        <link>http://localhost:4000/lp31m-181/expressoes-logicas.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lp31m-181/expressoes-logicas.html</guid>
+        
+        <category>condicionais</category>
+        
+        
+        <category>LP31M-181</category>
+        
+      </item>
     
       <item>
         <title>Exercícios II (Pilhas)</title>
@@ -1019,10 +1278,10 @@ c = float(input())
 &lt;/ol&gt;
 </description>
         <pubDate>Thu, 15 Mar 2018 17:00:00 -0300</pubDate>
-        <link>http://localhost:4000/lp31m-181/expressoes.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lp31m-181/expressoes.html</guid>
+        <link>http://localhost:4000/lp31m-181/expressoes-aritmeticas.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lp31m-181/expressoes-aritmeticas.html</guid>
         
-        <category>memória</category>
+        <category>aritmética</category>
         
         
         <category>LP31M-181</category>
@@ -2212,166 +2471,6 @@ sizeof double* = 8bytes
         
         
         <category>AE22CP-181</category>
-        
-      </item>
-    
-      <item>
-        <title>FAQ</title>
-        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#segmentation-fault&quot; id=&quot;markdown-toc-segmentation-fault&quot;&gt;Segmentation Fault&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#exemplo-1&quot; id=&quot;markdown-toc-exemplo-1&quot;&gt;Exemplo 1&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#exemplo-2&quot; id=&quot;markdown-toc-exemplo-2&quot;&gt;Exemplo 2&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#programação-estruturada&quot; id=&quot;markdown-toc-programação-estruturada&quot;&gt;Programação estruturada&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#função-list_sizel&quot; id=&quot;markdown-toc-função-list_sizel&quot;&gt;Função &lt;code class=&quot;highlighter-rouge&quot;&gt;list_size(l)&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;segmentation-fault&quot;&gt;Segmentation Fault&lt;/h1&gt;
-
-&lt;p&gt;Se seu código está dando falha de segmentação, rode ele dentro do gdb, em muitos casos nem é preciso procurar o erro passo a passo, pois o gdb mostra informações de onde a falha de segmentação ocorreu.&lt;/p&gt;
-
-&lt;h2 id=&quot;exemplo-1&quot;&gt;Exemplo 1&lt;/h2&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;@:~$ &lt;/span&gt;./list &amp;lt; input/input02.txt 
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1] 35 
-Falha de segmentação &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;imagem &lt;span class=&quot;k&quot;&gt;do &lt;/span&gt;núcleo gravada&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Esta saída não nos dá informação suficiente para a correção do erro. Portanto, utilizarei o gdb. Primeiro passo, compilar com a flag &lt;code class=&quot;highlighter-rouge&quot;&gt;-g&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;@:~$ &lt;/span&gt;gcc main.c list.c -o list -g
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Após isso, inicializar o gdb passando o executável como parâmetro&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;@:~$ &lt;/span&gt;gdb ./list
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;A seguir, utilizar o comando &lt;code class=&quot;highlighter-rouge&quot;&gt;run&lt;/code&gt; do gdb para iniciar a execução do programa.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;gdb&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; run ./list &amp;lt; input/input02.txt &amp;gt; out
-Starting program: ./list &amp;lt; input/input02.txt &amp;gt; out
- 
-Program received signal SIGSEGV, Segmentation fault.
-0x00000000004009fb &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;list_erase &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0x7fffffffdfd0, &lt;span class=&quot;nv&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; at list.c:101
-101        n-&amp;gt;next&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;j-&amp;gt;next;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Desta saída, podemos focar apenas em algumas partes.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Program received signal SIGSEGV, Segmentation fault.
-&lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;list_erase &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;v, &lt;span class=&quot;nv&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; at list.c:101
-101        n-&amp;gt;next&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;j-&amp;gt;next;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;SIGSEGV, é uma constante representando o tipo de erro, neste caso &lt;em&gt;segmentation fault&lt;/em&gt;, que se refere à tentativa de acesso de memória não permitido: além dos limites de um vetor, ou em posições de memória que não foram alocadas pelo programador.&lt;/p&gt;
-
-&lt;p&gt;Note, que &lt;code class=&quot;highlighter-rouge&quot;&gt;list_erase (v, i=1)&lt;/code&gt;, nos diz que o erro aconteceu na função &lt;code class=&quot;highlighter-rouge&quot;&gt;list_erase&lt;/code&gt;, quando recebendo a posição &lt;code class=&quot;highlighter-rouge&quot;&gt;i=1&lt;/code&gt; e nos mostra também a linha exata onde a falha de segmentação aconteceu.&lt;/p&gt;
-
-&lt;h2 id=&quot;exemplo-2&quot;&gt;Exemplo 2&lt;/h2&gt;
-
-&lt;p&gt;Seguiremos o mesmo procedimento descrito anteriormente.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;@:~$ &lt;/span&gt;./list &amp;lt; input/input03.txt 
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1] 68
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2] 68 98
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;3] 16 68 98
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2] 68 98
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1] 98
-Falha de segmentação &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;imagem &lt;span class=&quot;k&quot;&gt;do &lt;/span&gt;núcleo gravada&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;@:~$ &lt;/span&gt;gdb ./list
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;gdb&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; run ./list &amp;lt; input/input03.txt 
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1] 68
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2] 68 98
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;3] 16 68 98
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2] 68 98
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1] 98
- 
-Program received signal SIGSEGV, Segmentation fault.
-0x0000000000400acb &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;list_pop_back &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0x604020&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; at list.c:183
-183 &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;ptr-&amp;gt;next-&amp;gt;next !&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; NULL&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Neste exemplo, a falha de segmentação ocorreu na linha 183, na função &lt;code class=&quot;highlighter-rouge&quot;&gt;list_pop_back&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;in list_pop_back (l=0x604020) at list.c:183
-183 while(ptr-&amp;gt;next-&amp;gt;next != NULL)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Como sabemos, &lt;em&gt;segmentation fault&lt;/em&gt; indica acesso indevido de memória. Portanto podemos imaginar que algo errado com a operação&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;183 while(ptr-&amp;gt;next-&amp;gt;next != NULL)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;O que aconteceria se &lt;code class=&quot;highlighter-rouge&quot;&gt;ptr-&amp;gt;next&lt;/code&gt; for &lt;code class=&quot;highlighter-rouge&quot;&gt;NULL&lt;/code&gt;? Bom, neste caso, ao tentar acessar o próximo &lt;code class=&quot;highlighter-rouge&quot;&gt;-&amp;gt;next&lt;/code&gt;, estariamos acessando o endereço indicado por &lt;code class=&quot;highlighter-rouge&quot;&gt;NULL&lt;/code&gt;, e lá procurando o campo &lt;code class=&quot;highlighter-rouge&quot;&gt;next&lt;/code&gt;, algo como: &lt;code class=&quot;highlighter-rouge&quot;&gt;NULL-&amp;gt;next&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Como &lt;code class=&quot;highlighter-rouge&quot;&gt;NULL&lt;/code&gt; é usualmente definido como o endereço &lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt; da memória, qualquer acesso a esse endereço levará à falha de segmentação. Portanto, sempre que houver falha de segmentação, a primeira suspeita deve ser:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Acesso fora dos limites de um vetor&lt;/li&gt;
-  &lt;li&gt;Acesso (dereferenciamento) ao endereço &lt;code class=&quot;highlighter-rouge&quot;&gt;NULL&lt;/code&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&quot;programação-estruturada&quot;&gt;Programação estruturada&lt;/h1&gt;
-
-&lt;h2 id=&quot;função-list_sizel&quot;&gt;Função &lt;code class=&quot;highlighter-rouge&quot;&gt;list_size(l)&lt;/code&gt;&lt;/h2&gt;
-
-&lt;p&gt;&lt;em&gt;“Se a estrutura de dados &lt;code class=&quot;highlighter-rouge&quot;&gt;list&lt;/code&gt; duplamente encadeada já possui um campo &lt;code class=&quot;highlighter-rouge&quot;&gt;size&lt;/code&gt;, qual a necessidade da função &lt;code class=&quot;highlighter-rouge&quot;&gt;list_size()&lt;/code&gt;.”&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Em algumas situações certas funções parecem desnecessárias, é o caso do &lt;code class=&quot;highlighter-rouge&quot;&gt;list_size()&lt;/code&gt;. Para entender o porque de sua utilidade, é bom pensarmos em termos da lista como estrutura abstrata, a qual tem uma interface &lt;code class=&quot;highlighter-rouge&quot;&gt;list.h&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Nesse sentido, ambas implementações, “lista simples”, “listas duplas”, teriam uma implementação de &lt;code class=&quot;highlighter-rouge&quot;&gt;list_size()&lt;/code&gt;. Nas listas simples, preciso percorrer toda lista para saber o tamanho, nas duplas, basta acessar o size já existente. Algo desse tipo&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// forward_list.c
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;list_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-     &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
-     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// list.c
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;list_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Agora suponha que estejamos utilizando uma estrutura lista para resolver algum problema, soma/multiplicação de inteiros grandes, splice, por exemplo.&lt;/p&gt;
-
-&lt;p&gt;Neste caso, se sempre que precisarmos saber o tamanho de uma lista, utilizarmos &lt;code class=&quot;highlighter-rouge&quot;&gt;list_size()&lt;/code&gt; (e as demais funções de acesso a lista), isso nos permitiria utilizar tanto a implementação da lista de encadeamento simples (&lt;code class=&quot;highlighter-rouge&quot;&gt;forward_list.c&lt;/code&gt;) quanto a de encadeamento duplo (&lt;code class=&quot;highlighter-rouge&quot;&gt;list.c&lt;/code&gt;). Bastando escolher durante a compilação.&lt;/p&gt;
-
-&lt;p&gt;Se pelo contrário, eu utilizasse &lt;code class=&quot;highlighter-rouge&quot;&gt;l-&amp;gt;size&lt;/code&gt; diretamente, eu não conseguiria utilizar a implementação &lt;code class=&quot;highlighter-rouge&quot;&gt;forward_list.c&lt;/code&gt;, visto que nela, esse campo não existe.&lt;/p&gt;
-
-&lt;p&gt;Portanto, a ideia de termos várias funções para acessar certas propriedades da estrutura, nos permite separar a implementação da definição da estrutura de dados. Isso é sugerido quando programamos pensando em reutilização, e programação de bibliotecas.&lt;/p&gt;
-
-&lt;p&gt;Obviamente, podemos também querer implementar uma lista para algo bem específico, sem pensar que tal código será reutilizado para várias coisas diferentes, e então, não precisaríamos nos preocupar com isso.&lt;/p&gt;
-
-&lt;p&gt;Em geral é essa a ideia, e se aplica ao uso das demais funções também.&lt;/p&gt;
-</description>
-        <pubDate>Fri, 29 Dec 2017 13:50:00 -0200</pubDate>
-        <link>http://localhost:4000/ae22cp-172/FAQ.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-172/FAQ.html</guid>
-        
-        <category>faq</category>
-        
-        
-        <category>AE22CP-172</category>
         
       </item>
     

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Expressões lógicas e condicionais</title>
+  <meta name="description" content="Conteúdo  Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/lp31m-181/expressoes-logicas.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Expressões lógicas e condicionais</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Mar 29, 2018
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/ae22cp-181/pilhas-valida%C3%A7%C3%A3o-de-express%C3%B5es.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <h1 id="conteúdo">Conteúdo</h1>
+<ul id="markdown-toc">
+  <li><a href="#conteúdo" id="markdown-toc-conteúdo">Conteúdo</a></li>
+  <li><a href="#ambiente-de-programação" id="markdown-toc-ambiente-de-programação">Ambiente de programação</a></li>
+  <li><a href="#expressões-lógicas" id="markdown-toc-expressões-lógicas">Expressões lógicas</a>    <ul>
+      <li><a href="#operadores-de-comparação" id="markdown-toc-operadores-de-comparação">Operadores de comparação</a></li>
+      <li><a href="#exercício-de-consolidação" id="markdown-toc-exercício-de-consolidação">Exercício de consolidação</a></li>
+    </ul>
+  </li>
+  <li><a href="#representando-condições" id="markdown-toc-representando-condições">Representando condições</a>    <ul>
+      <li><a href="#exercício-de-consolidação-1" id="markdown-toc-exercício-de-consolidação-1">Exercício de consolidação</a></li>
+      <li><a href="#blocos-de-código" id="markdown-toc-blocos-de-código">Blocos de código</a>        <ul>
+          <li><a href="#exercício-de-consolidação-2" id="markdown-toc-exercício-de-consolidação-2">Exercício de consolidação</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#prática-de-programação-bhaskara" id="markdown-toc-prática-de-programação-bhaskara">Prática de programação: Bhaskara</a></li>
+</ul>
+
+<h1 id="ambiente-de-programação">Ambiente de programação</h1>
+
+<p>Para seguir os exemplos aqui descritos sugiro a utilização do ambiente de programação online <a href="https://repl.it/languages/python3">»repl.it</a>. Mais adiante no curso veremos ferramentas mais apropriadas para programação.</p>
+
+<h1 id="expressões-lógicas">Expressões lógicas</h1>
+
+<p>As expressões lógicas são aquelas que possuem como resultado um valor que somente pode ser: Verdadeiro ou Falso. Por exemplo, assuma que queiramos desenvolver um pequeno programa que, tendo como entrada um inteiro indicando a idade de uma pessoa, imprima na tela se essa pessoa é maior ou menor de idade.</p>
+
+<p>Sabemos que para receber como entrada o inteiro que representará a idade devemos utilizar a função <code class="highlighter-rouge">input()</code> e transformar seu resultado em um inteiro <code class="highlighter-rouge">int(input())</code></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">idade</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+</code></pre>
+</div>
+
+<p>Tendo agora a variável idade precisamos de um meio para identificar se o valor nela contido é menor ou maior igual que 18. Na linguagem matemática isso seria representado pelos operadores de comparação, por exemplo $x &lt; 18$ ou $x \geq 18$.</p>
+
+<p>Tanto $x &lt; 18$ quanto $x \geq 18$ são expressões lógicas, pois seu resultado somente pode ser um dentre dois valores: Verdadeiro (True) ou Falso (False). Expressões, valores ou variáveis que podem assumir como valor apenas Verdadeiro ou Falso são chamadas de Booleanas (<a href="https://pt.wikipedia.org/wiki/George_Boole">Georg Boole</a>).</p>
+
+<p>A tabela abaixo descreve os operadores de comparação tanto em linguagem matemática quanto em linguagens de programação.</p>
+
+<h3 id="operadores-de-comparação">Operadores de comparação</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Expressão</th>
+      <th>matemática</th>
+      <th>Significado</th>
+      <th>Exemplo</th>
+      <th>Resultado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">a == b</code></td>
+      <td>$a = b$</td>
+      <td>a é igual a b?</td>
+      <td><code class="highlighter-rouge">10 == 10</code></td>
+      <td><code class="highlighter-rouge">True</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">a != b</code></td>
+      <td>$a\neq b$</td>
+      <td>a é diferente de b?</td>
+      <td><code class="highlighter-rouge">10 != 10</code></td>
+      <td><code class="highlighter-rouge">False</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">a &lt; b</code></td>
+      <td>$a &lt; b$</td>
+      <td>a é menor que b?</td>
+      <td><code class="highlighter-rouge">1 &lt; 0</code></td>
+      <td><code class="highlighter-rouge">False</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">a &gt; b</code></td>
+      <td>$a &gt; b$</td>
+      <td>a é maior que b?</td>
+      <td><code class="highlighter-rouge">1 &gt; 0</code></td>
+      <td><code class="highlighter-rouge">True</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">a &lt;= b</code></td>
+      <td>$a \leq b$</td>
+      <td>a é menor ou igual a b?</td>
+      <td><code class="highlighter-rouge">1 &lt;= 1</code></td>
+      <td><code class="highlighter-rouge">True</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">a &gt;= b</code></td>
+      <td>$a \geq b$</td>
+      <td>a é maior ou igual a b?</td>
+      <td><code class="highlighter-rouge">5 &gt;= 5</code></td>
+      <td><code class="highlighter-rouge">True</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="exercício-de-consolidação">Exercício de consolidação</h3>
+
+<p>Utilizando o interpretador Python3 <a href="https://repl.it/languages/python3">»repl.it</a> utilize o trecho abaixo para definir cinco variáveis, depois avalie o resultado das expressões Booleanas que seguem:</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">13</span>
+<span class="n">c</span> <span class="o">=</span> <span class="s">"Tangamandápio"</span>
+<span class="n">d</span> <span class="o">=</span> <span class="s">"Tangamandapio"</span>
+<span class="n">e</span> <span class="o">=</span> <span class="s">"tangamandápio"</span>
+</code></pre>
+</div>
+
+<p>Quais das expressões Booleanas abaixo são verdadeiras?</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>a)</td>
+      <td><code class="highlighter-rouge">a &lt; b</code></td>
+    </tr>
+    <tr>
+      <td>b)</td>
+      <td><code class="highlighter-rouge">a * a &lt; b</code></td>
+    </tr>
+    <tr>
+      <td>c)</td>
+      <td><code class="highlighter-rouge">c == d</code></td>
+    </tr>
+    <tr>
+      <td>d)</td>
+      <td><code class="highlighter-rouge">c == b</code></td>
+    </tr>
+    <tr>
+      <td>e)</td>
+      <td><code class="highlighter-rouge">d &lt; e</code></td>
+    </tr>
+    <tr>
+      <td>f)</td>
+      <td><code class="highlighter-rouge">a - b &lt; b</code></td>
+    </tr>
+    <tr>
+      <td>g)</td>
+      <td><code class="highlighter-rouge">a &lt; 25</code></td>
+    </tr>
+    <tr>
+      <td>h)</td>
+      <td><code class="highlighter-rouge">a - 12 == b</code></td>
+    </tr>
+    <tr>
+      <td>i)</td>
+      <td><code class="highlighter-rouge">a != b</code></td>
+    </tr>
+    <tr>
+      <td>j)</td>
+      <td><code class="highlighter-rouge">a - 12 != b</code></td>
+    </tr>
+    <tr>
+      <td>k)</td>
+      <td><code class="highlighter-rouge">d == Tangamandapio</code></td>
+    </tr>
+    <tr>
+      <td>l)</td>
+      <td><code class="highlighter-rouge">"Tangamandapio" == e</code></td>
+    </tr>
+    <tr>
+      <td>m)</td>
+      <td><code class="highlighter-rouge">True != False</code></td>
+    </tr>
+    <tr>
+      <td>n)</td>
+      <td><code class="highlighter-rouge">42 =="42"</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="representando-condições">Representando condições</h1>
+
+<p>No exemplo sugerido inicialmente, temos que implementar um programa que receba como entrada a idade, a armazene em uma variável e, dada o valor dessa idade decida entre duas opções: 1) A pessoa tem menos que 18 anos ou 2) A pessoa tem 18 anos ou mais.</p>
+
+<p>Por meio dos exemplos de expressões Booleanas dados anteriormente, podemos concluir que a expressão lógica <code class="highlighter-rouge">idade &lt; 18</code> será verdadeira apenas se a pessoa tiver menos que 18 anos. Como utilizar esse fato para definirmos a resposta que daremos em nosso programa? Para isto introduziremos um novo conceito: “condicionais”.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">idade</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="k">if</span> <span class="n">idade</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Você ainda não atingiu a maioridade."</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>E português o trecho de código acima poderia ser interpretado como:</p>
+
+<p><strong>Se</strong> (idade menor que 18) <strong>então</strong> (imprimir ‘Você ainda não atingiu a maioridade.’)</p>
+
+<p>De modo geral, um condicional <strong>if</strong> define um bloco de código que será executado apenas se a expressão lógica que o segue for verdadeira. Na linguagem python esse bloco de código precisa estar identado (espaçado) da margem lateral esquerda por uma tabulação (Tab).</p>
+
+<p>Teste o exemplo acima digitando diferentes valores de entrada.</p>
+
+<h3 id="exercício-de-consolidação-1">Exercício de consolidação</h3>
+
+<p>Utilizando o código acima como exemplo, implemente um programa que represente a seguinte ideia:</p>
+
+<p><strong>Se</strong> (idade maior ou igual a 18) <strong>então</strong> (imprimir ‘Você já atingiu a maioridade.’)</p>
+
+<h2 id="blocos-de-código">Blocos de código</h2>
+
+<p>Como mencionado anteriormente, um bloco de código é definido pelo espaçamento à esquerda do início da linha. Nos exemplos acima os blocos de código possuíam apenas uma linha, no entanto, em situações mais complexas é comum que esses blocos contenham várias linhas. Para compreendermos melhor essa ideia vejamos um outro exemplo.</p>
+
+<p>Suponha agora, que ao recebermos a idade queremos imprimir juntamente com a frase o ano de nascimento, ou seja, teremos um programa para representar a ideia:</p>
+
+<p><strong>Se</strong> (idade menor que 18) <strong>então</strong> (imprimir ‘Você nasceu em ANO e ainda não atingiu a maioridade.’)</p>
+
+<p>Como não temos o ano de nascimento, ele precisa ser calculado para que possa ser dado como resposta, para isso basta subrairmos do ano atual a idade recebida como entrada.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">idade</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="k">if</span> <span class="n">idade</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">:</span>
+    <span class="n">ano</span> <span class="o">=</span> <span class="mi">2018</span> <span class="o">-</span> <span class="n">idade</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Você nasceu em"</span><span class="p">,</span> <span class="n">ano</span><span class="p">,</span> <span class="s">"e ainda não atingiu a maioridade."</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Observe que as duas linhas abaixo do <strong>if</strong> estão espaçadas à direita, o que nos diz que elas pertencem ao mesmo bloco e portanto serão executadas apenas quando <code class="highlighter-rouge">idade &lt; 18</code> for verdadeiro.</p>
+
+<h3 id="exercício-de-consolidação-2">Exercício de consolidação</h3>
+
+<p>Utilizando o código acima como exemplo, implemente um programa que represente a seguinte ideia:</p>
+
+<p><strong>Se</strong> (idade maior ou igual que 18) <strong>então</strong> (imprimir ‘Você nasceu em ANO e já atingiu a maioridade.’)</p>
+
+<h1 id="prática-de-programação-bhaskara">Prática de programação: Bhaskara</h1>
+
+<p>O algoritmo de Bhaskara nos indica como calcular as raízes reais de uma equação do segundo grau de coeficientes $a,b,c$.</p>
+
+<script type="math/tex; mode=display">a x^2  + bx + c = 0</script>
+
+<p>Esse algoritmo pode ser descrito em duas partes, a primeira consiste no cálculo do discriminante</p>
+
+<ol>
+  <li>$\Delta = b^2 - 4ac$</li>
+</ol>
+
+<p>A depender do valor de $\Delta$ temos três situações diferentes:</p>
+
+<p><strong>Se</strong> ($\Delta &lt; 0$) <strong>então</strong> (Imprimir ‘A equação não possui raízes reais.’)</p>
+
+<p><strong>Se</strong> ($\Delta = 0$) <strong>então</strong> (Imprimir ‘A equação possui a raíz $X$.’)</p>
+
+<p><strong>Se</strong> ($\Delta &gt; 0$) <strong>então</strong> (Imprimir ‘A equação possui duas raízes reais $X_1$ e $X_2$.’)</p>
+
+<p>Implemente um programa que receba como entrada três números reais <code class="highlighter-rouge">a,b</code> e <code class="highlighter-rouge">c</code> como sendo os coeficientes da equação $ a x^2  + bx + c = 0$ e calcule a resposta dadas as possíveis situações descritas acima.</p>
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>
