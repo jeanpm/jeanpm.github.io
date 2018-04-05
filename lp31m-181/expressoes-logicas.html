@@ -87,7 +87,7 @@
       <li><a href="#exercício-de-consolidação" id="markdown-toc-exercício-de-consolidação">Exercício de consolidação</a></li>
     </ul>
   </li>
-  <li><a href="#representando-condições" id="markdown-toc-representando-condições">Representando condições</a>    <ul>
+  <li><a href="#representando-condicionais-if" id="markdown-toc-representando-condicionais-if">Representando condicionais: <code class="highlighter-rouge">if</code></a>    <ul>
       <li><a href="#exercício-de-consolidação-1" id="markdown-toc-exercício-de-consolidação-1">Exercício de consolidação</a></li>
       <li><a href="#blocos-de-código" id="markdown-toc-blocos-de-código">Blocos de código</a>        <ul>
           <li><a href="#exercício-de-consolidação-2" id="markdown-toc-exercício-de-consolidação-2">Exercício de consolidação</a></li>
@@ -96,6 +96,11 @@
     </ul>
   </li>
   <li><a href="#prática-de-programação-bhaskara" id="markdown-toc-prática-de-programação-bhaskara">Prática de programação: Bhaskara</a></li>
+  <li><a href="#representando-condicionais-ifelse" id="markdown-toc-representando-condicionais-ifelse">Representando condicionais: <code class="highlighter-rouge">if/else</code></a>    <ul>
+      <li><a href="#exercício-de-consolidação-3" id="markdown-toc-exercício-de-consolidação-3">Exercício de consolidação</a></li>
+    </ul>
+  </li>
+  <li><a href="#representando-condicionais-ifelifelse" id="markdown-toc-representando-condicionais-ifelifelse">Representando condicionais: <code class="highlighter-rouge">if/elif/else</code></a></li>
 </ul>
 
 <h1 id="ambiente-de-programação">Ambiente de programação</h1>
@@ -251,7 +256,7 @@
   </tbody>
 </table>
 
-<h1 id="representando-condições">Representando condições</h1>
+<h1 id="representando-condicionais-if">Representando condicionais: <code class="highlighter-rouge">if</code></h1>
 
 <p>No exemplo sugerido inicialmente, temos que implementar um programa que receba como entrada a idade, a armazene em uma variável e, dada o valor dessa idade decida entre duas opções: 1) A pessoa tem menos que 18 anos ou 2) A pessoa tem 18 anos ou mais.</p>
 
@@ -334,6 +339,102 @@
 </ul>
 
 <p>Implemente um programa que receba como entrada três números reais <code class="highlighter-rouge">a,b</code> e <code class="highlighter-rouge">c</code> como sendo os coeficientes da equação $ a x^2  + bx + c = 0$ e calcule a resposta dadas as possíveis situações descritas acima.</p>
+
+<h1 id="representando-condicionais-ifelse">Representando condicionais: <code class="highlighter-rouge">if/else</code></h1>
+
+<p>Em situações como a do nosso primeiro exemplo, as condições envolvidas para a decisão de qual bloco de código será executado são complementares, ou seja, se uma é verdadeira a outra é necessariamente falsa.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">idade</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="k">if</span> <span class="n">idade</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Você ainda não atingiu a maioridade."</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">idade</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Você já atingiu a maioridade."</span><span class="p">)</span>
+</code></pre>
+</div>
+<p>Ainda neste exemplo, uma pessoa que não possui <code class="highlighter-rouge">idade &lt; 18</code> necessariamente deve possuir <code class="highlighter-rouge">idade &gt;= 18</code>, pois não há outra alternativa. Para casos como esse temos uma nova construção que nos permite simplificar a escrita do programa, essa nova construção é baseada no formato:</p>
+
+<p><strong>Se</strong> (condição é verdadeira) <strong>então</strong> (efetue alguma operação)
+<strong>Senão</strong> (efetue outra operação)</p>
+
+<p>Em outras palavras apenas a primeira condição é definida explicitamente sendo a outra opção (a complementar) omitida. A palavra <strong>senão</strong> traduzida para o inglês é escrita como <strong>else</strong>, portanto ao adaptarmos o código-fonte para a linguagem Python teremos:</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">idade</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="k">if</span> <span class="n">idade</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Você ainda não atingiu a maioridade."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Você já atingiu a maioridade."</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h3 id="exercício-de-consolidação-3">Exercício de consolidação</h3>
+
+<ol>
+  <li>Escreva um programa em Python que receba como entrada uma senha na forma de string. Seu programa deverá verificar se essa senha está correta e escolher uma dentre duas opções:
+    <ul>
+      <li>Imprimir: “Acesso garantido.”</li>
+      <li>Imprimir “Senha incorreta, tente novamente.”.</li>
+      <li>Assuma que a senha correta seja “LP31M”.</li>
+    </ul>
+  </li>
+  <li>Escreva um programa em Python que receba como entrada um email e uma senha na forma de string. <strong>Se</strong> email e senha estiverem corretos imprimir que o acesso está garantido. Se algum deles não estiver correto, indicar qual deles não está correto.
+    <ul>
+      <li>Assuma que a senha correta seja “LP31M”.</li>
+      <li>Assuma que o email correto seja o seu.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Complete o código abaixo:</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">email</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="n">senha</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="n">email_correto</span> <span class="o">=</span> <span class="s">"jeanmartins@utfpr.edu.br"</span>
+<span class="n">senha_correta</span> <span class="o">=</span> <span class="s">"23432"</span>
+<span class="c"># Insira o restante do código aqui!</span>
+</code></pre>
+</div>
+
+<h1 id="representando-condicionais-ifelifelse">Representando condicionais: <code class="highlighter-rouge">if/elif/else</code></h1>
+<p>No nosso primeiro exemplo vimos que <code class="highlighter-rouge">idade &lt; 18</code> ou <code class="highlighter-rouge">idade &gt;= 18</code> são as únicas opções para idade. No exemplo acima, uma senha ou está correta ou não está correta, e portanto os condicionais <code class="highlighter-rouge">if/else</code> são suficientes para representar a situação. No entanto, como poderíamos imaginar, nem todas as condições possuem apenas duas alternativas.</p>
+
+<p>Ao tratarmos de idades, por exemplo, é comum que as pessoas sejam classificadas como crianças, adolescentes, adultos e idosos. Vejamos passo a passo como seria possível identificar esses quatro casos utilizando as construções vistas até então (<code class="highlighter-rouge">if/else</code>).</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">idade</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="k">if</span> <span class="n">idade</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Você ainda é criança."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">idade</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Você é adolescente."</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">idade</span> <span class="o">&lt;</span> <span class="mi">60</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"Você já é adulto."</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"Você é idoso"</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Observe que a cada novo bloco é preciso indentar o que tornaria nosso código deslocado à direita se vários <em>blocos aninhados</em> forem necessários. É em contextos similares a este que a linguagem nos oferece uma nova opção de comando de decisão <code class="highlighter-rouge">elif</code>. Deste modo trechos de código como o abaixo:</p>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">else</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">idade</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">:</span>
+</code></pre>
+</div>
+
+<p>Podem ser substítuídos por uma versão mais compacta:</p>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">elif</span> <span class="n">idade</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">:</span>
+</code></pre>
+</div>
+<p>Veja abaixo a adaptação do código-fonte para utilização do comando <code class="highlighter-rouge">elif</code>:</p>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">idade</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="k">if</span> <span class="n">idade</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Você ainda é criança."</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">idade</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Você é adolescente."</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">idade</span> <span class="o">&lt;</span> <span class="mi">60</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Você já é adulto."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Você é idoso"</span><span class="p">)</span>
+</code></pre>
+</div>
 
   </article>
 
