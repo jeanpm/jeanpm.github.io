@@ -91,12 +91,12 @@
       <li><a href="#filas-queue" id="markdown-toc-filas-queue">Filas (queue)</a></li>
     </ul>
   </li>
-  <li><a href="#implementação-sobre-vector" id="markdown-toc-implementação-sobre-vector">Implementação sobre <em>vector</em></a>    <ul>
+  <li><a href="#tipo-abstrato-de-dados-lista" id="markdown-toc-tipo-abstrato-de-dados-lista">Tipo abstrato de dados Lista</a></li>
+  <li><a href="#implementação-sobre-list" id="markdown-toc-implementação-sobre-list">Implementação sobre <em>list</em></a>    <ul>
       <li><a href="#pilhas" id="markdown-toc-pilhas">Pilhas</a></li>
       <li><a href="#filas" id="markdown-toc-filas">Filas</a></li>
     </ul>
   </li>
-  <li><a href="#eficiência-das-implementações" id="markdown-toc-eficiência-das-implementações">Eficiência das implementações</a></li>
 </ul>
 
 <h1 id="políticas-de-acesso-e-manipulação">Políticas de acesso e manipulação</h1>
@@ -205,20 +205,51 @@ Sequência de pessoas ou coisas alinhadas uma atrás da outra, organizada geralm
   </li>
 </ul>
 
-<h1 id="implementação-sobre-vector">Implementação sobre <em>vector</em></h1>
+<h1 id="tipo-abstrato-de-dados-lista">Tipo abstrato de dados Lista</h1>
 
-<p>Pilhas e filas, sendo apenas políticas de acesso, podem ser implementadas utilizando diferentes estruturas de dados como base (contêiner). Neste primeiro momento, utilizaremos como contêiner a estrutura <code class="highlighter-rouge">vector</code> implementada anteriormente.</p>
+<p>Listas são tipos abstratos de dados pois representam funcionalidades que podem ser implementadas (programadas) de diversas formas diferentes. Apesar disso, uma implementação da estrutura de dados lista deve sempre nos permitir a manipulação dos dados armazenados por meio de certas operações. Abaixo utilizo um arquivo <code class="highlighter-rouge">.h</code> para definir uma interface à estuturas de dados lista.</p>
+
+<h1 id="implementação-sobre-list">Implementação sobre <em>list</em></h1>
+
+<p>Pilhas e filas, sendo apenas políticas de acesso, podem ser implementadas utilizando diferentes estruturas de dados como base (contêiner). Neste primeiro momento, utilizaremos como contêiner a estrutura abstrata <code class="highlighter-rouge">list</code>.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// **** list.h ****
+</span><span class="cp">#define Type int
+</span><span class="c1">// Uma definição abstrata da struct que representará a lista
+</span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">TAD_LIST</span> <span class="n">list</span><span class="p">;</span>
+<span class="c1">// Aloca memória inicial para o vetor
+</span><span class="n">list</span><span class="o">*</span> <span class="n">new_list</span><span class="p">();</span>
+<span class="c1">// Desaloca a memória de v-&gt;data e do próprio v.
+</span><span class="kt">void</span> <span class="n">free_list</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="c1">// Funções de remoção de elementos
+</span><span class="n">Type</span> <span class="n">list_erase</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+<span class="n">Type</span> <span class="n">list_pop_back</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="n">Type</span> <span class="n">list_pop_front</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="c1">// Funções de inserção de elementos
+</span><span class="kt">void</span> <span class="n">list_insert</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">list_push_back</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">list_push_front</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+<span class="c1">// Funções de acesso aos dados
+</span><span class="n">Type</span><span class="o">*</span> <span class="n">list_at</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pos</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">list_set</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pos</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">list_resize</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">list_print</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="c1">// Retorna o tamanho da lista (número de elementos)
+</span><span class="kt">int</span>  <span class="n">list_size</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+</code></pre>
+</div>
 
 <h2 id="pilhas">Pilhas</h2>
 
-<p>É fácil notar que todas as funcionalidades necessárias para manipular uma pilha estão implementadas para <code class="highlighter-rouge">vector</code>. De fato, precisamos apenas de um subconjunto das funcionalidades disponíveis em <code class="highlighter-rouge">vector</code>, ou seja, pilhas são mais restritivas.</p>
+<p>É fácil notar que todas as funcionalidades necessárias para manipular uma pilha estão indicadas em <code class="highlighter-rouge">list.h</code>. De fato, precisamos apenas de um subconjunto dessas funcionalidades, ou seja, pilhas são mais restritivas.</p>
 
 <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// **** stack.h ****
-</span><span class="cp">#include "vector.h"
-#include &lt;stdbool.h&gt;
-</span><span class="k">typedef</span> <span class="n">vector</span> <span class="n">stack</span><span class="p">;</span>
-<span class="cp">#define STACK_INIT_SIZE 10
-</span><span class="c1">// Alocação desalocação
+</span><span class="cp">#include "list.h"
+</span><span class="c1">// A biblioteca abaixo permite o uso do tipo de dados `bool`
+</span><span class="cp">#include &lt;stdbool.h&gt;
+</span><span class="c1">// O tipo de dados list será utilizado para armazenar a pilha.
+</span><span class="k">typedef</span> <span class="n">list</span> <span class="n">stack</span><span class="p">;</span>
+<span class="c1">// Alocação desalocação
 </span><span class="n">stack</span><span class="o">*</span> <span class="n">new_stack</span><span class="p">();</span>
 <span class="kt">void</span> <span class="n">free_stack</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
 <span class="c1">// Inserção e remoção de elementos
@@ -230,17 +261,19 @@ Sequência de pessoas ou coisas alinhadas uma atrás da outra, organizada geralm
 </code></pre>
 </div>
 
-<p>Vejamos quais funcionalidades de <code class="highlighter-rouge">vector</code> serão úteis para implementarmos uma estrutura pilha (<code class="highlighter-rouge">stack</code>).</p>
+<p>Vejamos quais funcionalidades em <code class="highlighter-rouge">list.h</code> serão úteis para implementarmos uma estrutura pilha (<code class="highlighter-rouge">stack</code>).</p>
 
-<p><strong>Opção 1</strong></p>
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">vector_push_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
-<span class="n">Type</span> <span class="n">vector_pop_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<p><strong>Opção 1 (Topo=Fim)</strong>
+Se considerarmos que o topo da pilha estará sempre no fim da lista, uma pilha somente deve permitir que inserções e remoções sejam feitas do fim da lista. Utilizaríamos então as operações:</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">list_push_back</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+<span class="n">Type</span> <span class="n">list_pop_back</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
 </code></pre>
 </div>
 
-<p><strong>Opção 2</strong></p>
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">vector_push_front</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
-<span class="n">Type</span> <span class="n">vector_pop_front</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<p><strong>Opção 2 (Topo=Início)</strong>
+Se considerarmos que o topo da pilha estará sempre no início da lista, uma pilha somente deve permitir que inserções e remoções sejam feitas do início da lista. Utilizaríamos então as operações:</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">list_push_front</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+<span class="n">Type</span> <span class="n">list_pop_front</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
 </code></pre>
 </div>
 
@@ -254,48 +287,71 @@ Sequência de pessoas ou coisas alinhadas uma atrás da outra, organizada geralm
 </span><span class="cp">#include "stack.h"
 </span><span class="c1">// Alocação desalocação
 </span><span class="n">stack</span><span class="o">*</span> <span class="nf">new_stack</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">stack</span><span class="o">*</span> <span class="n">s</span> <span class="o">=</span> <span class="n">new_vector</span><span class="p">(</span><span class="n">STACK_INIT_SIZE</span><span class="p">);</span>
+    <span class="n">stack</span><span class="o">*</span> <span class="n">s</span> <span class="o">=</span> <span class="n">new_list</span><span class="p">();</span>
     <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="kt">void</span> <span class="n">free_stack</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">){</span>
-    <span class="n">free_vector</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="n">free_list</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="c1">// Inserção e remoção de elementos
 </span><span class="n">Type</span> <span class="n">stack_pop</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">vector_pop_back</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">list_pop_back</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="kt">void</span> <span class="n">stack_push</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">vector_push_back</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+    <span class="n">list_push_back</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="c1">// Retorna um ponteiro para o topo da pilha
 </span><span class="n">Type</span><span class="o">*</span> <span class="n">stack_top</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">vector_at</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">list_at</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">list_size</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="kt">bool</span> <span class="n">stack_empty</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">list_size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre>
 </div>
 
 <h2 id="filas">Filas</h2>
 
-<p>É fácil notar que todas as funcionalidades necessárias para manipular uma estão implementadas para <code class="highlighter-rouge">vector</code>. De fato, precisamos apenas de um subconjunto das funcionalidades disponíveis em <code class="highlighter-rouge">vector</code>, ou seja, filas são mais restritivas.</p>
+<p>É fácil notar que todas as funcionalidades necessárias para manipular uma estão indicadas em <code class="highlighter-rouge">list.h</code>. De fato, precisamos apenas de um subconjunto das funcionalidades disponíveis, ou seja, filas também são mais restritivas.</p>
 
-<p>Vejamos quais funcionalidades de <code class="highlighter-rouge">vector</code> serão úteis para implementarmos uma estrutura pilha (<code class="highlighter-rouge">queue</code>).</p>
+<p>Vejamos quais funcionalidades de <code class="highlighter-rouge">list.h</code> serão úteis para implementarmos uma estrutura fila (<code class="highlighter-rouge">queue</code>).</p>
 
-<p><strong>Opção 1</strong></p>
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">vector_push_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
-<span class="n">Type</span> <span class="n">vector_pop_front</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// **** queue.h ****
+</span><span class="cp">#include "list.h"
+</span><span class="c1">// A biblioteca abaixo permite o uso do tipo de dados `bool`
+</span><span class="cp">#include &lt;stdbool.h&gt;
+</span><span class="c1">// O tipo de dados list será utilizado para armazenar a pilha.
+</span><span class="k">typedef</span> <span class="n">list</span> <span class="n">queue</span><span class="p">;</span>
+<span class="c1">// Alocação desalocação
+</span><span class="n">queue</span><span class="o">*</span> <span class="n">new_queue</span><span class="p">();</span>
+<span class="kt">void</span> <span class="n">free_stack</span><span class="p">(</span><span class="n">queue</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="c1">// Inserção e remoção de elementos
+</span><span class="n">Type</span> <span class="n">queue_pop</span><span class="p">(</span><span class="n">queue</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">queue_push</span><span class="p">(</span><span class="n">stack</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+<span class="c1">// Observer o topo da pilha, sem remoção
+</span><span class="n">Type</span><span class="o">*</span> <span class="n">queue_back</span><span class="p">(</span><span class="n">queue</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="n">Type</span><span class="o">*</span> <span class="n">queue_front</span><span class="p">(</span><span class="n">queue</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="kt">bool</span> <span class="n">queue_empty</span><span class="p">(</span><span class="n">queue</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
 </code></pre>
 </div>
 
-<p><strong>Opção 2</strong></p>
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">vector_push_front</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
-<span class="n">Type</span> <span class="n">vector_pop_back</span><span class="p">(</span><span class="n">vector</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<p>Do mesmo modo que em pilhas, existem duas opções para a implementação de filas, sendo eficiência o fator que as diferencia.</p>
+
+<p><strong>Opção 1 (Início = Início)</strong>
+Se considerarmos que o início da fila será armazenado no início da lista então uma estrutura de dados <code class="highlighter-rouge">queue</code> deverá permitir que inserções sejam feitas apenas no final da lista, enquanto remoções sejam feitas apenas no início da lista. Isso pode ser implementado utilizando as funções:</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">list_push_back</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+<span class="n">Type</span> <span class="n">list_pop_front</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
 </code></pre>
 </div>
 
-<p>Cada uma dessas opções insere elementos em uma das pontas de <code class="highlighter-rouge">vector</code> e remove da outra.</p>
+<p><strong>Opção 2 (Início = Fim)</strong>
+Se considerarmos que o início da fila será armazenado no fim da lista então uma estrutura de dados <code class="highlighter-rouge">queue</code> deverá permitir que inserções sejam feitas apenas no início da lista, enquanto remoções sejam feitas apenas do final da lista. Isso pode ser implementado utilizando as funções:</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">list_push_front</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+<span class="n">Type</span> <span class="n">list_pop_back</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>Cada uma dessas opções insere elementos em uma das pontas da lista e remove da outra.</p>
 
 <ul>
   <li><em>Questão:</em> Quais as deficiências em termos da eficiência de cada uma das opções?</li>
@@ -305,31 +361,34 @@ Sequência de pessoas ou coisas alinhadas uma atrás da outra, organizada geralm
 </span><span class="cp">#include "queue.h"
 </span><span class="c1">// Alocação desalocação
 </span><span class="n">queue</span><span class="o">*</span> <span class="nf">new_queue</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">queue</span><span class="o">*</span> <span class="n">s</span> <span class="o">=</span> <span class="n">new_vector</span><span class="p">(</span><span class="n">QUEUE_INIT_SIZE</span><span class="p">);</span>
+    <span class="n">queue</span><span class="o">*</span> <span class="n">s</span> <span class="o">=</span> <span class="n">new_list</span><span class="p">();</span>
     <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="kt">void</span> <span class="n">free_queue</span><span class="p">(</span><span class="n">queue</span><span class="o">*</span> <span class="n">v</span><span class="p">){</span>
-    <span class="n">free_vector</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="n">free_list</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="c1">// Inserção e remoção de elementos
 </span><span class="n">Type</span> <span class="n">queue_pop</span><span class="p">(</span><span class="n">queue</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">vector_pop_back</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">list_pop_back</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="kt">void</span> <span class="n">queue_push</span><span class="p">(</span><span class="n">queue</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">vector_push_back</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+    <span class="n">list_push_back</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="c1">// Retorna um ponteiro para o topo da pilha
-</span><span class="n">Type</span><span class="o">*</span> <span class="n">queue_begin</span><span class="p">(</span><span class="n">queue</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">vector_at</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="c1">// Retorna um ponteiro para o início da fila
+</span><span class="n">Type</span><span class="o">*</span> <span class="n">queue_front</span><span class="p">(</span><span class="n">queue</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">list_at</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// Retorna um ponteiro para o fim da fila
+</span><span class="n">Type</span><span class="o">*</span> <span class="n">queue_back</span><span class="p">(</span><span class="n">queue</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">list_at</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">list_size</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// Retorna verdadeiro se a fila estiver vazia
+</span><span class="kt">bool</span> <span class="n">queue_empty</span><span class="p">(</span><span class="n">queue</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">list_size</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre>
 </div>
 
-<h1 id="eficiência-das-implementações">Eficiência das implementações</h1>
-<ul>
-  <li>Qual a ineficiência da implementação de <code class="highlighter-rouge">queue</code> utilizando <code class="highlighter-rouge">vector</code> diretamente.</li>
-  <li>Implementação circular (pg. 207 Tenenbaum)</li>
-</ul>
 
   </article>
 
