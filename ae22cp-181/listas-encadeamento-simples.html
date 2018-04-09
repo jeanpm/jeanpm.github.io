@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Listas de encadeamento simples</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/ae22cp-181/listas-encadeamento-simples.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Listas de encadeamento simples</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Apr 9, 2018
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/lp31m-181/expressoes-logicas.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/ae22cp-181/exercicios-listas.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#listas-encadeadas" id="markdown-toc-listas-encadeadas">Listas encadeadas</a>    <ul>
+      <li><a href="#listas-de-encadeamento-simples" id="markdown-toc-listas-de-encadeamento-simples">Listas de encadeamento simples</a></li>
+      <li><a href="#detalhes-de-implementação" id="markdown-toc-detalhes-de-implementação">Detalhes de implementação</a>        <ul>
+          <li><a href="#criação-dos-nós" id="markdown-toc-criação-dos-nós">Criação dos nós</a></li>
+          <li><a href="#encadeamento-dos-nós" id="markdown-toc-encadeamento-dos-nós">Encadeamento dos nós</a></li>
+          <li><a href="#inserção-de-um-novo-nó" id="markdown-toc-inserção-de-um-novo-nó">Inserção de um novo nó</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#implementação-de-listas-de-encadeamento-simples" id="markdown-toc-implementação-de-listas-de-encadeamento-simples">Implementação de listas de encadeamento simples</a></li>
+  <li><a href="#referências" id="markdown-toc-referências">Referências</a></li>
+</ul>
+
+<h1 id="listas-encadeadas">Listas encadeadas</h1>
+
+<p>Da mesma forma que vetores (arrays), listas encadeadas também são estruturas sequenciais. Ou seja, os elementos armazenados em tais estruturas de dados obedecem uma certa ordem linear, em que um sucede (ou precede) outro elemento. Nos vetores, essa ordem é implementada diretamente em memória, ou seja, dado um elemento $v[i]$ em um vetor, o elemento $v[i+1]$ está na posição de memória subsequente.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>valor    := v[0]    v[1]    v[2]    ... v[n-1]
+endereço := x       x+1     x+2     ... x+n-1
+</code></pre>
+</div>
+
+<p>Já listas encadeadas, a situação é um pouco diferente. Apesar dos elementos ainda sim manterem uma ordem sequencial, essa ordem não precisa ser refletida nas posições de memória que eles ocupam. Deste modo, estruturas adicionais são necessárias para indicar qual elemento sucede ou precede outro. Nesta seção iremos tratar de uma implementação bem restrita de listas encadeadas, as listas de encadeamento simples <em>forward_list</em>.</p>
+
+<h2 id="listas-de-encadeamento-simples">Listas de encadeamento simples</h2>
+
+<p>Uma lista de encadeamento simples (<em>singly-linked list</em>) implementa a ideia de uma lista unidirecional. Isto significa que cada elemento somente tem conhecimento sobre o próximo elemento da lista, e não do anterior. Esta característica é ilustrada através de uma aresta direcionada (seta) ligando o elemento ao seu próximo.</p>
+
+<p><code class="highlighter-rouge">a:(valor, b) -&gt; b:(valor, c) -&gt; c:(valor, prox) -&gt; ...</code></p>
+
+<p>O primeiro aspecto a ser notado é que um elemento de lista (um nó, <em>node</em>), não é um tipo de dado simples. Isto é necessário visto que cada elemento precisa, além de armazenar um valor, armazenar um ponteiro para o próximo.</p>
+
+<p>Na linguagem C, este tipo de estrutura é implementada por uma <strong>struct</strong>. Utilizaremos a seguinte definição:</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="cp">#define Type int
+</span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_node</span> <span class="p">{</span>
+    <span class="n">Type</span> <span class="n">value</span><span class="p">;</span>             <span class="c1">// Valor armazenado
+</span>    <span class="k">struct</span> <span class="n">_node</span><span class="o">*</span> <span class="n">next</span><span class="p">;</span>   <span class="c1">// Endereço do próximo nó
+</span><span class="p">}</span> <span class="n">node</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>Antes de implementarmos funções para a manipulação da <em>forward_list</em> é importante compreendermos na prática o que os conceitos até então descritos realmente significam. Com esse fim, algums exemplos serão demonstrados a seguir.</p>
+
+<h2 id="detalhes-de-implementação">Detalhes de implementação</h2>
+
+<p>Como tem sido convencionado até então, vamos definir uma função que implemente a alocação de memória para <code class="highlighter-rouge">node</code> que serão utilizados como elementos da nossa lista de encadeamento simples <em>forward_list</em>.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// Aloca memória para um 'node' e define o endereço do próximo como NULL
+</span><span class="n">node</span><span class="o">*</span> <span class="nf">new_node</span><span class="p">(</span><span class="n">Type</span> <span class="n">valor</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">node</span><span class="o">*</span> <span class="n">n</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">node</span><span class="p">));</span>
+    <span class="n">n</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">=</span> <span class="n">valor</span><span class="p">;</span>
+    <span class="n">n</span><span class="o">-&gt;</span><span class="n">next</span>  <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Consideremos agora a criação de uma lista de encadeamento simples feita manualmente. Para isso a única coisa que precisamos é criar vários <code class="highlighter-rouge">node</code> e definir qual apontará para qual.</p>
+
+<h3 id="criação-dos-nós">Criação dos nós</h3>
+<p>Dada a função <code class="highlighter-rouge">new_node</code>, a etapa de criação (alocação de memória no Heap) dos nós é trivial. Neste exemplo criamos três nós, $a$, $b$ e $c$; contendo, respectivamente, os valores inteiros $0, 1, 2$.</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// Etapa de criação dos nós de lista
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">node</span><span class="o">*</span> <span class="n">a</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// (0, NULL)
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">b</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// (1, NULL)
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">c</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// (2, NULL)
+</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="encadeamento-dos-nós">Encadeamento dos nós</h3>
+
+<p>Como cada nó foi alocado por uma chamada independente à <code class="highlighter-rouge">malloc</code>, fica evidente que não temos controle sobre suas posições de memória. Isso implica que o nó <em>b</em>, por exemplo, pode não estar em uma posição de memória subsequente à posição de <em>a</em>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>valor    := (b, NULL)   ... (c, NULL)   ...  (a, NULL)
+endereço :=  x          ...  y          ...   z
+</code></pre>
+</div>
+
+<p>Nessas condições, o que definirá a ordem desses nós será o encadeamento entre eles. O termo <em>encadear</em>, neste contexto, significa apenas dizer qual dos nós será o próximo de qual outro nó. Para clarificar, vamos estender o exemplo acima de modo a criar o encadeamento ilustrado a seguir.</p>
+
+<p><code class="highlighter-rouge">a:(0, b) -&gt; b:(1, c) -&gt; c:(2, NULL)</code></p>
+
+<p>Observe, que tanto <em>b</em> quanto <em>c</em> são ponteiros, portanto representam o endereço de memória no Heap de uma estrutura <code class="highlighter-rouge">node</code>.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Criação dos nós
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">a</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// (0, NULL)
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">b</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// (1, NULL)
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">c</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// (2, NULL)
+</span>    
+    <span class="c1">// Encadeamento
+</span>    <span class="n">a</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// (0, b)
+</span>    <span class="n">b</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span> <span class="c1">// (1, c), (2, NULL)
+</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Este exemplo criou manualmente uma lista encadeada simples de três elementos. Como o último elemento, o nó <em>c</em>, não possui referência a próximo (<code class="highlighter-rouge">c-&gt;next == NULL</code>) isso nos indica que ele está no final da lista (<em>tail</em>). Pela mesma ideia, o nó <em>a</em> está no início da lista (<em>head</em>).</p>
+
+<h3 id="inserção-de-um-novo-nó">Inserção de um novo nó</h3>
+
+<p><strong>Inserção no início</strong></p>
+
+<p>De acordo com a posição de inserção, existem três formas de se inserir um novo nó em uma lista já existente. A primeira, e mais simples neste caso, é a inserção no início da lista. Esse tipo de inserção exige apenas que um novo nó aponte para o atual início. Considerando o exemplo anterior, vamos inserir <code class="highlighter-rouge">node* d</code> no início da lista atual, criando a lista ilustrada abaixo.</p>
+
+<p><code class="highlighter-rouge">d:(3, a) -&gt; a:(0, b) -&gt; b:(1, c) -&gt; c:(2, NULL)</code></p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Criação dos nós
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">a</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// (0, NULL)
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">b</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// (1, NULL)
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">c</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// (2, NULL)
+</span>    
+    <span class="c1">// Encadeamento
+</span>    <span class="n">a</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// (0, b)
+</span>    <span class="n">b</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span> <span class="c1">// (1, c), (2, NULL)
+</span>    
+    <span class="c1">// Inserção no início
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">d</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span> <span class="c1">// Criação do nó (3, NULL)
+</span>    <span class="n">d</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="c1">// (3, a)
+</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Observemos então, que para a inserção no início precisamos apenas de referências ao nó que atualmente está no início (<code class="highlighter-rouge">node* a</code>) e ao novo nó (<code class="highlighter-rouge">node* d</code>).</p>
+
+<p><strong>Inserção no final</strong></p>
+
+<p>O segundo tipo mais simples de inserção é aquela que introduz um novo elemento no final da lista encadeada. Para isso, precisaremos apenas de referências ao nó que atualmente é o último da lista (<code class="highlighter-rouge">node* c</code>), e o novo nó (<code class="highlighter-rouge">node* e</code>).Considerando o exemplo anterior, vamos inserir <code class="highlighter-rouge">node* e</code> ao fim da lista atual, criando a lista ilustrada abaixo.</p>
+
+<p><code class="highlighter-rouge">d:(3, a) -&gt; a:(0, b) -&gt; b:(1, c) -&gt; c:(2, e) -&gt; e:(4, NULL)</code></p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Criação dos nós
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">a</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// (0, NULL)
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">b</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// (1, NULL)
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">c</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// (2, NULL)
+</span>    
+    <span class="c1">// Encadeamento
+</span>    <span class="n">a</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// (0, b)
+</span>    <span class="n">b</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span> <span class="c1">// (1, c), (2, NULL)
+</span>    
+    <span class="c1">// Inserção no início
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">d</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span> <span class="c1">// Criação do nó c:(3, NULL)
+</span>    <span class="n">d</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="c1">// (3, a)
+</span>    
+    <span class="c1">// Inserção no final
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">e</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span> <span class="c1">// Criação do nó e:(4, NULL)
+</span>    <span class="n">c</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">e</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p><strong>Inserção no meio</strong></p>
+
+<p>Por fim, trataremos do tipo de inserção mais genérico, o que nos permite inserir um novo nó em qualquer posição da lista encadeada. Como forma de exemplo, suponhamos que queremos inserir um novo nó (<code class="highlighter-rouge">node* f</code>) na posição $2$ da lista, ou seja, entre os nós <code class="highlighter-rouge">a</code> e <code class="highlighter-rouge">b</code>. Após essa inserção a lista teria a seguinte ordem.</p>
+
+<p><code class="highlighter-rouge">d:(3, a) -&gt; a:(0, f) -&gt; f:(5, b) -&gt; b:(1, c) -&gt; c:(2, e) -&gt; e:(4, NULL)</code></p>
+
+<p>Para melhor compreendermos os passos necessários para implementar essa inserção, vamos focar na parte de interesse da lista, comparando o antes e o depois.</p>
+
+<p><code class="highlighter-rouge">a:(0, b) -&gt; b:(1, c)</code></p>
+
+<p><code class="highlighter-rouge">a:(0, f) -&gt; f:(5, b) -&gt; b:(1, c)</code></p>
+
+<p>Talvez o fato mais evidente seja que nada foi alterado em <code class="highlighter-rouge">b</code>. De fato, para inserirmos um novo nó numa posição $i$ qualquer, basta que tenhamos a referência ao nó na posição $i-1$ (<code class="highlighter-rouge">a</code>, neste caso). Vejamos como isso é feito em código:</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Criação dos nós
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">a</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// (0, NULL)
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">b</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// (1, NULL)
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">c</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// (2, NULL)
+</span>    
+    <span class="c1">// Encadeamento
+</span>    <span class="n">a</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// (0, b)
+</span>    <span class="n">b</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span> <span class="c1">// (1, c), (2, NULL)
+</span>    
+    <span class="c1">// Inserção no início
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">d</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span> <span class="c1">// Criação do nó c:(3, NULL)
+</span>    <span class="n">d</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="c1">// (3, a)
+</span>    
+    <span class="c1">// Inserção no final
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">e</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span> <span class="c1">// Criação do nó e:(4, NULL)
+</span>    <span class="n">c</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">e</span><span class="p">;</span>
+    
+    <span class="c1">// Inserção no meio: entre a e b
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">f</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> <span class="c1">// Criação do nó f:(5, NULL)
+</span>    <span class="n">f</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">a</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>  <span class="c1">// Aqui ambos apontam para b 
+</span>    <span class="n">a</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">f</span><span class="p">;</span>        <span class="c1">// Aqui a aponta para f 
+</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<h1 id="implementação-de-listas-de-encadeamento-simples">Implementação de listas de encadeamento simples</h1>
+
+<p>Considerando a estrutura <code class="highlighter-rouge">list</code> definida a seguir, implemente todas as funcionalidades que foram implementadas para <code class="highlighter-rouge">vector</code>.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// *** list.h *** 
+</span><span class="cp">#define Type int
+</span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_node</span> <span class="p">{</span>
+    <span class="n">Type</span> <span class="n">value</span><span class="p">;</span>             <span class="c1">// Valor armazenado
+</span>    <span class="k">struct</span> <span class="n">_node</span><span class="o">*</span> <span class="n">next</span><span class="p">;</span>   <span class="c1">// Endereço do próximo nó
+</span><span class="p">}</span> <span class="n">node</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">node</span><span class="o">*</span> <span class="n">head</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">list</span><span class="p">;</span>
+
+<span class="c1">// Aloca memória inicial para o vetor
+</span><span class="n">list</span><span class="o">*</span> <span class="n">new_list</span><span class="p">();</span>
+<span class="c1">// Desaloca a memória de v-&gt;data e do próprio v.
+</span><span class="kt">void</span> <span class="n">free_list</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+
+<span class="c1">// Funções de remoção de elementos
+</span><span class="n">Type</span> <span class="n">list_pop_back</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="n">Type</span> <span class="n">list_pop_front</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="n">Type</span> <span class="n">list_erase</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+
+<span class="c1">// Funções de inserção de elementos
+</span><span class="kt">void</span> <span class="n">list_insert</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">list_push_back</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">list_push_front</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
+
+<span class="kt">bool</span> <span class="n">list_empty</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">list_size</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">list_print</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<h1 id="referências">Referências</h1>
+<ol>
+  <li><a href="https://en.wikipedia.org/wiki/Linked_list">wikipedia/linked_list</a></li>
+  <li><a href="https://pt.wikipedia.org/wiki/Lista_ligada">wikipedia/lista_ligada</a></li>
+  <li><a href="http://www.san.uri.br/~ober/arquivos/disciplinas/estruturaII_SI/(ebook)Estruturas%20de%20Dados%20Usando%20C%20(Tenenbaum).pdf">book/Tenenbaum/cap.4.2</a></li>
+</ol>
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>
