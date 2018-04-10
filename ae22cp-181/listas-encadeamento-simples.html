@@ -96,7 +96,11 @@
       </li>
     </ul>
   </li>
-  <li><a href="#implementação-de-listas-de-encadeamento-simples" id="markdown-toc-implementação-de-listas-de-encadeamento-simples">Implementação de listas de encadeamento simples</a></li>
+  <li><a href="#interface-para-o-tipo-abstrato-lista" id="markdown-toc-interface-para-o-tipo-abstrato-lista">Interface para o tipo abstrato LISTA</a>    <ul>
+      <li><a href="#implementação-de-listas-de-encadeamento-simples" id="markdown-toc-implementação-de-listas-de-encadeamento-simples">Implementação de listas de encadeamento simples</a></li>
+      <li><a href="#utilização-da-estrutura-list" id="markdown-toc-utilização-da-estrutura-list">Utilização da estrutura list</a></li>
+    </ul>
+  </li>
   <li><a href="#referências" id="markdown-toc-referências">Referências</a></li>
 </ul>
 
@@ -282,22 +286,21 @@ endereço :=  x          ...  y          ...   z
 </code></pre>
 </div>
 
-<h1 id="implementação-de-listas-de-encadeamento-simples">Implementação de listas de encadeamento simples</h1>
+<h1 id="interface-para-o-tipo-abstrato-lista">Interface para o tipo abstrato LISTA</h1>
 
-<p>Considerando a estrutura <code class="highlighter-rouge">list</code> definida a seguir, implemente todas as funcionalidades que foram implementadas para <code class="highlighter-rouge">vector</code>.</p>
+<p>O tipo de dados abstrato LISTA define-se por suas funcionalidades, as quais nos permitem manipular os dados armazenados por meio de inserções e remoções que podem ser efetuadas em qualquer posição da lista.</p>
 
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// *** list.h *** 
-</span><span class="cp">#define Type int
-</span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_node</span> <span class="p">{</span>
-    <span class="n">Type</span> <span class="n">value</span><span class="p">;</span>             <span class="c1">// Valor armazenado
-</span>    <span class="k">struct</span> <span class="n">_node</span><span class="o">*</span> <span class="n">next</span><span class="p">;</span>   <span class="c1">// Endereço do próximo nó
-</span><span class="p">}</span> <span class="n">node</span><span class="p">;</span>
-<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
-    <span class="n">node</span><span class="o">*</span> <span class="n">head</span><span class="p">;</span>
-<span class="p">}</span> <span class="n">list</span><span class="p">;</span>
+<p>A implementação <code class="highlighter-rouge">vector</code> da APS1 é uma possível implementação do tipo abstrato LISTA que utiliza um vetor (array) para amazenamento dos elementos. No entando diversas outras implementações são possíveis. Para tornar explícito o fato de que todas essas possíveis implementações são versões de uma mesma ideia abstrata (o tipo abstrato de dados LISTA) definimos abaixo um arquivo de extensão <code class="highlighter-rouge">.h</code>, no qual todas as funcionalidades que devem estar disponíveis em uma estrutura de dados lista são indicadas.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// Arquivo list.h
+</span><span class="cp">#include &lt;stdbool.h&gt;
+#define Type int
+</span><span class="c1">// Uma definição abstrata da struct que representará a lista
+</span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">TAD_LIST</span> <span class="n">list</span><span class="p">;</span>
 
 <span class="c1">// Aloca memória inicial para o vetor
 </span><span class="n">list</span><span class="o">*</span> <span class="n">new_list</span><span class="p">();</span>
+
 <span class="c1">// Desaloca a memória de v-&gt;data e do próprio v.
 </span><span class="kt">void</span> <span class="n">free_list</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
 
@@ -311,9 +314,129 @@ endereço :=  x          ...  y          ...   z
 <span class="kt">void</span> <span class="n">list_push_back</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
 <span class="kt">void</span> <span class="n">list_push_front</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
 
-<span class="kt">bool</span> <span class="n">list_empty</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
-<span class="kt">int</span> <span class="n">list_size</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="c1">// Funções de acesso aos dados
+</span><span class="n">Type</span><span class="o">*</span> <span class="n">list_at</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pos</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">list_set</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pos</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">);</span>
 <span class="kt">void</span> <span class="n">list_print</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="c1">// Retorna a quantidade de elementos na lista
+</span><span class="kt">int</span>  <span class="n">list_size</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+<span class="c1">// Retorna true se a lista está vazia, false caso contrário.
+</span><span class="kt">bool</span> <span class="n">list_empty</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<h2 id="implementação-de-listas-de-encadeamento-simples">Implementação de listas de encadeamento simples</h2>
+
+<p>Dada interface definida acima, a implementação da estrutura de dados lista encadeada simples requer a implementação de todas as funcionalidades definidas em <code class="highlighter-rouge">list.h</code>. O primeiro passo é a criação de um arquivo <code class="highlighter-rouge">.c</code> para tal. Seguindo o padrão de nomenclatura utilizado pelas bibliotecas de C++ chamaremos as listas de encadeamento simples de <code class="highlighter-rouge">forward_list</code> e portanto criaremos um arquivo <code class="highlighter-rouge">forward_list.c</code>.</p>
+
+<p>A partir de então, é preciso concretizar a implementação da estrutura <code class="highlighter-rouge">list</code>. Observe que em <code class="highlighter-rouge">list.h</code> essa estrutura é indicada de forma incompleta pela linha de código <code class="highlighter-rouge">typedef struct TAD_LIST list;</code>. Para que em nosso arquivo de implementação <code class="highlighter-rouge">forward_list.c</code> associemos uma estrutura útil ao nome <code class="highlighter-rouge">list</code> devemos então definir a <code class="highlighter-rouge">struct TAD_LIST</code>, o que é feito pelo trecho de código abaixo.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// *** forward_list.c *** 
+</span><span class="cp">#include "list.h"
+#include &lt;stdlib.h&gt;
+</span><span class="c1">// Nó de lista
+</span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_node</span> <span class="p">{</span>
+    <span class="n">Type</span> <span class="n">value</span><span class="p">;</span>           <span class="c1">// Valor armazenado. 'Type' está definido em list.h
+</span>    <span class="k">struct</span> <span class="n">_node</span><span class="o">*</span> <span class="n">next</span><span class="p">;</span>   <span class="c1">// Endereço do próximo nó
+</span><span class="p">}</span> <span class="n">node</span><span class="p">;</span>
+<span class="c1">// Estrutura da lista, a qual nesta implementação armazena apenas 
+// um ponteiro para o primeiro elemento
+</span><span class="k">struct</span> <span class="n">TAD_LIST</span> <span class="p">{</span>
+    <span class="n">node</span><span class="o">*</span> <span class="n">head</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="c1">// Aloca memória para um 'node' e define o endereço do próximo como NULL
+</span><span class="n">node</span><span class="o">*</span> <span class="nf">new_node</span><span class="p">(</span><span class="n">Type</span> <span class="n">valor</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">node</span><span class="o">*</span> <span class="n">n</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">node</span><span class="p">));</span>
+    <span class="n">n</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">=</span> <span class="n">valor</span><span class="p">;</span>
+    <span class="n">n</span><span class="o">-&gt;</span><span class="n">next</span>  <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// Aloca memória inicial para o vetor
+</span><span class="n">list</span><span class="o">*</span> <span class="nf">new_list</span><span class="p">()</span> <span class="p">{</span>
+<span class="p">}</span>
+<span class="c1">// Desaloca a memória de v-&gt;data e do próprio v.
+</span><span class="kt">void</span> <span class="nf">free_list</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">){</span>
+<span class="p">}</span>
+<span class="c1">// Funções de remoção de elementos
+</span><span class="n">Type</span> <span class="n">list_pop_back</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">}</span>
+<span class="n">Type</span> <span class="nf">list_pop_front</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">}</span>
+<span class="n">Type</span> <span class="nf">list_erase</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">){</span>
+<span class="p">}</span>
+<span class="c1">// Funções de inserção de elementos
+</span><span class="kt">void</span> <span class="n">list_insert</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">){</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="n">list_push_back</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">list_push_front</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">}</span>
+<span class="c1">// Funções de acesso aos dados
+</span><span class="n">Type</span><span class="o">*</span> <span class="nf">list_at</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pos</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">list_set</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pos</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">list_print</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">}</span>
+<span class="c1">// Retorna a quantidade de elementos na lista
+</span><span class="kt">int</span>  <span class="nf">list_size</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">}</span>
+<span class="c1">// Retorna true se a lista está vazia, false caso contrário.
+</span><span class="kt">bool</span> <span class="nf">list_empty</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="utilização-da-estrutura-list">Utilização da estrutura list</h2>
+
+<p>Qual seria a principal motivação para essa separação entre interfaces (<code class="highlighter-rouge">.h</code>), implementação (<code class="highlighter-rouge">.c</code>) e utilização? Para tentar observarmos um dos benefícios da introdução da abstração definida pelo arquivo <code class="highlighter-rouge">list.h</code>, consideremos o arquivo <code class="highlighter-rouge">main.c</code> definido abaixo, o qual é o mesmo utilizado para implementação da APS1.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// **** main.c ****
+</span><span class="cp">#include "list.h"
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">capacidade</span><span class="p">,</span> <span class="n">ncmds</span><span class="p">,</span> <span class="n">indice</span><span class="p">,</span> <span class="n">valor</span><span class="p">;</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">capacidade</span><span class="p">);</span>
+    <span class="n">list</span><span class="o">*</span> <span class="n">v</span> <span class="o">=</span> <span class="n">new_list</span><span class="p">();</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ncmds</span><span class="p">);</span>
+    <span class="kt">char</span> <span class="n">cmd</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">ncmds</span><span class="o">--</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span> <span class="n">cmd</span><span class="p">);</span>        
+        <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="s">"push_back"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">valor</span><span class="p">);</span>
+            <span class="n">list_push_back</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">valor</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="s">"push_front"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">valor</span><span class="p">);</span>
+            <span class="n">list_push_front</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">valor</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="s">"insert"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">valor</span><span class="p">);</span>
+            <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">indice</span><span class="p">);</span>
+            <span class="n">list_insert</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">valor</span><span class="p">,</span> <span class="n">indice</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="s">"pop_back"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">list_pop_back</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="s">"pop_front"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">list_pop_front</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="s">"erase"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">indice</span><span class="p">);</span>
+            <span class="n">list_erase</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">indice</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="s">"set"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">indice</span><span class="p">);</span>
+            <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">valor</span><span class="p">);</span>
+            <span class="n">list_set</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">indice</span><span class="p">,</span> <span class="n">valor</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">list_print</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">free_list</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Note que o código-fonte acima faz uso de várias funcionalidades definidas em <code class="highlighter-rouge">list.h</code> o qual é incluído neste arquivo <code class="highlighter-rouge">main.c</code>, porém não acessa nenhuma informação além da disponível em <code class="highlighter-rouge">list.h</code>. Como toda implementação do tipo abstrato lista deverá implementar todas as funcionalidade descritas em <code class="highlighter-rouge">list.h</code> este código (<code class="highlighter-rouge">main.c</code>) é independente da implementação da estrutura de dados lista a ser utilizada. Ou seja, ele poderá ser compilado tanto para utilização de <code class="highlighter-rouge">vector.c</code> quanto para utilização de <code class="highlighter-rouge">forward_list.c</code> sem que haja nenhuma necessidade de alteração no código-fonte <code class="highlighter-rouge">main.c</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gcc main.c         vector.c  -o  lista_com_vector
+gcc main.c  forward_list.c  -o  lista_encadeada_simples
 </code></pre>
 </div>
 
