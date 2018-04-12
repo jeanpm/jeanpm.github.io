@@ -6,9 +6,152 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 10 Apr 2018 13:41:30 -0300</pubDate>
-    <lastBuildDate>Tue, 10 Apr 2018 13:41:30 -0300</lastBuildDate>
+    <pubDate>Thu, 12 Apr 2018 20:10:10 -0300</pubDate>
+    <lastBuildDate>Thu, 12 Apr 2018 20:10:10 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Estruturas de repetição</title>
+        <description>&lt;h1 id=&quot;conteúdo&quot;&gt;Conteúdo&lt;/h1&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#conteúdo&quot; id=&quot;markdown-toc-conteúdo&quot;&gt;Conteúdo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#ambiente-de-programação&quot; id=&quot;markdown-toc-ambiente-de-programação&quot;&gt;Ambiente de programação&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#estruturas-de-repetição&quot; id=&quot;markdown-toc-estruturas-de-repetição&quot;&gt;Estruturas de repetição&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#repetir-enquanto-while&quot; id=&quot;markdown-toc-repetir-enquanto-while&quot;&gt;Repetir enquanto: &lt;code class=&quot;highlighter-rouge&quot;&gt;while&lt;/code&gt;&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#exercício-1-complete-o-código&quot; id=&quot;markdown-toc-exercício-1-complete-o-código&quot;&gt;Exercício 1: complete o código&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#exercício-2-números-pares&quot; id=&quot;markdown-toc-exercício-2-números-pares&quot;&gt;Exercício 2: números pares&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#exercício-3-números-impares&quot; id=&quot;markdown-toc-exercício-3-números-impares&quot;&gt;Exercício 3: números impares&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#prática-de-programação-lista-de-compras&quot; id=&quot;markdown-toc-prática-de-programação-lista-de-compras&quot;&gt;Prática de programação: lista de compras&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#formato-de-entrada-do-programa&quot; id=&quot;markdown-toc-formato-de-entrada-do-programa&quot;&gt;Formato de entrada do programa&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#o-que-fazer-primeiro&quot; id=&quot;markdown-toc-o-que-fazer-primeiro&quot;&gt;O que fazer primeiro?&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#introduzindo-a-repetição&quot; id=&quot;markdown-toc-introduzindo-a-repetição&quot;&gt;Introduzindo a repetição&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;ambiente-de-programação&quot;&gt;Ambiente de programação&lt;/h1&gt;
+
+&lt;p&gt;Para seguir os exemplos aqui descritos sugiro a utilização do ambiente de programação online &lt;a href=&quot;https://repl.it/languages/python3&quot;&gt;»repl.it&lt;/a&gt;. Mais adiante no curso veremos ferramentas mais apropriadas para programação.&lt;/p&gt;
+
+&lt;h1 id=&quot;estruturas-de-repetição&quot;&gt;Estruturas de repetição&lt;/h1&gt;
+
+&lt;p&gt;Os programas vistos e implementados até então apresentam duas possíveis características. Nos primeiros exemplos, todo programa era uma sequência de linhas (operações) a serem executadas uma-a-uma até que o fim fosse atingido e a resposta (saída) computada. A seguir, introduzimos a ideia de &lt;em&gt;condicionais&lt;/em&gt; (&lt;code class=&quot;highlighter-rouge&quot;&gt;if/else/elif&lt;/code&gt;) por meio dos quais se tornou possível definirmos que certas linhas do código-fonte (blocos de código) seriam executadas apenas &lt;strong&gt;se&lt;/strong&gt; determinadas &lt;strong&gt;condições&lt;/strong&gt; fossem verdadeiras. A adição de &lt;em&gt;condicionais&lt;/em&gt; nos permite o tratamento de erros, a identificação de características nos dados e diversas outras condições que necessariamente precisamos considerar mesmo nos menores programas (códigos-fonte), no entanto, nossos programas continuam sendo sequenciais.&lt;/p&gt;
+
+&lt;p&gt;A partir de agora introduziremos uma das principais estruturas em linguagens de programação as &lt;strong&gt;estruturas de repetição&lt;/strong&gt;. É fácil perceber que dentre os principais atrativos para que automatizemos certas tarefas por meio de programação é a velocidade com que computadores podem efetuar operações repetitivas. Por exemplo, suponha que tivéssemos uma lista de compras composta pelo nome dos itens e os seus respectivos preços e a quantidade, para sabermos qual o valor total da compra precisaríamos multiplicar o preço de cada item pela quantidade e somar os resultados. Nesse cenário simples, temos três possíveis dificuldades:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Ao calcular o total de cada item estamos sujeitos a erro no cálculo,&lt;/li&gt;
+  &lt;li&gt;A soma total nos exige efetuar a soma do total de cada item, novamente sujeitos a erro de cálculos,&lt;/li&gt;
+  &lt;li&gt;Uma lista de compras grande pode tornar o trabalho bem tedioso, mesmo com uma calculadora em mãos.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Cada um desses itens é um atrativo para que essa tarefa fosse automatizada por meio de programação. As estrutura que nos permitem programar esse tipo de tarefas repetitivas são chamadas &lt;em&gt;loops&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;repetir-enquanto-while&quot;&gt;Repetir enquanto: &lt;code class=&quot;highlighter-rouge&quot;&gt;while&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;A estrutura de repetição &lt;code class=&quot;highlighter-rouge&quot;&gt;while&lt;/code&gt; nos permite repetir um bloco de código &lt;code class=&quot;highlighter-rouge&quot;&gt;enquanto&lt;/code&gt; uma expressão lógica seja verdadeira. Essas expressões são do mesmo tipo daquelas que utilizamos nas estruturas condicionais &lt;code class=&quot;highlighter-rouge&quot;&gt;if/else/elif&lt;/code&gt;. Estruturas &lt;code class=&quot;highlighter-rouge&quot;&gt;while&lt;/code&gt; seguem sempre o seguinte formato:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expressao_logica&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# bloco de código&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Todo código que estiver interno à estrutura &lt;code class=&quot;highlighter-rouge&quot;&gt;while&lt;/code&gt; será repetido &lt;code class=&quot;highlighter-rouge&quot;&gt;enquanto&lt;/code&gt; (&lt;code class=&quot;highlighter-rouge&quot;&gt;while&lt;/code&gt;) a &lt;code class=&quot;highlighter-rouge&quot;&gt;expressao_logica&lt;/code&gt; seja verdadeira, portanto, é natural que o bloco de código altere alguma variável que esteja presente na &lt;code class=&quot;highlighter-rouge&quot;&gt;expressao_logica&lt;/code&gt;. Por exemplo, podemos utilizar uma estrutura de repetição para contar até dez.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Neste pequeno exemplo a expressão lógica é &lt;code class=&quot;highlighter-rouge&quot;&gt;numero &amp;lt;= 10&lt;/code&gt; e será verdadeira enquanto a variável &lt;code class=&quot;highlighter-rouge&quot;&gt;numero&lt;/code&gt; não ultrapasse o valor &lt;code class=&quot;highlighter-rouge&quot;&gt;10&lt;/code&gt;, como cada vez que o bloco de código é repetido (iteração) a variável &lt;code class=&quot;highlighter-rouge&quot;&gt;numero&lt;/code&gt; é incrementada, em algum momento &lt;code class=&quot;highlighter-rouge&quot;&gt;numero &amp;lt;= 10&lt;/code&gt; se tornará falsa e a repetição finalizará.&lt;/p&gt;
+
+&lt;h3 id=&quot;exercício-1-complete-o-código&quot;&gt;Exercício 1: complete o código&lt;/h3&gt;
+
+&lt;p&gt;Usando o exemplo acima como referência escreva um programa que imprima todos os números de 10 até 1. Complete o código abaixo:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_______________&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;____________&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;exercício-2-números-pares&quot;&gt;Exercício 2: números pares&lt;/h3&gt;
+
+&lt;p&gt;Usando o exemplo acima como referência escreva um programa que imprima todos os números pares de 0 até 10. Complete o código abaixo:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_______________&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;______________&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_____________&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;exercício-3-números-impares&quot;&gt;Exercício 3: números impares&lt;/h3&gt;
+
+&lt;p&gt;Escreva um programa que imprima todos os números ímpares de 0 até 10.&lt;/p&gt;
+
+&lt;h2 id=&quot;prática-de-programação-lista-de-compras&quot;&gt;Prática de programação: lista de compras&lt;/h2&gt;
+
+&lt;p&gt;Consideremos a construção de um programa para que, dada uma lista de compras, calcule o valor total por item e o total a ser pago.&lt;/p&gt;
+
+&lt;h3 id=&quot;formato-de-entrada-do-programa&quot;&gt;Formato de entrada do programa&lt;/h3&gt;
+
+&lt;p&gt;Cada item na lista de compras é recebido como entrada de três valores, exemplo:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;chocolate   3   2.99
+arroz       1   10.54
+café        2   5.87 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Para que a nossa entrada de dados “lista de compras” esteja completa, no entanto, definiremos que o primeiro valor em seu cabeçalho seja a quantidade de itens na lista. O exemplo acima se torna então:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;3
+chocolate   3   2.99
+arroz       1   10.54
+café        2   5.87
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;o-que-fazer-primeiro&quot;&gt;O que fazer primeiro?&lt;/h3&gt;
+
+&lt;p&gt;O ponto principal é que gostaríamos de calcular o valor total das compras, mas para isso temos que calcular o preço total de cada item. Assumndo que os items da lista de compras serão dados como entrada complete o código abaixo para calcular o valor de um item:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;nome_item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;quantidade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;intput&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;preco_por_item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;total_item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_________________&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Total em&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nome_item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;=&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;total_item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;introduzindo-a-repetição&quot;&gt;Introduzindo a repetição&lt;/h3&gt;
+
+&lt;p&gt;No exemplo da lista de compras o bloco de código que queremos repetir é bem similar ao descrito acima, ou seja o trecho de código que calcula o valor total por item. Precisamos também, adicionalmente, computar o valor total das compras.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemente o restante do programa para que o valor total da lista de compras seja impresso após o final da estrutura de repetição.&lt;/strong&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 12 Apr 2018 17:00:00 -0300</pubDate>
+        <link>http://localhost:4000/lp31m-181/estruturas-repeticao.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lp31m-181/estruturas-repeticao.html</guid>
+        
+        <category>loops</category>
+        
+        
+        <category>LP31M-181</category>
+        
+      </item>
     
       <item>
         <title>Exercícios (Listas)</title>
@@ -2391,209 +2534,6 @@ c = float(input())
         <pubDate>Tue, 13 Mar 2018 13:00:00 -0300</pubDate>
         <link>http://localhost:4000/ae22cp-181/aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-exercicios.html</link>
         <guid isPermaLink="true">http://localhost:4000/ae22cp-181/aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-exercicios.html</guid>
-        
-        <category>memória</category>
-        
-        
-        <category>AE22CP-181</category>
-        
-      </item>
-    
-      <item>
-        <title>Organização de memória, stack, heap II</title>
-        <description>&lt;h1 id=&quot;conteúdo&quot;&gt;Conteúdo&lt;/h1&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#conteúdo&quot; id=&quot;markdown-toc-conteúdo&quot;&gt;Conteúdo&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#referências&quot; id=&quot;markdown-toc-referências&quot;&gt;Referências&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#revisão-prática&quot; id=&quot;markdown-toc-revisão-prática&quot;&gt;Revisão prática&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#ponteiros&quot; id=&quot;markdown-toc-ponteiros&quot;&gt;Ponteiros&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#dereferenciando-um-ponteiros&quot; id=&quot;markdown-toc-dereferenciando-um-ponteiros&quot;&gt;Dereferenciando um ponteiros&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#o-ponteiro-null&quot; id=&quot;markdown-toc-o-ponteiro-null&quot;&gt;O ponteiro NULL&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#curiosidade-o-que-é-stack-overflow&quot; id=&quot;markdown-toc-curiosidade-o-que-é-stack-overflow&quot;&gt;Curiosidade: o que é &lt;em&gt;stack overflow&lt;/em&gt;?&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#plano-de-aulas&quot; id=&quot;markdown-toc-plano-de-aulas&quot;&gt;Plano de aulas&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;referências&quot;&gt;Referências&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Material sobre linguagem C (&lt;a href=&quot;https://www.ime.usp.br/~slago/slago-C.pdf&quot;&gt;IME-USP&lt;/a&gt;)&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;em&gt;https://www.ime.usp.br/~slago/slago-C.pdf&lt;/em&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Material sobre memória e ponteiros (&lt;a href=&quot;http://cslibrary.stanford.edu/102/PointersAndMemory.pdf&quot;&gt;cap2::stanford&lt;/a&gt;)&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;em&gt;http://cslibrary.stanford.edu/102/PointersAndMemory.pdf&lt;/em&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Notas sobre estruturas de dados e programação (&lt;a href=&quot;http://cs-www.cs.yale.edu/homes/aspnes/classes/223/notes.pdf&quot;&gt;cap4:yale&lt;/a&gt;)&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;em&gt;http://cs-www.cs.yale.edu/homes/aspnes/classes/223/notes.pdf&lt;/em&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Livro (&lt;a href=&quot;http://pdf.th7.cn/down/files/1312/write_great_code_volume_1.pdf&quot;&gt;cap11.9:Write greate code&lt;/a&gt;)&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;em&gt;http://pdf.th7.cn/down/files/1312/write_great_code_volume_1.pdf&lt;/em&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://pt.stackoverflow.com/questions/3797/o-que-s%C3%A3o-e-onde-est%C3%A3o-o-stack-e-heap&quot;&gt;stackoverflow:O que são e onde estão o stack e heap?&lt;/a&gt;&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;em&gt;https://pt.stackoverflow.com/questions/3797/o-que-s%C3%A3o-e-onde-est%C3%A3o-o-stack-e-heap&lt;/em&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;LEIA LIVROS SOBRE PROGRAMAÇÃO!&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;revisão-prática&quot;&gt;Revisão prática&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Alterar o código da aula anterior para dinamicamente alocar o tamanho do vetor pessoas&lt;/p&gt;
-
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Versão atual
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lista&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NUM_PESSOAS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-    
-&lt;span class=&quot;c1&quot;&gt;// Versão nova
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_pessoas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num_pessoas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    
-&lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lista&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num_pessoas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Ex: Criar dois ponteiros para inteiro apontando para a mesma memória&lt;/p&gt;
-
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ptr1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ptr2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Ex: Criar uma função que receba uma &lt;code class=&quot;highlighter-rouge&quot;&gt;Pessoa&lt;/code&gt; e atribua valores de uma linha do arquivo&lt;/p&gt;
-
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;read_pessoa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%st%d%ld&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nome&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cpf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Acessando ponteiros de &lt;code class=&quot;highlighter-rouge&quot;&gt;struct&lt;/code&gt; com &lt;code class=&quot;highlighter-rouge&quot;&gt;-&amp;gt;&lt;/code&gt; vs &lt;code class=&quot;highlighter-rouge&quot;&gt;.&lt;/code&gt;&lt;/p&gt;
-
-    &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cpf&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8388383&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    
-&lt;span class=&quot;n&quot;&gt;Pessoa&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ptr_p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cpf&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8383838&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;ponteiros&quot;&gt;Ponteiros&lt;/h1&gt;
-
-&lt;h2 id=&quot;dereferenciando-um-ponteiros&quot;&gt;Dereferenciando um ponteiros&lt;/h2&gt;
-
-&lt;p&gt;Um ponteiro é uma referência a um valor armazenado em outra posição de memória.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Como seguir o ponteiro e acessar o valor armazenado?&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Essa operação se chama dereferenciação:&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;int* p = &amp;amp;c;&lt;/code&gt;&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;*p = 10;&lt;/code&gt; Operação válida, atribui 10 em &lt;code class=&quot;highlighter-rouge&quot;&gt;c&lt;/code&gt; (dereferenciação de p)&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;p = 10;&lt;/code&gt; faz &lt;code class=&quot;highlighter-rouge&quot;&gt;p&lt;/code&gt; armazenar o endereço de memória &lt;code class=&quot;highlighter-rouge&quot;&gt;10&lt;/code&gt; (faz p armazenar o endereço 10)&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;p[0] == c&lt;/code&gt; mesmo se &lt;code class=&quot;highlighter-rouge&quot;&gt;p&lt;/code&gt; não for um vetor (dereferenciação sintaxe de vetores)&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include&amp;lt;stdlib.h&amp;gt;
-#include &amp;lt;stdio.h&amp;gt;
-&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//    ptr = 1999;
-&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;18765&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;ptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9876&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;o-ponteiro-null&quot;&gt;O ponteiro NULL&lt;/h2&gt;
-
-&lt;p&gt;A constante NULL é um ponteiro especial que codifica a ideia de que um ponteiro está apontando para o nada.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Em C, NULL é igual a zero, portanto pode ser utilizado como Boolean false.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Como zero é um endereço não acessível, dereferenciar NULL gera um erro&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;curiosidade-o-que-é-stack-overflow&quot;&gt;Curiosidade: o que é &lt;em&gt;stack overflow&lt;/em&gt;?&lt;/h3&gt;
-
-&lt;h2 id=&quot;plano-de-aulas&quot;&gt;Plano de aulas&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Resumo do conteúdo &lt;a href=&quot;../assets/AE22CP-172-plano.pdf&quot;&gt;PDF&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;Relacionar às estruturas de dados em &lt;a href=&quot;http://www.cplusplus.com/reference/stl/&quot;&gt;C++ STL&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;Utilizar os mesmos nomes de estruturas que em STL
-        &lt;ul&gt;
-          &lt;li&gt;Facilitará o aprendizado introdutório das estruturas C++&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;APS e provas (datas)
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;https://www.hackerrank.com/ae22cp-17-2&quot;&gt;Hackerrannk: AE22CP-17/2&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Fri, 09 Mar 2018 10:40:00 -0300</pubDate>
-        <link>http://localhost:4000/ae22cp-181/aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-2.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-181/aloca%C3%A7%C3%A3o-de-mem%C3%B3ria-2.html</guid>
         
         <category>memória</category>
         

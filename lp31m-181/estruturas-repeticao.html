@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Estruturas de repetição</title>
+  <meta name="description" content="Conteúdo  Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/lp31m-181/estruturas-repeticao.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Estruturas de repetição</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Apr 12, 2018
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/ae22cp-181/exercicios-listas.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <h1 id="conteúdo">Conteúdo</h1>
+<ul id="markdown-toc">
+  <li><a href="#conteúdo" id="markdown-toc-conteúdo">Conteúdo</a></li>
+  <li><a href="#ambiente-de-programação" id="markdown-toc-ambiente-de-programação">Ambiente de programação</a></li>
+  <li><a href="#estruturas-de-repetição" id="markdown-toc-estruturas-de-repetição">Estruturas de repetição</a>    <ul>
+      <li><a href="#repetir-enquanto-while" id="markdown-toc-repetir-enquanto-while">Repetir enquanto: <code class="highlighter-rouge">while</code></a>        <ul>
+          <li><a href="#exercício-1-complete-o-código" id="markdown-toc-exercício-1-complete-o-código">Exercício 1: complete o código</a></li>
+          <li><a href="#exercício-2-números-pares" id="markdown-toc-exercício-2-números-pares">Exercício 2: números pares</a></li>
+          <li><a href="#exercício-3-números-impares" id="markdown-toc-exercício-3-números-impares">Exercício 3: números impares</a></li>
+        </ul>
+      </li>
+      <li><a href="#prática-de-programação-lista-de-compras" id="markdown-toc-prática-de-programação-lista-de-compras">Prática de programação: lista de compras</a>        <ul>
+          <li><a href="#formato-de-entrada-do-programa" id="markdown-toc-formato-de-entrada-do-programa">Formato de entrada do programa</a></li>
+          <li><a href="#o-que-fazer-primeiro" id="markdown-toc-o-que-fazer-primeiro">O que fazer primeiro?</a></li>
+          <li><a href="#introduzindo-a-repetição" id="markdown-toc-introduzindo-a-repetição">Introduzindo a repetição</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="ambiente-de-programação">Ambiente de programação</h1>
+
+<p>Para seguir os exemplos aqui descritos sugiro a utilização do ambiente de programação online <a href="https://repl.it/languages/python3">»repl.it</a>. Mais adiante no curso veremos ferramentas mais apropriadas para programação.</p>
+
+<h1 id="estruturas-de-repetição">Estruturas de repetição</h1>
+
+<p>Os programas vistos e implementados até então apresentam duas possíveis características. Nos primeiros exemplos, todo programa era uma sequência de linhas (operações) a serem executadas uma-a-uma até que o fim fosse atingido e a resposta (saída) computada. A seguir, introduzimos a ideia de <em>condicionais</em> (<code class="highlighter-rouge">if/else/elif</code>) por meio dos quais se tornou possível definirmos que certas linhas do código-fonte (blocos de código) seriam executadas apenas <strong>se</strong> determinadas <strong>condições</strong> fossem verdadeiras. A adição de <em>condicionais</em> nos permite o tratamento de erros, a identificação de características nos dados e diversas outras condições que necessariamente precisamos considerar mesmo nos menores programas (códigos-fonte), no entanto, nossos programas continuam sendo sequenciais.</p>
+
+<p>A partir de agora introduziremos uma das principais estruturas em linguagens de programação as <strong>estruturas de repetição</strong>. É fácil perceber que dentre os principais atrativos para que automatizemos certas tarefas por meio de programação é a velocidade com que computadores podem efetuar operações repetitivas. Por exemplo, suponha que tivéssemos uma lista de compras composta pelo nome dos itens e os seus respectivos preços e a quantidade, para sabermos qual o valor total da compra precisaríamos multiplicar o preço de cada item pela quantidade e somar os resultados. Nesse cenário simples, temos três possíveis dificuldades:</p>
+
+<ol>
+  <li>Ao calcular o total de cada item estamos sujeitos a erro no cálculo,</li>
+  <li>A soma total nos exige efetuar a soma do total de cada item, novamente sujeitos a erro de cálculos,</li>
+  <li>Uma lista de compras grande pode tornar o trabalho bem tedioso, mesmo com uma calculadora em mãos.</li>
+</ol>
+
+<p>Cada um desses itens é um atrativo para que essa tarefa fosse automatizada por meio de programação. As estrutura que nos permitem programar esse tipo de tarefas repetitivas são chamadas <em>loops</em>.</p>
+
+<h2 id="repetir-enquanto-while">Repetir enquanto: <code class="highlighter-rouge">while</code></h2>
+
+<p>A estrutura de repetição <code class="highlighter-rouge">while</code> nos permite repetir um bloco de código <code class="highlighter-rouge">enquanto</code> uma expressão lógica seja verdadeira. Essas expressões são do mesmo tipo daquelas que utilizamos nas estruturas condicionais <code class="highlighter-rouge">if/else/elif</code>. Estruturas <code class="highlighter-rouge">while</code> seguem sempre o seguinte formato:</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">while</span> <span class="n">expressao_logica</span><span class="p">:</span>
+    <span class="c"># bloco de código</span>
+    <span class="c">#</span>
+</code></pre>
+</div>
+
+<p>Todo código que estiver interno à estrutura <code class="highlighter-rouge">while</code> será repetido <code class="highlighter-rouge">enquanto</code> (<code class="highlighter-rouge">while</code>) a <code class="highlighter-rouge">expressao_logica</code> seja verdadeira, portanto, é natural que o bloco de código altere alguma variável que esteja presente na <code class="highlighter-rouge">expressao_logica</code>. Por exemplo, podemos utilizar uma estrutura de repetição para contar até dez.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">numero</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">numero</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">numero</span><span class="p">)</span>
+    <span class="n">numero</span> <span class="o">=</span> <span class="n">numero</span> <span class="o">+</span> <span class="mi">1</span>
+</code></pre>
+</div>
+
+<p>Neste pequeno exemplo a expressão lógica é <code class="highlighter-rouge">numero &lt;= 10</code> e será verdadeira enquanto a variável <code class="highlighter-rouge">numero</code> não ultrapasse o valor <code class="highlighter-rouge">10</code>, como cada vez que o bloco de código é repetido (iteração) a variável <code class="highlighter-rouge">numero</code> é incrementada, em algum momento <code class="highlighter-rouge">numero &lt;= 10</code> se tornará falsa e a repetição finalizará.</p>
+
+<h3 id="exercício-1-complete-o-código">Exercício 1: complete o código</h3>
+
+<p>Usando o exemplo acima como referência escreva um programa que imprima todos os números de 10 até 1. Complete o código abaixo:</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">numero</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">while</span> <span class="n">_______________</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">numero</span><span class="p">)</span>
+    <span class="n">numero</span> <span class="o">=</span> <span class="n">____________</span> 
+</code></pre>
+</div>
+
+<h3 id="exercício-2-números-pares">Exercício 2: números pares</h3>
+
+<p>Usando o exemplo acima como referência escreva um programa que imprima todos os números pares de 0 até 10. Complete o código abaixo:</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">numero</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">_______________</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">______________</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">numero</span><span class="p">)</span>
+    <span class="n">numero</span> <span class="o">=</span> <span class="n">_____________</span>
+</code></pre>
+</div>
+
+<h3 id="exercício-3-números-impares">Exercício 3: números impares</h3>
+
+<p>Escreva um programa que imprima todos os números ímpares de 0 até 10.</p>
+
+<h2 id="prática-de-programação-lista-de-compras">Prática de programação: lista de compras</h2>
+
+<p>Consideremos a construção de um programa para que, dada uma lista de compras, calcule o valor total por item e o total a ser pago.</p>
+
+<h3 id="formato-de-entrada-do-programa">Formato de entrada do programa</h3>
+
+<p>Cada item na lista de compras é recebido como entrada de três valores, exemplo:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>chocolate   3   2.99
+arroz       1   10.54
+café        2   5.87 
+</code></pre>
+</div>
+
+<p>Para que a nossa entrada de dados “lista de compras” esteja completa, no entanto, definiremos que o primeiro valor em seu cabeçalho seja a quantidade de itens na lista. O exemplo acima se torna então:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>3
+chocolate   3   2.99
+arroz       1   10.54
+café        2   5.87
+</code></pre>
+</div>
+
+<h3 id="o-que-fazer-primeiro">O que fazer primeiro?</h3>
+
+<p>O ponto principal é que gostaríamos de calcular o valor total das compras, mas para isso temos que calcular o preço total de cada item. Assumndo que os items da lista de compras serão dados como entrada complete o código abaixo para calcular o valor de um item:</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">nome_item</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="n">quantidade</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">intput</span><span class="p">())</span>
+<span class="n">preco_por_item</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+
+<span class="n">total_item</span> <span class="o">=</span> <span class="n">_________________</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Total em"</span><span class="p">,</span> <span class="n">nome_item</span><span class="p">,</span> <span class="s">"="</span><span class="p">,</span> <span class="n">total_item</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h3 id="introduzindo-a-repetição">Introduzindo a repetição</h3>
+
+<p>No exemplo da lista de compras o bloco de código que queremos repetir é bem similar ao descrito acima, ou seja o trecho de código que calcula o valor total por item. Precisamos também, adicionalmente, computar o valor total das compras.</p>
+
+<p><strong>Implemente o restante do programa para que o valor total da lista de compras seja impresso após o final da estrutura de repetição.</strong></p>
+
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>
