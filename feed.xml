@@ -6,9 +6,157 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 13 Apr 2018 19:40:25 -0300</pubDate>
-    <lastBuildDate>Fri, 13 Apr 2018 19:40:25 -0300</lastBuildDate>
+    <pubDate>Thu, 19 Apr 2018 19:34:12 -0300</pubDate>
+    <lastBuildDate>Thu, 19 Apr 2018 19:34:12 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Listas de encadeamento duplo</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#listas-de-encadeamento-duplo&quot; id=&quot;markdown-toc-listas-de-encadeamento-duplo&quot;&gt;Listas de encadeamento duplo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#detalhes-de-implementação&quot; id=&quot;markdown-toc-detalhes-de-implementação&quot;&gt;Detalhes de implementação&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#encadeamento-dos-nós&quot; id=&quot;markdown-toc-encadeamento-dos-nós&quot;&gt;Encadeamento dos nós&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#implementação-de-listas-de-encadeamento-duplo&quot; id=&quot;markdown-toc-implementação-de-listas-de-encadeamento-duplo&quot;&gt;Implementação de listas de encadeamento duplo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot; id=&quot;markdown-toc-&quot;&gt;#&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#referências&quot; id=&quot;markdown-toc-referências&quot;&gt;Referências&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;listas-de-encadeamento-duplo&quot;&gt;Listas de encadeamento duplo&lt;/h2&gt;
+
+&lt;p&gt;Uma lista de encadeamento duplo (&lt;em&gt;doubly-linked list&lt;/em&gt;) implementa a ideia de uma lista bidirecional. Isto significa que cada elemento  tem conhecimento sobre seu próximo e seu anterior na lista. Esta característica é ilustrada através de uma aresta bidirecionada ligando o elemento ao seu próximo.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a:(NULL, valor, b) &amp;lt;-&amp;gt; b:(a, valor, c) &amp;lt;-&amp;gt; c:(b, valor, NULL)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Assim como nas listas de encadeamento simples, o primeiro aspecto a ser notado é que um elemento de lista (um nó, &lt;em&gt;node&lt;/em&gt;), não é um tipo de dado simples. Isto é necessário visto que cada elemento precisa, além de armazenar um valor, armazenar um ponteiro para o próximo e um ponteiro para o anterior.&lt;/p&gt;
+
+&lt;p&gt;Na linguagem C, este tipo de estrutura é implementada por uma &lt;strong&gt;struct&lt;/strong&gt;. Utilizaremos a seguinte definição:&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#define Type int
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_node&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;             &lt;span class=&quot;c1&quot;&gt;// Valor armazenado
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// Endereço do próximo nó
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prev&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// Endereço do próximo nó
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Antes de implementarmos funções para a manipulação da &lt;em&gt;list&lt;/em&gt; é importante compreendermos na prática o que os conceitos até então descritos realmente significam. Com esse fim, algums exemplos serão demonstrados a seguir.&lt;/p&gt;
+
+&lt;h2 id=&quot;detalhes-de-implementação&quot;&gt;Detalhes de implementação&lt;/h2&gt;
+
+&lt;p&gt;Como tem sido convencionado até então, vamos definir uma função que implemente a alocação de memória para &lt;code class=&quot;highlighter-rouge&quot;&gt;node&lt;/code&gt; que serão utilizados como elementos da nossa lista de encadeamento duplo &lt;em&gt;list&lt;/em&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Aloca memória para um 'node' e define o endereço do próximo como NULL
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;valor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;valor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prev&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Observe que a única diferença deste &lt;code class=&quot;highlighter-rouge&quot;&gt;node&lt;/code&gt; para aquele utilizado em listas de encadeamento simples é o campo adicional &lt;code class=&quot;highlighter-rouge&quot;&gt;prev&lt;/code&gt;, que também precisa ser inicializado.&lt;/p&gt;
+
+&lt;p&gt;Consideremos agora a criação de uma lista de encadeamento simples feita manualmente. Para isso a única coisa que precisamos é criar vários &lt;code class=&quot;highlighter-rouge&quot;&gt;node&lt;/code&gt; e definir qual apontará para qual.&lt;/p&gt;
+
+&lt;h3 id=&quot;encadeamento-dos-nós&quot;&gt;Encadeamento dos nós&lt;/h3&gt;
+
+&lt;p&gt;O &lt;em&gt;encadeamento&lt;/em&gt; no contexto de listas duplamente encadeadas implica em dizer para cada nó, qual será o seu próximo e qual será seu anterior. Para clarificar, vamos criar o encadeamento ilustrado a seguir.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a:(NULL, 0, b) &amp;lt;-&amp;gt; b:(a, 1, c) &amp;lt;-&amp;gt; c:(b, 2, NULL)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Observe, que tanto &lt;em&gt;b&lt;/em&gt; quanto &lt;em&gt;c&lt;/em&gt; são ponteiros, portanto representam o endereço de memória no Heap de uma estrutura &lt;code class=&quot;highlighter-rouge&quot;&gt;node&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Criação dos nós
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (0, NULL)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (1, NULL)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (2, NULL)
+&lt;/span&gt;    
+    &lt;span class=&quot;c1&quot;&gt;// Encadeamento
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prev&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (NULL, 0, b)
+&lt;/span&gt;    
+    &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prev&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// b:(a, 1, NULL)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// b:(a, 1, c)
+&lt;/span&gt;    
+    &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prev&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// c:(b, 2, NULL)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Este exemplo criou manualmente uma lista encadeada simples de três elementos. Como o último elemento, o nó &lt;em&gt;c&lt;/em&gt;, não possui referência a próximo (&lt;code class=&quot;highlighter-rouge&quot;&gt;c-&amp;gt;next == NULL&lt;/code&gt;) isso nos indica que ele está no final da lista (&lt;em&gt;tail&lt;/em&gt;). Pela mesma ideia, o nó &lt;em&gt;a&lt;/em&gt; está no início da lista (&lt;em&gt;head&lt;/em&gt;) pois ele não possui antecessor (&lt;code class=&quot;highlighter-rouge&quot;&gt;a-&amp;gt;prev == NULL&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;Todas as formas de inserção e remoção funcionam da mesma forma em uma lista duplamente encadeada, a única diferença é que neste caso ponteiros para o nó anterior também precisam ser atualizados.&lt;/p&gt;
+
+&lt;h1 id=&quot;implementação-de-listas-de-encadeamento-duplo&quot;&gt;Implementação de listas de encadeamento duplo&lt;/h1&gt;
+
+&lt;p&gt;Nesta implementação de lista, armazenaremos informações adicionais na estrutura &lt;code class=&quot;highlighter-rouge&quot;&gt;list&lt;/code&gt;. Esses campos adicionais tem como objetivo melhorar a eficiência das operações de inserção no final da lista. Para isso consideraremos as seguintes informações.&lt;/p&gt;
+
+&lt;p&gt;Considerando a estrutura &lt;code class=&quot;highlighter-rouge&quot;&gt;list&lt;/code&gt; definida a seguir, implemente todas as funcionalidades que foram implementadas para &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// *** list.h *** 
+&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;#define Type int
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_node&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;             &lt;span class=&quot;c1&quot;&gt;// Valor armazenado
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// Endereço do próximo nó
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prev&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// Endereço do nó anterior
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// Número de elementos na lista
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Ponteiro para o primeiro elemento
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Ponteiro para o último elemento
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Aloca memória inicial para o vetor
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Desaloca a memória de v-&amp;gt;data e do próprio v.
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;free_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Funções de remoção de elementos
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_pop_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_erase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Funções de inserção de elementos
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_push_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1&gt;#&lt;/h1&gt;
+
+&lt;h1 id=&quot;referências&quot;&gt;Referências&lt;/h1&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Linked_list&quot;&gt;wikipedia/linked_list&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://pt.wikipedia.org/wiki/Lista_ligada&quot;&gt;wikipedia/lista_ligada&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.san.uri.br/~ober/arquivos/disciplinas/estruturaII_SI/(ebook)Estruturas%20de%20Dados%20Usando%20C%20(Tenenbaum).pdf&quot;&gt;book/Tenenbaum/cap.4.2&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Tue, 17 Apr 2018 13:50:00 -0300</pubDate>
+        <link>http://localhost:4000/ae22cp-181/listas-encadeamento-duplo.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-181/listas-encadeamento-duplo.html</guid>
+        
+        <category>listas</category>
+        
+        
+        <category>AE22CP-181</category>
+        
+      </item>
     
       <item>
         <title>Exercícios (Listas)</title>
@@ -223,14 +371,22 @@
           &lt;li&gt;&lt;a href=&quot;#exercício-1-complete-o-código&quot; id=&quot;markdown-toc-exercício-1-complete-o-código&quot;&gt;Exercício 1: complete o código&lt;/a&gt;&lt;/li&gt;
           &lt;li&gt;&lt;a href=&quot;#exercício-2-números-pares&quot; id=&quot;markdown-toc-exercício-2-números-pares&quot;&gt;Exercício 2: números pares&lt;/a&gt;&lt;/li&gt;
           &lt;li&gt;&lt;a href=&quot;#exercício-3-números-impares&quot; id=&quot;markdown-toc-exercício-3-números-impares&quot;&gt;Exercício 3: números impares&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#exercício-4-soma-total-da-sequência&quot; id=&quot;markdown-toc-exercício-4-soma-total-da-sequência&quot;&gt;Exercício 4: soma total da sequência&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#exercício-5-soma-dos-pares-em-uma-sequência&quot; id=&quot;markdown-toc-exercício-5-soma-dos-pares-em-uma-sequência&quot;&gt;Exercício 5: soma dos pares em uma sequência&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#exercício-6-média-da-sequência&quot; id=&quot;markdown-toc-exercício-6-média-da-sequência&quot;&gt;Exercício 6: média da sequência&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#exercício-7-média-dos-divisíveis-por-3-na-sequência&quot; id=&quot;markdown-toc-exercício-7-média-dos-divisíveis-por-3-na-sequência&quot;&gt;Exercício 7: média dos divisíveis por 3 na sequência&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#exercício-8-senha&quot; id=&quot;markdown-toc-exercício-8-senha&quot;&gt;Exercício 8: senha&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#exercício-9-senha-com-limite-de-tentativas&quot; id=&quot;markdown-toc-exercício-9-senha-com-limite-de-tentativas&quot;&gt;Exercício 9: senha com limite de tentativas&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#prática-de-programação-lista-de-compras&quot; id=&quot;markdown-toc-prática-de-programação-lista-de-compras&quot;&gt;Prática de programação: lista de compras&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#formato-de-entrada-do-programa&quot; id=&quot;markdown-toc-formato-de-entrada-do-programa&quot;&gt;Formato de entrada do programa&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#o-que-fazer-primeiro&quot; id=&quot;markdown-toc-o-que-fazer-primeiro&quot;&gt;O que fazer primeiro?&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#introduzindo-a-repetição&quot; id=&quot;markdown-toc-introduzindo-a-repetição&quot;&gt;Introduzindo a repetição&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#prática-de-programação-lista-de-compras&quot; id=&quot;markdown-toc-prática-de-programação-lista-de-compras&quot;&gt;Prática de programação: lista de compras&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#formato-de-entrada-do-programa&quot; id=&quot;markdown-toc-formato-de-entrada-do-programa&quot;&gt;Formato de entrada do programa&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#o-que-fazer-primeiro&quot; id=&quot;markdown-toc-o-que-fazer-primeiro&quot;&gt;O que fazer primeiro?&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#introduzindo-a-repetição-ler-todos-os-itens-da-lista&quot; id=&quot;markdown-toc-introduzindo-a-repetição-ler-todos-os-itens-da-lista&quot;&gt;Introduzindo a repetição: ler todos os itens da lista&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exemplo-de-entrada-1-qual-o-valor-total-das-compras&quot; id=&quot;markdown-toc-exemplo-de-entrada-1-qual-o-valor-total-das-compras&quot;&gt;Exemplo de entrada 1: Qual o valor total das compras?&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exemplo-de-entrada-2-qual-o-valor-total-das-compras&quot; id=&quot;markdown-toc-exemplo-de-entrada-2-qual-o-valor-total-das-compras&quot;&gt;Exemplo de entrada 2: Qual o valor total das compras?&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -301,7 +457,61 @@
 
 &lt;p&gt;Escreva um programa que imprima todos os números ímpares de 0 até 10.&lt;/p&gt;
 
-&lt;h2 id=&quot;prática-de-programação-lista-de-compras&quot;&gt;Prática de programação: lista de compras&lt;/h2&gt;
+&lt;h3 id=&quot;exercício-4-soma-total-da-sequência&quot;&gt;Exercício 4: soma total da sequência&lt;/h3&gt;
+
+&lt;p&gt;Escreva um programa que compute a soma de todos os números entre 0 e 100&lt;/p&gt;
+
+&lt;h3 id=&quot;exercício-5-soma-dos-pares-em-uma-sequência&quot;&gt;Exercício 5: soma dos pares em uma sequência&lt;/h3&gt;
+
+&lt;p&gt;Escreva um programa que compute a soma de todos os números pares entre 0 e 100&lt;/p&gt;
+
+&lt;h3 id=&quot;exercício-6-média-da-sequência&quot;&gt;Exercício 6: média da sequência&lt;/h3&gt;
+
+&lt;p&gt;Escreva um programa que compute a média de todos os números entre 965 e 5888&lt;/p&gt;
+
+&lt;h3 id=&quot;exercício-7-média-dos-divisíveis-por-3-na-sequência&quot;&gt;Exercício 7: média dos divisíveis por 3 na sequência&lt;/h3&gt;
+
+&lt;p&gt;Escreva um programa que compute a média de todos os números divisíveis por 3 entre 5678 e 15098&lt;/p&gt;
+
+&lt;h3 id=&quot;exercício-8-senha&quot;&gt;Exercício 8: senha&lt;/h3&gt;
+
+&lt;p&gt;Escreva um programa em Python que receba como entrada uma senha na forma de string. Seu programa deverá verificar se essa senha está correta e escolher uma dentre duas opções:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Imprimir: “Acesso garantido.”&lt;/li&gt;
+  &lt;li&gt;Imprimir “Senha incorreta, tente novamente.”.&lt;/li&gt;
+  &lt;li&gt;Assuma que a senha correta seja “LP31M”.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Em caso de senha incorreta, um novo par de e-mail e senha devem ser lidos novamente, até que valores corretos sejam digitados.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Defina a senha e e-mail correto abaixo, substituindo os valores atuais&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;email_correto&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;jean@utfpr.br&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;senha_correta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;LP31M&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# Complete com seu código-fonte&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;exercício-9-senha-com-limite-de-tentativas&quot;&gt;Exercício 9: senha com limite de tentativas&lt;/h3&gt;
+
+&lt;p&gt;Escreva um programa em Python que receba como entrada uma senha na forma de string. Seu programa deverá verificar se essa senha está correta e escolher uma dentre duas opções:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Imprimir: “Acesso garantido.”&lt;/li&gt;
+  &lt;li&gt;Imprimir “Senha incorreta, tente novamente.”.&lt;/li&gt;
+  &lt;li&gt;Assuma que a senha correta seja “LP31M”.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Em caso de senha incorreta, um novo par de e-mail e senha devem ser lidos novamente, até que valores corretos sejam digitados. No entanto, se o número de tentativas exceder 3, o programa deverá terminar.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Defina a senha e e-mail correto abaixo, substituindo os valores atuais&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;email_correto&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;jean@utfpr.br&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;senha_correta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;LP31M&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# Complete com seu código-fonte&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;prática-de-programação-lista-de-compras&quot;&gt;Prática de programação: lista de compras&lt;/h1&gt;
 
 &lt;p&gt;Consideremos a construção de um programa para que, dada uma lista de compras, calcule o valor total por item e o total a ser pago.&lt;/p&gt;
 
@@ -328,20 +538,100 @@ café        2   5.87
 
 &lt;p&gt;O ponto principal é que gostaríamos de calcular o valor total das compras, mas para isso temos que calcular o preço total de cada item. Assumndo que os items da lista de compras serão dados como entrada complete o código abaixo para calcular o valor de um item:&lt;/p&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;nome_item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Este trecho de código lê um item da lista de compras e calcula seu valor total.&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;nome_item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;quantidade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;intput&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;preco_por_item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
 
 &lt;span class=&quot;n&quot;&gt;total_item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_________________&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Total em&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nome_item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;=&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;total_item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Total em&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nome_item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;= R$&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;total_item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h3 id=&quot;introduzindo-a-repetição&quot;&gt;Introduzindo a repetição&lt;/h3&gt;
+&lt;h3 id=&quot;introduzindo-a-repetição-ler-todos-os-itens-da-lista&quot;&gt;Introduzindo a repetição: ler todos os itens da lista&lt;/h3&gt;
 
-&lt;p&gt;No exemplo da lista de compras o bloco de código que queremos repetir é bem similar ao descrito acima, ou seja o trecho de código que calcula o valor total por item. Precisamos também, adicionalmente, computar o valor total das compras.&lt;/p&gt;
+&lt;p&gt;O trecho de código acima serve para ler um item de lista de compras e calcular seu total. O que queremos fazer agora é que esse trecho de código seja repetido para todos os itens da lista de compras.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Implemente o restante do programa para que o valor total da lista de compras seja impresso após o final da estrutura de repetição.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Quantas os itens a lista de compras contém?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;O primeiro valor da lista de compras indica a quantidade de items na lista.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Quantidade de itens na lista de compras&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;num_itens&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;Implemente o restante do programa para que o valor total por item e o valor total da lista de compras sejam computados e impressos.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;exemplo-de-entrada-1-qual-o-valor-total-das-compras&quot;&gt;Exemplo de entrada 1: Qual o valor total das compras?&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;5
+leite
+3  
+2.99
+arroz
+1
+10.54
+café
+2   
+5.87
+sal
+1
+0.98
+Sabão
+5
+2.99
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;exemplo-de-entrada-2-qual-o-valor-total-das-compras&quot;&gt;Exemplo de entrada 2: Qual o valor total das compras?&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;15
+leite
+3  
+2.99
+arroz
+1
+10.54
+café
+2   
+5.87
+sal
+1
+0.98
+Sabão
+5
+2.99
+leite
+3  
+2.99
+arroz
+1
+10.54
+café
+2   
+5.87
+sal
+1
+0.98
+Sabão
+5
+2.99
+leite
+3  
+2.99
+arroz
+1
+10.54
+café
+2   
+5.87
+sal
+1
+0.98
+Sabão
+5
+2.99
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 </description>
         <pubDate>Thu, 12 Apr 2018 17:00:00 -0300</pubDate>
@@ -2064,260 +2354,6 @@ pop_back
         
         
         <category>AE22CP-181</category>
-        
-      </item>
-    
-      <item>
-        <title>Expressões aritméticas</title>
-        <description>&lt;h1 id=&quot;conteúdo&quot;&gt;Conteúdo&lt;/h1&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#conteúdo&quot; id=&quot;markdown-toc-conteúdo&quot;&gt;Conteúdo&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#ambiente-de-programação&quot; id=&quot;markdown-toc-ambiente-de-programação&quot;&gt;Ambiente de programação&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#operadores-aritméticos&quot; id=&quot;markdown-toc-operadores-aritméticos&quot;&gt;Operadores aritméticos&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#tipos-de-dados-básicos&quot; id=&quot;markdown-toc-tipos-de-dados-básicos&quot;&gt;Tipos de dados básicos&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#exercícios-de-revisão&quot; id=&quot;markdown-toc-exercícios-de-revisão&quot;&gt;Exercícios de revisão&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#precedência-de-operações&quot; id=&quot;markdown-toc-precedência-de-operações&quot;&gt;Precedência de operações&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#exercícios-de-implementação&quot; id=&quot;markdown-toc-exercícios-de-implementação&quot;&gt;Exercícios de Implementação&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;ambiente-de-programação&quot;&gt;Ambiente de programação&lt;/h1&gt;
-
-&lt;p&gt;Para seguir os exemplos aqui descritos sugiro a utilização do ambiente de programação online &lt;a href=&quot;https://repl.it/languages/python3&quot;&gt;»repl.it&lt;/a&gt;. Mais adiante no curso veremos ferramentas mais apropriadas para programação.&lt;/p&gt;
-
-&lt;h1 id=&quot;operadores-aritméticos&quot;&gt;Operadores aritméticos&lt;/h1&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Operador&lt;/th&gt;
-      &lt;th&gt;Operação&lt;/th&gt;
-      &lt;th&gt;Exemplo&lt;/th&gt;
-      &lt;th&gt;Resultado&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;**&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;exponenciação&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;2**3&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;8&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;/&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;divisão&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;22/8&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;2.75&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;*&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;multiplicação&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;3*5&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;15&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;subtração&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;5-2&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;3&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;+&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;adição&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;2+2&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;4&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;%&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;resto da divisão&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;10%2&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h1 id=&quot;tipos-de-dados-básicos&quot;&gt;Tipos de dados básicos&lt;/h1&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Tipo de dados&lt;/th&gt;
-      &lt;th&gt;Exemplo&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Inteiros&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-2,-1,0,1,2,3,4&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Ponto-flutuante&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-1.25, -1.0, -0.5, 1.0, 1.25&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Strings&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;'a', 'jean', 'maria', 'arroz', ''&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h1 id=&quot;exercícios-de-revisão&quot;&gt;Exercícios de revisão&lt;/h1&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;O que será mostrado ao digitarmos:&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;a)&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nome&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;b)&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nome&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;c)&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nome &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;d)&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;nome&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Jean&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nome&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;e)&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;f)&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;O que é uma variável?&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;O que são tipos de dados? Dê exemplos.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;O que é uma string?&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Dadas as opções abaixo, qual delas é uma string? O que são as outras opções?
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;a) nome
-b) &quot;nome&quot;
-c) &quot;Maria não trabalha aos sábados.&quot;
-d) 14
-e) &quot;145&quot;
-f) 143.2
-g) &quot;150.2&quot;
-h) inteiro121
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Descubra a funcionalidade da função &lt;code class=&quot;highlighter-rouge&quot;&gt;len(&quot;qualquer string&quot;)&lt;/code&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&quot;precedência-de-operações&quot;&gt;Precedência de operações&lt;/h1&gt;
-
-&lt;p&gt;Ao descrevermos expressões aritméticas complexas, existem convenções que nos permitem identificar quais partes devem ser solucionadas em primeiro lugar. Por exemplo, na equação:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{10 \times 5 + 3}{2}&lt;/script&gt;
-
-&lt;p&gt;A convenção é que multiplicações sejam efetuadas antes da soma, portanto, o primeiro passo para obtermos o resultado final é substituir o termo $10 \times 5$ por seu resultado,&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{50 + 3}{2}&lt;/script&gt;
-
-&lt;p&gt;Nesta versão da equação, a soma precisa ser efetuada antes da divisão, portanto, novamente a substituímos pelo seu resultado&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{53}{2}&lt;/script&gt;
-
-&lt;p&gt;Finalmente, existe apenas uma operação a ser efetuada, a divisão, e seu resultado nos dará a resposta final.&lt;/p&gt;
-
-&lt;p&gt;O exemplo acima ilustra uma situação bastante comum em programação, na qual utilizamos equações para nos referir a algum valor de interesse. No entanto, as convenções que para nós são evidentes (ex: efetuar primeiramente a multiplicação) não são tão óbvias quando a representamos em uma linguagem de programação, vejamos o exemplo anterior descrito por meio dos operadores da linguagem Python:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(10 * 5 + 3)/2&lt;/script&gt;
-
-&lt;p&gt;Observem que se não houvéssemos inserido os parênteses a equação não seria equivalente à anterior, ou seja&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(10 * 5 + 3)/2 \neq 10 * 5 + 3/2&lt;/script&gt;
-
-&lt;p&gt;&lt;strong&gt;Faça o teste e compare os resultados.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;A versão sem parênteses dessa expressão seria calculada como:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;10 * 5&lt;/code&gt; resulta em &lt;code class=&quot;highlighter-rouge&quot;&gt;50&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;3/2&lt;/code&gt; resulta em &lt;code class=&quot;highlighter-rouge&quot;&gt;1.5&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;50 + 1.5&lt;/code&gt; resulta em &lt;code class=&quot;highlighter-rouge&quot;&gt;51.5&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;A ordem na qual essas operação são efetuadas são chamadas ordem de precedência, são elas que definem o resultado da expressão. Para que essa ordem seja alterada, precisamos utilizar parenteses, definindo assim aquilo que deve ser computado em conjunto.&lt;/p&gt;
-
-&lt;h1 id=&quot;exercícios-de-implementação&quot;&gt;Exercícios de Implementação&lt;/h1&gt;
-
-&lt;p&gt;O trecho de código abaixo ao ser executado irá receber três números $a$ e $b$ como entrada digitada no teclado&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-python3&quot;&gt;a = float(input())
-b = float(input())
-c = float(input())
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Continue a implementação para efetuar as seguintes operações:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Calcule e imprima a área do retângulo de lados $a$ e $b$&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Calcule e imprima o perímetro do retângulo de lados $a$ e $b$&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Calcule e imprima a hipotenusa do triângulo retângulo cujos catetos oposto e adjacente tem tamanhos $a$ e $b$&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Calcule e imprima a área do círculo de raio $a$.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Calcule e imprima o resultado da equação $\sqrt{a^2 + b}$. Utilize a equivalência: $\sqrt[d]{x^e} = x^\frac{e}{d}$.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Calcule e imprima o resultado da equação $\sqrt[3]{a^2 + b}$&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Calcule a média $\frac{a+b}{2}$&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Calcule a média ponderada $\frac{0.3a + 0.7b}{2}$&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Implemente o cálculo da fórmula de Bháskara para encontrar as raízes reais da equação $a x^2 + b x + c = 0$. Ou seja, $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Assuma que $a$ e $b$ sejam, respectivamente, sua nota nas Prova1 e Prova2, enquanto $c$ seja sua nota na APS. Calcule e imprima sua nota final: $NF = 0.45 \times a + 0.45 \times b + 0.1 \times c$&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-</description>
-        <pubDate>Thu, 15 Mar 2018 17:00:00 -0300</pubDate>
-        <link>http://localhost:4000/lp31m-181/expressoes-aritmeticas.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lp31m-181/expressoes-aritmeticas.html</guid>
-        
-        <category>aritmética</category>
-        
-        
-        <category>LP31M-181</category>
         
       </item>
     
