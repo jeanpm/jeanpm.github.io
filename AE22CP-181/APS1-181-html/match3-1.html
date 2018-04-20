@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+ <TITLE>_1454536-vector.c</TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <script type="text/javascript">
+  <!--
+   function ZweiFrames(URL1,F1,URL2,F2)
+   {
+    parent.frames[F1].location.href=URL1;
+    parent.frames[F2].location.href=URL2;
+   }
+  //-->
+  </script>
+</HEAD>
+<BODY BGCOLOR="#ffffff" style="margin-left:25">
+<HR>
+<H3><CENTER>_1454536-vector.c</CENTER></H3><HR>
+<PRE>
+//Henrique Boniatti
+//Essa que eu refiz
+
+
+
+
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;time.h&gt;
+
+
+typedef int Type;
+
+typedef struct
+{
+
+	int *data;
+	int size;
+	int capacity;
+
+} vector;
+
+void insert(vector *v, Type value, int i);
+Type apagar(vector *v, int i);
+
+vector *new_vector(int intial_capacity)
+{
+	vector *v = malloc(sizeof(vector));
+	v-&gt;data = malloc(sizeof(int) * intial_capacity);
+	v-&gt;size = 0;
+	v-&gt;capacity = intial_capacity;
+
+	return v;
+}
+
+void free_vector(vector *v)
+{
+	free(v-&gt;data);
+	free(v);
+}
+
+
+Type vector_pop_back(vector *v)
+{
+	v-&gt;size--;
+	return 1;
+}
+
+Type vector_pop_front(vector *v)
+{
+	apagar(v, 0);
+	return 1;
+}
+
+Type apagar(vector *v, int i)
+{
+	int k;
+	for (k = i + 1; k &lt; v-&gt;size; k++)
+		v-&gt;data[k - 1] = v-&gt;data[k];
+<A NAME="0"></A>
+	v-&gt;size--;
+	return 1;
+<FONT color="#0000ff"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match3-0.html#0',2,'match3-top.html#0',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>}
+
+
+int *vector_at(vector *v, int i)
+{
+	return &amp;(v-&gt;data[i]);
+}
+
+
+int vector_get(vector *v, int i)
+{
+	return v-&gt;data[i];
+}
+
+
+void vector_set(vector *v, Type value, int i)</B></FONT>
+{
+	if (i &lt; v-&gt;size)
+		v-&gt;data[i] = value;
+}
+
+void resize(vector *v)
+{
+	if (v-&gt;capacity == 0)
+		v-&gt;capacity = 4;
+
+	else
+		v-&gt;capacity *= 2;
+
+	v-&gt;data = realloc(v-&gt;data, sizeof(Type) * v-&gt;capacity);
+}
+
+void vector_push_back(vector *v, Type value)
+{
+	insert(v, value, v-&gt;size);
+}
+
+void vector_push_front(vector *v, Type value)
+{
+	insert(v, value, 0);
+}
+
+void insert(vector *v, Type value, int i)
+{
+	if (i &gt;= v-&gt;capacity || v-&gt;size + 1 &gt; v-&gt;capacity)
+		resize(v);
+
+	int k;
+	for (k = v-&gt;size; k &gt; i; k--)
+		v-&gt;data[k] = v-&gt;data[k - 1];
+
+	v-&gt;data[i] = value;
+	v-&gt;size++;
+}
+
+
+void print(vector *v)
+{
+	int i;
+
+	printf(&quot;[%d/%d]&quot;, v-&gt;size, v-&gt;capacity);
+	for (i = 0; i &lt; v-&gt;size; i++)
+		printf(&quot; %d&quot;, v-&gt;data[i]);
+	printf(&quot;\n&quot;);
+}
+
+int main(int argc, char *argv[])
+{
+	char funcao[20];
+	int cap_inicial, operacoes, i, valor, intial_capacity = 5;
+
+	scanf(&quot;%d&quot;, &amp;intial_capacity);
+	vector *v = intial_capacity != 0 ? new_vector(intial_capacity) : new_vector(4);
+
+	scanf(&quot;%d&quot;, &amp;operacoes);
+
+
+
+	for (i = 0; i &lt; operacoes; i++)
+	{
+		scanf(&quot;%s&quot;, funcao);
+
+		if (strcmp(funcao, &quot;push_back&quot;) == 0)
+		{
+			scanf(&quot;%d&quot;, &amp;cap_inicial);
+<A NAME="1"></A>			vector_push_back(v, cap_inicial);
+		}
+
+<FONT color="#f63526"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match3-0.html#1',2,'match3-top.html#1',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>		if (strcmp(funcao, &quot;push_front&quot;) == 0)
+		{
+			scanf(&quot;%d&quot;, &amp;cap_inicial);
+			vector_push_front(v, cap_inicial);
+		}
+
+		else if (strcmp(funcao, &quot;insert&quot;) == 0)
+		{
+			scanf(&quot;%d %d&quot;, &amp;cap_inicial, &amp;valor);
+			insert(v, cap_inicial, valor);
+		}
+
+		else if (strcmp(funcao, &quot;set&quot;) == 0)
+		{
+			scanf(&quot;%d %d&quot;, &amp;valor, &amp;cap_inicial);
+			vector_set(v, cap_inicial, valor);
+		}
+
+		else if (strcmp(funcao, &quot;erase&quot;) == 0)
+		{
+			scanf(&quot;%d&quot;, &amp;cap_inicial);
+			apagar(v, cap_inicial);
+		}
+
+		else if (strcmp(funcao, &quot;pop_back&quot;) == 0)
+		{
+			vector_pop_back(v);
+		}
+
+		else if (strcmp(funcao, &quot;pop_front&quot;) == 0)
+		{
+			vector_pop_front(v);
+		}
+
+		print(v);
+	}</B></FONT>
+
+	free_vector(v);
+
+	return 0;
+}
+</PRE>
+</BODY>
+</HTML>

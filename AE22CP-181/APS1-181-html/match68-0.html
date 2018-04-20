@@ -1,0 +1,253 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+ <TITLE>_1978870_vector.c</TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <script type="text/javascript">
+  <!--
+   function ZweiFrames(URL1,F1,URL2,F2)
+   {
+    parent.frames[F1].location.href=URL1;
+    parent.frames[F2].location.href=URL2;
+   }
+  //-->
+  </script>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<HR>
+<H3><CENTER>_1978870_vector.c</CENTER></H3><HR>
+<PRE>
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+typedef int Type;
+
+typedef struct{
+
+  int* data;
+  int size;
+  int capacity;
+
+} vector;
+
+vector* new_vector(int capacidade)
+{
+    vector* v = malloc(sizeof(vector));
+    v-&gt;capacity=capacidade;
+    v-&gt;size = 0;
+    v-&gt;data = malloc(sizeof(int) * capacidade);
+    // calloc(sizeof(int), capacidade);
+    return v;
+}
+
+// Redimensiona a capacidade do vetor
+void vector_resize(vector* v)
+{
+    if(v-&gt;capacity==0)
+    {
+        v-&gt;capacity=2;        
+    }
+    
+    v-&gt;data=realloc(v-&gt;data,sizeof(int)*(v-&gt;capacity*2));
+    v-&gt;capacity=v-&gt;capacity*2;
+}
+
+// Desaloca a memória
+void free_vector(vector* v)
+{
+    free(v);
+    v=NULL;
+}
+
+// Remove o elemento do fim do vetor, decrementando size.
+Type vector_pop_back(vector* v)
+{
+    int value;
+
+    value=v-&gt;data[v-&gt;size-1];
+
+    v-&gt;data[v-&gt;size-1]=0;
+    v-&gt;size--;
+
+    return value;
+}
+// Remove o elemento na posição i, e move os posteriores para trás
+Type vector_erase(vector* v, int i)
+{
+    int j,value;
+
+    value=v-&gt;data[i];
+
+    for(j=i+1;j&lt;v-&gt;size;j++)
+    {
+        v-&gt;data[j-1]=v-&gt;data[j];
+    }
+
+    v-&gt;size--;
+
+    return value;
+
+}
+
+// Remove o elemento na posição zero do vetor e move os posteriores para trás
+Type vector_pop_front(vector* v)
+{
+    int i,value;
+    value=v-&gt;data[0];
+
+    for(i=0;i&lt;v-&gt;size;i++)
+    {
+      v-&gt;data[i]=v-&gt;data[i+1];
+    }
+
+    v-&gt;size--;
+
+    return value;
+}
+
+// posso implementar insert dentro dos pushs, mas deixei assim
+void vector_push_back(vector* v, Type value)
+{
+    if (v-&gt;capacity==v-&gt;size)
+    {
+      vector_resize(v);
+    }
+    v-&gt;data[v-&gt;size]=value;
+    v-&gt;size++;
+}
+
+void vector_push_front(vector* v, Type value)
+{
+
+    int i;
+    
+    if (v-&gt;capacity==v-&gt;size)
+    {
+      vector_resize(v);
+    }
+
+    for(i=v-&gt;size-1;i&gt;=0;i--)
+    {        
+        v-&gt;data[i+1]=v-&gt;data[i];
+    }
+
+    v-&gt;data[0]=value;
+    v-&gt;size++;
+
+}
+void vector_insert(vector* v, Type value, int i)
+{
+    int j;
+    
+    if (v-&gt;capacity==v-&gt;size)
+    {
+          vector_resize(v);
+    }
+
+    for(j=v-&gt;size-1;j&gt;=i;j--)
+    {        
+        v-&gt;data[j+1]=v-&gt;data[j];
+    }
+
+    v-&gt;data[i]=value;
+    v-&gt;size++;
+
+}
+
+// Altera o valor na posição i
+void vector_set(vector* v, int i, Type value)
+{
+    v-&gt;data[i]=value;
+}
+
+// Mostra o vetor
+void vector_print(vector* v)
+{
+    int i;
+
+    printf(&quot;[%d/%d] &quot;,v-&gt;size,v-&gt;capacity);
+
+    for(i=0;i&lt;v-&gt;size;i++)
+    {
+      printf(&quot;%d &quot;,v-&gt;data[i]);
+    }
+
+    printf(&quot;\n&quot;);
+
+}
+
+int main()
+{
+    int cap,i,a,b,c;
+    char op[10];
+    scanf(&quot;%d&quot;,&amp;cap);        
+    vector* v=new_vector(cap);
+    scanf(&quot;%d&quot;,&amp;c);
+   
+    i=0;
+    while(i&lt;c)
+    {
+       scanf(&quot;%s&quot;,op);
+
+        if(strcmp(op,&quot;insert&quot;)==0)
+        {
+            scanf(&quot;%d %d&quot;,&amp;a,&amp;b);
+            if (b&gt;=0 &amp;&amp; b&lt;=v-&gt;size)
+<A NAME="0"></A>            {
+                vector_insert(v,a,b);
+            }
+<FONT color="#0000ff"><A HREF="javascript:ZweiFrames('match68-1.html#0',3,'match68-top.html#0',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>        }
+        else if(strcmp(op,&quot;push_back&quot;)==0)
+        {
+            scanf(&quot;%d&quot;,&amp;a);
+            vector_push_back(v,a);
+        }
+        else if(strcmp(op,&quot;push_front&quot;)==0)
+        {
+            scanf(&quot;%d&quot;,&amp;a);
+            vector_push_front(v,a);
+        }
+        else if(strcmp(op,&quot;erase&quot;)==0)
+        {</B></FONT>
+            scanf(&quot;%d&quot;,&amp;b);
+            if (b&gt;=0 &amp;&amp; b&lt;=v-&gt;size)
+<A NAME="1"></A>            {
+                vector_erase(v,b);
+            }
+<FONT color="#f63526"><A HREF="javascript:ZweiFrames('match68-1.html#1',3,'match68-top.html#1',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>        }
+        else if(strcmp(op,&quot;pop_back&quot;)==0)
+        {
+            vector_pop_back(v);
+        }
+        else if(strcmp(op,&quot;pop_front&quot;)==0)
+        {
+            vector_pop_front(v);
+        }
+        else if(strcmp(op,&quot;set&quot;)==0)
+        {</B></FONT>
+            scanf(&quot;%d %d&quot;,&amp;b,&amp;a);
+            if (b&gt;=0 &amp;&amp; b&lt;=v-&gt;size)
+            {
+                vector_set(v,b,a);
+            }
+        }
+        else
+        {
+            i--;
+        }
+
+        i++;
+
+        vector_print(v);
+    }
+
+    free_vector(v);
+
+    return 0;
+
+}
+
+</PRE>
+</BODY>
+</HTML>

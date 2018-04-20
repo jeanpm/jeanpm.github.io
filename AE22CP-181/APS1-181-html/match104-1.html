@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+ <TITLE>_1377108_vector.c</TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <script type="text/javascript">
+  <!--
+   function ZweiFrames(URL1,F1,URL2,F2)
+   {
+    parent.frames[F1].location.href=URL1;
+    parent.frames[F2].location.href=URL2;
+   }
+  //-->
+  </script>
+</HEAD>
+<BODY BGCOLOR="#ffffff" style="margin-left:25">
+<HR>
+<H3><CENTER>_1377108_vector.c</CENTER></H3><HR>
+<PRE>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;math.h&gt;
+#include &lt;stdlib.h&gt;
+
+<A NAME="0"></A>#include &lt;assert.h&gt;
+
+
+<FONT color="#0000ff"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match104-0.html#0',2,'match104-top.html#0',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>typedef int Type;
+
+typedef struct {
+    Type* data;
+    int  size;
+    int  capacity;
+} vector;
+
+
+vector* new_vector(int initial_capacity)
+{
+    vector* v = malloc(sizeof(vector));
+    v-&gt;size = 0;</B></FONT>
+    v-&gt;capacity = initial_capacity;
+    if(initial_capacity==0)
+    {
+        v-&gt;capacity = 4;
+    }
+    v-&gt;data = malloc(sizeof(int)*v-&gt;capacity);
+    return v;
+}
+
+
+void vector_resize(vector* v)
+{
+    v-&gt;capacity = v-&gt;capacity*2;
+    v-&gt;data = realloc(v-&gt;data,sizeof(int)*v-&gt;capacity);
+}
+
+
+void free_vector(vector* v)
+{
+    free(v);
+}
+
+
+void vector_push_back(vector* v, Type value)
+{
+    if(v-&gt;size == v-&gt;capacity)
+    {
+        vector_resize(v);
+    }
+    v-&gt;data[v-&gt;size] = value;
+    v-&gt;size++;
+}
+
+
+void vector_push_front(vector* v, Type value)
+{
+    if(v-&gt;size == v-&gt;capacity)
+    {
+        vector_resize(v);
+    }
+    int i=v-&gt;size;
+    for(i; i&gt;0; i--)
+    {
+        v-&gt;data[i] = v-&gt;data[i-1];
+    }
+    v-&gt;data[0] = value;
+    v-&gt;size++;
+}
+
+
+void vector_insert(vector* v, Type value, int i)
+{
+    if(v-&gt;size == v-&gt;capacity)
+    {
+        vector_resize(v);
+    }
+    int j=v-&gt;size;
+    for(j; j&gt;i; j--)
+    {
+        v-&gt;data[j] = v-&gt;data[j-1];
+    }
+    v-&gt;data[i] = value;
+    v-&gt;size++;
+}
+
+
+Type vector_pop_back(vector* v)
+{
+    assert(v-&gt;size&gt;0);
+    v-&gt;size--;
+    return v-&gt;data[v-&gt;size];
+}
+
+
+Type vector_pop_front(vector* v)
+{
+    assert(v-&gt;size&gt;0);
+    Type ret = v-&gt;data[0];
+    int i =0 ;
+    int j = v-&gt;size;
+    for(i; i&lt;j; i++)
+    {
+        v-&gt;data[i] = v-&gt;data[i+1];
+    }
+    v-&gt;size--;
+    return ret;
+}
+
+
+Type vector_erase(vector* v, int i)
+{
+    assert(v-&gt;size&gt;0);
+    Type ret = v-&gt;data[i];
+    int j = v-&gt;size;
+    for(i; i&lt;j; i++)
+    {
+        v-&gt;data[i] = v-&gt;data[i+1];
+    }
+    v-&gt;size--;
+    return ret;
+}
+
+
+void vector_set(vector* v, int pos, Type value)
+{
+    v-&gt;data[pos] = value;
+}
+
+
+void vector_print(vector* v)
+{
+    printf(&quot;[%d/%d] &quot;, v-&gt;size, v-&gt;capacity);
+    int j = v-&gt;size;
+    for(int i = 0; i&lt;j-1; i++)
+    {
+        printf(&quot;%d &quot;,v-&gt;data[i]);
+    }
+    printf(&quot;%d\n&quot;,v-&gt;data[j-1]);
+    //[size/capacity] data[0] data[1] data[2] ... data[size] \n
+}
+
+
+int main() 
+{
+    int cap=0, ops=0, cont=0, aux1=0, aux2=0;
+    char input[15];
+    scanf(&quot;%d&quot;, &amp;cap);
+    scanf(&quot;%d&quot;, &amp;ops);
+    vector* v = new_vector(cap);
+    for(cont; cont&lt;ops; cont++)
+    {
+        fflush(stdin);
+        fflush(stdout);
+        scanf(&quot;%s %d %d&quot;, input, &amp;aux1, &amp;aux2);
+<A NAME="1"></A>        
+        //
+        
+<FONT color="#f63526"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match104-0.html#1',2,'match104-top.html#1',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>        if(strcmp(input,&quot;push_back&quot;)==0)
+        {
+            vector_push_back(v, aux1);
+        }
+        
+        else if(strcmp(input,&quot;push_front&quot;)==0)
+        {
+            vector_push_front(v, aux1);
+        }
+        
+        else if(strcmp(input,&quot;insert&quot;)==0)
+        {
+            vector_insert(v, aux1, aux2);
+        }
+        
+        else if(strcmp(input,&quot;pop_back&quot;)==0)
+        {
+            vector_pop_back(v);
+        }
+        
+        else if(strcmp(input,&quot;pop_front&quot;)==0)
+        {
+            vector_pop_front(v);
+        }
+        
+        else if(strcmp(input,&quot;erase&quot;)==0)
+        {
+            vector_erase(v, aux1);
+        }
+        
+        else if(strcmp(input,&quot;set&quot;)==0)
+        {
+            vector_set(v, aux1, aux2);
+        }</B></FONT>
+        
+        //
+        if(v-&gt;size&gt;0)
+        {
+            vector_print(v);
+        }
+        
+        else if(v-&gt;size==0)
+        {
+            printf(&quot;[%d/%d]\n&quot;, v-&gt;size, v-&gt;capacity);
+        }
+        
+        
+    }
+    
+    free_vector(v);
+    return 0;
+}
+</PRE>
+</BODY>
+</HTML>
