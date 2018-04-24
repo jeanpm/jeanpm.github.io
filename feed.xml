@@ -6,9 +6,157 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 20 Apr 2018 16:58:57 -0300</pubDate>
-    <lastBuildDate>Fri, 20 Apr 2018 16:58:57 -0300</lastBuildDate>
+    <pubDate>Tue, 24 Apr 2018 18:39:00 -0300</pubDate>
+    <lastBuildDate>Tue, 24 Apr 2018 18:39:00 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>APS2 - Labirinto com listas encadeadas</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#labirinto&quot; id=&quot;markdown-toc-labirinto&quot;&gt;Labirinto&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#etapa-1-representando-o-labirinto&quot; id=&quot;markdown-toc-etapa-1-representando-o-labirinto&quot;&gt;Etapa 1: representando o labirinto&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#etapa-2-procurando-pela-saída&quot; id=&quot;markdown-toc-etapa-2-procurando-pela-saída&quot;&gt;Etapa 2: procurando pela saída&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#etapa-3-imprimindo-o-percurso&quot; id=&quot;markdown-toc-etapa-3-imprimindo-o-percurso&quot;&gt;Etapa 3: imprimindo o percurso&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;labirinto&quot;&gt;Labirinto&lt;/h1&gt;
+
+&lt;p&gt;Descobrir o caminho de saída a partir de uma posição de um labirinto é um problema computacional que quando generalizado pode ser aplicado a diversas situações. O objetivo geral é, dada uma posição inicial, encontrar um caminho que nos leve até uma posição destino, que no caso mais tradicional seria a saída do labirinto. A figura abaixo ilustra um pequeno labirinto, em que as posições iniciais e finais estão marcadas em vermelho.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/AE22CP/labirinto11x11.png&quot; alt=&quot;labirinto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;O caminho em amarelho indica o caminho encontrado que nos levaria da posição inicial à final, enquanto o caminho em azul-claro indica um caminho percorrido mas que não levou à direção correta.&lt;/p&gt;
+
+&lt;h2 id=&quot;etapa-1-representando-o-labirinto&quot;&gt;Etapa 1: representando o labirinto&lt;/h2&gt;
+
+&lt;p&gt;Assim como a resolução de todo problema computacional, numa primeira fase precisamos decidir como representar os dados envolvidos. Até então, essa decisão consiste em definirmos como representar o labirinto na memória do computador. Para tal, precisamos definir quatro informações:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;posição inicial&lt;/li&gt;
+  &lt;li&gt;dimensões do labirinto&lt;/li&gt;
+  &lt;li&gt;posição final&lt;/li&gt;
+  &lt;li&gt;parede/caminho&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Por se tratar de uma estrutura bidimensional, uma matriz bidimensional parece apropriada para armazenarmos o labirinto. Assumiremos também que toda posição na matriz igual a &lt;strong&gt;1&lt;/strong&gt; representa uma parede, enquanto toda posição igual a &lt;strong&gt;0&lt;/strong&gt; representa um caminho. Toda o labirinto será cercado por paredes, de modo que a posição final não estará, necessariamente, nas bordas. Vejamos o exemplo abaixo.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;4 5
+7 7
+1 1 1 1 1 1 1 
+1 0 1 0 0 0 1 
+1 9 1 0 1 0 1 
+1 0 1 0 1 0 1 
+1 0 1 1 1 0 1 
+1 0 0 0 0 0 1 
+1 1 1 1 1 1 1 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Assumiremos que o primeiro par de valores indique a &lt;strong&gt;posição inicial&lt;/strong&gt;, a partir da qual a procura pela saída se iniciará. A segunda linha contém as dimensões do labirinto $7\times7$ no exemplo acima. A partir da terceira linha temos a definição do labirinto em termos de paredes (1) e caminhos (0).&lt;/p&gt;
+
+&lt;p&gt;Por fim, observe que existe uma posição na matriz com o valor &lt;strong&gt;9&lt;/strong&gt;, este valor quando encontrado em uma determinada posição, indica que tal posição é a saída do labirinto. Portanto, nosso objetivo é sair da &lt;strong&gt;posição inicial&lt;/strong&gt; (4,5 no exemplo) e chegar à &lt;strong&gt;posição final&lt;/strong&gt; (2,1 no exemplo)&lt;/p&gt;
+
+&lt;h2 id=&quot;etapa-2-procurando-pela-saída&quot;&gt;Etapa 2: procurando pela saída&lt;/h2&gt;
+
+&lt;p&gt;Ao iniciarmos em uma posição do labirinto as únicas alternativas possíveis consistem em prosseguir em uma das quatro direções:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Acima,&lt;/li&gt;
+  &lt;li&gt;Abaixo,&lt;/li&gt;
+  &lt;li&gt;Esquerda,&lt;/li&gt;
+  &lt;li&gt;Direita.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Ao escolhermos uma dessas possíveis opções, no entanto, pode ser o caso de não encontrarmos a saída. Deste modo, seria necessário retornar a alguma das demais possibilidades para a busca prosseguisse novamente. Este fato requer  que armazenemos a cada passo no labirinto todos os caminhos alternativos.&lt;/p&gt;
+
+&lt;p&gt;Vejamos através do exemplo abaixo. O &lt;strong&gt;X&lt;/strong&gt; indica a posição atual, e o bloco circundado indica os caminhos possíveis a partir dalí.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;Abaixo,Esquerda,Acima&lt;img src=&quot;../assets/AE22CP/labirinto23x23-inicio.png&quot; /&gt;&lt;/td&gt;
+&lt;td&gt;Acima&lt;img src=&quot;../assets/AE22CP/labirinto23x23-A.png&quot; /&gt;&lt;/td&gt;
+&lt;td&gt;Acima, direita&lt;img src=&quot;../assets/AE22CP/labirinto23x23-B.png&quot; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;A partir de uma posição, olhamos ao redor, e a cada caminho aberto adicionamos seu índice em uma estrutura de armazenamento. Na figura à esquerda temos então, que após olharmos ao redor, as possibilidades armazenadas seriam os indices das posições à &lt;code class=&quot;highlighter-rouge&quot;&gt;Abaixo&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Esquerda&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;Acima&lt;/code&gt;. Qual dessas opções seguiremos agora?&lt;/p&gt;
+
+&lt;p&gt;Simplesmente devemos remover da estrutura de dados alguma possibilidade de caminho continuar a avaliação por ela, ou seja, novamente olhar ao redor e armazenar os novos possíveis caminhos. Por exemplo, se nossa estrutura de armazenamento for uma pilha (&lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt;), o último caminho inserido seria o primeiro a ser removido, deste modo, &lt;code class=&quot;highlighter-rouge&quot;&gt;pop()&lt;/code&gt; nos retornaria o índice de &lt;code class=&quot;highlighter-rouge&quot;&gt;Acima&lt;/code&gt;. Se por outro lado, a estrutura de armazenamento fosse uma fila (&lt;code class=&quot;highlighter-rouge&quot;&gt;queue&lt;/code&gt;) o primeiro caminho inserido seria o primeiro removido e &lt;code class=&quot;highlighter-rouge&quot;&gt;pop()&lt;/code&gt; nos retornaria o índice de &lt;code class=&quot;highlighter-rouge&quot;&gt;Abaixo&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Esse processo se repetirá até que a saída seja encontrada, ou seja, até que a posição atual visitada contenha um &lt;strong&gt;9&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;etapa-3-imprimindo-o-percurso&quot;&gt;Etapa 3: imprimindo o percurso&lt;/h2&gt;
+
+&lt;p&gt;A cada posição visitada do labirinto, os índices x e y da matriz deverão ser impressos, separados por um espaço. A sequência de passos será então repassada ao programa de interface gráfica que refará o caminho e nos mostrará os passos de forma visual.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;
+Entrada (maze11x11.txt)
+&lt;pre&gt;
+1 7
+11 11
+1 1 1 1 1 1 1 1 1 1 1 
+1 0 1 0 0 0 1 0 0 0 1 
+1 0 1 0 1 0 1 0 1 0 1 
+1 0 0 0 1 0 1 0 1 0 1 
+1 1 1 1 1 0 1 0 1 0 1 
+1 0 0 0 1 0 0 0 1 0 1 
+1 1 1 0 1 1 1 1 1 0 1 
+1 0 0 0 1 0 9 0 0 0 1 
+1 0 1 1 1 0 1 1 1 1 1 
+1 0 0 0 0 0 0 0 0 0 1 
+1 1 1 1 1 1 1 1 1 1 1 
+&lt;/pre&gt;
+&lt;/td&gt;
+&lt;td&gt;
+Saída (sol11x11.txt)
+&lt;pre&gt;
+1 7
+1 8
+2 7
+1 9
+3 7
+2 9
+4 7
+3 9
+5 7
+4 9
+...
+7 6
+-1 -1
+&lt;/pre&gt;
+&lt;/td&gt;
+&lt;td&gt;
+&lt;img src=&quot;../assets/AE22CP/labirinto11x11.png&quot; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;A saída se torna entrada para visualização do percurso. Para isso utilizaremos um programa feito na linguagem de programação Python3, a qual precisa ser instalada de antemão&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://python.org.br/instalacao-linux/&quot;&gt;Como instalar Python no Linux?&lt;/a&gt;,&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://python.org.br/instalacao-windows/&quot;&gt;Como instalar Python no Windows?&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;O código a ser executado pode ser baixado em &lt;a href=&quot;../AE22CP-181/maze/maze.py&quot;&gt;maze.py&lt;/a&gt; (com dois arquivos de exemplo em &lt;a href=&quot;../AE22CP-181/maze/&quot;&gt;maze/&lt;/a&gt;)&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python3 maze.py matriz11x11.txt &amp;lt; sol11x11.txt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Tue, 24 Apr 2018 12:50:00 -0300</pubDate>
+        <link>http://localhost:4000/ae22cp-181/APS2-list.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-181/APS2-list.html</guid>
+        
+        <category>aps2-list</category>
+        
+        
+        <category>AE22CP-181</category>
+        
+      </item>
     
       <item>
         <title>APS1 - Similaridade dos códigos submetidos</title>
@@ -2072,116 +2220,6 @@ Se considerarmos que o início da fila será armazenado no fim da lista então u
         <guid isPermaLink="true">http://localhost:4000/ae22cp-181/pilhas-filas.html</guid>
         
         <category>pilhas-filas</category>
-        
-        
-        <category>AE22CP-181</category>
-        
-      </item>
-    
-      <item>
-        <title>APS1 - Utilizando std::vector (C++/STL)</title>
-        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#cvector&quot; id=&quot;markdown-toc-cvector&quot;&gt;C++/vector&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#inicialização-e-finalização&quot; id=&quot;markdown-toc-inicialização-e-finalização&quot;&gt;Inicialização e Finalização&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#acesso-e-manipulação&quot; id=&quot;markdown-toc-acesso-e-manipulação&quot;&gt;Acesso e manipulação&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#inserção&quot; id=&quot;markdown-toc-inserção&quot;&gt;Inserção&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#remoção&quot; id=&quot;markdown-toc-remoção&quot;&gt;Remoção&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#exercício&quot; id=&quot;markdown-toc-exercício&quot;&gt;Exercício&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;cvector&quot;&gt;C++/vector&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;../assets/cpp.jpg&quot; alt=&quot;c++&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;A estrutura de vetores dinâmicos é de grande utilidade pois abstrai do programador a necessidade de gerenciar o crescimento da região de memória necessária.&lt;/p&gt;
-
-&lt;p&gt;Um ponto negativo quanto a utilização de &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; é a maior complexidade das estruturas que precisam ser mantidas. Ou seja, um vetor simples (&lt;code class=&quot;highlighter-rouge&quot;&gt;int* v&lt;/code&gt;) de capacidade $n$ ocupará menos espaço na memória que um &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; de mesma capacidade.&lt;/p&gt;
-
-&lt;p&gt;Atualmente, no entanto, devido à grande disponibilidade de memória, essa diferença nem sempre é suficiente para que se opte pela utilização da estrutura simples. Por outro lado, os benefícios de se utilizar &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; nem sempre são necessários, e nesses casos um &lt;code class=&quot;highlighter-rouge&quot;&gt;int*&lt;/code&gt; seria preferível.&lt;/p&gt;
-
-&lt;p&gt;Aqui descreveremos brevemente como a &lt;strong&gt;APS1 - Implementando vector&lt;/strong&gt; poderia ser implementada utilizando a classe &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; de C++/STL.&lt;/p&gt;
-
-&lt;h2 id=&quot;inicialização-e-finalização&quot;&gt;Inicialização e Finalização&lt;/h2&gt;
-
-&lt;p&gt;Para testar os códigos a seguir é necessário utilizarmos o compilador de C++ (g++).&lt;/p&gt;
-
-&lt;p&gt;Para utilizarmos as funcionalidades de &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; é necessário incluirmos o arquivo de cabeçalho&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;vector&amp;gt;
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Para definirmos uma estrutura do tipo &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; capaz de armazenar inteiros, declaramos uma variável da seguinte forma:&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// um vetor dinâmico de inteiros
-&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;A memória internamente alocada por &lt;code class=&quot;highlighter-rouge&quot;&gt;v&lt;/code&gt; será desalocada automaticamente ao fim da função main, portanto, não precisamos explicitamente chamar liberar a memória.&lt;/p&gt;
-
-&lt;h2 id=&quot;acesso-e-manipulação&quot;&gt;Acesso e manipulação&lt;/h2&gt;
-
-&lt;h3 id=&quot;inserção&quot;&gt;Inserção&lt;/h3&gt;
-&lt;p&gt;A função a seguir, insere um item no final do vetor&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//vector_push_back(v, value);
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;cm&quot;&gt;/* Exemplo:
- v = 4 5 7 19 2 1
- push_back 5
- v = 4 5 7 19 2 1 5
- */&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Suponha agora que queiramos inserir um elemento no vetor em uma dada posição que não seja o fim. Chamaremos essa função:&lt;/p&gt;
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//vector_insert(v, value, i);
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;cm&quot;&gt;/* Exemplo:
- v = 4 5 7 19 2 1
- vector_insert 5 3
- v = 4 5 7 5 19 2 1
- */&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;A qual recebe um ponteiro para a posição na qual queremos inserir &lt;code class=&quot;highlighter-rouge&quot;&gt;value&lt;/code&gt;. Neste caso &lt;code class=&quot;highlighter-rouge&quot;&gt;v.begin()&lt;/code&gt; nos dá um ponteiro para o primeiro elemento de &lt;code class=&quot;highlighter-rouge&quot;&gt;v&lt;/code&gt;, portanto &lt;code class=&quot;highlighter-rouge&quot;&gt;v.begin() + i&lt;/code&gt; refere a $i$-ésima posição.&lt;/p&gt;
-
-&lt;p&gt;Diferentemente de nossa implementação de &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;, a versão de C++ não possui uma função &lt;code class=&quot;highlighter-rouge&quot;&gt;push_front&lt;/code&gt;. No entanto é óbvio que podemos utilizar a função inser para essa funcionalidade.&lt;/p&gt;
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//vector_insert(v, value, 0);
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;remoção&quot;&gt;Remoção&lt;/h3&gt;
-
-&lt;p&gt;De forma análoga às funções de inserção, temos as funções para remoção de elementos do vetor.&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//vector_pop_back(vector* v);
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//vector_erase(v, int i);
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;erase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//vector_pop_front(vector* v);
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;erase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;exercício&quot;&gt;Exercício&lt;/h1&gt;
-&lt;p&gt;Utilize &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; para solucionar a APS1 no hackerrank.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 17 Mar 2018 18:40:00 -0300</pubDate>
-        <link>http://localhost:4000/ae22cp-181/aps-vector-stl.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-181/aps-vector-stl.html</guid>
-        
-        <category>aps1-vector</category>
         
         
         <category>AE22CP-181</category>

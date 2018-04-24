@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>APS2 - Labirinto com listas encadeadas</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/ae22cp-181/APS2-list.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">APS2 - Labirinto com listas encadeadas</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Apr 24, 2018
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/ae22cp-181/aps1-resultados.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#labirinto" id="markdown-toc-labirinto">Labirinto</a>    <ul>
+      <li><a href="#etapa-1-representando-o-labirinto" id="markdown-toc-etapa-1-representando-o-labirinto">Etapa 1: representando o labirinto</a></li>
+      <li><a href="#etapa-2-procurando-pela-saída" id="markdown-toc-etapa-2-procurando-pela-saída">Etapa 2: procurando pela saída</a></li>
+      <li><a href="#etapa-3-imprimindo-o-percurso" id="markdown-toc-etapa-3-imprimindo-o-percurso">Etapa 3: imprimindo o percurso</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="labirinto">Labirinto</h1>
+
+<p>Descobrir o caminho de saída a partir de uma posição de um labirinto é um problema computacional que quando generalizado pode ser aplicado a diversas situações. O objetivo geral é, dada uma posição inicial, encontrar um caminho que nos leve até uma posição destino, que no caso mais tradicional seria a saída do labirinto. A figura abaixo ilustra um pequeno labirinto, em que as posições iniciais e finais estão marcadas em vermelho.</p>
+
+<p><img src="../assets/AE22CP/labirinto11x11.png" alt="labirinto" /></p>
+
+<p>O caminho em amarelho indica o caminho encontrado que nos levaria da posição inicial à final, enquanto o caminho em azul-claro indica um caminho percorrido mas que não levou à direção correta.</p>
+
+<h2 id="etapa-1-representando-o-labirinto">Etapa 1: representando o labirinto</h2>
+
+<p>Assim como a resolução de todo problema computacional, numa primeira fase precisamos decidir como representar os dados envolvidos. Até então, essa decisão consiste em definirmos como representar o labirinto na memória do computador. Para tal, precisamos definir quatro informações:</p>
+<ul>
+  <li>posição inicial</li>
+  <li>dimensões do labirinto</li>
+  <li>posição final</li>
+  <li>parede/caminho</li>
+</ul>
+
+<p>Por se tratar de uma estrutura bidimensional, uma matriz bidimensional parece apropriada para armazenarmos o labirinto. Assumiremos também que toda posição na matriz igual a <strong>1</strong> representa uma parede, enquanto toda posição igual a <strong>0</strong> representa um caminho. Toda o labirinto será cercado por paredes, de modo que a posição final não estará, necessariamente, nas bordas. Vejamos o exemplo abaixo.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>4 5
+7 7
+1 1 1 1 1 1 1 
+1 0 1 0 0 0 1 
+1 9 1 0 1 0 1 
+1 0 1 0 1 0 1 
+1 0 1 1 1 0 1 
+1 0 0 0 0 0 1 
+1 1 1 1 1 1 1 
+</code></pre>
+</div>
+
+<p>Assumiremos que o primeiro par de valores indique a <strong>posição inicial</strong>, a partir da qual a procura pela saída se iniciará. A segunda linha contém as dimensões do labirinto $7\times7$ no exemplo acima. A partir da terceira linha temos a definição do labirinto em termos de paredes (1) e caminhos (0).</p>
+
+<p>Por fim, observe que existe uma posição na matriz com o valor <strong>9</strong>, este valor quando encontrado em uma determinada posição, indica que tal posição é a saída do labirinto. Portanto, nosso objetivo é sair da <strong>posição inicial</strong> (4,5 no exemplo) e chegar à <strong>posição final</strong> (2,1 no exemplo)</p>
+
+<h2 id="etapa-2-procurando-pela-saída">Etapa 2: procurando pela saída</h2>
+
+<p>Ao iniciarmos em uma posição do labirinto as únicas alternativas possíveis consistem em prosseguir em uma das quatro direções:</p>
+<ul>
+  <li>Acima,</li>
+  <li>Abaixo,</li>
+  <li>Esquerda,</li>
+  <li>Direita.</li>
+</ul>
+
+<p>Ao escolhermos uma dessas possíveis opções, no entanto, pode ser o caso de não encontrarmos a saída. Deste modo, seria necessário retornar a alguma das demais possibilidades para a busca prosseguisse novamente. Este fato requer  que armazenemos a cada passo no labirinto todos os caminhos alternativos.</p>
+
+<p>Vejamos através do exemplo abaixo. O <strong>X</strong> indica a posição atual, e o bloco circundado indica os caminhos possíveis a partir dalí.</p>
+
+<table>
+<tr>
+<td>Abaixo,Esquerda,Acima<img src="../assets/AE22CP/labirinto23x23-inicio.png" /></td>
+<td>Acima<img src="../assets/AE22CP/labirinto23x23-A.png" /></td>
+<td>Acima, direita<img src="../assets/AE22CP/labirinto23x23-B.png" /></td>
+</tr>
+</table>
+
+<p>A partir de uma posição, olhamos ao redor, e a cada caminho aberto adicionamos seu índice em uma estrutura de armazenamento. Na figura à esquerda temos então, que após olharmos ao redor, as possibilidades armazenadas seriam os indices das posições à <code class="highlighter-rouge">Abaixo</code>, <code class="highlighter-rouge">Esquerda</code> e <code class="highlighter-rouge">Acima</code>. Qual dessas opções seguiremos agora?</p>
+
+<p>Simplesmente devemos remover da estrutura de dados alguma possibilidade de caminho continuar a avaliação por ela, ou seja, novamente olhar ao redor e armazenar os novos possíveis caminhos. Por exemplo, se nossa estrutura de armazenamento for uma pilha (<code class="highlighter-rouge">stack</code>), o último caminho inserido seria o primeiro a ser removido, deste modo, <code class="highlighter-rouge">pop()</code> nos retornaria o índice de <code class="highlighter-rouge">Acima</code>. Se por outro lado, a estrutura de armazenamento fosse uma fila (<code class="highlighter-rouge">queue</code>) o primeiro caminho inserido seria o primeiro removido e <code class="highlighter-rouge">pop()</code> nos retornaria o índice de <code class="highlighter-rouge">Abaixo</code>.</p>
+
+<p>Esse processo se repetirá até que a saída seja encontrada, ou seja, até que a posição atual visitada contenha um <strong>9</strong>.</p>
+
+<h2 id="etapa-3-imprimindo-o-percurso">Etapa 3: imprimindo o percurso</h2>
+
+<p>A cada posição visitada do labirinto, os índices x e y da matriz deverão ser impressos, separados por um espaço. A sequência de passos será então repassada ao programa de interface gráfica que refará o caminho e nos mostrará os passos de forma visual.</p>
+
+<table>
+<tr>
+<td>
+Entrada (maze11x11.txt)
+<pre>
+1 7
+11 11
+1 1 1 1 1 1 1 1 1 1 1 
+1 0 1 0 0 0 1 0 0 0 1 
+1 0 1 0 1 0 1 0 1 0 1 
+1 0 0 0 1 0 1 0 1 0 1 
+1 1 1 1 1 0 1 0 1 0 1 
+1 0 0 0 1 0 0 0 1 0 1 
+1 1 1 0 1 1 1 1 1 0 1 
+1 0 0 0 1 0 9 0 0 0 1 
+1 0 1 1 1 0 1 1 1 1 1 
+1 0 0 0 0 0 0 0 0 0 1 
+1 1 1 1 1 1 1 1 1 1 1 
+</pre>
+</td>
+<td>
+Saída (sol11x11.txt)
+<pre>
+1 7
+1 8
+2 7
+1 9
+3 7
+2 9
+4 7
+3 9
+5 7
+4 9
+...
+7 6
+-1 -1
+</pre>
+</td>
+<td>
+<img src="../assets/AE22CP/labirinto11x11.png" /></td>
+</tr>
+</table>
+
+<p>A saída se torna entrada para visualização do percurso. Para isso utilizaremos um programa feito na linguagem de programação Python3, a qual precisa ser instalada de antemão</p>
+
+<ul>
+  <li><a href="https://python.org.br/instalacao-linux/">Como instalar Python no Linux?</a>,</li>
+  <li><a href="https://python.org.br/instalacao-windows/">Como instalar Python no Windows?</a>.</li>
+</ul>
+
+<p>O código a ser executado pode ser baixado em <a href="../AE22CP-181/maze/maze.py">maze.py</a> (com dois arquivos de exemplo em <a href="../AE22CP-181/maze/">maze/</a>)</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>python3 maze.py matriz11x11.txt &lt; sol11x11.txt
+</code></pre>
+</div>
+
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>
