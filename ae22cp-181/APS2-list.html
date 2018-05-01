@@ -84,6 +84,7 @@
       <li><a href="#etapa-1-representando-o-labirinto" id="markdown-toc-etapa-1-representando-o-labirinto">Etapa 1: representando o labirinto</a></li>
       <li><a href="#etapa-2-procurando-pela-saída" id="markdown-toc-etapa-2-procurando-pela-saída">Etapa 2: procurando pela saída</a></li>
       <li><a href="#etapa-3-imprimindo-o-percurso" id="markdown-toc-etapa-3-imprimindo-o-percurso">Etapa 3: imprimindo o percurso</a></li>
+      <li><a href="#etapa-4-visualizando-o-percurso" id="markdown-toc-etapa-4-visualizando-o-percurso">Etapa 4: visualizando o percurso</a></li>
     </ul>
   </li>
 </ul>
@@ -199,18 +200,33 @@ Saída (sol11x11.txt)
 </tr>
 </table>
 
-<p>A saída se torna entrada para visualização do percurso. Para isso utilizaremos um programa feito na linguagem de programação Python3, a qual precisa ser instalada de antemão</p>
+<h2 id="etapa-4-visualizando-o-percurso">Etapa 4: visualizando o percurso</h2>
+<p>A saída produzida pelo seu programa se tornará entrada para visualização do percurso. Para isso utilizaremos um programa feito na linguagem de programação Python3, a qual precisa ser instalada de antemão</p>
 
 <ul>
   <li><a href="https://python.org.br/instalacao-linux/">Como instalar Python no Linux?</a>,</li>
   <li><a href="https://python.org.br/instalacao-windows/">Como instalar Python no Windows?</a>.</li>
 </ul>
 
-<p>O código a ser executado pode ser baixado em <a href="../AE22CP-181/maze/maze.zip">maze.zip</a></p>
+<p>Após seguidas as instruções descritas nos links acima, e instalados <code class="highlighter-rouge">python3</code> e o seu gerenciador de pacotes <code class="highlighter-rouge">pip</code>, é preciso instalar um pacote chamado <code class="highlighter-rouge">matplotlib</code>. Para isso digite o comando:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>python -mpip install matplotlib
+</code></pre>
+</div>
+
+<p>ou</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>pip install matplotlib
+</code></pre>
+</div>
+
+<p>Se tudo correr bem, você agora poderá executar o programa, o qual pode ser baixado em <a href="../AE22CP-181/maze/maze.zip">maze.zip</a></p>
 
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code>python3 maze.py matriz11x11.txt &lt; sol11x11.txt
 </code></pre>
 </div>
+
+<p>Existem outros exemplos de labirintos (entrada e saída) que podem ser utilizados para testes. Eles se encontram nos diretórios <code class="highlighter-rouge">input/</code> e <code class="highlighter-rouge">output/</code>, respectivamente.</p>
 
 
   </article>

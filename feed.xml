@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 26 Apr 2018 18:30:09 -0300</pubDate>
-    <lastBuildDate>Thu, 26 Apr 2018 18:30:09 -0300</lastBuildDate>
+    <pubDate>Tue, 01 May 2018 13:39:48 -0300</pubDate>
+    <lastBuildDate>Tue, 01 May 2018 13:39:48 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -18,6 +18,7 @@
       &lt;li&gt;&lt;a href=&quot;#etapa-1-representando-o-labirinto&quot; id=&quot;markdown-toc-etapa-1-representando-o-labirinto&quot;&gt;Etapa 1: representando o labirinto&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#etapa-2-procurando-pela-saída&quot; id=&quot;markdown-toc-etapa-2-procurando-pela-saída&quot;&gt;Etapa 2: procurando pela saída&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#etapa-3-imprimindo-o-percurso&quot; id=&quot;markdown-toc-etapa-3-imprimindo-o-percurso&quot;&gt;Etapa 3: imprimindo o percurso&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#etapa-4-visualizando-o-percurso&quot; id=&quot;markdown-toc-etapa-4-visualizando-o-percurso&quot;&gt;Etapa 4: visualizando o percurso&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -133,18 +134,33 @@ Saída (sol11x11.txt)
 &lt;/tr&gt;
 &lt;/table&gt;
 
-&lt;p&gt;A saída se torna entrada para visualização do percurso. Para isso utilizaremos um programa feito na linguagem de programação Python3, a qual precisa ser instalada de antemão&lt;/p&gt;
+&lt;h2 id=&quot;etapa-4-visualizando-o-percurso&quot;&gt;Etapa 4: visualizando o percurso&lt;/h2&gt;
+&lt;p&gt;A saída produzida pelo seu programa se tornará entrada para visualização do percurso. Para isso utilizaremos um programa feito na linguagem de programação Python3, a qual precisa ser instalada de antemão&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://python.org.br/instalacao-linux/&quot;&gt;Como instalar Python no Linux?&lt;/a&gt;,&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://python.org.br/instalacao-windows/&quot;&gt;Como instalar Python no Windows?&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;O código a ser executado pode ser baixado em &lt;a href=&quot;../AE22CP-181/maze/maze.zip&quot;&gt;maze.zip&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Após seguidas as instruções descritas nos links acima, e instalados &lt;code class=&quot;highlighter-rouge&quot;&gt;python3&lt;/code&gt; e o seu gerenciador de pacotes &lt;code class=&quot;highlighter-rouge&quot;&gt;pip&lt;/code&gt;, é preciso instalar um pacote chamado &lt;code class=&quot;highlighter-rouge&quot;&gt;matplotlib&lt;/code&gt;. Para isso digite o comando:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python -mpip install matplotlib
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;ou&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip install matplotlib
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Se tudo correr bem, você agora poderá executar o programa, o qual pode ser baixado em &lt;a href=&quot;../AE22CP-181/maze/maze.zip&quot;&gt;maze.zip&lt;/a&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python3 maze.py matriz11x11.txt &amp;lt; sol11x11.txt
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+
+&lt;p&gt;Existem outros exemplos de labirintos (entrada e saída) que podem ser utilizados para testes. Eles se encontram nos diretórios &lt;code class=&quot;highlighter-rouge&quot;&gt;input/&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;output/&lt;/code&gt;, respectivamente.&lt;/p&gt;
 
 </description>
         <pubDate>Tue, 24 Apr 2018 12:50:00 -0300</pubDate>
