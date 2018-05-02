@@ -85,6 +85,8 @@
       <li><a href="#etapa-2-procurando-pela-saída" id="markdown-toc-etapa-2-procurando-pela-saída">Etapa 2: procurando pela saída</a></li>
       <li><a href="#etapa-3-imprimindo-o-percurso" id="markdown-toc-etapa-3-imprimindo-o-percurso">Etapa 3: imprimindo o percurso</a></li>
       <li><a href="#etapa-4-visualizando-o-percurso" id="markdown-toc-etapa-4-visualizando-o-percurso">Etapa 4: visualizando o percurso</a></li>
+      <li><a href="#etapa-4-submissão" id="markdown-toc-etapa-4-submissão">Etapa 4: submissão</a></li>
+      <li><a href="#avaliação" id="markdown-toc-avaliação">Avaliação</a></li>
     </ul>
   </li>
 </ul>
@@ -227,6 +229,54 @@ Saída (sol11x11.txt)
 </div>
 
 <p>Existem outros exemplos de labirintos (entrada e saída) que podem ser utilizados para testes. Eles se encontram nos diretórios <code class="highlighter-rouge">input/</code> e <code class="highlighter-rouge">output/</code>, respectivamente.</p>
+
+<h2 id="etapa-4-submissão">Etapa 4: submissão</h2>
+
+<p>A implementação deverá ser submetida como quatro arquivos, todos dentro de uma pasta (diretório) de nome RA e compactada como <code class="highlighter-rouge">RA.zip</code>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Padrão de nomes</strong></th>
+      <th>Exemplo de nomeação (<code class="highlighter-rouge">23931913.zip</code>)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">list.h</code></td>
+      <td><code class="highlighter-rouge">list.h</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">RA_forward_list.c</code></td>
+      <td><code class="highlighter-rouge">23931913_forward_list.c</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">RA_list.c</code></td>
+      <td><code class="highlighter-rouge">23931913_list.c</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">RA_main.c</code></td>
+      <td><code class="highlighter-rouge">23931913_main.c</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Os arquivos <code class="highlighter-rouge">RA_forward_list.c</code> e <code class="highlighter-rouge">RA_list.c</code> são as implementações de listas de encadeamento simples e duplo, respectivamente. O código-fonte em <code class="highlighter-rouge">RA_main.c</code> implementa a solução para o Labirinto, porém o <strong>código-fonte da lista não deve estar nesse arquivo!</strong> deverá ser utilizado por meio da inclusão de <code class="highlighter-rouge">list.h</code>.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="cm">/* RA_main.c */</span>
+<span class="cp">#include "list.h"
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{...</span>
+</code></pre>
+</div>
+
+<h2 id="avaliação">Avaliação</h2>
+<p>Os itens abaixo serão avaliados nos códigos submetidos.</p>
+
+<ul>
+  <li>Organização/modularização do código em <code class="highlighter-rouge">RA_main.c</code>: as funcionalidades estão separadas em funções?</li>
+  <li>Flexibilidade do código: o quanto difícil é alterar a implementação? (trocar pilhas por filas, por exemplo)</li>
+  <li>Gerenciamento de memória apropriado: memória alocada foi desalocada corretamente?</li>
+</ul>
 
 
   </article>
