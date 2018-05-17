@@ -122,6 +122,12 @@
       <li><a href="#exemplo-de-entrada-2-qual-o-valor-total-das-compras" id="markdown-toc-exemplo-de-entrada-2-qual-o-valor-total-das-compras">Exemplo de entrada 2: Qual o valor total das compras?</a></li>
     </ul>
   </li>
+  <li><a href="#exercício-extra-média-e-máximo-das-notas" id="markdown-toc-exercício-extra-média-e-máximo-das-notas">Exercício extra: média e máximo das notas</a>    <ul>
+      <li><a href="#formato-de-entrada" id="markdown-toc-formato-de-entrada">Formato de entrada</a></li>
+      <li><a href="#objetivo" id="markdown-toc-objetivo">Objetivo</a></li>
+      <li><a href="#resultado-esperado" id="markdown-toc-resultado-esperado">Resultado esperado</a></li>
+    </ul>
+  </li>
 </ul>
 
 <h1 id="ambiente-de-programação">Ambiente de programação</h1>
@@ -366,6 +372,49 @@ Sabão
 </code></pre>
 </div>
 
+<h1 id="exercício-extra-média-e-máximo-das-notas">Exercício extra: média e máximo das notas</h1>
+
+<p>Analisamos diferentes exemplos em que a função <code class="highlighter-rouge">input()</code> é utilizada dentro de uma estrutura de repetição (<code class="highlighter-rouge">while</code>) para que diversos dados de entrada possam ser recebidos e processados.</p>
+
+<p>Neste exercício, teremos novamente uma sequência de dados de entrada, referentes às notas da Prova 1</p>
+
+<h2 id="formato-de-entrada">Formato de entrada</h2>
+<p>Os dados de entrada estão no arquivo <a href="../assets/LP31M/P1-notas.txt">notas.txt</a>, esse arquivo inicia como:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>34
+1979850	
+0.00
+2062240	
+0.10
+1882112	
+0.00
+...
+</code></pre>
+</div>
+
+<p>Onde a primeira linha indica a quantidade de alunos, 34 neste caso. Cada par de linhas subsequente corresponde então ao RA e a nota de um determinado aluno.</p>
+
+<h2 id="objetivo">Objetivo</h2>
+
+<p>Escreva um programa na linguagem Python, que leia os dados de entrada e responda as seguintes perguntas:</p>
+
+<ul>
+  <li>
+    <p>Qual o RA com a maior nota?</p>
+  </li>
+  <li>
+    <p>Qual a média das notas?</p>
+  </li>
+</ul>
+
+<h2 id="resultado-esperado">Resultado esperado</h2>
+
+<p>Como saída seu programa deverá imprimir:</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"O aluno de RA"</span><span class="p">,</span> <span class="n">ra</span><span class="p">,</span> <span class="s">"obteve a maior nota ("</span><span class="p">,</span> <span class="n">nota</span><span class="p">,</span><span class="s">")."</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"A média das notas foi igual a "</span><span class="p">,</span> <span class="n">media</span><span class="p">)</span>
+</code></pre>
+</div>
 
   </article>
 

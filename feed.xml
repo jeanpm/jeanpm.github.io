@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 17 May 2018 18:03:26 -0300</pubDate>
-    <lastBuildDate>Thu, 17 May 2018 18:03:26 -0300</lastBuildDate>
+    <pubDate>Thu, 17 May 2018 18:24:55 -0300</pubDate>
+    <lastBuildDate>Thu, 17 May 2018 18:24:55 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -686,6 +686,12 @@ pip3 install matplotlib             # instala o pacote matplotlib
       &lt;li&gt;&lt;a href=&quot;#exemplo-de-entrada-2-qual-o-valor-total-das-compras&quot; id=&quot;markdown-toc-exemplo-de-entrada-2-qual-o-valor-total-das-compras&quot;&gt;Exemplo de entrada 2: Qual o valor total das compras?&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#exercício-extra-média-e-máximo-das-notas&quot; id=&quot;markdown-toc-exercício-extra-média-e-máximo-das-notas&quot;&gt;Exercício extra: média e máximo das notas&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#formato-de-entrada&quot; id=&quot;markdown-toc-formato-de-entrada&quot;&gt;Formato de entrada&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#objetivo&quot; id=&quot;markdown-toc-objetivo&quot;&gt;Objetivo&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#resultado-esperado&quot; id=&quot;markdown-toc-resultado-esperado&quot;&gt;Resultado esperado&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&quot;ambiente-de-programação&quot;&gt;Ambiente de programação&lt;/h1&gt;
@@ -930,6 +936,49 @@ Sabão
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
+&lt;h1 id=&quot;exercício-extra-média-e-máximo-das-notas&quot;&gt;Exercício extra: média e máximo das notas&lt;/h1&gt;
+
+&lt;p&gt;Analisamos diferentes exemplos em que a função &lt;code class=&quot;highlighter-rouge&quot;&gt;input()&lt;/code&gt; é utilizada dentro de uma estrutura de repetição (&lt;code class=&quot;highlighter-rouge&quot;&gt;while&lt;/code&gt;) para que diversos dados de entrada possam ser recebidos e processados.&lt;/p&gt;
+
+&lt;p&gt;Neste exercício, teremos novamente uma sequência de dados de entrada, referentes às notas da Prova 1&lt;/p&gt;
+
+&lt;h2 id=&quot;formato-de-entrada&quot;&gt;Formato de entrada&lt;/h2&gt;
+&lt;p&gt;Os dados de entrada estão no arquivo &lt;a href=&quot;../assets/LP31M/P1-notas.txt&quot;&gt;notas.txt&lt;/a&gt;, esse arquivo inicia como:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;34
+1979850	
+0.00
+2062240	
+0.10
+1882112	
+0.00
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Onde a primeira linha indica a quantidade de alunos, 34 neste caso. Cada par de linhas subsequente corresponde então ao RA e a nota de um determinado aluno.&lt;/p&gt;
+
+&lt;h2 id=&quot;objetivo&quot;&gt;Objetivo&lt;/h2&gt;
+
+&lt;p&gt;Escreva um programa na linguagem Python, que leia os dados de entrada e responda as seguintes perguntas:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Qual o RA com a maior nota?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Qual a média das notas?&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;resultado-esperado&quot;&gt;Resultado esperado&lt;/h2&gt;
+
+&lt;p&gt;Como saída seu programa deverá imprimir:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;O aluno de RA&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ra&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;obteve a maior nota (&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nota&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;).&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;A média das notas foi igual a &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;media&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 </description>
         <pubDate>Thu, 12 Apr 2018 17:00:00 -0300</pubDate>
         <link>http://localhost:4000/lp31m-181/estruturas-repeticao.html</link>
