@@ -6,9 +6,196 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 17 May 2018 18:24:55 -0300</pubDate>
-    <lastBuildDate>Thu, 17 May 2018 18:24:55 -0300</lastBuildDate>
+    <pubDate>Sun, 20 May 2018 14:26:55 -0300</pubDate>
+    <lastBuildDate>Sun, 20 May 2018 14:26:55 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Algoritmos de ordenação</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#introdução&quot; id=&quot;markdown-toc-introdução&quot;&gt;Introdução&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#ordenação-de-inteiros&quot; id=&quot;markdown-toc-ordenação-de-inteiros&quot;&gt;Ordenação de inteiros&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#o-que-são-algoritmos-de-ordenação&quot; id=&quot;markdown-toc-o-que-são-algoritmos-de-ordenação&quot;&gt;O que são Algoritmos de ordenação?&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#algoritmos-de-ordenação&quot; id=&quot;markdown-toc-algoritmos-de-ordenação&quot;&gt;Algoritmos de Ordenação&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#estratégias-simples&quot; id=&quot;markdown-toc-estratégias-simples&quot;&gt;Estratégias simples&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#bubble-sort&quot; id=&quot;markdown-toc-bubble-sort&quot;&gt;Bubble sort&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#selection-sort&quot; id=&quot;markdown-toc-selection-sort&quot;&gt;Selection sort&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#insertion-sort&quot; id=&quot;markdown-toc-insertion-sort&quot;&gt;Insertion sort&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#quicksort&quot; id=&quot;markdown-toc-quicksort&quot;&gt;Quicksort&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#partition&quot; id=&quot;markdown-toc-partition&quot;&gt;Partition&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;introdução&quot;&gt;Introdução&lt;/h1&gt;
+
+&lt;p&gt;A ordenação de informação tem impacto relevante em diversos aspectos do nosso cotidiano. Considere, por exemplo, a ordem alfabética em que um dicionário é organizado, ou a ordem crescente (decrescente) em que os preços de um determinado produto são exibidos em uma compra online. Nessas situações, o fato da informação estar organizada (ordenada) de um modo consistente nos permite procurar por determinado item (uma &lt;em&gt;palavra&lt;/em&gt; nos dicionários, um objeto de determinado &lt;em&gt;valor&lt;/em&gt; na lista de compras) de forma muito mais simples.&lt;/p&gt;
+
+&lt;p&gt;Do ponto de vista computacional a ordenação de dados tem influência similar. Ao reorganizarmos a informação de forma consistente, diversas operações que poderiam ser feitas sobre o conteúdo armazenado podem, possivelmente, se tornar mais simples e eficientes.&lt;/p&gt;
+
+&lt;p&gt;Em princípio qualquer sequência de dados pode ser ordenada. Para isso, no entanto, é necessário que exista uma &lt;a href=&quot;https://pt.wikipedia.org/wiki/Rela%C3%A7%C3%A3o_de_ordem&quot;&gt;relação de ordem&lt;/a&gt; para o conjunto dos dados a serem ordenados. Sem perda de generalidade, consideraremos que cada item $i$ na sequência a ser ordenada possui uma chave $k_i\in \mathbb{D}$, tal que essas chaves pertençam a um domínio para o qual exista uma relação de ordem $R \subseteq \mathbb{D}\times \mathbb{D}$. Exemplos de relações de &lt;a href=&quot;https://pt.wikipedia.org/wiki/Rela%C3%A7%C3%A3o_de_ordem#Rela.C3.A7.C3.B5es_de_ordem_linear_ou_total&quot;&gt;ordem totais&lt;/a&gt; mais comuns são: menor ou igual ($\leq$) e maior ou igual ($\geq$).&lt;/p&gt;
+
+&lt;h2 id=&quot;ordenação-de-inteiros&quot;&gt;Ordenação de inteiros&lt;/h2&gt;
+
+&lt;p&gt;Suponha uma sequência finita de números inteiros dispostos em uma ordem arbitrária, gerado de forma aleatória, por exemplo. Podemos representar essa sequência por:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;x_1, ~x_2, ~\dots, ~x_n,~\forall x_i\in\mathbb{Z} \mbox{ e } n\in\mathbb{Z}&lt;/script&gt;
+
+&lt;p&gt;Como o conjunto dos números inteiros $\mathbb{Z}$ é totalmente ordenado de acordo com a relação de ordem $\leq$, existe então uma reordenação dos elementos dessa sequência $\alpha : \mathbb{Z}\to\mathbb{Z}$, tal que:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\alpha(1) ~\leq~\alpha(2)~\leq~ \dots ~\leq~\alpha(n)&lt;/script&gt;
+
+&lt;p&gt;O mesmo é verdade para a relação de ordem $\geq$, e portanto existe também uma reordenação $\beta : \mathbb{Z}\to\mathbb{Z}$&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;{\beta(1)} ~\geq~{\beta(2)}~\geq~ \dots ~\geq~{\beta(n)}&lt;/script&gt;
+
+&lt;p&gt;Transformar uma sequência de dados em ordem arbitrária em uma sequência ordenada é o objetivo dos &lt;strong&gt;algoritmos de ordenação&lt;/strong&gt; que veremos a seguir.&lt;/p&gt;
+
+&lt;h2 id=&quot;o-que-são-algoritmos-de-ordenação&quot;&gt;O que são Algoritmos de ordenação?&lt;/h2&gt;
+
+&lt;p&gt;Um algoritmo de ordenação é um procedimento que recebe como entrada uma sequência de dados, os quais assumiremos como números inteiros daqui em diante, e rearranja os items dessa sequência de modo que ao final eles estejam em uma determinada ordem: crescente, decrescente, por exemplo.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(13, 1, 0 -1, 9, 6, 3, 1) \Rightarrow (-1, 0, 1, 1, 3, 6, 9, 13)&lt;/script&gt;
+
+&lt;h1 id=&quot;algoritmos-de-ordenação&quot;&gt;Algoritmos de Ordenação&lt;/h1&gt;
+
+&lt;p&gt;Definidos os objetivos de um algoritmo de ordenação, é interessante iniciaremos a discussão nos questionando qual seria nossa estratégia para solucionar o problema da ordenação. Dada uma sequência numérica em um vetor &lt;code class=&quot;highlighter-rouge&quot;&gt;int* v&lt;/code&gt;, qual seria sua intuição para um procedimento que reordenasse essa sequência de forma crescente?&lt;/p&gt;
+
+&lt;p&gt;Ao pensarmos um pouco sobre esse problema, são grandes as chances que tenhamos concluído algum dos algoritmos de ordenação que serão descritos a seguir.&lt;/p&gt;
+
+&lt;h2 id=&quot;estratégias-simples&quot;&gt;Estratégias simples&lt;/h2&gt;
+
+&lt;h3 id=&quot;bubble-sort&quot;&gt;Bubble sort&lt;/h3&gt;
+
+&lt;p&gt;Dada uma sequência de entrada, a &lt;em&gt;ordenação por trocas&lt;/em&gt; compara pares de itens $x_i$ e $x_{i+1}$ e os troca de posição caso $x_i&amp;gt;x_{i+1}$. Isso tem como efeito levar para posições posteriores aquele elemento que seja o maior.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Trocar os elementos nas posições i e i+1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Os gifs abaixo foram obtidos em &lt;a href=&quot;https://imgur.com/gallery/iwTNP&quot;&gt;https://imgur.com/gallery/iwTNP&lt;/a&gt;
+&lt;img src=&quot;../assets/AE22CP/bubblesort.gif&quot; height=&quot;200&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;O Bubble sort percorre do início ao fim do vetor várias vezes, efetuando trocas da forma acima. Na primeira passagem pelo vetor, o maior elemento é levado à posição final $x_{n}$, e, portanto, já estará na posição correta. A próxima iteração levará o segundo maior valor à posição anterior a final $x_{n-1}$ e assim sucessivamente, até que o primeiro elemento seja avaliado. Neste momento, o algoritmo precisa parar pois o vetor estará ordenado e nenhuma troca adicional ocorrerá.&lt;/p&gt;
+
+&lt;h3 id=&quot;selection-sort&quot;&gt;Selection sort&lt;/h3&gt;
+
+&lt;p&gt;Dada uma sequência de entrada, a &lt;em&gt;ordenação por seleção&lt;/em&gt; seleciona a cada passagem pelo vetor o menor/maior elemento e o coloca na posição inicial $x_1$ (ou final $x_n$). Na segunda iteração o menor elemento entre $x_2$ e $x_n$ será selecionado e colocado na posição $x_2$. Ou seja, a cada iteração, o algoritmo deixa um elemento a mais na posição correta.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Trocar os elementos nas posições i e posição do menor elemento de i a n. 
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/AE22CP/selectionsort.gif&quot; height=&quot;200&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;insertion-sort&quot;&gt;Insertion sort&lt;/h3&gt;
+
+&lt;p&gt;Dada uma sequência de entrada, a &lt;em&gt;ordenação por inserção&lt;/em&gt; percorre a sequência e para cada valor em uma determinada posição $i$, reinsere o valor $x_i$ na sua posição correta no momento. A posição correta $j$ para um elemento qualquer $x_i$ em um dado momento é aquela posição tal que $x_{j} \leq x_i \leq x_{j+1}$.&lt;/p&gt;
+
+&lt;h2 id=&quot;quicksort&quot;&gt;Quicksort&lt;/h2&gt;
+
+&lt;p&gt;Consideremos uma sequência numérica qualquer de tamanho $n$, em ordem arbitrária.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;x_1, ~x_2, ~\dots, ~x_n,~\forall x_i\in\mathbb{Z} \mbox{ e } n\in\mathbb{Z}&lt;/script&gt;
+
+&lt;p&gt;Vamos analisar as propriedades produzidas pelo seguinte procedimento, o qual é mais simples que a ordenação em si.&lt;/p&gt;
+
+&lt;p&gt;Dado qualquer elemento desta sequência $x_p$, o qual chamaremos &lt;em&gt;pivô&lt;/em&gt;, &lt;strong&gt;reordene a sequência&lt;/strong&gt; de modo que $\forall x_i$ que preceda $x_p$, $x_i\leq x_p$. Em contrapartida, $\forall x_j$ que suceda $x_p$, $x_p \leq x_j$. Observe que não estamos exigindo que os elementos anteriores ou posteriores a $x_p$ estejam ordenados. No entanto, uma propriedade importante é evidente.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Se todos antes de $x_p$ são menores ou iguais a ele e todos elementos depois são maiores ou iguais, então $x_p$ está na sua posição correta. Ou seja, na posição que ele ocuparia em uma sequência ordenada.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Por essa propriedade concluímos que $x_p$ não precisa mais ser comparado a nenhum outro elemento. Nos restando duas subpsequências a serem ordenadas. Aquela contendo os elementos anteriores e aquela contendo os elementos posteriores a $x_p$.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;[\dots],~ x_p,~ [\dots]&lt;/script&gt;
+
+&lt;p&gt;Podemos então repetir o mesmo procedimento em cada uma dessas subsequências, até que todos elementos tenham sido considerados como pivô e, portanto, colocados em suas devidas posições ordenadas.&lt;/p&gt;
+
+&lt;p&gt;O Algoritmo acima descrito é chamado, no contexto do &lt;em&gt;Quicksort&lt;/em&gt;, de  &lt;em&gt;partition&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;partition&quot;&gt;Partition&lt;/h3&gt;
+
+&lt;p&gt;Dada uma sequência númerica em ordem arbitrária como entrada e um valor &lt;em&gt;pivô&lt;/em&gt; $k$.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;x_1, ~x_2, ~\dots, ~x_n,~\forall x_i\in\mathbb{Z} \mbox{ e } n\in\mathbb{Z}&lt;/script&gt;
+
+&lt;p&gt;&lt;em&gt;Partition&lt;/em&gt; irá produzir uma nova sequência, com o pivô numa posição $p$, de modo que $y_i \leq k$, $\forall i \leq p$ e $y_j \geq k$, $\forall j \geq p$.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;y_1,~y_2,~\dots,y_{p-1},~ k_p,~ y_{p+1}, \dots,~ y_{n-1},~ y_{n}&lt;/script&gt;
+
+&lt;p&gt;Outra característica importante dessa nova sequência é que todos elementos $y_1,\dots,y_{p-1}$ são menores que aqueles em $y_{p+1},\dots,y_n$. Portanto, eles não precisam mais ser comparados. As comparações adicionais acontecerão internamente a cada uma das sequências apenas.&lt;/p&gt;
+
+&lt;!---
+```cpp
+// Versão Cormen (Lomuto)
+int partition(Type* A, int p, int r) {
+    Type x = A[r];
+    int i  = p - 1;    
+    for (int j = p; j &lt; r; j++) {
+        if (A[j] &lt;= x) {
+            i = i + 1;
+            swap(A, i, j);
+        }
+    }
+    swap(A, i + 1, r);
+    return i + 1;
+}
+```
+
+```cpp
+// Versao simples (Hoare)
+int partition(Type* A, int p, int r) {
+    Type x = A[r];
+    int i = p;
+    int j = r; 
+    while (i &lt; j) {
+        while (A[i] &lt;= x &amp;&amp; i &lt; r)
+            i++;
+        while (A[j] &gt; x)
+            j--;
+            
+        if (i &lt; j) 
+            swap(A, i, j);
+    }
+    A[p] = A[j];
+    A[r] = x;
+    return r;
+}
+```
+
+  - Partition
+  - Complexidade no melhor caso
+  - O que afeta o melhor caso
+  - Complexidade no pior caso
+  - Como contornar o pior caso: escolha do pivô
+  - Mediana de três: p, r, (p+r)/2
+  
+  -Insertionsort
+  -Heapsort
+  -Shellsort
+  -Mergesort
+--&gt;
+</description>
+        <pubDate>Sun, 20 May 2018 13:00:00 -0300</pubDate>
+        <link>http://localhost:4000/ae22cp-181/ordenacao.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-181/ordenacao.html</guid>
+        
+        <category>ordenação</category>
+        
+        
+        <category>AE22CP-181</category>
+        
+      </item>
     
       <item>
         <title>APS2 - Labirinto com listas encadeadas</title>
@@ -2013,325 +2200,6 @@ gcc main.c  forward_list.c  -o  lista_encadeada_simples
         <guid isPermaLink="true">http://localhost:4000/ae22cp-181/pilhas-representa%C3%A7%C3%A3o-de-expressoes.html</guid>
         
         <category>pilhas</category>
-        
-        
-        <category>AE22CP-181</category>
-        
-      </item>
-    
-      <item>
-        <title>Políticas de acesso - Pilhas &amp; Filas</title>
-        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#políticas-de-acesso-e-manipulação&quot; id=&quot;markdown-toc-políticas-de-acesso-e-manipulação&quot;&gt;Políticas de acesso e manipulação&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#pilhas-stack&quot; id=&quot;markdown-toc-pilhas-stack&quot;&gt;Pilhas (stack)&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#filas-queue&quot; id=&quot;markdown-toc-filas-queue&quot;&gt;Filas (queue)&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#tipo-abstrato-de-dados-lista&quot; id=&quot;markdown-toc-tipo-abstrato-de-dados-lista&quot;&gt;Tipo abstrato de dados Lista&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#implementação-sobre-list&quot; id=&quot;markdown-toc-implementação-sobre-list&quot;&gt;Implementação sobre &lt;em&gt;list&lt;/em&gt;&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#pilhas&quot; id=&quot;markdown-toc-pilhas&quot;&gt;Pilhas&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#filas&quot; id=&quot;markdown-toc-filas&quot;&gt;Filas&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;políticas-de-acesso-e-manipulação&quot;&gt;Políticas de acesso e manipulação&lt;/h1&gt;
-
-&lt;p&gt;Algumas estruturas de dados não requerem novas formas de armazenamento dos dados em memória. Nesses casos, tais estruturas são definidas apenas pela forma com a qual elas permitem o acesso e manipulação dos dados armazenados, o que chamei de &lt;strong&gt;política de acesso e manipulação&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Para melhor compreendermos essa ideia, iniciaremos o estudo de duas estruturas de dados (ou políticas de acesso e manipulação) de grande relevância: pilhas (stack) e filas (queue). Por serem apenas políticas de acesso, pilhas e filas podem ser implementadas utilizando como base diferentes tipos de estruturas de dados (contêiners). Neste primeiro momento, no entanto, assumiremos apenas a implementação de pilhas e filas utilizando o contêiner &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; como base.&lt;/p&gt;
-
-&lt;h2 id=&quot;pilhas-stack&quot;&gt;Pilhas (stack)&lt;/h2&gt;
-
-&lt;p&gt;A estrutura de dados Pilha recebe este nome em analogia ao processo de empilhamento. De acordo com o dicionário web &lt;a href=&quot;http://michaelis.uol.com.br/busca?r=0&amp;amp;f=0&amp;amp;t=0&amp;amp;palavra=empilhar&quot;&gt;Michaelis&lt;/a&gt;, empilhar tem o seguinte significado:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;em·pi·lhar&lt;/strong&gt;
-Dispor em pilha ou ficar amontoado em pilha; amontoar(-se):&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;Empilhou os pratos que havia acabado de enxugar.&lt;/li&gt;
-      &lt;li&gt;“[…] erguia o que estava pelo chão e empilhava as cadeiras sobre as mesinhas de mármore” (AA2).&lt;/li&gt;
-      &lt;li&gt;“Entrou no seu escritório e foi sentar-se à secretária. Defronte dele, com uma gravidade oficial, empilhavam-se grandes livros de escrituração mercantil” (AA2).&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;De acordo com esta definição, empilhar significa inserir um objeto em cima de outro. Desempilhar, portanto, se refere a remoção do objeto no topo da pilha.&lt;/p&gt;
-
-&lt;p&gt;Dada a analogia, define-se que uma estrutura de dados pilha é caracterizada pelo fato de que novos elementos somente podem ser inseridos em seu topo. A remoção de elementos da pilha, similarmente, somente pode acontecer para elementos no topo. O acesso ao elemento no topo da pilha, sem a remoção do mesmo, é muitas vezes necessário, desta forma um operador se faz necessário. Em resumo:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Novos elementos são inseridos em apenas uma direção.
-    &lt;ul&gt;
-      &lt;li&gt;O último elemento inserido é chamado o topo da pilha&lt;/li&gt;
-      &lt;li&gt;Essa operação é chamada &lt;code class=&quot;highlighter-rouge&quot;&gt;push&lt;/code&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Elementos são removidos em direção oposta à inserção
-    &lt;ul&gt;
-      &lt;li&gt;Somente o elemento no topo pode ser removido diretamente.&lt;/li&gt;
-      &lt;li&gt;Essa operação é chamada &lt;code class=&quot;highlighter-rouge&quot;&gt;pop&lt;/code&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Este tipo de política de acesso ficou conhecido pela sigla:
-    &lt;ul&gt;
-      &lt;li&gt;LIFO, do inglês &lt;em&gt;last in, first out&lt;/em&gt;. O último elemento inserido é necessáriamente o primeiro a ser removido.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../assets/pilhas-geral.png&quot; alt=&quot;pilhas&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Estruturas do tipo &lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt; são de grande utilidade em aspectos fundamentais da ciência da computação. Seja na construção de compiladores e linguagens de programação, por uma perspectiv teórica, ou no gerenciamento de memória da pilha de chamadas (&lt;a href=&quot;https://pt.stackoverflow.com/questions/3797/o-que-s%C3%A3o-e-onde-est%C3%A3o-o-stack-e-heap&quot;&gt;stack call&lt;/a&gt;)&lt;/p&gt;
-
-&lt;p&gt;Implementações de pilhas em linguagens de programação:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;C++/STL, &lt;a href=&quot;http://www.cplusplus.com/reference/stack/stack/&quot;&gt;stack&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;http://www.cplusplus.com/reference/stack/stack/&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Python, &lt;a href=&quot;https://docs.python.org/2/tutorial/datastructures.html#using-lists-as-stacks&quot;&gt;Using lists as stacks&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;https://docs.python.org/2/tutorial/datastructures.html#using-lists-as-stacks&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;C#, &lt;a href=&quot;https://msdn.microsoft.com/pt-br/library/system.collections.stack(v=vs.110).aspx&quot;&gt;Stack&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;https://msdn.microsoft.com/pt-br/library/system.collections.stack(v=vs.110).aspxs&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;filas-queue&quot;&gt;Filas (queue)&lt;/h2&gt;
-
-&lt;p&gt;A estrutura de dados &lt;em&gt;fila&lt;/em&gt; (ou política de acesso) também recebe este nome por analogia ao processo de enfileiramento&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;fi·la&lt;/strong&gt; (&lt;a href=&quot;http://michaelis.uol.com.br/moderno-portugues/busca/portugues-brasileiro/enfileirar/&quot;&gt;Michaelis&lt;/a&gt;)
-Sequência de pessoas ou coisas alinhadas uma atrás da outra, organizada geralmente por ordem cronológica de chegada ou por diferentes critérios…
-    &lt;ul&gt;
-      &lt;li&gt;“Havia agora Betinha, Aureluce, Tanara e outras amigas barulhentas em volta, uma fila inteira delas no Cine Cruzeiro do Sul” (CFA).&lt;/li&gt;
-      &lt;li&gt;“Conjunto de soldados em fileira”&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Por essa analogia é fácil notarmos que a estrutura de dados &lt;em&gt;fila&lt;/em&gt; deve suportar operações análogas ao &lt;em&gt;enfileiramento&lt;/em&gt; e o &lt;em&gt;desenfileiramento&lt;/em&gt;. Em termos mais diretos, isso significa que a inserção de novos elementos em uma fila deve ser feita sempre em uma das pontas da estrutua (&lt;code class=&quot;highlighter-rouge&quot;&gt;push_back&lt;/code&gt; ou &lt;code class=&quot;highlighter-rouge&quot;&gt;push_front&lt;/code&gt;) enquanto a remoção poderia apenas ser feita na ponta oposta da estrutura (&lt;code class=&quot;highlighter-rouge&quot;&gt;pop_front&lt;/code&gt; ou &lt;code class=&quot;highlighter-rouge&quot;&gt;pop_back&lt;/code&gt;). Em resumo:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Novos elementos são inseridos em apenas uma das pontas.
-    &lt;ul&gt;
-      &lt;li&gt;Essa operação é chamada &lt;code class=&quot;highlighter-rouge&quot;&gt;push&lt;/code&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Elementos são removidos da ponta oposta à inserção.
-    &lt;ul&gt;
-      &lt;li&gt;Somente o elemento inicial pode ser removido diretamente.&lt;/li&gt;
-      &lt;li&gt;Essa operação é chamada &lt;code class=&quot;highlighter-rouge&quot;&gt;pop&lt;/code&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Este tipo de política de acesso ficou conhecido pela sigla:
-    &lt;ul&gt;
-      &lt;li&gt;FIFO, do inglês &lt;em&gt;first in, first out&lt;/em&gt;. O primeiro elemento inserido é necessáriamente o primeiro a ser removido.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;tipo-abstrato-de-dados-lista&quot;&gt;Tipo abstrato de dados Lista&lt;/h1&gt;
-
-&lt;p&gt;Listas são tipos abstratos de dados pois representam funcionalidades que podem ser implementadas (programadas) de diversas formas diferentes. Apesar disso, uma implementação da estrutura de dados lista deve sempre nos permitir a manipulação dos dados armazenados por meio de certas operações. Abaixo utilizo um arquivo &lt;code class=&quot;highlighter-rouge&quot;&gt;.h&lt;/code&gt; para definir uma interface à estuturas de dados lista.&lt;/p&gt;
-
-&lt;h1 id=&quot;implementação-sobre-list&quot;&gt;Implementação sobre &lt;em&gt;list&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;Pilhas e filas, sendo apenas políticas de acesso, podem ser implementadas utilizando diferentes estruturas de dados como base (contêiner). Neste primeiro momento, utilizaremos como contêiner a estrutura abstrata &lt;code class=&quot;highlighter-rouge&quot;&gt;list&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// **** list.h ****
-&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;#define Type int
-&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// Uma definição abstrata da struct que representará a lista
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TAD_LIST&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Aloca memória inicial para o vetor
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Desaloca a memória de v-&amp;gt;data e do próprio v.
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;free_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Funções de remoção de elementos
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_erase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_pop_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Funções de inserção de elementos
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_push_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Funções de acesso aos dados
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_resize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Retorna o tamanho da lista (número de elementos)
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;list_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;pilhas&quot;&gt;Pilhas&lt;/h2&gt;
-
-&lt;p&gt;É fácil notar que todas as funcionalidades necessárias para manipular uma pilha estão indicadas em &lt;code class=&quot;highlighter-rouge&quot;&gt;list.h&lt;/code&gt;. De fato, precisamos apenas de um subconjunto dessas funcionalidades, ou seja, pilhas são mais restritivas.&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// **** stack.h ****
-&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;list.h&quot;
-&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// A biblioteca abaixo permite o uso do tipo de dados `bool`
-&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdbool.h&amp;gt;
-&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// O tipo de dados list será utilizado para armazenar a pilha.
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Alocação desalocação
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;free_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Inserção e remoção de elementos
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Observer o topo da pilha, sem remoção
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Vejamos quais funcionalidades em &lt;code class=&quot;highlighter-rouge&quot;&gt;list.h&lt;/code&gt; serão úteis para implementarmos uma estrutura pilha (&lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt;).&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Opção 1 (Topo=Fim)&lt;/strong&gt;
-Se considerarmos que o topo da pilha estará sempre no fim da lista, uma pilha somente deve permitir que inserções e remoções sejam feitas do fim da lista. Utilizaríamos então as operações:&lt;/p&gt;
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Opção 2 (Topo=Início)&lt;/strong&gt;
-Se considerarmos que o topo da pilha estará sempre no início da lista, uma pilha somente deve permitir que inserções e remoções sejam feitas do início da lista. Utilizaríamos então as operações:&lt;/p&gt;
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_push_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_pop_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Cada uma dessas opções insere e remove elementos de uma das pontas de &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;. Por razões de eficiência, utilizaremos a opção 1 a seguir.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;em&gt;Questão:&lt;/em&gt; Porque devemos preferir a opção 1 para implementação de &lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt; se o contêiner base for &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt;?&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// **** stack.c ****
-&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;stack.h&quot;
-&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// Alocação desalocação
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;new_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;free_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;free_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Inserção e remoção de elementos
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;list_push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Retorna um ponteiro para o topo da pilha
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack_empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;filas&quot;&gt;Filas&lt;/h2&gt;
-
-&lt;p&gt;É fácil notar que todas as funcionalidades necessárias para manipular uma estão indicadas em &lt;code class=&quot;highlighter-rouge&quot;&gt;list.h&lt;/code&gt;. De fato, precisamos apenas de um subconjunto das funcionalidades disponíveis, ou seja, filas também são mais restritivas.&lt;/p&gt;
-
-&lt;p&gt;Vejamos quais funcionalidades de &lt;code class=&quot;highlighter-rouge&quot;&gt;list.h&lt;/code&gt; serão úteis para implementarmos uma estrutura fila (&lt;code class=&quot;highlighter-rouge&quot;&gt;queue&lt;/code&gt;).&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// **** queue.h ****
-&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;list.h&quot;
-&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// A biblioteca abaixo permite o uso do tipo de dados `bool`
-&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdbool.h&amp;gt;
-&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// O tipo de dados list será utilizado para armazenar a pilha.
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Alocação desalocação
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;free_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Inserção e remoção de elementos
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;queue_pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;queue_push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Observer o topo da pilha, sem remoção
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;queue_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;queue_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;queue_empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Do mesmo modo que em pilhas, existem duas opções para a implementação de filas, sendo eficiência o fator que as diferencia.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Opção 1 (Início = Início)&lt;/strong&gt;
-Se considerarmos que o início da fila será armazenado no início da lista então uma estrutura de dados &lt;code class=&quot;highlighter-rouge&quot;&gt;queue&lt;/code&gt; deverá permitir que inserções sejam feitas apenas no final da lista, enquanto remoções sejam feitas apenas no início da lista. Isso pode ser implementado utilizando as funções:&lt;/p&gt;
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_pop_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Opção 2 (Início = Fim)&lt;/strong&gt;
-Se considerarmos que o início da fila será armazenado no fim da lista então uma estrutura de dados &lt;code class=&quot;highlighter-rouge&quot;&gt;queue&lt;/code&gt; deverá permitir que inserções sejam feitas apenas no início da lista, enquanto remoções sejam feitas apenas do final da lista. Isso pode ser implementado utilizando as funções:&lt;/p&gt;
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_push_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Cada uma dessas opções insere elementos em uma das pontas da lista e remove da outra.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;em&gt;Questão:&lt;/em&gt; Quais as deficiências em termos da eficiência de cada uma das opções?&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// **** queue.c ***
-&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;queue.h&quot;
-&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// Alocação desalocação
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;new_queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;free_queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;free_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Inserção e remoção de elementos
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;queue_pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;queue_push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;list_push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Retorna um ponteiro para o início da fila
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;queue_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Retorna um ponteiro para o fim da fila
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;queue_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Retorna verdadeiro se a fila estiver vazia
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;queue_empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-</description>
-        <pubDate>Tue, 20 Mar 2018 11:00:00 -0300</pubDate>
-        <link>http://localhost:4000/ae22cp-181/pilhas-filas.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-181/pilhas-filas.html</guid>
-        
-        <category>pilhas-filas</category>
         
         
         <category>AE22CP-181</category>

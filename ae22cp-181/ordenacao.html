@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118722707-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-118722707-1');
+</script>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Algoritmos de ordenação</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/ae22cp-181/ordenacao.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Algoritmos de ordenação</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> May 20, 2018
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/ae22cp-181/APS2-list.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#introdução" id="markdown-toc-introdução">Introdução</a>    <ul>
+      <li><a href="#ordenação-de-inteiros" id="markdown-toc-ordenação-de-inteiros">Ordenação de inteiros</a></li>
+      <li><a href="#o-que-são-algoritmos-de-ordenação" id="markdown-toc-o-que-são-algoritmos-de-ordenação">O que são Algoritmos de ordenação?</a></li>
+    </ul>
+  </li>
+  <li><a href="#algoritmos-de-ordenação" id="markdown-toc-algoritmos-de-ordenação">Algoritmos de Ordenação</a>    <ul>
+      <li><a href="#estratégias-simples" id="markdown-toc-estratégias-simples">Estratégias simples</a>        <ul>
+          <li><a href="#bubble-sort" id="markdown-toc-bubble-sort">Bubble sort</a></li>
+          <li><a href="#selection-sort" id="markdown-toc-selection-sort">Selection sort</a></li>
+          <li><a href="#insertion-sort" id="markdown-toc-insertion-sort">Insertion sort</a></li>
+        </ul>
+      </li>
+      <li><a href="#quicksort" id="markdown-toc-quicksort">Quicksort</a>        <ul>
+          <li><a href="#partition" id="markdown-toc-partition">Partition</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="introdução">Introdução</h1>
+
+<p>A ordenação de informação tem impacto relevante em diversos aspectos do nosso cotidiano. Considere, por exemplo, a ordem alfabética em que um dicionário é organizado, ou a ordem crescente (decrescente) em que os preços de um determinado produto são exibidos em uma compra online. Nessas situações, o fato da informação estar organizada (ordenada) de um modo consistente nos permite procurar por determinado item (uma <em>palavra</em> nos dicionários, um objeto de determinado <em>valor</em> na lista de compras) de forma muito mais simples.</p>
+
+<p>Do ponto de vista computacional a ordenação de dados tem influência similar. Ao reorganizarmos a informação de forma consistente, diversas operações que poderiam ser feitas sobre o conteúdo armazenado podem, possivelmente, se tornar mais simples e eficientes.</p>
+
+<p>Em princípio qualquer sequência de dados pode ser ordenada. Para isso, no entanto, é necessário que exista uma <a href="https://pt.wikipedia.org/wiki/Rela%C3%A7%C3%A3o_de_ordem">relação de ordem</a> para o conjunto dos dados a serem ordenados. Sem perda de generalidade, consideraremos que cada item $i$ na sequência a ser ordenada possui uma chave $k_i\in \mathbb{D}$, tal que essas chaves pertençam a um domínio para o qual exista uma relação de ordem $R \subseteq \mathbb{D}\times \mathbb{D}$. Exemplos de relações de <a href="https://pt.wikipedia.org/wiki/Rela%C3%A7%C3%A3o_de_ordem#Rela.C3.A7.C3.B5es_de_ordem_linear_ou_total">ordem totais</a> mais comuns são: menor ou igual ($\leq$) e maior ou igual ($\geq$).</p>
+
+<h2 id="ordenação-de-inteiros">Ordenação de inteiros</h2>
+
+<p>Suponha uma sequência finita de números inteiros dispostos em uma ordem arbitrária, gerado de forma aleatória, por exemplo. Podemos representar essa sequência por:</p>
+
+<script type="math/tex; mode=display">x_1, ~x_2, ~\dots, ~x_n,~\forall x_i\in\mathbb{Z} \mbox{ e } n\in\mathbb{Z}</script>
+
+<p>Como o conjunto dos números inteiros $\mathbb{Z}$ é totalmente ordenado de acordo com a relação de ordem $\leq$, existe então uma reordenação dos elementos dessa sequência $\alpha : \mathbb{Z}\to\mathbb{Z}$, tal que:</p>
+
+<script type="math/tex; mode=display">\alpha(1) ~\leq~\alpha(2)~\leq~ \dots ~\leq~\alpha(n)</script>
+
+<p>O mesmo é verdade para a relação de ordem $\geq$, e portanto existe também uma reordenação $\beta : \mathbb{Z}\to\mathbb{Z}$</p>
+
+<script type="math/tex; mode=display">{\beta(1)} ~\geq~{\beta(2)}~\geq~ \dots ~\geq~{\beta(n)}</script>
+
+<p>Transformar uma sequência de dados em ordem arbitrária em uma sequência ordenada é o objetivo dos <strong>algoritmos de ordenação</strong> que veremos a seguir.</p>
+
+<h2 id="o-que-são-algoritmos-de-ordenação">O que são Algoritmos de ordenação?</h2>
+
+<p>Um algoritmo de ordenação é um procedimento que recebe como entrada uma sequência de dados, os quais assumiremos como números inteiros daqui em diante, e rearranja os items dessa sequência de modo que ao final eles estejam em uma determinada ordem: crescente, decrescente, por exemplo.</p>
+
+<script type="math/tex; mode=display">(13, 1, 0 -1, 9, 6, 3, 1) \Rightarrow (-1, 0, 1, 1, 3, 6, 9, 13)</script>
+
+<h1 id="algoritmos-de-ordenação">Algoritmos de Ordenação</h1>
+
+<p>Definidos os objetivos de um algoritmo de ordenação, é interessante iniciaremos a discussão nos questionando qual seria nossa estratégia para solucionar o problema da ordenação. Dada uma sequência numérica em um vetor <code class="highlighter-rouge">int* v</code>, qual seria sua intuição para um procedimento que reordenasse essa sequência de forma crescente?</p>
+
+<p>Ao pensarmos um pouco sobre esse problema, são grandes as chances que tenhamos concluído algum dos algoritmos de ordenação que serão descritos a seguir.</p>
+
+<h2 id="estratégias-simples">Estratégias simples</h2>
+
+<h3 id="bubble-sort">Bubble sort</h3>
+
+<p>Dada uma sequência de entrada, a <em>ordenação por trocas</em> compara pares de itens $x_i$ e $x_{i+1}$ e os troca de posição caso $x_i&gt;x_{i+1}$. Isso tem como efeito levar para posições posteriores aquele elemento que seja o maior.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">swap</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// Trocar os elementos nas posições i e i+1
+</span></code></pre>
+</div>
+
+<p>Os gifs abaixo foram obtidos em <a href="https://imgur.com/gallery/iwTNP">https://imgur.com/gallery/iwTNP</a>
+<img src="../assets/AE22CP/bubblesort.gif" height="200" /></p>
+
+<p>O Bubble sort percorre do início ao fim do vetor várias vezes, efetuando trocas da forma acima. Na primeira passagem pelo vetor, o maior elemento é levado à posição final $x_{n}$, e, portanto, já estará na posição correta. A próxima iteração levará o segundo maior valor à posição anterior a final $x_{n-1}$ e assim sucessivamente, até que o primeiro elemento seja avaliado. Neste momento, o algoritmo precisa parar pois o vetor estará ordenado e nenhuma troca adicional ocorrerá.</p>
+
+<h3 id="selection-sort">Selection sort</h3>
+
+<p>Dada uma sequência de entrada, a <em>ordenação por seleção</em> seleciona a cada passagem pelo vetor o menor/maior elemento e o coloca na posição inicial $x_1$ (ou final $x_n$). Na segunda iteração o menor elemento entre $x_2$ e $x_n$ será selecionado e colocado na posição $x_2$. Ou seja, a cada iteração, o algoritmo deixa um elemento a mais na posição correta.</p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// Trocar os elementos nas posições i e posição do menor elemento de i a n. 
+</span><span class="n">swap</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">));</span> 
+</code></pre>
+</div>
+
+<p><img src="../assets/AE22CP/selectionsort.gif" height="200" /></p>
+
+<h3 id="insertion-sort">Insertion sort</h3>
+
+<p>Dada uma sequência de entrada, a <em>ordenação por inserção</em> percorre a sequência e para cada valor em uma determinada posição $i$, reinsere o valor $x_i$ na sua posição correta no momento. A posição correta $j$ para um elemento qualquer $x_i$ em um dado momento é aquela posição tal que $x_{j} \leq x_i \leq x_{j+1}$.</p>
+
+<h2 id="quicksort">Quicksort</h2>
+
+<p>Consideremos uma sequência numérica qualquer de tamanho $n$, em ordem arbitrária.</p>
+
+<script type="math/tex; mode=display">x_1, ~x_2, ~\dots, ~x_n,~\forall x_i\in\mathbb{Z} \mbox{ e } n\in\mathbb{Z}</script>
+
+<p>Vamos analisar as propriedades produzidas pelo seguinte procedimento, o qual é mais simples que a ordenação em si.</p>
+
+<p>Dado qualquer elemento desta sequência $x_p$, o qual chamaremos <em>pivô</em>, <strong>reordene a sequência</strong> de modo que $\forall x_i$ que preceda $x_p$, $x_i\leq x_p$. Em contrapartida, $\forall x_j$ que suceda $x_p$, $x_p \leq x_j$. Observe que não estamos exigindo que os elementos anteriores ou posteriores a $x_p$ estejam ordenados. No entanto, uma propriedade importante é evidente.</p>
+
+<ul>
+  <li>Se todos antes de $x_p$ são menores ou iguais a ele e todos elementos depois são maiores ou iguais, então $x_p$ está na sua posição correta. Ou seja, na posição que ele ocuparia em uma sequência ordenada.</li>
+</ul>
+
+<p>Por essa propriedade concluímos que $x_p$ não precisa mais ser comparado a nenhum outro elemento. Nos restando duas subpsequências a serem ordenadas. Aquela contendo os elementos anteriores e aquela contendo os elementos posteriores a $x_p$.</p>
+
+<script type="math/tex; mode=display">[\dots],~ x_p,~ [\dots]</script>
+
+<p>Podemos então repetir o mesmo procedimento em cada uma dessas subsequências, até que todos elementos tenham sido considerados como pivô e, portanto, colocados em suas devidas posições ordenadas.</p>
+
+<p>O Algoritmo acima descrito é chamado, no contexto do <em>Quicksort</em>, de  <em>partition</em>.</p>
+
+<h3 id="partition">Partition</h3>
+
+<p>Dada uma sequência númerica em ordem arbitrária como entrada e um valor <em>pivô</em> $k$.</p>
+
+<script type="math/tex; mode=display">x_1, ~x_2, ~\dots, ~x_n,~\forall x_i\in\mathbb{Z} \mbox{ e } n\in\mathbb{Z}</script>
+
+<p><em>Partition</em> irá produzir uma nova sequência, com o pivô numa posição $p$, de modo que $y_i \leq k$, $\forall i \leq p$ e $y_j \geq k$, $\forall j \geq p$.</p>
+
+<script type="math/tex; mode=display">y_1,~y_2,~\dots,y_{p-1},~ k_p,~ y_{p+1}, \dots,~ y_{n-1},~ y_{n}</script>
+
+<p>Outra característica importante dessa nova sequência é que todos elementos $y_1,\dots,y_{p-1}$ são menores que aqueles em $y_{p+1},\dots,y_n$. Portanto, eles não precisam mais ser comparados. As comparações adicionais acontecerão internamente a cada uma das sequências apenas.</p>
+
+<!---
+```cpp
+// Versão Cormen (Lomuto)
+int partition(Type* A, int p, int r) {
+    Type x = A[r];
+    int i  = p - 1;    
+    for (int j = p; j < r; j++) {
+        if (A[j] <= x) {
+            i = i + 1;
+            swap(A, i, j);
+        }
+    }
+    swap(A, i + 1, r);
+    return i + 1;
+}
+```
+
+```cpp
+// Versao simples (Hoare)
+int partition(Type* A, int p, int r) {
+    Type x = A[r];
+    int i = p;
+    int j = r; 
+    while (i < j) {
+        while (A[i] <= x && i < r)
+            i++;
+        while (A[j] > x)
+            j--;
+            
+        if (i < j) 
+            swap(A, i, j);
+    }
+    A[p] = A[j];
+    A[r] = x;
+    return r;
+}
+```
+
+  - Partition
+  - Complexidade no melhor caso
+  - O que afeta o melhor caso
+  - Complexidade no pior caso
+  - Como contornar o pior caso: escolha do pivô
+  - Mediana de três: p, r, (p+r)/2
+  
+  -Insertionsort
+  -Heapsort
+  -Shellsort
+  -Mergesort
+-->
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>
