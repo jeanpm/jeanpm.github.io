@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+ <TITLE>1543377</TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <script type="text/javascript">
+  <!--
+   function ZweiFrames(URL1,F1,URL2,F2)
+   {
+    parent.frames[F1].location.href=URL1;
+    parent.frames[F2].location.href=URL2;
+   }
+  //-->
+  </script>
+</HEAD>
+<BODY BGCOLOR="#ffffff" style="margin-left:25">
+<HR>
+<H3><CENTER>1543377_main.c</CENTER></H3><HR>
+<PRE>
+#include &quot;list.h&quot;
+
+//Aloca memória para uma matriz m x n e retorna um ponteiro para essa matriz.
+int** new_matriz(int l, int c) {
+    int **p = (int **) malloc(sizeof(int *) * l);
+    for(int i = 0; i &lt; l; i++) {
+        p[i] = (int *) malloc(sizeof(int) * c);
+    }
+
+    return(p);
+}
+
+//Libera a memória previamente alocada em new_matrix
+void free_matriz(int** matriz, int l) {
+    for(int i = 0; i &lt; l; i++) {
+        free(matriz[i]);
+    }
+    free(matriz);
+}
+
+// Imprime os elementos da matriz. A primeira linha impressa deve ser as dimensões 'l c'
+<A NAME="0"></A>void print_matriz(int** matriz, int l, int c, int x, int y) {
+    printf(&quot;\n%d %d&quot;, x, y);
+    printf(&quot;\n%d %d&quot;, l, c);
+<FONT color="#0000ff"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match14-0.html#0',2,'match14-top.html#0',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>    for(int i = 0; i &lt; l; i++) {
+        printf(&quot;\n&quot;);
+        for(int j = 0; j &lt; c; j++) {
+            printf(&quot;%d &quot;,matriz[i][j]);
+        }
+    }</B></FONT>
+}
+
+void print_caminho(list* cam1, list* cam2) {
+    while(list_size(cam1) != 0){
+        printf(&quot;%d %d\n&quot;, list_pop_front(cam1), list_pop_front(cam2));
+    }
+}
+
+void expansao(int** matriz, int a, int b) {
+
+    list* cam1 = new_list();
+    list* cam2 = new_list();
+
+    list* x = new_list();
+    list* y = new_list();
+
+    matriz[a][b] = 2;
+
+    list_push_back(cam1, a);
+    list_push_back(cam2, b);
+
+    while(matriz[a][b] != 9) {
+        if(matriz[a+1][b] == 9 || matriz[a-1][b] == 9 || matriz[a][b+1] == 9 || matriz[a][b-1] == 9) {
+            if(matriz[a+1][b] == 9){
+                list_push_back(x, a+1);
+                list_push_back(y, b);
+            }
+            else if(matriz[a-1][b] == 9){
+                list_push_back(x, a-1);
+                list_push_back(y, b);
+            }
+            else if(matriz[a][b+1] == 9){
+                list_push_back(x, a);
+                list_push_back(y, b+1);
+            }
+            else{
+                list_push_back(x, a);
+                list_push_back(y, b-1);
+            }
+        }
+        else {
+            // baixo
+            if(matriz[a+1][b] == 0) {
+                list_push_back(x, a+1);
+                list_push_back(y, b);
+                matriz[a][b] = 2;
+            }
+            //cima
+            if(matriz[a-1][b] == 0) {
+                list_push_back(x, a-1);
+                list_push_back(y, b);
+                matriz[a][b] = 2;
+            }
+            //direita
+            if(matriz[a][b+1] == 0) {
+                list_push_back(x, a);
+                list_push_back(y, b+1);
+                matriz[a][b] = 2;
+            }
+            //esquerda
+            if(matriz[a][b-1] == 0) {
+                list_push_back(x, a);
+                list_push_back(y, b-1);
+                matriz[a][b] = 2;
+            }
+        }
+
+
+        a = list_pop_front(x);
+        b = list_pop_front(y);
+        list_push_back(cam1, a);
+        list_push_back(cam2, b);
+    }
+
+    list_push_back(cam1, -1);
+    list_push_back(cam2, -1);
+    print_caminho(cam1, cam2);
+
+    free_list(x);
+    free_list(y);
+    free_list(cam1);
+    free_list(cam2);
+}
+
+void profundidade(int** matriz, int a, int b) {
+
+    list* cam1 = new_list();
+    list* cam2 = new_list();
+
+    list* x = new_list();
+    list* y = new_list();
+
+    matriz[a][b] = 2;
+
+    list_push_back(cam1, a);
+    list_push_back(cam2, b);
+
+    while(matriz[a][b] != 9) {
+        if(matriz[a+1][b] == 9 || matriz[a-1][b] == 9 || matriz[a][b+1] == 9 || matriz[a][b-1] == 9) {
+            if(matriz[a+1][b] == 9){
+                list_push_back(x, a+1);
+                list_push_back(y, b);
+            }
+            else if(matriz[a-1][b] == 9){
+                list_push_back(x, a-1);
+                list_push_back(y, b);
+            }
+            else if(matriz[a][b+1] == 9){
+                list_push_back(x, a);
+                list_push_back(y, b+1);
+            }
+            else{
+                list_push_back(x, a);
+                list_push_back(y, b-1);
+            }
+        }
+        else {
+            // baixo
+            if(matriz[a+1][b] == 0) {
+                list_push_back(x, a+1);
+                list_push_back(y, b);
+                matriz[a][b] = 2;
+            }
+            //cima
+            if(matriz[a-1][b] == 0) {
+                list_push_back(x, a-1);
+                list_push_back(y, b);
+                matriz[a][b] = 2;
+            }
+            //direita
+            if(matriz[a][b+1] == 0) {
+                list_push_back(x, a);
+                list_push_back(y, b+1);
+                matriz[a][b] = 2;
+            }
+            //esquerda
+            if(matriz[a][b-1] == 0) {
+                list_push_back(x, a);
+                list_push_back(y, b-1);
+                matriz[a][b] = 2;
+            }
+        }
+
+
+        a = list_pop_back(x);
+        b = list_pop_back(y);
+        list_push_back(cam1, a);
+        list_push_back(cam2, b);
+    }
+
+    list_push_back(cam1, -1);
+    list_push_back(cam2, -1);
+    print_caminho(cam1, cam2);
+
+    free_list(x);
+    free_list(y);
+    free_list(cam1);
+    free_list(cam2);
+}
+
+int main() {
+    int l, c;
+    int x, y;
+
+    scanf(&quot;%d %d&quot;, &amp;x, &amp;y);//posicao inicial
+    scanf(&quot;%d %d&quot;, &amp;l, &amp;c);//tamanho da matriz
+
+    int** matriz = new_matriz(l, c);
+
+    for(int i = 0; i &lt; l; i++) {
+        for(int j = 0; j &lt; c; j++) {
+            scanf(&quot;%d&quot;, &amp;matriz[i][j]);
+        }
+    }
+
+    profundidade(matriz, x, y);
+    //expansao(matriz, x, y);
+    free_matriz(matriz, l);
+}
+</PRE>
+</BODY>
+</HTML>

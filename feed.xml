@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 20 May 2018 20:58:13 -0300</pubDate>
-    <lastBuildDate>Sun, 20 May 2018 20:58:13 -0300</lastBuildDate>
+    <pubDate>Mon, 21 May 2018 17:21:36 -0300</pubDate>
+    <lastBuildDate>Mon, 21 May 2018 17:21:36 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -195,6 +195,25 @@ int partition(Type* A, int p, int r) {
         <guid isPermaLink="true">http://localhost:4000/ae22cp-181/ordenacao.html</guid>
         
         <category>ordenação</category>
+        
+        
+        <category>AE22CP-181</category>
+        
+      </item>
+    
+      <item>
+        <title>APS2 - Similaridade dos códigos submetidos</title>
+        <description>&lt;p&gt;&lt;a href=&quot;../AE22CP-181/APS2-181-html&quot;&gt;Comparação-plágio: abrir em outra página&lt;/a&gt;&lt;/p&gt;
+
+&lt;iframe width=&quot;800&quot; height=&quot;1100&quot; src=&quot;../AE22CP-181/APS2-181-html/index.html&quot; style=&quot;border:none;font-size:1em&quot;&gt;
+&lt;/iframe&gt;
+
+</description>
+        <pubDate>Sun, 20 May 2018 11:00:00 -0300</pubDate>
+        <link>http://localhost:4000/ae22cp-181/aps2-resultados.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-181/aps2-resultados.html</guid>
+        
+        <category>aps2-list</category>
         
         
         <category>AE22CP-181</category>
@@ -2041,169 +2060,6 @@ gcc main.c  forward_list.c  -o  lista_encadeada_simples
         <guid isPermaLink="true">http://localhost:4000/ae22cp-181/pilhas-valida%C3%A7%C3%A3o-de-express%C3%B5es.html</guid>
         
         <category>pilhas-filas</category>
-        
-        
-        <category>AE22CP-181</category>
-        
-      </item>
-    
-      <item>
-        <title>Pilhas - Representações prefixa e posfixa</title>
-        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#introdução&quot; id=&quot;markdown-toc-introdução&quot;&gt;Introdução&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#input-format&quot; id=&quot;markdown-toc-input-format&quot;&gt;Input Format&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#motivação&quot; id=&quot;markdown-toc-motivação&quot;&gt;Motivação&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#notação-préfixa&quot; id=&quot;markdown-toc-notação-préfixa&quot;&gt;Notação préfixa&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#notação-pósfixa&quot; id=&quot;markdown-toc-notação-pósfixa&quot;&gt;Notação pósfixa&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#utilidade&quot; id=&quot;markdown-toc-utilidade&quot;&gt;Utilidade&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#conversão-infixapósfixa&quot; id=&quot;markdown-toc-conversão-infixapósfixa&quot;&gt;Conversão infixa/pósfixa&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#avaliação-de-expressão-pósfixa&quot; id=&quot;markdown-toc-avaliação-de-expressão-pósfixa&quot;&gt;Avaliação de expressão pósfixa&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;introdução&quot;&gt;Introdução&lt;/h1&gt;
-
-&lt;p&gt;Considere a soma de A mais B, numa expressão $A+B$. Neste exemplo, $+$ é um operador sendo aplicado aos operandos $A,B$. Este tipo de representação para a expressão de soma dos dois operandos é chamada &lt;strong&gt;infixa&lt;/strong&gt;, pois o operador se posiciona entre os operandos.&lt;/p&gt;
-
-&lt;p&gt;Considerando-se o posicionamento do operador, no entando, existem duas representações alternativas: &lt;strong&gt;prefixa&lt;/strong&gt; e &lt;strong&gt;posfixa&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;+AB (prefixa)&lt;/li&gt;
-  &lt;li&gt;AB+ (posfixa)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;input-format&quot;&gt;Input Format&lt;/h2&gt;
-&lt;p&gt;Uma string contendo operandos (dígitos 0-9) e operandos (+,-,/,^,*) na forma posfixa. O operador &lt;code class=&quot;highlighter-rouge&quot;&gt;exponenciação&lt;/code&gt; é indicado pelo caracter ‘^’, e pode ser implementado pela função:&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;math.h&amp;gt;
-&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// Exponenciação, é representada por AB^ (posfixa) =&amp;gt; A^B (infixa) 
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;A string pode conter espaços, os quais devem ser ignorados. As seguintes funções podem ser utilizadas para verificar o tipo de um caracter char c.&lt;/p&gt;
-
-&lt;h2 id=&quot;motivação&quot;&gt;Motivação&lt;/h2&gt;
-&lt;p&gt;Como poderá ser notado, notações prefixa e posfixa removem a ambiguidade de uma expressão, desta forma, parenteses não são mais necessários.&lt;/p&gt;
-
-&lt;h2 id=&quot;notação-préfixa&quot;&gt;Notação préfixa&lt;/h2&gt;
-&lt;p&gt;Para compreendermos a utilidade das notações prefixa e posfixa, consideremos as demais operações definidas como funções:&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mult&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;	
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Dada uma expressão de exemplo, definida como:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(A + B/C) * D&lt;/script&gt;
-
-&lt;p&gt;Ela seria implementada em uma chamada da seguinte forma:&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mult&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;O que utilizando a notação prefixa em termos de &lt;script type=&quot;math/tex&quot;&gt;+,*,/&lt;/script&gt;, avalia-se a expressão acima, considerando-se as operações que serão efetuadas em primeiro lugar, ou seja, neste caso:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;divisão &lt;script type=&quot;math/tex&quot;&gt;\rightarrow /BC&lt;/script&gt;,&lt;/li&gt;
-  &lt;li&gt;adição &lt;script type=&quot;math/tex&quot;&gt;\rightarrow +A/BC&lt;/script&gt;,&lt;/li&gt;
-  &lt;li&gt;multiplicação &lt;script type=&quot;math/tex&quot;&gt;\rightarrow *+A/BCD&lt;/script&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;*+A/BCD&lt;/script&gt;
-
-&lt;p&gt;Para comprovarmos se essa expressão se equivale à forma infixa, performe as operações assim que dois operandos estiverem disponíveis, iniciando a avaliação da esquerda para a direita.&lt;/p&gt;
-
-&lt;p&gt;Ao compararmos as duas representações para a expressão, o que é visivelmente notável?&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(A + B/C) * D&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;*+A/BCD&lt;/script&gt;
-
-&lt;p&gt;&lt;strong&gt;Parenteses se tornam desnecessários!&lt;/strong&gt; Como consequência, avaliar o resultado de uma expressão se torna muito mais simples. De fato pode ser implementado lendo-se a expressão apenas uma vez.&lt;/p&gt;
-
-&lt;h2 id=&quot;notação-pósfixa&quot;&gt;Notação pósfixa&lt;/h2&gt;
-
-&lt;p&gt;Tanto na notação préfixa quanto na pósfixa, é importante lembrar que os operadores com precedência devem ser avaliados/convertidos primeiro, a não ser que uma possível parentização altere a ordem de precedência.&lt;/p&gt;
-
-&lt;p&gt;No exemplo anterior &lt;script type=&quot;math/tex&quot;&gt;(A+B/C) * D&lt;/script&gt;, a multiplicação é efetuado somente ao final, devido à parentização. A ausência de parênteses, nesse exemplo, nos permitiria outras interpretações:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;A + ((B/C) * D)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;A + (B / (C*D))&lt;/script&gt;
-
-&lt;p&gt;A forma pósfixa é a contrapartida da prefixa, em que os operadores são posicionados após os operandos. Retornando ao exemplo original &lt;script type=&quot;math/tex&quot;&gt;(A+B/C)*D&lt;/script&gt;, temos que a divisão &lt;script type=&quot;math/tex&quot;&gt;B/C&lt;/script&gt; deve ser convertida em primeiro lugar:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(A + BC/) * D&lt;/script&gt;
-
-&lt;p&gt;Em seguida a adição entre parênteses&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(ABC/+) * D&lt;/script&gt;
-
-&lt;p&gt;Por fim, a multiplicação&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;ABC/+D*&lt;/script&gt;
-
-&lt;h2 id=&quot;utilidade&quot;&gt;Utilidade&lt;/h2&gt;
-
-&lt;p&gt;Dada a expressão em forma infixa, elabore um algoritmo que dê o resultado da expressão em apenas uma leitura da string:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(A + B/C) * D&lt;/script&gt;
-
-&lt;p&gt;Dada a expressão em forma pósfixa, elabore um  algoritmo que dê o resultado da expressão em apenas uma leitura da string:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;ABC/+D*&lt;/script&gt;
-
-&lt;h2 id=&quot;conversão-infixapósfixa&quot;&gt;Conversão infixa/pósfixa&lt;/h2&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;Forma infixa&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;strong&gt;Forma pósfixa&lt;/strong&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;A+ B&lt;/td&gt;
-      &lt;td&gt;AB+&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;A+B-C&lt;/td&gt;
-      &lt;td&gt;AB+C-&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;(A+B) * C&lt;/td&gt;
-      &lt;td&gt;AB+C*&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;A+(B*C)&lt;/td&gt;
-      &lt;td&gt;ABC*+&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;(A+B)*(C-D)&lt;/td&gt;
-      &lt;td&gt;AB+CD-*&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;((A+B)*C - (D-E))^(F+G)&lt;/td&gt;
-      &lt;td&gt;AB+C*DE- -FG+^&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h1 id=&quot;avaliação-de-expressão-pósfixa&quot;&gt;Avaliação de expressão pósfixa&lt;/h1&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;623+-382/+*2\hat{ }  3+&lt;/script&gt;
-
-</description>
-        <pubDate>Tue, 20 Mar 2018 11:00:00 -0300</pubDate>
-        <link>http://localhost:4000/ae22cp-181/pilhas-representa%C3%A7%C3%A3o-de-expressoes.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-181/pilhas-representa%C3%A7%C3%A3o-de-expressoes.html</guid>
-        
-        <category>pilhas</category>
         
         
         <category>AE22CP-181</category>

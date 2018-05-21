@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+ <TITLE>1917471</TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <script type="text/javascript">
+  <!--
+   function ZweiFrames(URL1,F1,URL2,F2)
+   {
+    parent.frames[F1].location.href=URL1;
+    parent.frames[F2].location.href=URL2;
+   }
+  //-->
+  </script>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<HR>
+<H3><CENTER>1917471_main.c</CENTER></H3><HR>
+<PRE>
+#include &quot;list.h&quot;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdbool.h&gt;
+
+
+int ** new_matrix(int m, int n)
+{
+	int **matrix = malloc(sizeof(int*)*m);
+	for(int i=0; i&lt;m;i++)
+	{
+		matrix[i] = malloc(sizeof(int)*n);
+	}
+	return matrix;
+}
+void free_matrix(int ** matrix,int m,int n)
+{
+	for(int i = 0; i&lt; m;i++)
+	{
+		free(matrix[i]);
+	}
+	free(matrix);
+}
+void olhar(int** matrix,list* v,int pos_i,int pos_j)
+{
+	int c1 = 0,c2 = 0,c3 = 0,c4 = 0;
+<A NAME="0"></A>	int i = pos_i;
+	int j = pos_j;
+	//Se um caminho for percorrível, ele vai entrar na fila.
+<FONT color="#0000ff"><A HREF="javascript:ZweiFrames('match19-1.html#0',3,'match19-top.html#0',1)"><IMG SRC="forward.gif" ALT="other" BORDER="0" ALIGN="right"></A><B>	if(matrix[i-1][j] == 0 || matrix[i-1][j] == 9)
+	{
+		c1 = 1;
+	}
+	if(matrix[i][j+1] == 0 || matrix[i][j+1] == 9)
+	{
+		c2 = 1;
+	}
+	if(matrix[i+1][j] == 0|| matrix[i+1][j] == 9)
+	{
+		c3 = 1;
+	}
+	if(matrix[i][j-1] == 0|| matrix[i][j-1] == 9)
+	{
+		c4 = 1;
+	}</B></FONT>
+	//Primeiro insere na fila a coordenada do caminho percorrível em i(linha), e depois na coordenada j(coluna) no caso de fila.
+	if(c1)
+	{
+		list_push_front(v,i-1);
+		list_push_front(v,j);
+	}
+	if(c2)
+	{
+		list_push_front(v,i);
+		list_push_front(v,j+1);
+	}
+	if(c3)
+	{
+		list_push_front(v,i+1);
+		list_push_front(v,j);
+	}
+	if(c4)
+	{
+		list_push_front(v,i);
+		list_push_front(v,j-1);
+	}
+}
+int caminhar_i(list* v)
+{
+	return list_pop_back(v);
+}
+int caminhar_j(list* v)
+{
+	return list_pop_back(v);
+}
+int main()
+{	
+	list* v = new_list();
+	int pos_i,pos_j;
+	scanf(&quot;%d %d&quot;,&amp;pos_i,&amp;pos_j);
+	int m,n;
+	scanf(&quot;%d %d&quot;,&amp;m,&amp;n);
+
+	
+
+	int** matrix = new_matrix(m,n);
+
+	for(int i=0; i&lt;m; i++)
+		for(int j=0; j&lt; n; j++)
+		{
+			int n;
+			scanf(&quot;%d&quot;,&amp;n);
+			matrix[i][j] = n;
+		}
+
+	while(matrix[pos_i][pos_j] != 9)
+	{
+			printf(&quot;%d &quot;,pos_i);
+			printf(&quot;%d\n&quot;,pos_j);
+			olhar(matrix,v,pos_i,pos_j);
+			matrix[pos_i][pos_j] = 2;
+			pos_i = caminhar_i(v);
+			pos_j = caminhar_j(v);
+	}
+	printf(&quot;%d &quot;,pos_i);
+	printf(&quot;%d\n&quot;,pos_j);
+	printf(&quot;%d %d&quot;,-1,-1);
+	free_list(v);
+	free_matrix(matrix,m,n);
+}
+//A resolução do labirinto foi implementado com o uso de Fila, para trocar para Pilha é necessário somente mudar as funções de caminhar para retornar &quot;list_pop_front&quot;, nas linhas 70 e 74. E também trocar a ordem de chamada dessas mesmas funções na main, nas linhas 102 e 103.
+//Então ficaria:
+/*	
+68 int caminhar_i(list* v)
+69 {
+70     return list_pop_front(v);
+71 }
+72 int caminhar_j(list* v)
+73 {
+74     return list_pop_front(v);
+75 }
+.
+.
+.
+102 		pos_j = caminhar_j(v);
+103			pos_i = caminhar_i(v);
+.
+.
+.
+*/
+
+</PRE>
+</BODY>
+</HTML>

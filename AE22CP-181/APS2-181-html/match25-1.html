@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+ <TITLE>1636820</TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <script type="text/javascript">
+  <!--
+   function ZweiFrames(URL1,F1,URL2,F2)
+   {
+    parent.frames[F1].location.href=URL1;
+    parent.frames[F2].location.href=URL2;
+   }
+  //-->
+  </script>
+</HEAD>
+<BODY BGCOLOR="#ffffff" style="margin-left:25">
+<HR>
+<H3><CENTER>1636820_main.c</CENTER></H3><HR>
+<PRE>
+/*labirinto*/
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;assert.h&gt;
+#include &lt;stdbool.h&gt;
+#include &quot;list.h&quot;
+
+int resolver_maze(int** mat,list* pos,int xi,int yi,int m, int n)
+{
+	printf(&quot;%d %d\n&quot;,xi,yi);
+	if(mat[xi][yi]==9)
+	{
+		return 1;
+	}
+    else
+    {
+        if(mat[xi][yi+1]!=1 &amp;&amp; (yi+1)&lt;n)
+        {
+            list_push_front(pos,(yi+1));
+            list_push_front(pos,xi);
+            mat[xi][yi]=1;
+        }
+        if(mat[xi][yi-1]!=1 &amp;&amp; (yi-1)&gt;0)
+        {
+            list_push_front(pos,(yi-1));
+            list_push_front(pos,xi);
+            mat[xi][yi]=1;
+        }
+        if(mat[xi+1][yi]!=1 &amp;&amp; (xi+1)&lt;n)
+        {
+            list_push_front(pos,yi);
+            list_push_front(pos,(xi+1));
+            mat[xi][yi]=1;
+        }
+        if(mat[xi-1][yi]!=1 &amp;&amp; (xi-1)&gt;0)
+        {
+            list_push_front(pos,yi);
+            list_push_front(pos,(xi-1));
+            mat[xi][yi]=1;
+        }
+        return 0;
+    }
+	
+}
+int** new_matriz(int m,int n)
+{
+	int** matriz;
+	matriz=malloc(sizeof(int*) * m);
+	for(int i=0;i&lt;m;i++)
+	{
+		matriz[i]=malloc(sizeof(int) * n);
+	}
+	return matriz;
+<A NAME="0"></A>}
+void ler_matriz(int** matriz,int m,int n)
+{
+<FONT color="#0000ff"><div style="position:absolute;left:0"><A HREF="javascript:ZweiFrames('match25-0.html#0',2,'match25-top.html#0',1)"><IMG SRC="back.gif" ALT="other" BORDER="0" ALIGN="left"></A></div><B>	for(int i=0;i&lt;m;i++)
+	{
+		for(int j=0;j&lt;n;j++)
+		{
+			scanf(&quot;%d&quot;,&amp;matriz[i][j]);
+		}
+	}</B></FONT>
+}
+void free_matriz(int** matriz,int m)
+{
+	for(int i=0;i&lt;m;i++)
+	{
+		free(matriz[i]);
+	}
+	free(matriz);
+}
+
+int main()
+{
+	list* pos=new_list();
+	int xi,yi,i,j;
+	int m,n,cond=0;
+	scanf(&quot;%d %d&quot;,&amp;xi,&amp;yi);
+
+	//colocando primeira posiçao na lista
+	list_push_front(pos,yi);
+	list_push_front(pos,xi);
+	
+
+	// criando e lendo matriz
+	scanf(&quot;%d %d&quot;,&amp;m,&amp;n);
+	int** matriz=new_matriz(m,n);
+	ler_matriz(matriz,m,n);
+
+	while(cond!=1)
+	{
+		//Pilha
+		/*
+        xi=list_pop_front(pos);
+        yi=list_pop_front(pos);
+        cond=resolver_maze(matriz,pos,xi,yi,m,n);
+        */
+        //Fila
+        yi=list_pop_back(pos);
+        xi=list_pop_back(pos);
+        cond=resolver_maze(matriz,pos,xi,yi,m,n);
+	}
+    printf(&quot;-1 -1&quot;);
+    free_matriz(matriz,m);
+    free_list(pos);
+}
+</PRE>
+</BODY>
+</HTML>
