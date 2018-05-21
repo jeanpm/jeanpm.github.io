@@ -103,8 +103,8 @@
           <li><a href="#insertion-sort" id="markdown-toc-insertion-sort">Insertion sort</a></li>
         </ul>
       </li>
-      <li><a href="#quicksort" id="markdown-toc-quicksort">Quicksort</a>        <ul>
-          <li><a href="#partition" id="markdown-toc-partition">Partition</a></li>
+      <li><a href="#estratégias-recursivas" id="markdown-toc-estratégias-recursivas">Estratégias recursivas</a>        <ul>
+          <li><a href="#quicksort" id="markdown-toc-quicksort">Quicksort</a></li>
         </ul>
       </li>
     </ul>
@@ -178,7 +178,9 @@
 
 <p>Dada uma sequência de entrada, a <em>ordenação por inserção</em> percorre a sequência e para cada valor em uma determinada posição $i$, reinsere o valor $x_i$ na sua posição correta no momento. A posição correta $j$ para um elemento qualquer $x_i$ em um dado momento é aquela posição tal que $x_{j} \leq x_i \leq x_{j+1}$.</p>
 
-<h2 id="quicksort">Quicksort</h2>
+<h2 id="estratégias-recursivas">Estratégias recursivas</h2>
+
+<h3 id="quicksort">Quicksort</h3>
 
 <p>Consideremos uma sequência numérica qualquer de tamanho $n$, em ordem arbitrária.</p>
 
@@ -200,7 +202,7 @@
 
 <p>O Algoritmo acima descrito é chamado, no contexto do <em>Quicksort</em>, de  <em>partition</em>.</p>
 
-<h3 id="partition">Partition</h3>
+<p><strong>Partition</strong></p>
 
 <p>Dada uma sequência númerica em ordem arbitrária como entrada e um valor <em>pivô</em> $k$.</p>
 
@@ -211,6 +213,8 @@
 <script type="math/tex; mode=display">y_1,~y_2,~\dots,y_{p-1},~ k_p,~ y_{p+1}, \dots,~ y_{n-1},~ y_{n}</script>
 
 <p>Outra característica importante dessa nova sequência é que todos elementos $y_1,\dots,y_{p-1}$ são menores que aqueles em $y_{p+1},\dots,y_n$. Portanto, eles não precisam mais ser comparados. As comparações adicionais acontecerão internamente a cada uma das sequências apenas.</p>
+
+<p><img src="../assets/AE22CP/quicksort.gif" height="200" /></p>
 
 <!---
 ```cpp

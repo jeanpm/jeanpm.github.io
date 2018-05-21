@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 20 May 2018 14:26:55 -0300</pubDate>
-    <lastBuildDate>Sun, 20 May 2018 14:26:55 -0300</lastBuildDate>
+    <pubDate>Sun, 20 May 2018 20:58:13 -0300</pubDate>
+    <lastBuildDate>Sun, 20 May 2018 20:58:13 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -26,8 +26,8 @@
           &lt;li&gt;&lt;a href=&quot;#insertion-sort&quot; id=&quot;markdown-toc-insertion-sort&quot;&gt;Insertion sort&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#quicksort&quot; id=&quot;markdown-toc-quicksort&quot;&gt;Quicksort&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#partition&quot; id=&quot;markdown-toc-partition&quot;&gt;Partition&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#estratégias-recursivas&quot; id=&quot;markdown-toc-estratégias-recursivas&quot;&gt;Estratégias recursivas&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#quicksort&quot; id=&quot;markdown-toc-quicksort&quot;&gt;Quicksort&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
@@ -101,7 +101,9 @@
 
 &lt;p&gt;Dada uma sequência de entrada, a &lt;em&gt;ordenação por inserção&lt;/em&gt; percorre a sequência e para cada valor em uma determinada posição $i$, reinsere o valor $x_i$ na sua posição correta no momento. A posição correta $j$ para um elemento qualquer $x_i$ em um dado momento é aquela posição tal que $x_{j} \leq x_i \leq x_{j+1}$.&lt;/p&gt;
 
-&lt;h2 id=&quot;quicksort&quot;&gt;Quicksort&lt;/h2&gt;
+&lt;h2 id=&quot;estratégias-recursivas&quot;&gt;Estratégias recursivas&lt;/h2&gt;
+
+&lt;h3 id=&quot;quicksort&quot;&gt;Quicksort&lt;/h3&gt;
 
 &lt;p&gt;Consideremos uma sequência numérica qualquer de tamanho $n$, em ordem arbitrária.&lt;/p&gt;
 
@@ -123,7 +125,7 @@
 
 &lt;p&gt;O Algoritmo acima descrito é chamado, no contexto do &lt;em&gt;Quicksort&lt;/em&gt;, de  &lt;em&gt;partition&lt;/em&gt;.&lt;/p&gt;
 
-&lt;h3 id=&quot;partition&quot;&gt;Partition&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Partition&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;Dada uma sequência númerica em ordem arbitrária como entrada e um valor &lt;em&gt;pivô&lt;/em&gt; $k$.&lt;/p&gt;
 
@@ -134,6 +136,8 @@
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;y_1,~y_2,~\dots,y_{p-1},~ k_p,~ y_{p+1}, \dots,~ y_{n-1},~ y_{n}&lt;/script&gt;
 
 &lt;p&gt;Outra característica importante dessa nova sequência é que todos elementos $y_1,\dots,y_{p-1}$ são menores que aqueles em $y_{p+1},\dots,y_n$. Portanto, eles não precisam mais ser comparados. As comparações adicionais acontecerão internamente a cada uma das sequências apenas.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/AE22CP/quicksort.gif&quot; height=&quot;200&quot; /&gt;&lt;/p&gt;
 
 &lt;!---
 ```cpp
