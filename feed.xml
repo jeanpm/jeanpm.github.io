@@ -6,9 +6,224 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 22 May 2018 13:23:11 -0300</pubDate>
-    <lastBuildDate>Tue, 22 May 2018 13:23:11 -0300</lastBuildDate>
+    <pubDate>Fri, 25 May 2018 13:03:00 -0300</pubDate>
+    <lastBuildDate>Fri, 25 May 2018 13:03:00 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>APS3 - Algoritmos de ordenação</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#objetivos&quot; id=&quot;markdown-toc-objetivos&quot;&gt;Objetivos&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#motivação&quot; id=&quot;markdown-toc-motivação&quot;&gt;Motivação&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#experimentos&quot; id=&quot;markdown-toc-experimentos&quot;&gt;Experimentos&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#cenários-de-experimentação&quot; id=&quot;markdown-toc-cenários-de-experimentação&quot;&gt;Cenários de experimentação&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#experimentos-1&quot; id=&quot;markdown-toc-experimentos-1&quot;&gt;Experimentos&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#análise-dos-resultados&quot; id=&quot;markdown-toc-análise-dos-resultados&quot;&gt;Análise dos resultados&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#nomenclatura-de-arquivos&quot; id=&quot;markdown-toc-nomenclatura-de-arquivos&quot;&gt;Nomenclatura de arquivos&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;objetivos&quot;&gt;Objetivos&lt;/h1&gt;
+
+&lt;p&gt;Comparar experimentalmente os algoritmos de ordenação em diferentes cenários. Identificar a relação entre os tipos de entradas e a eficiência desses algoritmos.&lt;/p&gt;
+
+&lt;h1 id=&quot;motivação&quot;&gt;Motivação&lt;/h1&gt;
+
+&lt;p&gt;Aprender a identificar qual algoritmo utilizar para ordenação de dados em um determinado contexto.&lt;/p&gt;
+
+&lt;h1 id=&quot;experimentos&quot;&gt;Experimentos&lt;/h1&gt;
+
+&lt;p&gt;Todos algoritmos deverão ser executados para os mesmos casos de teste e depois comparados quanto ao&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;tempo médio&lt;/strong&gt;,&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;número de comparações&lt;/strong&gt;,&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;número de trocas&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Deste modo, a primeira etapa do trabalho consiste em adaptar seus códigos para que a cada execução esses três dados sejam coletados/contabilizados.&lt;/p&gt;
+
+&lt;h1 id=&quot;cenários-de-experimentação&quot;&gt;Cenários de experimentação&lt;/h1&gt;
+
+&lt;p&gt;Os algoritmos serão avaliados em quatro cenários. Cada cenário representará um tipo de sequência de entrada.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Sequências aleatórias,&lt;/li&gt;
+  &lt;li&gt;Sequências ordenadas de forma crescente&lt;/li&gt;
+  &lt;li&gt;Sequências ordenadas de forma decrescente&lt;/li&gt;
+  &lt;li&gt;Sequências quase ordenadas&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Consideraremos que uma sequência quase ordenada é gerada por dois passos principais.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Gerar uma sequência ordenada,&lt;/li&gt;
+  &lt;li&gt;Efetuar um certo número de trocas aleatórias
+    - O número de trocas deve equivaler a 15% do tamanho da sequência.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;experimentos-1&quot;&gt;Experimentos&lt;/h1&gt;
+
+&lt;p&gt;Cada um dos cenários acima serão avaliados seguindo o mesmo planejamento de experimentos. Como exemplo, podemos considerar o caso de sequências &lt;em&gt;aleatórias&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Queremos avaliar o desempenho dos algoritmos para sequências de tamanhos diferentes, então neste contexto a primeira etapa seria definirmos quais tamanhos de sequências farão parte dos experimentos. É importante que possamos avaliar os algoritos em sequências pequenas e grandes, portanto os tamanhos utilizados devem atender essa demanda.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Sugestão de tamanhos $n(x) = 10 \times 2^x$.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;$x$&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;4&lt;/td&gt;
+      &lt;td&gt;5&lt;/td&gt;
+      &lt;td&gt;6&lt;/td&gt;
+      &lt;td&gt;7&lt;/td&gt;
+      &lt;td&gt;8&lt;/td&gt;
+      &lt;td&gt;9&lt;/td&gt;
+      &lt;td&gt;10&lt;/td&gt;
+      &lt;td&gt;11&lt;/td&gt;
+      &lt;td&gt;12&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;$n$&lt;/td&gt;
+      &lt;td&gt;20&lt;/td&gt;
+      &lt;td&gt;40&lt;/td&gt;
+      &lt;td&gt;80&lt;/td&gt;
+      &lt;td&gt;160&lt;/td&gt;
+      &lt;td&gt;320&lt;/td&gt;
+      &lt;td&gt;640&lt;/td&gt;
+      &lt;td&gt;1280&lt;/td&gt;
+      &lt;td&gt;2560&lt;/td&gt;
+      &lt;td&gt;5120&lt;/td&gt;
+      &lt;td&gt;10240&lt;/td&gt;
+      &lt;td&gt;20480&lt;/td&gt;
+      &lt;td&gt;40960&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;Os experimentos terão que ser repetidos para cada $n$.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Vamos assumir, como exemplo, o caso de $n=20$. Cada algoritmo deverá ser executado em sequências de tamanho $n$, porém, como estamos estamos interessados no comportamento médio do algoritmo, não podemos executá-lo apenas uma vez. Deste modo, cada algoritmo deverá ser executado um determinado número $N$ de vezes com sequências diferentes de tamanho $n$, $N$ é chamado &lt;em&gt;número de experimentos&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Sugestão para o número de experimentos $N$: $30 \leq N \leq 100$.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Cada execução de um algoritmo &lt;code class=&quot;highlighter-rouge&quot;&gt;A&lt;/code&gt; com as sequências aleatórias (&lt;code class=&quot;highlighter-rouge&quot;&gt;rand&lt;/code&gt;) de um determinado tamanho $n$ (&lt;code class=&quot;highlighter-rouge&quot;&gt;20&lt;/code&gt;), produzirá três dados:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;num. comparações&lt;/em&gt;,&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;num. trocas&lt;/em&gt;,&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;tempo&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;17823812 123213 0.2345
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;O conjunto de $N$ execuções produzirá então, um arquivo de saída &lt;code class=&quot;highlighter-rouge&quot;&gt;rand_20_A.out&lt;/code&gt;, com $N$ linhas, cada uma delas representando um experimento.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;17823812 123213 0.2345
+17823812 123213 0.2345
+...
+17823812 123213 0.2345
+17823812 123213 0.2345
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Suponha que estejamos comparando quatro algoritmos: &lt;code class=&quot;highlighter-rouge&quot;&gt;A&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;B&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;C&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;D&lt;/code&gt;. Ao repetirmos o procedimento acima para cada um deles, teremos produzido quatro arquivos:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;rand_20_A.out&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;rand_20_B.out&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;rand_20_C.out&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;rand_20_D.out&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Tais nomes foram escolhidos pois são informativos sobre o experimento que eles representam. O prefixo &lt;code class=&quot;highlighter-rouge&quot;&gt;rand&lt;/code&gt; indica que a sequência foi gerada aleatoriamente, o infixo &lt;code class=&quot;highlighter-rouge&quot;&gt;20&lt;/code&gt; indica o tamanho dessas sequências, e o sufixo &lt;code class=&quot;highlighter-rouge&quot;&gt;A&lt;/code&gt;, indica o algoritmo.&lt;/p&gt;
+
+&lt;h1 id=&quot;análise-dos-resultados&quot;&gt;Análise dos resultados&lt;/h1&gt;
+
+&lt;p&gt;Esses arquivos contém os dados brutos dos experimentos. Podemos a partir deles iniciar a análise dos resultados. Primeiro passo é calcular a média de cada coluna. No exemplo, acima, a média de cada coluna em cada um dos arquivos produzirá três valores.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;rand_20_A.out&lt;/code&gt;, média das colunas:
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;17823812 123213 0.2345
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;rand_20_B.out&lt;/code&gt;, média das colunas:
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;89898923 1342213 2.2345
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;rand_20_C.out&lt;/code&gt;, média das colunas:
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;123812 123213 9.2345
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;rand_20_D.out&lt;/code&gt;, média das colunas:
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;948812 99213 11.2345
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Com esses novos valores (médias), podemos inciar a popular nossos gráficos, um para cada dado sendo avaliado. Nos gráficos abaixo inserimos os pontos referentes aos valores médios de &lt;em&gt;comparações&lt;/em&gt;, &lt;em&gt;trocas&lt;/em&gt; e &lt;em&gt;tempo&lt;/em&gt; obtidos para sequências crescentes de tamanho $20$. Portanto, todos os pontos ficam na mesma coluna ($n=20$).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/AE22CP/rand_20.png&quot; alt=&quot;rand_20&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Ao efetuarmos esses mesmos experimentos mas agora com os demais tamanhos de sequência, teremos vários outros pontos para popular o gráfico, indicando o comportamento dos algoritmos com os diferentes tamanhos de sequência. As linhas pontilhadas são as referências teóricas de complexidade $O(n), O(n \log n)$ e $O(n^2)$ (da menos inclinada à mais inclinada).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/AE22CP/rand_20_todos.png&quot; alt=&quot;rand_20&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;nomenclatura-de-arquivos&quot;&gt;Nomenclatura de arquivos&lt;/h1&gt;
+
+&lt;p&gt;Minha sugestão para que tenhamos um padrão de nomenclatura e organização dos arquivos da APS3 é a seguinte:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Crie um diretório (pasta) de nome igual ao seu RA: “227728/”&lt;/li&gt;
+  &lt;li&gt;Dentro desse diretório insira seus códigos fonte, que deverão ter como prefixo seu “RA_”:&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Caso tenha implementados todos em um mesmo arquivo, nomeie este arquivo como “RA_sort.c”&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Os arquivos produzidos para os experimentos ficarão em um subdiretório chamado “output”, exemplo:
+    &lt;ul&gt;
+      &lt;li&gt;“227728/output/”&lt;/li&gt;
+      &lt;li&gt;Para os arquivos dos experimentos, sugiro o padrão de nomenclatura: “cenario_tamanho_algoritmo.out”&lt;/li&gt;
+      &lt;li&gt;Para “cenário”, temos quatro tipos possíveis:
+        &lt;ul&gt;
+          &lt;li&gt;“rand”: sequências aleatórias&lt;/li&gt;
+          &lt;li&gt;“cres”: sequências aleatórias crescentes&lt;/li&gt;
+          &lt;li&gt;“decr”: sequências aleatórias decrescentes&lt;/li&gt;
+          &lt;li&gt;“semi”: sequências aleatórias semi-ordenadas&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Para “tamanho”, temos os valores indicados na tabela no início deste documento&lt;/li&gt;
+      &lt;li&gt;Para “algoritmo”, temos várias possibilidades, como as descritas a seguir.
+        &lt;ul&gt;
+          &lt;li&gt;Mergesort:        “merge”&lt;/li&gt;
+          &lt;li&gt;Quicksort:        “quick”&lt;/li&gt;
+          &lt;li&gt;Selectionsort:    “selct”&lt;/li&gt;
+          &lt;li&gt;Insertionsort:    “insrt”&lt;/li&gt;
+          &lt;li&gt;Bubblesort:       “bubbl”&lt;/li&gt;
+          &lt;li&gt;Heapsort:         “heaps”&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Esses padrões de nomenclatura nos dão uma melhor organização, e me permite automatizar a verificação de suas submissões, o que se torna inviável caso contrário&lt;/strong&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 25 May 2018 11:50:00 -0300</pubDate>
+        <link>http://localhost:4000/ae22cp-181/APS3-ordenacao.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-181/APS3-ordenacao.html</guid>
+        
+        <category>ordenação</category>
+        
+        
+        <category>AE22CP-181</category>
+        
+      </item>
     
       <item>
         <title>Algoritmos de ordenação</title>
@@ -1970,99 +2185,6 @@ gcc main.c  forward_list.c  -o  lista_encadeada_simples
         
         
         <category>LP31M-181</category>
-        
-      </item>
-    
-      <item>
-        <title>Exercícios II (Pilhas)</title>
-        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#exercícios&quot; id=&quot;markdown-toc-exercícios&quot;&gt;Exercícios&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#validação-parentética&quot; id=&quot;markdown-toc-validação-parentética&quot;&gt;Validação parentética&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#validação-de-expressões&quot; id=&quot;markdown-toc-validação-de-expressões&quot;&gt;Validação de expressões&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#verificação-de-palíndromo&quot; id=&quot;markdown-toc-verificação-de-palíndromo&quot;&gt;Verificação de palíndromo&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#verificar-concatenação-de-palíndromos&quot; id=&quot;markdown-toc-verificar-concatenação-de-palíndromos&quot;&gt;Verificar concatenação de palíndromos&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#underflow&quot; id=&quot;markdown-toc-underflow&quot;&gt;Underflow&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#referências--pdf&quot; id=&quot;markdown-toc-referências--pdf&quot;&gt;Referências -pdf&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;exercícios&quot;&gt;Exercícios&lt;/h1&gt;
-
-&lt;h2 id=&quot;validação-parentética&quot;&gt;Validação parentética&lt;/h2&gt;
-
-&lt;p&gt;Agora que defimos uma pilha e indicamos as operações que podem ser executadas sobre ela, vejamos como podemos usar a pilha na solução de problemas. Examine uma expressão matemática que inclui vários conjuntos de parênteses agrupados. Por exemplo:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;7 - ((X *((X+ Y)/ (J-3)) + Y)/(4-2.5))&lt;/script&gt;
-
-&lt;p&gt;Queremos garantir que os parênteses estejam corretamente agrupados, ou seja, desejamos verificar se:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Existe um número igual de parênteses esquerdos e direitos.&lt;/li&gt;
-  &lt;li&gt;Todo parêntese da direita está precedido por um parêntese da esquerda.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;stack.h&quot;
-&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// Funções auxiliares para identificar o caractere sendo lido. 
-// [!] É necessário implementá-las para que o exemplo funcione. 
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;abreEscopo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fechaEscopo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;escopoCorreto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;verificaExpressao&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expressao&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;esize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;	
-	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;esize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;atual&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expressao&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;abreEscopo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;atual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-			&lt;span class=&quot;n&quot;&gt;stack_push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;atual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fechaEscopo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;atual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-			&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack_empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-			&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;escopoCorreto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack_pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;atual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;	
-	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stack_empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;esize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;free_stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;esize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;validação-de-expressões&quot;&gt;Validação de expressões&lt;/h2&gt;
-&lt;p&gt;Adapte o código do validador para que funcione com expressões mais complexas, contendo os demais delimitadores&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;(, ), [, ] , \{, \}&lt;/script&gt;
-
-&lt;h2 id=&quot;verificação-de-palíndromo&quot;&gt;Verificação de palíndromo&lt;/h2&gt;
-
-&lt;p&gt;Escreva um algoritmo para determinar se uma string de caracteres de entrada é da forma:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;x C y&lt;/script&gt;
-
-&lt;p&gt;onde &lt;script type=&quot;math/tex&quot;&gt;x,y&lt;/script&gt; são strings e &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; é o inverso de &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;. O caractere &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt; delimita o fim de &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;. Somente um caractere da string pode ser lido de cada vez.&lt;/p&gt;
-
-&lt;h2 id=&quot;verificar-concatenação-de-palíndromos&quot;&gt;Verificar concatenação de palíndromos&lt;/h2&gt;
-
-&lt;p&gt;Escreva um algoritmo para determinar se uma string de caracteres de entrada é da forma:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;a D b D c D \dots D z&lt;/script&gt;
-
-&lt;p&gt;onde cada string &lt;script type=&quot;math/tex&quot;&gt;a, b, c,\dots,z&lt;/script&gt;, é da forma da string definida no exercício anterior, isto é, &lt;script type=&quot;math/tex&quot;&gt;a = xCy&lt;/script&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;underflow&quot;&gt;Underflow&lt;/h2&gt;
-&lt;p&gt;Que conjunto de critérios é necessário e suficiente para que uma sequência de operações &lt;code class=&quot;highlighter-rouge&quot;&gt;push&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;pop&lt;/code&gt; sobre uma única pilha (inicialmente vazia) deixe a pilha vazia e não provoque &lt;em&gt;underflow&lt;/em&gt;?&lt;/p&gt;
-
-&lt;h1 id=&quot;referências--pdf&quot;&gt;Referências -pdf&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.san.uri.br/~ober/arquivos/disciplinas/estruturaII_SI/(ebook)Estruturas%20de%20Dados%20Usando%20C%20(Tenenbaum).pdf&quot;&gt;&lt;img src=&quot;../assets/tenenbaum-book.jpg&quot; alt=&quot;livro&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Tue, 20 Mar 2018 11:00:00 -0300</pubDate>
-        <link>http://localhost:4000/ae22cp-181/pilhas-valida%C3%A7%C3%A3o-de-express%C3%B5es.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-181/pilhas-valida%C3%A7%C3%A3o-de-express%C3%B5es.html</guid>
-        
-        <category>pilhas-filas</category>
-        
-        
-        <category>AE22CP-181</category>
         
       </item>
     

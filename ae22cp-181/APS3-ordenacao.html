@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118722707-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-118722707-1');
+</script>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>APS3 - Algoritmos de ordenação</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/ae22cp-181/APS3-ordenacao.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">APS3 - Algoritmos de ordenação</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> May 25, 2018
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/ae22cp-181/ordenacao.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#objetivos" id="markdown-toc-objetivos">Objetivos</a></li>
+  <li><a href="#motivação" id="markdown-toc-motivação">Motivação</a></li>
+  <li><a href="#experimentos" id="markdown-toc-experimentos">Experimentos</a></li>
+  <li><a href="#cenários-de-experimentação" id="markdown-toc-cenários-de-experimentação">Cenários de experimentação</a></li>
+  <li><a href="#experimentos-1" id="markdown-toc-experimentos-1">Experimentos</a></li>
+  <li><a href="#análise-dos-resultados" id="markdown-toc-análise-dos-resultados">Análise dos resultados</a></li>
+  <li><a href="#nomenclatura-de-arquivos" id="markdown-toc-nomenclatura-de-arquivos">Nomenclatura de arquivos</a></li>
+</ul>
+
+<h1 id="objetivos">Objetivos</h1>
+
+<p>Comparar experimentalmente os algoritmos de ordenação em diferentes cenários. Identificar a relação entre os tipos de entradas e a eficiência desses algoritmos.</p>
+
+<h1 id="motivação">Motivação</h1>
+
+<p>Aprender a identificar qual algoritmo utilizar para ordenação de dados em um determinado contexto.</p>
+
+<h1 id="experimentos">Experimentos</h1>
+
+<p>Todos algoritmos deverão ser executados para os mesmos casos de teste e depois comparados quanto ao</p>
+
+<ul>
+  <li><strong>tempo médio</strong>,</li>
+  <li><strong>número de comparações</strong>,</li>
+  <li><strong>número de trocas</strong></li>
+</ul>
+
+<p>Deste modo, a primeira etapa do trabalho consiste em adaptar seus códigos para que a cada execução esses três dados sejam coletados/contabilizados.</p>
+
+<h1 id="cenários-de-experimentação">Cenários de experimentação</h1>
+
+<p>Os algoritmos serão avaliados em quatro cenários. Cada cenário representará um tipo de sequência de entrada.</p>
+
+<ul>
+  <li>Sequências aleatórias,</li>
+  <li>Sequências ordenadas de forma crescente</li>
+  <li>Sequências ordenadas de forma decrescente</li>
+  <li>Sequências quase ordenadas</li>
+</ul>
+
+<p>Consideraremos que uma sequência quase ordenada é gerada por dois passos principais.</p>
+<ol>
+  <li>Gerar uma sequência ordenada,</li>
+  <li>Efetuar um certo número de trocas aleatórias
+    - O número de trocas deve equivaler a 15% do tamanho da sequência.</li>
+</ol>
+
+<h1 id="experimentos-1">Experimentos</h1>
+
+<p>Cada um dos cenários acima serão avaliados seguindo o mesmo planejamento de experimentos. Como exemplo, podemos considerar o caso de sequências <em>aleatórias</em>.</p>
+
+<p>Queremos avaliar o desempenho dos algoritmos para sequências de tamanhos diferentes, então neste contexto a primeira etapa seria definirmos quais tamanhos de sequências farão parte dos experimentos. É importante que possamos avaliar os algoritos em sequências pequenas e grandes, portanto os tamanhos utilizados devem atender essa demanda.</p>
+
+<p><strong>Sugestão de tamanhos $n(x) = 10 \times 2^x$.</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>$x$</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+      <td>10</td>
+      <td>11</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <td>$n$</td>
+      <td>20</td>
+      <td>40</td>
+      <td>80</td>
+      <td>160</td>
+      <td>320</td>
+      <td>640</td>
+      <td>1280</td>
+      <td>2560</td>
+      <td>5120</td>
+      <td>10240</td>
+      <td>20480</td>
+      <td>40960</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Os experimentos terão que ser repetidos para cada $n$.</strong></p>
+
+<p>Vamos assumir, como exemplo, o caso de $n=20$. Cada algoritmo deverá ser executado em sequências de tamanho $n$, porém, como estamos estamos interessados no comportamento médio do algoritmo, não podemos executá-lo apenas uma vez. Deste modo, cada algoritmo deverá ser executado um determinado número $N$ de vezes com sequências diferentes de tamanho $n$, $N$ é chamado <em>número de experimentos</em>.</p>
+
+<p><strong>Sugestão para o número de experimentos $N$: $30 \leq N \leq 100$.</strong></p>
+
+<p>Cada execução de um algoritmo <code class="highlighter-rouge">A</code> com as sequências aleatórias (<code class="highlighter-rouge">rand</code>) de um determinado tamanho $n$ (<code class="highlighter-rouge">20</code>), produzirá três dados:</p>
+<ul>
+  <li><em>num. comparações</em>,</li>
+  <li><em>num. trocas</em>,</li>
+  <li><em>tempo</em>.</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>17823812 123213 0.2345
+</code></pre>
+</div>
+
+<p>O conjunto de $N$ execuções produzirá então, um arquivo de saída <code class="highlighter-rouge">rand_20_A.out</code>, com $N$ linhas, cada uma delas representando um experimento.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>17823812 123213 0.2345
+17823812 123213 0.2345
+...
+17823812 123213 0.2345
+17823812 123213 0.2345
+</code></pre>
+</div>
+
+<p>Suponha que estejamos comparando quatro algoritmos: <code class="highlighter-rouge">A</code>, <code class="highlighter-rouge">B</code>, <code class="highlighter-rouge">C</code>, <code class="highlighter-rouge">D</code>. Ao repetirmos o procedimento acima para cada um deles, teremos produzido quatro arquivos:</p>
+<ul>
+  <li><code class="highlighter-rouge">rand_20_A.out</code></li>
+  <li><code class="highlighter-rouge">rand_20_B.out</code></li>
+  <li><code class="highlighter-rouge">rand_20_C.out</code></li>
+  <li><code class="highlighter-rouge">rand_20_D.out</code></li>
+</ul>
+
+<p>Tais nomes foram escolhidos pois são informativos sobre o experimento que eles representam. O prefixo <code class="highlighter-rouge">rand</code> indica que a sequência foi gerada aleatoriamente, o infixo <code class="highlighter-rouge">20</code> indica o tamanho dessas sequências, e o sufixo <code class="highlighter-rouge">A</code>, indica o algoritmo.</p>
+
+<h1 id="análise-dos-resultados">Análise dos resultados</h1>
+
+<p>Esses arquivos contém os dados brutos dos experimentos. Podemos a partir deles iniciar a análise dos resultados. Primeiro passo é calcular a média de cada coluna. No exemplo, acima, a média de cada coluna em cada um dos arquivos produzirá três valores.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">rand_20_A.out</code>, média das colunas:
+    <div class="highlighter-rouge"><pre class="highlight"><code>17823812 123213 0.2345
+</code></pre>
+    </div>
+  </li>
+  <li><code class="highlighter-rouge">rand_20_B.out</code>, média das colunas:
+    <div class="highlighter-rouge"><pre class="highlight"><code>89898923 1342213 2.2345
+</code></pre>
+    </div>
+  </li>
+  <li><code class="highlighter-rouge">rand_20_C.out</code>, média das colunas:
+    <div class="highlighter-rouge"><pre class="highlight"><code>123812 123213 9.2345
+</code></pre>
+    </div>
+  </li>
+  <li><code class="highlighter-rouge">rand_20_D.out</code>, média das colunas:
+    <div class="highlighter-rouge"><pre class="highlight"><code>948812 99213 11.2345
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<p>Com esses novos valores (médias), podemos inciar a popular nossos gráficos, um para cada dado sendo avaliado. Nos gráficos abaixo inserimos os pontos referentes aos valores médios de <em>comparações</em>, <em>trocas</em> e <em>tempo</em> obtidos para sequências crescentes de tamanho $20$. Portanto, todos os pontos ficam na mesma coluna ($n=20$).</p>
+
+<p><img src="../assets/AE22CP/rand_20.png" alt="rand_20" /></p>
+
+<p>Ao efetuarmos esses mesmos experimentos mas agora com os demais tamanhos de sequência, teremos vários outros pontos para popular o gráfico, indicando o comportamento dos algoritmos com os diferentes tamanhos de sequência. As linhas pontilhadas são as referências teóricas de complexidade $O(n), O(n \log n)$ e $O(n^2)$ (da menos inclinada à mais inclinada).</p>
+
+<p><img src="../assets/AE22CP/rand_20_todos.png" alt="rand_20" /></p>
+
+<h1 id="nomenclatura-de-arquivos">Nomenclatura de arquivos</h1>
+
+<p>Minha sugestão para que tenhamos um padrão de nomenclatura e organização dos arquivos da APS3 é a seguinte:</p>
+<ul>
+  <li>Crie um diretório (pasta) de nome igual ao seu RA: “227728/”</li>
+  <li>Dentro desse diretório insira seus códigos fonte, que deverão ter como prefixo seu “RA_”:</li>
+  <li>
+    <p>Caso tenha implementados todos em um mesmo arquivo, nomeie este arquivo como “RA_sort.c”</p>
+  </li>
+  <li>Os arquivos produzidos para os experimentos ficarão em um subdiretório chamado “output”, exemplo:
+    <ul>
+      <li>“227728/output/”</li>
+      <li>Para os arquivos dos experimentos, sugiro o padrão de nomenclatura: “cenario_tamanho_algoritmo.out”</li>
+      <li>Para “cenário”, temos quatro tipos possíveis:
+        <ul>
+          <li>“rand”: sequências aleatórias</li>
+          <li>“cres”: sequências aleatórias crescentes</li>
+          <li>“decr”: sequências aleatórias decrescentes</li>
+          <li>“semi”: sequências aleatórias semi-ordenadas</li>
+        </ul>
+      </li>
+      <li>Para “tamanho”, temos os valores indicados na tabela no início deste documento</li>
+      <li>Para “algoritmo”, temos várias possibilidades, como as descritas a seguir.
+        <ul>
+          <li>Mergesort:        “merge”</li>
+          <li>Quicksort:        “quick”</li>
+          <li>Selectionsort:    “selct”</li>
+          <li>Insertionsort:    “insrt”</li>
+          <li>Bubblesort:       “bubbl”</li>
+          <li>Heapsort:         “heaps”</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Esses padrões de nomenclatura nos dão uma melhor organização, e me permite automatizar a verificação de suas submissões, o que se torna inviável caso contrário</strong>.</p>
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>
