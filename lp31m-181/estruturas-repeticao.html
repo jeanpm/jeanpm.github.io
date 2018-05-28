@@ -128,6 +128,17 @@
       <li><a href="#resultado-esperado" id="markdown-toc-resultado-esperado">Resultado esperado</a></li>
     </ul>
   </li>
+  <li><a href="#revisão-estrutura-de-repetição-while" id="markdown-toc-revisão-estrutura-de-repetição-while">Revisão: estrutura de repetição <code class="highlighter-rouge">while</code></a></li>
+  <li><a href="#alternativa-repetir-para-cada-elemento-for" id="markdown-toc-alternativa-repetir-para-cada-elemento-for">Alternativa: repetir para cada elemento (<code class="highlighter-rouge">for</code>)</a>    <ul>
+      <li><a href="#geradores-de-sequências-a-função-range" id="markdown-toc-geradores-de-sequências-a-função-range">Geradores de sequências: a função <code class="highlighter-rouge">range()</code></a>        <ul>
+          <li><a href="#exemplo-1-sequência-de-0-a-n" id="markdown-toc-exemplo-1-sequência-de-0-a-n">Exemplo 1: sequência de 0 a n</a></li>
+          <li><a href="#exemplo-2-sequência-de-n-a-0" id="markdown-toc-exemplo-2-sequência-de-n-a-0">Exemplo 2: sequência de n a 0</a></li>
+          <li><a href="#exemplo-3-sequência-de-números-pares-de-0-a-n" id="markdown-toc-exemplo-3-sequência-de-números-pares-de-0-a-n">Exemplo 3: sequência de números pares de 0 a n</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#exercícios-for" id="markdown-toc-exercícios-for">Exercícios: <code class="highlighter-rouge">for</code></a></li>
 </ul>
 
 <h1 id="ambiente-de-programação">Ambiente de programação</h1>
@@ -415,6 +426,234 @@ Sabão
 <span class="k">print</span><span class="p">(</span><span class="s">"A média das notas foi igual a "</span><span class="p">,</span> <span class="n">media</span><span class="p">)</span>
 </code></pre>
 </div>
+
+<h1 id="revisão-estrutura-de-repetição-while">Revisão: estrutura de repetição <code class="highlighter-rouge">while</code></h1>
+
+<p>A estrutura de repetição <code class="highlighter-rouge">while</code> utilizada até então nos permite descrever processos repetitivos para os quais o fim está definido por meio de uma condição (um condicional). No exemplo abaixo, o condicional que delimita o fim da repetição é <code class="highlighter-rouge">numero &gt;= 0</code>.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">numero</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="k">while</span> <span class="n">numero</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">numero</span><span class="p">)</span>
+    <span class="n">numero</span> <span class="o">=</span> <span class="n">numero</span> <span class="o">-</span> <span class="mi">1</span>
+</code></pre>
+</div>
+
+<p>Como no exemplo acima a variável <code class="highlighter-rouge">numero</code> foi inicializada como <code class="highlighter-rouge">5</code>, a condição <code class="highlighter-rouge">numero &gt;= 0</code> será sempre verdadeira a menos que alteremos o valor da variável número, o que está sendo feito pela expressão</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code>    <span class="n">numero</span> <span class="o">=</span> <span class="n">numero</span> <span class="o">-</span> <span class="mi">1</span>
+</code></pre>
+</div>
+
+<p>Para melhor compreendermos o processamento que ocorre durante a execução do código-fonte acima, devemos observar cada uma das etapas envolvidas em sua execução. Cada linha da tabela abaixo descreve uma <strong>iteração</strong>. O termo <strong>iterar</strong> é de uso comum na literatura sobre programação e apenas se refere às operações que ocorrem durante uma etapa da repetição.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>número</th>
+      <th>Condição</th>
+      <th>Operação</th>
+      <th>Atualização</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>numero = 5</td>
+      <td>numero &gt;= 0 (Sim)</td>
+      <td>print(numero)</td>
+      <td>numero = numero - 1</td>
+    </tr>
+    <tr>
+      <td>numero = 4</td>
+      <td>numero &gt;= 0 (Sim)</td>
+      <td>print(numero)</td>
+      <td>numero = numero - 1</td>
+    </tr>
+    <tr>
+      <td>numero = 3</td>
+      <td>numero &gt;= 0 (Sim)</td>
+      <td>print(numero)</td>
+      <td>numero = numero - 1</td>
+    </tr>
+    <tr>
+      <td>numero = 2</td>
+      <td>numero &gt;= 0 (Sim)</td>
+      <td>print(numero)</td>
+      <td>numero = numero - 1</td>
+    </tr>
+    <tr>
+      <td>numero = 1</td>
+      <td>numero &gt;= 0 (Sim)</td>
+      <td>print(numero)</td>
+      <td>numero = numero - 1</td>
+    </tr>
+    <tr>
+      <td>numero = 0</td>
+      <td>numero &gt;= 0 (Sim)</td>
+      <td>print(numero)</td>
+      <td>numero = numero - 1</td>
+    </tr>
+    <tr>
+      <td>numero = -1</td>
+      <td>numero &gt;= 0 (Não)</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>O ponto crucial para compreendermos estruturas de repetição como um todo é identificar primeiro, <strong>o bloco de código</strong> sendo repetido, que neste exemplo é</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code>    <span class="c"># Bloco de código da repetição (espaçado à direita)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">numero</span><span class="p">)</span>
+    <span class="n">numero</span> <span class="o">=</span> <span class="n">numero</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre>
+</div>
+
+<p>Esse bloco, no entanto, somente será executado se a <strong>condição</strong> que controla a repetição for verdadeira. Neste exemplo, a <strong>condição</strong> é definida na linha abaixo</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Enquanto numero for maior ou igual a zero</span>
+<span class="k">while</span> <span class="n">numero</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</code></pre>
+</div>
+
+<p>Por fim, para que o <strong>bloco de código</strong> não seja repetido indefinidamente, devemos garantir que seja possível em algum momento que a condição deixe de ser verdadeira. A única forma de atingirmos esse objetivo, é alterando a variável <code class="highlighter-rouge">numero</code> durante o processo.</p>
+
+<p>Se a cada <strong>iteração</strong> (repetição) diminuirmos o valor contido na variável <code class="highlighter-rouge">numero</code> em uma unidade, em algum momento ela deixará de ser positiva (<code class="highlighter-rouge">&gt;=0</code>) e, portanto, a repetição chegará ao final. Observe que na última linha da tabela acima, a variável <code class="highlighter-rouge">numero</code> possui o valor <code class="highlighter-rouge">-1</code>, e portanto, o bloco de código da repetição não será executado, visto que nesse caso a condição <code class="highlighter-rouge">numero &gt;= 0</code> será falsa.</p>
+
+<h1 id="alternativa-repetir-para-cada-elemento-for">Alternativa: repetir para cada elemento (<code class="highlighter-rouge">for</code>)</h1>
+
+<p>Por meio da estrutura de repetição <code class="highlighter-rouge">while</code> (enquanto), é possível representar qualquer tipo de repetição. No entanto, em algumas situações existe uma forma mais conveniente para definirmos repetições.</p>
+
+<ol>
+  <li>Repetir enquanto uma condição for verdadeira: <code class="highlighter-rouge">while</code> (enquanto)</li>
+  <li>Repetir uma quantidade de vezes predefinida:  <code class="highlighter-rouge">for</code>   (para cada)</li>
+</ol>
+
+<p>Essa forma alternativa de representarmos repetições segue um padrão diferente. A ideia que ela representa poderia ser interpretada como</p>
+
+<ul>
+  <li><strong>para cada</strong> item <strong>em</strong> uma sequência, <strong>faça</strong> <strong>algo</strong>.</li>
+</ul>
+
+<p>Vejamos como traduzir a sentença acima para a linguagem de programação Python, etapa por etapa. As partes em negrito são as que devemos dar maior atenção.</p>
+
+<ol>
+  <li><strong>para cada</strong> deverá ser escrito como <strong>for</strong></li>
+  <li><strong>em</strong> deverá ser escrito como <strong>in</strong></li>
+  <li><strong>faça</strong> deverá ser escrito como <strong>:</strong></li>
+  <li><strong>algo</strong> será um <strong>bloco de código</strong></li>
+</ol>
+
+<p>Portanto, a sentença descrita acima se tornaria equivalente ao código-fonte abaixo:</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># para cada item em uma sequência, faça algo.</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">uma</span> <span class="n">sequencia</span><span class="p">:</span>
+    <span class="c">#algo</span>
+</code></pre>
+</div>
+
+<p>Obviamente, este código ainda não é funcional, precisamos definir o que “uma sequencia” se refere, e também definir o que “algo” se refere. Tomemos um exemplo simples, em que a sequência seja $5,4,3,2,1,0$, e que o o bloco de código que queiramos repetir seja apenas <code class="highlighter-rouge">print(item)</code>. Dados esses detalhes o código-fonte acima se tornará.</p>
+
+<ul>
+  <li><strong>para cada</strong> item <strong>em</strong> 5,4,3,2,1,0<strong>:</strong>
+    <ul>
+      <li>imprima item.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Temos agora um exemplo completo equivalente ao visto na seção anterior (ver abaixo) porém muito mais simples.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">numero</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="k">while</span> <span class="n">numero</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">numero</span><span class="p">)</span>
+    <span class="n">numero</span> <span class="o">=</span> <span class="n">numero</span> <span class="o">-</span> <span class="mi">1</span>
+</code></pre>
+</div>
+
+<h2 id="geradores-de-sequências-a-função-range">Geradores de sequências: a função <code class="highlighter-rouge">range()</code></h2>
+
+<p>É importante notar que a quantidade de <strong>iterações</strong> em um laço <code class="highlighter-rouge">for</code> é predefinida em sua criação. Isto é, sabemos desde o início que após percorrer toda a sequência <code class="highlighter-rouge">[5,4,3,2,1,0]</code> a repetição terá fim. Suponhamos, no entanto, a seguinte questão:</p>
+
+<ul>
+  <li>Escreva um programa que imprima todos os número de zero a dois mil.</li>
+</ul>
+
+<p>Não é prático escrevermos toda sequência de números de forma explícita <code class="highlighter-rouge">[0,1,...,2000]</code>, e também não será prático para qualquer outra sequência de tamanho razoável. Deste modo, a linguagem Python nos oferece uma ferramenta para abreviar a escrita dessas sequências: a função <code class="highlighter-rouge">range()</code></p>
+
+<p>A função <code class="highlighter-rouge">range()</code> pode ser utilizada de diferentes formas, as quais estão exemplificadas na tabela abaixo:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Formato</th>
+      <th>Descrição</th>
+      <th>Exemplo</th>
+      <th>Resultado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">range(n)</code></td>
+      <td>Gera uma sequência de $0$ a $n-1$</td>
+      <td><code class="highlighter-rouge">range(6)</code></td>
+      <td><code class="highlighter-rouge">[0,1,2,3,4,5]</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">range(i,f)</code></td>
+      <td>Gera uma sequência de $i$ a $f-1$</td>
+      <td><code class="highlighter-rouge">range(5,11)</code></td>
+      <td><code class="highlighter-rouge">[5,6,7,8,9,10]</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">range(i,f,s)</code></td>
+      <td>Gera a seq. <script type="math/tex">i, (i+s), (i+s+s),\dots, (j \leq f-1)</script></td>
+      <td><code class="highlighter-rouge">range(5,11,2)</code></td>
+      <td><code class="highlighter-rouge">[5,7,9]</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Utilizando como referência esses exemplos de uso da função <code class="highlighter-rouge">range()</code>, podemos de forma fácil imprimir todos os números em um intervalo. É imporante, no entanto, lembrar que o último número gerado será sempre um valor a menos que o valor passado para range. A seguir temos alguns exemplos, os <strong>execute</strong>, verifique os resultados, <strong>altere</strong> os valores das sequências, <strong>experimente</strong> com o uso dessas funcionalidades.</p>
+
+<h3 id="exemplo-1-sequência-de-0-a-n">Exemplo 1: sequência de 0 a n</h3>
+
+<p>Assuma que recebemos como entrada um inteiro $n$ e desejamos imprimir todos os números de $0$ a $n$. O código-fonte a seguir faz o esperado, onde a notação <code class="highlighter-rouge">range(n+1)</code> define automaticamente o início como $0$ e o final explicitamente como $n$.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h3 id="exemplo-2-sequência-de-n-a-0">Exemplo 2: sequência de n a 0</h3>
+
+<p>Assuma que recebemos como entrada um inteiro $n$ e desejamos imprimir todos os números de $n$ a $0$. O código-fonte a seguir faz o esperado, onde a notação <code class="highlighter-rouge">range(n, -1, -1)</code> define explicitamente o início como $n$, o final como $0$ (um número antes de -1) e o terceiro campo, $-1$, indica a quantidade que será subtraída para gerar a sequência.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h3 id="exemplo-3-sequência-de-números-pares-de-0-a-n">Exemplo 3: sequência de números pares de 0 a n</h3>
+
+<p>Assuma que recebemos como entrada um inteiro $n$ e desejamos imprimir todos os números pares de $0$ a $n$. O código-fonte a seguir faz o esperado, onde a notação <code class="highlighter-rouge">range(0, n+1, 2)</code> define explicitamente o início como $0$, o final como $n$ e o incremento como $2$.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h1 id="exercícios-for">Exercícios: <code class="highlighter-rouge">for</code></h1>
+
+<p><strong>Para consolidar o conteúdo descrito nesta seção, refaça todos exercícios definidos nas seções anteriores, mas agora utilizando a estrutura <code class="highlighter-rouge">for</code> e a função <code class="highlighter-rouge">range()</code></strong></p>
 
   </article>
 
