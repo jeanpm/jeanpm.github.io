@@ -17,7 +17,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>APS2 - Similaridade dos códigos submetidos</title>
+  <title>APS2 - Revisão de códigos</title>
   <meta name="description" content="Comparação-plágio: abrir em outra página">
 
   <link rel="stylesheet" href="/css/main.css">
@@ -64,9 +64,9 @@
         <div class="post">
 
   <header class="post-header">
-     <h1 class="post-title">APS2 - Similaridade dos códigos submetidos</h1>
+     <h1 class="post-title">APS2 - Revisão de códigos</h1>
      <p class="post-meta">
-         <i class="fa fa-calendar-o"></i> May 20, 2018
+         <i class="fa fa-calendar-o"></i> Jun 3, 2018
           • <i class="fa fa-user"></i> jean
          </p>
   </header>
@@ -74,17 +74,11 @@
     <div class="post-paging">
   
     <div class="left">
-      <a href="/ae22cp-181/APS2-list.html">
+      <a href="/ae22cp-181/APS3-ordenacao.html">
         <i class="fa fa-angle-left fa-2x"></i>
       </a>
     </div>
   
-  
-    <div class="right">
-      <a href="/ae22cp-181/ordenacao.html">
-        <i class="fa fa-angle-right fa-2x"></i>
-      </a>
-    </div>
   
 </div>
 
@@ -97,8 +91,276 @@
     </ul>
     <p><a href="../AE22CP-181/APS2-181-html">Comparação-plágio: abrir em outra página</a></p>
 
-<iframe width="800" height="1100" src="../AE22CP-181/APS2-181-html/index.html" style="border:none;font-size:1em">
-</iframe>
+<h1 id="avaliação-dos-códigos-fonte">Avaliação dos códigos-fonte</h1>
+
+<p><strong>Sobre a complexidade da implementação</strong>
+<strong>Sobre o uso consistente de formatação</strong></p>
+
+<p>Avalie a complexidade do código abaixo para listas de encadeamento simples e duplo!</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">list_print</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">cont</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="n">node</span><span class="o">*</span> <span class="n">aux</span> <span class="o">=</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">cont</span><span class="o">++&lt;</span><span class="n">list_size</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+	<span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"%d </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">aux</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">);</span>
+		<span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Com uma simples modificação baixamos a complexidade $O(n^2)$ para $O(n)$, ver abaixo:</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">list_print</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">list_size</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+	<span class="n">node</span><span class="o">*</span> <span class="n">aux</span> <span class="o">=</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">size</span><span class="o">--</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"%d </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">aux</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">);</span>
+		<span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p><strong>Simplificação de código</strong></p>
+
+<p>Observe se o uso de bibliotecas adicionais tornariam o código-fonte mais legível (fácil de compreender)</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">list_empty</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>O tipo de dados Booleanos é sempre mais indicado para escrita de códigos que envolvam resultados lógicos (verdadeiro/falso). Pois evidenciam o significado do retorno. Todas linguagens de programação “modernas” possuem esse tipo de dados.</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="cp">#include &lt;stdbool.h&gt;
+</span><span class="kt">bool</span> <span class="nf">list_empty</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p><strong>Formatação dos comentários</strong></p>
+
+<p>Comentários são úteis e devem ser utilizados, nos ajudam a compreender melhor o código e a relembrar posteriormente. No entanto, eles fazem parte do seu código-fonte e devem ser escritos/formatados corretamente.</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span><span class="o">**</span> <span class="nf">new_matrix</span><span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">;</span>
+
+    <span class="kt">int</span> <span class="o">**</span><span class="n">Matrix</span><span class="o">=</span><span class="p">(</span><span class="kt">int</span><span class="o">**</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">));</span><span class="c1">//nesse passo eu aloquei um vetor de ponteiros.
+</span>    
+    
+
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">m</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="c1">//percorre as linhas.
+</span>    <span class="p">{</span>
+        <span class="n">Matrix</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span><span class="c1">//aloca um vetor de inteiros para a coluna.
+</span>    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">Matrix</span><span class="p">;</span><span class="c1">//Retorna o ponteiro para a matriz alocada.
+</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>A legibilidade é afetada pelo excesso de espaços e pelo fato dos comentários terem sido inseridos após o fim da linha. Se o comentário é extenso o indicado é escrevê-lo antes da operação.</p>
+
+<p>O espaçamento entre os operadores também deixa o código mais organizado e fácil de ler.</p>
+
+<p>Evite declarar índices no ínicio da função, isso pode ser feito na própria definição do loop.</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span><span class="o">**</span> <span class="nf">new_matrix</span><span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//nesse passo eu aloquei um vetor de ponteiros.
+</span>    <span class="kt">int</span> <span class="o">**</span><span class="n">Matrix</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="o">**</span><span class="p">)</span> <span class="n">malloc</span> <span class="p">(</span><span class="n">m</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">));</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//aloca um vetor de inteiros para a coluna.
+</span>        <span class="n">Matrix</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span> <span class="n">malloc</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="c1">//Retorna o ponteiro para a matriz alocada.
+</span>    <span class="k">return</span> <span class="n">Matrix</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p><strong>Comentários para funções</strong></p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">list_push_front</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">)</span> 
+<span class="p">{</span><span class="c1">//Insere no inicio.
+</span>    <span class="n">list_insert</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">value</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Ao comentarmos a definição de uma função é usual utilizarmos comentários de múltiplas linhas e mais descritivos.</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="cm">/*
+ Insere  um novo nó de conteúdo `value` no início da lista.
+ */</span>
+<span class="kt">void</span> <span class="nf">list_push_front</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Type</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">list_insert</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">value</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p><strong>Indentação</strong></p>
+
+<p>Seja consistente com sua indentação. Se utiliza 4 espaços, 8 espaços ou tabulação, isso não é importante. Porém, utilize sempre o mesmo padrão em todo o seu arquivo.</p>
+
+<p>Observe o tipo de retorno da sua função, se ela sempre retorna NULL, não há porque retornar algo.</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span><span class="o">**</span><span class="nf">free_matrix</span> <span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="o">**</span><span class="n">v</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span>  <span class="n">i</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">m</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+     <span class="n">printf</span> <span class="p">(</span><span class="s">" erro"</span><span class="p">);</span>
+     <span class="k">return</span> <span class="p">(</span><span class="n">v</span><span class="p">);</span>
+     <span class="p">}</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">m</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">free</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+
+  <span class="n">free</span> <span class="p">(</span><span class="n">v</span><span class="p">);</span>
+  <span class="k">return</span> <span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">free_matrix</span> <span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="o">**</span><span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">free</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="n">free</span> <span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p><strong>Espaços fazem parte da linguagem e devem ser utilizados apropriadamente</strong></p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="n">node</span><span class="o">*</span> <span class="n">iterate_to</span><span class="p">(</span><span class="n">list</span><span class="o">*</span><span class="n">v</span><span class="p">,</span><span class="kt">int</span> <span class="n">pos</span><span class="p">){</span>
+    <span class="n">assert</span><span class="p">(</span><span class="n">pos</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">&amp;&amp;</span><span class="n">pos</span><span class="o">&lt;=</span><span class="n">list_size</span><span class="p">(</span><span class="n">v</span><span class="p">));</span>
+    <span class="kt">int</span> <span class="n">indice</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">node</span><span class="o">*</span><span class="n">ptr</span><span class="o">=</span><span class="n">v</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">;</span>
+
+    <span class="k">while</span><span class="p">(</span><span class="n">indice</span><span class="o">++!=</span><span class="n">pos</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">ptr</span><span class="o">=</span><span class="n">ptr</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">ptr</span><span class="p">;</span>
+
+
+
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>O código acima se torna muito mais organizado e legível com a formatação apropriada (observe o <code class="highlighter-rouge">assert</code>)</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="n">node</span><span class="o">*</span> <span class="nf">iterate_to</span><span class="p">(</span><span class="n">list</span><span class="o">*</span><span class="n">v</span><span class="p">,</span><span class="kt">int</span> <span class="n">pos</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">assert</span><span class="p">(</span><span class="n">pos</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">pos</span> <span class="o">&lt;=</span> <span class="n">list_size</span><span class="p">(</span><span class="n">v</span><span class="p">));</span>
+    <span class="kt">int</span> <span class="n">indice</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">node</span><span class="o">*</span><span class="n">ptr</span><span class="o">=</span><span class="n">v</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">indice</span><span class="o">++</span> <span class="o">!=</span> <span class="n">pos</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">ptr</span><span class="o">=</span><span class="n">ptr</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">ptr</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p><strong>Valores lógicos raramente precisam ser explicitados em comparações</strong></p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="n">Type</span> <span class="n">list_pop_front</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">){</span>
+    <span class="n">assert</span><span class="p">(</span><span class="n">list_empty</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">!=</span><span class="nb">true</span><span class="p">);</span>
+    <span class="c1">//...
+</span></code></pre>
+</div>
+
+<p>Em casos como esse, o <code class="highlighter-rouge">true</code> pode ser ignorado sem prejuízo à interpretação do texto.</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="n">Type</span> <span class="nf">list_pop_front</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">assert</span><span class="p">(</span><span class="n">list_empty</span><span class="p">(</span><span class="n">v</span><span class="p">));</span>
+    <span class="c1">//...
+</span></code></pre>
+</div>
+
+<p>O mesmo acontece no trecho abaixo:</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">if</span><span class="p">(</span><span class="n">list_empty</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">==</span> <span class="nb">true</span><span class="p">){</span> 
+</code></pre>
+</div>
+
+<p>Que se mantém claro se escrito como “Se a lista v está vazia”</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="k">if</span><span class="p">(</span><span class="n">list_empty</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="p">{</span> 
+</code></pre>
+</div>
+
+<p><strong>Separe/modularize funcionalidades de uso recorrente!</strong></p>
+
+<p>A funcionalidade <code class="highlighter-rouge">iterate_to</code> foi definida para que fique claro a lógica que envolve inserção/remoção de nós. Sem que essa lógica se confunda com a lógica de programação para percorrer a lista.</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="n">Type</span> <span class="n">list_erase</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">){</span>
+    <span class="n">Type</span> <span class="n">valor</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">list_pop_front</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="p">(</span><span class="n">list_size</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="n">list_pop_back</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="n">node</span><span class="o">*</span> <span class="n">a</span><span class="o">=</span><span class="n">v</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">;</span>
+        <span class="n">node</span><span class="o">*</span> <span class="n">e</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">j</span><span class="o">!=</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+            <span class="n">j</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">e</span><span class="o">=</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="n">valor</span><span class="o">=</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">;</span>
+        <span class="n">a</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">=</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="n">free</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">valor</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Vejamos a simplificação do código acima adaptado para utilizar <code class="highlighter-rouge">iterate_to</code>.</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="n">Type</span> <span class="nf">list_erase</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Type</span> <span class="n">valor</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">list_pop_front</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">list_size</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">list_pop_back</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="k">else</span> <span class="p">{</span>
+        <span class="n">node</span><span class="o">*</span> <span class="n">a</span> <span class="o">=</span> <span class="n">iterate_to</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+        <span class="n">node</span><span class="o">*</span> <span class="n">e</span> <span class="o">=</span> <span class="n">a</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="n">valor</span> <span class="o">=</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">;</span>
+        <span class="n">a</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="n">free</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">valor</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p><strong>Para simplificação do código, evite redundâncias</strong></p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">list_size</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="o">-&gt;</span><span class="n">head</span><span class="o">!=</span><span class="nb">NULL</span><span class="p">)</span>
+    <span class="p">{</span>
+       <span class="n">node</span><span class="o">*</span> <span class="n">b</span><span class="o">=</span><span class="n">v</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">;</span>
+       <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">b</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">!=</span><span class="nb">NULL</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+       <span class="p">{</span>
+          <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+       <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">i</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>A função acima funcionará normalmente se removermos o <code class="highlighter-rouge">if</code> inicial.</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">list_size</span><span class="p">(</span><span class="n">list</span><span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">node</span><span class="o">*</span> <span class="n">b</span> <span class="o">=</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(;</span> <span class="n">b</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="n">size</span><span class="o">++</span><span class="p">)</span>
+      <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">size</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
 
 
   </article>
