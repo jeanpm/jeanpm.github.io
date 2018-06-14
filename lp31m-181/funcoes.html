@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118722707-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-118722707-1');
+</script>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Funções</title>
+  <meta name="description" content="Conteúdo  Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/lp31m-181/funcoes.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Funções</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Jun 14, 2018
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/ae22cp-181/aps2-resultados.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <h1 id="conteúdo">Conteúdo</h1>
+<ul id="markdown-toc">
+  <li><a href="#conteúdo" id="markdown-toc-conteúdo">Conteúdo</a></li>
+  <li><a href="#ambiente-de-programação" id="markdown-toc-ambiente-de-programação">Ambiente de programação</a></li>
+  <li><a href="#modularização-e-funções" id="markdown-toc-modularização-e-funções">Modularização e funções</a>    <ul>
+      <li><a href="#exercício-1-soma-dos-n-primeiros-números" id="markdown-toc-exercício-1-soma-dos-n-primeiros-números">Exercício 1: soma dos n primeiros números</a></li>
+      <li><a href="#exercício-2-fatorial" id="markdown-toc-exercício-2-fatorial">Exercício 2: fatorial</a></li>
+      <li><a href="#exercício-3-fibonacci" id="markdown-toc-exercício-3-fibonacci">Exercício 3: fibonacci</a></li>
+      <li><a href="#exercício-4-série-harmônica" id="markdown-toc-exercício-4-série-harmônica">Exercício 4: série harmônica</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="ambiente-de-programação">Ambiente de programação</h1>
+
+<p>Para seguir os exemplos aqui descritos sugiro a utilização do ambiente de programação online <a href="https://repl.it/languages/python3">»repl.it</a>.</p>
+
+<p>Para programar em seu próprio computador, sem utilização de ferramentas web, siga os passos de instalação descritos nos links abaixo:</p>
+
+<ul>
+  <li><a href="https://python.org.br/instalacao-linux/">Como instalar Python no Linux?</a>,</li>
+  <li><a href="https://python.org.br/instalacao-windows/">Como instalar Python no Windows?</a></li>
+</ul>
+
+<h1 id="modularização-e-funções">Modularização e funções</h1>
+
+<p>Programas são a implementação automatizada da solução de um determinado problema. Tais problemas podem ser tão simples quanto efetuar a soma de dois números, calcular a média de uma sequência de números, computar o valor total de uma lista de compras e assim por diante.</p>
+
+<p>Apesar do imenso número de problemas que podem ser solucionados por meio de programação, os elementos básicos envolvidos são consideravelmente pequenos. Em geral, todo programa, independente do contexto ao qual se aplique, será composto por <em>estruturas de decisão</em>, <em>estruturas de repetição</em>, <em>entrada de dados</em> e <em>saída de dados</em>. Assim como esses componentes aparecerão diversas vezes durante a programação, outros também podem vir a ser necessários.</p>
+
+<p>Suponha, por exemplo, o cálculo do fatorial de um número $n &gt; 0$ qualquer. Existem um imenso número de problemas que requerem o cálculo do fatorial e seria entediante ao programador ter que implementar o cálculo do fatorial novamente, sempre que sua utilização se fizesse necessária. Do mesmo modo, podemos mencionar o cálculo da média de uma sequência como algo que constantemente é necessário em diversos programas.</p>
+
+<p>O ideal seria que todas a funcionalidades básicas estivessem disponíveis na linguagem de programação, no entanto, isso nem sempre é verdade, visto o imenso número de funcionalidades necessárias para se implementar um pograma complexo. No entanto, a maioria das linguagens de programação nos oferecem mecanimos para que criemos nossas próprias funcionalidades: as funções.</p>
+
+<p>Uma função na linguagem de programação Python tem a seguinte estrutura:</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">somar</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</code></pre>
+</div>
+
+<p>Temos a palavra-chave <strong>def</strong> a qual indica que queremos definir uma nova funcionalidade, a qual terá como nome, <strong>somar</strong>, neste exemplo. Por fim temos a palavra-chave <strong>return</strong> a qual indica qual será o resultado produzido pela função (neste exemplo a função está retornando a soma de <code class="highlighter-rouge">a + b</code>, e <code class="highlighter-rouge">a</code> e <code class="highlighter-rouge">b</code> são chamados <strong>argumentos da função</strong>).</p>
+
+<p>É importante notarmos que a definição da função, como feito acima, não produz resultado algum, ela apenas especifica o comportamento da função. Para que uma função qualquer produza um resultado é preciso passarmos a elas valores concretos, exemplo:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>somar(10,11)
+</code></pre>
+</div>
+
+<p>A explicação acima nos permite reavaliar o que temos aprendido da linguagem Python até então e identificarmos algumas funções que temos utilizado:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">input()</code></li>
+  <li><code class="highlighter-rouge">range()</code></li>
+  <li><code class="highlighter-rouge">print()</code></li>
+</ul>
+
+<h2 id="exercício-1-soma-dos-n-primeiros-números">Exercício 1: soma dos n primeiros números</h2>
+<p>Implemente uma função que receba um número $n$ e retorne a soma de todos os números $1, 2, 3, \dots, n$.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">soma</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="c"># Complete</span>
+    <span class="c"># ...</span>
+    <span class="k">return</span> <span class="n">soma</span>
+</code></pre>
+</div>
+
+<h2 id="exercício-2-fatorial">Exercício 2: fatorial</h2>
+
+<p>Implemente a função <a href="https://pt.wikipedia.org/wiki/Fatorial">fatorial</a>, a qual recebe como argumento um número <code class="highlighter-rouge">n</code> e retorna o fatorial de $n$. O fatorial de $n$ é dado por</p>
+
+<script type="math/tex; mode=display">n! = n \times (n-1) \times \dots \times 2 \times 1</script>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fatorial</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="c"># Complete </span>
+    <span class="c"># ...</span>
+    <span class="k">return</span> <span class="n">fatorial</span>
+</code></pre>
+</div>
+
+<h2 id="exercício-3-fibonacci">Exercício 3: fibonacci</h2>
+<p>A sequência de <a href="https://pt.wikipedia.org/wiki/Sequ%C3%AAncia_de_Fibonacci">Fibonacci</a> é definida assumindo que cada termo é o resultado da soma dos dois anteriores.</p>
+
+<script type="math/tex; mode=display">1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, \dots</script>
+
+<p>Implemente uma função que calcule o i-ésimo termo da sequência de Fibonacci.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="c"># Complete</span>
+    <span class="c"># ...</span>
+    <span class="k">return</span> <span class="n">termo</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<h2 id="exercício-4-série-harmônica">Exercício 4: série harmônica</h2>
+
+<p>A <a href="https://pt.wikipedia.org/wiki/S%C3%A9rie_harm%C3%B3nica_(matem%C3%A1tica)">série harmônica</a> consiste das frações</p>
+
+<script type="math/tex; mode=display">1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, \frac{1}{5},\dots</script>
+
+<p>Implemente uma função que compute a soma dos $n$ primeiros termos dessa série.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">harmonica</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="c"># Complete</span>
+    <span class="c"># ...</span>
+    <span class="k">return</span> <span class="n">soma</span>
+</code></pre>
+</div>
+
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>

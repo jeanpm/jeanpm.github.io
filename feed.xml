@@ -6,9 +6,132 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 03 Jun 2018 19:27:03 -0300</pubDate>
-    <lastBuildDate>Sun, 03 Jun 2018 19:27:03 -0300</lastBuildDate>
+    <pubDate>Thu, 14 Jun 2018 20:29:18 -0300</pubDate>
+    <lastBuildDate>Thu, 14 Jun 2018 20:29:18 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Funções</title>
+        <description>&lt;h1 id=&quot;conteúdo&quot;&gt;Conteúdo&lt;/h1&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#conteúdo&quot; id=&quot;markdown-toc-conteúdo&quot;&gt;Conteúdo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#ambiente-de-programação&quot; id=&quot;markdown-toc-ambiente-de-programação&quot;&gt;Ambiente de programação&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#modularização-e-funções&quot; id=&quot;markdown-toc-modularização-e-funções&quot;&gt;Modularização e funções&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#exercício-1-soma-dos-n-primeiros-números&quot; id=&quot;markdown-toc-exercício-1-soma-dos-n-primeiros-números&quot;&gt;Exercício 1: soma dos n primeiros números&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exercício-2-fatorial&quot; id=&quot;markdown-toc-exercício-2-fatorial&quot;&gt;Exercício 2: fatorial&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exercício-3-fibonacci&quot; id=&quot;markdown-toc-exercício-3-fibonacci&quot;&gt;Exercício 3: fibonacci&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exercício-4-série-harmônica&quot; id=&quot;markdown-toc-exercício-4-série-harmônica&quot;&gt;Exercício 4: série harmônica&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;ambiente-de-programação&quot;&gt;Ambiente de programação&lt;/h1&gt;
+
+&lt;p&gt;Para seguir os exemplos aqui descritos sugiro a utilização do ambiente de programação online &lt;a href=&quot;https://repl.it/languages/python3&quot;&gt;»repl.it&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Para programar em seu próprio computador, sem utilização de ferramentas web, siga os passos de instalação descritos nos links abaixo:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://python.org.br/instalacao-linux/&quot;&gt;Como instalar Python no Linux?&lt;/a&gt;,&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://python.org.br/instalacao-windows/&quot;&gt;Como instalar Python no Windows?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;modularização-e-funções&quot;&gt;Modularização e funções&lt;/h1&gt;
+
+&lt;p&gt;Programas são a implementação automatizada da solução de um determinado problema. Tais problemas podem ser tão simples quanto efetuar a soma de dois números, calcular a média de uma sequência de números, computar o valor total de uma lista de compras e assim por diante.&lt;/p&gt;
+
+&lt;p&gt;Apesar do imenso número de problemas que podem ser solucionados por meio de programação, os elementos básicos envolvidos são consideravelmente pequenos. Em geral, todo programa, independente do contexto ao qual se aplique, será composto por &lt;em&gt;estruturas de decisão&lt;/em&gt;, &lt;em&gt;estruturas de repetição&lt;/em&gt;, &lt;em&gt;entrada de dados&lt;/em&gt; e &lt;em&gt;saída de dados&lt;/em&gt;. Assim como esses componentes aparecerão diversas vezes durante a programação, outros também podem vir a ser necessários.&lt;/p&gt;
+
+&lt;p&gt;Suponha, por exemplo, o cálculo do fatorial de um número $n &amp;gt; 0$ qualquer. Existem um imenso número de problemas que requerem o cálculo do fatorial e seria entediante ao programador ter que implementar o cálculo do fatorial novamente, sempre que sua utilização se fizesse necessária. Do mesmo modo, podemos mencionar o cálculo da média de uma sequência como algo que constantemente é necessário em diversos programas.&lt;/p&gt;
+
+&lt;p&gt;O ideal seria que todas a funcionalidades básicas estivessem disponíveis na linguagem de programação, no entanto, isso nem sempre é verdade, visto o imenso número de funcionalidades necessárias para se implementar um pograma complexo. No entanto, a maioria das linguagens de programação nos oferecem mecanimos para que criemos nossas próprias funcionalidades: as funções.&lt;/p&gt;
+
+&lt;p&gt;Uma função na linguagem de programação Python tem a seguinte estrutura:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;somar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Temos a palavra-chave &lt;strong&gt;def&lt;/strong&gt; a qual indica que queremos definir uma nova funcionalidade, a qual terá como nome, &lt;strong&gt;somar&lt;/strong&gt;, neste exemplo. Por fim temos a palavra-chave &lt;strong&gt;return&lt;/strong&gt; a qual indica qual será o resultado produzido pela função (neste exemplo a função está retornando a soma de &lt;code class=&quot;highlighter-rouge&quot;&gt;a + b&lt;/code&gt;, e &lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt; são chamados &lt;strong&gt;argumentos da função&lt;/strong&gt;).&lt;/p&gt;
+
+&lt;p&gt;É importante notarmos que a definição da função, como feito acima, não produz resultado algum, ela apenas especifica o comportamento da função. Para que uma função qualquer produza um resultado é preciso passarmos a elas valores concretos, exemplo:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;somar(10,11)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;A explicação acima nos permite reavaliar o que temos aprendido da linguagem Python até então e identificarmos algumas funções que temos utilizado:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;input()&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;range()&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;print()&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;exercício-1-soma-dos-n-primeiros-números&quot;&gt;Exercício 1: soma dos n primeiros números&lt;/h2&gt;
+&lt;p&gt;Implemente uma função que receba um número $n$ e retorne a soma de todos os números $1, 2, 3, \dots, n$.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;soma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# Complete&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# ...&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soma&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;exercício-2-fatorial&quot;&gt;Exercício 2: fatorial&lt;/h2&gt;
+
+&lt;p&gt;Implemente a função &lt;a href=&quot;https://pt.wikipedia.org/wiki/Fatorial&quot;&gt;fatorial&lt;/a&gt;, a qual recebe como argumento um número &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt; e retorna o fatorial de $n$. O fatorial de $n$ é dado por&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;n! = n \times (n-1) \times \dots \times 2 \times 1&lt;/script&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;fatorial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# Complete &lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# ...&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fatorial&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;exercício-3-fibonacci&quot;&gt;Exercício 3: fibonacci&lt;/h2&gt;
+&lt;p&gt;A sequência de &lt;a href=&quot;https://pt.wikipedia.org/wiki/Sequ%C3%AAncia_de_Fibonacci&quot;&gt;Fibonacci&lt;/a&gt; é definida assumindo que cada termo é o resultado da soma dos dois anteriores.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, \dots&lt;/script&gt;
+
+&lt;p&gt;Implemente uma função que calcule o i-ésimo termo da sequência de Fibonacci.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;fibonacci&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# Complete&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# ...&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;termo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;exercício-4-série-harmônica&quot;&gt;Exercício 4: série harmônica&lt;/h2&gt;
+
+&lt;p&gt;A &lt;a href=&quot;https://pt.wikipedia.org/wiki/S%C3%A9rie_harm%C3%B3nica_(matem%C3%A1tica)&quot;&gt;série harmônica&lt;/a&gt; consiste das frações&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, \frac{1}{5},\dots&lt;/script&gt;
+
+&lt;p&gt;Implemente uma função que compute a soma dos $n$ primeiros termos dessa série.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;harmonica&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# Complete&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# ...&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soma&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Thu, 14 Jun 2018 18:00:00 -0300</pubDate>
+        <link>http://localhost:4000/lp31m-181/funcoes.html</link>
+        <guid isPermaLink="true">http://localhost:4000/lp31m-181/funcoes.html</guid>
+        
+        <category>funcoes</category>
+        
+        
+        <category>LP31M-181</category>
+        
+      </item>
     
       <item>
         <title>APS2 - Revisão de códigos</title>
@@ -291,6 +414,167 @@
         <guid isPermaLink="true">http://localhost:4000/ae22cp-181/aps2-resultados.html</guid>
         
         <category>aps2-anotações</category>
+        
+        
+        <category>AE22CP-181</category>
+        
+      </item>
+    
+      <item>
+        <title>Algoritmos ótimos para Ordenação por comparação</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#introdução&quot; id=&quot;markdown-toc-introdução&quot;&gt;Introdução&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#ordenação-por-comparações&quot; id=&quot;markdown-toc-ordenação-por-comparações&quot;&gt;Ordenação por comparações&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#Árvore-de-decisão&quot; id=&quot;markdown-toc-Árvore-de-decisão&quot;&gt;Árvore de decisão&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#altura-da-árvore-de-decisão&quot; id=&quot;markdown-toc-altura-da-árvore-de-decisão&quot;&gt;Altura da árvore de decisão&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#limitante-inferior&quot; id=&quot;markdown-toc-limitante-inferior&quot;&gt;Limitante Inferior&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#qual-seria-o-limitante-inferior-para-a-busca-binária&quot; id=&quot;markdown-toc-qual-seria-o-limitante-inferior-para-a-busca-binária&quot;&gt;Qual seria o limitante inferior para a busca binária?&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;introdução&quot;&gt;Introdução&lt;/h1&gt;
+
+&lt;p&gt;Até então discutimos vários algoritmo de ordenação como alternativas para solucionar o mesmo problema. Dada uma sequência numérica $x_1,\dots,x_n$, reordenar a sequência de modo a produzir uma nova que respeite uma relação de ordem:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;x_i \leq x_{i+1}, \qquad i=1,\dots,n-1&lt;/script&gt;
+
+&lt;p&gt;A comparação de eficiência entre os algoritmos discutidos tem sido feita considerando principalmente o pior caso de cada um, ou seja, sequências de entrada que levam esses algoritmos a terem seu pior desempenho, seja em tempo de execução ou número de comparações. Tal comparação teórica também pode ser feita em ao menos dois casos adicionais:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;melhor caso, e&lt;/li&gt;
+  &lt;li&gt;caso médio.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;De forma genérica, o melhor caso de qualquer algoritmo representa tipos de entradas para as quais ele tem o seu melhor desempenho (menor número de comparações). Nos algoritmos de ordenação, isso geralmente ocorre quando a sequência já está ordenada da forma correta (ver tabela: buble sort e insertion sort).&lt;/p&gt;
+
+&lt;p&gt;O caso médio, por outro lado, representa o comportamento médio do algoritmo em todas as entradas possíveis. O desempenho médio desses algoritmos pode ser avaliado de forma aproximada por meio de experimentos. A tabela abaixo nos indica a complexidade de cada um dos algoritmos vistos até então nesses três casos.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Algoritmo&lt;/th&gt;
+      &lt;th&gt;Melhor caso&lt;/th&gt;
+      &lt;th&gt;Caso médio&lt;/th&gt;
+      &lt;th&gt;Pior caso&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Bubble sort&lt;/td&gt;
+      &lt;td&gt;$O(n)$&lt;/td&gt;
+      &lt;td&gt;$O(n^2)$&lt;/td&gt;
+      &lt;td&gt;$O(n^2)$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Selection sort&lt;/td&gt;
+      &lt;td&gt;$O(n^2)$&lt;/td&gt;
+      &lt;td&gt;$O(n^2)$&lt;/td&gt;
+      &lt;td&gt;$O(n^2)$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Insertion sort&lt;/td&gt;
+      &lt;td&gt;$O(n)$&lt;/td&gt;
+      &lt;td&gt;$O(n^2)$&lt;/td&gt;
+      &lt;td&gt;$O(n^2)$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Quicksort&lt;/td&gt;
+      &lt;td&gt;$O(n \log n)$&lt;/td&gt;
+      &lt;td&gt;$O(n \log n)$&lt;/td&gt;
+      &lt;td&gt;$O(n^2)$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Mergesort&lt;/td&gt;
+      &lt;td&gt;$O(n \log n)$&lt;/td&gt;
+      &lt;td&gt;$O(n \log n)$&lt;/td&gt;
+      &lt;td&gt;$O(n \log n)$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Heapsort&lt;/td&gt;
+      &lt;td&gt;$O(n \log n)$&lt;/td&gt;
+      &lt;td&gt;$O(n \log n)$&lt;/td&gt;
+      &lt;td&gt;$O(n \log n)$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Tais resultados teóricos nos dão um bom indicativo da eficiência relativa de cada um desses algoritmos. No entanto, caso dois algoritmos tenham a mesma complexidade teórica (ex.: quicksort, mergesort e heapsort) eles não são suficientes para dizermos qual algoritmo será mais “rápido” do ponto de vista prático. Isso ocorre pois na prática existem outras características que influenciarão o desempenho do algoritmo, como exemplo, podemos citar: forma de acesso à memória, menor número de trocas, qualidade da implementação, etc.&lt;/p&gt;
+
+&lt;p&gt;Algoritmos como o &lt;code class=&quot;highlighter-rouge&quot;&gt;quicksort&lt;/code&gt; são muito úteis na prática. Porém, como eficiência nunca é demais, podemos nos perguntar: – &lt;strong&gt;“Não existiria algoritmo mais rápido?”&lt;/strong&gt; –. O objetivo desta seção é oferecer uma resposta a essa pergunta.&lt;/p&gt;
+
+&lt;h1 id=&quot;ordenação-por-comparações&quot;&gt;Ordenação por comparações&lt;/h1&gt;
+
+&lt;h2 id=&quot;Árvore-de-decisão&quot;&gt;Árvore de decisão&lt;/h2&gt;
+&lt;p&gt;Ao examinarmos a implementação dos algoritmos acima podemos notar algo em comum. Todos eles utilizam comparações entre pares de elementos $x_i, x_j$ para determinar a ordem relativa entre esses elementos. Obviamente, cada uma dessas comparações pode oferecer como resposta, apenas uma dentre duas possibilidades que existem como resposta:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;$x_i \leq x_j$, ou&lt;/li&gt;
+  &lt;li&gt;$x_j \leq x_i$.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A ordem que os elementos serão comparados, ou a quantidade de vezes que um mesmo par de elementos será comparado depende de um algoritmo específico e portanto deve ser ignorado nessa análise.&lt;/p&gt;
+
+&lt;p&gt;O ponto mais importante seria notar que a cada comparação $x_i \leq x_j$, um determinado algoritmo ganha informação sobre a ordem relativa desses dois elementos. Se representarmos todas as possíveis sequências de comparações, temos uma estrutura chamada &lt;strong&gt;árvore binária de decisão&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/AE22CP/decision-tree.png&quot; alt=&quot;decision-tree&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Esse tipo de árvore representa as decisões tomadas por um algoritmo qualquer, em que cada nó inicia com a informação adicional obtida da comparação feita acima dele. Por exemplo, o nó &lt;code class=&quot;highlighter-rouge&quot;&gt;2:3&lt;/code&gt; (o qual representa a comparação entre $x_2$ e $x_3$) já assume que $x_1\leq x_2$.&lt;/p&gt;
+
+&lt;h2 id=&quot;altura-da-árvore-de-decisão&quot;&gt;Altura da árvore de decisão&lt;/h2&gt;
+
+&lt;p&gt;Os nós folhas da árvore indicam qual permutação da sequência original tornaria essa sequência ordenada de forma não decrescente. Por exemplo, &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;3,1,2&amp;gt;&lt;/code&gt;, no diz que a sequência ordenada é $x_3,x_1,x_2$.&lt;/p&gt;
+
+&lt;p&gt;É de se esperar que um algoritmo correto permita uma resposta correta para toda possível entrada. Se os nós folhas da árvore nos dão a permutação da entrada que produz a resposta correta, então devem existir ao menos $n!$ permutações como nós folhas, uma para cada possível entrada. Sabendo disso,&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Qual seria o limitante inferior para a complexidade de qualquer algoritmo de ordenação por comparação?&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A ordenação de uma sequência é o procedimento descrito como um caminho que inicia na raíz da árvore de decisão e chega até uma de suas folhas, portanto o número total de comparações é equivalente a altura da árvore.&lt;/p&gt;
+
+&lt;h2 id=&quot;limitante-inferior&quot;&gt;Limitante Inferior&lt;/h2&gt;
+
+&lt;p&gt;Um limitante inferior (&lt;em&gt;lower-bound&lt;/em&gt;), como o próprio nome diz, limita por baixo a complexidade de algo. No nosso caso, esse algo é o &lt;em&gt;problema de ordenação de uma sequência&lt;/em&gt;. Como temos discutido complexidade da ordenação em termos do número de comparações, esse limitante inferior nos dará uma estimativa do menor número comparações possível, que um algoritmo teria que fazer para conseguir ordenar uma sequência qualquer. Este limitante inferior é equivalente a altura da árvore de decisão.&lt;/p&gt;
+
+&lt;p&gt;Uma árvore binária qualquer tem, em seu $\ell$-ésimo nível, $2^\ell$ nós. Sabemos que o último nível dessa árvore deve ter no mínimo $n!$ nós, portanto, no último nível&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;n! \leq 2^\ell&lt;/script&gt;
+
+&lt;p&gt;Aplicando o logaritmo em ambos os lados&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\log(n!) \leq \ell&lt;/script&gt;
+
+&lt;p&gt;Não nos preocuparemos com os detalhes da demonstração, mas a partir dessa desigualdade é possível chegar ao resultado.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\ell \geq n \log n&lt;/script&gt;
+
+&lt;p&gt;O qual significa que qualquer algoritmo de ordenação baseado em comparações terá que fazer no mínimo $n \log n$ comparações.&lt;/p&gt;
+
+&lt;h2 id=&quot;qual-seria-o-limitante-inferior-para-a-busca-binária&quot;&gt;Qual seria o limitante inferior para a busca binária?&lt;/h2&gt;
+
+&lt;p&gt;Siga a mesma ideia descrita acima para obter um limitante inferior para busca binária.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Referências&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;CORMEN, Thomas H. Desmistificando algoritmos. 1. ed. Rio de Janeiro, RJ: Elsevier, c2014. xii, 188 p. ISBN 9788535271775.&lt;a href=&quot;https://book-store.github.io/cse/thirdyear/%5BThomas_H._Cormen%5D_Algorithms_unlocked(BookZZ.org).pdf&quot;&gt;(pdf:Algorithms Unlocked)&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;CORMEN, Thomas H. et al. Algoritmos: teoria e prática. Rio de Janeiro, RJ: Campus, 2002. xvii, 916 p. ISBN 8535209263. &lt;a href=&quot;http://www.inf.ufrgs.br/~tsrodrigues/utilidades/cormem.pdf&quot;&gt;(pdf: Algoritmos)&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;MIT - https://www.youtube.com/watch?v=Nz1KZXbghj8&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+&lt;iframe width=&quot;360&quot; height=&quot;205&quot; src=&quot;https://www.youtube.com/embed/Nz1KZXbghj8&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;iframe width=&quot;360&quot; height=&quot;205&quot; src=&quot;https://www.youtube.com/embed/tVjVaO3KD0w&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+</description>
+        <pubDate>Fri, 01 Jun 2018 00:00:00 -0300</pubDate>
+        <link>http://localhost:4000/ae22cp-181/limite-inferior-ordenacao.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-181/limite-inferior-ordenacao.html</guid>
+        
+        <category>ordenação</category>
         
         
         <category>AE22CP-181</category>
@@ -1917,778 +2201,6 @@ Sabão
         <guid isPermaLink="true">http://localhost:4000/lp31m-181/estruturas-repeticao.html</guid>
         
         <category>loops</category>
-        
-        
-        <category>LP31M-181</category>
-        
-      </item>
-    
-      <item>
-        <title>Listas de encadeamento simples</title>
-        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#listas-encadeadas&quot; id=&quot;markdown-toc-listas-encadeadas&quot;&gt;Listas encadeadas&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#listas-de-encadeamento-simples&quot; id=&quot;markdown-toc-listas-de-encadeamento-simples&quot;&gt;Listas de encadeamento simples&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#detalhes-de-implementação&quot; id=&quot;markdown-toc-detalhes-de-implementação&quot;&gt;Detalhes de implementação&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#criação-dos-nós&quot; id=&quot;markdown-toc-criação-dos-nós&quot;&gt;Criação dos nós&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#encadeamento-dos-nós&quot; id=&quot;markdown-toc-encadeamento-dos-nós&quot;&gt;Encadeamento dos nós&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#inserção-de-um-novo-nó&quot; id=&quot;markdown-toc-inserção-de-um-novo-nó&quot;&gt;Inserção de um novo nó&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#interface-para-o-tipo-abstrato-lista&quot; id=&quot;markdown-toc-interface-para-o-tipo-abstrato-lista&quot;&gt;Interface para o tipo abstrato LISTA&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#implementação-de-listas-de-encadeamento-simples&quot; id=&quot;markdown-toc-implementação-de-listas-de-encadeamento-simples&quot;&gt;Implementação de listas de encadeamento simples&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#utilização-da-estrutura-list&quot; id=&quot;markdown-toc-utilização-da-estrutura-list&quot;&gt;Utilização da estrutura list&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#referências&quot; id=&quot;markdown-toc-referências&quot;&gt;Referências&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;listas-encadeadas&quot;&gt;Listas encadeadas&lt;/h1&gt;
-
-&lt;p&gt;Da mesma forma que vetores (arrays), listas encadeadas também são estruturas sequenciais. Ou seja, os elementos armazenados em tais estruturas de dados obedecem uma certa ordem linear, em que um sucede (ou precede) outro elemento. Nos vetores, essa ordem é implementada diretamente em memória, ou seja, dado um elemento $v[i]$ em um vetor, o elemento $v[i+1]$ está na posição de memória subsequente.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;valor    := v[0]    v[1]    v[2]    ... v[n-1]
-endereço := x       x+1     x+2     ... x+n-1
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Já listas encadeadas, a situação é um pouco diferente. Apesar dos elementos ainda sim manterem uma ordem sequencial, essa ordem não precisa ser refletida nas posições de memória que eles ocupam. Deste modo, estruturas adicionais são necessárias para indicar qual elemento sucede ou precede outro. Nesta seção iremos tratar de uma implementação bem restrita de listas encadeadas, as listas de encadeamento simples &lt;em&gt;forward_list&lt;/em&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;listas-de-encadeamento-simples&quot;&gt;Listas de encadeamento simples&lt;/h2&gt;
-
-&lt;p&gt;Uma lista de encadeamento simples (&lt;em&gt;singly-linked list&lt;/em&gt;) implementa a ideia de uma lista unidirecional. Isto significa que cada elemento somente tem conhecimento sobre o próximo elemento da lista, e não do anterior. Esta característica é ilustrada através de uma aresta direcionada (seta) ligando o elemento ao seu próximo.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a:(valor, b) -&amp;gt; b:(valor, c) -&amp;gt; c:(valor, prox) -&amp;gt; ...&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;O primeiro aspecto a ser notado é que um elemento de lista (um nó, &lt;em&gt;node&lt;/em&gt;), não é um tipo de dado simples. Isto é necessário visto que cada elemento precisa, além de armazenar um valor, armazenar um ponteiro para o próximo.&lt;/p&gt;
-
-&lt;p&gt;Na linguagem C, este tipo de estrutura é implementada por uma &lt;strong&gt;struct&lt;/strong&gt;. Utilizaremos a seguinte definição:&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#define Type int
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_node&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;             &lt;span class=&quot;c1&quot;&gt;// Valor armazenado
-&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// Endereço do próximo nó
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Antes de implementarmos funções para a manipulação da &lt;em&gt;forward_list&lt;/em&gt; é importante compreendermos na prática o que os conceitos até então descritos realmente significam. Com esse fim, algums exemplos serão demonstrados a seguir.&lt;/p&gt;
-
-&lt;h2 id=&quot;detalhes-de-implementação&quot;&gt;Detalhes de implementação&lt;/h2&gt;
-
-&lt;p&gt;Como tem sido convencionado até então, vamos definir uma função que implemente a alocação de memória para &lt;code class=&quot;highlighter-rouge&quot;&gt;node&lt;/code&gt; que serão utilizados como elementos da nossa lista de encadeamento simples &lt;em&gt;forward_list&lt;/em&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Aloca memória para um 'node' e define o endereço do próximo como NULL
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;valor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;valor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Consideremos agora a criação de uma lista de encadeamento simples feita manualmente. Para isso a única coisa que precisamos é criar vários &lt;code class=&quot;highlighter-rouge&quot;&gt;node&lt;/code&gt; e definir qual apontará para qual.&lt;/p&gt;
-
-&lt;h3 id=&quot;criação-dos-nós&quot;&gt;Criação dos nós&lt;/h3&gt;
-&lt;p&gt;Dada a função &lt;code class=&quot;highlighter-rouge&quot;&gt;new_node&lt;/code&gt;, a etapa de criação (alocação de memória no Heap) dos nós é trivial. Neste exemplo criamos três nós, $a$, $b$ e $c$; contendo, respectivamente, os valores inteiros $0, 1, 2$.&lt;/p&gt;
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Etapa de criação dos nós de lista
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (0, NULL)
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (1, NULL)
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (2, NULL)
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;encadeamento-dos-nós&quot;&gt;Encadeamento dos nós&lt;/h3&gt;
-
-&lt;p&gt;Como cada nó foi alocado por uma chamada independente à &lt;code class=&quot;highlighter-rouge&quot;&gt;malloc&lt;/code&gt;, fica evidente que não temos controle sobre suas posições de memória. Isso implica que o nó &lt;em&gt;b&lt;/em&gt;, por exemplo, pode não estar em uma posição de memória subsequente à posição de &lt;em&gt;a&lt;/em&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;valor    := (b, NULL)   ... (c, NULL)   ...  (a, NULL)
-endereço :=  x          ...  y          ...   z
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Nessas condições, o que definirá a ordem desses nós será o encadeamento entre eles. O termo &lt;em&gt;encadear&lt;/em&gt;, neste contexto, significa apenas dizer qual dos nós será o próximo de qual outro nó. Para clarificar, vamos estender o exemplo acima de modo a criar o encadeamento ilustrado a seguir.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a:(0, b) -&amp;gt; b:(1, c) -&amp;gt; c:(2, NULL)&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Observe, que tanto &lt;em&gt;b&lt;/em&gt; quanto &lt;em&gt;c&lt;/em&gt; são ponteiros, portanto representam o endereço de memória no Heap de uma estrutura &lt;code class=&quot;highlighter-rouge&quot;&gt;node&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// Criação dos nós
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (0, NULL)
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (1, NULL)
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (2, NULL)
-&lt;/span&gt;    
-    &lt;span class=&quot;c1&quot;&gt;// Encadeamento
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (0, b)
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (1, c), (2, NULL)
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Este exemplo criou manualmente uma lista encadeada simples de três elementos. Como o último elemento, o nó &lt;em&gt;c&lt;/em&gt;, não possui referência a próximo (&lt;code class=&quot;highlighter-rouge&quot;&gt;c-&amp;gt;next == NULL&lt;/code&gt;) isso nos indica que ele está no final da lista (&lt;em&gt;tail&lt;/em&gt;). Pela mesma ideia, o nó &lt;em&gt;a&lt;/em&gt; está no início da lista (&lt;em&gt;head&lt;/em&gt;).&lt;/p&gt;
-
-&lt;h3 id=&quot;inserção-de-um-novo-nó&quot;&gt;Inserção de um novo nó&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Inserção no início&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;De acordo com a posição de inserção, existem três formas de se inserir um novo nó em uma lista já existente. A primeira, e mais simples neste caso, é a inserção no início da lista. Esse tipo de inserção exige apenas que um novo nó aponte para o atual início. Considerando o exemplo anterior, vamos inserir &lt;code class=&quot;highlighter-rouge&quot;&gt;node* d&lt;/code&gt; no início da lista atual, criando a lista ilustrada abaixo.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;d:(3, a) -&amp;gt; a:(0, b) -&amp;gt; b:(1, c) -&amp;gt; c:(2, NULL)&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// Criação dos nós
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (0, NULL)
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (1, NULL)
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (2, NULL)
-&lt;/span&gt;    
-    &lt;span class=&quot;c1&quot;&gt;// Encadeamento
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (0, b)
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (1, c), (2, NULL)
-&lt;/span&gt;    
-    &lt;span class=&quot;c1&quot;&gt;// Inserção no início
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Criação do nó (3, NULL)
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (3, a)
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Observemos então, que para a inserção no início precisamos apenas de referências ao nó que atualmente está no início (&lt;code class=&quot;highlighter-rouge&quot;&gt;node* a&lt;/code&gt;) e ao novo nó (&lt;code class=&quot;highlighter-rouge&quot;&gt;node* d&lt;/code&gt;).&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Inserção no final&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;O segundo tipo mais simples de inserção é aquela que introduz um novo elemento no final da lista encadeada. Para isso, precisaremos apenas de referências ao nó que atualmente é o último da lista (&lt;code class=&quot;highlighter-rouge&quot;&gt;node* c&lt;/code&gt;), e o novo nó (&lt;code class=&quot;highlighter-rouge&quot;&gt;node* e&lt;/code&gt;).Considerando o exemplo anterior, vamos inserir &lt;code class=&quot;highlighter-rouge&quot;&gt;node* e&lt;/code&gt; ao fim da lista atual, criando a lista ilustrada abaixo.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;d:(3, a) -&amp;gt; a:(0, b) -&amp;gt; b:(1, c) -&amp;gt; c:(2, e) -&amp;gt; e:(4, NULL)&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// Criação dos nós
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (0, NULL)
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (1, NULL)
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (2, NULL)
-&lt;/span&gt;    
-    &lt;span class=&quot;c1&quot;&gt;// Encadeamento
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (0, b)
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (1, c), (2, NULL)
-&lt;/span&gt;    
-    &lt;span class=&quot;c1&quot;&gt;// Inserção no início
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Criação do nó c:(3, NULL)
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (3, a)
-&lt;/span&gt;    
-    &lt;span class=&quot;c1&quot;&gt;// Inserção no final
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Criação do nó e:(4, NULL)
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Inserção no meio&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Por fim, trataremos do tipo de inserção mais genérico, o que nos permite inserir um novo nó em qualquer posição da lista encadeada. Como forma de exemplo, suponhamos que queremos inserir um novo nó (&lt;code class=&quot;highlighter-rouge&quot;&gt;node* f&lt;/code&gt;) na posição $2$ da lista, ou seja, entre os nós &lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt;. Após essa inserção a lista teria a seguinte ordem.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;d:(3, a) -&amp;gt; a:(0, f) -&amp;gt; f:(5, b) -&amp;gt; b:(1, c) -&amp;gt; c:(2, e) -&amp;gt; e:(4, NULL)&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Para melhor compreendermos os passos necessários para implementar essa inserção, vamos focar na parte de interesse da lista, comparando o antes e o depois.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a:(0, b) -&amp;gt; b:(1, c)&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a:(0, f) -&amp;gt; f:(5, b) -&amp;gt; b:(1, c)&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Talvez o fato mais evidente seja que nada foi alterado em &lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt;. De fato, para inserirmos um novo nó numa posição $i$ qualquer, basta que tenhamos a referência ao nó na posição $i-1$ (&lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt;, neste caso). Vejamos como isso é feito em código:&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// Criação dos nós
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (0, NULL)
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (1, NULL)
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (2, NULL)
-&lt;/span&gt;    
-    &lt;span class=&quot;c1&quot;&gt;// Encadeamento
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (0, b)
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (1, c), (2, NULL)
-&lt;/span&gt;    
-    &lt;span class=&quot;c1&quot;&gt;// Inserção no início
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Criação do nó c:(3, NULL)
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (3, a)
-&lt;/span&gt;    
-    &lt;span class=&quot;c1&quot;&gt;// Inserção no final
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Criação do nó e:(4, NULL)
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    
-    &lt;span class=&quot;c1&quot;&gt;// Inserção no meio: entre a e b
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Criação do nó f:(5, NULL)
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// Aqui ambos apontam para b 
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;// Aqui a aponta para f 
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;interface-para-o-tipo-abstrato-lista&quot;&gt;Interface para o tipo abstrato LISTA&lt;/h1&gt;
-
-&lt;p&gt;O tipo de dados abstrato LISTA define-se por suas funcionalidades, as quais nos permitem manipular os dados armazenados por meio de inserções e remoções que podem ser efetuadas em qualquer posição da lista.&lt;/p&gt;
-
-&lt;p&gt;A implementação &lt;code class=&quot;highlighter-rouge&quot;&gt;vector&lt;/code&gt; da APS1 é uma possível implementação do tipo abstrato LISTA que utiliza um vetor (array) para amazenamento dos elementos. No entando diversas outras implementações são possíveis. Para tornar explícito o fato de que todas essas possíveis implementações são versões de uma mesma ideia abstrata (o tipo abstrato de dados LISTA) definimos abaixo um arquivo de extensão &lt;code class=&quot;highlighter-rouge&quot;&gt;.h&lt;/code&gt;, no qual todas as funcionalidades que devem estar disponíveis em uma estrutura de dados lista são indicadas.&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Arquivo list.h
-&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdbool.h&amp;gt;
-#define Type int
-&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// Uma definição abstrata da struct que representará a lista
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TAD_LIST&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Aloca memória inicial para o vetor
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Desaloca a memória de v-&amp;gt;data e do próprio v.
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;free_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Funções de remoção de elementos
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_pop_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_erase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Funções de inserção de elementos
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_push_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Funções de acesso aos dados
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Retorna a quantidade de elementos na lista
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;list_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Retorna true se a lista está vazia, false caso contrário.
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;implementação-de-listas-de-encadeamento-simples&quot;&gt;Implementação de listas de encadeamento simples&lt;/h2&gt;
-
-&lt;p&gt;Dada interface definida acima, a implementação da estrutura de dados lista encadeada simples requer a implementação de todas as funcionalidades definidas em &lt;code class=&quot;highlighter-rouge&quot;&gt;list.h&lt;/code&gt;. O primeiro passo é a criação de um arquivo &lt;code class=&quot;highlighter-rouge&quot;&gt;.c&lt;/code&gt; para tal. Seguindo o padrão de nomenclatura utilizado pelas bibliotecas de C++ chamaremos as listas de encadeamento simples de &lt;code class=&quot;highlighter-rouge&quot;&gt;forward_list&lt;/code&gt; e portanto criaremos um arquivo &lt;code class=&quot;highlighter-rouge&quot;&gt;forward_list.c&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;A partir de então, é preciso concretizar a implementação da estrutura &lt;code class=&quot;highlighter-rouge&quot;&gt;list&lt;/code&gt;. Observe que em &lt;code class=&quot;highlighter-rouge&quot;&gt;list.h&lt;/code&gt; essa estrutura é indicada de forma incompleta pela linha de código &lt;code class=&quot;highlighter-rouge&quot;&gt;typedef struct TAD_LIST list;&lt;/code&gt;. Para que em nosso arquivo de implementação &lt;code class=&quot;highlighter-rouge&quot;&gt;forward_list.c&lt;/code&gt; associemos uma estrutura útil ao nome &lt;code class=&quot;highlighter-rouge&quot;&gt;list&lt;/code&gt; devemos então definir a &lt;code class=&quot;highlighter-rouge&quot;&gt;struct TAD_LIST&lt;/code&gt;, o que é feito pelo trecho de código abaixo.&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// *** forward_list.c *** 
-&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;list.h&quot;
-#include &amp;lt;stdlib.h&amp;gt;
-&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// Nó de lista
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_node&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;           &lt;span class=&quot;c1&quot;&gt;// Valor armazenado. 'Type' está definido em list.h
-&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// Endereço do próximo nó
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Estrutura da lista, a qual nesta implementação armazena apenas 
-// um ponteiro para o primeiro elemento
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TAD_LIST&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Aloca memória para um 'node' e define o endereço do próximo como NULL
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;valor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;valor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Aloca memória inicial para o vetor
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;new_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Desaloca a memória de v-&amp;gt;data e do próprio v.
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;free_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Funções de remoção de elementos
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;list_pop_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;list_erase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Funções de inserção de elementos
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;list_push_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Funções de acesso aos dados
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;list_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;list_set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;list_print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Retorna a quantidade de elementos na lista
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;  &lt;span class=&quot;nf&quot;&gt;list_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// Retorna true se a lista está vazia, false caso contrário.
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;list_empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;utilização-da-estrutura-list&quot;&gt;Utilização da estrutura list&lt;/h2&gt;
-
-&lt;p&gt;Qual seria a principal motivação para essa separação entre interfaces (&lt;code class=&quot;highlighter-rouge&quot;&gt;.h&lt;/code&gt;), implementação (&lt;code class=&quot;highlighter-rouge&quot;&gt;.c&lt;/code&gt;) e utilização? Para tentar observarmos um dos benefícios da introdução da abstração definida pelo arquivo &lt;code class=&quot;highlighter-rouge&quot;&gt;list.h&lt;/code&gt;, consideremos o arquivo &lt;code class=&quot;highlighter-rouge&quot;&gt;main.c&lt;/code&gt; definido abaixo, o qual é o mesmo utilizado para implementação da APS1.&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// **** main.c ****
-&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;list.h&quot;
-#include &amp;lt;stdlib.h&amp;gt;
-#include &amp;lt;stdio.h&amp;gt;
-#include &amp;lt;string.h&amp;gt;
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;capacidade&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ncmds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;indice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;valor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;capacidade&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ncmds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ncmds&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%s&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;        
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strcmp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;push_back&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;valor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;list_push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;valor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strcmp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;push_front&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;valor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;list_push_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;valor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strcmp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;insert&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;valor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;indice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;list_insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;valor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;indice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strcmp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;pop_back&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;list_pop_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strcmp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;pop_front&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;list_pop_front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strcmp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;erase&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;indice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;list_erase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;indice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strcmp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;set&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;indice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;valor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;list_set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;indice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;valor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;list_print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;free_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Note que o código-fonte acima faz uso de várias funcionalidades definidas em &lt;code class=&quot;highlighter-rouge&quot;&gt;list.h&lt;/code&gt; o qual é incluído neste arquivo &lt;code class=&quot;highlighter-rouge&quot;&gt;main.c&lt;/code&gt;, porém não acessa nenhuma informação além da disponível em &lt;code class=&quot;highlighter-rouge&quot;&gt;list.h&lt;/code&gt;. Como toda implementação do tipo abstrato lista deverá implementar todas as funcionalidade descritas em &lt;code class=&quot;highlighter-rouge&quot;&gt;list.h&lt;/code&gt; este código (&lt;code class=&quot;highlighter-rouge&quot;&gt;main.c&lt;/code&gt;) é independente da implementação da estrutura de dados lista a ser utilizada. Ou seja, ele poderá ser compilado tanto para utilização de &lt;code class=&quot;highlighter-rouge&quot;&gt;vector.c&lt;/code&gt; quanto para utilização de &lt;code class=&quot;highlighter-rouge&quot;&gt;forward_list.c&lt;/code&gt; sem que haja nenhuma necessidade de alteração no código-fonte &lt;code class=&quot;highlighter-rouge&quot;&gt;main.c&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gcc main.c         vector.c  -o  lista_com_vector
-gcc main.c  forward_list.c  -o  lista_encadeada_simples
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;referências&quot;&gt;Referências&lt;/h1&gt;
-&lt;ol&gt;
-  &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Linked_list&quot;&gt;wikipedia/linked_list&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://pt.wikipedia.org/wiki/Lista_ligada&quot;&gt;wikipedia/lista_ligada&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.san.uri.br/~ober/arquivos/disciplinas/estruturaII_SI/(ebook)Estruturas%20de%20Dados%20Usando%20C%20(Tenenbaum).pdf&quot;&gt;book/Tenenbaum/cap.4.2&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-</description>
-        <pubDate>Mon, 09 Apr 2018 00:00:00 -0300</pubDate>
-        <link>http://localhost:4000/ae22cp-181/listas-encadeamento-simples.html</link>
-        <guid isPermaLink="true">http://localhost:4000/ae22cp-181/listas-encadeamento-simples.html</guid>
-        
-        <category>listas</category>
-        
-        
-        <category>AE22CP-181</category>
-        
-      </item>
-    
-      <item>
-        <title>Expressões lógicas e condicionais</title>
-        <description>&lt;h1 id=&quot;conteúdo&quot;&gt;Conteúdo&lt;/h1&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#conteúdo&quot; id=&quot;markdown-toc-conteúdo&quot;&gt;Conteúdo&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#ambiente-de-programação&quot; id=&quot;markdown-toc-ambiente-de-programação&quot;&gt;Ambiente de programação&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#expressões-lógicas&quot; id=&quot;markdown-toc-expressões-lógicas&quot;&gt;Expressões lógicas&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#operadores-de-comparação&quot; id=&quot;markdown-toc-operadores-de-comparação&quot;&gt;Operadores de comparação&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#exercício-de-consolidação&quot; id=&quot;markdown-toc-exercício-de-consolidação&quot;&gt;Exercício de consolidação&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#representando-condicionais-if&quot; id=&quot;markdown-toc-representando-condicionais-if&quot;&gt;Representando condicionais: &lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt;&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#exercício-de-consolidação-1&quot; id=&quot;markdown-toc-exercício-de-consolidação-1&quot;&gt;Exercício de consolidação&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#blocos-de-código&quot; id=&quot;markdown-toc-blocos-de-código&quot;&gt;Blocos de código&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#exercício-de-consolidação-2&quot; id=&quot;markdown-toc-exercício-de-consolidação-2&quot;&gt;Exercício de consolidação&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#prática-de-programação-bhaskara&quot; id=&quot;markdown-toc-prática-de-programação-bhaskara&quot;&gt;Prática de programação: Bhaskara&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#representando-condicionais-ifelse&quot; id=&quot;markdown-toc-representando-condicionais-ifelse&quot;&gt;Representando condicionais: &lt;code class=&quot;highlighter-rouge&quot;&gt;if/else&lt;/code&gt;&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#exercício-de-consolidação-3&quot; id=&quot;markdown-toc-exercício-de-consolidação-3&quot;&gt;Exercício de consolidação&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#representando-condicionais-ifelifelse&quot; id=&quot;markdown-toc-representando-condicionais-ifelifelse&quot;&gt;Representando condicionais: &lt;code class=&quot;highlighter-rouge&quot;&gt;if/elif/else&lt;/code&gt;&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#exercício-de-consolidação-4&quot; id=&quot;markdown-toc-exercício-de-consolidação-4&quot;&gt;Exercício de consolidação&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;ambiente-de-programação&quot;&gt;Ambiente de programação&lt;/h1&gt;
-
-&lt;p&gt;Para seguir os exemplos aqui descritos sugiro a utilização do ambiente de programação online &lt;a href=&quot;https://repl.it/languages/python3&quot;&gt;»repl.it&lt;/a&gt;. Mais adiante no curso veremos ferramentas mais apropriadas para programação.&lt;/p&gt;
-
-&lt;h1 id=&quot;expressões-lógicas&quot;&gt;Expressões lógicas&lt;/h1&gt;
-
-&lt;p&gt;As expressões lógicas são aquelas que possuem como resultado um valor que somente pode ser: Verdadeiro ou Falso. Por exemplo, assuma que queiramos desenvolver um pequeno programa que, tendo como entrada um inteiro indicando a idade de uma pessoa, imprima na tela se essa pessoa é maior ou menor de idade.&lt;/p&gt;
-
-&lt;p&gt;Sabemos que para receber como entrada o inteiro que representará a idade devemos utilizar a função &lt;code class=&quot;highlighter-rouge&quot;&gt;input()&lt;/code&gt; e transformar seu resultado em um inteiro &lt;code class=&quot;highlighter-rouge&quot;&gt;int(input())&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Tendo agora a variável idade precisamos de um meio para identificar se o valor nela contido é menor ou maior igual que 18. Na linguagem matemática isso seria representado pelos operadores de comparação, por exemplo $x &amp;lt; 18$ ou $x \geq 18$.&lt;/p&gt;
-
-&lt;p&gt;Tanto $x &amp;lt; 18$ quanto $x \geq 18$ são expressões lógicas, pois seu resultado somente pode ser um dentre dois valores: Verdadeiro (True) ou Falso (False). Expressões, valores ou variáveis que podem assumir como valor apenas Verdadeiro ou Falso são chamadas de Booleanas (&lt;a href=&quot;https://pt.wikipedia.org/wiki/George_Boole&quot;&gt;Georg Boole&lt;/a&gt;).&lt;/p&gt;
-
-&lt;p&gt;A tabela abaixo descreve os operadores de comparação tanto em linguagem matemática quanto em linguagens de programação.&lt;/p&gt;
-
-&lt;h3 id=&quot;operadores-de-comparação&quot;&gt;Operadores de comparação&lt;/h3&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Expressão&lt;/th&gt;
-      &lt;th&gt;matemática&lt;/th&gt;
-      &lt;th&gt;Significado&lt;/th&gt;
-      &lt;th&gt;Exemplo&lt;/th&gt;
-      &lt;th&gt;Resultado&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a == b&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;$a = b$&lt;/td&gt;
-      &lt;td&gt;a é igual a b?&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;10 == 10&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;True&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a != b&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;$a\neq b$&lt;/td&gt;
-      &lt;td&gt;a é diferente de b?&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;10 != 10&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;False&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a &amp;lt; b&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;$a &amp;lt; b$&lt;/td&gt;
-      &lt;td&gt;a é menor que b?&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;1 &amp;lt; 0&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;False&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a &amp;gt; b&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;$a &amp;gt; b$&lt;/td&gt;
-      &lt;td&gt;a é maior que b?&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;1 &amp;gt; 0&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;True&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a &amp;lt;= b&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;$a \leq b$&lt;/td&gt;
-      &lt;td&gt;a é menor ou igual a b?&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;1 &amp;lt;= 1&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;True&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a &amp;gt;= b&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;$a \geq b$&lt;/td&gt;
-      &lt;td&gt;a é maior ou igual a b?&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;5 &amp;gt;= 5&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;True&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;exercício-de-consolidação&quot;&gt;Exercício de consolidação&lt;/h3&gt;
-
-&lt;p&gt;Utilizando o interpretador Python3 &lt;a href=&quot;https://repl.it/languages/python3&quot;&gt;»repl.it&lt;/a&gt; utilize o trecho abaixo para definir cinco variáveis, depois avalie o resultado das expressões Booleanas que seguem:&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;13&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Tangamandápio&quot;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Tangamandapio&quot;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;tangamandápio&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Quais das expressões Booleanas abaixo são verdadeiras?&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;a)&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a &amp;lt; b&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;b)&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a * a &amp;lt; b&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;c)&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;c == d&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;d)&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;c == b&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;e)&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;d &amp;lt; e&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;f)&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a - b &amp;lt; b&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;g)&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a &amp;lt; 25&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;h)&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a - 12 == b&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;i)&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a != b&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;j)&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a - 12 != b&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;k)&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;d == Tangamandapio&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;l)&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Tangamandapio&quot; == e&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;m)&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;True != False&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;n)&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;42 ==&quot;42&quot;&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h1 id=&quot;representando-condicionais-if&quot;&gt;Representando condicionais: &lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt;&lt;/h1&gt;
-
-&lt;p&gt;No exemplo sugerido inicialmente, temos que implementar um programa que receba como entrada a idade, a armazene em uma variável e, dada o valor dessa idade decida entre duas opções: 1) A pessoa tem menos que 18 anos ou 2) A pessoa tem 18 anos ou mais.&lt;/p&gt;
-
-&lt;p&gt;Por meio dos exemplos de expressões Booleanas dados anteriormente, podemos concluir que a expressão lógica &lt;code class=&quot;highlighter-rouge&quot;&gt;idade &amp;lt; 18&lt;/code&gt; será verdadeira apenas se a pessoa tiver menos que 18 anos. Como utilizar esse fato para definirmos a resposta que daremos em nosso programa? Para isto introduziremos um novo conceito: “condicionais”.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Você ainda não atingiu a maioridade.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;E português o trecho de código acima poderia ser interpretado como:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Se&lt;/strong&gt; (idade menor que 18) &lt;strong&gt;então&lt;/strong&gt; (imprimir ‘Você ainda não atingiu a maioridade.’)&lt;/p&gt;
-
-&lt;p&gt;De modo geral, um condicional &lt;strong&gt;if&lt;/strong&gt; define um bloco de código que será executado apenas se a expressão lógica que o segue for verdadeira. Na linguagem python esse bloco de código precisa estar identado (espaçado) da margem lateral esquerda por uma tabulação (Tab).&lt;/p&gt;
-
-&lt;p&gt;Teste o exemplo acima digitando diferentes valores de entrada.&lt;/p&gt;
-
-&lt;h3 id=&quot;exercício-de-consolidação-1&quot;&gt;Exercício de consolidação&lt;/h3&gt;
-
-&lt;p&gt;Utilizando o código acima como exemplo, implemente um programa que represente a seguinte ideia:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Se&lt;/strong&gt; (idade maior ou igual a 18) &lt;strong&gt;então&lt;/strong&gt; (imprimir ‘Você já atingiu a maioridade.’)&lt;/p&gt;
-
-&lt;h2 id=&quot;blocos-de-código&quot;&gt;Blocos de código&lt;/h2&gt;
-
-&lt;p&gt;Como mencionado anteriormente, um bloco de código é definido pelo espaçamento à esquerda do início da linha. Nos exemplos acima os blocos de código possuíam apenas uma linha, no entanto, em situações mais complexas é comum que esses blocos contenham várias linhas. Para compreendermos melhor essa ideia vejamos um outro exemplo.&lt;/p&gt;
-
-&lt;p&gt;Suponha agora, que ao recebermos a idade queremos imprimir juntamente com a frase o ano de nascimento, ou seja, teremos um programa para representar a ideia:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Se&lt;/strong&gt; (idade menor que 18) &lt;strong&gt;então&lt;/strong&gt; (imprimir ‘Você nasceu em ANO e ainda não atingiu a maioridade.’)&lt;/p&gt;
-
-&lt;p&gt;Como não temos o ano de nascimento, ele precisa ser calculado para que possa ser dado como resposta, para isso basta subrairmos do ano atual a idade recebida como entrada.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;ano&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2018&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Você nasceu em&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ano&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;e ainda não atingiu a maioridade.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Observe que as duas linhas abaixo do &lt;strong&gt;if&lt;/strong&gt; estão espaçadas à direita, o que nos diz que elas pertencem ao mesmo bloco e portanto serão executadas apenas quando &lt;code class=&quot;highlighter-rouge&quot;&gt;idade &amp;lt; 18&lt;/code&gt; for verdadeiro.&lt;/p&gt;
-
-&lt;h3 id=&quot;exercício-de-consolidação-2&quot;&gt;Exercício de consolidação&lt;/h3&gt;
-
-&lt;p&gt;Utilizando o código acima como exemplo, implemente um programa que represente a seguinte ideia:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Se&lt;/strong&gt; (idade maior ou igual que 18) &lt;strong&gt;então&lt;/strong&gt; (imprimir ‘Você nasceu em ANO e já atingiu a maioridade.’)&lt;/p&gt;
-
-&lt;h1 id=&quot;prática-de-programação-bhaskara&quot;&gt;Prática de programação: Bhaskara&lt;/h1&gt;
-
-&lt;p&gt;O algoritmo de Bhaskara nos indica como calcular as raízes reais de uma equação do segundo grau de coeficientes $a,b,c$.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;a x^2  + bx + c = 0&lt;/script&gt;
-
-&lt;p&gt;Esse algoritmo pode ser descrito em duas partes, a &lt;strong&gt;primeira parte&lt;/strong&gt; consiste no cálculo do discriminante&lt;/p&gt;
-
-&lt;p&gt;$\Delta = b^2 - 4ac$&lt;/p&gt;
-
-&lt;p&gt;A &lt;strong&gt;segunda parte&lt;/strong&gt; vai depender do valor de $\Delta$, existem três situações possíveis que devem ser consideradas:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Se&lt;/strong&gt; ($\Delta &amp;lt; 0$) &lt;strong&gt;então&lt;/strong&gt; (Imprimir ‘A equação não possui raízes reais.’)&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Se&lt;/strong&gt; ($\Delta = 0$) &lt;strong&gt;então&lt;/strong&gt; (Imprimir ‘A equação possui a raíz $X$.’)&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;$X = \dfrac{-b}{2a}$&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Se&lt;/strong&gt; ($\Delta &amp;gt; 0$) &lt;strong&gt;então&lt;/strong&gt; (Imprimir ‘A equação possui duas raízes reais $X_1$ e $X_2$.’)&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;$X_1 = \dfrac{-b - \sqrt{\Delta}}{2a}$&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;e $X_2 = \dfrac{-b + \sqrt{\Delta}}{2a}$&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Implemente um programa que receba como entrada três números reais &lt;code class=&quot;highlighter-rouge&quot;&gt;a,b&lt;/code&gt; e &lt;code class=&quot;highlighter-rouge&quot;&gt;c&lt;/code&gt; como sendo os coeficientes da equação $ a x^2  + bx + c = 0$ e calcule a resposta dadas as possíveis situações descritas acima.&lt;/p&gt;
-
-&lt;h1 id=&quot;representando-condicionais-ifelse&quot;&gt;Representando condicionais: &lt;code class=&quot;highlighter-rouge&quot;&gt;if/else&lt;/code&gt;&lt;/h1&gt;
-
-&lt;p&gt;Em situações como a do nosso primeiro exemplo, as condições envolvidas para a decisão de qual bloco de código será executado são complementares, ou seja, se uma é verdadeira a outra é necessariamente falsa.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Você ainda não atingiu a maioridade.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Você já atingiu a maioridade.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;Ainda neste exemplo, uma pessoa que não possui &lt;code class=&quot;highlighter-rouge&quot;&gt;idade &amp;lt; 18&lt;/code&gt; necessariamente deve possuir &lt;code class=&quot;highlighter-rouge&quot;&gt;idade &amp;gt;= 18&lt;/code&gt;, pois não há outra alternativa. Para casos como esse temos uma nova construção que nos permite simplificar a escrita do programa, essa nova construção é baseada no formato:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Se&lt;/strong&gt; (condição é verdadeira) &lt;strong&gt;então&lt;/strong&gt; (efetue alguma operação)
-&lt;strong&gt;Senão&lt;/strong&gt; (efetue outra operação)&lt;/p&gt;
-
-&lt;p&gt;Em outras palavras apenas a primeira condição é definida explicitamente sendo a outra opção (a complementar) omitida. A palavra &lt;strong&gt;senão&lt;/strong&gt; traduzida para o inglês é escrita como &lt;strong&gt;else&lt;/strong&gt;, portanto ao adaptarmos o código-fonte para a linguagem Python teremos:&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Você ainda não atingiu a maioridade.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Você já atingiu a maioridade.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;exercício-de-consolidação-3&quot;&gt;Exercício de consolidação&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Escreva um programa em Python que receba como entrada uma senha na forma de string. Seu programa deverá verificar se essa senha está correta e escolher uma dentre duas opções:
-    &lt;ul&gt;
-      &lt;li&gt;Imprimir: “Acesso garantido.”&lt;/li&gt;
-      &lt;li&gt;Imprimir “Senha incorreta, tente novamente.”.&lt;/li&gt;
-      &lt;li&gt;Assuma que a senha correta seja “LP31M”.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Escreva um programa em Python que receba como entrada um email e uma senha na forma de string. &lt;strong&gt;Se&lt;/strong&gt; email e senha estiverem corretos imprimir que o acesso está garantido. Se algum deles não estiver correto, indicar qual deles não está correto.
-    &lt;ul&gt;
-      &lt;li&gt;Assuma que a senha correta seja “LP31M”.&lt;/li&gt;
-      &lt;li&gt;Assuma que o email correto seja o seu.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Complete o código abaixo (Dica: um bloco de código &lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt; pode estar dentro de outro, use o espaçamento):&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;email&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;senha&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;email_correto&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;jeanmartins@utfpr.edu.br&quot;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;senha_correta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;LP31M&quot;&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# Insira o restante do código aqui!&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;representando-condicionais-ifelifelse&quot;&gt;Representando condicionais: &lt;code class=&quot;highlighter-rouge&quot;&gt;if/elif/else&lt;/code&gt;&lt;/h1&gt;
-&lt;p&gt;No nosso primeiro exemplo vimos que &lt;code class=&quot;highlighter-rouge&quot;&gt;idade &amp;lt; 18&lt;/code&gt; ou &lt;code class=&quot;highlighter-rouge&quot;&gt;idade &amp;gt;= 18&lt;/code&gt; são as únicas opções para idade. No exemplo acima, uma senha ou está correta ou não está correta, e portanto os condicionais &lt;code class=&quot;highlighter-rouge&quot;&gt;if/else&lt;/code&gt; são suficientes para representar a situação. No entanto, como poderíamos imaginar, nem todas as condições possuem apenas duas alternativas.&lt;/p&gt;
-
-&lt;p&gt;Ao tratarmos de idades, por exemplo, é comum que as pessoas sejam classificadas como crianças, adolescentes, adultos e idosos. Vejamos passo a passo como seria possível identificar esses quatro casos utilizando as construções vistas até então (&lt;code class=&quot;highlighter-rouge&quot;&gt;if/else&lt;/code&gt;).&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Você ainda é criança.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Você é adolescente.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;60&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Você já é adulto.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Você é idoso&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Observe que a cada novo bloco é preciso indentar o que tornaria nosso código deslocado à direita se vários &lt;em&gt;blocos aninhados&lt;/em&gt; forem necessários. É em contextos similares a este que a linguagem nos oferece uma nova opção de comando de decisão &lt;code class=&quot;highlighter-rouge&quot;&gt;elif&lt;/code&gt;. Deste modo trechos de código como o abaixo:&lt;/p&gt;
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Podem ser substítuídos por uma versão mais compacta:&lt;/p&gt;
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;Veja abaixo a adaptação do código-fonte para utilização do comando &lt;code class=&quot;highlighter-rouge&quot;&gt;elif&lt;/code&gt;:&lt;/p&gt;
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Você ainda é criança.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Você é adolescente.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;60&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Você já é adulto.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Você é idoso&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;exercício-de-consolidação-4&quot;&gt;Exercício de consolidação&lt;/h3&gt;
-&lt;ol&gt;
-  &lt;li&gt;Escreva um programa em Python que receba como entrada um email e uma senha na forma de string. &lt;strong&gt;Se&lt;/strong&gt; email e senha estiverem corretos imprimir que o acesso está garantido. Se algum deles não estiver correto, indicar qual deles não está correto.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Assuma que existam três emails corretos&lt;/strong&gt; (&lt;code class=&quot;highlighter-rouge&quot;&gt;joao@hotmail.com&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;maria@gmail.com&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;jose@google.com&lt;/code&gt;).&lt;/li&gt;
-  &lt;li&gt;Assuma que a senha correta para todos seja “LP31M”.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Complete o código abaixo (Dica: um bloco de código &lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt; pode estar dentro de outro, use o espaçamento):&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;email&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;senha&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;email_correto1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;joao@hotmail.com&quot;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;email_correto2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;maria@gmail.com&quot;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;email_correto3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;jose@google.com&quot;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;senha_correta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;LP31M&quot;&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# Insira o restante do código aqui!&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Thu, 29 Mar 2018 17:00:00 -0300</pubDate>
-        <link>http://localhost:4000/lp31m-181/expressoes-logicas.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lp31m-181/expressoes-logicas.html</guid>
-        
-        <category>condicionais</category>
         
         
         <category>LP31M-181</category>

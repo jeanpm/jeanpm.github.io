@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118722707-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-118722707-1');
+</script>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Algoritmos ótimos para Ordenação por comparação</title>
+  <meta name="description" content="Conteúdo">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/ae22cp-181/limite-inferior-ordenacao.html">
+  <link rel="alternate" type="application/rss+xml" title="Jean P. Martins" href="http://localhost:4000/feed.xml" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+    availableFonts: [],
+    preferredFont: null,
+    webFont: "Latin-Modern"
+  },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "all"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$']],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+
+  
+
+  <body>
+
+    
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+     <h1 class="post-title">Algoritmos ótimos para Ordenação por comparação</h1>
+     <p class="post-meta">
+         <i class="fa fa-calendar-o"></i> Jun 1, 2018
+          • <i class="fa fa-user"></i> jean
+         </p>
+  </header>
+
+    <div class="post-paging">
+  
+    <div class="left">
+      <a href="/ae22cp-181/APS3-ordenacao.html">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/ae22cp-181/aps2-resultados.html">
+        <i class="fa fa-angle-right fa-2x"></i>
+      </a>
+    </div>
+  
+</div>
+
+
+  <article class="post-content">
+    <h3>Contato</h3>
+    <ul style="list-style-type:none">
+      <li>Jean Paulo Martins (jeanmartins utfpr edu br)</li>
+      <li>Sala 105, Bloco S (UTFPR - Campus Pato Branco)</li>
+    </ul>
+    <p><strong>Conteúdo</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#introdução" id="markdown-toc-introdução">Introdução</a></li>
+  <li><a href="#ordenação-por-comparações" id="markdown-toc-ordenação-por-comparações">Ordenação por comparações</a>    <ul>
+      <li><a href="#Árvore-de-decisão" id="markdown-toc-Árvore-de-decisão">Árvore de decisão</a></li>
+      <li><a href="#altura-da-árvore-de-decisão" id="markdown-toc-altura-da-árvore-de-decisão">Altura da árvore de decisão</a></li>
+      <li><a href="#limitante-inferior" id="markdown-toc-limitante-inferior">Limitante Inferior</a></li>
+      <li><a href="#qual-seria-o-limitante-inferior-para-a-busca-binária" id="markdown-toc-qual-seria-o-limitante-inferior-para-a-busca-binária">Qual seria o limitante inferior para a busca binária?</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="introdução">Introdução</h1>
+
+<p>Até então discutimos vários algoritmo de ordenação como alternativas para solucionar o mesmo problema. Dada uma sequência numérica $x_1,\dots,x_n$, reordenar a sequência de modo a produzir uma nova que respeite uma relação de ordem:</p>
+
+<script type="math/tex; mode=display">x_i \leq x_{i+1}, \qquad i=1,\dots,n-1</script>
+
+<p>A comparação de eficiência entre os algoritmos discutidos tem sido feita considerando principalmente o pior caso de cada um, ou seja, sequências de entrada que levam esses algoritmos a terem seu pior desempenho, seja em tempo de execução ou número de comparações. Tal comparação teórica também pode ser feita em ao menos dois casos adicionais:</p>
+<ul>
+  <li>melhor caso, e</li>
+  <li>caso médio.</li>
+</ul>
+
+<p>De forma genérica, o melhor caso de qualquer algoritmo representa tipos de entradas para as quais ele tem o seu melhor desempenho (menor número de comparações). Nos algoritmos de ordenação, isso geralmente ocorre quando a sequência já está ordenada da forma correta (ver tabela: buble sort e insertion sort).</p>
+
+<p>O caso médio, por outro lado, representa o comportamento médio do algoritmo em todas as entradas possíveis. O desempenho médio desses algoritmos pode ser avaliado de forma aproximada por meio de experimentos. A tabela abaixo nos indica a complexidade de cada um dos algoritmos vistos até então nesses três casos.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Algoritmo</th>
+      <th>Melhor caso</th>
+      <th>Caso médio</th>
+      <th>Pior caso</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Bubble sort</td>
+      <td>$O(n)$</td>
+      <td>$O(n^2)$</td>
+      <td>$O(n^2)$</td>
+    </tr>
+    <tr>
+      <td>Selection sort</td>
+      <td>$O(n^2)$</td>
+      <td>$O(n^2)$</td>
+      <td>$O(n^2)$</td>
+    </tr>
+    <tr>
+      <td>Insertion sort</td>
+      <td>$O(n)$</td>
+      <td>$O(n^2)$</td>
+      <td>$O(n^2)$</td>
+    </tr>
+    <tr>
+      <td>Quicksort</td>
+      <td>$O(n \log n)$</td>
+      <td>$O(n \log n)$</td>
+      <td>$O(n^2)$</td>
+    </tr>
+    <tr>
+      <td>Mergesort</td>
+      <td>$O(n \log n)$</td>
+      <td>$O(n \log n)$</td>
+      <td>$O(n \log n)$</td>
+    </tr>
+    <tr>
+      <td>Heapsort</td>
+      <td>$O(n \log n)$</td>
+      <td>$O(n \log n)$</td>
+      <td>$O(n \log n)$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Tais resultados teóricos nos dão um bom indicativo da eficiência relativa de cada um desses algoritmos. No entanto, caso dois algoritmos tenham a mesma complexidade teórica (ex.: quicksort, mergesort e heapsort) eles não são suficientes para dizermos qual algoritmo será mais “rápido” do ponto de vista prático. Isso ocorre pois na prática existem outras características que influenciarão o desempenho do algoritmo, como exemplo, podemos citar: forma de acesso à memória, menor número de trocas, qualidade da implementação, etc.</p>
+
+<p>Algoritmos como o <code class="highlighter-rouge">quicksort</code> são muito úteis na prática. Porém, como eficiência nunca é demais, podemos nos perguntar: – <strong>“Não existiria algoritmo mais rápido?”</strong> –. O objetivo desta seção é oferecer uma resposta a essa pergunta.</p>
+
+<h1 id="ordenação-por-comparações">Ordenação por comparações</h1>
+
+<h2 id="Árvore-de-decisão">Árvore de decisão</h2>
+<p>Ao examinarmos a implementação dos algoritmos acima podemos notar algo em comum. Todos eles utilizam comparações entre pares de elementos $x_i, x_j$ para determinar a ordem relativa entre esses elementos. Obviamente, cada uma dessas comparações pode oferecer como resposta, apenas uma dentre duas possibilidades que existem como resposta:</p>
+<ul>
+  <li>$x_i \leq x_j$, ou</li>
+  <li>$x_j \leq x_i$.</li>
+</ul>
+
+<p>A ordem que os elementos serão comparados, ou a quantidade de vezes que um mesmo par de elementos será comparado depende de um algoritmo específico e portanto deve ser ignorado nessa análise.</p>
+
+<p>O ponto mais importante seria notar que a cada comparação $x_i \leq x_j$, um determinado algoritmo ganha informação sobre a ordem relativa desses dois elementos. Se representarmos todas as possíveis sequências de comparações, temos uma estrutura chamada <strong>árvore binária de decisão</strong>.</p>
+
+<p><img src="/assets/AE22CP/decision-tree.png" alt="decision-tree" /></p>
+
+<p>Esse tipo de árvore representa as decisões tomadas por um algoritmo qualquer, em que cada nó inicia com a informação adicional obtida da comparação feita acima dele. Por exemplo, o nó <code class="highlighter-rouge">2:3</code> (o qual representa a comparação entre $x_2$ e $x_3$) já assume que $x_1\leq x_2$.</p>
+
+<h2 id="altura-da-árvore-de-decisão">Altura da árvore de decisão</h2>
+
+<p>Os nós folhas da árvore indicam qual permutação da sequência original tornaria essa sequência ordenada de forma não decrescente. Por exemplo, <code class="highlighter-rouge">&lt;3,1,2&gt;</code>, no diz que a sequência ordenada é $x_3,x_1,x_2$.</p>
+
+<p>É de se esperar que um algoritmo correto permita uma resposta correta para toda possível entrada. Se os nós folhas da árvore nos dão a permutação da entrada que produz a resposta correta, então devem existir ao menos $n!$ permutações como nós folhas, uma para cada possível entrada. Sabendo disso,</p>
+<ul>
+  <li><strong>Qual seria o limitante inferior para a complexidade de qualquer algoritmo de ordenação por comparação?</strong></li>
+</ul>
+
+<p>A ordenação de uma sequência é o procedimento descrito como um caminho que inicia na raíz da árvore de decisão e chega até uma de suas folhas, portanto o número total de comparações é equivalente a altura da árvore.</p>
+
+<h2 id="limitante-inferior">Limitante Inferior</h2>
+
+<p>Um limitante inferior (<em>lower-bound</em>), como o próprio nome diz, limita por baixo a complexidade de algo. No nosso caso, esse algo é o <em>problema de ordenação de uma sequência</em>. Como temos discutido complexidade da ordenação em termos do número de comparações, esse limitante inferior nos dará uma estimativa do menor número comparações possível, que um algoritmo teria que fazer para conseguir ordenar uma sequência qualquer. Este limitante inferior é equivalente a altura da árvore de decisão.</p>
+
+<p>Uma árvore binária qualquer tem, em seu $\ell$-ésimo nível, $2^\ell$ nós. Sabemos que o último nível dessa árvore deve ter no mínimo $n!$ nós, portanto, no último nível</p>
+
+<script type="math/tex; mode=display">n! \leq 2^\ell</script>
+
+<p>Aplicando o logaritmo em ambos os lados</p>
+
+<script type="math/tex; mode=display">\log(n!) \leq \ell</script>
+
+<p>Não nos preocuparemos com os detalhes da demonstração, mas a partir dessa desigualdade é possível chegar ao resultado.</p>
+
+<script type="math/tex; mode=display">\ell \geq n \log n</script>
+
+<p>O qual significa que qualquer algoritmo de ordenação baseado em comparações terá que fazer no mínimo $n \log n$ comparações.</p>
+
+<h2 id="qual-seria-o-limitante-inferior-para-a-busca-binária">Qual seria o limitante inferior para a busca binária?</h2>
+
+<p>Siga a mesma ideia descrita acima para obter um limitante inferior para busca binária.</p>
+
+<p><strong>Referências</strong></p>
+<ol>
+  <li>
+    <p>CORMEN, Thomas H. Desmistificando algoritmos. 1. ed. Rio de Janeiro, RJ: Elsevier, c2014. xii, 188 p. ISBN 9788535271775.<a href="https://book-store.github.io/cse/thirdyear/%5BThomas_H._Cormen%5D_Algorithms_unlocked(BookZZ.org).pdf">(pdf:Algorithms Unlocked)</a>.</p>
+  </li>
+  <li>
+    <p>CORMEN, Thomas H. et al. Algoritmos: teoria e prática. Rio de Janeiro, RJ: Campus, 2002. xvii, 916 p. ISBN 8535209263. <a href="http://www.inf.ufrgs.br/~tsrodrigues/utilidades/cormem.pdf">(pdf: Algoritmos)</a></p>
+  </li>
+  <li>
+    <p>MIT - https://www.youtube.com/watch?v=Nz1KZXbghj8</p>
+  </li>
+</ol>
+<iframe width="360" height="205" src="https://www.youtube.com/embed/Nz1KZXbghj8" allowfullscreen=""></iframe>
+
+<iframe width="360" height="205" src="https://www.youtube.com/embed/tVjVaO3KD0w" allowfullscreen=""></iframe>
+
+
+  </article>
+
+    
+
+    
+
+  <div class="post-up" align="center">
+  	<a href="#">
+  	<i class="fa fa-angle-up fa-2x"></i>
+  	</a>
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+  <div class="footer center">
+
+</div>
+
+
+  </body>
+</html>
