@@ -6,9 +6,201 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 14 Jun 2018 20:29:18 -0300</pubDate>
-    <lastBuildDate>Thu, 14 Jun 2018 20:29:18 -0300</lastBuildDate>
+    <pubDate>Mon, 18 Jun 2018 16:58:12 -0300</pubDate>
+    <lastBuildDate>Mon, 18 Jun 2018 16:58:12 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Tabelas hash</title>
+        <description>&lt;p&gt;&lt;strong&gt;Conteúdo&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#introdução&quot; id=&quot;markdown-toc-introdução&quot;&gt;Introdução&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#endereçamento-direto&quot; id=&quot;markdown-toc-endereçamento-direto&quot;&gt;Endereçamento direto&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#tabelas-hash&quot; id=&quot;markdown-toc-tabelas-hash&quot;&gt;Tabelas Hash&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#resolução-de-colisões-por-encadeamento&quot; id=&quot;markdown-toc-resolução-de-colisões-por-encadeamento&quot;&gt;Resolução de colisões por encadeamento&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#inserção&quot; id=&quot;markdown-toc-inserção&quot;&gt;Inserção&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#procura&quot; id=&quot;markdown-toc-procura&quot;&gt;Procura&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#remover&quot; id=&quot;markdown-toc-remover&quot;&gt;Remover&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#interface-para-tabelas-hash&quot; id=&quot;markdown-toc-interface-para-tabelas-hash&quot;&gt;Interface para tabelas hash&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;introdução&quot;&gt;Introdução&lt;/h1&gt;
+
+&lt;p&gt;Muitas aplicações precisam manipular informações sem necessariamente se preocupar na ordem em que essas informações estão armazenadas na memória. A maioria das estruturas de dados “lineares” estudadas até então, no entanto, impõe uma ordem específica aos elementos. Em uma lista, por exemplo, a inserção de um novo elemento requer que especifiquemos a posição de inserção desse elemento, o mesmo ocorre para vetores. O uso de fila de prioridades (implementadas sobre uma estrutura Heap) foi a primeira excessão a esta regra que investigamos, onde estavamos interessados sempre no mínimo elemento armazenado, mas sem nos importar necessariamente em que posição da estrutura esse elemento estava armazenado.&lt;/p&gt;
+
+&lt;p&gt;Nesta seção uma nova estrutura de dados será introduzida, a qual nos permitirá efetuar operações como:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Inserção,&lt;/li&gt;
+  &lt;li&gt;Remoção, e&lt;/li&gt;
+  &lt;li&gt;Procura&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;de forma eficiente e sem nos preocuparmos com o posicionamento em memória dos elementos armazenados. Diferentemente das filas de prioridade, no entanto, tabelas hash permitem remoção de quaisquer elementos armazenados, não somento o mínimo/máximo. A única exigência sendo que cada um dos elementos armazenados tenha uma &lt;em&gt;chave&lt;/em&gt; única que o identifique.&lt;/p&gt;
+
+&lt;p&gt;Exemplos:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Um aluno tem como chave única que o identifica, seu RA.&lt;/li&gt;
+  &lt;li&gt;Uma pessoa tem como chave única que a identifica, seu CPF.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;endereçamento-direto&quot;&gt;Endereçamento direto&lt;/h1&gt;
+
+&lt;p&gt;Tabelas hash são uma generalização de uma forma de armazenamento com mais limitações, chamada endereçamento aberto.&lt;/p&gt;
+
+&lt;p&gt;Suponha que desejemos armazenar as informações sobre os funcionários de uma pequena empresa. Cada funcionário tem o seu identificador, um número que indica seu cadastro na empresa. Por se tratar de uma empresa pequena, o número de funcionários $n$ não é grande, $n\leq m$ por exemplo. É natural assumirmos que esses identificadores sejam atribuídos de forma crescente a cada novo funcionário contratado.&lt;/p&gt;
+
+&lt;p&gt;Neste pequeno exemplo, assumimos que tais identificadores são as &lt;em&gt;chaves&lt;/em&gt; únicas de cada funcionário. Como o número $n$ de funcionários nunca ultrapassa $m$, um conjunto universo de chaves possíveis contendo números&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;U=\{0,1,\dots,m-1\}&lt;/script&gt;
+
+&lt;p&gt;é suficiente para identificar todos eles. Ou seja, cada funcionário tem um número identificador $u\in U$. Como armazenar as informações sobre tais funcionários na memória de modo a ser possível inserir, remover, e procurar de forma eficiente?&lt;/p&gt;
+
+&lt;p&gt;Sendo o número total de chaves $m$ de tamanho moderado, poderíamos simplesmente criar um vetor de $m$ posições.&lt;/p&gt;
+
+&lt;p&gt;Dada uma chave, procurar pelo funcionário associado é então trivial. Tão triviais quanto serão as operações de inserção e removação de um funcionário.&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;chave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;chave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Neste contexto tão específico, em que sabemos que a maior chave possível $m$ é um número razoavelmente pequeno, esta é a implementação mais rápida possível. Porém, não é difícil percebermos suas limitações:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;E se as chaves $m$ forem números de 9 dígitos?
+    &lt;ul&gt;
+      &lt;li&gt;A tabela seria gigantesca, e se o número de itens armazenados for pequeno, um grande desperdício de memória ocorreria.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;E se as chaves não forem inteiros?
+    &lt;ul&gt;
+      &lt;li&gt;Não há como indexar a tabela com chaves não-inteiras.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;tabelas-hash&quot;&gt;Tabelas Hash&lt;/h1&gt;
+
+&lt;p&gt;Nas situações em que endereçamento direto não se aplica, devido ao grande número de chaves possíveis, as Tabelas hash são opções interessantes.&lt;/p&gt;
+
+&lt;p&gt;A ideia geral de uma tabela hash é diminuir o número de chaves que precisam ser tratadas, saindo de $|U|$ para um número $m \ll |U|$ (“muito menor que”). Para isso precisamos de uma função&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;h: U \to \{0,\dots,m-1\}&lt;/script&gt;
+
+&lt;p&gt;que mapeie cada possível chave $k\in U$ para um número $h(k)$, onde $h$ é chamada &lt;strong&gt;função hash&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Neste contexto, se utilizarmos $h(k)$ como índice na tabela, precisaríamos de uma tabela de tamanho $m$ ao invés de $|U|$. Como, por definição $m\ll|U|$, uma grande economia de espaço é possível. O exemplo mais simples de função hash é o uso do operador de &lt;em&gt;resto&lt;/em&gt; (mod, &lt;code class=&quot;highlighter-rouge&quot;&gt;%&lt;/code&gt;), o qual quando aplicado com o parâmetro $m$ produz um valor em ${0,\dots,m-1}$ (ver Figura).&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;h(k) = k \mod m.&lt;/script&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/AE22CP/hash.png&quot; alt=&quot;hash&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Mas antes de finalizarmos uma implementação de tabelas hash, precisamos lidar com um importante problema. A função hash mapeia cada valor em $U$ para um valor entre $0$ e $m$, porém, como $m\ll |U|$, é inevitável que alguns valores $k_1,k_2 \in U$ tenham o mesmo valor de hash, ou seja, $h(k_1) = h(k_2)$. Isto é chamado &lt;em&gt;colisão&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;A menos que não nos importemos em sobrescrever elementos com memso hash, a existência de colisões nos impede uma implementação simples, em que inserimos os elementos na posição dada pela função de hash.&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Implementação inviável
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Pois esse tipo de implementação somente aceitaria um dos elementos que tenham o mesmo valor de hash. Por exemplo, se houvéssemos inserido $k_1$ e posteriormente tentado inserir $k_2$, o valor $k_1$ que estava armazenado em &lt;code class=&quot;highlighter-rouge&quot;&gt;t[h(k1)]&lt;/code&gt; seria sobrescrito, visto que $h(k_1)=h(k_2)$.&lt;/p&gt;
+
+&lt;p&gt;A seguir, analisaremos formas de tratar colisões, de modo que a tabela hash permita o armazenamento simultâneo de diversos itens com mesmo valor de hash.&lt;/p&gt;
+
+&lt;h2 id=&quot;resolução-de-colisões-por-encadeamento&quot;&gt;Resolução de colisões por encadeamento&lt;/h2&gt;
+
+&lt;p&gt;A resolução, ou tratamento, de colisões mais intuitiva consiste em simplesmente armazenar todos elementos cujos hash tenham colidido em uma lista encadeada.  A figura abaixo ilustra essa situação&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/AE22CP/chain.png&quot; alt=&quot;hash&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Esta forma de tratarmos colisões define como as funcionalidades devem ser implementadas: inserção, remoção, procura.&lt;/p&gt;
+
+&lt;h3 id=&quot;inserção&quot;&gt;Inserção&lt;/h3&gt;
+
+&lt;p&gt;Nesta situação, a tabela hash é simplesmente um vetor $T$, com uma lista em cada uma de suas $m$ posições (um vetor de listas: &lt;code class=&quot;highlighter-rouge&quot;&gt;list** T&lt;/code&gt;). Cada uma das listas $T[i]$ armazenará elementos $x$ cujo hash seja igual ao índice $i$, i.e. $h(x)=i$. Deste modo, se o elemento $x$ ainda não existe na lista $T[i]$, basta inserí-lo.&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Info&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contains&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;procura&quot;&gt;Procura&lt;/h3&gt;
+
+&lt;p&gt;De forma análoga à inserção, podemos com certeza afirmar que se um elemento $x$, com hash $h(x)$, não é encontrado na lista $T[h(x)]$, então ele não existe na tabela hash. A função &lt;code class=&quot;highlighter-rouge&quot;&gt;search&lt;/code&gt;, deste modo, é implementada em duas etapas apenas:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;calcular o hash da chave $k$ sendo procurada,&lt;/li&gt;
+  &lt;li&gt;percorrer a lista $T[h(k)]$ procurando por um item cuja chave seja igual a $k$.
+    &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contains&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;an&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;element&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;null&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;remover&quot;&gt;Remover&lt;/h3&gt;
+
+&lt;p&gt;A funcionalidade remover procede a partir de uma chave $k$. Similarmente a &lt;code class=&quot;highlighter-rouge&quot;&gt;search&lt;/code&gt;, a primeira etapa consiste em calcular o hash da chave $k$, $h(k)$. A partir de $h(k)$, sabemos em qual das listas procurar, $T[h(k)]$. A remoção precisa então percorrer a lista $T[h(k)]$ procurando por um elemento cuja chave seja igual $k$. Caso esse elemento exista, basta removê-lo da lista, caso ele não exista, não há nada a ser feito.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;remove&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nn&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;]
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;interface-para-tabelas-hash&quot;&gt;Interface para tabelas hash&lt;/h1&gt;
+
+&lt;p&gt;Tabelas hash são estruturas de dados que implementam tipos abstratos de dados chamados &lt;em&gt;dicionários&lt;/em&gt;. Abaixo temos um arquivo &lt;code class=&quot;highlighter-rouge&quot;&gt;.h&lt;/code&gt; de interface para tabelas hash:&lt;/p&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//@hashtable.h
+&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdbool.h&amp;gt;
+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// Se Type e Key não foram definidos de antemão, serão aqui definidos como inteiros
+&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;#ifndef Type
+&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;#define Type int
+#endif
+#ifndef Key
+&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;#define Key int
+#endif
+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// Define o tipo abstrato de dados hasht
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HASH_TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hasht&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Gerenciamento de memória
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hasht&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_hasht&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;capacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;free_hasht&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hasht&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ht&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Manipulação da estrutura de dados
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hasht_insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hasht&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ht&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hasht_remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hasht&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ht&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Key&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hasht_search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hasht&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ht&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Comparação de duas chaves
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;equal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Key&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Key&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Referências&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;CORMEN, Thomas H. et al. Algoritmos: teoria e prática. Rio de Janeiro, RJ: Campus, 2002. xvii, 916 p. ISBN 8535209263. &lt;a href=&quot;http://www.inf.ufrgs.br/~tsrodrigues/utilidades/cormem.pdf&quot;&gt;(pdf: Algoritmos - cap. 11)&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+        <pubDate>Mon, 18 Jun 2018 00:00:00 -0300</pubDate>
+        <link>http://localhost:4000/ae22cp-181/tabelas-hash.html</link>
+        <guid isPermaLink="true">http://localhost:4000/ae22cp-181/tabelas-hash.html</guid>
+        
+        <category>tabelas-hash</category>
+        
+        
+        <category>AE22CP-181</category>
+        
+      </item>
     
       <item>
         <title>Funções</title>
@@ -1631,579 +1823,6 @@ pip3 install matplotlib             # instala o pacote matplotlib
         
         
         <category>AE22CP-181</category>
-        
-      </item>
-    
-      <item>
-        <title>Estruturas de repetição</title>
-        <description>&lt;h1 id=&quot;conteúdo&quot;&gt;Conteúdo&lt;/h1&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#conteúdo&quot; id=&quot;markdown-toc-conteúdo&quot;&gt;Conteúdo&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#ambiente-de-programação&quot; id=&quot;markdown-toc-ambiente-de-programação&quot;&gt;Ambiente de programação&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#estruturas-de-repetição&quot; id=&quot;markdown-toc-estruturas-de-repetição&quot;&gt;Estruturas de repetição&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#repetir-enquanto-while&quot; id=&quot;markdown-toc-repetir-enquanto-while&quot;&gt;Repetir enquanto: &lt;code class=&quot;highlighter-rouge&quot;&gt;while&lt;/code&gt;&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#exercício-1-complete-o-código&quot; id=&quot;markdown-toc-exercício-1-complete-o-código&quot;&gt;Exercício 1: complete o código&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exercício-2-números-pares&quot; id=&quot;markdown-toc-exercício-2-números-pares&quot;&gt;Exercício 2: números pares&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exercício-3-números-impares&quot; id=&quot;markdown-toc-exercício-3-números-impares&quot;&gt;Exercício 3: números impares&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exercício-4-soma-total-da-sequência&quot; id=&quot;markdown-toc-exercício-4-soma-total-da-sequência&quot;&gt;Exercício 4: soma total da sequência&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exercício-5-soma-dos-pares-em-uma-sequência&quot; id=&quot;markdown-toc-exercício-5-soma-dos-pares-em-uma-sequência&quot;&gt;Exercício 5: soma dos pares em uma sequência&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exercício-6-média-da-sequência&quot; id=&quot;markdown-toc-exercício-6-média-da-sequência&quot;&gt;Exercício 6: média da sequência&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exercício-7-média-dos-divisíveis-por-3-na-sequência&quot; id=&quot;markdown-toc-exercício-7-média-dos-divisíveis-por-3-na-sequência&quot;&gt;Exercício 7: média dos divisíveis por 3 na sequência&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exercício-8-senha&quot; id=&quot;markdown-toc-exercício-8-senha&quot;&gt;Exercício 8: senha&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exercício-9-senha-com-limite-de-tentativas&quot; id=&quot;markdown-toc-exercício-9-senha-com-limite-de-tentativas&quot;&gt;Exercício 9: senha com limite de tentativas&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#prática-de-programação-lista-de-compras&quot; id=&quot;markdown-toc-prática-de-programação-lista-de-compras&quot;&gt;Prática de programação: lista de compras&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#formato-de-entrada-do-programa&quot; id=&quot;markdown-toc-formato-de-entrada-do-programa&quot;&gt;Formato de entrada do programa&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#o-que-fazer-primeiro&quot; id=&quot;markdown-toc-o-que-fazer-primeiro&quot;&gt;O que fazer primeiro?&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#introduzindo-a-repetição-ler-todos-os-itens-da-lista&quot; id=&quot;markdown-toc-introduzindo-a-repetição-ler-todos-os-itens-da-lista&quot;&gt;Introduzindo a repetição: ler todos os itens da lista&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#exemplo-de-entrada-1-qual-o-valor-total-das-compras&quot; id=&quot;markdown-toc-exemplo-de-entrada-1-qual-o-valor-total-das-compras&quot;&gt;Exemplo de entrada 1: Qual o valor total das compras?&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#exemplo-de-entrada-2-qual-o-valor-total-das-compras&quot; id=&quot;markdown-toc-exemplo-de-entrada-2-qual-o-valor-total-das-compras&quot;&gt;Exemplo de entrada 2: Qual o valor total das compras?&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#exercício-extra-média-e-máximo-das-notas&quot; id=&quot;markdown-toc-exercício-extra-média-e-máximo-das-notas&quot;&gt;Exercício extra: média e máximo das notas&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#formato-de-entrada&quot; id=&quot;markdown-toc-formato-de-entrada&quot;&gt;Formato de entrada&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#objetivo&quot; id=&quot;markdown-toc-objetivo&quot;&gt;Objetivo&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#resultado-esperado&quot; id=&quot;markdown-toc-resultado-esperado&quot;&gt;Resultado esperado&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#revisão-estrutura-de-repetição-while&quot; id=&quot;markdown-toc-revisão-estrutura-de-repetição-while&quot;&gt;Revisão: estrutura de repetição &lt;code class=&quot;highlighter-rouge&quot;&gt;while&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#alternativa-repetir-para-cada-elemento-for&quot; id=&quot;markdown-toc-alternativa-repetir-para-cada-elemento-for&quot;&gt;Alternativa: repetir para cada elemento (&lt;code class=&quot;highlighter-rouge&quot;&gt;for&lt;/code&gt;)&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#geradores-de-sequências-a-função-range&quot; id=&quot;markdown-toc-geradores-de-sequências-a-função-range&quot;&gt;Geradores de sequências: a função &lt;code class=&quot;highlighter-rouge&quot;&gt;range()&lt;/code&gt;&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplo-1-sequência-de-0-a-n&quot; id=&quot;markdown-toc-exemplo-1-sequência-de-0-a-n&quot;&gt;Exemplo 1: sequência de 0 a n&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplo-2-sequência-de-n-a-0&quot; id=&quot;markdown-toc-exemplo-2-sequência-de-n-a-0&quot;&gt;Exemplo 2: sequência de n a 0&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exemplo-3-sequência-de-números-pares-de-0-a-n&quot; id=&quot;markdown-toc-exemplo-3-sequência-de-números-pares-de-0-a-n&quot;&gt;Exemplo 3: sequência de números pares de 0 a n&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#exercícios-for&quot; id=&quot;markdown-toc-exercícios-for&quot;&gt;Exercícios: &lt;code class=&quot;highlighter-rouge&quot;&gt;for&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;ambiente-de-programação&quot;&gt;Ambiente de programação&lt;/h1&gt;
-
-&lt;p&gt;Para seguir os exemplos aqui descritos sugiro a utilização do ambiente de programação online &lt;a href=&quot;https://repl.it/languages/python3&quot;&gt;»repl.it&lt;/a&gt;. Mais adiante no curso veremos ferramentas mais apropriadas para programação.&lt;/p&gt;
-
-&lt;h1 id=&quot;estruturas-de-repetição&quot;&gt;Estruturas de repetição&lt;/h1&gt;
-
-&lt;p&gt;Os programas vistos e implementados até então apresentam duas possíveis características. Nos primeiros exemplos, todo programa era uma sequência de linhas (operações) a serem executadas uma-a-uma até que o fim fosse atingido e a resposta (saída) computada. A seguir, introduzimos a ideia de &lt;em&gt;condicionais&lt;/em&gt; (&lt;code class=&quot;highlighter-rouge&quot;&gt;if/else/elif&lt;/code&gt;) por meio dos quais se tornou possível definirmos que certas linhas do código-fonte (blocos de código) seriam executadas apenas &lt;strong&gt;se&lt;/strong&gt; determinadas &lt;strong&gt;condições&lt;/strong&gt; fossem verdadeiras. A adição de &lt;em&gt;condicionais&lt;/em&gt; nos permite o tratamento de erros, a identificação de características nos dados e diversas outras condições que necessariamente precisamos considerar mesmo nos menores programas (códigos-fonte), no entanto, nossos programas continuam sendo sequenciais.&lt;/p&gt;
-
-&lt;p&gt;A partir de agora introduziremos uma das principais estruturas em linguagens de programação as &lt;strong&gt;estruturas de repetição&lt;/strong&gt;. É fácil perceber que dentre os principais atrativos para que automatizemos certas tarefas por meio de programação é a velocidade com que computadores podem efetuar operações repetitivas. Por exemplo, suponha que tivéssemos uma lista de compras composta pelo nome dos itens e os seus respectivos preços e a quantidade, para sabermos qual o valor total da compra precisaríamos multiplicar o preço de cada item pela quantidade e somar os resultados. Nesse cenário simples, temos três possíveis dificuldades:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Ao calcular o total de cada item estamos sujeitos a erro no cálculo,&lt;/li&gt;
-  &lt;li&gt;A soma total nos exige efetuar a soma do total de cada item, novamente sujeitos a erro de cálculos,&lt;/li&gt;
-  &lt;li&gt;Uma lista de compras grande pode tornar o trabalho bem tedioso, mesmo com uma calculadora em mãos.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Cada um desses itens é um atrativo para que essa tarefa fosse automatizada por meio de programação. As estrutura que nos permitem programar esse tipo de tarefas repetitivas são chamadas &lt;em&gt;loops&lt;/em&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;repetir-enquanto-while&quot;&gt;Repetir enquanto: &lt;code class=&quot;highlighter-rouge&quot;&gt;while&lt;/code&gt;&lt;/h2&gt;
-
-&lt;p&gt;A estrutura de repetição &lt;code class=&quot;highlighter-rouge&quot;&gt;while&lt;/code&gt; nos permite repetir um bloco de código &lt;code class=&quot;highlighter-rouge&quot;&gt;enquanto&lt;/code&gt; uma expressão lógica seja verdadeira. Essas expressões são do mesmo tipo daquelas que utilizamos nas estruturas condicionais &lt;code class=&quot;highlighter-rouge&quot;&gt;if/else/elif&lt;/code&gt;. Estruturas &lt;code class=&quot;highlighter-rouge&quot;&gt;while&lt;/code&gt; seguem sempre o seguinte formato:&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expressao_logica&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# bloco de código&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Todo código que estiver interno à estrutura &lt;code class=&quot;highlighter-rouge&quot;&gt;while&lt;/code&gt; será repetido &lt;code class=&quot;highlighter-rouge&quot;&gt;enquanto&lt;/code&gt; (&lt;code class=&quot;highlighter-rouge&quot;&gt;while&lt;/code&gt;) a &lt;code class=&quot;highlighter-rouge&quot;&gt;expressao_logica&lt;/code&gt; seja verdadeira, portanto, é natural que o bloco de código altere alguma variável que esteja presente na &lt;code class=&quot;highlighter-rouge&quot;&gt;expressao_logica&lt;/code&gt;. Por exemplo, podemos utilizar uma estrutura de repetição para contar até dez.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Neste pequeno exemplo a expressão lógica é &lt;code class=&quot;highlighter-rouge&quot;&gt;numero &amp;lt;= 10&lt;/code&gt; e será verdadeira enquanto a variável &lt;code class=&quot;highlighter-rouge&quot;&gt;numero&lt;/code&gt; não ultrapasse o valor &lt;code class=&quot;highlighter-rouge&quot;&gt;10&lt;/code&gt;, como cada vez que o bloco de código é repetido (iteração) a variável &lt;code class=&quot;highlighter-rouge&quot;&gt;numero&lt;/code&gt; é incrementada, em algum momento &lt;code class=&quot;highlighter-rouge&quot;&gt;numero &amp;lt;= 10&lt;/code&gt; se tornará falsa e a repetição finalizará.&lt;/p&gt;
-
-&lt;h3 id=&quot;exercício-1-complete-o-código&quot;&gt;Exercício 1: complete o código&lt;/h3&gt;
-
-&lt;p&gt;Usando o exemplo acima como referência escreva um programa que imprima todos os números de 10 até 1. Complete o código abaixo:&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_______________&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;____________&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;exercício-2-números-pares&quot;&gt;Exercício 2: números pares&lt;/h3&gt;
-
-&lt;p&gt;Usando o exemplo acima como referência escreva um programa que imprima todos os números pares de 0 até 10. Complete o código abaixo:&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_______________&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;______________&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_____________&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;exercício-3-números-impares&quot;&gt;Exercício 3: números impares&lt;/h3&gt;
-
-&lt;p&gt;Escreva um programa que imprima todos os números ímpares de 0 até 10.&lt;/p&gt;
-
-&lt;h3 id=&quot;exercício-4-soma-total-da-sequência&quot;&gt;Exercício 4: soma total da sequência&lt;/h3&gt;
-
-&lt;p&gt;Escreva um programa que compute a soma de todos os números entre 0 e 100&lt;/p&gt;
-
-&lt;h3 id=&quot;exercício-5-soma-dos-pares-em-uma-sequência&quot;&gt;Exercício 5: soma dos pares em uma sequência&lt;/h3&gt;
-
-&lt;p&gt;Escreva um programa que compute a soma de todos os números pares entre 0 e 100&lt;/p&gt;
-
-&lt;h3 id=&quot;exercício-6-média-da-sequência&quot;&gt;Exercício 6: média da sequência&lt;/h3&gt;
-
-&lt;p&gt;Escreva um programa que compute a média de todos os números entre 965 e 5888&lt;/p&gt;
-
-&lt;h3 id=&quot;exercício-7-média-dos-divisíveis-por-3-na-sequência&quot;&gt;Exercício 7: média dos divisíveis por 3 na sequência&lt;/h3&gt;
-
-&lt;p&gt;Escreva um programa que compute a média de todos os números divisíveis por 3 entre 5678 e 15098&lt;/p&gt;
-
-&lt;h3 id=&quot;exercício-8-senha&quot;&gt;Exercício 8: senha&lt;/h3&gt;
-
-&lt;p&gt;Escreva um programa em Python que receba como entrada uma senha na forma de string. Seu programa deverá verificar se essa senha está correta e escolher uma dentre duas opções:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Imprimir: “Acesso garantido.”&lt;/li&gt;
-  &lt;li&gt;Imprimir “Senha incorreta, tente novamente.”.&lt;/li&gt;
-  &lt;li&gt;Assuma que a senha correta seja “LP31M”.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Em caso de senha incorreta, um novo par de e-mail e senha devem ser lidos novamente, até que valores corretos sejam digitados.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Defina a senha e e-mail correto abaixo, substituindo os valores atuais&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;email_correto&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;jean@utfpr.br&quot;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;senha_correta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;LP31M&quot;&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# Complete com seu código-fonte&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;exercício-9-senha-com-limite-de-tentativas&quot;&gt;Exercício 9: senha com limite de tentativas&lt;/h3&gt;
-
-&lt;p&gt;Escreva um programa em Python que receba como entrada uma senha na forma de string. Seu programa deverá verificar se essa senha está correta e escolher uma dentre duas opções:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Imprimir: “Acesso garantido.”&lt;/li&gt;
-  &lt;li&gt;Imprimir “Senha incorreta, tente novamente.”.&lt;/li&gt;
-  &lt;li&gt;Assuma que a senha correta seja “LP31M”.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Em caso de senha incorreta, um novo par de e-mail e senha devem ser lidos novamente, até que valores corretos sejam digitados. No entanto, se o número de tentativas exceder 3, o programa deverá terminar.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Defina a senha e e-mail correto abaixo, substituindo os valores atuais&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;email_correto&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;jean@utfpr.br&quot;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;senha_correta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;LP31M&quot;&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# Complete com seu código-fonte&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;prática-de-programação-lista-de-compras&quot;&gt;Prática de programação: lista de compras&lt;/h1&gt;
-
-&lt;p&gt;Consideremos a construção de um programa para que, dada uma lista de compras, calcule o valor total por item e o total a ser pago.&lt;/p&gt;
-
-&lt;h3 id=&quot;formato-de-entrada-do-programa&quot;&gt;Formato de entrada do programa&lt;/h3&gt;
-
-&lt;p&gt;Cada item na lista de compras é recebido como entrada de três valores, exemplo:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;chocolate   3   2.99
-arroz       1   10.54
-café        2   5.87 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Para que a nossa entrada de dados “lista de compras” esteja completa, no entanto, definiremos que o primeiro valor em seu cabeçalho seja a quantidade de itens na lista. O exemplo acima se torna então:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;3
-chocolate   3   2.99
-arroz       1   10.54
-café        2   5.87
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;o-que-fazer-primeiro&quot;&gt;O que fazer primeiro?&lt;/h3&gt;
-
-&lt;p&gt;O ponto principal é que gostaríamos de calcular o valor total das compras, mas para isso temos que calcular o preço total de cada item. Assumndo que os items da lista de compras serão dados como entrada complete o código abaixo para calcular o valor de um item:&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Este trecho de código lê um item da lista de compras e calcula seu valor total.&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;nome_item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;quantidade&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;intput&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;preco_por_item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;total_item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_________________&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Total em&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nome_item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;= R$&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;total_item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;introduzindo-a-repetição-ler-todos-os-itens-da-lista&quot;&gt;Introduzindo a repetição: ler todos os itens da lista&lt;/h3&gt;
-
-&lt;p&gt;O trecho de código acima serve para ler um item de lista de compras e calcular seu total. O que queremos fazer agora é que esse trecho de código seja repetido para todos os itens da lista de compras.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Quantas os itens a lista de compras contém?&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;O primeiro valor da lista de compras indica a quantidade de items na lista.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Quantidade de itens na lista de compras&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;num_itens&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;em&gt;Implemente o restante do programa para que o valor total por item e o valor total da lista de compras sejam computados e impressos.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;exemplo-de-entrada-1-qual-o-valor-total-das-compras&quot;&gt;Exemplo de entrada 1: Qual o valor total das compras?&lt;/h3&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;5
-leite
-3  
-2.99
-arroz
-1
-10.54
-café
-2   
-5.87
-sal
-1
-0.98
-Sabão
-5
-2.99
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;exemplo-de-entrada-2-qual-o-valor-total-das-compras&quot;&gt;Exemplo de entrada 2: Qual o valor total das compras?&lt;/h3&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;15
-leite
-3  
-2.99
-arroz
-1
-10.54
-café
-2   
-5.87
-sal
-1
-0.98
-Sabão
-5
-2.99
-leite
-3  
-2.99
-arroz
-1
-10.54
-café
-2   
-5.87
-sal
-1
-0.98
-Sabão
-5
-2.99
-leite
-3  
-2.99
-arroz
-1
-10.54
-café
-2   
-5.87
-sal
-1
-0.98
-Sabão
-5
-2.99
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;exercício-extra-média-e-máximo-das-notas&quot;&gt;Exercício extra: média e máximo das notas&lt;/h1&gt;
-
-&lt;p&gt;Analisamos diferentes exemplos em que a função &lt;code class=&quot;highlighter-rouge&quot;&gt;input()&lt;/code&gt; é utilizada dentro de uma estrutura de repetição (&lt;code class=&quot;highlighter-rouge&quot;&gt;while&lt;/code&gt;) para que diversos dados de entrada possam ser recebidos e processados.&lt;/p&gt;
-
-&lt;p&gt;Neste exercício, teremos novamente uma sequência de dados de entrada, referentes às notas da Prova 1&lt;/p&gt;
-
-&lt;h2 id=&quot;formato-de-entrada&quot;&gt;Formato de entrada&lt;/h2&gt;
-&lt;p&gt;Os dados de entrada estão no arquivo &lt;a href=&quot;../assets/LP31M/P1-notas.txt&quot;&gt;notas.txt&lt;/a&gt;, esse arquivo inicia como:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;34
-1979850	
-0.00
-2062240	
-0.10
-1882112	
-0.00
-...
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Onde a primeira linha indica a quantidade de alunos, 34 neste caso. Cada par de linhas subsequente corresponde então ao RA e a nota de um determinado aluno.&lt;/p&gt;
-
-&lt;h2 id=&quot;objetivo&quot;&gt;Objetivo&lt;/h2&gt;
-
-&lt;p&gt;Escreva um programa na linguagem Python, que leia os dados de entrada e responda as seguintes perguntas:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Qual o RA com a maior nota?&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Qual a média das notas?&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;resultado-esperado&quot;&gt;Resultado esperado&lt;/h2&gt;
-
-&lt;p&gt;Como saída seu programa deverá imprimir:&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;O aluno de RA&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ra&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;obteve a maior nota (&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nota&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;).&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;A média das notas foi igual a &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;media&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;revisão-estrutura-de-repetição-while&quot;&gt;Revisão: estrutura de repetição &lt;code class=&quot;highlighter-rouge&quot;&gt;while&lt;/code&gt;&lt;/h1&gt;
-
-&lt;p&gt;A estrutura de repetição &lt;code class=&quot;highlighter-rouge&quot;&gt;while&lt;/code&gt; utilizada até então nos permite descrever processos repetitivos para os quais o fim está definido por meio de uma condição (um condicional). No exemplo abaixo, o condicional que delimita o fim da repetição é &lt;code class=&quot;highlighter-rouge&quot;&gt;numero &amp;gt;= 0&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Como no exemplo acima a variável &lt;code class=&quot;highlighter-rouge&quot;&gt;numero&lt;/code&gt; foi inicializada como &lt;code class=&quot;highlighter-rouge&quot;&gt;5&lt;/code&gt;, a condição &lt;code class=&quot;highlighter-rouge&quot;&gt;numero &amp;gt;= 0&lt;/code&gt; será sempre verdadeira a menos que alteremos o valor da variável número, o que está sendo feito pela expressão&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Para melhor compreendermos o processamento que ocorre durante a execução do código-fonte acima, devemos observar cada uma das etapas envolvidas em sua execução. Cada linha da tabela abaixo descreve uma &lt;strong&gt;iteração&lt;/strong&gt;. O termo &lt;strong&gt;iterar&lt;/strong&gt; é de uso comum na literatura sobre programação e apenas se refere às operações que ocorrem durante uma etapa da repetição.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;número&lt;/th&gt;
-      &lt;th&gt;Condição&lt;/th&gt;
-      &lt;th&gt;Operação&lt;/th&gt;
-      &lt;th&gt;Atualização&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;numero = 5&lt;/td&gt;
-      &lt;td&gt;numero &amp;gt;= 0 (Sim)&lt;/td&gt;
-      &lt;td&gt;print(numero)&lt;/td&gt;
-      &lt;td&gt;numero = numero - 1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;numero = 4&lt;/td&gt;
-      &lt;td&gt;numero &amp;gt;= 0 (Sim)&lt;/td&gt;
-      &lt;td&gt;print(numero)&lt;/td&gt;
-      &lt;td&gt;numero = numero - 1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;numero = 3&lt;/td&gt;
-      &lt;td&gt;numero &amp;gt;= 0 (Sim)&lt;/td&gt;
-      &lt;td&gt;print(numero)&lt;/td&gt;
-      &lt;td&gt;numero = numero - 1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;numero = 2&lt;/td&gt;
-      &lt;td&gt;numero &amp;gt;= 0 (Sim)&lt;/td&gt;
-      &lt;td&gt;print(numero)&lt;/td&gt;
-      &lt;td&gt;numero = numero - 1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;numero = 1&lt;/td&gt;
-      &lt;td&gt;numero &amp;gt;= 0 (Sim)&lt;/td&gt;
-      &lt;td&gt;print(numero)&lt;/td&gt;
-      &lt;td&gt;numero = numero - 1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;numero = 0&lt;/td&gt;
-      &lt;td&gt;numero &amp;gt;= 0 (Sim)&lt;/td&gt;
-      &lt;td&gt;print(numero)&lt;/td&gt;
-      &lt;td&gt;numero = numero - 1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;numero = -1&lt;/td&gt;
-      &lt;td&gt;numero &amp;gt;= 0 (Não)&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;O ponto crucial para compreendermos estruturas de repetição como um todo é identificar primeiro, &lt;strong&gt;o bloco de código&lt;/strong&gt; sendo repetido, que neste exemplo é&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;c&quot;&gt;# Bloco de código da repetição (espaçado à direita)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Esse bloco, no entanto, somente será executado se a &lt;strong&gt;condição&lt;/strong&gt; que controla a repetição for verdadeira. Neste exemplo, a &lt;strong&gt;condição&lt;/strong&gt; é definida na linha abaixo&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Enquanto numero for maior ou igual a zero&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Por fim, para que o &lt;strong&gt;bloco de código&lt;/strong&gt; não seja repetido indefinidamente, devemos garantir que seja possível em algum momento que a condição deixe de ser verdadeira. A única forma de atingirmos esse objetivo, é alterando a variável &lt;code class=&quot;highlighter-rouge&quot;&gt;numero&lt;/code&gt; durante o processo.&lt;/p&gt;
-
-&lt;p&gt;Se a cada &lt;strong&gt;iteração&lt;/strong&gt; (repetição) diminuirmos o valor contido na variável &lt;code class=&quot;highlighter-rouge&quot;&gt;numero&lt;/code&gt; em uma unidade, em algum momento ela deixará de ser positiva (&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;gt;=0&lt;/code&gt;) e, portanto, a repetição chegará ao final. Observe que na última linha da tabela acima, a variável &lt;code class=&quot;highlighter-rouge&quot;&gt;numero&lt;/code&gt; possui o valor &lt;code class=&quot;highlighter-rouge&quot;&gt;-1&lt;/code&gt;, e portanto, o bloco de código da repetição não será executado, visto que nesse caso a condição &lt;code class=&quot;highlighter-rouge&quot;&gt;numero &amp;gt;= 0&lt;/code&gt; será falsa.&lt;/p&gt;
-
-&lt;h1 id=&quot;alternativa-repetir-para-cada-elemento-for&quot;&gt;Alternativa: repetir para cada elemento (&lt;code class=&quot;highlighter-rouge&quot;&gt;for&lt;/code&gt;)&lt;/h1&gt;
-
-&lt;p&gt;Por meio da estrutura de repetição &lt;code class=&quot;highlighter-rouge&quot;&gt;while&lt;/code&gt; (enquanto), é possível representar qualquer tipo de repetição. No entanto, em algumas situações existe uma forma mais conveniente para definirmos repetições.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Repetir enquanto uma condição for verdadeira: &lt;code class=&quot;highlighter-rouge&quot;&gt;while&lt;/code&gt; (enquanto)&lt;/li&gt;
-  &lt;li&gt;Repetir uma quantidade de vezes predefinida:  &lt;code class=&quot;highlighter-rouge&quot;&gt;for&lt;/code&gt;   (para cada)&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Essa forma alternativa de representarmos repetições segue um padrão diferente. A ideia que ela representa poderia ser interpretada como&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;para cada&lt;/strong&gt; item &lt;strong&gt;em&lt;/strong&gt; uma sequência, &lt;strong&gt;faça&lt;/strong&gt; &lt;strong&gt;algo&lt;/strong&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Vejamos como traduzir a sentença acima para a linguagem de programação Python, etapa por etapa. As partes em negrito são as que devemos dar maior atenção.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;strong&gt;para cada&lt;/strong&gt; deverá ser escrito como &lt;strong&gt;for&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;em&lt;/strong&gt; deverá ser escrito como &lt;strong&gt;in&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;faça&lt;/strong&gt; deverá ser escrito como &lt;strong&gt;:&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;algo&lt;/strong&gt; será um &lt;strong&gt;bloco de código&lt;/strong&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Portanto, a sentença descrita acima se tornaria equivalente ao código-fonte abaixo:&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# para cada item em uma sequência, faça algo.&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;uma&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sequencia&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;#algo&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Obviamente, este código ainda não é funcional, precisamos definir o que “uma sequencia” se refere, e também definir o que “algo” se refere. Tomemos um exemplo simples, em que a sequência seja $5,4,3,2,1,0$, e que o o bloco de código que queiramos repetir seja apenas &lt;code class=&quot;highlighter-rouge&quot;&gt;print(item)&lt;/code&gt;. Dados esses detalhes o código-fonte acima se tornará.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;para cada&lt;/strong&gt; item &lt;strong&gt;em&lt;/strong&gt; 5,4,3,2,1,0&lt;strong&gt;:&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;imprima item.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Temos agora um exemplo completo equivalente ao visto na seção anterior (ver abaixo) porém muito mais simples.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numero&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;geradores-de-sequências-a-função-range&quot;&gt;Geradores de sequências: a função &lt;code class=&quot;highlighter-rouge&quot;&gt;range()&lt;/code&gt;&lt;/h2&gt;
-
-&lt;p&gt;É importante notar que a quantidade de &lt;strong&gt;iterações&lt;/strong&gt; em um laço &lt;code class=&quot;highlighter-rouge&quot;&gt;for&lt;/code&gt; é predefinida em sua criação. Isto é, sabemos desde o início que após percorrer toda a sequência &lt;code class=&quot;highlighter-rouge&quot;&gt;[5,4,3,2,1,0]&lt;/code&gt; a repetição terá fim. Suponhamos, no entanto, a seguinte questão:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Escreva um programa que imprima todos os número de zero a dois mil.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Não é prático escrevermos toda sequência de números de forma explícita &lt;code class=&quot;highlighter-rouge&quot;&gt;[0,1,...,2000]&lt;/code&gt;, e também não será prático para qualquer outra sequência de tamanho razoável. Deste modo, a linguagem Python nos oferece uma ferramenta para abreviar a escrita dessas sequências: a função &lt;code class=&quot;highlighter-rouge&quot;&gt;range()&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;A função &lt;code class=&quot;highlighter-rouge&quot;&gt;range()&lt;/code&gt; pode ser utilizada de diferentes formas, as quais estão exemplificadas na tabela abaixo:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Formato&lt;/th&gt;
-      &lt;th&gt;Descrição&lt;/th&gt;
-      &lt;th&gt;Exemplo&lt;/th&gt;
-      &lt;th&gt;Resultado&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;range(n)&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;Gera uma sequência de $0$ a $n-1$&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;range(6)&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;[0,1,2,3,4,5]&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;range(i,f)&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;Gera uma sequência de $i$ a $f-1$&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;range(5,11)&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;[5,6,7,8,9,10]&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;range(i,f,s)&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;Gera a seq. &lt;script type=&quot;math/tex&quot;&gt;i, (i+s), (i+s+s),\dots, (j \leq f-1)&lt;/script&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;range(5,11,2)&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;[5,7,9]&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Utilizando como referência esses exemplos de uso da função &lt;code class=&quot;highlighter-rouge&quot;&gt;range()&lt;/code&gt;, podemos de forma fácil imprimir todos os números em um intervalo. É imporante, no entanto, lembrar que o último número gerado será sempre um valor a menos que o valor passado para range. A seguir temos alguns exemplos, os &lt;strong&gt;execute&lt;/strong&gt;, verifique os resultados, &lt;strong&gt;altere&lt;/strong&gt; os valores das sequências, &lt;strong&gt;experimente&lt;/strong&gt; com o uso dessas funcionalidades.&lt;/p&gt;
-
-&lt;h3 id=&quot;exemplo-1-sequência-de-0-a-n&quot;&gt;Exemplo 1: sequência de 0 a n&lt;/h3&gt;
-
-&lt;p&gt;Assuma que recebemos como entrada um inteiro $n$ e desejamos imprimir todos os números de $0$ a $n$. O código-fonte a seguir faz o esperado, onde a notação &lt;code class=&quot;highlighter-rouge&quot;&gt;range(n+1)&lt;/code&gt; define automaticamente o início como $0$ e o final explicitamente como $n$.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;exemplo-2-sequência-de-n-a-0&quot;&gt;Exemplo 2: sequência de n a 0&lt;/h3&gt;
-
-&lt;p&gt;Assuma que recebemos como entrada um inteiro $n$ e desejamos imprimir todos os números de $n$ a $0$. O código-fonte a seguir faz o esperado, onde a notação &lt;code class=&quot;highlighter-rouge&quot;&gt;range(n, -1, -1)&lt;/code&gt; define explicitamente o início como $n$, o final como $0$ (um número antes de -1) e o terceiro campo, $-1$, indica a quantidade que será subtraída para gerar a sequência.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;exemplo-3-sequência-de-números-pares-de-0-a-n&quot;&gt;Exemplo 3: sequência de números pares de 0 a n&lt;/h3&gt;
-
-&lt;p&gt;Assuma que recebemos como entrada um inteiro $n$ e desejamos imprimir todos os números pares de $0$ a $n$. O código-fonte a seguir faz o esperado, onde a notação &lt;code class=&quot;highlighter-rouge&quot;&gt;range(0, n+1, 2)&lt;/code&gt; define explicitamente o início como $0$, o final como $n$ e o incremento como $2$.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;exercícios-for&quot;&gt;Exercícios: &lt;code class=&quot;highlighter-rouge&quot;&gt;for&lt;/code&gt;&lt;/h1&gt;
-
-&lt;p&gt;&lt;strong&gt;Para consolidar o conteúdo descrito nesta seção, refaça todos exercícios definidos nas seções anteriores, mas agora utilizando a estrutura &lt;code class=&quot;highlighter-rouge&quot;&gt;for&lt;/code&gt; e a função &lt;code class=&quot;highlighter-rouge&quot;&gt;range()&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-</description>
-        <pubDate>Thu, 12 Apr 2018 17:00:00 -0300</pubDate>
-        <link>http://localhost:4000/lp31m-181/estruturas-repeticao.html</link>
-        <guid isPermaLink="true">http://localhost:4000/lp31m-181/estruturas-repeticao.html</guid>
-        
-        <category>loops</category>
-        
-        
-        <category>LP31M-181</category>
         
       </item>
     
