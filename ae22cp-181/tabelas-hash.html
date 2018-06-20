@@ -245,20 +245,32 @@
 </span><span class="cp">#ifndef Type
 </span> <span class="cp">#define Type int
 #endif
-#ifndef Key
+</span>
+<span class="cp">#ifndef Key
 </span> <span class="cp">#define Key int
 #endif
-</span><span class="c1">// Define o tipo abstrato de dados hasht
+</span>
+<span class="cp">#ifndef TYPE_NULL
+</span> <span class="cp">#define TYPE_NULL -99999999
+#endif
+</span>
+<span class="c1">// Define o tipo abstrato de dados hasht
 </span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">HASH_TABLE</span> <span class="n">hasht</span><span class="p">;</span>
 <span class="c1">// Gerenciamento de memória
-</span><span class="n">hasht</span><span class="o">*</span> <span class="n">new_hasht</span><span class="p">(</span><span class="kt">int</span> <span class="n">capacity</span><span class="p">);</span>
+</span><span class="n">hasht</span><span class="o">*</span> <span class="n">new_hasht</span><span class="p">(</span><span class="kt">long</span> <span class="n">capacity</span><span class="p">);</span>
 <span class="kt">void</span> <span class="n">free_hasht</span><span class="p">(</span><span class="n">hasht</span><span class="o">*</span> <span class="n">ht</span><span class="p">);</span>
 <span class="c1">// Manipulação da estrutura de dados
 </span><span class="kt">void</span> <span class="n">hasht_insert</span><span class="p">(</span><span class="n">hasht</span><span class="o">*</span> <span class="n">ht</span><span class="p">,</span> <span class="n">Type</span> <span class="n">obj</span><span class="p">);</span>
 <span class="n">Type</span> <span class="n">hasht_remove</span><span class="p">(</span><span class="n">hasht</span><span class="o">*</span> <span class="n">ht</span><span class="p">,</span> <span class="n">Key</span> <span class="n">k</span><span class="p">);</span>
-<span class="n">Type</span> <span class="n">hasht_search</span><span class="p">(</span><span class="n">hasht</span><span class="o">*</span> <span class="n">ht</span><span class="p">,</span> <span class="n">key</span> <span class="n">k</span><span class="p">);</span>
-<span class="c1">// Comparação de duas chaves
-</span><span class="kt">bool</span> <span class="n">equal</span><span class="p">(</span><span class="n">Key</span> <span class="n">a</span><span class="p">,</span> <span class="n">Key</span> <span class="n">b</span><span class="p">);</span>
+<span class="n">Type</span> <span class="n">hasht_search</span><span class="p">(</span><span class="n">hasht</span><span class="o">*</span> <span class="n">ht</span><span class="p">,</span> <span class="n">Key</span> <span class="n">k</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">hasht_print</span><span class="p">(</span><span class="n">hasht</span><span class="o">*</span> <span class="n">t</span><span class="p">);</span>
+
+<span class="c1">// Funções a serem definidas em main.c
+</span><span class="n">Key</span> <span class="n">get_key</span><span class="p">(</span><span class="n">Type</span> <span class="n">obj</span><span class="p">);</span>
+<span class="kt">bool</span> <span class="n">compare_by_key</span><span class="p">(</span><span class="n">Type</span> <span class="n">obj</span><span class="p">,</span> <span class="n">Key</span> <span class="n">k</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">print_item</span><span class="p">(</span><span class="n">Type</span> <span class="n">obj</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">free_item</span><span class="p">(</span><span class="n">Type</span> <span class="n">obj</span><span class="p">);</span>
+<span class="kt">long</span> <span class="n">hash</span><span class="p">(</span><span class="n">Key</span> <span class="n">k</span><span class="p">,</span> <span class="kt">long</span> <span class="n">n</span><span class="p">);</span>
 </code></pre>
 </div>
 
