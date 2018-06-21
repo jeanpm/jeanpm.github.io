@@ -104,6 +104,9 @@
       <li><a href="#exercício-2-fatorial" id="markdown-toc-exercício-2-fatorial">Exercício 2: fatorial</a></li>
       <li><a href="#exercício-3-fibonacci" id="markdown-toc-exercício-3-fibonacci">Exercício 3: fibonacci</a></li>
       <li><a href="#exercício-4-série-harmônica" id="markdown-toc-exercício-4-série-harmônica">Exercício 4: série harmônica</a></li>
+      <li><a href="#exercício-5-maior-de-três" id="markdown-toc-exercício-5-maior-de-três">Exercício 5: maior de três</a></li>
+      <li><a href="#exercício-6-verificar-se-é-par" id="markdown-toc-exercício-6-verificar-se-é-par">Exercício 6: verificar se é par</a></li>
+      <li><a href="#exercício-7-sequência-de-números-par" id="markdown-toc-exercício-7-sequência-de-números-par">Exercício 7: sequência de números par</a></li>
     </ul>
   </li>
 </ul>
@@ -172,6 +175,10 @@
     <span class="c"># Complete </span>
     <span class="c"># ...</span>
     <span class="k">return</span> <span class="n">fatorial</span>
+<span class="c"># Testando a função</span>
+<span class="k">print</span><span class="p">(</span><span class="n">fatorial</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">fatorial</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">fatorial</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span>
 </code></pre>
 </div>
 
@@ -186,6 +193,10 @@
     <span class="c"># Complete</span>
     <span class="c"># ...</span>
     <span class="k">return</span> <span class="n">termo</span><span class="p">;</span>
+<span class="c"># Testando a função</span>
+<span class="k">print</span><span class="p">(</span><span class="n">fibonacci</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">fibonacci</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">fibonacci</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span>
 </code></pre>
 </div>
 
@@ -201,8 +212,47 @@
     <span class="c"># Complete</span>
     <span class="c"># ...</span>
     <span class="k">return</span> <span class="n">soma</span>
+<span class="c"># Testando a função</span>
+<span class="k">print</span><span class="p">(</span><span class="n">harmonica</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">harmonica</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">harmonica</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
 </code></pre>
 </div>
+
+<h2 id="exercício-5-maior-de-três">Exercício 5: maior de três</h2>
+
+<p>Implemente uma função chamada <code class="highlighter-rouge">max</code> que receba três números e retorne o maior deles</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">max</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="c"># Complete</span>
+    <span class="c"># ...</span>
+    <span class="k">return</span> <span class="n">maior</span>
+
+<span class="c"># Testando a função</span>
+<span class="k">print</span><span class="p">(</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="p">)</span>
+<span class="k">print</span><span class="p">(</span> <span class="nb">max</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="p">)</span>
+<span class="k">print</span><span class="p">(</span> <span class="nb">max</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="o">-</span><span class="mi">11</span><span class="p">)</span> <span class="p">)</span>
+</code></pre>
+</div>
+
+<h2 id="exercício-6-verificar-se-é-par">Exercício 6: verificar se é par</h2>
+
+<p>Implemente uma função chamada <code class="highlighter-rouge">par</code> que recebe um número e retorne verdadeiro (<code class="highlighter-rouge">True</code>) caso esse número seja par e falso (<code class="highlighter-rouge">False</code>) caso ele seja ímpar</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">par</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="c"># Complete aqui</span>
+    <span class="c"># ...</span>
+<span class="c"># Testando a função</span>
+<span class="k">print</span><span class="p">(</span> <span class="n">par</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">)</span>
+<span class="k">print</span><span class="p">(</span> <span class="n">par</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">)</span>
+<span class="k">print</span><span class="p">(</span> <span class="n">par</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="p">)</span>
+<span class="k">print</span><span class="p">(</span> <span class="n">par</span><span class="p">(</span><span class="mi">22</span><span class="p">)</span> <span class="p">)</span>
+</code></pre>
+</div>
+
+<h2 id="exercício-7-sequência-de-números-par">Exercício 7: sequência de números par</h2>
+
+<p>Utilize a função <code class="highlighter-rouge">par(numero)</code> para imprimir todos os números pares entre 0 e n.</p>
 
 
   </article>
