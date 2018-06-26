@@ -11,7 +11,7 @@ dl, dd, ol, ul, figure {
 body {
   font-family: "Latin Modern Roman", Baskerville, Georgia, serif, Inconsolata, Arial, sans-serif;
   font-size: 16px;
-  line-height: 1.8;
+  line-height: 1.2;
   font-weight: 300;
   color: #000000;
   background-color: #eeeeee !important;
@@ -225,7 +225,7 @@ table {
   .site-nav .page-link {
     font-family: "Latin Modern Roman", Baskerville, Georgia, serif, Inconsolata, Arial, sans-serif;
     font-weight: 600 !important;
-    line-height: 1.8;
+    line-height: 1.2;
     letter-spacing: 0.05em;
     margin-right: 20px; }
     .site-nav .page-link:hover {

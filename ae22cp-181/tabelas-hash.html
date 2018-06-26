@@ -103,6 +103,8 @@
     </ul>
   </li>
   <li><a href="#interface-para-tabelas-hash" id="markdown-toc-interface-para-tabelas-hash">Interface para tabelas hash</a></li>
+  <li><a href="#src-encadeamento-separado" id="markdown-toc-src-encadeamento-separado">src: Encadeamento separado</a></li>
+  <li><a href="#apêndice-2-endereçamento-aberto" id="markdown-toc-apêndice-2-endereçamento-aberto">Apêndice 2: endereçamento aberto</a></li>
 </ul>
 
 <h1 id="introdução">Introdução</h1>
@@ -279,6 +281,155 @@
   <li>CORMEN, Thomas H. et al. Algoritmos: teoria e prática. Rio de Janeiro, RJ: Campus, 2002. xvii, 916 p. ISBN 8535209263. <a href="http://www.inf.ufrgs.br/~tsrodrigues/utilidades/cormem.pdf">(pdf: Algoritmos - cap. 11)</a></li>
 </ol>
 
+<h1 id="src-encadeamento-separado">src: Encadeamento separado</h1>
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code>
+<span class="cp">#include "hashtable.h"
+#include "list.h"
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+</span>
+<span class="k">struct</span> <span class="n">HASH_TABLE</span> 
+<span class="p">{</span>
+    <span class="n">list</span><span class="o">**</span> <span class="n">table</span><span class="p">;</span>
+    <span class="kt">long</span> <span class="n">size</span><span class="p">;</span>
+    <span class="kt">long</span> <span class="n">nelem</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+<span class="n">hasht</span><span class="o">*</span> <span class="nf">new_hasht</span><span class="p">(</span><span class="kt">long</span> <span class="n">capacity</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">hasht</span><span class="o">*</span> <span class="n">t</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">hasht</span><span class="p">));</span>
+    <span class="n">t</span><span class="o">-&gt;</span><span class="n">size</span> <span class="o">=</span> <span class="n">capacity</span><span class="p">;</span>
+    <span class="n">t</span><span class="o">-&gt;</span><span class="n">nelem</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">t</span><span class="o">-&gt;</span><span class="n">table</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">list</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">capacity</span><span class="p">);</span>
+ 
+    <span class="k">for</span> <span class="p">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">capacity</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">t</span><span class="o">-&gt;</span><span class="n">table</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_list</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="n">t</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">free_hasht</span><span class="p">(</span><span class="n">hasht</span><span class="o">*</span> <span class="n">t</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">node</span><span class="o">*</span> <span class="n">ptr</span> <span class="o">=</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">table</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">ptr</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">node</span><span class="o">*</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">ptr</span><span class="p">;</span>
+            <span class="n">ptr</span> <span class="o">=</span> <span class="n">ptr</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+            <span class="n">free_item</span><span class="p">(</span><span class="n">tmp</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">);</span>
+            <span class="n">free</span><span class="p">(</span><span class="n">tmp</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">free</span><span class="p">(</span><span class="n">t</span><span class="o">-&gt;</span><span class="n">table</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">t</span><span class="o">-&gt;</span><span class="n">table</span><span class="p">);</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="n">Type</span> <span class="nf">hasht_search</span><span class="p">(</span><span class="n">hasht</span><span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">Key</span> <span class="n">k</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">);</span>
+
+    <span class="n">node</span><span class="o">*</span> <span class="n">ptr</span> <span class="o">=</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">table</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">;</span>
+    
+    <span class="k">while</span> <span class="p">(</span><span class="n">ptr</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">compare_by_key</span><span class="p">(</span> <span class="n">ptr</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">,</span> <span class="n">k</span> <span class="p">)</span>  <span class="p">)</span>
+            <span class="k">return</span> <span class="n">ptr</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">;</span>
+        <span class="n">ptr</span> <span class="o">=</span> <span class="n">ptr</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">TYPE_NULL</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">hasht_insert</span><span class="p">(</span><span class="n">hasht</span><span class="o">*</span> <span class="n">t</span><span class="p">,</span> <span class="n">Type</span> <span class="n">obj</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Type</span> <span class="n">r</span> <span class="o">=</span> <span class="n">hasht_search</span><span class="p">(</span><span class="n">t</span><span class="p">,</span>  <span class="n">get_key</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span> <span class="n">r</span> <span class="o">==</span> <span class="n">TYPE_NULL</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span> <span class="n">get_key</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>  <span class="p">,</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">);</span>
+        <span class="n">list_push_front</span><span class="p">(</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">table</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">obj</span> <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">hasht_print</span><span class="p">(</span><span class="n">hasht</span><span class="o">*</span> <span class="n">t</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">node</span><span class="o">*</span> <span class="n">ptr</span> <span class="o">=</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">table</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">;</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%ld: "</span><span class="p">,</span> <span class="n">i</span> <span class="p">);</span>
+        <span class="k">while</span> <span class="p">(</span> <span class="n">ptr</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="p">)</span>
+        <span class="p">{</span>   
+            <span class="n">print_item</span><span class="p">(</span> <span class="n">ptr</span><span class="o">-&gt;</span><span class="n">value</span> <span class="p">);</span>
+            <span class="n">ptr</span> <span class="o">=</span> <span class="n">ptr</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h1 id="apêndice-2-endereçamento-aberto">Apêndice 2: endereçamento aberto</h1>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "hashtable.h"
+#include "list.h"
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+</span>
+<span class="k">struct</span> <span class="n">HASH_TABLE</span> 
+<span class="p">{</span>
+    <span class="n">Type</span><span class="o">*</span> <span class="n">table</span><span class="p">;</span>
+    <span class="kt">long</span> <span class="n">size</span><span class="p">;</span>
+    <span class="kt">long</span> <span class="n">nelem</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+<span class="n">hasht</span><span class="o">*</span> <span class="nf">new_hasht</span><span class="p">(</span><span class="kt">long</span> <span class="n">capacity</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">hasht</span><span class="o">*</span> <span class="n">t</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">hasht</span><span class="p">));</span>
+    <span class="n">t</span><span class="o">-&gt;</span><span class="n">size</span> <span class="o">=</span> <span class="n">capacity</span><span class="p">;</span>
+    <span class="n">t</span><span class="o">-&gt;</span><span class="n">nelem</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">t</span><span class="o">-&gt;</span><span class="n">table</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">Type</span><span class="p">)</span> <span class="o">*</span> <span class="n">capacity</span><span class="p">);</span>
+    
+    <span class="k">for</span> <span class="p">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">t</span><span class="o">-&gt;</span><span class="n">table</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">TYPE_NULL</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">t</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">free_hasht</span><span class="p">(</span><span class="n">hasht</span><span class="o">*</span> <span class="n">t</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">free_item</span><span class="p">(</span><span class="n">t</span><span class="o">-&gt;</span><span class="n">table</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">t</span><span class="o">-&gt;</span><span class="n">table</span><span class="p">);</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">long</span> <span class="nf">rehash</span><span class="p">(</span><span class="n">Key</span> <span class="n">k</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">,</span> <span class="kt">long</span> <span class="n">N</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">hash</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="o">+</span> <span class="n">j</span><span class="p">)</span> <span class="o">%</span> <span class="n">N</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">Type</span> <span class="nf">hasht_search</span><span class="p">(</span><span class="n">hasht</span><span class="o">*</span> <span class="n">t</span><span class="p">,</span> <span class="n">Key</span> <span class="n">k</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">long</span> <span class="n">reps</span> <span class="o">=</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">table</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">TYPE_NULL</span> <span class="o">&amp;&amp;</span> <span class="n">reps</span><span class="o">--</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">compare_by_key</span><span class="p">(</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">table</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">k</span> <span class="p">)</span>  <span class="p">)</span>
+            <span class="k">return</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">table</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">rehash</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="o">++</span><span class="p">,</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">TYPE_NULL</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">hasht_insert</span><span class="p">(</span><span class="n">hasht</span><span class="o">*</span> <span class="n">t</span><span class="p">,</span> <span class="n">Type</span> <span class="n">obj</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">hasht_print</span><span class="p">(</span><span class="n">hasht</span><span class="o">*</span> <span class="n">t</span><span class="p">);</span>
+</code></pre>
+</div>
 
   </article>
 
