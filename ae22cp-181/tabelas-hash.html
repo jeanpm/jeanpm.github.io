@@ -412,21 +412,22 @@
     <span class="n">free</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kt">long</span> <span class="nf">rehash</span><span class="p">(</span><span class="n">Key</span> <span class="n">k</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">,</span> <span class="kt">long</span> <span class="n">N</span><span class="p">)</span>
+<span class="kt">long</span> <span class="nf">rehash</span><span class="p">(</span><span class="kt">long</span> <span class="n">hash</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">,</span> <span class="kt">long</span> <span class="n">N</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">hash</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="o">+</span> <span class="n">j</span><span class="p">)</span> <span class="o">%</span> <span class="n">N</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">hash</span> <span class="o">+</span> <span class="n">j</span><span class="p">)</span> <span class="o">%</span> <span class="n">N</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="n">Type</span> <span class="nf">hasht_search</span><span class="p">(</span><span class="n">hasht</span><span class="o">*</span> <span class="n">t</span><span class="p">,</span> <span class="n">Key</span> <span class="n">k</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">);</span>
+    <span class="kt">long</span> <span class="n">khash</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">);</span>
     <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
     <span class="kt">long</span> <span class="n">reps</span> <span class="o">=</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">;</span>
+    <span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="n">khash</span><span class="p">;</span>
     <span class="k">while</span> <span class="p">(</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">table</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">TYPE_NULL</span> <span class="o">&amp;&amp;</span> <span class="n">reps</span><span class="o">--</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span> <span class="n">compare_by_key</span><span class="p">(</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">table</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">k</span> <span class="p">)</span>  <span class="p">)</span>
             <span class="k">return</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">table</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-        <span class="n">i</span> <span class="o">=</span> <span class="n">rehash</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="o">++</span><span class="p">,</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">);</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">rehash</span><span class="p">(</span><span class="n">khash</span><span class="p">,</span> <span class="n">j</span><span class="o">++</span><span class="p">,</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">);</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="n">TYPE_NULL</span><span class="p">;</span>
 <span class="p">}</span>
